@@ -1,4 +1,5 @@
 import json
+from dataclasses import asdict
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -53,3 +54,12 @@ def load_jsonl(path: Path) -> list[LegalDocument]:
                 raise ValueError(f"Invalid JSONL at line {line_number}: {exc}") from exc
     return documents
 
+
+def write_jsonl(path: Path, documents: list[LegalDocument]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as output:
+        for document in documents:
+            payload = asdict(document)
+            if document.effective_from:
+                payload["effective_from"] = document.effective_from.isoformat()
+            output.write(json.dumps(payload, ensure_ascii=False) + "\n")

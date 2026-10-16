@@ -47,7 +47,10 @@ class SentenceTransformerEmbeddingProvider:
             ) from exc
         self.model = SentenceTransformer(model_name)
         self.dimension = dimension
-        actual_dimension = self.model.get_sentence_embedding_dimension()
+        if hasattr(self.model, "get_embedding_dimension"):
+            actual_dimension = self.model.get_embedding_dimension()
+        else:
+            actual_dimension = self.model.get_sentence_embedding_dimension()
         if actual_dimension != dimension:
             raise ValueError(
                 f"Model dimension {actual_dimension} does not match EMBEDDING_DIMENSION={dimension}"

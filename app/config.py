@@ -11,9 +11,11 @@ class Settings(BaseSettings):
     embedding_model: str = "intfloat/multilingual-e5-small"
     embedding_dimension: int = 384
     search_top_k: int = 5
+    law_api_oc: str = "test"
+    law_api_base_url: str = "https://www.law.go.kr/DRF"
+    law_api_timeout_seconds: float = 30.0
 
 
 @lru_cache
 def get_settings() -> Settings:
     return Settings()
-

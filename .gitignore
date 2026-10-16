@@ -9,4 +9,5 @@ htmlcov/
 .DS_Store
 postgres_data/
 models/
+data/official/
 

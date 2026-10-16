@@ -32,6 +32,26 @@ legal-rag ingest data/samples/legal_documents.example.jsonl
 legal-rag search "폐기물 처리 허가"
 ```
 
+## 공식 법령·판례 수집
+
+수집 범위는 노션 기획서의 법규 P0 항목을 옮긴
+`data/config/legal_scope.json`에서 관리합니다. 현재 범위는 폐기물관리법
+제17·25·48조, 시행규칙 별표 4·4의2·4의3·5의3,
+순환경제사회 전환 촉진법 핵심 조항, 대법원 2023두62830입니다.
+
+```bash
+legal-rag collect \
+  --scope data/config/legal_scope.json \
+  --output data/official/legal_documents.jsonl
+
+legal-rag ingest data/official/legal_documents.jsonl
+legal-rag evaluate --cases data/config/retrieval_eval.json --top-k 5
+```
+
+`LAW_API_OC=test`는 국가법령정보 공동활용의 개발 확인값입니다. 팀 개발과
+운영에서는 공동활용 신청 후 발급받은 인증값을 `.env`에 설정합니다. 생성된
+공식 데이터 스냅샷은 시행일과 버전이 바뀔 수 있어 Git에 포함하지 않습니다.
+
 ## 4. API 실행
 
 ```bash
