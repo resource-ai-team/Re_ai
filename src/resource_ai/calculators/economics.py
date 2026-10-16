@@ -1,0 +1,1 @@
+"""Economic feasibility calculations."""

@@ -55,9 +55,9 @@ legal-rag evaluate --cases data/config/retrieval_eval.json --top-k 5
 ## 4. API 실행
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn resource_ai.main:app --reload
 curl 'http://127.0.0.1:8000/health'
-curl --get 'http://127.0.0.1:8000/search' --data-urlencode 'q=폐기물 처리 허가'
+curl --get 'http://127.0.0.1:8000/rag/search' --data-urlencode 'q=폐기물 처리 허가'
 ```
 
 ## 5. 테스트
@@ -74,4 +74,6 @@ ruff check .
 ```json
 {"source_id":"unique-id","document_type":"LAW","title":"문서명","source_url":"https://공식출처","effective_from":"2026-01-01","version":"버전","sections":[{"heading":"제1조","content":"원문","citation":"문서명 제1조"}]}
 ```
+
+프로젝트의 모듈 책임과 구현 순서는 `docs/architecture.md`에 정리합니다.
 

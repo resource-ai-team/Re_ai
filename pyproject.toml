@@ -22,10 +22,10 @@ embeddings = ["sentence-transformers>=3.3,<6"]
 dev = ["pytest>=8.3,<10", "ruff>=0.8,<1"]
 
 [project.scripts]
-legal-rag = "app.cli:main"
+legal-rag = "resource_ai.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["app"]
+packages = ["src/resource_ai"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
