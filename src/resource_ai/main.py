@@ -2,7 +2,11 @@ from fastapi import FastAPI
 
 from resource_ai.api.routes.rag import router as rag_router
 
-app = FastAPI(title="Re:Source Legal RAG", version="0.1.0")
+app = FastAPI(
+    title="Re:Source AI",
+    version="0.1.0",
+    description="폐기물 처리 의사결정을 위한 AI·지식 기반 서비스",
+)
 app.include_router(rag_router)
 
 

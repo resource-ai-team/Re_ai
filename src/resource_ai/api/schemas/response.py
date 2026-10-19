@@ -13,3 +13,4 @@ class SearchItem(BaseModel):
     source_url: str
     effective_from: date | None
     score: float
+    retrieval_method: str

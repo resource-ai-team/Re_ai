@@ -31,6 +31,7 @@ def search(
             source_url=item.source_url,
             effective_from=item.effective_from,
             score=item.score,
+            retrieval_method=item.retrieval_method,
         )
         for item in results
     ]

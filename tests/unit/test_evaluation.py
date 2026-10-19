@@ -5,7 +5,12 @@ from pathlib import Path
 import pytest
 
 from resource_ai.evidence.models import SearchResult
-from resource_ai.rag.evaluation import RetrievalCase, evaluate_case, load_retrieval_cases
+from resource_ai.rag.evaluation import (
+    RetrievalCase,
+    evaluate_case,
+    load_retrieval_cases,
+    summarize_evaluations,
+)
 
 
 def _result(heading: str) -> SearchResult:
@@ -36,3 +41,14 @@ def test_load_retrieval_cases_requires_cases(tmp_path: Path) -> None:
     path.write_text(json.dumps({"cases": []}), encoding="utf-8")
     with pytest.raises(ValueError, match="at least one"):
         load_retrieval_cases(path)
+
+
+def test_summarize_evaluations_reports_pass_rate() -> None:
+    passed = evaluate_case(RetrievalCase("위탁", ("제17조",)), [_result("제17조")])
+    failed = evaluate_case(RetrievalCase("허가", ("제25조",)), [_result("제48조")])
+
+    summary = summarize_evaluations([passed, failed])
+
+    assert summary.total == 2
+    assert summary.passed == 1
+    assert summary.pass_rate == 0.5

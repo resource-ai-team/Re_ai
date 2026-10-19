@@ -21,6 +21,24 @@ class RetrievalEvaluation:
     result_headings: tuple[str, ...]
 
 
+@dataclass(frozen=True)
+class RetrievalSummary:
+    total: int
+    passed: int
+    pass_rate: float
+
+
+def summarize_evaluations(evaluations: list[RetrievalEvaluation]) -> RetrievalSummary:
+    if not evaluations:
+        raise ValueError("At least one evaluation is required")
+    passed = sum(evaluation.passed for evaluation in evaluations)
+    return RetrievalSummary(
+        total=len(evaluations),
+        passed=passed,
+        pass_rate=passed / len(evaluations),
+    )
+
+
 def load_retrieval_cases(path: Path) -> list[RetrievalCase]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     cases = [

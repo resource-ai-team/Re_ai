@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+from dataclasses import replace
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -62,4 +64,16 @@ def collect_scope(client: LawOpenApiClient, scope_path: Path) -> list[LegalDocum
     documents.extend(
         collect_precedent(client, spec["case_number"]) for spec in scope.get("precedents", [])
     )
-    return documents
+    collected_at = datetime.now(UTC).isoformat()
+    return [
+        replace(
+            document,
+            metadata={
+                **document.metadata,
+                "dataset_version": scope.get("dataset_version", "unversioned"),
+                "scope_source": scope.get("source"),
+                "collected_at": collected_at,
+            },
+        )
+        for document in documents
+    ]
