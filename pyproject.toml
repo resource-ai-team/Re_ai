@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "re-ai-legal-rag"
+version = "0.1.0"
+description = "Local PostgreSQL/pgvector legal evidence retrieval service"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "httpx>=0.28,<1",
+  "pgvector>=0.3,<1",
+  "psycopg[binary]>=3.2,<4",
+  "pydantic-settings>=2.6,<3",
+  "uvicorn[standard]>=0.32,<1",
+]
+
+[project.optional-dependencies]
+embeddings = ["sentence-transformers>=3.3,<6"]
+dev = ["pytest>=8.3,<10", "ruff>=0.8,<1"]
+
+[project.scripts]
+legal-rag = "resource_ai.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/resource_ai"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+

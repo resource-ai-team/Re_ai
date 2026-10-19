@@ -1,0 +1,3 @@
+{"source_id":"example-law-article","document_type":"LAW","title":"테스트용 법령 문서","source_url":"https://example.invalid/official-source-required","source_org":"테스트","effective_from":"2026-01-01","version":"test-only","metadata":{"verified":false,"test_only":true},"sections":[{"heading":"제1조(테스트)","content":"이 문장은 적재 형식을 확인하기 위한 테스트 데이터이며 실제 법률 근거로 사용할 수 없습니다.","citation":"테스트용 법령 문서 제1조"}]}
+{"source_id":"example-case","document_type":"CASE","title":"테스트용 판례 문서","source_url":"https://example.invalid/official-source-required","source_org":"테스트","document_no":"TEST-001","version":"test-only","metadata":{"verified":false,"test_only":true},"sections":[{"heading":"판결요지","content":"이 문장은 판례 검색 파이프라인을 확인하기 위한 테스트 데이터이며 실제 판례가 아닙니다.","citation":"테스트 사건 TEST-001"}]}
+

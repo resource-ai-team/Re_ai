@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: re-ai-postgres
+    environment:
+      POSTGRES_DB: re_ai
+      POSTGRES_USER: re_ai
+      POSTGRES_PASSWORD: local_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - re_ai_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U re_ai -d re_ai"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  re_ai_postgres_data:
+
