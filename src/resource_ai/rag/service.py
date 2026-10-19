@@ -6,19 +6,35 @@ from pgvector import Vector
 from resource_ai.evidence.models import LegalDocument, SearchResult
 from resource_ai.rag.ingestion.chunker import chunk_text
 from resource_ai.rag.retrieval.embeddings import EmbeddingProvider
+from resource_ai.rag.retrieval.reranker import rerank_legal_results
+from resource_ai.rag.retrieval.retriever import reciprocal_rank_fusion
 from resource_ai.rag.retrieval.vector_store import Database
 
 
 class LegalRepository:
-    def __init__(self, database: Database, embeddings: EmbeddingProvider) -> None:
+    def __init__(
+        self,
+        database: Database,
+        embeddings: EmbeddingProvider,
+        *,
+        candidate_multiplier: int = 4,
+        rrf_k: int = 60,
+    ) -> None:
         self.database = database
         self.embeddings = embeddings
+        self.candidate_multiplier = candidate_multiplier
+        self.rrf_k = rrf_k
 
     def initialize(self, migration_path: Path) -> None:
-        sql = migration_path.read_text(encoding="utf-8")
+        migration_files = (
+            sorted(migration_path.glob("*.sql")) if migration_path.is_dir() else [migration_path]
+        )
+        if not migration_files:
+            raise ValueError(f"No SQL migrations found in {migration_path}")
         # The vector type does not exist until this migration creates the extension.
         with self.database.connect(register_vector_types=False) as connection:
-            connection.execute(sql)
+            for path in migration_files:
+                connection.execute(path.read_text(encoding="utf-8"))
 
     def ingest(self, document: LegalDocument) -> int:
         chunk_records: list[tuple[str, str, str | None, int | None, dict]] = []
@@ -85,10 +101,17 @@ class LegalRepository:
                 )
         return len(chunk_records)
 
+    @staticmethod
+    def _results(rows: list[tuple], method: str) -> list[SearchResult]:
+        return [SearchResult(*row, retrieval_method=method) for row in rows]
+
     def search(self, query: str, top_k: int = 5) -> list[SearchResult]:
+        if top_k <= 0:
+            raise ValueError("top_k must be positive")
         query_vector = Vector(self.embeddings.embed_query(query))
+        candidate_count = max(top_k * self.candidate_multiplier, top_k)
         with self.database.connect() as connection:
-            rows = connection.execute(
+            vector_rows = connection.execute(
                 """
                 SELECT
                     c.id,
@@ -102,11 +125,53 @@ class LegalRepository:
                     1 - (c.embedding <=> %s) AS score
                 FROM legal_chunks c
                 JOIN legal_documents d ON d.id = c.document_id
-                WHERE d.is_current = true
+                WHERE
+                    d.is_current = true
+                    AND (
+                        d.document_type <> 'LAW'
+                        OR d.effective_from IS NULL
+                        OR d.effective_from <= CURRENT_DATE
+                    )
                 ORDER BY c.embedding <=> %s
                 LIMIT %s
                 """,
-                (query_vector, query_vector, top_k),
+                (query_vector, query_vector, candidate_count),
             ).fetchall()
-        return [SearchResult(*row) for row in rows]
+            keyword_rows = connection.execute(
+                """
+                SELECT
+                    c.id,
+                    d.title,
+                    d.document_type,
+                    c.heading,
+                    c.content,
+                    c.citation,
+                    d.source_url,
+                    d.effective_from,
+                    ts_rank_cd(
+                        c.search_vector,
+                        websearch_to_tsquery('simple', %s)
+                    ) AS score
+                FROM legal_chunks c
+                JOIN legal_documents d ON d.id = c.document_id
+                WHERE
+                    d.is_current = true
+                    AND (
+                        d.document_type <> 'LAW'
+                        OR d.effective_from IS NULL
+                        OR d.effective_from <= CURRENT_DATE
+                    )
+                    AND c.search_vector @@ websearch_to_tsquery('simple', %s)
+                ORDER BY score DESC, c.id
+                LIMIT %s
+                """,
+                (query, query, candidate_count),
+            ).fetchall()
+        fused = reciprocal_rank_fusion(
+            self._results(vector_rows, "vector"),
+            self._results(keyword_rows, "keyword"),
+            limit=candidate_count,
+            rrf_k=self.rrf_k,
+        )
+        return rerank_legal_results(query, fused, limit=top_k)
 

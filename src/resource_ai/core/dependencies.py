@@ -14,5 +14,10 @@ def get_repository() -> LegalRepository:
         settings.embedding_model,
         settings.embedding_dimension,
     )
-    return LegalRepository(Database(settings.database_url), embeddings)
+    return LegalRepository(
+        Database(settings.database_url),
+        embeddings,
+        candidate_multiplier=settings.hybrid_candidate_multiplier,
+        rrf_k=settings.hybrid_rrf_k,
+    )
 

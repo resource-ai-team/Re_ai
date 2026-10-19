@@ -1,5 +1,7 @@
 {
+  "dataset_version": "1.0.0",
   "source": "Re:Source AI 기획서 v3 및 법령·규정 조사 문서",
+  "purpose": "폐기물 처리 의사결정의 공식 법률 근거 검색 기준선",
   "laws": [
     {
       "title": "폐기물관리법",

@@ -1,79 +1,143 @@
-# Re:Source AI 법령·판례 RAG
+# Re:Source AI
 
-로컬 PostgreSQL과 pgvector에 법령·판례 청크를 적재하고 관련 근거를 검색하는 최소 구현입니다. RAG는 근거 검색만 담당하며, 적법성 판정은 향후 Knowledge Graph와 Rule Engine에서 처리합니다.
+중소 제조기업의 폐기물 처리 의사결정을 지원하는 **AI·지식 기반 서비스**입니다.
+폐기물과 공정 정보를 바탕으로 관련 근거를 찾고, 이후 지식 그래프·규칙 엔진·계산기를
+결합해 검증 가능한 처리 방안을 만드는 역할을 담당합니다.
 
-## 1. 준비
+현재 구현 범위는 국가법령정보의 법령·판례 수집, 데이터셋 검증, PostgreSQL/pgvector
+Hybrid Search와 근거 검색 API입니다. 법적 판정과 최종 추천은 아직 구현되지 않았습니다.
 
-Docker Desktop을 실행한 뒤 환경 파일과 Python 가상환경을 준비합니다.
+- 팀 공통 규칙: [resource-ai-team/.github CONTRIBUTING](https://github.com/resource-ai-team/.github/blob/main/CONTRIBUTING.md)
+- 구조 설명: [docs/architecture.md](docs/architecture.md)
+- 데이터 관리: [data/README.md](data/README.md)
+- API 설명: [docs/api.md](docs/api.md)
+
+## 조직 저장소 구성
+
+| 저장소 | 역할 |
+| --- | --- |
+| `Re_client` | 화면과 3D 시각화, `Re_server` API 호출 |
+| `Re_server` | 인증·회원·기업 정보, 업무 API와 서비스 DB |
+| **`Re_ai` (이 저장소)** | AI 오케스트레이션, 근거 검색, 지식 그래프, 규칙과 계산 |
+| `RE-Main` | 현재 통합 프로토타입, 향후 infra 역할 정리 대상 |
+| `.github` | 팀 공통 규칙과 Issue·PR 템플릿 |
+
+호출 경계는 다음을 기준으로 합니다.
+
+```text
+Re_client ──HTTP──▶ Re_server ──HTTP──▶ Re_ai
+                       │                  │
+                       ▼                  ▼
+                  서비스 DB       AI 검색·지식 기반 DB
+```
+
+클라이언트가 AI 서비스를 직접 호출하지 않으며, 서버와 AI 사이의 요청·응답 계약은 별도
+연동 명세로 관리합니다.
+
+## 빠른 시작
+
+Docker Desktop과 Python 3.11 이상이 필요합니다.
 
 ```bash
 cp .env.example .env
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e '.[dev,embeddings]'
-```
 
-기본 모델은 로컬에서 실행되는 `intfloat/multilingual-e5-small`이며 최초 실행 시 모델 다운로드가 필요합니다. 네트워크 없이 파이프라인만 확인할 때는 `.env`의 `EMBEDDING_PROVIDER=hash`로 변경합니다. Hash provider는 테스트용이며 실제 의미 검색 품질을 제공하지 않습니다.
-
-## 2. PostgreSQL 실행
-
-```bash
 docker compose up -d
-docker compose ps
 legal-rag init-db
 ```
 
-## 3. 테스트 데이터 적재 및 검색
+기본 임베딩은 로컬 `intfloat/multilingual-e5-small`입니다. 최초 실행 시 모델을
+다운로드합니다. 파이프라인 테스트만 할 때는 `.env`에서
+`EMBEDDING_PROVIDER=hash`를 사용할 수 있지만 실제 의미 검색용은 아닙니다.
 
-샘플 파일은 형식 검증 전용이며 실제 법률 근거가 아닙니다.
+## 공식 데이터 수집과 적재
 
-```bash
-legal-rag ingest data/samples/legal_documents.example.jsonl
-legal-rag search "폐기물 처리 허가"
-```
-
-## 공식 법령·판례 수집
-
-수집 범위는 노션 기획서의 법규 P0 항목을 옮긴
-`data/config/legal_scope.json`에서 관리합니다. 현재 범위는 폐기물관리법
-제17·25·48조, 시행규칙 별표 4·4의2·4의3·5의3,
-순환경제사회 전환 촉진법 핵심 조항, 대법원 2023두62830입니다.
+수집 범위는 `data/config/legal_scope.json`에 버전과 함께 관리합니다.
 
 ```bash
-legal-rag collect \
-  --scope data/config/legal_scope.json \
-  --output data/official/legal_documents.jsonl
-
+legal-rag collect
+legal-rag validate
 legal-rag ingest data/official/legal_documents.jsonl
-legal-rag evaluate --cases data/config/retrieval_eval.json --top-k 5
+legal-rag evaluate --top-k 5
 ```
 
-`LAW_API_OC=test`는 국가법령정보 공동활용의 개발 확인값입니다. 팀 개발과
-운영에서는 공동활용 신청 후 발급받은 인증값을 `.env`에 설정합니다. 생성된
-공식 데이터 스냅샷은 시행일과 버전이 바뀔 수 있어 Git에 포함하지 않습니다.
+`collect`는 공식 원문 JSONL과 SHA-256·출처·버전·시행일을 기록한 매니페스트를 함께
+생성합니다. 생성 데이터는 재수집 가능하므로 Git에 포함하지 않습니다. 팀·운영 환경은
+국가법령정보 공동활용 신청 후 발급받은 `LAW_API_OC`를 사용합니다.
 
-## 4. API 실행
+현재 평가셋은 구현 회귀 확인용이며 법률 정확도나 전체 서비스 품질을 보장하지 않습니다.
+
+## Hybrid Search와 Reranking
+
+검색은 다음 단계로 동작합니다.
+
+1. multilingual-e5 임베딩과 pgvector 코사인 검색
+2. PostgreSQL `tsvector` 키워드 검색
+3. Reciprocal Rank Fusion(RRF)으로 순위 결합
+4. 공식 출처·시행일·제목/조문 일치도 기반 재정렬
+5. 공식 URL·시행일·인용과 함께 상위 근거 반환
+
+```bash
+legal-rag search "폐기물을 다른 업체에 맡기면 배출자 책임은 없어지나요?"
+```
+
+검색 결과는 법률 근거 후보이며 Rule Engine의 적법성 판정을 대신하지 않습니다.
+
+## API 실행
 
 ```bash
 uvicorn resource_ai.main:app --reload
-curl 'http://127.0.0.1:8000/health'
-curl --get 'http://127.0.0.1:8000/rag/search' --data-urlencode 'q=폐기물 처리 허가'
 ```
 
-## 5. 테스트
+- Swagger UI: `http://127.0.0.1:8000/docs`
+- 상태 확인: `GET /health`
+- 근거 검색: `GET /rag/search?q={질문}&top_k=5`
+
+## 기술 스택
+
+| 영역 | 선택 |
+| --- | --- |
+| 언어·API | Python 3.11+, FastAPI, Pydantic |
+| 검색 DB | PostgreSQL 16, pgvector, `tsvector` |
+| 임베딩 | sentence-transformers, multilingual-e5-small |
+| 공식 데이터 | 국가법령정보 공동활용 API |
+| 품질 | Pytest, Ruff, GitHub Actions |
+| 실행 | Docker Compose, Uvicorn |
+
+## 프로젝트 구조
+
+```text
+src/resource_ai/
+├── api/               FastAPI 라우트와 입출력 스키마
+├── agents/            향후 AI 도구 오케스트레이션
+├── rag/               수집·검증·Hybrid Search·생성
+├── knowledge_graph/   폐기물·처리·허가 관계 (골격)
+├── rules/             결정적 법규 판정 (골격)
+├── calculators/       경제성·환경성 계산 (골격)
+├── evidence/          근거 모델과 근거 카드
+├── integrations/      법령 API와 외부 모델 연동
+└── core/              설정과 공통 인프라
+```
+
+`knowledge_graph`, `rules`, `agents`, `calculators`는 책임 경계를 위한 골격이며 완료된
+기능이 아닙니다.
+
+## 테스트와 CI
 
 ```bash
-pytest
 ruff check .
+pytest -q
 ```
 
-## 입력 JSONL
+GitHub Actions는 PR과 `develop`·`main` push에서 린트와 테스트를 실행합니다. 실제 외부
+API·Azure 키 없이 검증하도록 단위 테스트에서는 mock과 테스트 임베딩을 사용합니다.
 
-한 줄에 법령 또는 판례 문서 하나를 저장합니다. 공식 출처 URL, 시행일, 버전과 인용문을 반드시 포함하고 검증되지 않은 데이터를 운영 근거로 사용하지 않습니다.
+## 기여 절차
 
-```json
-{"source_id":"unique-id","document_type":"LAW","title":"문서명","source_url":"https://공식출처","effective_from":"2026-01-01","version":"버전","sections":[{"heading":"제1조","content":"원문","citation":"문서명 제1조"}]}
+```text
+Issue → develop에서 작업 브랜치 생성 → 구현·테스트 → develop 대상 PR → CI → merge
 ```
 
-프로젝트의 모듈 책임과 구현 순서는 `docs/architecture.md`에 정리합니다.
-
+`main`은 배포용이며 `develop → main` 릴리스 병합은 인프라 담당자가 진행합니다.
