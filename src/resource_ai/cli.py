@@ -36,9 +36,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     evaluate = commands.add_parser("evaluate", help="Evaluate retrieval against expected evidence")
-    evaluate.add_argument(
-        "--cases", type=Path, default=Path("data/config/retrieval_eval.json")
-    )
+    evaluate.add_argument("--cases", type=Path, default=Path("data/config/retrieval_eval.json"))
     evaluate.add_argument("--top-k", type=int, default=5)
     return parser
 
@@ -75,8 +73,7 @@ def main() -> None:
     if args.command == "validate":
         validation = validate_documents(load_jsonl(args.path))
         print(
-            f"Validated {validation.document_count} documents / "
-            f"{validation.section_count} sections"
+            f"Validated {validation.document_count} documents / {validation.section_count} sections"
         )
         print(f"Document types: {validation.document_types}")
         if validation.errors:
@@ -118,10 +115,7 @@ def main() -> None:
         print(f"Ingested {total} chunks")
         return
     for result in repository.search(args.query, args.top_k):
-        print(
-            f"[{result.score:.4f} {result.retrieval_method}] "
-            f"{result.title} {result.heading}"
-        )
+        print(f"[{result.score:.4f} {result.retrieval_method}] {result.title} {result.heading}")
         print(f"{result.content}\n{result.source_url}\n")
 
 

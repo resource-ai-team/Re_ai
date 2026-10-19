@@ -37,4 +37,3 @@ def test_load_jsonl(tmp_path: Path) -> None:
     )
     documents = load_jsonl(path)
     assert documents[0].sections[0].heading == "제1조"
-

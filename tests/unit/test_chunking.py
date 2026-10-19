@@ -17,4 +17,3 @@ def test_long_text_is_split_with_size_limit() -> None:
 def test_invalid_overlap_is_rejected() -> None:
     with pytest.raises(ValueError):
         chunk_text("내용", max_chars=100, overlap_chars=100)
-

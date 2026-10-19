@@ -174,4 +174,3 @@ class LegalRepository:
             rrf_k=self.rrf_k,
         )
         return rerank_legal_results(query, fused, limit=top_k)
-

@@ -31,15 +31,11 @@ def rerank_legal_results(
 
     for result in results:
         title_overlap = len(query_terms & _terms(result.title))
-        evidence_overlap = len(
-            query_terms & _terms(f"{result.heading} {result.citation or ''}")
-        )
+        evidence_overlap = len(query_terms & _terms(f"{result.heading} {result.citation or ''}"))
         hostname = (urlparse(result.source_url).hostname or "").lower()
         official_bonus = 0.001 if hostname == "www.law.go.kr" else 0.0
         effective_bonus = (
-            0.0005
-            if result.effective_from is None or result.effective_from <= as_of
-            else -0.01
+            0.0005 if result.effective_from is None or result.effective_from <= as_of else -0.01
         )
         score = (
             result.score
