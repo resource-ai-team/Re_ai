@@ -1,0 +1,27 @@
+name: 작업 (chore)
+description: 설정·문서·리팩터링 등 기능이 아닌 작업
+title: "[chore] "
+labels: ["chore"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 종류
+      options:
+        - chore (설정·의존성·CI)
+        - docs (문서)
+        - refactor (구조 개선)
+        - test (테스트)
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: 내용
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: 완료 조건
+      placeholder: "- [ ] "

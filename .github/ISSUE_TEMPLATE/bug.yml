@@ -1,0 +1,32 @@
+name: 버그 (fix)
+description: 잘못 동작하는 부분 신고
+title: "[fix] "
+labels: ["fix"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 현상
+      description: 무엇이 잘못됐는지
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 재현 방법
+      placeholder: |
+        1.
+        2.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 기대 동작
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: 실행 환경
+      placeholder: "실행 방식(Docker/로컬 등), 브라우저, 브랜치 이름"
