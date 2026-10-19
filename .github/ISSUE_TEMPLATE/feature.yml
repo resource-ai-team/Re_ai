@@ -1,0 +1,25 @@
+name: 기능 (feat)
+description: 새 기능 또는 기능 변경
+title: "[feat] "
+labels: ["feat"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: 목적
+      description: 무엇을 왜 만드는지
+    validations:
+      required: true
+  - type: input
+    id: refs
+    attributes:
+      label: 관련 자료
+      placeholder: "기획서 항목, spec 문서, 다른 레포 이슈 링크"
+  - type: textarea
+    id: done
+    attributes:
+      label: 완료 조건
+      description: 확인할 수 있는 문장으로
+      placeholder: "- [ ] "
+    validations:
+      required: true
