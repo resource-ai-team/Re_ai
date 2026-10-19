@@ -49,4 +49,3 @@ def chunk_text(text: str, max_chars: int = 1200, overlap_chars: int = 150) -> li
     if current:
         chunks.append(TextChunk(current, len(chunks)))
     return chunks
-

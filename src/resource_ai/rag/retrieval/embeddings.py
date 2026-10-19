@@ -72,4 +72,3 @@ def create_embedding_provider(provider: str, model: str, dimension: int) -> Embe
     if provider == "sentence-transformers":
         return SentenceTransformerEmbeddingProvider(model, dimension)
     raise ValueError(f"Unsupported embedding provider: {provider}")
-

@@ -128,11 +128,13 @@ src/resource_ai/
 
 ```bash
 ruff check .
+ruff format --check .
 pytest -q
 ```
 
-GitHub Actions는 PR과 `develop`·`main` push에서 린트와 테스트를 실행합니다. 실제 외부
-API·Azure 키 없이 검증하도록 단위 테스트에서는 mock과 테스트 임베딩을 사용합니다.
+GitHub Actions는 PR과 `develop`·`main` push에서 린트, 포맷 검사와 테스트를 실행합니다.
+실제 외부 API·Azure 키 없이 검증하도록 단위 테스트에서는 mock과 테스트 임베딩을
+사용합니다.
 
 ## 기여 절차
 

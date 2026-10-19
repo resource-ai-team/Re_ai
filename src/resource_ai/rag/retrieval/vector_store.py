@@ -15,4 +15,3 @@ class Database:
             if register_vector_types:
                 register_vector(connection)
             yield connection
-

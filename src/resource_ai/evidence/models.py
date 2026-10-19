@@ -38,4 +38,3 @@ class SearchResult:
     effective_from: date | None
     score: float
     retrieval_method: str = "unknown"
-

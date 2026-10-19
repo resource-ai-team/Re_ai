@@ -40,4 +40,3 @@ def test_search_returns_hybrid_retrieval_metadata() -> None:
 
     assert response.status_code == 200
     assert response.json()[0]["retrieval_method"] == "keyword+vector+reranked"
-

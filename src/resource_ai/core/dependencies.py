@@ -20,4 +20,3 @@ def get_repository() -> LegalRepository:
         candidate_multiplier=settings.hybrid_candidate_multiplier,
         rrf_k=settings.hybrid_rrf_k,
     )
-
