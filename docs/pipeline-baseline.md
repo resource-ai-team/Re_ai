@@ -41,7 +41,10 @@ ReAct가 전체 단계 순서·계산·분기 규칙을 임의로 바꾸게 하�
 구현: Neo4j 원본·조건부 경로·근거 적재, 전체 후보 페이지 조회, 조건·리스크·출처 조사 묶음,
 그래프 버전·근거 연결 검증, 기존 법령 Hybrid Search.
 
-미구현: 별도 시설 DB와 단계별 시설 연결, Auditor/ReAct 실행기, 적합성 판정,
+2026-10-21 추가: 별도 공개 자료 기반 상태 전이·시설 후보 DB와 `/kg/process-plans` 경로 탐색.
+범위와 가설 구분은 [공정·시설 경로 API](kg-process-plans.md) 참고.
+
+미구현: 시설의 현재 허가·수용 검증, Auditor/ReAct 실행기, 적합성 판정,
 비용·탄소 계산, Trade-off, 최종 Critic·Router와 부분 재실행, 전체 화면 연결.
 일부 템플릿의 `facility_candidate_ids`는 공개 사업 사례 ID이며 실시간 시설 DB가 아닙니다.
 

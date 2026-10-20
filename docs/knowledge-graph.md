@@ -9,6 +9,10 @@ KG는 **입력한 폐자원과 관련된 공정 후보, 확인 조건, 리스크
 아래 `/kg/candidates`는 제한 조회를 유지하는 기존 계약입니다.
 새 API는 [조사 묶음 사용법](kg-research-pool.md), 다음 작업은 [고도화 계획](kg-upgrade-plan.md)에 있습니다.
 
+**2026-10-21 추가:** `POST /kg/process-plans`는 별도 출처 기반 상태 전이와 시설 역할을
+연결해 여러 단계의 경로를 생성합니다. [공정·시설 경로 사용법](kg-process-plans.md)을 참고하세요.
+기존의 조건부 템플릿·문헌 조회와 자료 범위가 다르며 현재 허가·인수를 입증하지 않습니다.
+
 ```mermaid
 flowchart LR
     A[사용자 입력·문서] --> B[구조화·사용자 검수: 별도 구현]
@@ -109,7 +113,9 @@ MCP 프로토콜 서버, LLM 에이전트 회의, 규칙 판정, 비용·탄소�
 ## 그래프를 만든 방법
 
 온톨로지는 패키지의 `knowledge_graph/resources/waste-resource-v1.json`입니다.
-13개 노드 클래스와 14개 관계의 연결 타입·필수 속성·추론 금지 조건을 정의합니다.
+온톨로지 v1.2는 18개 노드 클래스와 19개 관계의 연결 타입·필수 속성·추론 금지 조건을 정의합니다.
+새 `MaterialState`, `ProcessTransition`, `Organisation`, `Facility`, `FacilityCapability`가
+공정 전이와 시설 후보를 구분합니다. 시설 연결의 출처 강도·확인일·미확인 조건을 보존합니다.
 OWL 추론기가 아닌 출처를 보존하는 property graph입니다.
 
 - 문헌 한 행을 `TransformationClaim`으로 저장하고 원본 폐기물/공정/산출물 표현과 출처를 연결합니다.

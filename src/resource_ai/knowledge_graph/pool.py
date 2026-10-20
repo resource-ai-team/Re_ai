@@ -449,7 +449,10 @@ class CandidatePool:
         if material is None:
             return CandidatePoolResponse(status="unsupported_material", **base)
         cursor = decode_cursor(request.cursor) if request.cursor else None
-        binding = graph.digest({"context": context, "audience": request.audience})
+        binding_context = context
+        if request.audience == "external_model":
+            binding_context = {k: context[k] for k in ("material", "input_form")}
+        binding = graph.digest({"context": binding_context, "audience": request.audience})
         config = self.config or store.settings()
         cards = allowed_cards()
         background_ids = [

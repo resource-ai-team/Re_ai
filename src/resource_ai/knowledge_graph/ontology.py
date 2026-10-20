@@ -689,6 +689,9 @@ def build_graph(connection, *, include_curated=True, progress=None):
             progress("Importing scoped evidence and authored process snapshots...")
         if include_curated:
             _import_routes(builder, _import_cards(builder))
+            from resource_ai.knowledge_graph.planning_reference import import_reference
+
+            import_reference(builder)
         builder.flush_terms()
         # Release large write caches before validating the persisted graph.
         del builder
@@ -944,6 +947,9 @@ def audit_graph(connection, *, check_source_records=True):
     for alias, material in connection.execute("SELECT alias_key,material_id FROM kg_aliases"):
         if alias != normalize_label(alias) or kinds.get(material) != "Material":
             raise ValueError("Invalid material alias")
+    from resource_ai.knowledge_graph.planning_reference import audit_reference
+
+    audit_reference(connection)
     fingerprint = graph_digest(connection)
     if meta.get("ready") == "true" and meta.get("graph_sha256") != fingerprint:
         raise ValueError("Graph content digest mismatch")

@@ -38,6 +38,11 @@ class GraphQuery:
 
         return CandidatePool(self.config).search(request)
 
+    def process_plans(self, request):
+        from resource_ai.knowledge_graph.planning import ProcessPlanner
+
+        return ProcessPlanner(self.config).search(request)
+
     def search(self, request: CandidateRequest) -> CandidateResponse:
         material = resolve_material(request.material)
         missing = [
