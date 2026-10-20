@@ -1,0 +1,977 @@
+{
+  "evaluated_at": "2026-10-20T19:59:36.843510+00:00",
+  "scope": "KG/API wiring and arithmetic regression; not expert/permit/recommendation accuracy",
+  "cases": [
+    {
+      "input_is_synthetic": true,
+      "material": "PP",
+      "coverage": {
+        "planning_status": "plans",
+        "missing_fields": [
+          "color",
+          "contamination",
+          "region"
+        ],
+        "pages_read": 3,
+        "enumerated_in_graph": 3,
+        "collected_candidates": 3,
+        "all_pages_read": true,
+        "all_paths_enumerated_within_curated_scope": true,
+        "complete_within_curated_scope": true,
+        "next_cursor": null,
+        "legal_unique_queries": 10,
+        "legal_executed_queries": 3,
+        "legal_retrieval_complete": false,
+        "legal_audit_complete": false
+      },
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "graph_sha256": "4a803173ecae9f104570af016cee953339479e81d1e2ce7571093a26270b5037",
+        "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2",
+        "algorithm": "typed-state-facility-dfs-v1"
+      },
+      "legal_search_statuses": [
+        {
+          "search_id": "legal-search:01e9001d5aeed8bff1d0333022f6b7e9",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:5110dba60e937642221408fe086ed0c6",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:a8b7ed6c2e248599cc6225018038d988",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:456c6f2bba07817c9ad1369c64720dd9",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:42a9292066ba20431fb5b3c0296f537f",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:9ad8c52fe03c0bc2dd104ad63dd4d11f",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:4ad62dd425a905d3f379e31eaaa1a48a",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:e7dff19d6a4852d726bf3bee0cf57e38",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:39ffeec2f865f2a8bb1ffb0cf5024973",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:24597f45a0fd947448304df20830d1da",
+          "status": "budget_exhausted",
+          "result_count": 0
+        }
+      ],
+      "candidate_ids": [
+        "plan:4782d31ee04a0b357a1b1a37ce026683",
+        "plan:73cc941999294c2c4c6dd611b74b1fb8",
+        "plan:cf4e094463ddc0c54793564ca995caf1"
+      ]
+    },
+    {
+      "input_is_synthetic": true,
+      "material": "PE",
+      "coverage": {
+        "planning_status": "plans",
+        "missing_fields": [
+          "color",
+          "contamination",
+          "region"
+        ],
+        "pages_read": 3,
+        "enumerated_in_graph": 3,
+        "collected_candidates": 3,
+        "all_pages_read": true,
+        "all_paths_enumerated_within_curated_scope": true,
+        "complete_within_curated_scope": true,
+        "next_cursor": null,
+        "legal_unique_queries": 10,
+        "legal_executed_queries": 3,
+        "legal_retrieval_complete": false,
+        "legal_audit_complete": false
+      },
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "graph_sha256": "4a803173ecae9f104570af016cee953339479e81d1e2ce7571093a26270b5037",
+        "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2",
+        "algorithm": "typed-state-facility-dfs-v1"
+      },
+      "legal_search_statuses": [
+        {
+          "search_id": "legal-search:88e1e6c62264440c6b5d0cd6370a38ed",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:5c1494e086a153a3634c85fed216d202",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:c2a0d5643930982e8f77f44b0dadb64c",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:55a61359a41fdb81899aee94d76889ef",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:b3e7af6e58f962533ea58a9e6c4ad984",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:8e39354c34a94301c293e6cd62eb4d42",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:877cb34bd3c31ea0c3a62b26bb47def8",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:cb26a0337dfea14059dea1b36dc56489",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:21c3f0dd64d88b3b6eceb3bd1fea3dd8",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:cace8d5d8d5ca18d1ee21f470aa7b709",
+          "status": "budget_exhausted",
+          "result_count": 0
+        }
+      ],
+      "candidate_ids": [
+        "plan:f8c3611f340b9c38faa8e9e93f63b1fc",
+        "plan:a1f1c7dbb9647be129972b2891721d2b",
+        "plan:e028226a4348af3f1d0709cd836bf787"
+      ]
+    },
+    {
+      "input_is_synthetic": true,
+      "material": "PET",
+      "coverage": {
+        "planning_status": "plans",
+        "missing_fields": [
+          "color",
+          "contamination",
+          "region"
+        ],
+        "pages_read": 2,
+        "enumerated_in_graph": 2,
+        "collected_candidates": 2,
+        "all_pages_read": true,
+        "all_paths_enumerated_within_curated_scope": true,
+        "complete_within_curated_scope": true,
+        "next_cursor": null,
+        "legal_unique_queries": 10,
+        "legal_executed_queries": 3,
+        "legal_retrieval_complete": false,
+        "legal_audit_complete": false
+      },
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "graph_sha256": "4a803173ecae9f104570af016cee953339479e81d1e2ce7571093a26270b5037",
+        "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2",
+        "algorithm": "typed-state-facility-dfs-v1"
+      },
+      "legal_search_statuses": [
+        {
+          "search_id": "legal-search:107b95dda80772e3c2b62fda793f12f1",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:adbf17d591bd7857e842661cd6c8aba0",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:cc48926731e46efe1a625085dc5af2a3",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:f18790eeb33813317a2e14d7af41020f",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:5521068df8d77f1911fc9bb8144d7288",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:6458615d2fb8711100f296c958e3f552",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:98b3ee9a0f428ed4288bebf94cdeabe1",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:9991255377e392f637609509824bd817",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:1b9f122ed5c60653d57113f1772ac320",
+          "status": "budget_exhausted",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:4bccb0ce9b6a0f5f09b60e1a6971d199",
+          "status": "budget_exhausted",
+          "result_count": 0
+        }
+      ],
+      "candidate_ids": [
+        "plan:59e132451cadac4dd9536bff6de4ddcd",
+        "plan:e1a214f229d44ed11ced2ae95ce30768"
+      ]
+    },
+    {
+      "input_is_synthetic": true,
+      "material": "알루미늄",
+      "coverage": {
+        "planning_status": "plans",
+        "missing_fields": [
+          "color",
+          "contamination",
+          "region"
+        ],
+        "pages_read": 1,
+        "enumerated_in_graph": 1,
+        "collected_candidates": 1,
+        "all_pages_read": true,
+        "all_paths_enumerated_within_curated_scope": true,
+        "complete_within_curated_scope": true,
+        "next_cursor": null,
+        "legal_unique_queries": 4,
+        "legal_executed_queries": 3,
+        "legal_retrieval_complete": false,
+        "legal_audit_complete": false
+      },
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "graph_sha256": "4a803173ecae9f104570af016cee953339479e81d1e2ce7571093a26270b5037",
+        "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2",
+        "algorithm": "typed-state-facility-dfs-v1"
+      },
+      "legal_search_statuses": [
+        {
+          "search_id": "legal-search:55a8c187986e4501a9f03c476e75d604",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:86ec1a282137266be6ff26b00da1f622",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:bbcca1774a366b01bccec5be079801a2",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:cace19bf702652d620c463333b9558e3",
+          "status": "budget_exhausted",
+          "result_count": 0
+        }
+      ],
+      "candidate_ids": [
+        "plan:6a13ce372ef8b0a4ed1a5d5915940e73"
+      ]
+    },
+    {
+      "input_is_synthetic": true,
+      "material": "종이",
+      "coverage": {
+        "planning_status": "plans",
+        "missing_fields": [
+          "color",
+          "contamination",
+          "region"
+        ],
+        "pages_read": 1,
+        "enumerated_in_graph": 1,
+        "collected_candidates": 1,
+        "all_pages_read": true,
+        "all_paths_enumerated_within_curated_scope": true,
+        "complete_within_curated_scope": true,
+        "next_cursor": null,
+        "legal_unique_queries": 4,
+        "legal_executed_queries": 3,
+        "legal_retrieval_complete": false,
+        "legal_audit_complete": false
+      },
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "graph_sha256": "4a803173ecae9f104570af016cee953339479e81d1e2ce7571093a26270b5037",
+        "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2",
+        "algorithm": "typed-state-facility-dfs-v1"
+      },
+      "legal_search_statuses": [
+        {
+          "search_id": "legal-search:69b6b0c233c8ac9125d1470da4ec9d0e",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:71a4348ae02c7d6449e6e30f13a7f87a",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:4cdd118e4263b2e985675b23450fa173",
+          "status": "unavailable",
+          "result_count": 0
+        },
+        {
+          "search_id": "legal-search:b377bce1e0ca92511eb84fac952bdbc9",
+          "status": "budget_exhausted",
+          "result_count": 0
+        }
+      ],
+      "candidate_ids": [
+        "plan:8f624568e8546f1ec3bdfa7796e7fd7b"
+      ]
+    }
+  ],
+  "arithmetic_input_is_entirely_synthetic": true,
+  "arithmetic": {
+    "contract_version": "scenario-comparison-v1",
+    "basis": {
+      "quantity_kg": "3000",
+      "as_of": "2026-10-21",
+      "region": "KR",
+      "assessment_year": 2026,
+      "carbon_method": "SYNTHETIC-GWP100-NOT-AN-LCI-FACTOR",
+      "functional_unit": "management_of_same_input_waste_mass",
+      "boundary": "input_waste_to_output_gate_including_transport_and_residue",
+      "allocation": "cut_off_no_avoided_virgin_credit",
+      "currency": "KRW"
+    },
+    "mode": "simulation",
+    "evidence": [
+      {
+        "evidence_id": "synthetic-activity",
+        "source_url": "https://example.invalid/synthetic-arithmetic-fixture",
+        "locator": "Entirely invented test table; no quote, measurement or LCI values",
+        "kind": "activity_record",
+        "valid_from": "2025-01-01",
+        "valid_until": "2027-12-31",
+        "region": "KR",
+        "assessment_year": 2026,
+        "synthetic": true,
+        "carbon_method": null
+      },
+      {
+        "evidence_id": "synthetic-cost",
+        "source_url": "https://example.invalid/synthetic-arithmetic-fixture",
+        "locator": "Entirely invented test table; no quote, measurement or LCI values",
+        "kind": "cost_factor",
+        "valid_from": "2025-01-01",
+        "valid_until": "2027-12-31",
+        "region": "KR",
+        "assessment_year": 2026,
+        "synthetic": true,
+        "carbon_method": null
+      },
+      {
+        "evidence_id": "synthetic-carbon",
+        "source_url": "https://example.invalid/synthetic-arithmetic-fixture",
+        "locator": "Entirely invented test table; no quote, measurement or LCI values",
+        "kind": "carbon_factor",
+        "valid_from": "2025-01-01",
+        "valid_until": "2027-12-31",
+        "region": "KR",
+        "assessment_year": 2026,
+        "synthetic": true,
+        "carbon_method": "SYNTHETIC-GWP100-NOT-AN-LCI-FACTOR"
+      }
+    ],
+    "results": [
+      {
+        "candidate_id": "simulation-A",
+        "declared_basis": {
+          "quantity_kg": "3000",
+          "as_of": "2026-10-21",
+          "region": "KR",
+          "assessment_year": 2026,
+          "carbon_method": "SYNTHETIC-GWP100-NOT-AN-LCI-FACTOR",
+          "functional_unit": "management_of_same_input_waste_mass",
+          "boundary": "input_waste_to_output_gate_including_transport_and_residue",
+          "allocation": "cut_off_no_avoided_virgin_credit",
+          "currency": "KRW"
+        },
+        "declared_stage_ids": [
+          "simulation-A:stage:1"
+        ],
+        "declared_handoff_ids": [],
+        "status": "comparable_under_declared_inputs",
+        "cost_total_krw": "-210000",
+        "carbon_total_kg_co2e": "753.0",
+        "known_cost_subtotal_krw": "-210000",
+        "known_carbon_subtotal_kg_co2e": "753.0",
+        "calculations": [
+          {
+            "line_id": "simulation-A:0",
+            "target_id": "simulation-A:stage:1",
+            "category": "process",
+            "metric": "cost",
+            "activity": "3000",
+            "activity_unit": "kg",
+            "factor": "100",
+            "factor_unit": "KRW/kg",
+            "amount": "300000",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-cost"
+            ]
+          },
+          {
+            "line_id": "simulation-A:1",
+            "target_id": "simulation-A:stage:1",
+            "category": "process",
+            "metric": "carbon",
+            "activity": "3000",
+            "activity_unit": "kg",
+            "factor": "0.2",
+            "factor_unit": "kgCO2e/kg",
+            "amount": "600.0",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-carbon"
+            ]
+          },
+          {
+            "line_id": "simulation-A:2",
+            "target_id": "simulation-A:origin-transport",
+            "category": "transport",
+            "metric": "cost",
+            "activity": "30",
+            "activity_unit": "t_km",
+            "factor": "500",
+            "factor_unit": "KRW/t_km",
+            "amount": "15000",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-cost"
+            ]
+          },
+          {
+            "line_id": "simulation-A:3",
+            "target_id": "simulation-A:origin-transport",
+            "category": "transport",
+            "metric": "carbon",
+            "activity": "30",
+            "activity_unit": "t_km",
+            "factor": "0.1",
+            "factor_unit": "kgCO2e/t_km",
+            "amount": "3.0",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-carbon"
+            ]
+          },
+          {
+            "line_id": "simulation-A:4",
+            "target_id": "simulation-A",
+            "category": "residue",
+            "metric": "cost",
+            "activity": "300",
+            "activity_unit": "kg",
+            "factor": "50",
+            "factor_unit": "KRW/kg",
+            "amount": "15000",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-cost"
+            ]
+          },
+          {
+            "line_id": "simulation-A:5",
+            "target_id": "simulation-A",
+            "category": "residue",
+            "metric": "carbon",
+            "activity": "300",
+            "activity_unit": "kg",
+            "factor": "0.5",
+            "factor_unit": "kgCO2e/kg",
+            "amount": "150.0",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-carbon"
+            ]
+          },
+          {
+            "line_id": "simulation-A:6",
+            "target_id": "simulation-A",
+            "category": "revenue",
+            "metric": "cost",
+            "activity": "2700",
+            "activity_unit": "kg",
+            "factor": "200",
+            "factor_unit": "KRW/kg",
+            "amount": "-540000",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-cost"
+            ]
+          }
+        ],
+        "issues": [],
+        "evidence_content_audited": false,
+        "constraint_feasible_verified": false,
+        "recommended": false
+      },
+      {
+        "candidate_id": "simulation-B",
+        "declared_basis": {
+          "quantity_kg": "3000",
+          "as_of": "2026-10-21",
+          "region": "KR",
+          "assessment_year": 2026,
+          "carbon_method": "SYNTHETIC-GWP100-NOT-AN-LCI-FACTOR",
+          "functional_unit": "management_of_same_input_waste_mass",
+          "boundary": "input_waste_to_output_gate_including_transport_and_residue",
+          "allocation": "cut_off_no_avoided_virgin_credit",
+          "currency": "KRW"
+        },
+        "declared_stage_ids": [
+          "simulation-B:stage:1"
+        ],
+        "declared_handoff_ids": [],
+        "status": "comparable_under_declared_inputs",
+        "cost_total_krw": "90000",
+        "carbon_total_kg_co2e": "453.0",
+        "known_cost_subtotal_krw": "90000",
+        "known_carbon_subtotal_kg_co2e": "453.0",
+        "calculations": [
+          {
+            "line_id": "simulation-B:0",
+            "target_id": "simulation-B:stage:1",
+            "category": "process",
+            "metric": "cost",
+            "activity": "3000",
+            "activity_unit": "kg",
+            "factor": "200",
+            "factor_unit": "KRW/kg",
+            "amount": "600000",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-cost"
+            ]
+          },
+          {
+            "line_id": "simulation-B:1",
+            "target_id": "simulation-B:stage:1",
+            "category": "process",
+            "metric": "carbon",
+            "activity": "3000",
+            "activity_unit": "kg",
+            "factor": "0.1",
+            "factor_unit": "kgCO2e/kg",
+            "amount": "300.0",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-carbon"
+            ]
+          },
+          {
+            "line_id": "simulation-B:2",
+            "target_id": "simulation-B:origin-transport",
+            "category": "transport",
+            "metric": "cost",
+            "activity": "30",
+            "activity_unit": "t_km",
+            "factor": "500",
+            "factor_unit": "KRW/t_km",
+            "amount": "15000",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-cost"
+            ]
+          },
+          {
+            "line_id": "simulation-B:3",
+            "target_id": "simulation-B:origin-transport",
+            "category": "transport",
+            "metric": "carbon",
+            "activity": "30",
+            "activity_unit": "t_km",
+            "factor": "0.1",
+            "factor_unit": "kgCO2e/t_km",
+            "amount": "3.0",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-carbon"
+            ]
+          },
+          {
+            "line_id": "simulation-B:4",
+            "target_id": "simulation-B",
+            "category": "residue",
+            "metric": "cost",
+            "activity": "300",
+            "activity_unit": "kg",
+            "factor": "50",
+            "factor_unit": "KRW/kg",
+            "amount": "15000",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-cost"
+            ]
+          },
+          {
+            "line_id": "simulation-B:5",
+            "target_id": "simulation-B",
+            "category": "residue",
+            "metric": "carbon",
+            "activity": "300",
+            "activity_unit": "kg",
+            "factor": "0.5",
+            "factor_unit": "kgCO2e/kg",
+            "amount": "150.0",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-carbon"
+            ]
+          },
+          {
+            "line_id": "simulation-B:6",
+            "target_id": "simulation-B",
+            "category": "revenue",
+            "metric": "cost",
+            "activity": "2700",
+            "activity_unit": "kg",
+            "factor": "200",
+            "factor_unit": "KRW/kg",
+            "amount": "-540000",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-cost"
+            ]
+          }
+        ],
+        "issues": [],
+        "evidence_content_audited": false,
+        "constraint_feasible_verified": false,
+        "recommended": false
+      },
+      {
+        "candidate_id": "simulation-C",
+        "declared_basis": {
+          "quantity_kg": "3000",
+          "as_of": "2026-10-21",
+          "region": "KR",
+          "assessment_year": 2026,
+          "carbon_method": "SYNTHETIC-GWP100-NOT-AN-LCI-FACTOR",
+          "functional_unit": "management_of_same_input_waste_mass",
+          "boundary": "input_waste_to_output_gate_including_transport_and_residue",
+          "allocation": "cut_off_no_avoided_virgin_credit",
+          "currency": "KRW"
+        },
+        "declared_stage_ids": [
+          "simulation-C:stage:1"
+        ],
+        "declared_handoff_ids": [],
+        "status": "comparable_under_declared_inputs",
+        "cost_total_krw": "90000",
+        "carbon_total_kg_co2e": "1053.0",
+        "known_cost_subtotal_krw": "90000",
+        "known_carbon_subtotal_kg_co2e": "1053.0",
+        "calculations": [
+          {
+            "line_id": "simulation-C:0",
+            "target_id": "simulation-C:stage:1",
+            "category": "process",
+            "metric": "cost",
+            "activity": "3000",
+            "activity_unit": "kg",
+            "factor": "200",
+            "factor_unit": "KRW/kg",
+            "amount": "600000",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-cost"
+            ]
+          },
+          {
+            "line_id": "simulation-C:1",
+            "target_id": "simulation-C:stage:1",
+            "category": "process",
+            "metric": "carbon",
+            "activity": "3000",
+            "activity_unit": "kg",
+            "factor": "0.3",
+            "factor_unit": "kgCO2e/kg",
+            "amount": "900.0",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-carbon"
+            ]
+          },
+          {
+            "line_id": "simulation-C:2",
+            "target_id": "simulation-C:origin-transport",
+            "category": "transport",
+            "metric": "cost",
+            "activity": "30",
+            "activity_unit": "t_km",
+            "factor": "500",
+            "factor_unit": "KRW/t_km",
+            "amount": "15000",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-cost"
+            ]
+          },
+          {
+            "line_id": "simulation-C:3",
+            "target_id": "simulation-C:origin-transport",
+            "category": "transport",
+            "metric": "carbon",
+            "activity": "30",
+            "activity_unit": "t_km",
+            "factor": "0.1",
+            "factor_unit": "kgCO2e/t_km",
+            "amount": "3.0",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-carbon"
+            ]
+          },
+          {
+            "line_id": "simulation-C:4",
+            "target_id": "simulation-C",
+            "category": "residue",
+            "metric": "cost",
+            "activity": "300",
+            "activity_unit": "kg",
+            "factor": "50",
+            "factor_unit": "KRW/kg",
+            "amount": "15000",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-cost"
+            ]
+          },
+          {
+            "line_id": "simulation-C:5",
+            "target_id": "simulation-C",
+            "category": "residue",
+            "metric": "carbon",
+            "activity": "300",
+            "activity_unit": "kg",
+            "factor": "0.5",
+            "factor_unit": "kgCO2e/kg",
+            "amount": "150.0",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-carbon"
+            ]
+          },
+          {
+            "line_id": "simulation-C:6",
+            "target_id": "simulation-C",
+            "category": "revenue",
+            "metric": "cost",
+            "activity": "2700",
+            "activity_unit": "kg",
+            "factor": "200",
+            "factor_unit": "KRW/kg",
+            "amount": "-540000",
+            "evidence_ids": [
+              "synthetic-activity",
+              "synthetic-cost"
+            ]
+          }
+        ],
+        "issues": [],
+        "evidence_content_audited": false,
+        "constraint_feasible_verified": false,
+        "recommended": false
+      }
+    ],
+    "pareto_fronts": [
+      [
+        "simulation-A",
+        "simulation-B"
+      ],
+      [
+        "simulation-C"
+      ]
+    ],
+    "incomparable_ids": [],
+    "decision_scope": "arithmetic_on_submitted_scenarios_only",
+    "final_recommendations": [],
+    "limitations": [
+      "제출된 활동량·단가·배출계수의 산술·형식·범위 검사입니다. 원문 내용의 진위·적용성 검증이 아닙니다.",
+      "공정 ID·운송 구간은 제출자가 선언한 범위입니다. 이 API는 KG의 실제 경로·시설을 검증하지 않습니다.",
+      "단계별 물질수지·수율·운송 경로·중복 계상은 별도 검수가 필요합니다. 도로거리·견적·LCI 값을 생성하지 않습니다.",
+      "경계는 투입 폐기물부터 산출물 출하 지점까지의 공정·운송·잔재물입니다. 회피 배출·버진 대체 공제는 포함하지 않습니다.",
+      "순비용은 처리·운송·잔재물 비용에서 매각 수익을 뺀 값입니다. 가격·배출의 불확실성 구간은 아직 지원하지 않습니다.",
+      "Pareto 집합은 비용과 탄소 중 어느 하나를 악화하지 않고 더 나아질 수 없는 수치상 후보들입니다. 단일 순위·최종 추천이 아닙니다.",
+      "법규·허가·규격·실제 인수는 이 비교에서 판정하지 않습니다. 최종 Critic·Router 통과를 대신하지 않습니다."
+    ],
+    "dispatch_approved": false
+  },
+  "checks": [
+    {
+      "name": "PP: research API 200",
+      "passed": true
+    },
+    {
+      "name": "PP: all enumerated paths retained",
+      "passed": true
+    },
+    {
+      "name": "PP: all paths have legal tasks",
+      "passed": true
+    },
+    {
+      "name": "PP: no operational approval",
+      "passed": true
+    },
+    {
+      "name": "PP: no legal audit claimed",
+      "passed": true
+    },
+    {
+      "name": "PE: research API 200",
+      "passed": true
+    },
+    {
+      "name": "PE: all enumerated paths retained",
+      "passed": true
+    },
+    {
+      "name": "PE: all paths have legal tasks",
+      "passed": true
+    },
+    {
+      "name": "PE: no operational approval",
+      "passed": true
+    },
+    {
+      "name": "PE: no legal audit claimed",
+      "passed": true
+    },
+    {
+      "name": "PET: research API 200",
+      "passed": true
+    },
+    {
+      "name": "PET: all enumerated paths retained",
+      "passed": true
+    },
+    {
+      "name": "PET: all paths have legal tasks",
+      "passed": true
+    },
+    {
+      "name": "PET: no operational approval",
+      "passed": true
+    },
+    {
+      "name": "PET: no legal audit claimed",
+      "passed": true
+    },
+    {
+      "name": "알루미늄: research API 200",
+      "passed": true
+    },
+    {
+      "name": "알루미늄: all enumerated paths retained",
+      "passed": true
+    },
+    {
+      "name": "알루미늄: all paths have legal tasks",
+      "passed": true
+    },
+    {
+      "name": "알루미늄: no operational approval",
+      "passed": true
+    },
+    {
+      "name": "알루미늄: no legal audit claimed",
+      "passed": true
+    },
+    {
+      "name": "종이: research API 200",
+      "passed": true
+    },
+    {
+      "name": "종이: all enumerated paths retained",
+      "passed": true
+    },
+    {
+      "name": "종이: all paths have legal tasks",
+      "passed": true
+    },
+    {
+      "name": "종이: no operational approval",
+      "passed": true
+    },
+    {
+      "name": "종이: no legal audit claimed",
+      "passed": true
+    },
+    {
+      "name": "synthetic arithmetic API 200",
+      "passed": true
+    },
+    {
+      "name": "synthetic: Pareto A/B before C",
+      "passed": true
+    },
+    {
+      "name": "synthetic: no final recommendation",
+      "passed": true
+    }
+  ],
+  "passed": 28,
+  "total": 28
+}

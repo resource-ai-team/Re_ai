@@ -6,6 +6,10 @@ KG 탐색 → 법규·시설 검증 → 비용·탄소 → Trade-off의 잠정 T
 Critic 지적은 원인 단계로 돌아가 수정하고 영향받은 후속 결과를 갱신합니다.
 조사 내부에 ReAct를 사용할 수 있으며, 규칙·계산·재실행 제어는 코드가 맡습니다.
 아래 구현 내용은 KG 기반과 법령 검색이며 새 전체 실행기는 아직 없습니다.
+추가된 `/analysis/research`는 KG 경로 전체 조회와 공개 시설 조건·후보별 법령 검색을
+연결합니다. `/analysis/compare-scenarios`는 별도로 제출한 근거·수치를 계산·비교합니다.
+적합성 Auditor·최종 Critic·부분 재실행까지 잇는 전체 실행기와는 구분합니다.
+[새 분석 API와 남은 범위](candidate-analysis.md)를 참고합니다.
 
 `src/resource_ai`는 기능 책임별로 분리합니다.
 
