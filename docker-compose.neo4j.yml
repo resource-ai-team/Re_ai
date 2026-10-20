@@ -1,0 +1,26 @@
+# Optional AI-local graph service. Re_infra owns the integrated deployment.
+services:
+  neo4j:
+    image: neo4j:5.26.32-community
+    environment:
+      NEO4J_AUTH: "neo4j/${NEO4J_PASSWORD:?Set NEO4J_PASSWORD in .env}"
+      NEO4J_server_memory_heap_initial__size: 512m
+      NEO4J_server_memory_heap_max__size: 1g
+      NEO4J_server_memory_pagecache_size: 256m
+    ports:
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
+    volumes:
+      - re_ai_neo4j_data:/data
+      - re_ai_neo4j_logs:/logs
+    mem_limit: 2g
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p \"$${NEO4J_AUTH#*/}\" 'RETURN 1' >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 40s
+
+volumes:
+  re_ai_neo4j_data:
+  re_ai_neo4j_logs:

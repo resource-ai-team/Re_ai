@@ -4,13 +4,28 @@
 폐기물과 공정 정보를 바탕으로 관련 근거를 찾고, 이후 지식 그래프·규칙 엔진·계산기를
 결합해 검증 가능한 처리 방안을 만드는 역할을 담당합니다.
 
-현재 구현 범위는 국가법령정보의 법령·판례 수집, 데이터셋 검증, PostgreSQL/pgvector
-Hybrid Search와 근거 검색 API입니다. 법적 판정과 최종 추천은 아직 구현되지 않았습니다.
+현재는 **법령 근거 검색과 Neo4j 공정 후보 탐색**까지 동작합니다.
+폐자원 정보를 넣으면 문헌 후보와, 자료가 있는 소재의 공정·리스크·근거를 돌려줍니다.
+법적 판정, 비용·탄소 순위 계산과 최종 추천은 아직 구현되지 않았습니다.
 
 - 팀 공통 규칙: [resource-ai-team/.github CONTRIBUTING](https://github.com/resource-ai-team/.github/blob/main/CONTRIBUTING.md)
 - 구조 설명: [docs/architecture.md](docs/architecture.md)
 - 데이터 관리: [data/README.md](data/README.md)
 - API 설명: [docs/api.md](docs/api.md)
+- KG 실행·입출력·남은 작업: [docs/knowledge-graph.md](docs/knowledge-graph.md)
+
+## 지금 어디까지 되나요?
+
+| 흐름 | 현재 상태 |
+| --- | --- |
+| 문서·자연어 입력을 항목으로 정리 | 입력 형식만 정의. OCR·LLM 추출·검수 화면은 후속 작업 |
+| 관련 문헌·공정 후보 찾기 | W2RKG 33,679건을 Neo4j에 적재하고 조회 가능 |
+| 공정 단계와 리스크·근거 연결 | PET·알루미늄·종이 조건부 경로 18개와 조사 카드 69개. PP·PE는 문헌 탐색부터 가능 |
+| 법령 근거 찾기 | 기존 Hybrid Search·Reranking 사용 가능 |
+| 허가·규정 판정, 비용·탄소·운송 비교 | 검수 데이터와 규칙·계산기 연동 필요 |
+| 에이전트 통합·최종 추천·3D·보고서 | KG 호출 도구까지 제공. 전체 서비스 연결은 후속 작업 |
+
+사용자의 기존 처리 방식은 아는 경우에만 받습니다. 모르면 임의로 만들지 않습니다.
 
 ## 조직 저장소 구성
 
@@ -94,6 +109,8 @@ uvicorn resource_ai.main:app --reload
 - Swagger UI: `http://127.0.0.1:8000/docs`
 - 상태 확인: `GET /health`
 - 근거 검색: `GET /rag/search?q={질문}&top_k=5`
+- 온톨로지 확인: `GET /kg/ontology`
+- 공정 후보 조회: `POST /kg/candidates` — [실행 예시](docs/knowledge-graph.md)
 
 ## 기술 스택
 
@@ -101,6 +118,7 @@ uvicorn resource_ai.main:app --reload
 | --- | --- |
 | 언어·API | Python 3.11+, FastAPI, Pydantic |
 | 검색 DB | PostgreSQL 16, pgvector, `tsvector` |
+| 지식그래프 | Neo4j 5.26, 출처·공정·리스크 온톨로지 |
 | 임베딩 | sentence-transformers, multilingual-e5-small |
 | 공식 데이터 | 국가법령정보 공동활용 API |
 | 품질 | Pytest, Ruff, GitHub Actions |
@@ -113,7 +131,7 @@ src/resource_ai/
 ├── api/               FastAPI 라우트와 입출력 스키마
 ├── agents/            향후 AI 도구 오케스트레이션
 ├── rag/               수집·검증·Hybrid Search·생성
-├── knowledge_graph/   폐기물·처리·허가 관계 (골격)
+├── knowledge_graph/   온톨로지·Neo4j 적재·공정 후보 조회
 ├── rules/             결정적 법규 판정 (골격)
 ├── calculators/       경제성·환경성 계산 (골격)
 ├── evidence/          근거 모델과 근거 카드
@@ -121,8 +139,8 @@ src/resource_ai/
 └── core/              설정과 공통 인프라
 ```
 
-`knowledge_graph`, `rules`, `agents`, `calculators`는 책임 경계를 위한 골격이며 완료된
-기능이 아닙니다.
+`rules`, `calculators`, 에이전트 전체 오케스트레이션은 아직 골격입니다.
+KG는 별도 모듈로 동작하며 에이전트에서 호출할 Python 도구를 제공합니다.
 
 ## 테스트와 CI
 

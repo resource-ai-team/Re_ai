@@ -1,0 +1,328 @@
+{
+  "scope": "graph integrity and API regression; not recommendation accuracy or plant validation",
+  "audit": {
+    "ontology_id": "re-ai-waste-resource-ontology-v1.1",
+    "graph_schema": "resource-property-graph-v1",
+    "graph_sha256": "bb84f8c5682982c052ee817ef39254f34dbe26b829e764db4670ec0067a0c705",
+    "node_counts": {
+      "Condition": 107,
+      "Evidence": 33761,
+      "LinkOccurrence": 48,
+      "Material": 5,
+      "OutputDescription": 4468,
+      "ProcessDescription": 7697,
+      "Risk": 66,
+      "RouteSnapshot": 18,
+      "ScopedClaim": 69,
+      "Source": 59,
+      "StepOccurrence": 66,
+      "TransformationClaim": 33679,
+      "WasteDescription": 3514
+    },
+    "edge_counts": {
+      "FOR_MATERIAL": 75,
+      "FROM_SOURCE": 33761,
+      "FROM_STEP": 48,
+      "HAS_LINK": 48,
+      "HAS_RISK": 66,
+      "HAS_STEP": 66,
+      "INPUT_LABEL": 33679,
+      "MENTIONS_MATERIAL": 59,
+      "OUTPUT_LABEL": 33679,
+      "PROCESS_LABEL": 33672,
+      "REQUIRES": 107,
+      "SUPPORTED_BY": 34338,
+      "TARGETS": 66,
+      "TO_STEP": 48
+    },
+    "source_claim_count": 33679,
+    "missing_process_preserved": 7,
+    "missing_reference_preserved": 686,
+    "source_records_checked": true,
+    "components_split": false,
+    "field_accuracy_validated": false,
+    "dispatch_approved": false,
+    "backend": "neo4j",
+    "generation": "f62933059958440098d94b888235781f",
+    "namespace": "re-ai-reference"
+  },
+  "scenarios": [
+    {
+      "input": {
+        "material": "PET",
+        "input_form": "bottle",
+        "top_k": 200
+      },
+      "literature_count": 161,
+      "process_count": 2,
+      "evidence_count": 7,
+      "missing_fields": [
+        "color",
+        "contamination"
+      ]
+    },
+    {
+      "input": {
+        "material": "알루미늄",
+        "input_form": "chips",
+        "top_k": 200
+      },
+      "literature_count": 57,
+      "process_count": 2,
+      "evidence_count": 48,
+      "missing_fields": [
+        "color",
+        "contamination"
+      ]
+    },
+    {
+      "input": {
+        "material": "종이",
+        "input_form": "unknown",
+        "top_k": 200
+      },
+      "literature_count": 180,
+      "process_count": 2,
+      "evidence_count": 8,
+      "missing_fields": [
+        "input_form",
+        "color",
+        "contamination"
+      ]
+    },
+    {
+      "input": {
+        "material": "PP",
+        "input_form": null,
+        "top_k": 200
+      },
+      "literature_count": 60,
+      "process_count": 0,
+      "evidence_count": 0,
+      "missing_fields": [
+        "input_form",
+        "color",
+        "contamination"
+      ]
+    },
+    {
+      "input": {
+        "material": "PE",
+        "input_form": null,
+        "top_k": 200
+      },
+      "literature_count": 144,
+      "process_count": 0,
+      "evidence_count": 0,
+      "missing_fields": [
+        "input_form",
+        "color",
+        "contamination"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "complete W2RKG source claims",
+      "passed": true
+    },
+    {
+      "name": "blank process preserved",
+      "passed": true
+    },
+    {
+      "name": "blank references preserved",
+      "passed": true
+    },
+    {
+      "name": "eligible evidence cards",
+      "passed": true
+    },
+    {
+      "name": "scoped authored route snapshots",
+      "passed": true
+    },
+    {
+      "name": "no dispatch approval",
+      "passed": true
+    },
+    {
+      "name": "PET API 200",
+      "passed": true
+    },
+    {
+      "name": "PET source candidates exist",
+      "passed": true
+    },
+    {
+      "name": "PET same immutable generation",
+      "passed": true
+    },
+    {
+      "name": "PET baseline not invented",
+      "passed": true
+    },
+    {
+      "name": "PET no approval",
+      "passed": true
+    },
+    {
+      "name": "PET curated coverage is explicit",
+      "passed": true
+    },
+    {
+      "name": "route:6e311cbb8435b3024a6727650ef1e461 evidence resolves",
+      "passed": true
+    },
+    {
+      "name": "route:6e311cbb8435b3024a6727650ef1e461 risk targets resolve",
+      "passed": true
+    },
+    {
+      "name": "route:a22ac388275d631a7d13732e71cf2cd7 evidence resolves",
+      "passed": true
+    },
+    {
+      "name": "route:a22ac388275d631a7d13732e71cf2cd7 risk targets resolve",
+      "passed": true
+    },
+    {
+      "name": "알루미늄 API 200",
+      "passed": true
+    },
+    {
+      "name": "알루미늄 source candidates exist",
+      "passed": true
+    },
+    {
+      "name": "알루미늄 same immutable generation",
+      "passed": true
+    },
+    {
+      "name": "알루미늄 baseline not invented",
+      "passed": true
+    },
+    {
+      "name": "알루미늄 no approval",
+      "passed": true
+    },
+    {
+      "name": "알루미늄 curated coverage is explicit",
+      "passed": true
+    },
+    {
+      "name": "route:1ee2b51af41830a63a809a8d3efd238b evidence resolves",
+      "passed": true
+    },
+    {
+      "name": "route:1ee2b51af41830a63a809a8d3efd238b risk targets resolve",
+      "passed": true
+    },
+    {
+      "name": "route:ca06bc1d92e1e738f15c3c8f249fd4b2 evidence resolves",
+      "passed": true
+    },
+    {
+      "name": "route:ca06bc1d92e1e738f15c3c8f249fd4b2 risk targets resolve",
+      "passed": true
+    },
+    {
+      "name": "종이 API 200",
+      "passed": true
+    },
+    {
+      "name": "종이 source candidates exist",
+      "passed": true
+    },
+    {
+      "name": "종이 same immutable generation",
+      "passed": true
+    },
+    {
+      "name": "종이 baseline not invented",
+      "passed": true
+    },
+    {
+      "name": "종이 no approval",
+      "passed": true
+    },
+    {
+      "name": "종이 curated coverage is explicit",
+      "passed": true
+    },
+    {
+      "name": "route:57afeea58eea4123998014938a72ca61 evidence resolves",
+      "passed": true
+    },
+    {
+      "name": "route:57afeea58eea4123998014938a72ca61 risk targets resolve",
+      "passed": true
+    },
+    {
+      "name": "route:dbc5d173d9761bebc3585505ba615158 evidence resolves",
+      "passed": true
+    },
+    {
+      "name": "route:dbc5d173d9761bebc3585505ba615158 risk targets resolve",
+      "passed": true
+    },
+    {
+      "name": "PP API 200",
+      "passed": true
+    },
+    {
+      "name": "PP source candidates exist",
+      "passed": true
+    },
+    {
+      "name": "PP same immutable generation",
+      "passed": true
+    },
+    {
+      "name": "PP baseline not invented",
+      "passed": true
+    },
+    {
+      "name": "PP no approval",
+      "passed": true
+    },
+    {
+      "name": "PP curated coverage is explicit",
+      "passed": true
+    },
+    {
+      "name": "PE API 200",
+      "passed": true
+    },
+    {
+      "name": "PE source candidates exist",
+      "passed": true
+    },
+    {
+      "name": "PE same immutable generation",
+      "passed": true
+    },
+    {
+      "name": "PE baseline not invented",
+      "passed": true
+    },
+    {
+      "name": "PE no approval",
+      "passed": true
+    },
+    {
+      "name": "PE curated coverage is explicit",
+      "passed": true
+    },
+    {
+      "name": "unknown composition preserved",
+      "passed": true
+    },
+    {
+      "name": "unknown material never mapped to PET",
+      "passed": true
+    }
+  ],
+  "passed": 50,
+  "total": 50
+}

@@ -1,0 +1,3 @@
+# These bytes are checked against source/bundle SHA-256 manifests.
+/data/knowledge_graph/*.jsonl text eol=lf
+/src/resource_ai/knowledge_graph/resources/*.json text eol=lf
