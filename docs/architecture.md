@@ -28,6 +28,13 @@ KG는 `ontology.py`의 타입·출처 검증 → `builder.py`의 격리된 메�
 기존 제한 조회는 호환성을 위해 유지하며, [조사 묶음 API](kg-research-pool.md)와 구분합니다.
 사용자 문서나 서비스 DB는 그래프 빌드에 전달하지 않습니다.
 
+공정 순서·시설 조합은 `/kg/process-plans`에서 조회합니다. 각 단계의
+`facility_search_request`로 `/kg/facility-candidates`를 호출하면 기존 공개 공정 근거와
+별도 Neo4j 명부의 추가 조사 대상이 나뉘어 나옵니다. 공식 코드표·설비 단어·직선거리는
+검색 단서이며, 그 시설의 현행 허가나 이번 물량의 인수 승인이 아닙니다.
+명부를 기존 경로에 자동 삽입하지 않으며, 시설 검증 이후의 전체 추천 실행기는 아직 없습니다.
+[시설 조사 구조와 실행 방법](kg-facility-matching.md)을 참고합니다.
+
 검색 데이터는 법령과 판례를 하나의 문서 모델로 저장하되 `document_type`, 조·항·호,
 사건번호와 계층 경로 메타데이터로 구분합니다. 원문 파일은 `data/raw`, 전처리 결과는
 `data/processed`, 공식 API 재수집 결과는 Git에서 제외되는 `data/official`에 둡니다.

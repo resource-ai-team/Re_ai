@@ -44,10 +44,10 @@ def build_stage(connection: sqlite3.Connection, rows: list[dict], *, include_cur
     return ontology.build_graph(connection, include_curated=include_curated)
 
 
-def build_reference(path: Path = DEFAULT_DATASET, *, config=None, progress=None):
+def build_reference(path: Path = DEFAULT_DATASET, *, config=None, progress=None, rebuild=False):
     from resource_ai.knowledge_graph.graph_store import import_graph
 
     rows = read_candidates(path)
     with closing(sqlite3.connect(":memory:")) as connection:
         build_stage(connection, rows)
-        return import_graph(connection, config=config, progress=progress)
+        return import_graph(connection, config=config, progress=progress, rebuild=rebuild)

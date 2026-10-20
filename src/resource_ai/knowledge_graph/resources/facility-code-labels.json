@@ -1,0 +1,2573 @@
+{
+  "schema_version": 1,
+  "scope": "search_hints_only_not_lot_classification_permit_or_process_approval",
+  "source": {
+    "title": "폐기물관리법 시행규칙 별표 4: 폐기물의 종류별 세부분류",
+    "url": "https://www.law.go.kr/법령별표서식/(폐기물관리법 시행규칙,20261002,별표4)",
+    "pdf_url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=170401309",
+    "pdf_sha256": "9ccd6593f4e93a216594b634e204d091d42b174d7cf8d69e4fe502865d492023",
+    "law_effective_on": "2026-10-02",
+    "annex_amended_on": "2025-12-30",
+    "verified_on": "2026-10-21",
+    "extraction": "exact six-digit row headers with first-line excerpts; not full legal definitions",
+    "review": "query hints manually reviewed on PDF pages 1, 6, 10, 11, 13, 14"
+  },
+  "records": [
+    {
+      "code": "01-01-01",
+      "label_excerpt": "폐폴리에틸렌",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [
+        "pe"
+      ],
+      "match_kind": "named_material_code_only"
+    },
+    {
+      "code": "01-01-02",
+      "label_excerpt": "폐폴리프로필렌",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [
+        "pp"
+      ],
+      "match_kind": "named_material_code_only"
+    },
+    {
+      "code": "01-01-03",
+      "label_excerpt": "폐폴리염화비닐수지",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-01-04",
+      "label_excerpt": "폐폴리에틸렌테레프탈레이트",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [
+        "pet"
+      ],
+      "match_kind": "named_material_code_only"
+    },
+    {
+      "code": "01-01-05",
+      "label_excerpt": "폐페놀수지",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-01-06",
+      "label_excerpt": "폐폴리우레탄",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-01-07",
+      "label_excerpt": "폐합성고무",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-01-08",
+      "label_excerpt": "폐폴리스티렌",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-01-09",
+      "label_excerpt": "폐아크리로니트릴브타디엔스티렌(ABS수지)",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-01-99",
+      "label_excerpt": "그 밖의 폐합성고분자화합물",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-02-01",
+      "label_excerpt": "폐수처리오니",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-02-02",
+      "label_excerpt": "유리식각공정오니",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-02-03",
+      "label_excerpt": "제지공정오니",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-02-04",
+      "label_excerpt": "실리콘제조공정오니",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-02-05",
+      "label_excerpt": "보크사이트잔재물",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-02-99",
+      "label_excerpt": "그 밖의 공정오니",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-03-01",
+      "label_excerpt": "유기인계폐농약",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-03-02",
+      "label_excerpt": "유기염소계폐농약",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-03-03",
+      "label_excerpt": "카바메이트계(Carbamate)폐농약",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "01-03-99",
+      "label_excerpt": "그 밖의 폐농약",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "02-01-01",
+      "label_excerpt": "폐염산",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "02-01-02",
+      "label_excerpt": "폐황산(폐황산이 포함된 2차폐축전지는 제외한다)",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "02-01-03",
+      "label_excerpt": "폐질산",
+      "page": 1,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "02-01-04",
+      "label_excerpt": "폐불산",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "02-01-05",
+      "label_excerpt": "LCD·반도체 공정의 폐산",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "02-01-99",
+      "label_excerpt": "그 밖의 폐산",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "02-02-01",
+      "label_excerpt": "폐가성소다수",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "02-02-02",
+      "label_excerpt": "폐암모니아수",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "02-02-03",
+      "label_excerpt": "폐수산화나트륨(고상)",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "02-02-04",
+      "label_excerpt": "폐수산화칼륨(고상)",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "02-02-99",
+      "label_excerpt": "그 밖의 폐알칼리",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-01-01",
+      "label_excerpt": "알루미늄제조공정광재",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-01-02",
+      "label_excerpt": "납 열처리·야금(冶金)공정광재",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-01-03",
+      "label_excerpt": "아연열처리공정광재",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-01-04",
+      "label_excerpt": "철제조공정광재(철광원석의 사용으로 인한 고로슬래그는 제",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-01-99",
+      "label_excerpt": "그 밖의 광재",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-02-00",
+      "label_excerpt": "분진",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-03-01",
+      "label_excerpt": "점토점결폐주물사",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-03-02",
+      "label_excerpt": "화학점결폐주물사",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-03-03",
+      "label_excerpt": "샌드블라스트폐사",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-03-99",
+      "label_excerpt": "그 밖의 폐주물사 및 폐사",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-04-01",
+      "label_excerpt": "폐내화물",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-04-02",
+      "label_excerpt": "폐도자기조각",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-05-01",
+      "label_excerpt": "생활폐기물 소각시설 비산재",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-05-02",
+      "label_excerpt": "사업장폐기물 소각시설 비산재",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-05-03",
+      "label_excerpt": "생활폐기물 소각시설 바닥재",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-05-04",
+      "label_excerpt": "사업장폐기물 소각시설 바닥재",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-05-05",
+      "label_excerpt": "생활폐기물 소각시설 소각재(바닥재와 비산재가 혼합된 경우",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-05-06",
+      "label_excerpt": "사업장폐기물 소각시설 소각재(바닥재와 비산재가 혼합된 경",
+      "page": 2,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-05-07",
+      "label_excerpt": "천연방사성제품폐기물 소각재",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-06-01",
+      "label_excerpt": "안정화처리물",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-06-02",
+      "label_excerpt": "시멘트고형화처리물",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-06-03",
+      "label_excerpt": "고화처리물",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-06-04",
+      "label_excerpt": "킬레이트(Chelate)처리물",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-06-05",
+      "label_excerpt": "폐석면고형화처리물(석면을 1퍼센트 이상 함유한 경우로 한정",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-06-99",
+      "label_excerpt": "그 밖의 고형화·고화처리물",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-07-01",
+      "label_excerpt": "금속성폐촉매",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-07-02",
+      "label_excerpt": "비금속성폐촉매",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-08-01",
+      "label_excerpt": "폐흡착제",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-08-02",
+      "label_excerpt": "폐흡수제",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-10-01",
+      "label_excerpt": "황산이 포함된 폐이차전지",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-10-02",
+      "label_excerpt": "알칼리가 포함된 폐이차전지",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-10-03",
+      "label_excerpt": "리튬계 폐이차전지(침수ㆍ화재ㆍ변형ㆍ파손 등이 발생한 것과",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-10-04",
+      "label_excerpt": "이차전지 스크랩",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "03-10-99",
+      "label_excerpt": "그 밖의 폐이차전지(침수ㆍ화재ㆍ변형ㆍ파손 등이 발생한 것",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "04-01-00",
+      "label_excerpt": "할로겐족 폐유기용제",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "04-02-00",
+      "label_excerpt": "그 밖의 폐유기용제",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "05-01-00",
+      "label_excerpt": "폐유성페인트",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "05-02-00",
+      "label_excerpt": "폐수성페인트",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "05-03-00",
+      "label_excerpt": "폐락카",
+      "page": 3,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "06-01-01",
+      "label_excerpt": "폐윤활유(「자원의 절약과 재활용촉진에 관한 법률 시행령」",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "06-01-02",
+      "label_excerpt": "폐연마유·비수용성폐절삭유·폐열처리유(금속가공과정에서 발",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "06-01-03",
+      "label_excerpt": "폐기계유·폐작동유(공업용 기계유·냉동기유·터어빈유·베어링윤",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "06-01-04",
+      "label_excerpt": "폐연료유",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "06-01-05",
+      "label_excerpt": "폐오일필터",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "06-01-06",
+      "label_excerpt": "기름함유 폐전선·폐케이블",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "06-01-07",
+      "label_excerpt": "폐절연유(폴리클로리네이티드비페닐 함유 폐기물을 제외한다)",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "06-01-99",
+      "label_excerpt": "그 밖의 폐광물유[아스팔트유·그리스(grease)·방청유 및 수용",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "06-02-00",
+      "label_excerpt": "폐동식물유",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "06-03-00",
+      "label_excerpt": "그 밖의 폐유",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "07-01-01",
+      "label_excerpt": "흩날릴 우려가 없는 폐석면",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "07-01-02",
+      "label_excerpt": "흩날릴 우려가 있는 폐석면",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "07-02-00",
+      "label_excerpt": "석면제품 등의 연마·절단·가공 공정에서 발생된 부스러기 및 연",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "07-03-00",
+      "label_excerpt": "석면의 제거작업에 사용된 모든 비닐시트·방진마스크·작업복·집",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "08-01-00",
+      "label_excerpt": "폴리클로리네이티드비페닐 함유 폐유",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "08-02-00",
+      "label_excerpt": "폴리클로리네이티드비페닐 함유 폐유기용제",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "08-03-00",
+      "label_excerpt": "그 밖의 폴리클로리네이티드비페닐을 함유한 액상의 것",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "08-04-00",
+      "label_excerpt": "그 밖의 폴리클로리네이티드비페닐을 함유한 액상이 아닌 것",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "09-01-00",
+      "label_excerpt": "「화학물질관리법」 제2조제5호에 따른 금지물질",
+      "page": 4,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "09-02-00",
+      "label_excerpt": "연구·검사용 폐시약",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "09-03-00",
+      "label_excerpt": "「화학물질관리법」 제2조제7호에 따른 유해화학물질",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "09-04-00",
+      "label_excerpt": "「화학물질관리법」 제2조제3호 및 제4호에 따른 허가물질 및",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "10-11-00",
+      "label_excerpt": "격리의료폐기물",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "10-12-01",
+      "label_excerpt": "조직물류폐기물(태반을 재활용하는 경우는 제외한다)",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "10-12-02",
+      "label_excerpt": "병리계폐기물",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "10-12-03",
+      "label_excerpt": "손상성폐기물",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "10-12-04",
+      "label_excerpt": "생물·화학폐기물",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "10-12-05",
+      "label_excerpt": "혈액오염폐기물",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "10-12-06",
+      "label_excerpt": "인체조직물 중 태반(재활용하는 경우에만 해당한다)",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "10-13-00",
+      "label_excerpt": "일반의료폐기물",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "11-01-01",
+      "label_excerpt": "수은함유 폐램프",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "11-01-02",
+      "label_excerpt": "수은함유 폐계측기기",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "11-01-03",
+      "label_excerpt": "수은함유 폐전지",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "11-01-99",
+      "label_excerpt": "그 밖의 기후에너지환경부장관이 고시하는 폐제품",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "11-02-00",
+      "label_excerpt": "수은구성폐기물",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "11-03-00",
+      "label_excerpt": "수은함유폐기물 처리잔재물",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "12-00-00",
+      "label_excerpt": "천연방사성제품폐기물",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "30-00-00",
+      "label_excerpt": "그 밖에 기후에너지환경부장관이 정하여 고시하는 폐기물",
+      "page": 5,
+      "section": "designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-01-01",
+      "label_excerpt": "정수처리오니",
+      "page": 5,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-01-02",
+      "label_excerpt": "하수처리오니",
+      "page": 5,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-01-03",
+      "label_excerpt": "분뇨처리오니",
+      "page": 5,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-01-04",
+      "label_excerpt": "가축분뇨처리오니",
+      "page": 5,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-01-05",
+      "label_excerpt": "펄프·제지공정오니",
+      "page": 5,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-01-06",
+      "label_excerpt": "그 밖의 공정오니",
+      "page": 5,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-01-07",
+      "label_excerpt": "펄프·제지폐수처리오니",
+      "page": 5,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-01-08",
+      "label_excerpt": "그 밖의 폐수처리오니",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-01-99",
+      "label_excerpt": "그 밖의 유기성오니",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-02-01",
+      "label_excerpt": "폐수처리오니",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-02-02",
+      "label_excerpt": "정수처리오니",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-02-03",
+      "label_excerpt": "하수처리오니",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-02-04",
+      "label_excerpt": "하수준설토",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-02-05",
+      "label_excerpt": "건설오니",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-02-06",
+      "label_excerpt": "석재·골재폐수처리오니(석재·골재 생산 시 발생한 폐수를 처리하",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-02-07",
+      "label_excerpt": "유리식각공정오니",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-02-08",
+      "label_excerpt": "실리콘공정오니",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-02-09",
+      "label_excerpt": "보크사이트잔재물",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-02-10",
+      "label_excerpt": "영농폐기물(농업활동 과정에서 배출된 농업용 폐플라스틱 필름",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-02-11",
+      "label_excerpt": "영농폐기물(농업활동 과정에서 배출된 농업용 폐플라스틱 필름",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-02-19",
+      "label_excerpt": "그 밖의 공정오니",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-02-99",
+      "label_excerpt": "그 밖의 무기성오니",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-03-01",
+      "label_excerpt": "폐합성수지류(폐염화비닐수지류는 제외한다)",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [
+        "pet",
+        "pp",
+        "pe"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "51-03-02",
+      "label_excerpt": "폐합성고무류",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-03-03",
+      "label_excerpt": "폐폴리염화비닐수지류",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-03-04",
+      "label_excerpt": "폐폴리우레탄폼류",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-03-05",
+      "label_excerpt": "양식용폐부자",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-03-06",
+      "label_excerpt": "폐발포합성수지",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [
+        "pet",
+        "pp",
+        "pe"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "51-03-07",
+      "label_excerpt": "플라스틱폐포장재",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [
+        "pet",
+        "pp",
+        "pe"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "51-03-08",
+      "label_excerpt": "폐어망",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-03-99",
+      "label_excerpt": "그 밖의 폐합성고분자화합물(합성수지류로 피복된 폐전선을 포",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [
+        "pet",
+        "pp",
+        "pe"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "51-04-01",
+      "label_excerpt": "고로슬래그",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-04-02",
+      "label_excerpt": "제강슬래그",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-04-03",
+      "label_excerpt": "비철금속제련공정광재",
+      "page": 6,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-04-04",
+      "label_excerpt": "선광공정광재(기후에너지환경부장관이 정하는 방법에 따라 관리",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-04-99",
+      "label_excerpt": "그 밖의 광재류",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-05-01",
+      "label_excerpt": "제철공정분진",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-05-02",
+      "label_excerpt": "시멘트제조공정분진",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-05-03",
+      "label_excerpt": "발전시설분진",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-05-04",
+      "label_excerpt": "폐실리카 퓸(규소철 제조과정에서 발생된 분진을 말한다)",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-05-99",
+      "label_excerpt": "그 밖의 분진",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-06-01",
+      "label_excerpt": "점토점결폐주물사",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-06-02",
+      "label_excerpt": "화학점결폐주물사",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-06-03",
+      "label_excerpt": "샌드블라스트폐사",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-06-04",
+      "label_excerpt": "폐여과사",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-06-99",
+      "label_excerpt": "그 밖의 폐사",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-07-01",
+      "label_excerpt": "폐내화물",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-07-02",
+      "label_excerpt": "폐도자기조각",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-08-01",
+      "label_excerpt": "생활폐기물 소각시설 비산재",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-08-02",
+      "label_excerpt": "사업장폐기물 소각시설 비산재",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-08-03",
+      "label_excerpt": "생활폐기물 소각시설 바닥재",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-08-04",
+      "label_excerpt": "사업장폐기물 소각시설 바닥재",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-08-05",
+      "label_excerpt": "생활폐기물 소각시설 소각재(바닥재와 비산재가 혼합된 경우를",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-08-06",
+      "label_excerpt": "사업장폐기물 소각시설 소각재(바닥재와 비산재가 혼합된 경우",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-09-01",
+      "label_excerpt": "안정화 처리물",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-09-02",
+      "label_excerpt": "시멘트고형화 처리물",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-09-03",
+      "label_excerpt": "고화 처리물",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-09-04",
+      "label_excerpt": "킬레이트(Chelate) 처리물",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-09-99",
+      "label_excerpt": "그 밖의 고형화·고화 처리물",
+      "page": 7,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-10-01",
+      "label_excerpt": "금속성폐촉매",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-10-02",
+      "label_excerpt": "폐이온교환수지",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-10-03",
+      "label_excerpt": "폐멤브레인수지",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-10-99",
+      "label_excerpt": "그 밖의 폐촉매",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-11-01",
+      "label_excerpt": "폐흡착제",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-11-02",
+      "label_excerpt": "폐흡수제",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-11-03",
+      "label_excerpt": "폐활성탄",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-12-01",
+      "label_excerpt": "폐석고",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-12-02",
+      "label_excerpt": "폐석회",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-13-01",
+      "label_excerpt": "연탄재",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-13-02",
+      "label_excerpt": "액체연료연소재",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-13-03",
+      "label_excerpt": "석탄재",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-13-99",
+      "label_excerpt": "그 밖의 연소잔재물",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-14-01",
+      "label_excerpt": "폐석분토사(석재·골재생산 과정에서 발생한 응집 미립분을 포함",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-14-02",
+      "label_excerpt": "폐석재",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-15-01",
+      "label_excerpt": "자동차 폐타이어",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-15-02",
+      "label_excerpt": "그 밖의 폐타이어",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-16-00",
+      "label_excerpt": "폐식용유(식용을 목적으로 식품 재료와 원료를 제조·조리·가공하거",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-01",
+      "label_excerpt": "동물사체",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-02",
+      "label_excerpt": "축산물가공잔재물(동물성 유지류는 제외한다)",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-03",
+      "label_excerpt": "수산물가공잔재물",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-04",
+      "label_excerpt": "폐패각",
+      "page": 8,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-05",
+      "label_excerpt": "폐모피류",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-06",
+      "label_excerpt": "피혁 및 피혁가공잔재물",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-07",
+      "label_excerpt": "동물털",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-08",
+      "label_excerpt": "동물성유지류",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-19",
+      "label_excerpt": "그 밖의 동물성잔재물",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-21",
+      "label_excerpt": "주정박",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-22",
+      "label_excerpt": "맥주박",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-23",
+      "label_excerpt": "유박유잔재물",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-24",
+      "label_excerpt": "초본류",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-25",
+      "label_excerpt": "커피찌꺼기",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-26",
+      "label_excerpt": "버섯폐배지",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-27",
+      "label_excerpt": "과채류(「사료관리법」 제2조제2호에 따른 단미사료에 해당하",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-29",
+      "label_excerpt": "그 밖의 식물성잔재물",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-30",
+      "label_excerpt": "식재료 및 조리부산물(제18조제1항제1호에 따른 배출자 중 식",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-17-99",
+      "label_excerpt": "그 밖의 동·식물성잔재물",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-18-01",
+      "label_excerpt": "가정용폐전기전자제품",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-18-02",
+      "label_excerpt": "산업용폐전기전자제품",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-18-03",
+      "label_excerpt": "프린트토너 및 카트리지폐부속품",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-18-99",
+      "label_excerpt": "그 밖의 폐전기전자제품류",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-19-00",
+      "label_excerpt": "왕겨 및 쌀겨(「사료관리법」에 따른 사료로 사용하는 경우는 제외한다)",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-20-21",
+      "label_excerpt": "임목폐목재(건설공사ㆍ산지개간 등의 과정에서 발생된 나무뿌리",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-20-22",
+      "label_excerpt": "제재부산물(원목 가공과정에서 발생되는 나무 껍질ㆍ톱밥ㆍ대패",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-20-23",
+      "label_excerpt": "폐도장목ㆍ폐목재포장재ㆍ폐전선드럼ㆍ건설현장 폐목재(원목상",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-20-24",
+      "label_excerpt": "접착제ㆍ페인트ㆍ기름ㆍ콘크리트 등의 물질이 사용된 폐목재(목",
+      "page": 9,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-20-25",
+      "label_excerpt": "할로겐족 유기화합물 또는 방부제가 사용된 폐목재(목재부산물",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-20-26",
+      "label_excerpt": "폐철도목재받침목",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-20-27",
+      "label_excerpt": "폐가구류",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-20-99",
+      "label_excerpt": "그 밖의 폐목재류",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-21-01",
+      "label_excerpt": "폐토사",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-21-02",
+      "label_excerpt": "건설폐토석",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-21-03",
+      "label_excerpt": "오염하천·오염해양 준설토",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-22-01",
+      "label_excerpt": "폐콘크리트",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-22-02",
+      "label_excerpt": "폐철도콘크리트받침목",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-23-00",
+      "label_excerpt": "폐아스팔트콘크리트",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-24-00",
+      "label_excerpt": "폐벽돌",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-25-00",
+      "label_excerpt": "폐블록",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-26-00",
+      "label_excerpt": "폐기와",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-27-01",
+      "label_excerpt": "폐천연섬유",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-27-02",
+      "label_excerpt": "폐합성섬유",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-27-03",
+      "label_excerpt": "폐의류",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-27-04",
+      "label_excerpt": "의료기관 일회용기저귀(별표 3에 따른 의료기관 및 시험ㆍ검사",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-27-99",
+      "label_excerpt": "그 밖의 폐섬유",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-28-01",
+      "label_excerpt": "폐종이팩(「자원의 절약과 재활용촉진에 관한 법률 시행령」 제",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [
+        "paper"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "51-28-02",
+      "label_excerpt": "폐종이류",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [
+        "paper"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "51-28-03",
+      "label_excerpt": "폐벽지",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [
+        "paper"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "51-29-01",
+      "label_excerpt": "고철",
+      "page": 10,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-29-02",
+      "label_excerpt": "비철금속",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [
+        "aluminium"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "51-29-03",
+      "label_excerpt": "폐금속캔류(「자원의 절약과 재활용촉진에 관한 법률 시행령」",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [
+        "aluminium"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "51-29-04",
+      "label_excerpt": "폐금속용기류(폐금속캔류는 제외한다)",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [
+        "aluminium"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "51-29-99",
+      "label_excerpt": "그 밖의 폐금속류",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [
+        "aluminium"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "51-30-01",
+      "label_excerpt": "폐유리",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-30-02",
+      "label_excerpt": "폐유리병류(「자원의 절약과 재활용촉진에 관한 법률 시행령」",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-30-03",
+      "label_excerpt": "폐스마트유리",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-30-04",
+      "label_excerpt": "폐유리섬유",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-30-05",
+      "label_excerpt": "수은함유폐기물 처리잔재물[수은함유폐기물을 처리하는 과정에",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-30-99",
+      "label_excerpt": "그 밖의 폐유리",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-31-00",
+      "label_excerpt": "폐타일",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-32-00",
+      "label_excerpt": "폐보드류",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-33-00",
+      "label_excerpt": "폐판넬",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-35-00",
+      "label_excerpt": "폐전주(폐애자, 폐근가 및 폐합성수지제 덮개류 등을 포함한다)",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-36-01",
+      "label_excerpt": "이산화탄소스트림",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-36-02",
+      "label_excerpt": "이산화탄소전환탄산화물",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-37-01",
+      "label_excerpt": "가전제품회수폐냉매물질",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-37-02",
+      "label_excerpt": "자동차회수폐냉매물질",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-37-03",
+      "label_excerpt": "공조기회수폐냉매물질",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-37-99",
+      "label_excerpt": "그 밖의 폐냉매물질",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-38-01",
+      "label_excerpt": "음식물류폐기물",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-38-02",
+      "label_excerpt": "중간가공음식물류폐기물",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-38-03",
+      "label_excerpt": "음식물류폐기물처리잔재물(액상의 경우만 해당한다)",
+      "page": 11,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-38-99",
+      "label_excerpt": "그 밖의 음식물류폐기물처리잔재물",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-39-00",
+      "label_excerpt": "폐사료",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-40-01",
+      "label_excerpt": "폐분말소화기",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-40-99",
+      "label_excerpt": "그 밖의 폐소화기",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-41-01",
+      "label_excerpt": "폐일차전지",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-41-04",
+      "label_excerpt": "폐태양전지ㆍ전자기기페이스트ㆍ태양광 폐패널",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-41-05",
+      "label_excerpt": "전기자동차 폐이차전지(침수ㆍ화재ㆍ변형ㆍ파손 등이 발생한",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-41-06",
+      "label_excerpt": "구동용 폐이차전지(침수ㆍ화재ㆍ변형ㆍ파손 등이 발생한 것과",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-41-07",
+      "label_excerpt": "폐양극활물질(양극재 또는 전구체 제조공정에서 발생하는 것을",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-41-08",
+      "label_excerpt": "폐연료전지",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-41-99",
+      "label_excerpt": "그 밖의 폐이차전지(침수ㆍ화재ㆍ변형ㆍ파손 등이 발생한 것과",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-42-00",
+      "label_excerpt": "폐의약품류",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-43-00",
+      "label_excerpt": "폐흑연가루",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-44-00",
+      "label_excerpt": "나노폐기물(나노물질을 제조·가공하는 과정에서 발생된 분진을 말",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-45-01",
+      "label_excerpt": "폐차파쇄잔재물",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-45-02",
+      "label_excerpt": "폐차부품류",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-45-99",
+      "label_excerpt": "그 밖의 폐차발생폐기물",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-46-00",
+      "label_excerpt": "의료폐기물 멸균분쇄잔재물",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-47-01",
+      "label_excerpt": "폐형광등",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-47-02",
+      "label_excerpt": "폐발광다이오드조명",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "51-99-00",
+      "label_excerpt": "그 밖의 폐기물",
+      "page": 12,
+      "section": "business_non_designated",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-01-00",
+      "label_excerpt": "종량제봉투 배출 폐기물(합성수지 종량제 봉투에 배출되는 폐기",
+      "page": 12,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-02-00",
+      "label_excerpt": "음식물류 폐기물(분리배출된 음식물류 폐기물을 말한다)",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-03-00",
+      "label_excerpt": "폐식용유(가정 및 음식점에서 분리배출된 것을 말한다)",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-04-00",
+      "label_excerpt": "폐지류(종이팩을 포함한다)",
+      "page": 13,
+      "section": "household",
+      "query_materials": [
+        "paper"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "91-05-00",
+      "label_excerpt": "고철 및 금속캔류",
+      "page": 13,
+      "section": "household",
+      "query_materials": [
+        "aluminium"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "91-06-01",
+      "label_excerpt": "폐합성수지(폴리염화비닐은 제외한다)",
+      "page": 13,
+      "section": "household",
+      "query_materials": [
+        "pet",
+        "pp",
+        "pe"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "91-06-02",
+      "label_excerpt": "폐합성수지(폴리염화비닐)",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-06-03",
+      "label_excerpt": "폐합성고무류",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-07-01",
+      "label_excerpt": "유리병",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-07-02",
+      "label_excerpt": "폐유리",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-08-00",
+      "label_excerpt": "폐의류 및 원단류(섬유재질의 커튼, 현수막 등을 포함한다)",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-09-00",
+      "label_excerpt": "폐전기전자제품",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-10-01",
+      "label_excerpt": "원목상태의 깨끗한 목재",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-10-02",
+      "label_excerpt": "접착제, 페인트, 기름, 콘크리트 등의 물질이 사용된 목재(할로",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-10-03",
+      "label_excerpt": "할로겐족 유기화합물 또는 방부제가 사용된 목재",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-10-04",
+      "label_excerpt": "폐가구류",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-11-00",
+      "label_excerpt": "건설폐재류(콘크리트, 벽돌 등을 말한다)",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-12-00",
+      "label_excerpt": "폐타일 및 도자기류",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-13-01",
+      "label_excerpt": "폐형광등",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-13-02",
+      "label_excerpt": "폐발광다이오드조명",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-14-00",
+      "label_excerpt": "폐전지류",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-15-00",
+      "label_excerpt": "연탄재",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-16-00",
+      "label_excerpt": "동물성 잔재물(동물의 사체, 수산가공물, 유지 등을 포함한다)",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-17-01",
+      "label_excerpt": "커피찌꺼기",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-17-02",
+      "label_excerpt": "버섯폐배지",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-17-03",
+      "label_excerpt": "그 밖의 식물성 잔재물",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-18-01",
+      "label_excerpt": "영농폐기물(농약용기류)",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-18-02",
+      "label_excerpt": "영농폐기물(농촌폐비닐)",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-19-00",
+      "label_excerpt": "폐소화기류",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-20-00",
+      "label_excerpt": "천연방사성제품생활폐기물",
+      "page": 13,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    },
+    {
+      "code": "91-21-01",
+      "label_excerpt": "종이 컵",
+      "page": 14,
+      "section": "household",
+      "query_materials": [
+        "paper"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "91-21-02",
+      "label_excerpt": "합성수지 컵",
+      "page": 14,
+      "section": "household",
+      "query_materials": [
+        "pet",
+        "pp",
+        "pe"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "91-21-03",
+      "label_excerpt": "금속 컵",
+      "page": 14,
+      "section": "household",
+      "query_materials": [
+        "aluminium"
+      ],
+      "match_kind": "code_category_only"
+    },
+    {
+      "code": "91-99-00",
+      "label_excerpt": "그 밖의 생활폐기물",
+      "page": 14,
+      "section": "household",
+      "query_materials": [],
+      "match_kind": null
+    }
+  ]
+}

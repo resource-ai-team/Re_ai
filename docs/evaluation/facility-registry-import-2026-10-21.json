@@ -1,0 +1,13 @@
+{
+  "owner": "re-source-facility-registry-v1",
+  "schema_version": 1,
+  "format": "national-json",
+  "source_url": "https://www.data.go.kr/data/15114147/standard.do",
+  "source_sha256": "b083ea497c37bb11bd9374fc0a5b0850b989d290dbdba9d4a713fef353e79c08",
+  "records_sha256": "4e1c220c422c97bd7de413fa53fef26505c7f358e347ffa54cf07c4b858c2461",
+  "record_count": 9604,
+  "model_transfer_allowed": false,
+  "generation": "94ac29d43d8a4df2934448d990328a0e",
+  "status": "activated",
+  "dispatch_approved": false
+}
