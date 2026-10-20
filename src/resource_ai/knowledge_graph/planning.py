@@ -111,7 +111,7 @@ def load_reference(tx, config, generation, manifest):
         ids=sorted(expected),
     ):
         triple = (row["kind"], row["start"], row["end"])
-        props = {"basis": "source-backed-planning-reference-v1", "dispatch_approved": False}
+        props = {"basis": "source-backed-planning-reference-v2", "dispatch_approved": False}
         fields = {
             "id": graph.identity("edge", list(triple)),
             "properties_json": graph.canonical(props),
@@ -147,7 +147,7 @@ def load_reference(tx, config, generation, manifest):
     # Build from the records read in this transaction, after exact binding validation.
     value = PlanningReference.model_validate(
         {
-            "version": "planning-reference-v1",
+            "version": "planning-reference-v2",
             "scope": "source-backed-research-transitions; not validated operating routes",
             **{
                 group: [actual[i] for i, n in expected.items() if n["kind"] == kind]

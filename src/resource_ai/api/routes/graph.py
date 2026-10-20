@@ -2,6 +2,12 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
 
+from resource_ai.api.schemas.facility_assessment import (
+    AssessedPlansRequest,
+    AssessedPlansResponse,
+    FacilityAssessmentRequest,
+    FacilityAssessmentResponse,
+)
 from resource_ai.api.schemas.facility_search import FacilitySearchRequest, FacilitySearchResponse
 from resource_ai.api.schemas.graph import CandidateRequest, CandidateResponse
 from resource_ai.api.schemas.kg_planning import PathPlanningRequest, PathPlanningResponse
@@ -12,6 +18,34 @@ from resource_ai.knowledge_graph.ontology import ontology
 from resource_ai.knowledge_graph.query import GraphQuery
 
 router = APIRouter(prefix="/kg", tags=["knowledge-graph"])
+
+
+@router.post("/facility-assessment", response_model=FacilityAssessmentResponse)
+def facility_assessment(
+    request: FacilityAssessmentRequest, query: Annotated[GraphQuery, Depends(get_graph_query)]
+):
+    try:
+        return query.facility_assessment(request)
+    except GraphStoreError as error:
+        raise HTTPException(
+            status_code=400 if error.code == "invalid-capability" else 503,
+            detail={"code": error.code, "message": str(error)},
+        ) from None
+
+
+@router.post("/assessed-plans", response_model=AssessedPlansResponse)
+def assessed_plans(
+    request: AssessedPlansRequest, query: Annotated[GraphQuery, Depends(get_graph_query)]
+):
+    try:
+        return query.assessed_plans(request)
+    except GraphStoreError as error:
+        raise HTTPException(
+            status_code={"invalid-goal": 400, "invalid-cursor": 400, "stale-cursor": 409}.get(
+                error.code, 503
+            ),
+            detail={"code": error.code, "message": str(error)},
+        ) from None
 
 
 @router.post("/facility-candidates", response_model=FacilitySearchResponse)

@@ -97,6 +97,14 @@ def synthetic(value):
                     "transition": transition["key"],
                     "basis": "site_role_hypothesis",
                     "conditions": ["Synthetic site check"],
+                    "input_profile": {
+                        "evidence_scope": "organisation_only_not_site_verified",
+                        "material_examples": ["pet"],
+                        "form_examples": [],
+                        "output_description": "Synthetic output only",
+                        "source_ids": [source["key"]],
+                        "locator": "Synthetic fixture only",
+                    },
                 }
                 for transition, facility in product(transitions, facilities)
             ],

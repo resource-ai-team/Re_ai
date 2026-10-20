@@ -39,6 +39,7 @@ jobs:
       - run: python scripts/evaluate_kg_pool.py --output kg-pool-evaluation.json
       - run: python scripts/evaluate_process_plans.py --output kg-plans-evaluation.json
       - run: python scripts/evaluate_facility_search.py --output kg-facility-evaluation.json
+      - run: python scripts/evaluate_facility_assessment.py --output kg-condition-evaluation.json --scenario-output kg-pp-condition-scenario.json
       - uses: actions/upload-artifact@v4
         with:
           name: neo4j-validation

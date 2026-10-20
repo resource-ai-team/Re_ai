@@ -48,6 +48,16 @@ class GraphQuery:
 
         return FacilitySearch(self.config).search(request)
 
+    def facility_assessment(self, request):
+        from resource_ai.knowledge_graph.facility_assessment import FacilityAssessor
+
+        return FacilityAssessor(self.config).assess(request)
+
+    def assessed_plans(self, request):
+        from resource_ai.knowledge_graph.facility_assessment import FacilityAssessor
+
+        return FacilityAssessor(self.config).plans(request)
+
     def search(self, request: CandidateRequest) -> CandidateResponse:
         material = resolve_material(request.material)
         missing = [

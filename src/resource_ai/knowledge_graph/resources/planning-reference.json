@@ -1,5 +1,5 @@
 {
-  "version": "planning-reference-v1",
+  "version": "planning-reference-v2",
   "scope": "source-backed-research-transitions; not validated operating routes",
   "sources": [
     {
@@ -10,7 +10,7 @@
       "publisher": "삼양패키징",
       "locator": "PET 재활용 표 / 생산공정 1~8",
       "summary": "시화 소재 삼양에코테크의 PET병 회수·플레이크 생산 단계와 공시 생산능력을 소개한다.",
-      "checked_date": "2026-10-20",
+      "checked_date": "2026-10-21",
       "source_date": null,
       "sha256": "9f7cd399b4c1888bbe5047f451833b576618eb48266b82eeee39ae646ee635c0",
       "model_transfer_allowed": true,
@@ -24,9 +24,9 @@
       "publisher": "BGF에코머티리얼즈",
       "locator": "사업영역 / 제품 / 계열사·사업소",
       "summary": "선별·세척·압출 재생·컴파운딩과 r-PP·r-PE·r-PET 제품, 인천·예산·화성 사업장 역할을 소개한다. 개별 사업장별 모든 설비의 가동은 이 자료만으로 입증되지 않는다.",
-      "checked_date": "2026-10-20",
+      "checked_date": "2026-10-21",
       "source_date": null,
-      "sha256": "0eb8c83464a18fc9207cf2332097afad9edfc84bd7182ea6dd7873ec01e0090d",
+      "sha256": "329616b5f025a1e6728b85e94a95ba485a174514a59c3b8c9d90583c7ec7b1cc",
       "model_transfer_allowed": true,
       "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
     },
@@ -36,9 +36,9 @@
       "key": "jungang-materials",
       "url": "https://www.jungangenb.com/",
       "publisher": "중앙이엔비",
-      "locator": "FAQ Q01·Q02·Q05 / Address",
-      "summary": "공주 사업장의 PE·PP 반입 상담과 파쇄품의 재활용 원료 공급을 안내한다. 특정 로트의 인수와 순도는 확인되지 않는다.",
-      "checked_date": "2026-10-20",
+      "locator": "FAQ Q01·Q02·Q05·Q06 / Address",
+      "summary": "공주 사업장의 PE·PP 반입 상담과 파쇄품 공급 및 지정폐기물 취급 제외 정책을 안내한다. 특정 로트의 인수와 현행 허가 범위는 미확인이다.",
+      "checked_date": "2026-10-21",
       "source_date": null,
       "sha256": "52946fba52a22c2bab1f648dceb827f28f85d522030550178319433008cec943",
       "model_transfer_allowed": true,
@@ -52,7 +52,7 @@
       "publisher": "중앙이엔비",
       "locator": "단계별 상세 01~05",
       "summary": "반입 확인, 1차 선별, 파쇄, 후선별과 출하 순서를 설명한다. 정밀 세척이나 펠렛 생산을 뜻하지 않는다.",
-      "checked_date": "2026-10-20",
+      "checked_date": "2026-10-21",
       "source_date": null,
       "sha256": "8c64d9df4e4b360e708119ff8c3032ac880108e5c5be2334baf5ed794fc0d175",
       "model_transfer_allowed": true,
@@ -80,7 +80,7 @@
       "publisher": "Novelis",
       "locator": "2021-06-20 press release",
       "summary": "영주에서 사용 후 음료캔을 회수해 알루미늄 판재를 생산한 사례를 공개했다. 당시 발표 용량은 현재 여유 용량이 아니다.",
-      "checked_date": "2026-10-20",
+      "checked_date": "2026-10-21",
       "source_date": "2021-06-20",
       "sha256": "582fc189c36426976805f82676e2b31dcce15404930efc510cd80fc2a160c4a2",
       "model_transfer_allowed": true,
@@ -94,9 +94,9 @@
       "publisher": "한솔페이퍼텍",
       "locator": "표면지 설명 / 본사 주소",
       "summary": "고지와 펄프를 배합한 골판지원지 제품을 안내한다. 내부 공정별 순서나 특정 폐지 로트의 인수 기준은 확인되지 않는다.",
-      "checked_date": "2026-10-20",
+      "checked_date": "2026-10-21",
       "source_date": null,
-      "sha256": "c6b42e6e05246eceddf79939f9ea7d3c7358fff7b1d84aa56f289aba169c42e9",
+      "sha256": "ee4fc8a81b837d5577292a9a888cf05b6df8d9c2709ea956d83892802aff8596",
       "model_transfer_allowed": true,
       "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
     }
@@ -844,7 +844,25 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "site_publication",
+        "material_examples": [
+          "pet"
+        ],
+        "form_examples": [
+          "bottle"
+        ],
+        "output_description": "선별된 PET 분쇄 투입물",
+        "source_ids": [
+          "samyang-pet"
+        ],
+        "locator": "PET 재활용 표 / 생산공정 1~8",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
     },
     {
       "key": "samyang-sihwa--pet-wash",
@@ -856,7 +874,23 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "site_publication",
+        "material_examples": [
+          "pet"
+        ],
+        "form_examples": [],
+        "output_description": "세척 후 PET 파쇄물",
+        "source_ids": [
+          "samyang-pet"
+        ],
+        "locator": "PET 재활용 표 / 생산공정 1~8",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
     },
     {
       "key": "samyang-sihwa--pet-finish",
@@ -868,7 +902,23 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "site_publication",
+        "material_examples": [
+          "pet"
+        ],
+        "form_examples": [],
+        "output_description": "건조·금속 분리 후 PET 플레이크",
+        "source_ids": [
+          "samyang-pet"
+        ],
+        "locator": "PET 재활용 표 / 생산공정 1~8",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
     },
     {
       "key": "bgf-yesan--pet-pelletise",
@@ -880,7 +930,23 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "organisation_only_not_site_verified",
+        "material_examples": [
+          "pet"
+        ],
+        "form_examples": [],
+        "output_description": "재생 PET 펠렛·등급 미확인",
+        "source_ids": [
+          "bgf-recycling"
+        ],
+        "locator": "사업영역 / 제품 / 사업장 역할",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
     },
     {
       "key": "jungang-gongju--pp-prepare",
@@ -893,7 +959,30 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "site_publication",
+        "material_examples": [
+          "pp"
+        ],
+        "form_examples": [
+          "scrap",
+          "rigid"
+        ],
+        "output_description": "PP 파쇄품·순도 및 세척 상태 미확인",
+        "source_ids": [
+          "jungang-materials",
+          "jungang-process"
+        ],
+        "locator": "FAQ Q02·Q05 / 처리공정 01~05",
+        "excludes_designated_waste": true,
+        "exclusion_source_ids": [
+          "jungang-materials",
+          "jungang-process"
+        ],
+        "exclusion_locator": "FAQ Q06 / 처리공정 환경 관리: 지정폐기물 취급 제외",
+        "verified_intake_limits_available": false
+      }
     },
     {
       "key": "bgf-yesan--pp-clean",
@@ -905,7 +994,23 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "organisation_only_not_site_verified",
+        "material_examples": [
+          "pp"
+        ],
+        "form_examples": [],
+        "output_description": "PP 세정 투입물·품질 확인 필요",
+        "source_ids": [
+          "bgf-recycling"
+        ],
+        "locator": "사업영역 / 제품 / 사업장 역할",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
     },
     {
       "key": "bgf-yesan--pp-pelletise",
@@ -917,7 +1022,23 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "organisation_only_not_site_verified",
+        "material_examples": [
+          "pp"
+        ],
+        "form_examples": [],
+        "output_description": "재생 PP 펠렛·등급 확인 필요",
+        "source_ids": [
+          "bgf-recycling"
+        ],
+        "locator": "사업영역 / 제품 / 사업장 역할",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
     },
     {
       "key": "bgf-hwaseong--pp-compound",
@@ -929,7 +1050,23 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "organisation_only_not_site_verified",
+        "material_examples": [
+          "pp"
+        ],
+        "form_examples": [],
+        "output_description": "PP 재생 컴파운드·물성 확인 필요",
+        "source_ids": [
+          "bgf-recycling"
+        ],
+        "locator": "사업영역 / 제품 / 사업장 역할",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
     },
     {
       "key": "jungang-gongju--pe-prepare",
@@ -942,7 +1079,30 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "site_publication",
+        "material_examples": [
+          "pe"
+        ],
+        "form_examples": [
+          "scrap",
+          "rigid"
+        ],
+        "output_description": "PE 파쇄품·순도 및 세척 상태 미확인",
+        "source_ids": [
+          "jungang-materials",
+          "jungang-process"
+        ],
+        "locator": "FAQ Q02·Q05 / 처리공정 01~05",
+        "excludes_designated_waste": true,
+        "exclusion_source_ids": [
+          "jungang-materials",
+          "jungang-process"
+        ],
+        "exclusion_locator": "FAQ Q06 / 처리공정 환경 관리: 지정폐기물 취급 제외",
+        "verified_intake_limits_available": false
+      }
     },
     {
       "key": "bgf-yesan--pe-clean",
@@ -954,7 +1114,23 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "organisation_only_not_site_verified",
+        "material_examples": [
+          "pe"
+        ],
+        "form_examples": [],
+        "output_description": "PE 세정 투입물·품질 확인 필요",
+        "source_ids": [
+          "bgf-recycling"
+        ],
+        "locator": "사업영역 / 제품 / 사업장 역할",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
     },
     {
       "key": "bgf-yesan--pe-pelletise",
@@ -966,7 +1142,23 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "organisation_only_not_site_verified",
+        "material_examples": [
+          "pe"
+        ],
+        "form_examples": [],
+        "output_description": "재생 PE 펠렛·등급 확인 필요",
+        "source_ids": [
+          "bgf-recycling"
+        ],
+        "locator": "사업영역 / 제품 / 사업장 역할",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
     },
     {
       "key": "bgf-hwaseong--pe-compound",
@@ -978,7 +1170,23 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "organisation_only_not_site_verified",
+        "material_examples": [
+          "pe"
+        ],
+        "form_examples": [],
+        "output_description": "PE 재생 컴파운드·물성 확인 필요",
+        "source_ids": [
+          "bgf-recycling"
+        ],
+        "locator": "사업영역 / 제품 / 사업장 역할",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
     },
     {
       "key": "novelis-yeongju--al-can-sheet",
@@ -991,7 +1199,26 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "site_publication",
+        "material_examples": [
+          "aluminium"
+        ],
+        "form_examples": [
+          "can"
+        ],
+        "output_description": "재활용 알루미늄 판재",
+        "source_ids": [
+          "novelis-can-case",
+          "novelis-yeongju"
+        ],
+        "locator": "2021-06-20 보도자료: used beverage cans to aluminum sheet",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
     },
     {
       "key": "hansol-damyang--paper-board",
@@ -1003,7 +1230,25 @@
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
-      ]
+      ],
+      "input_profile": {
+        "evidence_scope": "site_publication",
+        "material_examples": [
+          "paper"
+        ],
+        "form_examples": [
+          "recovered_paper"
+        ],
+        "output_description": "고지·펄프 배합 골판지용 표면지 원지·규격 미확인",
+        "source_ids": [
+          "hansol-paper"
+        ],
+        "locator": "표면지 설명: 고지와 펄프 배합",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
     }
   ]
 }
