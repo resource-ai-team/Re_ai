@@ -10,6 +10,13 @@
 | `raw/` | 수동 확보 원본을 둘 자리 | 원칙적으로 검토 후 결정 |
 | `processed/` | 전처리 중간 산출물 | 원칙적으로 검토 후 결정 |
 | `official/` | 공식 API에서 재생성한 JSONL·매니페스트 | 제외 |
+| `knowledge_graph/` | 고정 해시의 W2RKG 인덱스·출처·라이선스 | 포함 |
+
+KG 조사 카드·출처 메타데이터·조건부 공정 템플릿은 Python 배포에도 포함되도록
+`src/resource_ai/knowledge_graph/resources/`에 둡니다. 원본은 Re-Prototype의
+`414cd8d` 커밋이며 `bundle-manifest.json`이 각 파일 해시를 기록합니다.
+새 근거로 변경할 때는 카드·범위·출처와 해시를 함께 검토합니다.
+Neo4j 데이터 볼륨·로컬 비밀번호·국가 LCI 원본은 Git에 포함하지 않습니다.
 
 ## 데이터셋 v1
 

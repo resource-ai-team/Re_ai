@@ -1,0 +1,3436 @@
+[
+  {
+    "card_id": "FAC-ASAN-IDENTITY",
+    "title": "아산공장 식별",
+    "claim_ko": "아산공장은 충청남도 아산시 인주면 현대로1077에 있으며 공식 소개에 엔진·소재 공장이 기재되어 있다.",
+    "source_id": "F01",
+    "source_url": "https://www.hyundai.com/kr/ko/brand/business-network/korea/factory/asan-factory",
+    "locator": "공식 소개: 주소 / 6 엔진·소재공장",
+    "material": "aluminium",
+    "geography": "대한민국",
+    "scope": "facility-identity",
+    "limitations": [
+      "소개 페이지의 생산능력 문구에는 서로 다른 수치가 있어 폐기물 물량 산정에 사용하지 않는다."
+    ],
+    "not_proven": [
+      "현재 폐Al 로트·형태·양·성분",
+      "현행 재활용 시설·계약·매각단가"
+    ],
+    "use_for": [
+      "facility-resolution",
+      "origin-process-question"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/asan-location.html",
+    "sha256": "3bdb221a1f64018c608bdf05b17a4d04efb7b54f4180edbfd3ff0c17d994fefb",
+    "checked_on": "2026-10-17",
+    "published_on": null,
+    "publication_period": null,
+    "discovery_status": "existing-reconfirmed",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-ASAN-ENGINE-LOOP-2023",
+    "title": "아산 엔진 폐알루미늄 기존 경로",
+    "claim_ko": "2023년 현대차는 아산 엔진 생산의 폐알루미늄을 엔진 원부재료로 재활용한다고 발표했다.",
+    "source_id": "F02",
+    "source_url": "https://www.hyundaimotorgroup.com/ko/amp/CONT0000000000123635",
+    "locator": "본문 엔진 생산 공정 폐주물사·폐알루미늄 문단",
+    "material": "aluminium",
+    "geography": "대한민국",
+    "scope": "facility-historical-baseline",
+    "limitations": [
+      "2023년 발표이며 2026년 동일성 확인 필요."
+    ],
+    "not_proven": [
+      "공장 내 직접 용해 여부",
+      "수취 시설 실명·운송 경로",
+      "절삭칩인지 주조불량인지",
+      "이번 로트 인수조건"
+    ],
+    "use_for": [
+      "baseline-inclusion",
+      "avoid-unfounded-internal-remelting"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/asan-loop-2023.html",
+    "sha256": "a74ac52d3bccc3c29f8ef001cb1e2a209f538cd7f0f051754d41361bd9243476",
+    "checked_on": "2026-10-17",
+    "published_on": "2023-11-24",
+    "publication_period": null,
+    "discovery_status": "existing-reconfirmed",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-HMC-PRESS-SALES-2026",
+    "title": "프레스 스크랩은 외부매각 경로",
+    "claim_ko": "2026년 보고서는 프레스 공정의 철·알루미늄 스크랩을 외부매각하여 재활용한다고 설명한다.",
+    "source_id": "F03",
+    "source_url": "https://www.hyundai.com/content/dam/hyundai/ww/en/images/company/sustainability/about-sustainability/2026/hmc-2026-sustainability-report-ko.pdf",
+    "locator": "인쇄/PDF p45, 자원사용·투입자원관리",
+    "material": "aluminium",
+    "geography": "대한민국",
+    "scope": "company-press-process",
+    "limitations": [
+      "회사 범위 설명이며 아산 엔진 공정 폐Al과 범위가 다르다."
+    ],
+    "not_proven": [
+      "아산 엔진 로트 외부매각",
+      "수취업체·수율·단가"
+    ],
+    "use_for": [
+      "process-aware-baseline",
+      "scope-conflict-check"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/hmc-2026-ko.pdf",
+    "sha256": "d0003444f8f49392df288ae9a84888362b4705e85c804caa980463172b239de9",
+    "checked_on": "2026-10-17",
+    "published_on": null,
+    "publication_period": "2026-06",
+    "discovery_status": "existing-reconfirmed",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-ASAN-CONTROL-2026",
+    "title": "아산 인증과 폐기물 관리 체계",
+    "claim_ko": "2026년 보고서는 아산의 매립제로 Platinum 인증과 회사의 공장별 폐기물 모니터링·점검 체계를 보고한다.",
+    "source_id": "F03",
+    "source_url": "https://www.hyundai.com/content/dam/hyundai/ww/en/images/company/sustainability/about-sustainability/2026/hmc-2026-sustainability-report-ko.pdf",
+    "locator": "인쇄/PDF p46, 배출물질관리",
+    "material": "aluminium",
+    "geography": "대한민국",
+    "scope": "facility-certification-company-control",
+    "limitations": [
+      "인증상 재활용률과 폐기물 통계 지표는 정의·범위를 맞춰야 비교 가능."
+    ],
+    "not_proven": [
+      "개별 로트 규격·인수·허가 적합",
+      "현재 거래처 승인"
+    ],
+    "use_for": [
+      "existing-workflow-position",
+      "evidence-boundary-risk"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/hmc-2026-ko.pdf",
+    "sha256": "d0003444f8f49392df288ae9a84888362b4705e85c804caa980463172b239de9",
+    "checked_on": "2026-10-17",
+    "published_on": null,
+    "publication_period": "2026-06",
+    "discovery_status": "existing-reconfirmed",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-HMC-AL-SCRAP-2025",
+    "title": "회사 Al스크랩 합계는 아산 물량이 아님",
+    "claim_ko": "보고서의 2025년 알루미늄 스크랩량은43,422톤이다. 해당 표는 회사 보고 범위 집계다.",
+    "source_id": "F03",
+    "source_url": "https://www.hyundai.com/content/dam/hyundai/ww/en/images/company/sustainability/about-sustainability/2026/hmc-2026-sustainability-report-ko.pdf",
+    "locator": "인쇄/PDF p137, 주요원자재 사용량 및 스크랩량",
+    "material": "aluminium",
+    "geography": "대한민국",
+    "scope": "company-aggregate-not-facility",
+    "limitations": [
+      "아산공장·엔진 공정별 배분 자료 없음. 표 내 철·Al 합계와 별도 행의 반올림 차이 가능."
+    ],
+    "not_proven": [
+      "아산 43,422톤 발생",
+      "임의의 1톤 로트 성분·가격"
+    ],
+    "use_for": [
+      "prevent-aggregate-to-lot-leakage"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/hmc-2026-ko.pdf",
+    "sha256": "d0003444f8f49392df288ae9a84888362b4705e85c804caa980463172b239de9",
+    "checked_on": "2026-10-17",
+    "published_on": null,
+    "publication_period": "2026-06",
+    "discovery_status": "existing-reconfirmed",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "measured_values": [
+      {
+        "metric": "aluminium_scrap",
+        "value": 43422,
+        "unit": "tonne",
+        "period": "2025",
+        "scope": "company-report-aggregate"
+      }
+    ],
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-HMC-PRESS-SALES-2025",
+    "title": "프레스 외부매각 전년 공시",
+    "claim_ko": "2025년 보고서도 프레스의 철·알루미늄 스크랩 외부매각 재활용을 설명한다.",
+    "source_id": "F04",
+    "source_url": "https://www.hyundai.com/content/hyundai/ww/data/csr/data/0000000053/attach/korean/hmc-2025-sustainability-report-ko-v11.pdf",
+    "locator": "인쇄/PDF p45, 자원사용",
+    "material": "aluminium",
+    "geography": "대한민국",
+    "scope": "company-historical-press-process",
+    "limitations": [
+      "전년 공시와 최신 공시의 서술 지속성을 확인하는 근거."
+    ],
+    "not_proven": [
+      "아산 엔진 회수계약의 동일성"
+    ],
+    "use_for": [
+      "source-version-comparison"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/hmc-2025-ko.pdf",
+    "sha256": "bcf28dbb1d2cd8bb9933d43b78ff8db2e88c50d1982821ca902cd4746511941e",
+    "checked_on": "2026-10-17",
+    "published_on": null,
+    "publication_period": "2025",
+    "discovery_status": "new-source",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-TRANSYS-PROCESS-2024",
+    "title": "다른 실제 공장의 외부매각 흐름",
+    "claim_ko": "현대트랜시스는 지곡·성연 등의 금속 가공스크랩을 선별해 외부 재활용업체에 매각하는 흐름을 공개했다.",
+    "source_id": "F05",
+    "source_url": "https://www.hyundai-transys.com/resources/upload/web/esg/report/487153578-8afb9dca-3e88-41ec-bd57-b699bfd2445f.pdf",
+    "locator": "인쇄/PDF p56, 금속스크랩 재자원화 / 공정도",
+    "material": "aluminium",
+    "geography": "대한민국",
+    "scope": "alternative-company-factory-process",
+    "limitations": [
+      "현대자동차 아산과 다른 법인·공장이다."
+    ],
+    "not_proven": [
+      "현대차 아산 수취업체",
+      "트랜시스 거래업체 실명·수율·대금"
+    ],
+    "use_for": [
+      "real-workflow-reference",
+      "factory-to-external-recycler-map"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/transys-2025-ko.pdf",
+    "sha256": "24b97cc8366137428b55a6c0d2bc60d41495e6a3d580366c4fbc0105be80052e",
+    "checked_on": "2026-10-17",
+    "published_on": "2025-07-01",
+    "publication_period": null,
+    "discovery_status": "new-source",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-TRANSYS-AL-AMOUNT-2024",
+    "title": "지곡·성연 Al 발생량 합산 공시",
+    "claim_ko": "2025년 보고서의2024년 자료에서 지곡·성연 공장의 Al발생량은 합계2,586톤이며 재자원화 비율은100%다.",
+    "source_id": "F05",
+    "source_url": "https://www.hyundai-transys.com/resources/upload/web/esg/report/487153578-8afb9dca-3e88-41ec-bd57-b699bfd2445f.pdf",
+    "locator": "인쇄/PDF p2 보고기간, p56 표",
+    "material": "aluminium",
+    "geography": "대한민국",
+    "scope": "alternative-company-two-facility-annual-aggregate",
+    "limitations": [
+      "두 공장 합계. 개별 로트·배출일·성적서·가격 없음."
+    ],
+    "not_proven": [
+      "아산공장 물량",
+      "한 공장 단독 2,586톤",
+      "특정 로트 수율100%"
+    ],
+    "use_for": [
+      "annual-scope-validation"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/transys-2025-ko.pdf",
+    "sha256": "24b97cc8366137428b55a6c0d2bc60d41495e6a3d580366c4fbc0105be80052e",
+    "checked_on": "2026-10-17",
+    "published_on": "2025-07-01",
+    "publication_period": null,
+    "discovery_status": "new-source",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "measured_values": [
+      {
+        "metric": "aluminium_generation",
+        "value": 2586,
+        "unit": "tonne",
+        "period": "2024",
+        "scope": "TRANSYS-Jigok-plus-Seongyeon"
+      },
+      {
+        "metric": "recovery_reported_ratio",
+        "value": 100,
+        "unit": "percent",
+        "period": "2024",
+        "scope": "reported-table-not-lot-yield"
+      }
+    ],
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-FTC-INGOT-PROCUREMENT-2021",
+    "title": "구매제품·물류비 구분의 역사 사례",
+    "claim_ko": "공정위 원문은 자동차용 Al잉곳·용탕 구매입찰과 물류비 반영 제도 개선을 설명한다.",
+    "source_id": "F06-PDF",
+    "source_url": "https://www.korea.kr/common/download.do?fileId=196541587&tblKey=GMN",
+    "locator": "PDF pp2–5, 특히 p5 개선방안",
+    "material": "aluminium",
+    "geography": "대한민국",
+    "scope": "historical-procurement-not-waste-quote",
+    "limitations": [
+      "2021년 사건·2022년 예정 개선이며 현행 계약 확인 아님. p4 금액은 설명용 예시다."
+    ],
+    "not_proven": [
+      "현대차 폐Al 매각가격",
+      "현재 아산 스크랩 거래처",
+      "합금제품가격과 스크랩가격의 동일성"
+    ],
+    "use_for": [
+      "product-vs-waste-price-check",
+      "transport-boundary-check"
+    ],
+    "rights_status": "KOGL-type1-text-only-on-landing-page",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/ftc-aluminium-2021.pdf",
+    "sha256": "ed8eb97cfd8c0ef70bfa885b5a38033d6a487dd2a9caf63af61ae03fdac221d8",
+    "checked_on": "2026-10-17",
+    "published_on": "2021-12-08",
+    "publication_period": null,
+    "discovery_status": "new-source",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-AL-PRETREATMENT-EXPERT-2026",
+    "title": "전처리·조성관리 필요성의 산업 근거",
+    "claim_ko": "현대차 소속 발표자의 학회 초록은 스크랩 선별·불순물 제거·합금 조성 제어와 공정 표준화를 국내 재활용 과제로 제시한다.",
+    "source_id": "F07-FULL",
+    "source_url": "https://kim.or.kr/upload/board_files/board_files_260421135502431.pdf",
+    "locator": "인쇄 p110 / PDF111번째, 저탄소1-1 초록",
+    "material": "aluminium",
+    "geography": "대한민국",
+    "scope": "industry-expert-abstract",
+    "limitations": [
+      "검토자가 확인한 초록이며 공장 실험 결과가 아니다."
+    ],
+    "not_proven": [
+      "아산 로트 불순물 수치",
+      "전처리 성능·설비 인수규격",
+      "특정 경로 수율·단가·탄소량"
+    ],
+    "use_for": [
+      "risk-question-design",
+      "composition-and-form-gating"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/kim-spring-2026-full.pdf",
+    "sha256": "cfcac29ec8465ccdd00296acff0a7046f0c910a89ff01bfe73c1652a082677a1",
+    "checked_on": "2026-10-17",
+    "published_on": null,
+    "publication_period": "2026-04",
+    "discovery_status": "new-source",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-TCM-COPPER-CLOSED-2026",
+    "title": "마감 공고만으로 거래조건 미확보",
+    "claim_ko": "티씨머티리얼즈의 구리 스크랩 매각 공고는 존재하지만 현재 본문은 마감 문구만 남아 있다.",
+    "source_id": "F08",
+    "source_url": "https://tcmaterials.co.kr/%EC%9E%85%EC%B0%B0%EA%B3%B5%EA%B3%A0/?mod=document&pageid=1&uid=51",
+    "locator": "uid51 작성일·본문",
+    "material": "copper",
+    "geography": "대한민국",
+    "scope": "alternative-company-closed-notice-only",
+    "limitations": [
+      "매각 의사·공고 존재 수준. 낙찰 및 실제 거래 완료를 뜻하지 않음."
+    ],
+    "not_proven": [
+      "스크랩 단가·규격·물량",
+      "실제 낙찰사·정산 결과"
+    ],
+    "use_for": [
+      "stale-listing-check",
+      "do-not-treat-announcement-as-acceptance"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/tcm-copper-closed-2026.html",
+    "sha256": "a584f9afe1e5b8a294cbfaa432208cbeb32e8225a5d55dd4b595a5cf310af019",
+    "checked_on": "2026-10-17",
+    "published_on": "2026-06-01",
+    "publication_period": null,
+    "discovery_status": "new-source",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-NOVELIS-NOT-ASAN-LINK",
+    "title": "공급관계는 폐기물 수취관계와 다름",
+    "claim_ko": "노벨리스는 현대차그룹용 자동차 판재 공급과 일반적 폐쇄순환 역량을 발표했지만 아산 엔진 폐Al 수취 관계는 명시하지 않았다.",
+    "source_id": "F09",
+    "source_url": "https://investors.novelis.com/news-events/press-releases/detail/35/novelis-named-supplier-of-the-year-by-hyundai-motor-group",
+    "locator": "2023-02-07 발표 본문",
+    "material": "aluminium",
+    "geography": "대한민국",
+    "scope": "supplier-capability-not-waste-counterparty",
+    "limitations": [
+      "당시 울산 시설 투자 전망을 현행 가동·용량으로 읽지 않는다."
+    ],
+    "not_proven": [
+      "아산 엔진 폐Al 수취업체가 노벨리스",
+      "이번 로트 구매의사"
+    ],
+    "use_for": [
+      "edge-type-validation",
+      "avoid-supplier-recycler-link-hallucination"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/novelis-hmg-2023.html",
+    "sha256": "929b7fc4a963dfdc6d305837a841fc41c271d1babf3038a78d2008b2d65d743a",
+    "checked_on": "2026-10-17",
+    "published_on": "2023-02-07",
+    "publication_period": null,
+    "discovery_status": "new-source",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-HAITAI-ASAN-BID-2023",
+    "title": "다른 아산공장의 실제 매각업체 선정",
+    "claim_ko": "해태제과 아산공장의2023년 공고는 파지·고철 등의 매입단가 경쟁과 관련 허가증 제출을 업체 선정 조건으로 제시했다.",
+    "source_id": "F10",
+    "source_url": "https://gume.ht.co.kr/bid/bid_contents.asp?CP=&idx=874&ltt=2&mn=",
+    "locator": "idx874 항목1–6",
+    "material": "paper-steel-plastics",
+    "geography": "대한민국",
+    "scope": "alternative-factory-historical-bid",
+    "limitations": [
+      "해태제과 공장이고 현대차와 다름. 당시 공고 적용기간1년. 현재 계약 아님."
+    ],
+    "not_proven": [
+      "실제 낙찰단가·낙찰사",
+      "아산현대차 처리 규칙"
+    ],
+    "use_for": [
+      "real-buyer-selection-reference",
+      "price-vs-qualification-gates"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/haitai-asan-waste-bid-2023.html",
+    "sha256": "42443898e5adbc168368ec50a0c5e7f8c9a7dd5eaa5c35afefb4a4d52351c08b",
+    "checked_on": "2026-10-17",
+    "published_on": "2023-05-18",
+    "publication_period": null,
+    "discovery_status": "new-source",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-YONSEI-RESTRICTED-NOTICE",
+    "title": "상세 문서가 보여도 투입권한 별도",
+    "claim_ko": "연세유업 아산공장2026년 일반폐기물 처리 입찰 공고와 첨부는 공개되었지만 첨부에는 입찰 목적 사용 제한이 있다.",
+    "source_id": "F11-PDF",
+    "source_url": "https://www.yonsei.ac.kr/bbs/sc/72/1014463/download.do",
+    "locator": "PDF p7 사용 제한; 상세 문서 검토는 로컬 감사에 한함",
+    "material": "wastewater-sludge-plastics",
+    "geography": "대한민국",
+    "scope": "alternative-factory-restricted-bid",
+    "limitations": [
+      "업무지침은 회원·입찰참가 등록 후 교부. 접근하지 않음. 원문·상세내용 RAG·학습·모델전송 배제."
+    ],
+    "not_proven": [
+      "실제 낙찰·단가·성상·연간 물량",
+      "현대차아산 적용조건"
+    ],
+    "use_for": [
+      "rights-and-access-register"
+    ],
+    "rights_status": "restricted_bid-purpose",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/yonsei-asan-bid-2026.pdf",
+    "sha256": "2c74f411027437f2c5ff08d5cd533512af1ad819e6398f111d64d2aaa2e8acec",
+    "checked_on": "2026-10-17",
+    "published_on": "2026-08-31",
+    "publication_period": null,
+    "discovery_status": "new-source",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": false,
+    "model_transfer_allowed": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": false,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-ASAN-ENV-RECYCLE-2023",
+    "title": "아산의 서로 다른 재활용 지표",
+    "claim_ko": "금강유역환경청 사례집의 아산공장 도표는2023년 폐기물 재활용률89.26%를 보고한다.",
+    "source_id": "F12-PRIMARY",
+    "source_url": "https://mcee.go.kr/gg/web/board/read.do?boardId=1758460&boardMasterId=228&menuId=2248",
+    "locator": "인쇄 p12 / PDF13번째, 폐기물 재활용률 도표",
+    "material": "aluminium",
+    "geography": "대한민국",
+    "scope": "facility-historical-annual-report",
+    "limitations": [
+      "사업장 제출자료 기반.2023년 UL실질재활용100%와 분모·대상·열회수·기준기간 정의를 확인하기 전 병합하거나 오류로 단정하지 않는다."
+    ],
+    "not_proven": [
+      "Al로트 재활용수율89.26%",
+      "두 재활용 지표의 직접 비교 가능성"
+    ],
+    "use_for": [
+      "actual-boundary-ambiguity-test",
+      "source-reconciliation-risk"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/chungcheong-green-factories-2025-primary.pdf",
+    "sha256": "8840a35449918f4815b433817e01cf24c098091caec91c2db508ff98ce51de2d",
+    "checked_on": "2026-10-17",
+    "published_on": "2025-08-13",
+    "publication_period": null,
+    "discovery_status": "new-source",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "measured_values": [
+      {
+        "metric": "reported_waste_recycling_rate",
+        "value": 87.36,
+        "unit": "percent",
+        "period": "2021",
+        "scope": "Asan-annual-chart"
+      },
+      {
+        "metric": "reported_waste_recycling_rate",
+        "value": 87.06,
+        "unit": "percent",
+        "period": "2022",
+        "scope": "Asan-annual-chart"
+      },
+      {
+        "metric": "reported_waste_recycling_rate",
+        "value": 89.26,
+        "unit": "percent",
+        "period": "2023",
+        "scope": "Asan-annual-chart"
+      }
+    ],
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "FAC-ASAN-GREEN-DESIGNATION-2025",
+    "title": "환경청 아산 사업장 카드",
+    "claim_ko": "환경청2025년 사례집은 아산 사업장 주소·업종과 녹색기업 지정기간을 제시한다.",
+    "source_id": "F12-PRIMARY",
+    "source_url": "https://mcee.go.kr/gg/web/board/read.do?boardId=1758460&boardMasterId=228&menuId=2248",
+    "locator": "인쇄 p12 / PDF13번째, 일반현황·녹색기업이력",
+    "material": "aluminium",
+    "geography": "대한민국",
+    "scope": "facility-historical-identity-status",
+    "limitations": [
+      "2025년 발행자료이다. 배출시설의 환경허가와 폐기물 수취시설의 허가는 다른 정보다."
+    ],
+    "not_proven": [
+      "폐Al 수취·운반업 허가 적합",
+      "현재 업체의 인수승인"
+    ],
+    "use_for": [
+      "facility-cross-check",
+      "permission-type-disambiguation"
+    ],
+    "rights_status": "public-access-no-bulk-license-identified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/factory/raw/chungcheong-green-factories-2025-primary.pdf",
+    "sha256": "8840a35449918f4815b433817e01cf24c098091caec91c2db508ff98ce51de2d",
+    "checked_on": "2026-10-17",
+    "published_on": "2025-08-13",
+    "publication_period": null,
+    "discovery_status": "new-source",
+    "inspection_status": "original-reviewed",
+    "indexing_allowed": true,
+    "model_transfer_allowed": true,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "actual_lot_evidence": false,
+    "dispatch_approved": false,
+    "collection_lane": "factory",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C01",
+    "title": "전국 등록부 재확보는 신규 시설 확보가 아님",
+    "claim_ko": "전국 표준등록부 9,604행을 다시 확보했고 기존 CSV의 5개 핵심 필드 집합과 일치했다.",
+    "source_id": "REC-S01",
+    "source_url": "https://www.data.go.kr/data/15114147/standard.do",
+    "locator": "JSON 배열 / FLCT_NM,LCTN_ROAD_NM_ADDR,BUS_NM,TRET_WAS_INF,CRTR_YMD",
+    "material": "multiple",
+    "geography": "KR",
+    "company_ids": [],
+    "scope": "research_candidate_only",
+    "limitations": [
+      "서로 다른 날짜와 지방자치단체 자료가 섞임",
+      "중복 포함 행수이며 시설 수 아님"
+    ],
+    "not_proven": [
+      "전국 시설 전수 포괄",
+      "현재 허가",
+      "현재 영업",
+      "로트 인수"
+    ],
+    "use_for": [
+      "명칭·주소 대조",
+      "중복 집계 방지"
+    ],
+    "rights_status": "portal_policy_not_individual_open_license_verified",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/national-waste-facilities-9604.json",
+    "sha256": "b083ea497c37bb11bd9374fc0a5b0850b989d290dbdba9d4a713fef353e79c08",
+    "checked_on": "2026-10-17",
+    "data_reference_date": "per_record",
+    "dispatch_approved": false,
+    "facts": {
+      "raw_rows": 9604,
+      "distinct_five_field_keys": 9264,
+      "added_five_field_keys": 0,
+      "removed_five_field_keys": 0
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C02",
+    "title": "삼보산업 창원 인허가는 이 명부로 확인 불가",
+    "claim_ko": "창원 재활용업 CSV 37행에 삼보산업 창원 사업장의 명칭·주소 일치행을 찾지 못했다.",
+    "source_id": "REC-S02",
+    "source_url": "https://www.data.go.kr/data/3080389/fileData.do",
+    "locator": "원문 CSV 업소명·소재지 전 37행 대조",
+    "material": "aluminium",
+    "geography": "KR",
+    "company_ids": [
+      "kr-al-sambo-changwon"
+    ],
+    "scope": "research_candidate_only",
+    "limitations": [
+      "명부의 등록 범위·업종 적용·갱신 누락 가능성을 배제할 수 없음"
+    ],
+    "not_proven": [
+      "무허가",
+      "영업 불가",
+      "현재 인수 가능"
+    ],
+    "use_for": [
+      "허가증·신고필증 및 적용제외 여부 확인 요청"
+    ],
+    "rights_status": "portal_states_no_use_restrictions",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/changwon-recyclers-20260519.csv",
+    "sha256": "ad23063d511800cad001603aaff78fe377e89212726f06458918e42b7d69d47f",
+    "checked_on": "2026-10-17",
+    "data_reference_date": "2026-05-19",
+    "dispatch_approved": false,
+    "facts": {
+      "matching_rows": 0,
+      "raw_rows": 37,
+      "unlicensed_finding": false
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C03",
+    "title": "충남알루미늄 공개 매입 형태",
+    "claim_ko": "공식 안내는 양분/칩·판재·다이캐스팅·캔·퍽을 매입 형태로 열거한다. 소재지는 서산시 대산읍 죽엽로 285-15이다.",
+    "source_id": "REC-S05",
+    "source_url": "https://xn--q20b88ah6jvodd0p8gm.com/",
+    "locator": "BUSINESS / CONTACT US",
+    "material": "aluminium",
+    "geography": "KR",
+    "company_ids": [
+      "kr-al-chungnam-aluminum"
+    ],
+    "scope": "research_candidate_only",
+    "limitations": [
+      "이전 수집 내용 재확인"
+    ],
+    "not_proven": [
+      "오일·수분·합금별 허용치",
+      "허가 대상 폐기물코드",
+      "이번 로트 인수",
+      "최고가 비교",
+      "현재 견적"
+    ],
+    "use_for": [
+      "형태 기준 조사 후보",
+      "규격 요청서 작성"
+    ],
+    "rights_status": "copyright_not_cleared_original_not_redistributed",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/chungnam-al-home.html",
+    "sha256": "9d8eedd1dbb746b11faef3056dfebaf612a5ead368d5ed0c624954d9e1bc5eaf",
+    "checked_on": "2026-10-17",
+    "data_reference_date": null,
+    "dispatch_approved": false,
+    "facts": {
+      "purchase_forms_public": [
+        "양분/칩",
+        "판재",
+        "다이캐스팅",
+        "캔",
+        "퍽"
+      ],
+      "address": "충청남도 서산시 대산읍 죽엽로 285-15"
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C04",
+    "title": "삼보산업 조달 사실은 인수 확약이 아님",
+    "claim_ko": "2026년 1분기 보고서는 알루미늄 합금괴용 Al-Scrap 조달과 사용 알루미늄 재용해 사업을 확인한다.",
+    "source_id": "REC-S04",
+    "source_url": "https://kind.krx.co.kr/external/2026/05/15/000425/20260515000853/11013.htm",
+    "locator": "II. 사업의 내용 / 1. 사업의 개요 / 3. 원재료 및 생산설비",
+    "material": "aluminium",
+    "geography": "KR",
+    "company_ids": [
+      "kr-al-sambo-changwon"
+    ],
+    "scope": "research_candidate_only",
+    "limitations": [
+      "2026년 3월 말까지의 회사 공시"
+    ],
+    "not_proven": [
+      "절삭칩별 품질 허용치",
+      "개별 배출기업 등록",
+      "현재 인수",
+      "폐기물 허가 범위"
+    ],
+    "use_for": [
+      "사업 후보 확인",
+      "시설별 수취조건 추가 검증"
+    ],
+    "rights_status": "copyright_not_cleared_original_not_redistributed",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/sambo-quarterly-20260515.html",
+    "sha256": "9b09e9cb5bb4777494db2e21a40e6c7f85bf5b7d550e2aafcc4118a7fdd8c1d1",
+    "checked_on": "2026-10-17",
+    "data_reference_date": "2026-03-31",
+    "dispatch_approved": false,
+    "facts": {},
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C05",
+    "title": "삼보산업 공장 가동 범위 구분",
+    "claim_ko": "공시는 본사 3공장 미가동을 설명하며 생산능력 산출에서 제외한다. 제52기 1분기 생산능력은 1공장 기준 11,505톤이다.",
+    "source_id": "REC-S04",
+    "source_url": "https://kind.krx.co.kr/external/2026/05/15/000425/20260515000853/11013.htm",
+    "locator": "II. 3. 원재료 및 생산설비 / 2. 생산설비 현황 / 지배회사",
+    "material": "aluminium",
+    "geography": "KR",
+    "company_ids": [
+      "kr-al-sambo-changwon"
+    ],
+    "scope": "research_candidate_only",
+    "limitations": [
+      "생산능력과 실제 스크랩 반입 여유량은 다름",
+      "2026-10-17의 가동 상태를 새로 확인한 자료가 아님"
+    ],
+    "not_proven": [
+      "1공장 현재 여유량",
+      "폐기물 처리 허용량",
+      "3공장 재가동 여부"
+    ],
+    "use_for": [
+      "비가동 공장으로 자동 운송 추천 방지",
+      "시설 ID를 법인 ID와 분리"
+    ],
+    "rights_status": "copyright_not_cleared_original_not_redistributed",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/sambo-quarterly-20260515.html",
+    "sha256": "9b09e9cb5bb4777494db2e21a40e6c7f85bf5b7d550e2aafcc4118a7fdd8c1d1",
+    "checked_on": "2026-10-17",
+    "data_reference_date": "2026-03-31",
+    "dispatch_approved": false,
+    "facts": {
+      "reported_quarter_capacity_tonnes": 11505,
+      "capacity_period": "2026-Q1",
+      "capacity_scope": "1공장; 3공장 제외",
+      "current_available_intake_tonnes": null
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C06",
+    "title": "공시 평균 매입가격과 현재 견적 분리",
+    "claim_ko": "공시상 Al-Scrap 평균 매입가격은 제52기 1분기 3,392원, 제51기 2,977원이며 매입금액/매입수량으로 산출한다.",
+    "source_id": "REC-S04",
+    "source_url": "https://kind.krx.co.kr/external/2026/05/15/000425/20260515000853/11013.htm",
+    "locator": "II. 3. 원재료 및 생산설비 / 1. (2) 주요 원재료 등의 가격변동추이",
+    "material": "aluminium",
+    "geography": "KR",
+    "company_ids": [
+      "kr-al-sambo-changwon"
+    ],
+    "scope": "research_candidate_only",
+    "limitations": [
+      "보고서 가격 표의 단위는 원. 회사 전체 품목 혼합 평균",
+      "특정 등급·세금·운송·정산 감량 조건이 주어지지 않음"
+    ],
+    "not_proven": [
+      "아산공장 절삭칩 매입단가",
+      "2026-10-17 견적",
+      "판매 가능 순이익"
+    ],
+    "use_for": [
+      "역사적 시장 맥락만 제공",
+      "실견적 누락 경고"
+    ],
+    "rights_status": "copyright_not_cleared_original_not_redistributed",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/sambo-quarterly-20260515.html",
+    "sha256": "9b09e9cb5bb4777494db2e21a40e6c7f85bf5b7d550e2aafcc4118a7fdd8c1d1",
+    "checked_on": "2026-10-17",
+    "data_reference_date": "2026-03-31",
+    "dispatch_approved": false,
+    "facts": {
+      "reported_average_price_krw": 3392,
+      "period": "2026-Q1",
+      "is_current_quote": false,
+      "per_lot_price": null
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C07",
+    "title": "울산알루미늄 설비와 여유량 구분",
+    "claim_ko": "회사 소개에 주조/재활용·열간압연·냉간압연 설비와 남구 부두로 393 소재지가 표시된다.",
+    "source_id": "REC-S06",
+    "source_url": "https://www.ulsanaluminum.com/home/intro/intro01_01.jsp",
+    "locator": "회사개요 / 보유 설비 / 하단 주소",
+    "material": "aluminium",
+    "geography": "KR",
+    "company_ids": [
+      "kr-al-ulsan-aluminum"
+    ],
+    "scope": "research_candidate_only",
+    "limitations": [
+      "이전 수집 내용 재확인"
+    ],
+    "not_proven": [
+      "불특정 외부 스크랩 인수",
+      "폐기물 허가",
+      "현재 여유량",
+      "현재 견적"
+    ],
+    "use_for": [
+      "기술 공정 후보 조사",
+      "설비 총량을 반입 여유로 변환하지 않기"
+    ],
+    "rights_status": "copyright_not_cleared_original_not_redistributed",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/ulsan-al-overview.html",
+    "sha256": "3ce6e65184cae515e70ff16d387913a94d68fef6a32ac77e822c82cc33764c77",
+    "checked_on": "2026-10-17",
+    "data_reference_date": null,
+    "dispatch_approved": false,
+    "facts": {},
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C08",
+    "title": "영주공장 북미 규격 전용 금지",
+    "claim_ko": "영주공장은 알루미늄 재활용과 주조부터 압연 마무리까지의 생산시설을 소개한다. 북미 supplier 문서가 이 시설의 인수규격이라는 증거는 없다.",
+    "source_id": "REC-S07",
+    "source_url": "https://novelis.com/locations/yeongju-south-korea/",
+    "locator": "Location / About; REC-S08 Scrap Requirements의 North America 표기",
+    "material": "aluminium",
+    "geography": "KR",
+    "company_ids": [
+      "kr-al-novelis-yeongju"
+    ],
+    "scope": "research_candidate_only",
+    "limitations": [
+      "웹 열람만 성공해 원문 파일 해시 없음"
+    ],
+    "not_proven": [
+      "영주공장 허용 오일 1%",
+      "일반 산업용 칩 인수",
+      "현재 인수 및 허가"
+    ],
+    "use_for": [
+      "국가·시설별 규격 범위 검사"
+    ],
+    "rights_status": "copyright_not_cleared_original_not_redistributed",
+    "raw_path": null,
+    "sha256": null,
+    "checked_on": "2026-10-17",
+    "data_reference_date": null,
+    "dispatch_approved": false,
+    "facts": {},
+    "collection_lane": "recipient",
+    "original_verified_locally": false,
+    "local_research_search_eligible": false,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C09",
+    "title": "북미 스크랩 안전 규격은 위험 질문의 참고자료",
+    "claim_ko": "이 북미 규격은 물이 남은 스크랩의 용탕 접촉, 혼입물, 합금 혼합, 포장·적재를 수취 위험으로 다룬다.",
+    "source_id": "REC-S09",
+    "source_url": "https://novelis.com/wp-content/uploads/2026/06/Scrap-Quality-Specification.pdf",
+    "locator": "PDF 인쇄 p.2 §2.1–2.6 / p.3–4 포장·형태",
+    "material": "aluminium",
+    "geography": "North America only",
+    "company_ids": [],
+    "scope": "foreign_reference_not_korean_acceptance_rule",
+    "limitations": [
+      "원문 파일 다운로드 403; 웹 텍스트만 열람",
+      "문서 자체 복제 제한",
+      "국내 수취자 확인 없이 임계값 엔진에 투입 금지"
+    ],
+    "not_proven": [
+      "한국 법정 기준",
+      "한국 업체별 인수규격",
+      "전처리의 안전성/수율"
+    ],
+    "use_for": [
+      "수분·유분·합금·포장 확인 질문 설계",
+      "전문가 검수용 해외 비교 참고"
+    ],
+    "rights_status": "proprietary_no_reproduction_without_permission_reference_only",
+    "raw_path": null,
+    "sha256": null,
+    "checked_on": "2026-10-17",
+    "data_reference_date": null,
+    "dispatch_approved": false,
+    "facts": {
+      "do_not_auto_apply_to_kr_facilities": true
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": false,
+    "local_research_search_eligible": false,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C10",
+    "title": "알엠 화성공장 종합재활용업 표기",
+    "claim_ko": "경기도 명부는 (주)알엠 화성공장을 종합재활용업(⑦)으로 싣고 PE·PP·PET·PVC·PS 및 플라스틱 폐포장재를 기재한다.",
+    "source_id": "REC-S03",
+    "source_url": "https://www.gg.go.kr/opendata/openDataContent.do?gg_content_idx=11349&decodeIdx=5140",
+    "locator": "세부내용!A1135:C1135,E1135:F1135; 허가현황!K5:M5 업종 대응",
+    "material": "pet",
+    "geography": "KR",
+    "company_ids": [
+      "kr-pet-rm-hwaseong"
+    ],
+    "scope": "historical_public_register_scope_not_dispatch_approval",
+    "limitations": [
+      "2025-12-31 기준",
+      "바로 위 1134행 알엠화성공장(88-45)과 동일 허가인지 미확정"
+    ],
+    "not_proven": [
+      "산업용 PET 로트의 현재 인수",
+      "오염·PVC 혼입 허용치",
+      "허가 최신 변경본"
+    ],
+    "use_for": [
+      "사격장길 사업장 주소 대조",
+      "단순 종이컵 적격공고 밖의 등록부 확인"
+    ],
+    "rights_status": "KOGL_type_3_attribution_no_derivatives_original_local_only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/gyeonggi-waste-operators-20251231.xlsx",
+    "sha256": "32686ed66f29c87a00e3bf2f999858b8b945ea5ff44213d13c22adac1f636ecc",
+    "checked_on": "2026-10-17",
+    "data_reference_date": "2025-12-31",
+    "dispatch_approved": false,
+    "facts": {
+      "register_address": "경기도 화성시 양감면 사격장길 88-51, 116, 88-45, 88-27",
+      "registered_industry_symbol": "⑦",
+      "registered_industry_interpretation": "폐기물종합재활용업",
+      "waste_information_raw": "폐합성수지류(PE, PP, PET, PVC, PS), 플라스틱폐포장재[51-03-07](PE, PP, PET, PVC, PS)"
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C11",
+    "title": "삼양에코테크 명부와 공시 소재지 불일치",
+    "claim_ko": "경기도 명부의 삼양에코테크 소재지는 시흥시 공단2대로 81로, 기존 공시의 공단1대로80번길 147과 다르다.",
+    "source_id": "REC-S03",
+    "source_url": "https://www.gg.go.kr/opendata/openDataContent.do?gg_content_idx=11349&decodeIdx=5140",
+    "locator": "세부내용!A4310:C4310,E4310:F4310; 기존 company_profiles.json kr-pet-samyang-ecotech-sihwa",
+    "material": "pet",
+    "geography": "KR",
+    "company_ids": [
+      "kr-pet-samyang-ecotech-sihwa"
+    ],
+    "scope": "facility_identity_conflict_hold",
+    "limitations": [
+      "이전·복수사업장·주소 정정 여부 미확정"
+    ],
+    "not_proven": [
+      "동일 반입 시설",
+      "현재 운송 주소",
+      "현재 허가"
+    ],
+    "use_for": [
+      "주소 불일치 핀",
+      "시설 허가증 및 반입문 주소 대조"
+    ],
+    "rights_status": "KOGL_type_3_attribution_no_derivatives_original_local_only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/gyeonggi-waste-operators-20251231.xlsx",
+    "sha256": "32686ed66f29c87a00e3bf2f999858b8b945ea5ff44213d13c22adac1f636ecc",
+    "checked_on": "2026-10-17",
+    "data_reference_date": "2025-12-31",
+    "dispatch_approved": false,
+    "facts": {
+      "register_address": "시흥시 공단2대로 81",
+      "existing_filing_address": "경기도 시흥시 공단1대로 80번길 147",
+      "register_industry_symbol": "⑦",
+      "register_waste_raw": "51-03-01",
+      "identity_match_approved": false
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C12",
+    "title": "아세아제지 시화 등록부 품목 확인",
+    "claim_ko": "경기도 명부의 아세아제지 시화공장은 서해안로 231, 종합재활용업(⑦), 처리대상 51-03-01·51-03-03·51-28로 기재된다.",
+    "source_id": "REC-S03",
+    "source_url": "https://www.gg.go.kr/opendata/openDataContent.do?gg_content_idx=11349&decodeIdx=5140",
+    "locator": "세부내용!A4320:C4320,E4320:F4320",
+    "material": "paper",
+    "geography": "KR",
+    "company_ids": [
+      "kr-paper-asia-paper"
+    ],
+    "scope": "historical_public_register_scope_not_dispatch_approval",
+    "limitations": [
+      "코드의 범위와 실제 품질·공정·현재 반입은 별도",
+      "한 회사의 다른 공장으로 허가를 전이하지 않음"
+    ],
+    "not_proven": [
+      "코팅 골판지 로트의 현재 인수",
+      "당일 허가·용량",
+      "인수 가격"
+    ],
+    "use_for": [
+      "시설별 코드 사전 대조",
+      "현행 허가증 요청"
+    ],
+    "rights_status": "KOGL_type_3_attribution_no_derivatives_original_local_only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/gyeonggi-waste-operators-20251231.xlsx",
+    "sha256": "32686ed66f29c87a00e3bf2f999858b8b945ea5ff44213d13c22adac1f636ecc",
+    "checked_on": "2026-10-17",
+    "data_reference_date": "2025-12-31",
+    "dispatch_approved": false,
+    "facts": {
+      "register_address": "시흥시 서해안로 231",
+      "registered_industry_symbol": "⑦",
+      "waste_information_raw": "51-03-01, 51-03-03, 51-28"
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C13",
+    "title": "신대양제지 시화의 처리대상 코드 충돌",
+    "claim_ko": "같은 별망로 129 신대양제지에 경기도 명부는 51-03-01, 전국 표준명부는 51-00-00을 기재한다. 폐골판지 허가범위를 확정할 수 없다.",
+    "source_id": "REC-S03",
+    "source_url": "https://www.gg.go.kr/opendata/openDataContent.do?gg_content_idx=11349&decodeIdx=5140",
+    "locator": "세부내용!A3299:C3299,E3299:F3299; REC-S01 FLCT_NM=신대양제지(주), LCTN_ROAD_NM_ADDR=경기도 안산시 단원구 별망로 129(성곡동)",
+    "material": "paper",
+    "geography": "KR",
+    "company_ids": [
+      "kr-paper-shindaeyang-sihwa"
+    ],
+    "scope": "permit_scope_conflict_hold",
+    "limitations": [
+      "공개 명부 간 서로 다른 기준일과 코드 상세도",
+      "회사의 고지 조달 사업이 허가증 항목을 대체하지 않음"
+    ],
+    "not_proven": [
+      "51-28 폐종이류의 현행 허가",
+      "무허가",
+      "특정 로트 인수 불가"
+    ],
+    "use_for": [
+      "허가 코드 불일치 위험 표시",
+      "관할기관 최신 허가증 대조 요청"
+    ],
+    "rights_status": "KOGL_type_3_attribution_no_derivatives_original_local_only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/gyeonggi-waste-operators-20251231.xlsx",
+    "sha256": "32686ed66f29c87a00e3bf2f999858b8b945ea5ff44213d13c22adac1f636ecc",
+    "checked_on": "2026-10-17",
+    "data_reference_date": "2025-12-31",
+    "dispatch_approved": false,
+    "facts": {
+      "provincial_waste_raw": "51-03-01",
+      "provincial_basis": "2025-12-31",
+      "national_waste_raw": "51-00-00",
+      "national_basis": "2026-05-11",
+      "current_permit_scope_verified": false
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C14",
+    "title": "충남알루미늄 반사로·보온로 설비 확인",
+    "claim_ko": "서산 설비 안내에는 20t·40t 반사로, 30t 보온로, 연주기·잉곳 로봇적산기가 표시된다.",
+    "source_id": "REC-S13",
+    "source_url": "https://xn--q20b88ah6jvodd0p8gm.com/?page_id=820",
+    "locator": "설비현황 / 20t·40t 반사로·30t 보온로 / 연주기 / 잉곳 로봇적산기",
+    "material": "aluminium",
+    "geography": "KR",
+    "company_ids": [
+      "kr-al-chungnam-aluminum"
+    ],
+    "scope": "research_candidate_only",
+    "limitations": [
+      "설비규모 표기는 특정 물질의 반입 허용량이나 처리속도가 아님"
+    ],
+    "not_proven": [
+      "처리 허가",
+      "톤/일 처리량",
+      "칩 탈유·건조 설비",
+      "현재 여유량"
+    ],
+    "use_for": [
+      "공정 조사 후보의 실제 설비 근거",
+      "규모 단위를 일일 수취량으로 오독 방지"
+    ],
+    "rights_status": "copyright_not_cleared_original_not_redistributed",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/chungnam-al-equipment.html",
+    "sha256": "9b6dc01c7f13eae784ccfeed3c631a230af38d11612eef4d2c451ee92699e75d",
+    "checked_on": "2026-10-17",
+    "data_reference_date": null,
+    "dispatch_approved": false,
+    "facts": {
+      "equipment_public": [
+        "20t 반사로",
+        "40t 반사로",
+        "30t 보온로",
+        "연주기",
+        "잉곳 로봇적산기"
+      ],
+      "available_intake_tonnes_per_day": null
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C15",
+    "title": "울산의 공개 주조 순서",
+    "claim_ko": "울산알루미늄은 스크랩 등을 원료로 용해·유지·주조를 거쳐 슬라브를 만드는 순서를 설명한다. 유지 단계에는 탈가스·성분보정, 주조 전에는 여과가 있다.",
+    "source_id": "REC-S14",
+    "source_url": "https://www.ulsanaluminum.com/home/product/product02_01.jsp",
+    "locator": "생산공정 > 주조 / 원재료 / 용해로 및 유지로 / 주조기",
+    "material": "aluminium",
+    "geography": "KR",
+    "company_ids": [
+      "kr-al-ulsan-aluminum"
+    ],
+    "scope": "facility_published_process_not_lot_route",
+    "limitations": [
+      "해당 로트 투입·수율·에너지·탄소는 확인되지 않음",
+      "원료의 스크랩 표기가 모든 상태의 외부 폐기물 인수를 의미하지 않음"
+    ],
+    "not_proven": [
+      "젖은 산업 칩 직접 투입 허용",
+      "실제 LOT 경로",
+      "국내 전처리 조건"
+    ],
+    "use_for": [
+      "실제 출처가 있는 공정 노드",
+      "공정별 확인 질문 연결"
+    ],
+    "rights_status": "copyright_not_cleared_original_not_redistributed",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/ulsan-al-remelt-process.html",
+    "sha256": "e4176ec223f79522acb5918f5f37ce1c072bf9ddb269fa82b8c183f9b54b04ea",
+    "checked_on": "2026-10-17",
+    "data_reference_date": null,
+    "dispatch_approved": false,
+    "facts": {
+      "process_sequence": [
+        "원재료",
+        "용해",
+        "유지",
+        "주조",
+        "슬라브"
+      ],
+      "raw_materials_public": [
+        "알루미늄 지금",
+        "하드너",
+        "스크랩"
+      ]
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C16",
+    "title": "충남의 게시 ISO9001·14001 사본 갱신 필요",
+    "claim_ko": "회사에 게시된 ISO9001·ISO14001 이미지의 유효기한은 각각 2026-09-21이다. 조회일에는 지난 날짜이므로 현재 갱신본 확인이 필요하다.",
+    "source_id": "REC-S15",
+    "source_url": "https://xn--q20b88ah6jvodd0p8gm.com/wp-content/uploads/kboard_attached/1/202310/653aff5c118b01993120.png",
+    "locator": "REC-S15·REC-S16 인증서 이미지 중앙 하단 유효기한",
+    "material": "aluminium",
+    "geography": "KR",
+    "company_ids": [
+      "kr-al-chungnam-aluminum"
+    ],
+    "scope": "posted_copy_expired_current_certification_unconfirmed",
+    "limitations": [
+      "웹 게시 사본의 만료일을 확인한 것이며 인증기관 현재 등록조회는 하지 않음",
+      "새로운 인증서가 비공개이거나 홈페이지 갱신이 늦을 수 있음"
+    ],
+    "not_proven": [
+      "현재 인증취소",
+      "현재 인증 미보유",
+      "폐기물 허가 만료",
+      "거래 부적격"
+    ],
+    "use_for": [
+      "자료 유효기간 확인",
+      "갱신된 인증서 요청"
+    ],
+    "rights_status": "copyright_not_cleared_original_not_redistributed",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/chungnam-cert-6.png",
+    "sha256": "9ff7b48c62f04ef512542e7e94c99295d99446701ece0bfcd0ebb0c9b45fe67c",
+    "checked_on": "2026-10-17",
+    "data_reference_date": null,
+    "dispatch_approved": false,
+    "facts": {
+      "posted_iso9001_valid_until": "2026-09-21",
+      "posted_iso14001_valid_until": "2026-09-21",
+      "today": "2026-10-17",
+      "current_certificate_renewal_verified": false,
+      "related_source_ids": [
+        "REC-S15",
+        "REC-S16"
+      ]
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "REC-C17",
+    "title": "충남의 게시 ISO45001 사본 갱신 필요",
+    "claim_ko": "회사에 게시된 ISO45001 인증서 이미지의 유효기간은 2025-11-30으로 표시된다. 현재 상태를 확정하려면 갱신본을 확인해야 한다.",
+    "source_id": "REC-S17",
+    "source_url": "https://xn--q20b88ah6jvodd0p8gm.com/wp-content/uploads/kboard_attached/1/202310/653affad06ed21343434.png",
+    "locator": "REC-S17 인증서 이미지 하단 발행일·유효기간",
+    "material": "aluminium",
+    "geography": "KR",
+    "company_ids": [
+      "kr-al-chungnam-aluminum"
+    ],
+    "scope": "posted_copy_expired_current_certification_unconfirmed",
+    "limitations": [
+      "2023년 게시된 사본 기준",
+      "현재 유효 인증 부재나 사고 위험 증가를 직접 입증하지 않음"
+    ],
+    "not_proven": [
+      "현재 인증취소",
+      "처리시설 허가 만료",
+      "현재 불안전"
+    ],
+    "use_for": [
+      "증빙 만료 경고",
+      "갱신본 확인 질문"
+    ],
+    "rights_status": "copyright_not_cleared_original_not_redistributed",
+    "raw_path": "data/research/factory-readiness-2026-10-17/recipients/raw/chungnam-cert-4.png",
+    "sha256": "3e055f917398cf636a312d57f831ec50d880f5a1d5428b545fca362b0aee43da",
+    "checked_on": "2026-10-17",
+    "data_reference_date": null,
+    "dispatch_approved": false,
+    "facts": {
+      "posted_iso45001_valid_until": "2025-11-30",
+      "current_certificate_renewal_verified": false
+    },
+    "collection_lane": "recipient",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-001",
+    "title": "용융금속과 물의 접촉 위험",
+    "claim_ko": "젖은 스크랩의 수분은 용융금속과 접촉할 때 폭발 위험을 만든다. 소재명이나 수분 평균값만으로 안전 투입을 승인하지 않는다.",
+    "source_id": "HSE-MOLTEN-SAFETY",
+    "source_url": "https://www.hse.gov.uk/moltenmetals/safety-topics.htm",
+    "locator": "Safety topics > Molten metal/water explosions",
+    "pdf_pages_1_based": [],
+    "material": "aluminium",
+    "geography": "UK",
+    "scope": "해외 안전기술 참고이며 한국 강제규정·안전 운전 절차가 아님",
+    "stage": "storage_and_remelting",
+    "scenario_trigger": "수분·우천 노출·밀폐부 내부 액체가 미확인",
+    "evidence_requirements": [
+      "보관·우천 노출 기록",
+      "수취시설 안전담당자의 검사·승인 기록"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "안전 수분 임계치 제공 아님",
+      "현장 위험성평가 대체 불가"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/HSE-MOLTEN-SAFETY.html",
+    "sha256": "cf3bd98d98827830791aae4cbd4b8168188f729efa576ada4212aa5c5b9bfd01",
+    "publication_date": null,
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-002",
+    "title": "입고 후 보관 중 생기는 수분도 재확인",
+    "claim_ko": "2021년 국내 사고 자료는 알루미늄 거푸집 내부 물에 의한 용해 공정 폭발을 설명한다. 입고·보관·투입 전 확인을 구분할 근거다.",
+    "source_id": "KOSHA-2021-STEAM",
+    "source_url": "https://www.aposho.org/kosha/data/machine.do?articleNo=420876&attachNo=237796&mode=download",
+    "locator": "재해개요; 재해예방대책",
+    "pdf_pages_1_based": [
+      1
+    ],
+    "material": "aluminium",
+    "geography": "KR",
+    "scope": "KOSHA 재해사례이며 절삭칩의 정량 허용치나 특정 공장 사고 정보가 아님",
+    "stage": "receiving_storage_remelting",
+    "scenario_trigger": "입고 검사 후 장기 보관 또는 운송·보관 중 우천 노출",
+    "evidence_requirements": [
+      "입고 검사시각",
+      "보관환경·형상 정보",
+      "수취시설 재확인 기록"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "사고 업체 익명",
+      "공개일 미상; 사고일 2021-02-22",
+      "APOSHO 호스팅 원본; KOSHA 로고 확인"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/KOSHA-2021-STEAM.pdf",
+    "sha256": "d9d1cf8ebf93f54300baa4e4120f4046311ee20af8ed399f35921f3e5f99fad1",
+    "publication_date": null,
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-003",
+    "title": "같은 알루미늄도 합금 분리가 먼저",
+    "claim_ko": "알루미늄 스크랩은 목표 합금 생산을 위해 합금별로 분류될 수 있다. 소재 키워드 일치만으로 원료 호환성을 확정할 수 없다.",
+    "source_id": "JRC-NFM-2017",
+    "source_url": "https://bureau-industrial-transformation.jrc.ec.europa.eu/sites/default/files/2020-01/JRC107041_NFM_bref2017.pdf",
+    "locator": "4.1.4.1.1 Pretreatment; printed pp.388–389",
+    "pdf_pages_1_based": [
+      440,
+      441
+    ],
+    "material": "aluminium",
+    "geography": "EU",
+    "scope": "EU 비철 BREF의 공정 참고; 한국 법령·현재 시설 규격 아님",
+    "stage": "source_segregation",
+    "scenario_trigger": "합금명·혼합 여부·발생 공정이 미확인",
+    "evidence_requirements": [
+      "소재·합금 식별 자료",
+      "분리보관 기록",
+      "목표 산출합금·수취 규격"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "원소별 허용 범위·분석법은 수취시설 확인 필요"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "reproduction_authorised_with_source_acknowledgement_PDF_p3_third_party_images_excepted",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/JRC-NFM-2017.pdf",
+    "sha256": "be67a979d8c082b9377bdad23f30347333532fa55a1c6fbb3354f184cdc24a0e",
+    "publication_date": "2017-07-07",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-004",
+    "title": "절삭칩 전처리는 조건부 대안",
+    "claim_ko": "절삭칩의 유기 오염은 용해 전 제거 검토 대상이며, 처리 가능성은 투입물과 설비 설계에 따라 달라진다.",
+    "source_id": "JRC-NFM-2017",
+    "source_url": "https://bureau-industrial-transformation.jrc.ec.europa.eu/sites/default/files/2020-01/JRC107041_NFM_bref2017.pdf",
+    "locator": "4.1.4.1.1; 4.3.4.3; printed pp.389, 466–470",
+    "pdf_pages_1_based": [
+      441,
+      518,
+      519,
+      520,
+      521,
+      522
+    ],
+    "material": "aluminium",
+    "geography": "EU",
+    "scope": "유럽 설비 사례와 BAT 설명이며 탈유 처리 수행 지침 아님",
+    "stage": "pretreatment",
+    "scenario_trigger": "절삭유·코팅 존재 또는 상태 미확인",
+    "evidence_requirements": [
+      "절삭유 종류·성적서",
+      "전처리 가능설비·허가",
+      "전후 품질·비용·잔재물 증빙"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "모든 칩에 전처리가 필요한 것은 아님",
+      "정량 안전운전 조건·제거효율 확정 불가"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "reproduction_authorised_with_source_acknowledgement_PDF_p3_third_party_images_excepted",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/JRC-NFM-2017.pdf",
+    "sha256": "be67a979d8c082b9377bdad23f30347333532fa55a1c6fbb3354f184cdc24a0e",
+    "publication_date": "2017-07-07",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-005",
+    "title": "재용해 설비 적합성이 수율을 바꿈",
+    "claim_ko": "스크랩 크기·산화물·오염 정도는 용해로 선택과 회수 성능에 영향을 준다. 형상이 다른 알루미늄에 같은 수율을 고정하면 안 된다.",
+    "source_id": "JRC-NFM-2017",
+    "source_url": "https://bureau-industrial-transformation.jrc.ec.europa.eu/sites/default/files/2020-01/JRC107041_NFM_bref2017.pdf",
+    "locator": "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+    "pdf_pages_1_based": [
+      522
+    ],
+    "material": "aluminium",
+    "geography": "EU",
+    "scope": "일반 공정 원리; 실제 시설 장비·검증 수율 미확인",
+    "stage": "facility_fit",
+    "scenario_trigger": "괴·판재·칩·분말·압축품을 같은 경로로 취급",
+    "evidence_requirements": [
+      "물리적 형상·입도·산화 상태",
+      "수취 설비 적합성 회신",
+      "조건이 대응되는 실제 수율 기록"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "공개 공정 설명만으로 해당 설비의 처리 가능성 확정 불가"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "reproduction_authorised_with_source_acknowledgement_PDF_p3_third_party_images_excepted",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/JRC-NFM-2017.pdf",
+    "sha256": "be67a979d8c082b9377bdad23f30347333532fa55a1c6fbb3354f184cdc24a0e",
+    "publication_date": "2017-07-07",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-006",
+    "title": "전처리 비용·에너지도 비교에 포함",
+    "claim_ko": "오염 스크랩의 세척·건조·압축 등은 금속 손실과 에너지 사용을 바꿀 수 있다. 전처리를 무료·무배출 개선으로 취급하지 않는다.",
+    "source_id": "JRC-NFM-2017",
+    "source_url": "https://bureau-industrial-transformation.jrc.ec.europa.eu/sites/default/files/2020-01/JRC107041_NFM_bref2017.pdf",
+    "locator": "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+    "pdf_pages_1_based": [
+      469,
+      521
+    ],
+    "material": "aluminium",
+    "geography": "EU",
+    "scope": "과거 EU 공정 참고; 한국 로트 계산계수로 사용 금지",
+    "stage": "economic_and_carbon_comparison",
+    "scenario_trigger": "전처리 후 매각가 상승만 계산",
+    "evidence_requirements": [
+      "추가 전처리 비용·에너지",
+      "전후 질량·실제 수율",
+      "세척 잔류물·폐수 처리 기록"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "본문 범위값을 현재 공장에 대입하지 않음"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "reproduction_authorised_with_source_acknowledgement_PDF_p3_third_party_images_excepted",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/JRC-NFM-2017.pdf",
+    "sha256": "be67a979d8c082b9377bdad23f30347333532fa55a1c6fbb3354f184cdc24a0e",
+    "publication_date": "2017-07-07",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-007",
+    "title": "용해 잔재물 경로도 누락 금지",
+    "claim_ko": "염재·드로스 발생은 투입물·용해로·오염 정도에 따라 달라진다. 원료 판매 또는 금속 회수만으로 전체 경로가 끝나지 않는다.",
+    "source_id": "JRC-NFM-2017",
+    "source_url": "https://bureau-industrial-transformation.jrc.ec.europa.eu/sites/default/files/2020-01/JRC107041_NFM_bref2017.pdf",
+    "locator": "4.1.4.1 Secondary aluminium; printed p.388",
+    "pdf_pages_1_based": [
+      440
+    ],
+    "material": "aluminium",
+    "geography": "EU",
+    "scope": "EU 공정 환경 참고; 잔재물의 국내 폐기물 분류·처분 허가는 별도",
+    "stage": "residue_management",
+    "scenario_trigger": "고회수율 경로에서 잔재물 책임·비용 미입력",
+    "evidence_requirements": [
+      "물질수지",
+      "잔재물 종류·처리 경로",
+      "처리·반송 비용 부담 합의"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "드로스·염재를 청정 스크랩과 동일 처리하면 안 됨"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "reproduction_authorised_with_source_acknowledgement_PDF_p3_third_party_images_excepted",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/JRC-NFM-2017.pdf",
+    "sha256": "be67a979d8c082b9377bdad23f30347333532fa55a1c6fbb3354f184cdc24a0e",
+    "publication_date": "2017-07-07",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-008",
+    "title": "가격은 구매계약과 발주서의 값",
+    "claim_ko": "해외 ADL 공급 매뉴얼은 가격과 거래조건을 구매계약·발주서로 정한다. 공개 품질 매뉴얼이 최신 견적을 대신하지 않는다.",
+    "source_id": "ADL-SUPPLIER-2026",
+    "source_url": "https://aluminumdynamicsllc.com/wp-content/uploads/2025/02/ADL-Scrap-Supplier-Manual-V-2.pdf",
+    "locator": "3.1–3.2; printed p.4",
+    "pdf_pages_1_based": [
+      4
+    ],
+    "material": "aluminium",
+    "geography": "US / Columbus MS",
+    "scope": "특정 미국 수취업체 규격·상거래 사례; 한국 후보에게 적용 불가",
+    "stage": "commercial_terms",
+    "scenario_trigger": "자료집이나 시황가격만 있고 개별 견적 부재",
+    "evidence_requirements": [
+      "로트별 발주서·견적",
+      "가격·통화·유효기간·거래 범위"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "ADL 실제 계약·가격 미확보",
+      "한국 사업장 실시간 가격 아님"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/ADL-SUPPLIER-2026.pdf",
+    "sha256": "4ac3943b26f118a4ddfa1d800094ac3cbbbbea4fc8d2b2c6f6097e816a20a6ba",
+    "publication_date": "2026-05-05",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-009",
+    "title": "예비 매칭과 입고 후 검사는 다름",
+    "claim_ko": "ADL 사례는 입고검사 후 소유권 이전과 부적합 물량의 반려·등급 조정·비용 부담을 구분한다. 후보 추천을 인수 확정으로 표시하면 안 된다.",
+    "source_id": "ADL-SUPPLIER-2026",
+    "source_url": "https://aluminumdynamicsllc.com/wp-content/uploads/2025/02/ADL-Scrap-Supplier-Manual-V-2.pdf",
+    "locator": "4.0 General Statement of Work; printed p.7",
+    "pdf_pages_1_based": [
+      7
+    ],
+    "material": "aluminium",
+    "geography": "US / Columbus MS",
+    "scope": "외국 수취업체의 계약 모델; 한국 계약 의무로 일반화 금지",
+    "stage": "acceptance_and_liability",
+    "scenario_trigger": "인수 의향만 있고 최종 검사·반려 책임 미확정",
+    "evidence_requirements": [
+      "서면 인수 조건",
+      "검사 기준·최종 승인자",
+      "반려·재운송·추가비 부담 합의"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "개별 계약 예외 미확인"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/ADL-SUPPLIER-2026.pdf",
+    "sha256": "4ac3943b26f118a4ddfa1d800094ac3cbbbbea4fc8d2b2c6f6097e816a20a6ba",
+    "publication_date": "2026-05-05",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-010",
+    "title": "운송 중 수분과 계근 차이도 거래 위험",
+    "claim_ko": "ADL은 운송 포장과 입고 일정·계근·거절 물량 처리를 별도로 관리한다. 물류비 한 칸만으로 운송 위험을 설명하기 어렵다.",
+    "source_id": "ADL-SUPPLIER-2026",
+    "source_url": "https://aluminumdynamicsllc.com/wp-content/uploads/2025/02/ADL-Scrap-Supplier-Manual-V-2.pdf",
+    "locator": "3.3 Delivery modes; printed pp.5–6",
+    "pdf_pages_1_based": [
+      5,
+      6
+    ],
+    "material": "aluminium",
+    "geography": "US / Columbus MS",
+    "scope": "미국 구매업체 물류조건 사례이며 국내 운송규정 아님",
+    "stage": "transport_and_weighing",
+    "scenario_trigger": "방수·인수시각·계근·반려 기준 부재",
+    "evidence_requirements": [
+      "포장·차량 조건",
+      "일정·인수 책임",
+      "총중량·공차·정산 순중량",
+      "반려/대기 비용"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "매뉴얼 수수료·중량 허용차를 국내 기본값으로 복사 금지"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/ADL-SUPPLIER-2026.pdf",
+    "sha256": "4ac3943b26f118a4ddfa1d800094ac3cbbbbea4fc8d2b2c6f6097e816a20a6ba",
+    "publication_date": "2026-05-05",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-011",
+    "title": "일반 허용치와 품목별 금지조항 충돌 검토",
+    "claim_ko": "ADL 일반조건에는 잔류 윤활유 중량 3%까지라는 문구가 있지만, 품목별 표에는 잔류 윤활유·유분 금지 표현도 있다. 적용 형상과 우선 조항 확인이 필요하다.",
+    "source_id": "ADL-SUPPLIER-2026",
+    "source_url": "https://aluminumdynamicsllc.com/wp-content/uploads/2025/02/ADL-Scrap-Supplier-Manual-V-2.pdf",
+    "locator": "8.0 general requirements p.12; 8.2 bales p.16; 8.3 densified p.17",
+    "pdf_pages_1_based": [
+      12,
+      16,
+      17
+    ],
+    "material": "aluminium",
+    "geography": "US / Columbus MS",
+    "scope": "특정 외국 업체 문서 내부 적용범위 점검 예시; 보편 임계치 아님",
+    "stage": "specification_conflict_review",
+    "scenario_trigger": "문서에서 숫자 하나만 추출해 모든 형상에 일괄 적용",
+    "evidence_requirements": [
+      "구매 품목·형상",
+      "유효 버전",
+      "우선하는 조항에 대한 수취업체 회신"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "3%는 안전 수분 기준이 아님",
+      "국내 업체·로트 허용치가 아님",
+      "표현 간 우선순위 미확정"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/ADL-SUPPLIER-2026.pdf",
+    "sha256": "4ac3943b26f118a4ddfa1d800094ac3cbbbbea4fc8d2b2c6f6097e816a20a6ba",
+    "publication_date": "2026-05-05",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-012",
+    "title": "단일 합금 칩과 혼합 칩은 다른 거래 등급",
+    "claim_ko": "2024 ISRI 규격은 지정 단일 합금 절삭칩 Tease와 두 종류 이상 합금의 Telic을 구분한다. 등급명만 정해도 실제 합금 확인과 합의가 남는다.",
+    "source_id": "REMA-SPECS-2024-TURNINGS",
+    "source_url": "https://www.remaspecs.org/wp-content/uploads/2024/04/isri-specs2024final.pdf",
+    "locator": "Nonferrous guidelines / Tease and Telic; printed p.11, PDF p.13",
+    "pdf_pages_1_based": [
+      13
+    ],
+    "material": "aluminium",
+    "geography": "International / historical 2024",
+    "scope": "기존 수집 규격의 절삭칩 부분 보강; 국제 거래 참고이고 현재 국내 구매 규격 아님",
+    "stage": "grading",
+    "scenario_trigger": "칩을 UBC·괴 또는 합금 미상 혼합품과 같은 등급으로 매칭",
+    "evidence_requirements": [
+      "합금 식별·혼합 여부",
+      "오염 성적서",
+      "구매자 서면 등급 합의"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "이 역사적 규격이 2026년 최신인지 미확정",
+      "3% fines와 수분/유분을 혼동 금지"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "copyright_2024_ISRI_no_reprinting_whole_or_part_without_prior_written_permission; raw_local_reference_only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/REMA-SPECS-2024-TURNINGS.pdf",
+    "sha256": "f9e5ebbb544e8306b4eb9e9ff6589fd77a9243f7853371b974a396339f1edfb5",
+    "publication_date": "2024-02-15",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-013",
+    "title": "순중량 공제와 금속 수율은 분리",
+    "claim_ko": "Telic 설명은 미분·이물·유분·수분에 따른 감량과 특정 조성 합의를 다룬다. 순도·정산중량·용해 회수율은 서로 다른 값이다.",
+    "source_id": "REMA-SPECS-2024-TURNINGS",
+    "source_url": "https://www.remaspecs.org/wp-content/uploads/2024/04/isri-specs2024final.pdf",
+    "locator": "Nonferrous / Telic; printed p.11, PDF p.13",
+    "pdf_pages_1_based": [
+      13
+    ],
+    "material": "aluminium",
+    "geography": "International / historical 2024",
+    "scope": "역사적 거래 등급 예시; 국내 정산 공식·수율을 제공하지 않음",
+    "stage": "settlement_and_yield",
+    "scenario_trigger": "습윤 입고 kg 전체를 금속 회수 kg 또는 판매 kg로 동일 처리",
+    "evidence_requirements": [
+      "입고·건조·공제 중량 정의",
+      "분석 결과와 기준",
+      "실제 회수량·계약 정산식"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "스크랩 등급상 공제율과 공장 수율을 대체할 수 없음"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "copyright_2024_ISRI_no_reprinting_whole_or_part_without_prior_written_permission; raw_local_reference_only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/REMA-SPECS-2024-TURNINGS.pdf",
+    "sha256": "f9e5ebbb544e8306b4eb9e9ff6589fd77a9243f7853371b974a396339f1edfb5",
+    "publication_date": "2024-02-15",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-014",
+    "title": "골판지 계약 전에 품질·운송조건 합의",
+    "claim_ko": "Cepi 품질 지침은 등급·포장·운송·검사 방식을 공급자와 제지사가 먼저 합의하도록 설명한다. 골판지 키워드 매칭으로 거래조건이 정해지지 않는다.",
+    "source_id": "CEPI-QUALITY-2018",
+    "source_url": "https://www.cepi.org/wp-content/uploads/2021/09/REC-18-024-002.pdf",
+    "locator": "Guidelines sections 1–4; PDF pp.3–4",
+    "pdf_pages_1_based": [
+      3,
+      4
+    ],
+    "material": "paper",
+    "geography": "EU",
+    "scope": "유럽 산업 품질 지침; 한국 법령·특정 제지사 기준 아님",
+    "stage": "supplier_qualification",
+    "scenario_trigger": "첫 거래 후보로만 제지사를 제시",
+    "evidence_requirements": [
+      "등급·코팅·이물 정보",
+      "구매자 포장·품질·물류 조건",
+      "검사 절차 합의"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "최신 한국 제지사 구매조건 미확보"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/CEPI-QUALITY-2018.pdf",
+    "sha256": "c0f20bb15e676304434c9069225de5142cb1868d598be7037d671a922ca980e2",
+    "publication_date": "2018-04",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-015",
+    "title": "종이 수분율에는 분모와 정산 합의가 있음",
+    "claim_ko": "지침의 10% 수분 문구는 공기건조 중량과 당사자 시험·샘플링 합의를 전제로 한다. 한국 모든 제지사의 인수 상한으로 저장하면 안 된다.",
+    "source_id": "CEPI-QUALITY-2018",
+    "source_url": "https://www.cepi.org/wp-content/uploads/2021/09/REC-18-024-002.pdf",
+    "locator": "6.4.2.2 moisture; PDF pp.7–8",
+    "pdf_pages_1_based": [
+      7,
+      8
+    ],
+    "material": "paper",
+    "geography": "EU",
+    "scope": "유럽 역사적 지침의 수분 정산 참고; 국내 의무 허용치 아님",
+    "stage": "quality_and_settlement",
+    "scenario_trigger": "습윤 기준 수분값과 공기건조/건조 기준 수치를 직접 비교",
+    "evidence_requirements": [
+      "수분 분모·시험법",
+      "대표 시료·교정 기록",
+      "공제·최대 허용·반려 조건 합의"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "공기건조 중량을 엔진 as-received-mass와 자동 동치 처리 금지",
+      "상한·공제는 구매자 합의 필요"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/CEPI-QUALITY-2018.pdf",
+    "sha256": "c0f20bb15e676304434c9069225de5142cb1868d598be7037d671a922ca980e2",
+    "publication_date": "2018-04",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-016",
+    "title": "조건부 인수와 검사 결과 추적",
+    "claim_ko": "지침은 검사에 따른 인수·조건부 인수·거절 및 등급·가격·중량 변경의 통지와 기록을 구분한다. 결과 기록은 이후 공급자 평가에도 쓰인다.",
+    "source_id": "CEPI-QUALITY-2018",
+    "source_url": "https://www.cepi.org/wp-content/uploads/2021/09/REC-18-024-002.pdf",
+    "locator": "6.4.2 inspection; 7 Information to suppliers / Database / Evaluation; PDF pp.5–11",
+    "pdf_pages_1_based": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "material": "paper",
+    "geography": "EU",
+    "scope": "유럽 품질관리 흐름 참고; 한국 개별 계약 조건 아님",
+    "stage": "receiving_and_feedback",
+    "scenario_trigger": "인수 의향은 있지만 검사 후 결과·반려 사유 미수집",
+    "evidence_requirements": [
+      "입고 로트·검사 결과",
+      "등급변경·공제 사유",
+      "통지와 최종 정산"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "현재 국내 운영 데이터는 공개자료로 미확보"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/CEPI-QUALITY-2018.pdf",
+    "sha256": "c0f20bb15e676304434c9069225de5142cb1868d598be7037d671a922ca980e2",
+    "publication_date": "2018-04",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-017",
+    "title": "코팅 종이는 맞는 제지 공정을 찾아야 함",
+    "claim_ko": "코팅·라미네이트·접착제는 섬유 분리와 잔재물 발생을 바꾼다. 일반 설비와 전용 설비의 처리 범위를 구분해야 한다.",
+    "source_id": "CEPI-RECYCLABILITY-2019",
+    "source_url": "https://www.cepi.org/wp-content/uploads/2020/10/Cepi_recyclability-guidelines.pdf",
+    "locator": "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+    "pdf_pages_1_based": [
+      3,
+      4,
+      9,
+      10,
+      11
+    ],
+    "material": "paper",
+    "geography": "EU",
+    "scope": "유럽 포장재 설계·재활용 가이드; 국내 제지사별 적용성 별도 검증",
+    "stage": "process_selection",
+    "scenario_trigger": "코팅·왁스·습윤강도·복합재 여부 미확인",
+    "evidence_requirements": [
+      "포장재 구성·코팅 정보",
+      "재펄프·접착성 시험",
+      "수취 공정 적합성 회신"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "재활용 설계 가능성이 실제 수거·인수·수율을 보장하지 않음"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/CEPI-RECYCLABILITY-2019.pdf",
+    "sha256": "e6e01de5eb0c19d47d235724bcb32e387466c41056e870e9c0a5816aa0f10837",
+    "publication_date": "2019",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-018",
+    "title": "시험법의 대상 공정과 시료 대표성 검토",
+    "claim_ko": "2025 Cepi Part I는 일반 제지 재활용 공정을 모사하는 실험실 시험이다. 탈묵·특수 공정 전체의 인수시험으로 확대하면 안 된다.",
+    "source_id": "CEPI-TEST-2025",
+    "source_url": "https://www.cepi.org/wp-content/uploads/2025/02/Cepi-Test-Method-27.02_FINAL.pdf",
+    "locator": "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+    "pdf_pages_1_based": [
+      3,
+      7,
+      13
+    ],
+    "material": "paper",
+    "geography": "EU",
+    "scope": "Version 3 February 2025 conventional process laboratory method, not buyer acceptance",
+    "stage": "sampling_and_testing",
+    "scenario_trigger": "골판지라는 이름만으로 코팅 복합품도 일반 공정에 추천",
+    "evidence_requirements": [
+      "샘플 구성비·로트 대표성",
+      "수분·고형분 기준",
+      "시험 적용 공정·잔재물·시트 품질 결과"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "실험실 지표와 산업 수율은 동일하지 않음",
+      "실제 시설 시험·구매 규격 별도"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/CEPI-TEST-2025.pdf",
+    "sha256": "5c8dd010d18bfc7294387c5f45919fb5defc6450b728d6d57112259389ff36ff",
+    "publication_date": "2025-02",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-019",
+    "title": "PET는 병·색·라벨·접착·이전 내용물을 분리",
+    "claim_ko": "EPBP는 PET 병 구성요소별 호환성과 조건부 적합을 구분하며, 가이드가 실제 재활용 체계 준수를 보장하지 않는다고 명시한다.",
+    "source_id": "EPBP-DESIGN-LIVE",
+    "source_url": "https://www.epbp.org/design-guidelines/products",
+    "locator": "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+    "pdf_pages_1_based": [],
+    "material": "pet",
+    "geography": "EU",
+    "scope": "동적 유럽 PET 병 설계 가이드; 폐기물 압축품 구매 규격·국내 식품용 허가 아님",
+    "stage": "feedstock_characterisation",
+    "scenario_trigger": "PET 병·컵·트레이·유색·다층을 소재명 하나로 합침",
+    "evidence_requirements": [
+      "제품 형상·색·구성물",
+      "라벨·접착·혼입 정보",
+      "국내 수취 규격·식품용 관련 승인"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "웹페이지는 갱신되므로 재조회 필요",
+      "EU 식품접촉 적합성과 한국 적합성 혼동 금지"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/EPBP-DESIGN-LIVE.html",
+    "sha256": "d8d55ff6f21dd12488b9dca1b520be0bd7c2f2a41724c008857b360031868d73",
+    "publication_date": null,
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-020",
+    "title": "제품 탄소와 회사 Scope 1은 다른 범위",
+    "claim_ko": "IAI 안내는 제품 탄소의 범위와 상류 배출 공개를 강조한다. 공장 직접배출만으로 제품·재활용 경로 탄소를 비교할 수 없다.",
+    "source_id": "IAI-SPECIFIERS-2023",
+    "source_url": "https://international-aluminium.org/wp-content/uploads/2024/10/Good-Practice-Carbon-Footprint-October-2023.pdf",
+    "locator": "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+    "pdf_pages_1_based": [
+      2,
+      4
+    ],
+    "material": "aluminium",
+    "geography": "Global",
+    "scope": "주로 1차 알루미늄 제품 CFP 지침; 현재 한국 재활용 경로 배출계수 아님",
+    "stage": "carbon_boundary",
+    "scenario_trigger": "회사 Scope 1 또는 제조지 전력 한 항목만으로 경로 순위 계산",
+    "evidence_requirements": [
+      "동일 기능·참조량·범위",
+      "에너지·상류·운송·수율",
+      "배분·데이터연도·검증 기록"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "원문 1차 알루미늄 수치로 스크랩 경로 계산 금지"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/IAI-SPECIFIERS-2023.pdf",
+    "sha256": "63f8db6db413d3d906be88c002645b2fc68f5a3809b7c537bb4d925ec2ad6c5b",
+    "publication_date": "2023-09",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-021",
+    "title": "같은 회사보다 같은 제품시스템인지가 핵심",
+    "claim_ko": "2025 IAI 문서는 같은 제품시스템 내 재투입과 다른 제품시스템으로 넘어가는 공정스크랩을 구분한다. 회사가 같다는 것만으로 동일 경계를 뜻하지 않는다.",
+    "source_id": "IAI-SCRAP-CFP-2025",
+    "source_url": "https://international-aluminium.org/wp-content/uploads/2025/10/Carbon-Footprint-of-Recycled-Aluminium-IAI-Document-Final.pdf",
+    "locator": "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+    "pdf_pages_1_based": [
+      5,
+      14
+    ],
+    "material": "aluminium",
+    "geography": "Global",
+    "scope": "IAI 스크랩 LCA 용어·방법 참고; 특정 기업의 경계 확정 아님",
+    "stage": "baseline_and_carbon",
+    "scenario_trigger": "기존 내부 순환과 외부 판매를 대안으로 비교",
+    "evidence_requirements": [
+      "기존·대안 산출품과 제품시스템 경계",
+      "스크랩 이동·재투입 이력",
+      "동일 기능·대체 원료 정의"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "아산공장의 현재 제품시스템·계약은 미확인"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/IAI-SCRAP-CFP-2025.pdf",
+    "sha256": "d0682b5408f5d91ee3b5dff85ba387d48cfffdc4517e521e802b6667c26eca83",
+    "publication_date": "2025-10",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-022",
+    "title": "공정스크랩을 자동 탄소 0으로 두지 않음",
+    "claim_ko": "공정스크랩의 부분 탄소배분에는 여러 접근이 있다. 방법을 공개하고 생성측·사용측에 일관 적용해야 누락·중복 계상을 피할 수 있다.",
+    "source_id": "IAI-SCRAP-CFP-2025",
+    "source_url": "https://international-aluminium.org/wp-content/uploads/2025/10/Carbon-Footprint-of-Recycled-Aluminium-IAI-Document-Final.pdf",
+    "locator": "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+    "pdf_pages_1_based": [
+      3,
+      4,
+      14,
+      15,
+      16,
+      26,
+      27,
+      30
+    ],
+    "material": "aluminium",
+    "geography": "Global",
+    "scope": "2025-10 IAI 공개 참고문서; 모든 접근에 단일 합의가 있다는 주장 아님",
+    "stage": "carbon_method_and_redteam",
+    "scenario_trigger": "재활용 스크랩이니 무조건 배출 0 또는 회피효과 이중 공제",
+    "evidence_requirements": [
+      "선택한 배분 방법·민감도",
+      "생성측과 수취측 일관된 추적",
+      "회피효과·잔재물 처리 범위"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "본문 예시값은 한국 로트의 실측계수 아님"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/IAI-SCRAP-CFP-2025.pdf",
+    "sha256": "d0682b5408f5d91ee3b5dff85ba387d48cfffdc4517e521e802b6667c26eca83",
+    "publication_date": "2025-10",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-023",
+    "title": "지역 기본값은 이번 재활용 공정 실측값이 아님",
+    "claim_ko": "문서의 지역 기본값은 출처 불명 공정스크랩의 내재 배출 모델용이다. 재용해 이전 활동 제외 등 주석이 있어 경로 전체 배출로 사용할 수 없다.",
+    "source_id": "IAI-SCRAP-CFP-2025",
+    "source_url": "https://international-aluminium.org/wp-content/uploads/2025/10/Carbon-Footprint-of-Recycled-Aluminium-IAI-Document-Final.pdf",
+    "locator": "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+    "pdf_pages_1_based": [
+      28,
+      29
+    ],
+    "material": "aluminium",
+    "geography": "Global / regional (no Korea-specific row)",
+    "scope": "공정스크랩 내재 배출 산정 참고; 한국 로트 운송·전처리·재용해 경로계수 아님",
+    "stage": "carbon_data_selection",
+    "scenario_trigger": "지역값·재용해 가정값 하나를 전체 경로 kgCO2e/kg로 사용",
+    "evidence_requirements": [
+      "발생지·스크랩 기원",
+      "실제 운송·전처리·설비 에너지",
+      "수율·잔재물·일관된 배분"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "한국 별도 기본값 없음",
+      "표 주석의 이론적 재용해 가정값은 실제 설비 검증자료가 아님"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/IAI-SCRAP-CFP-2025.pdf",
+    "sha256": "d0682b5408f5d91ee3b5dff85ba387d48cfffdc4517e521e802b6667c26eca83",
+    "publication_date": "2025-10",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-024",
+    "title": "95% 에너지 절약과 이번 탄소 절감은 별개",
+    "claim_ko": "IAI 에너지 비교는 세계 1차 생산과 일부 지역 재활용 자료의 범위를 설명한다. 에너지 평균 차이를 개별 국내 경로의 탄소 절감률로 바꾸지 않는다.",
+    "source_id": "IAI-RECYCLING-ENERGY",
+    "source_url": "https://international-aluminium.org/landing/aluminium-recycling-saves-95-of-the-energy-needed-for-primary-aluminium-production/",
+    "locator": "Data & Modeling; regional recycled-aluminium dataset limitations",
+    "pdf_pages_1_based": [],
+    "material": "aluminium",
+    "geography": "Global / Europe / North America / Japan",
+    "scope": "에너지 통계·모델 설명; 실제 한국 로트 탄소·순위 산출 불가",
+    "stage": "carbon_claim_review",
+    "scenario_trigger": "95%라는 문구로 기존 순환보다 외부 매각이 친환경이라고 결론",
+    "evidence_requirements": [
+      "현재 기준경로",
+      "전력·연료 구성",
+      "동일 범위의 대안·수율·물류 데이터"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "전세계 재활용 에너지 단일 추정치 부재를 설명하는 페이지",
+      "한국 현장값 미제공"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "retrieval_with_scope",
+      "risk_checklist",
+      "red_team_review",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/IAI-RECYCLING-ENERGY.html",
+    "sha256": "dacbc28676132947d122bd2a5c601cdf9d5e19479033648d57bd94b88ca47bb5",
+    "publication_date": null,
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "TECH-025",
+    "title": "공개 소개 페이지와 LCI 원본 확보는 다름",
+    "claim_ko": "European Aluminium 소개 페이지는 유럽 LCI 보고서의 범위를 설명하지만, 최신 전체판과 2021 정련 보고서는 등록 요청 경로를 안내한다. 전체 LCI를 확보했다고 세지 않는다.",
+    "source_id": "EA-EPR-ACCESS",
+    "source_url": "https://european-aluminium.eu/blog/environmental-profile-reports/",
+    "locator": "Environmental Profile Report 2024 / Refining industry 2021; full-version registration notices",
+    "pdf_pages_1_based": [],
+    "material": "aluminium",
+    "geography": "EU",
+    "scope": "보고서 접근성 증거만; 전체 LCI 파일·공정별 원자료 미확보",
+    "stage": "data_availability",
+    "scenario_trigger": "검색결과·요약만으로 LCI 원본 확보 표시",
+    "evidence_requirements": [
+      "원본 접근·이용 권한",
+      "연도·기술·시스템 경계",
+      "한국 공정 적합성 확인"
+    ],
+    "evidence_requirements_status": "Analyst-designed review inputs; do not imply every item is explicitly demanded by the source",
+    "limitations": [
+      "등록·외부 연락을 수행하지 않음",
+      "요약 수치로 국내 경로 계산 금지"
+    ],
+    "not_proven": [
+      "한국 수취업체의 현재 구매 허용치",
+      "해당 공장·로트의 실제 상태 또는 안전성",
+      "허가·인수 승인",
+      "가격·수율·탄소의 실측 결과"
+    ],
+    "use_for": [
+      "data_availability_tracking",
+      "request_missing_evidence"
+    ],
+    "rights_status": "public_access_not_blanket_redistribution_or_training_license",
+    "raw_path": "data/research/factory-readiness-2026-10-17/technical/raw/EA-EPR-ACCESS.html",
+    "sha256": "68b0d332026282f6b40eab724dc7820723a8fc669a6060d140d3f3822f9dbe90",
+    "publication_date": "2024-11-08",
+    "checked_date": "2026-10-17",
+    "validation_status": "researcher_source_location_checked_not_domain_expert_approval",
+    "is_korean_buyer_acceptance_spec": false,
+    "is_current_lot_verified": false,
+    "eligible_for_default_numeric_calculation": false,
+    "decision_effect": "investigation_or_hold_only; no automatic operational or shipment approval",
+    "collection_lane": "technical",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "LAW-001",
+    "title": "현행 세부분류의 비철금속과 금속캔 구분",
+    "claim_ko": "2026-10-02 시행규칙 연결 별표4는 51-29-02 비철금속과 51-29-03 폐금속캔류를 구분한다. 알루미늄이라는 재질명만으로 같은 코드를 배정하지 않는다.",
+    "source_id": "KR-WASTE-RULES-ANNEX-4",
+    "source_url": "https://www.law.go.kr/LSW//lsInfoR.do?lsiSeq=290881&chrClsCd=010202&urlMode=lsInfoP&efYd=20261002&ancYnChk=0",
+    "locator": "PDF p.11, 51-29-02 / 51-29-03; 렌더링 대조",
+    "material": "aluminium",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "로트의 오염·발생 공정·지정폐기물 여부를 확인하기 전 자동 분류하지 않는다.",
+      "구버전 코드나 등록부의 상위 코드와 혼동하지 않는다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "statutory-text-only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-WASTE-RULES-ANNEX-4.pdf",
+    "sha256": "9ccd6593f4e93a216594b634e204d091d42b174d7cf8d69e4fe502865d492023",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "LAW-002",
+    "title": "폐합성수지와 PVC의 분류 구분",
+    "claim_ko": "별표4는 51-03-01 폐합성수지류에서 폐염화비닐수지를 제외하고, 51-03-03 폐폴리염화비닐수지류와 51-03-07 플라스틱폐포장재를 따로 둔다.",
+    "source_id": "KR-WASTE-RULES-ANNEX-4",
+    "source_url": "https://www.law.go.kr/LSW//lsInfoR.do?lsiSeq=290881&chrClsCd=010202&urlMode=lsInfoP&efYd=20261002&ancYnChk=0",
+    "locator": "PDF p.6, 51-03",
+    "material": "pet",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "PET는 수지명이며 해당 로트의 법적 코드가 자동 확정되는 것은 아니다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "statutory-text-only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-WASTE-RULES-ANNEX-4.pdf",
+    "sha256": "9ccd6593f4e93a216594b634e204d091d42b174d7cf8d69e4fe502865d492023",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "LAW-003",
+    "title": "폐종이 종류와 코드 구분",
+    "claim_ko": "별표4의 폐종이류에는 폐종이팩 51-28-01, 폐종이류 51-28-02, 폐벽지 51-28-03이 구분되어 있다.",
+    "source_id": "KR-WASTE-RULES-ANNEX-4",
+    "source_url": "https://www.law.go.kr/LSW//lsInfoR.do?lsiSeq=290881&chrClsCd=010202&urlMode=lsInfoP&efYd=20261002&ancYnChk=0",
+    "locator": "PDF p.10, 51-28",
+    "material": "paper",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "코팅·복합재·오염과 발생 범위를 확인해야 하며 골판지라고 자동 허가 매칭하지 않는다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "statutory-text-only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-WASTE-RULES-ANNEX-4.pdf",
+    "sha256": "9ccd6593f4e93a216594b634e204d091d42b174d7cf8d69e4fe502865d492023",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "LAW-004",
+    "title": "재활용 유형의 별도 분류",
+    "claim_ko": "시행규칙 별표4의2는 재활용 유형을 구분하는 원문이다. 업체가 재활용업이라고 소개했다는 사실과 개별 방법의 허용 여부를 분리해 대조해야 한다.",
+    "source_id": "KR-WASTE-RULES-ANNEX-4-2",
+    "source_url": "https://www.law.go.kr/LSW//lsInfoR.do?lsiSeq=290881&chrClsCd=010202&urlMode=lsInfoP&efYd=20261002&ancYnChk=0",
+    "locator": "별표4의2 전체 4쪽",
+    "material": "multiple",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "원문의 유형·정의·예외를 검토할 자료이며 자동 법률 규칙으로 변환하지 않았다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "statutory-text-only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-WASTE-RULES-ANNEX-4-2.pdf",
+    "sha256": "8be7423e79738dd6e0a9bc44d8d55d34d55fddf4acf47b3bbada5ab42572b3ce",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "LAW-005",
+    "title": "폐기물 종류와 재활용 가능 유형 대조표",
+    "claim_ko": "시행규칙 별표4의3에서 폐기물 종류와 재활용 가능 유형을 대조할 수 있다. 이 표와 개별 시설 허가를 함께 확인할 입력이 필요하다.",
+    "source_id": "KR-WASTE-RULES-ANNEX-4-3",
+    "source_url": "https://www.law.go.kr/LSW//lsInfoR.do?lsiSeq=290881&chrClsCd=010202&urlMode=lsInfoP&efYd=20261002&ancYnChk=0",
+    "locator": "별표4의3 전체 27쪽",
+    "material": "multiple",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "병합 셀·각주·예외를 사람 검수 없이 코드-유형 자동 합격표로 사용하지 않는다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "statutory-text-only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-WASTE-RULES-ANNEX-4-3.pdf",
+    "sha256": "36747adef7bd3e6d6f71d5854338450fc115710482a695d1a28d92e4ebacd078",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "LAW-006",
+    "title": "처리·운반·보관의 구체적 기준 원문",
+    "claim_ko": "시행규칙 별표5는 폐기물 처리의 구체적인 기준·방법을 확인할 법적 원문이다. 목적 업체만 확인하는 대신 인계 과정의 별도 검토 근거로 보관했다.",
+    "source_id": "KR-WASTE-RULES-ANNEX-5",
+    "source_url": "https://www.law.go.kr/LSW//lsInfoR.do?lsiSeq=290881&chrClsCd=010202&urlMode=lsInfoP&efYd=20261002&ancYnChk=0",
+    "locator": "별표5 전체 33쪽",
+    "material": "multiple",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "이번 폐기물에 적용되는 세부 항목·유예·허가 조건은 아직 대조하지 않았다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "statutory-text-only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-WASTE-RULES-ANNEX-5.pdf",
+    "sha256": "bdaf64a53a7f6b302872960bb04fa8982b221db8ddf2815c4464fbf83663592b",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "LAW-007",
+    "title": "재활용 기준과 설비 기준을 별도로 확인",
+    "claim_ko": "시행규칙 별표5의3에 재활용 기준이 있고, 별표7에는 처리업의 시설·장비·기술능력 기준이 있다. 사업 소개나 ISO 인증서만으로 이를 충족했다고 할 수 없다.",
+    "source_id": "KR-WASTE-RULES-ANNEX-5-3",
+    "source_url": "https://www.law.go.kr/LSW//lsInfoR.do?lsiSeq=290881&chrClsCd=010202&urlMode=lsInfoP&efYd=20261002&ancYnChk=0",
+    "locator": "별표5의3 전체; 별표7은 별도 수집 원문",
+    "material": "multiple",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "일반 원문 확보 상태이며 특정 사업장 설치·허가·운전 적합성 확인이 아니다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "statutory-text-only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-WASTE-RULES-ANNEX-5-3.pdf",
+    "sha256": "d911cfa2451d6a3dc596afc290bf8f86f7a4984026e43956e8e2182870292674",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "LAW-008",
+    "title": "순환자원 지정 대상에 알루미늄 포함",
+    "claim_ko": "2026-05-14 순환자원 지정 고시 별표1에는 비철금속 중 알루미늄이 있다. 별표2 등의 조건을 충족했는지 확인 없이 이번 로트를 폐기물이 아니라고 단정할 수 없다.",
+    "source_id": "KR-CIRCULAR-DESIGNATION-ANNEX-1",
+    "source_url": "https://www.law.go.kr/LSW//admRulInfoR.do?admRulSeq=2100000279034&chrClsCd=010201",
+    "locator": "별표1 PDF p.1, 항목4",
+    "material": "aluminium",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "지정 대상이라는 사실과 해당 로트의 조건 충족은 다르다.",
+      "일반 지정과 개별 순환자원 인정 절차도 구분한다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "statutory-text-only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-CIRCULAR-DESIGNATION-ANNEX-1.pdf",
+    "sha256": "9523811a342a72f48e6c01453558f5d5bac5e1c43cb88b7ed20533bcd86fa02a",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "LAW-009",
+    "title": "알루미늄 지정 고시의 적용 범위와 용도",
+    "claim_ko": "별표2의 알루미늄 항목은 비철금속 51-29-02 중 Al 소재를 대상으로 하고 R-4-1 용도와 방법·기준을 둔다. 재질·용도·이물질·전처리·시설 요건의 적용 여부를 확인해야 한다.",
+    "source_id": "KR-CIRCULAR-DESIGNATION-ANNEX-2",
+    "source_url": "https://www.law.go.kr/LSW//admRulInfoR.do?admRulSeq=2100000279034&chrClsCd=010201",
+    "locator": "PDF p.6, 라. 비철금속 중 알루미늄; 렌더링 대조",
+    "material": "aluminium",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "기준을 담당자가 원문과 대조하기 위한 카드이며 절단·압축 등 위험 작업 지시가 아니다.",
+      "이물질 기준은 위임 고시까지 확인해야 한다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "statutory-text-only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-CIRCULAR-DESIGNATION-ANNEX-2.pdf",
+    "sha256": "9bcb7eca72c1a3b5c842a03c36cdc1b4d3116c503a4b85764670a05892a3d165",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "LAW-010",
+    "title": "지정 고시의 플라스틱 범위를 일반 PET로 확대하지 않기",
+    "claim_ko": "별표1에는 폐합성수지 중 IC-Tray가 지정 대상으로 기재되어 있다. 이 사실을 모든 PET·플라스틱이 지정 순환자원이라는 뜻으로 확대하지 않는다.",
+    "source_id": "KR-CIRCULAR-DESIGNATION-ANNEX-1",
+    "source_url": "https://www.law.go.kr/LSW//admRulInfoR.do?admRulSeq=2100000279034&chrClsCd=010201",
+    "locator": "PDF p.1 항목12 / 별표2 p.15",
+    "material": "pet",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "개별 인정 가능성의 부정이 아니라 이 고시의 지정 범위를 구분한다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "statutory-text-only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-CIRCULAR-DESIGNATION-ANNEX-1.pdf",
+    "sha256": "9523811a342a72f48e6c01453558f5d5bac5e1c43cb88b7ed20533bcd86fa02a",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "ECON-001",
+    "title": "공식 가격조사도 계약 오용을 경고",
+    "claim_ko": "부산환경공단의 2026-10-04 공지는 폐지·철스크랩의 미가공 원료 매입가격과 폐플라스틱·유리·금속캔의 중간가공 후 판매가격을 구분한다.",
+    "source_id": "KR-BECO-PRICE-CAUTION",
+    "source_url": "https://brc.beco.or.kr/kor/view.do?idx=7544&no=1653&pageIndex=1&sv=&sw=&view=view",
+    "locator": "본문 조사대상 품목별 기준 / 유의사항",
+    "material": "multiple",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "알루미늄 절삭칩에 가공 알루미늄캔 시세를 적용하지 않는다.",
+      "지역·품질·가공단계·시기·거래조건이 다르면 직접 비교하지 않는다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "public authority factual guidance; research notes only",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-BECO-PRICE-CAUTION.html",
+    "sha256": "41cdc522ebb7152114ce34dcb2b13209fa75b6d51cbf3b1fcc36b6fe985d7314",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "ECON-002",
+    "title": "2026-09 권역별 시세는 현재 견적이 아님",
+    "claim_ko": "한국환경공단의 2026-09 CSV와 카탈로그를 다시 확보했다. 이미 수집한 같은 기간 자료이며 권역·품목·가공단계·미공표 값을 구분해야 한다.",
+    "source_id": "KR-KECO-PRICE-202609-CSV",
+    "source_url": "https://www.data.go.kr/data/3076421/fileData.do",
+    "locator": "CSV 전체 / 카탈로그 3076421",
+    "material": "multiple",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "기존 보유자료 재확인으로 신규 견적 수에 포함하지 않는다.",
+      "알루미늄캔 시세가 산업용 칩 시세는 아니다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "KOGL type 1 per dataset catalogue",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-KECO-PRICE-202609-CSV.csv",
+    "sha256": "0bcbbec7f81e581735ef6b8c010f5b207ebaec17a60b9925a4be52ce5f003d6b",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "ECON-003",
+    "title": "안성시 공개 계약은 별도 사업장 참고 사례",
+    "claim_ko": "안성 생활자원회수센터는 2026-01 기준 재활용품 품목·단가·계약업체 표를 공개한다. 이 값은 아산공장 폐알루미늄의 구매 견적이 아니다.",
+    "source_id": "KR-ANSEONG-CONTRACT-2026",
+    "source_url": "https://www.asimc.or.kr/portal/contents.do?mid=0103030300",
+    "locator": "2026년 재활용품 계약 내역 표",
+    "material": "multiple",
+    "geography": "KR",
+    "scope": "Anseong municipal contract reference only",
+    "limitations": [
+      "웹 표 단위 머리말이 kg/원으로 표시되어 단위 검수 전 KRW/kg 자동 정규화하지 않았다.",
+      "품질·인도·계약기간·VAT·부대 비용을 알 수 없어 순정산 비교에 투입하지 않는다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "public contract facts; full-page redistribution not inferred",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-ANSEONG-CONTRACT-2026.html",
+    "sha256": "e8b45471417d8e06ee02b9c5db12c70f0198916e7cb1c9a166014093526eb6d7",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "CARBON-001",
+    "title": "2025 승인 전력계수는 기준연도·발전단·소비단 구분",
+    "claim_ko": "2025 승인 목록의 전력 표는 2023년과 2021–2023 평균, 발전단과 소비단을 구분한다. 2023년 소비단 CO2-eq 값은 0.4173 tCO2-eq/MWh이다.",
+    "source_id": "KR-GIR-2025-FACTORS-1",
+    "source_url": "https://www.gir.go.kr/home/board/read.do?menuId=36&boardId=86&boardMasterId=2",
+    "locator": "PDF p.1, 전력배출계수 표; 렌더링 대조",
+    "material": "multiple",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "이 값은 폐알루미늄 1톤의 재활용 배출계수가 아니다.",
+      "실제 전력 사용량·전력 적용 방법·활동연도와 비교 경계가 추가로 필요하다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "public government reference; redistribution terms not blanket-inferred",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-GIR-2025-FACTORS-1.pdf",
+    "sha256": "9d10cbda28e072a1e6efd13a368f1b6f7d34d1fa4a2093dc93235a2ac04ebc9d",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  },
+  {
+    "card_id": "CARBON-002",
+    "title": "Scope 3 안내서는 계산 방법 참고",
+    "claim_ko": "국내 2025-03 반도체 업종 Scope 3 안내서 원본을 확보했다. 업종·배출 범주·활동자료·계수의 적용 범위를 검토할 자료이며 알루미늄 재용해 LCI로 쓰지 않는다.",
+    "source_id": "KR-GMI-SCOPE3-2025",
+    "source_url": "https://www.gmi.go.kr/upload/format/Scope3_Guideline_Semiconductor.pdf",
+    "locator": "표지 / Scope 3 방법론 문서 전체 128쪽",
+    "material": "multiple",
+    "geography": "KR",
+    "scope": "KR reference only",
+    "limitations": [
+      "일부 글꼴의 자동 텍스트 추출이 깨져 상세 수치 파싱은 보류했다.",
+      "반도체 업종 가이드를 아산공장의 실제 활동자료로 취급하지 않는다."
+    ],
+    "not_proven": [
+      "아산공장의 이번 로트 분류·허가·품질·인수",
+      "현재 유효 견적·순정산·경로별 탄소량"
+    ],
+    "use_for": [
+      "source_retrieval",
+      "scope_check",
+      "request_missing_evidence",
+      "red_team_review"
+    ],
+    "rights_status": "public guidance; full-text redistribution permission not inferred",
+    "raw_path": "data/research/factory-readiness-2026-10-17/law-economics/raw/KR-GMI-SCOPE3-2025.pdf",
+    "sha256": "bb442853834a236f7b1e0d1dc0c2496ff5146f0ce21751f9ed48154a21df9f1c",
+    "checked_on": "2026-10-17",
+    "dispatch_approved": false,
+    "actual_lot_evidence": false,
+    "indexing_allowed": true,
+    "model_transfer_allowed": false,
+    "eligible_for_default_numeric_calculation": false,
+    "content_kind": "reviewer-short-factual-paraphrase",
+    "collection_lane": "law-economics",
+    "original_verified_locally": true,
+    "local_research_search_eligible": true,
+    "default_route_calculation_eligible": false,
+    "automatic_dispatch_approval": false,
+    "model_transfer_in_this_work": false
+  }
+]
