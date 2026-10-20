@@ -1,5 +1,10 @@
 # Re:Source AI 구조
 
+전체 순서는 **[2026-10-20 확정 파이프라인](pipeline-baseline.md)**을 기준으로 합니다.
+KG에서 후보를 넓게 조회하고, ReAct 조사·검증 뒤에 **후보별 적용 조건 판정**을 수행합니다.
+최대 K개 선정은 비용·탄소·리스크의 최종 비교 단계입니다.
+ReAct 영역은 조사·검증·보완 조회를 묶으며, 규칙 판정과 계산기는 그 밖에 둡니다.
+
 `src/resource_ai`는 기능 책임별로 분리합니다.
 
 - `rag`: 공식 문서 수집·검증, 구조 보존 파싱, PostgreSQL Hybrid Search
@@ -17,6 +22,8 @@ Agent 통합입니다. KG 구현·데이터 범위와 후속 작업은 [knowledg
 KG는 `ontology.py`의 타입·출처 검증 → `builder.py`의 격리된 메모리 적재 준비 →
 `graph_store.py`의 Neo4j 세대 적재·감사 → `query.py`의 고정 파라미터 조회 순서입니다.
 `agents/tools/graph_tool.py`와 `/kg/candidates`는 같은 서비스를 호출합니다.
+새 전체 후보 조회는 `/kg/candidate-pool`과 `get_candidate_pool_page()`를 사용합니다.
+기존 제한 조회는 호환성을 위해 유지하며, [조사 묶음 API](kg-research-pool.md)와 구분합니다.
 사용자 문서나 서비스 DB는 그래프 빌드에 전달하지 않습니다.
 
 검색 데이터는 법령과 판례를 하나의 문서 모델로 저장하되 `document_type`, 조·항·호,
