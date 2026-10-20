@@ -1,5 +1,10 @@
 {
-  "evaluated_at": "2026-10-20T19:59:36.843510+00:00",
+  "evaluated_at": "2026-10-20T20:13:31.830701+00:00",
+  "local_retrieval_config": {
+    "embedding_provider": "sentence-transformers",
+    "embedding_model": "intfloat/multilingual-e5-small",
+    "database_connect_timeout_seconds": 1
+  },
   "scope": "KG/API wiring and arithmetic regression; not expert/permit/recommendation accuracy",
   "cases": [
     {
@@ -20,7 +25,8 @@
         "complete_within_curated_scope": true,
         "next_cursor": null,
         "legal_unique_queries": 10,
-        "legal_executed_queries": 3,
+        "legal_executed_queries": 1,
+        "legal_provider_failed": true,
         "legal_retrieval_complete": false,
         "legal_audit_complete": false
       },
@@ -36,51 +42,61 @@
         {
           "search_id": "legal-search:01e9001d5aeed8bff1d0333022f6b7e9",
           "status": "unavailable",
+          "attempted": true,
           "result_count": 0
         },
         {
           "search_id": "legal-search:5110dba60e937642221408fe086ed0c6",
           "status": "unavailable",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:a8b7ed6c2e248599cc6225018038d988",
           "status": "unavailable",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:456c6f2bba07817c9ad1369c64720dd9",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:42a9292066ba20431fb5b3c0296f537f",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:9ad8c52fe03c0bc2dd104ad63dd4d11f",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:4ad62dd425a905d3f379e31eaaa1a48a",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:e7dff19d6a4852d726bf3bee0cf57e38",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:39ffeec2f865f2a8bb1ffb0cf5024973",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:24597f45a0fd947448304df20830d1da",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         }
       ],
@@ -108,7 +124,8 @@
         "complete_within_curated_scope": true,
         "next_cursor": null,
         "legal_unique_queries": 10,
-        "legal_executed_queries": 3,
+        "legal_executed_queries": 1,
+        "legal_provider_failed": true,
         "legal_retrieval_complete": false,
         "legal_audit_complete": false
       },
@@ -124,51 +141,61 @@
         {
           "search_id": "legal-search:88e1e6c62264440c6b5d0cd6370a38ed",
           "status": "unavailable",
+          "attempted": true,
           "result_count": 0
         },
         {
           "search_id": "legal-search:5c1494e086a153a3634c85fed216d202",
           "status": "unavailable",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:c2a0d5643930982e8f77f44b0dadb64c",
           "status": "unavailable",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:55a61359a41fdb81899aee94d76889ef",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:b3e7af6e58f962533ea58a9e6c4ad984",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:8e39354c34a94301c293e6cd62eb4d42",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:877cb34bd3c31ea0c3a62b26bb47def8",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:cb26a0337dfea14059dea1b36dc56489",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:21c3f0dd64d88b3b6eceb3bd1fea3dd8",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:cace8d5d8d5ca18d1ee21f470aa7b709",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         }
       ],
@@ -196,7 +223,8 @@
         "complete_within_curated_scope": true,
         "next_cursor": null,
         "legal_unique_queries": 10,
-        "legal_executed_queries": 3,
+        "legal_executed_queries": 1,
+        "legal_provider_failed": true,
         "legal_retrieval_complete": false,
         "legal_audit_complete": false
       },
@@ -212,51 +240,61 @@
         {
           "search_id": "legal-search:107b95dda80772e3c2b62fda793f12f1",
           "status": "unavailable",
+          "attempted": true,
           "result_count": 0
         },
         {
           "search_id": "legal-search:adbf17d591bd7857e842661cd6c8aba0",
           "status": "unavailable",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:cc48926731e46efe1a625085dc5af2a3",
           "status": "unavailable",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:f18790eeb33813317a2e14d7af41020f",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:5521068df8d77f1911fc9bb8144d7288",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:6458615d2fb8711100f296c958e3f552",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:98b3ee9a0f428ed4288bebf94cdeabe1",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:9991255377e392f637609509824bd817",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:1b9f122ed5c60653d57113f1772ac320",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:4bccb0ce9b6a0f5f09b60e1a6971d199",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         }
       ],
@@ -283,7 +321,8 @@
         "complete_within_curated_scope": true,
         "next_cursor": null,
         "legal_unique_queries": 4,
-        "legal_executed_queries": 3,
+        "legal_executed_queries": 1,
+        "legal_provider_failed": true,
         "legal_retrieval_complete": false,
         "legal_audit_complete": false
       },
@@ -299,21 +338,25 @@
         {
           "search_id": "legal-search:55a8c187986e4501a9f03c476e75d604",
           "status": "unavailable",
+          "attempted": true,
           "result_count": 0
         },
         {
           "search_id": "legal-search:86ec1a282137266be6ff26b00da1f622",
           "status": "unavailable",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:bbcca1774a366b01bccec5be079801a2",
           "status": "unavailable",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:cace19bf702652d620c463333b9558e3",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         }
       ],
@@ -339,7 +382,8 @@
         "complete_within_curated_scope": true,
         "next_cursor": null,
         "legal_unique_queries": 4,
-        "legal_executed_queries": 3,
+        "legal_executed_queries": 1,
+        "legal_provider_failed": true,
         "legal_retrieval_complete": false,
         "legal_audit_complete": false
       },
@@ -355,21 +399,25 @@
         {
           "search_id": "legal-search:69b6b0c233c8ac9125d1470da4ec9d0e",
           "status": "unavailable",
+          "attempted": true,
           "result_count": 0
         },
         {
           "search_id": "legal-search:71a4348ae02c7d6449e6e30f13a7f87a",
           "status": "unavailable",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:4cdd118e4263b2e985675b23450fa173",
           "status": "unavailable",
+          "attempted": false,
           "result_count": 0
         },
         {
           "search_id": "legal-search:b377bce1e0ca92511eb84fac952bdbc9",
           "status": "budget_exhausted",
+          "attempted": false,
           "result_count": 0
         }
       ],

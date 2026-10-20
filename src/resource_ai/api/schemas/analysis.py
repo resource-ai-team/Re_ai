@@ -31,6 +31,7 @@ class LegalSearch(StrictModel):
     search_id: str
     query: str
     status: Literal["retrieved", "no_hits", "unavailable", "budget_exhausted"]
+    attempted: bool
     results: list[dict[str, Any]] = Field(default_factory=list)
     applicability: Literal["not_audited"] = "not_audited"
 

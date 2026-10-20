@@ -7,6 +7,7 @@ from pathlib import Path
 
 from fastapi.testclient import TestClient
 
+from resource_ai.core.config import get_settings
 from resource_ai.main import app
 
 
@@ -58,7 +59,12 @@ def evaluate():
         )
         check(f"{material}: no legal audit claimed", not coverage["legal_audit_complete"])
         searches = [
-            {"search_id": s["search_id"], "status": s["status"], "result_count": len(s["results"])}
+            {
+                "search_id": s["search_id"],
+                "status": s["status"],
+                "attempted": s["attempted"],
+                "result_count": len(s["results"]),
+            }
             for s in data["legal_searches"]
         ]
         cases.append(
@@ -86,6 +92,11 @@ def evaluate():
         check("synthetic: no final recommendation", not arithmetic["final_recommendations"])
     return {
         "evaluated_at": datetime.now(UTC).isoformat(),
+        "local_retrieval_config": {
+            "embedding_provider": get_settings().embedding_provider,
+            "embedding_model": get_settings().embedding_model,
+            "database_connect_timeout_seconds": get_settings().database_connect_timeout_seconds,
+        },
         "scope": "KG/API wiring and arithmetic regression; not expert/permit/recommendation accuracy",
         "cases": cases,
         "arithmetic_input_is_entirely_synthetic": True,

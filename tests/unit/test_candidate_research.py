@@ -148,6 +148,16 @@ def test_budget_never_hides_tasks_or_claims_complete_retrieval():
     assert not result.coverage["legal_retrieval_complete"]
 
 
+def test_unavailable_provider_is_not_retried_for_every_query_in_one_run():
+    repo = FakeRepository("error")
+    result = run(repository=repo)
+    assert len(repo.calls) == result.coverage["legal_executed_queries"] == 1
+    assert result.coverage["legal_provider_failed"] is True
+    assert sum(s.attempted for s in result.legal_searches) == 1
+    assert len(result.legal_searches) > 1
+    assert {s.status for s in result.legal_searches} == {"unavailable"}
+
+
 def test_page_limit_keeps_cursor_and_incomplete_scope():
     result = run(max_pages=1)
     assert len(result.candidates) == 1

@@ -158,14 +158,22 @@ class CandidateResearchService:
                         }
                     )
 
-        searches = []
+        searches, executed, provider_failed = [], 0, False
         for index, (sid, query) in enumerate(queries.items()):
-            status, results = (
-                retrieve(self.repository, query, request.legal_top_k)
-                if index < request.max_legal_queries
-                else ("budget_exhausted", [])
+            attempted = index < request.max_legal_queries and not provider_failed
+            if index >= request.max_legal_queries:
+                status, results = "budget_exhausted", []
+            elif provider_failed:
+                status, results = "unavailable", []
+            else:
+                executed += 1
+                status, results = retrieve(self.repository, query, request.legal_top_k)
+                provider_failed = status == "unavailable"
+            searches.append(
+                LegalSearch(
+                    search_id=sid, query=query, status=status, results=results, attempted=attempted
+                )
             )
-            searches.append(LegalSearch(search_id=sid, query=query, status=status, results=results))
         search_states = {s.search_id: s for s in searches}
         for candidate in candidates:
             for task in candidate.legal_tasks:
@@ -193,7 +201,8 @@ class CandidateResearchService:
                 "complete_within_curated_scope": cursor is None and fully_enumerated,
                 "next_cursor": cursor,
                 "legal_unique_queries": len(searches),
-                "legal_executed_queries": min(len(searches), request.max_legal_queries),
+                "legal_executed_queries": executed,
+                "legal_provider_failed": provider_failed,
                 "legal_retrieval_complete": bool(searches)
                 and all(s.status == "retrieved" for s in searches),
                 "legal_audit_complete": False,

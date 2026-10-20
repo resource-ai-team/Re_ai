@@ -21,7 +21,9 @@ def get_repository() -> LegalRepository:
         settings.embedding_dimension,
     )
     return LegalRepository(
-        Database(settings.database_url),
+        Database(
+            settings.database_url, connect_timeout_seconds=settings.database_connect_timeout_seconds
+        ),
         embeddings,
         candidate_multiplier=settings.hybrid_candidate_multiplier,
         rrf_k=settings.hybrid_rrf_k,

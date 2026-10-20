@@ -22,6 +22,7 @@
 - **국내 시설을 찾는 방법·확인된 정보와 미확인 조건**: [docs/kg-facility-matching.md](docs/kg-facility-matching.md)
 - **시설 조건 대조·위험 표시·PP 시나리오**: [docs/kg-facility-conditions.md](docs/kg-facility-conditions.md)
 - **후보별 법령 조사·수치 계산과 남은 일**: [docs/candidate-analysis.md](docs/candidate-analysis.md)
+- **새 진행보드 수정 원고(아직 Notion 미반영)**: [docs/progress-board-update.md](docs/progress-board-update.md)
 
 ## 지금 어디까지 되나요?
 
@@ -202,7 +203,11 @@ GitHub Actions는 PR과 `develop`·`main` push에서 린트, 포맷 검사와 �
 실제 외부 API·Azure 키 없이 검증하도록 단위 테스트에서는 mock과 테스트 임베딩을
 사용합니다.
 
-2026-10-21: 실제 Neo4j를 사용하는 전체 테스트 **362개 통과**. 전국 명부 시설 검색 검사
+2026-10-21: 실제 Neo4j를 사용하는 전체 로컬 테스트 **412개 + 하위 검사 24개 통과**.
+실제 PostgreSQL까지 연결하는 추가 1개는 로컬 DB 미준비로 건너뛰며, CI에서 두 DB를 함께 실행해 검사합니다.
+신규 분석 API의 5소재 KG 연결·가상 산술 검사는 **28/28** 통과했습니다.
+실제 로컬 법령 검색은 DB 연결 실패를 `unavailable`로 기록한 것이며 검색 성공·정확도 검증과 구분합니다.
+전국 명부 시설 검색 검사
 **207/207** 통과. 기존 경로 API **142/142**, 조회 검사 **82/82·50/50** 결과도 유지합니다.
 공개 조건 대조는 가상 입력 16개와 PP 경로 흐름으로 **120/120** 검사 통과.
 추천 정확도·현장 인수 검증과 구분한 [검증 범위](docs/kg-facility-conditions.md)를 참고하세요.
