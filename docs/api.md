@@ -12,7 +12,19 @@
 점수와 `retrieval_method`가 포함됩니다. `retrieval_method`는 벡터·키워드 후보 포함 여부와
 재정렬 적용을 표시합니다. 검색 실패 시 `503`을 반환합니다.
 
-## 지식그래프
+## 법률 그래프 검증
+
+- `GET /legal-graph/status`: 별도 법률 Neo4j 세대·원문 수·모델 보강 여부. `analysis_ready=false`면 구조만 적재된 상태.
+- `POST /legal-graph/analyze`: 특징·커뮤니티·쟁점의 세 검색 → Auditor Check/Decide → 검증 근거 요약.
+  입력은 `query`, `facts`, `top_k`, `max_model_calls`, `max_articles`. 모델·그래프·임베딩 설정은 서버에서만 받음.
+- `POST /analysis/research`의 선택 필드 `legal_graph`: 각 공정 후보를 가설로 전달해 위 법규 검증을 실행.
+  전체 후보가 모델 호출 한도를 공유하고 후보별 `legal_graph_review`에 결과·미확인·실패를 표시.
+  생략하면 기존 Hybrid 검색 유지. 실제 생성 모델은 아직 연결하지 않았음.
+- 모델 미연결·외부 전송 비활성·그래프 미적재·구조 전용 그래프·무결성 오류는 `503`과 명시적 `detail.code`.
+  항목 검증 중 자료 부족·모델 오류는 `unknown`, 최종 결과는 `REVIEW`. 허가·인수 승인이 아님.
+- [입출력 예시·논문 반영 범위](legal-hierargraph.md). 이 API는 내부용이며 Re_server 검토 후 연동.
+
+## 공정·시설 지식그래프
 
 - `GET /kg/ontology`: 클래스·관계·추론 금지 조건. Neo4j 없이 확인 가능.
 - `GET /kg/planning-coverage`: 활성 Neo4j 공정 참조 자료의 수·끊긴 가지·도달 불가 산출물·시설 미연결·출처 메타데이터.

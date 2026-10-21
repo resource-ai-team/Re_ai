@@ -10,6 +10,7 @@
 | [확정 파이프라인 v2](pipeline-baseline.md) | 전체 서비스의 목표 단계·책임·Critic·부분 재실행 원칙. 모든 단계의 구현 완료를 뜻하지 않음 |
 | [코드와 데이터 구조](architecture.md) | 지금 실행되는 기능·모듈·DB·서비스 호출 경계 |
 | [후보별 조사·수치 비교](candidate-analysis.md) | 연결된 분석 API 두 개의 입력·출력·현재 한계 |
+| [법률 그래프·Auditor](legal-hierargraph.md) | 논문 구조·국내 적용 차이·세 검색·Check/Decide·실제 구조 적재와 가상 모델 테스트 구분 |
 | [진행보드 반영 결과](progress-board-update.md) | Notion 기존 11개 수정·신규 3개·완료 3개 보존 및 카드별 남은 일 |
 
 ## KG를 개발하거나 연결할 때
