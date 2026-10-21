@@ -20,6 +20,16 @@ from resource_ai.knowledge_graph.query import GraphQuery
 router = APIRouter(prefix="/kg", tags=["knowledge-graph"])
 
 
+@router.get("/planning-coverage")
+def planning_coverage(query: Annotated[GraphQuery, Depends(get_graph_query)]):
+    try:
+        return query.planning_coverage()
+    except GraphStoreError as error:
+        raise HTTPException(
+            status_code=503, detail={"code": error.code, "message": str(error)}
+        ) from None
+
+
 @router.post("/facility-assessment", response_model=FacilityAssessmentResponse)
 def facility_assessment(
     request: FacilityAssessmentRequest, query: Annotated[GraphQuery, Depends(get_graph_query)]

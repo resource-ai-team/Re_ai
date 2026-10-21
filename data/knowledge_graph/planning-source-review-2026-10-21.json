@@ -1,0 +1,43 @@
+{
+  "checked_date": "2026-10-21",
+  "sources": [
+    {
+      "key": "hansol-process",
+      "url": "https://www.hansolpapertech.com/intro/present.jsp",
+      "publisher": "한솔페이퍼텍",
+      "locator": "생산공정 01~10 및 초지기 현황·본사 주소",
+      "summary": "공개된 제지 생산 순서를 다섯 묶음으로 표현한다. 특정 고지 로트 인수·허가·물질수지·현재 가동은 확인하지 않는다.",
+      "checked_date": "2026-10-21",
+      "source_date": null,
+      "sha256": "5323906a6b548c6252ed40ae949ddaedd6487348a13b6994a09572c39da5fcd6",
+      "acquisition": "official-primary-source-acquired-and-reviewed",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "raw_in_git": false,
+      "summary_authorship": "team-authored-factual-paraphrase"
+    },
+    {
+      "key": "recyclass-pp-design",
+      "url": "https://recyclass.eu/wp-content/uploads/2025/10/coloured-pp-containers-and-tubes.pdf",
+      "publisher": "RecyClass",
+      "locator": "p.1 MAIN BODY COLOURS·ADDITIVES·DECORATION; Last update July 2025",
+      "summary": "유럽의 유색 PP 포장재 재활용성 기술 지침이다. 색소의 광학선별 검출, 충전제의 밀도 영향, 다층재·라벨 간섭 확인에 참고한다. 국내 법규나 산업 스크랩 수탁 규격이 아니다.",
+      "checked_date": "2026-10-21",
+      "source_date": null,
+      "sha256": "63ceca6672b2e824827f1a51ba9a135ef4b61c58c4ffdf31aa38c6195cccdee5",
+      "acquisition": "official-primary-source-acquired-and-reviewed",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "raw_in_git": false,
+      "summary_authorship": "team-authored-factual-paraphrase"
+    }
+  ],
+  "deferred": [
+    {
+      "url": "https://www.keco.or.kr/group06/lay1/S301T793C908/contents.do",
+      "reason": "영농폐비닐 전용. 공장 필름과 구분할 입력 범위와 사업장별 공정 근거를 먼저 확보; 운영 KG 미적재"
+    }
+  ]
+}

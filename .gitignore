@@ -11,4 +11,5 @@ postgres_data/
 models/
 data/official/
 /data/local/facilities/
+/data/local/source-review/
 

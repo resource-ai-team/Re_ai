@@ -14,6 +14,7 @@ from resource_ai.api.schemas.facility_assessment import (
 from resource_ai.api.schemas.kg_planning import PathPlanningRequest
 from resource_ai.knowledge_graph import graph_store as store
 from resource_ai.knowledge_graph import ontology as graph
+from resource_ai.knowledge_graph.material_scope import material_scope
 from resource_ai.knowledge_graph.planning import ProcessPlanner, load_reference, normalize_form
 from resource_ai.knowledge_graph.planning_reference import node_id
 from resource_ai.knowledge_graph.pool import cursor_error, unknown
@@ -67,6 +68,19 @@ def assess_capability(value, capability, lot, *, projected=False):
 
     material = None if unknown(lot.material) else resolve_material(lot.material)
     match = material == state.material
+    grade = material_scope(lot.material, material)
+    if state.material == "pe":
+        add(
+            "material_subtype",
+            "PE 세부 수지·등급",
+            "needs_verification",
+            grade["supplied_subtype"],
+            None,
+            scope="family_level_reference_not_grade_specific_intake",
+            sources=transition.source_ids,
+            reason="PE 소재군 일치는 HDPE·LDPE·LLDPE별 설비·규격 적합성을 입증하지 않음",
+            action="수지 식별·혼합 여부와 해당 사업장의 세부 수지·등급 수탁 규격 확인",
+        )
     add(
         "transition_material",
         "선택한 공정의 소재",

@@ -42,7 +42,18 @@ CASES = [
     ),
     ({"material": "알루미늄", "input_form": "can"}, [("al-can-sheet",)]),
     ({"material": "알루미늄", "input_form": "chips"}, []),
-    ({"material": "종이", "input_form": "cardboard"}, [("paper-board",)]),
+    (
+        {"material": "종이", "input_form": "cardboard"},
+        [
+            (
+                "paper-pulping",
+                "paper-stock-preparation",
+                "paper-forming",
+                "paper-drying",
+                "paper-board",
+            )
+        ],
+    ),
     ({"material": "PP", "input_form": "scrap", "goal_state": "pp-shredded"}, [("pp-prepare",)]),
 ]
 

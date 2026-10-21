@@ -15,6 +15,9 @@
 ## 지식그래프
 
 - `GET /kg/ontology`: 클래스·관계·추론 금지 조건. Neo4j 없이 확인 가능.
+- `GET /kg/planning-coverage`: 활성 Neo4j 공정 참조 자료의 수·끊긴 가지·도달 불가 산출물·시설 미연결·출처 메타데이터.
+  계약 `kg-planning-coverage-v1`. 등록 그래프 범위의 연결 검사이며 실행 가능성·적법성 판정이 아님.
+  실제 Neo4j 조회·무결성 대조가 필요하며 장애·미적재·불일치는 `503`. [필드 의미](kg-evidence-upgrade.md).
 - `POST /kg/facility-assessment`: 한 `capability_key`와 로트 조건을 공개 프로필에 대조.
 - `POST /kg/assessed-plans`: 공정 경로 생성과 단계별 조건 대조를 연결. 원래 로트의 값을
   후속 단계의 실측값으로 복사하지 않음. 위험은 공정·인계 구간 ID에 연결.

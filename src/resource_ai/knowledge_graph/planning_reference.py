@@ -1,7 +1,8 @@
 """Typed, sourced material-state transitions, never automatic W2RKG chain inference."""
 
 import json
-from typing import Literal
+from datetime import date
+from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -14,7 +15,14 @@ class Record(BaseModel):
     key: str = Field(pattern=r"^[a-z][a-z0-9-]{0,100}$")
 
 
+SupportGroup = Literal["states", "transitions", "organisations", "facilities", "capabilities"]
+SupportKey = Annotated[str, Field(pattern=r"^[a-z][a-z0-9-]{0,100}$")]
+SupportTargets = Annotated[list[SupportKey], Field(min_length=1)]
+
+
 class SourceRecord(Record):
+    """Curator-declared linkage scope, not an audit of the source's contents."""
+
     url: str = Field(pattern=r"^https://")
     publisher: str = Field(min_length=1)
     locator: str = Field(min_length=1)
@@ -26,6 +34,19 @@ class SourceRecord(Record):
     digest_basis: Literal["downloaded-original-bytes", "curator-record-not-original-page"]
     model_transfer_allowed: bool
     export_scope: Literal["team-authored-factual-summary-only; raw-page-and-assets-excluded"]
+    supported_records: dict[SupportGroup, SupportTargets] = Field(
+        min_length=1,
+        description="Records this source was curated to support; not independent source verification",
+    )
+
+    @model_validator(mode="after")
+    def unique_support_targets(self):
+        date.fromisoformat(self.checked_date)
+        if self.source_date is not None:
+            date.fromisoformat(self.source_date)
+        if any(len(keys) != len(set(keys)) for keys in self.supported_records.values()):
+            raise ValueError("Duplicate source support target")
+        return self
 
 
 class SourcedRecord(Record):
@@ -130,6 +151,10 @@ class PlanningReference(BaseModel):
             if len(mappings[name]) != len(rows):
                 raise ValueError("Duplicate planning reference key")
         sources, states = mappings["sources"], mappings["states"]
+        for source in self.sources:
+            for group, keys in source.supported_records.items():
+                if not set(keys) <= mappings[group].keys():
+                    raise ValueError("Unlinked source support target")
         for name in GROUPS:
             if name == "sources":
                 continue
@@ -139,6 +164,11 @@ class PlanningReference(BaseModel):
                     or not set(row.source_ids) <= sources.keys()
                 ):
                     raise ValueError("Unlinked planning source")
+                if any(
+                    row.key not in sources[sid].supported_records.get(name, [])
+                    for sid in row.source_ids
+                ):
+                    raise ValueError("Planning source outside declared support scope")
         for state in self.states:
             if state.material not in graph.ontology()["materials"]:
                 raise ValueError("Unknown planning material")

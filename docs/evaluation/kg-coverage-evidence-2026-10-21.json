@@ -1,0 +1,239 @@
+{
+  "contract_version": "kg-planning-coverage-v1",
+  "backend": "neo4j",
+  "counts": {
+    "sources": 9,
+    "states": 23,
+    "transitions": 18,
+    "organisations": 5,
+    "facilities": 7,
+    "capabilities": 18
+  },
+  "materials": [
+    {
+      "material": "aluminium",
+      "requested_goal_state": null,
+      "entry_state_keys": [
+        "al-used-can"
+      ],
+      "registered_states": 2,
+      "registered_transitions": 1,
+      "reachable_state_keys": [
+        "al-sheet",
+        "al-used-can"
+      ],
+      "unreachable_transition_keys": [],
+      "unreachable_output_state_keys": [],
+      "non_output_dead_end_state_keys": [],
+      "reachable_states_without_output_path": [],
+      "transitions_without_facility_keys": [],
+      "facility_bindings_by_basis": {
+        "published_site_process": 1
+      },
+      "scope": "registered_curated_graph_only_not_all_real_world_options",
+      "not_a_feasibility_decision": true
+    },
+    {
+      "material": "paper",
+      "requested_goal_state": null,
+      "entry_state_keys": [
+        "paper-recovered"
+      ],
+      "registered_states": 6,
+      "registered_transitions": 5,
+      "reachable_state_keys": [
+        "paper-containerboard",
+        "paper-dried-web",
+        "paper-pulp",
+        "paper-recovered",
+        "paper-stock",
+        "paper-wet-web"
+      ],
+      "unreachable_transition_keys": [],
+      "unreachable_output_state_keys": [],
+      "non_output_dead_end_state_keys": [],
+      "reachable_states_without_output_path": [],
+      "transitions_without_facility_keys": [],
+      "facility_bindings_by_basis": {
+        "published_site_process": 5
+      },
+      "scope": "registered_curated_graph_only_not_all_real_world_options",
+      "not_a_feasibility_decision": true
+    },
+    {
+      "material": "pe",
+      "requested_goal_state": null,
+      "entry_state_keys": [
+        "pe-pellet",
+        "pe-scrap",
+        "pe-shredded"
+      ],
+      "registered_states": 5,
+      "registered_transitions": 4,
+      "reachable_state_keys": [
+        "pe-compound",
+        "pe-pellet",
+        "pe-scrap",
+        "pe-shredded",
+        "pe-washed"
+      ],
+      "unreachable_transition_keys": [],
+      "unreachable_output_state_keys": [],
+      "non_output_dead_end_state_keys": [],
+      "reachable_states_without_output_path": [],
+      "transitions_without_facility_keys": [],
+      "facility_bindings_by_basis": {
+        "published_site_process": 1,
+        "site_role_hypothesis": 3
+      },
+      "scope": "registered_curated_graph_only_not_all_real_world_options",
+      "not_a_feasibility_decision": true
+    },
+    {
+      "material": "pet",
+      "requested_goal_state": null,
+      "entry_state_keys": [
+        "pet-bottle",
+        "pet-flake"
+      ],
+      "registered_states": 5,
+      "registered_transitions": 4,
+      "reachable_state_keys": [
+        "pet-bottle",
+        "pet-flake",
+        "pet-pellet",
+        "pet-sorted",
+        "pet-washed"
+      ],
+      "unreachable_transition_keys": [],
+      "unreachable_output_state_keys": [],
+      "non_output_dead_end_state_keys": [],
+      "reachable_states_without_output_path": [],
+      "transitions_without_facility_keys": [],
+      "facility_bindings_by_basis": {
+        "published_site_process": 3,
+        "site_role_hypothesis": 1
+      },
+      "scope": "registered_curated_graph_only_not_all_real_world_options",
+      "not_a_feasibility_decision": true
+    },
+    {
+      "material": "pp",
+      "requested_goal_state": null,
+      "entry_state_keys": [
+        "pp-pellet",
+        "pp-scrap",
+        "pp-shredded"
+      ],
+      "registered_states": 5,
+      "registered_transitions": 4,
+      "reachable_state_keys": [
+        "pp-compound",
+        "pp-pellet",
+        "pp-scrap",
+        "pp-shredded",
+        "pp-washed"
+      ],
+      "unreachable_transition_keys": [],
+      "unreachable_output_state_keys": [],
+      "non_output_dead_end_state_keys": [],
+      "reachable_states_without_output_path": [],
+      "transitions_without_facility_keys": [],
+      "facility_bindings_by_basis": {
+        "published_site_process": 1,
+        "site_role_hypothesis": 3
+      },
+      "scope": "registered_curated_graph_only_not_all_real_world_options",
+      "not_a_feasibility_decision": true
+    }
+  ],
+  "facilities_without_transition_keys": [
+    "bgf-incheon"
+  ],
+  "source_support_scope": "curator_declared_record_links_not_independent_content_audit",
+  "sources": [
+    {
+      "source_key": "bgf-recycling",
+      "checked_date": "2026-10-21",
+      "source_date": null,
+      "sha256": "329616b5f025a1e6728b85e94a95ba485a174514a59c3b8c9d90583c7ec7b1cc",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true
+    },
+    {
+      "source_key": "hansol-paper",
+      "checked_date": "2026-10-21",
+      "source_date": null,
+      "sha256": "ee4fc8a81b837d5577292a9a888cf05b6df8d9c2709ea956d83892802aff8596",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true
+    },
+    {
+      "source_key": "hansol-process",
+      "checked_date": "2026-10-21",
+      "source_date": null,
+      "sha256": "5323906a6b548c6252ed40ae949ddaedd6487348a13b6994a09572c39da5fcd6",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true
+    },
+    {
+      "source_key": "jungang-materials",
+      "checked_date": "2026-10-21",
+      "source_date": null,
+      "sha256": "52946fba52a22c2bab1f648dceb827f28f85d522030550178319433008cec943",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true
+    },
+    {
+      "source_key": "jungang-process",
+      "checked_date": "2026-10-21",
+      "source_date": null,
+      "sha256": "8c64d9df4e4b360e708119ff8c3032ac880108e5c5be2334baf5ed794fc0d175",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true
+    },
+    {
+      "source_key": "novelis-can-case",
+      "checked_date": "2026-10-21",
+      "source_date": "2021-06-20",
+      "sha256": "582fc189c36426976805f82676e2b31dcce15404930efc510cd80fc2a160c4a2",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true
+    },
+    {
+      "source_key": "novelis-yeongju",
+      "checked_date": "2026-10-20",
+      "source_date": null,
+      "sha256": "621ba57fbec9dc8a67f9c741bb6ce85de7dbf7ae69fc2dbb5d55fea44a04b560",
+      "digest_basis": "curator-record-not-original-page",
+      "model_transfer_allowed": true
+    },
+    {
+      "source_key": "recyclass-pp-design",
+      "checked_date": "2026-10-21",
+      "source_date": null,
+      "sha256": "63ceca6672b2e824827f1a51ba9a135ef4b61c58c4ffdf31aa38c6195cccdee5",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true
+    },
+    {
+      "source_key": "samyang-pet",
+      "checked_date": "2026-10-21",
+      "source_date": null,
+      "sha256": "9f7cd399b4c1888bbe5047f451833b576618eb48266b82eeee39ae646ee635c0",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true
+    }
+  ],
+  "graph_trace": {
+    "generation": "1f439d6e6a8140f6a9b4a1787802f248",
+    "graph_sha256": "13593292b5841b3188b04cf73ef4fa6f3a0e9c6ac9ed073a29af51d8a02e9e98",
+    "reference_sha256": "d89026e028f4bf9ce41b0048a7536eaae42b5e02239f82f94a903642de3fd9e0",
+    "reference_version": "planning-reference-v2"
+  },
+  "limitations": [
+    "등록한 자료의 연결 공백 진단입니다. 실제 모든 공정·시설의 완전성을 뜻하지 않습니다.",
+    "출처 지원 범위는 검수자가 선언한 연결이며 원문 진위·현행 허가·실제 인수를 검증하지 않습니다."
+  ],
+  "dispatch_approved": false
+}

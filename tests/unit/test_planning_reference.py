@@ -95,6 +95,76 @@ def test_reference_rejects_duplicate_keys_within_each_record_type(payload, group
         planning.PlanningReference.model_validate(payload)
 
 
+@pytest.mark.parametrize(
+    ("group", "key"),
+    [
+        ("states", "pet-bottle"),
+        ("transitions", "pet-prepare"),
+        ("organisations", "samyang-ecotech"),
+        ("facilities", "samyang-sihwa"),
+        ("capabilities", "samyang-sihwa--pet-prepare"),
+    ],
+)
+def test_existing_source_cannot_be_attached_outside_its_declared_record_scope(payload, group, key):
+    record(payload, group, key)["source_ids"] = ["novelis-yeongju"]
+    with pytest.raises(ValidationError, match="Planning source outside declared support scope"):
+        planning.PlanningReference.model_validate(payload)
+
+
+def test_unrelated_source_cannot_rebind_both_capability_and_input_profile(payload):
+    capability = record(payload, "capabilities", "samyang-sihwa--pet-prepare")
+    capability["source_ids"] = ["novelis-yeongju"]
+    capability["input_profile"]["source_ids"] = ["novelis-yeongju"]
+    with pytest.raises(ValidationError, match="Planning source outside declared support scope"):
+        planning.PlanningReference.model_validate(payload)
+
+
+def test_support_targets_must_exist_in_the_declared_record_group(payload):
+    source = record(payload, "sources", "samyang-pet")
+    source["supported_records"]["facilities"].append("pet-bottle")
+    # pet-bottle is a real state key, but is not a facility key.
+    with pytest.raises(ValidationError, match="Unlinked source support target"):
+        planning.PlanningReference.model_validate(payload)
+
+
+def test_source_support_targets_cannot_be_duplicated(payload):
+    source = record(payload, "sources", "samyang-pet")
+    source["supported_records"]["facilities"].append("samyang-sihwa")
+    with pytest.raises(ValidationError, match="Duplicate source support target"):
+        planning.PlanningReference.model_validate(payload)
+
+
+@pytest.mark.parametrize("invalid_scope", [{}, {"facilities": []}, {"untyped": ["samyang-sihwa"]}])
+def test_source_support_scope_cannot_be_empty_or_use_untyped_record_groups(payload, invalid_scope):
+    record(payload, "sources", "samyang-pet")["supported_records"] = invalid_scope
+    with pytest.raises(ValidationError):
+        planning.PlanningReference.model_validate(payload)
+
+
+def test_separate_capability_evidence_need_not_also_support_facility_and_transition(payload):
+    # A synthetic note supports exactly one capability. It is not a real source claim.
+    capability = record(payload, "capabilities", "samyang-sihwa--pet-prepare")
+    source = {
+        **record(payload, "sources", "samyang-pet"),
+        "key": "synthetic-capability-note",
+        "url": "https://example.invalid/synthetic-capability-note",
+        "publisher": "Synthetic fixture",
+        "locator": "Fixture only",
+        "summary": "Synthetic capability-specific source, not an operating claim.",
+        "sha256": "0" * 64,
+        "acquisition": "synthetic-local-test-fixture",
+        "digest_basis": "curator-record-not-original-page",
+        "supported_records": {"capabilities": [capability["key"]]},
+    }
+    payload["sources"].append(source)
+    capability["source_ids"].append(source["key"])
+    capability["input_profile"]["source_ids"].append(source["key"])
+    accepted = planning.PlanningReference.model_validate(payload)
+    accepted_source = next(s for s in accepted.sources if s.key == source["key"])
+    assert accepted_source.supported_records == {"capabilities": [capability["key"]]}
+    assert all(f.current_acceptance is None for f in accepted.facilities)
+
+
 @pytest.mark.parametrize("output_state", ["pp-shredded", "pet-bottle"])
 def test_transition_cannot_change_material_or_loop_to_its_input(payload, output_state):
     record(payload, "transitions", "pet-prepare")["output_state"] = output_state
@@ -197,20 +267,21 @@ def test_curated_stage_imports_the_complete_planning_corpus_with_source_links(st
         "WHERE json_extract(properties,'$.planning_key') IS NOT NULL"
     ).fetchall()
     assert Counter(row[1] for row in rows) == {
-        "Source": 7,
-        "Evidence": 7,
-        "MaterialState": 19,
-        "ProcessTransition": 14,
+        "Source": 9,
+        "Evidence": 9,
+        "MaterialState": 23,
+        "ProcessTransition": 18,
         "Organisation": 5,
         "Facility": 7,
-        "FacilityCapability": 14,
+        "FacilityCapability": 18,
     }
     planning_edges = stage.execute(
         "SELECT e.kind,e.properties FROM kg_edges e JOIN kg_nodes n ON n.id=e.source_id "
         "WHERE json_extract(n.properties,'$.planning_key') IS NOT NULL"
     ).fetchall()
-    assert len(planning_edges) == 172
-    assert Counter(kind for kind, _ in planning_edges)["FROM_SOURCE"] == 7
+    expected_edges = planning.compile_reference()[3]
+    assert len(planning_edges) == len(expected_edges)
+    assert Counter(kind for kind, _ in planning_edges)["FROM_SOURCE"] == 9
     assert all(json.loads(props)["dispatch_approved"] is False for _, props in planning_edges)
     assert len({json.loads(row[2])["planning_bundle_sha256"] for row in rows}) == 1
     planning.audit_reference(stage)
