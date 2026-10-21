@@ -11,3 +11,6 @@ postgres_data/
 models/
 data/official/
 
+# Generated graph explorer snapshots and local process logs.
+/scripts/kg_explorer/.data/
+
