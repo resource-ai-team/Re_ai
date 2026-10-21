@@ -13,6 +13,7 @@
 - 데이터 관리: [data/README.md](data/README.md)
 - API 설명: [docs/api.md](docs/api.md)
 - KG 실행·입출력·남은 작업: [docs/knowledge-graph.md](docs/knowledge-graph.md)
+- KG 전체 구조를 보는 로컬 개발 도구: [scripts/kg_explorer](scripts/kg_explorer/README.md)
 
 ## 지금 어디까지 되나요?
 

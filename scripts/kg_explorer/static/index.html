@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Re:Source · Knowledge Graph Explorer</title>
+    <meta
+      name="description"
+      content="실제 Neo4j 전체 그래프를 확대·이동하고 공정과 근거를 탐색하는 로컬 캔버스"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <a class="brand" href="/" aria-label="Re:Source 그래프 홈"
+          ><span class="brand-mark">r<span>↗</span></span
+          ><span
+            >Re:Source<span class="brand-sub">KNOWLEDGE EXPLORER</span></span
+          ></a
+        >
+        <div class="section-label">
+          WORKSPACE <span class="live-dot"></span>
+        </div>
+        <div class="workspace">
+          <span class="workspace-icon">◈</span>
+          <div>폐자원 지식그래프<small>Neo4j · 읽기 전용 스냅샷</small></div>
+        </div>
+        <label class="search-label" for="search">노드 검색</label>
+        <div class="search-field">
+          <span>⌕</span
+          ><input
+            id="search"
+            placeholder="PP, PET, 공정명, DOI…"
+            autocomplete="off"
+          /><kbd>/</kbd>
+        </div>
+        <div id="search-results" class="search-results" hidden></div>
+        <div class="section-label">EXPLORE</div>
+        <div class="view-switch" role="group" aria-label="그래프 보기">
+          <button
+            id="view-schema"
+            class="view-button active"
+            data-mode="schema"
+          >
+            <span>⌘</span>구조 개요<span class="nav-meta">유형</span>
+          </button>
+          <button id="view-all" class="view-button" data-mode="all">
+            <span>⠿</span>전체 노드<span class="nav-meta" id="all-count"
+              >—</span
+            >
+          </button>
+          <button id="view-local" class="view-button" data-mode="local">
+            <span>◎</span>주변 연결<span class="nav-meta" id="local-count"
+              >선택</span
+            >
+          </button>
+        </div>
+        <div class="section-label">MATERIALS <span>빠른 탐색</span></div>
+        <div id="materials" class="materials"></div>
+        <div class="filter-heading">
+          <div class="section-label">NODE TYPES</div>
+          <button id="types-reset" class="text-button">전체 표시</button>
+        </div>
+        <div id="kind-filters" class="kind-filters"></div>
+        <details class="relation-section">
+          <summary>관계 유형 <span id="relation-count">14</span></summary>
+          <div id="relation-filters"></div>
+        </details>
+        <div class="sidebar-bottom">
+          <span class="small-logo">◉</span
+          ><span>실제 적재 데이터<small>출처와 관계를 그대로 보존</small></span
+          ><button id="info-button" aria-label="데이터 안내">ⓘ</button>
+        </div>
+      </aside>
+      <main>
+        <header class="topbar">
+          <div class="breadcrumb">
+            Re_ai <span>/</span> 지식그래프 <span>/</span>
+            <strong id="breadcrumb-mode">구조 개요</strong>
+          </div>
+          <div class="top-actions">
+            <span class="local-badge">● LOCAL</span
+            ><button id="download-button" class="secondary-button">
+              ↓ 데이터</button
+            ><button id="export-button" class="secondary-button">
+              ↗ 이미지 저장
+            </button>
+          </div>
+        </header>
+        <div class="titlebar">
+          <div>
+            <div class="eyebrow">CONNECTED KNOWLEDGE</div>
+            <h1>
+              공정과 근거 사이를 탐색하세요<span class="title-dot">.</span>
+            </h1>
+            <p>소재에서 문헌·공정·리스크·출처까지, 하나의 그래프에서.</p>
+          </div>
+          <div class="snapshot-chip">
+            <span class="live-dot"></span>
+            <div id="snapshot-date">
+              데이터 불러오는 중<small id="generation">활성 그래프 확인</small>
+            </div>
+          </div>
+        </div>
+        <section class="canvas-area" aria-label="지식그래프 캔버스">
+          <div class="canvas-top">
+            <div class="canvas-tabs">
+              <button
+                id="tab-schema"
+                class="canvas-tab active"
+                data-mode="schema"
+              >
+                유형별 구조</button
+              ><button id="tab-all" class="canvas-tab" data-mode="all">
+                전체 그래프</button
+              ><button id="tab-local" class="canvas-tab" data-mode="local">
+                주변 탐색
+              </button>
+            </div>
+            <span class="renderer-badge" id="renderer-badge"
+              >WebGL 준비 중</span
+            >
+          </div>
+          <div id="graph-stage" class="graph-stage">
+            <canvas
+              id="graph"
+              aria-label="마우스로 이동하고 휠로 확대하는 노드-엣지 그래프"
+            ></canvas
+            ><canvas id="labels" aria-hidden="true"></canvas>
+            <div id="loading" class="loading">
+              <div class="loader"></div>
+              <strong>실제 그래프를 불러오고 있습니다</strong
+              ><span>원본 전체 노드와 관계를 준비합니다.</span>
+            </div>
+            <div id="empty-state" class="empty-state" hidden>
+              표시할 노드가 없습니다. 필터를 확인해 주세요.
+            </div>
+            <div id="tooltip" class="tooltip" hidden></div>
+            <div id="graph-notice" class="graph-notice">
+              각 원은 노드 유형입니다. 선택하면 실제 노드로 들어갑니다.
+            </div>
+            <div class="zoom-tools">
+              <button id="zoom-in" aria-label="확대">＋</button
+              ><span id="zoom-value">100%</span
+              ><button id="zoom-out" aria-label="축소">−</button>
+              <div></div>
+              <button id="fit-button" aria-label="화면에 맞추기">⛶</button
+              ><button id="fullscreen-button" aria-label="전체 화면">⤢</button>
+            </div>
+            <div class="canvas-hint">
+              드래그로 이동 <span>·</span> 휠로 확대 <span>·</span> 노드
+              클릭으로 상세 보기
+            </div>
+          </div>
+          <div class="canvas-bottom">
+            <div>
+              <span class="status-dot"></span
+              ><strong id="visible-count">—</strong
+              ><span id="visible-scope">유형별 집계</span>
+            </div>
+            <div>
+              <span id="total-count">전체 데이터 확인 중</span
+              ><span class="divider">|</span><span id="render-time">—</span>
+            </div>
+          </div>
+        </section>
+        <div class="bottom-note">
+          <span>ⓘ</span> 연결은 출처에 기록된 관계입니다. 공정 적합성·법적
+          허용·실제 인수를 의미하지 않습니다.
+        </div>
+      </main>
+      <aside class="inspector">
+        <div class="inspector-header">
+          <span>INSPECTOR</span
+          ><button id="clear-selection" aria-label="선택 해제">×</button>
+        </div>
+        <div id="inspector-content">
+          <div class="intro-icon">⌘</div>
+          <div class="eyebrow">GRAPH OVERVIEW</div>
+          <h2>데이터의 구조를<br />한눈에.</h2>
+          <p class="intro-copy">
+            노드 유형을 선택해 내부를 살펴보거나, 소재를 골라 연결된 문헌과
+            공정으로 이동하세요.
+          </p>
+          <div class="stat-grid">
+            <div><span>전체 노드</span><strong id="stat-nodes">—</strong></div>
+            <div><span>전체 관계</span><strong id="stat-edges">—</strong></div>
+            <div><span>노드 유형</span><strong id="stat-kinds">13</strong></div>
+            <div>
+              <span>관계 유형</span><strong id="stat-relations">14</strong>
+            </div>
+          </div>
+          <div class="how-title">탐색 순서</div>
+          <ol class="how-list">
+            <li><span>01</span>전체 구조와 데이터 분포 확인</li>
+            <li><span>02</span>소재 또는 노드 검색</li>
+            <li><span>03</span>관계·속성·근거 원문 확인</li>
+          </ol>
+          <div class="integrity-note">
+            <span>◇</span>
+            <div>
+              전체 데이터, 부분 샘플 없음<small
+                >유형 개요는 전체 관계를 집계합니다.<br />전체 노드 모드에서
+                모든 노드를 표시합니다.</small
+              >
+            </div>
+          </div>
+        </div>
+        <div class="inspector-footer">
+          <span>ACTIVE SNAPSHOT</span><code id="snapshot-id">—</code>
+        </div>
+      </aside>
+    </div>
+    <dialog id="info-dialog">
+      <button id="close-info" class="dialog-close" aria-label="안내 닫기">
+        ×
+      </button>
+      <div class="eyebrow">DATA & PROVENANCE</div>
+      <h2>원본 그래프의 전체 스냅샷</h2>
+      <p>
+        Neo4j의 활성 namespace와 generation에 속한 모든 데이터 노드·관계를 읽기
+        전용으로 내보냈습니다. 적재 관리용 메타데이터 노드는 제외됩니다.
+      </p>
+      <p>
+        구조 개요에서는 실제 관계를 유형별로 합산합니다. 전체 그래프와 주변
+        탐색에서는 실제 노드와 엣지를 표시합니다. 위치는 가독성을 위한 배치이며
+        공정 순서·유사도·지리 좌표를 뜻하지 않습니다.
+      </p>
+      <p>
+        문헌의 공정명 묶음은 원문 그대로 보존합니다. 쉼표가 공정 순서나 직접적인
+        처리 가능성을 의미하지 않습니다. PP·PE의 문헌 후보와 조건부 경로는
+        구분해서 보세요.
+      </p>
+      <pre id="snapshot-info"></pre>
+    </dialog>
+    <dialog id="image-dialog">
+      <button
+        id="close-image"
+        class="dialog-close"
+        aria-label="이미지 미리보기 닫기"
+      >
+        ×
+      </button>
+      <h2>현재 그래프 이미지</h2>
+      <p>미리보기를 확인하고 PNG 파일로 저장하세요.</p>
+      <img
+        id="export-preview"
+        alt="현재 그래프의 노드와 관계"
+        style="
+          display: block;
+          width: 100%;
+          border: 1px solid #dce5e5;
+          border-radius: 6px;
+        "
+      /><a
+        id="export-image-link"
+        class="primary-button"
+        style="
+          display: block;
+          text-align: center;
+          text-decoration: none;
+          margin-top: 16px;
+        "
+        download
+        >PNG 파일 저장 ↓</a
+      >
+    </dialog>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
