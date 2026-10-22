@@ -15,12 +15,15 @@ from resource_ai.calculators.lci import (
 def main():
     parser = argparse.ArgumentParser(description="KEITI PET LCI screening estimates")
     parser.add_argument(
-        "command", choices=["inspect", "evaluate", "evaluate-kg"],
-        help="Inspect installed LCI, evaluate explicit candidates, or adapt ProcessPlan records"
+        "command",
+        choices=["inspect", "evaluate", "evaluate-kg"],
+        help="Inspect installed LCI, evaluate explicit candidates, or adapt ProcessPlan records",
     )
     parser.add_argument(
-        "--data", type=Path, default=Path("data/local/lci"),
-        help="Directory holding locally obtained, licensed KEITI ZIP files"
+        "--data",
+        type=Path,
+        default=Path("data/local/lci"),
+        help="Directory holding locally obtained, licensed KEITI ZIP files",
     )
     parser.add_argument("--candidates", type=Path, help="JSON list of candidate objects")
     parser.add_argument("--material", default="PET", help="Only PET is currently supported")
@@ -43,8 +46,10 @@ def main():
                 parser.error("--input-mass-kg is required for KG plans")
             rows = [
                 candidate_from_plan(
-                    row, material=args.material,
-                    input_mass_kg=args.input_mass_kg, waste_form=args.waste_form
+                    row,
+                    material=args.material,
+                    input_mass_kg=args.input_mass_kg,
+                    waste_form=args.waste_form,
                 )
                 for row in rows
             ]
