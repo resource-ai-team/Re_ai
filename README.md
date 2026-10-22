@@ -1,223 +1,153 @@
 # Re:Source AI
 
-중소 제조기업의 폐기물 처리 의사결정을 지원하는 **AI·지식 기반 서비스**입니다.
-폐기물과 공정 정보를 바탕으로 관련 근거를 찾고, 이후 지식 그래프·규칙 엔진·계산기를
-결합해 검증 가능한 처리 방안을 만드는 역할을 담당합니다.
+공장에서 생긴 폐자원의 **여러 공정·시설 경로를 찾고, 각 단계에서 확인할 조건과 리스크를 보여 주는 AI 서비스**입니다.
+이 저장소는 화면 뒤에서 후보 탐색·근거 검색·검증·계산을 맡습니다. 기존 처리 방식은 사용자가 알려준 경우에만 받습니다.
 
-현재는 **법령 근거 검색, Neo4j 문헌 조회, 공정·시설 경로 후보 생성, 국내 시설 조사와 공개 조건 대조**가 동작합니다.
-폐자원 정보를 넣으면 공정 단계와 시설 후보, 인계 구간, 확인할 조건과 출처를 돌려줍니다.
-새 내부 분석 API는 경로의 모든 페이지를 모아 **후보별 법령 조사까지 연결**합니다.
-별도 수치 API는 출처와 비교 기준을 제출하면 비용·탄소를 계산하고 Pareto 집합을 구합니다.
-실제 단가·LCI 자동 확보, 법적 판정, 최종 추천과 전체 실행기는 아직 없습니다.
+## 처음 보는 팀원은 여기부터
 
-- 팀 공통 규칙: [resource-ai-team/.github CONTRIBUTING](https://github.com/resource-ai-team/.github/blob/main/CONTRIBUTING.md)
-- 구조 설명: [docs/architecture.md](docs/architecture.md)
-- 데이터 관리: [data/README.md](data/README.md)
-- API 설명: [docs/api.md](docs/api.md)
-- KG 실행·입출력·남은 작업: [docs/knowledge-graph.md](docs/knowledge-graph.md)
-- **확정 파이프라인 그림·순서**: [docs/pipeline-baseline.md](docs/pipeline-baseline.md)
-- **KG 고도화: 이번에 한 일 / 다음에 채울 데이터·기술**: [docs/kg-upgrade-plan.md](docs/kg-upgrade-plan.md)
-- **전체 후보·ReAct 조사 묶음 API**: [docs/kg-research-pool.md](docs/kg-research-pool.md)
-- **공정 순서·시설 연결·실행 예시**: [docs/kg-process-plans.md](docs/kg-process-plans.md)
-- **국내 시설을 찾는 방법·확인된 정보와 미확인 조건**: [docs/kg-facility-matching.md](docs/kg-facility-matching.md)
-- **시설 조건 대조·위험 표시·PP 시나리오**: [docs/kg-facility-conditions.md](docs/kg-facility-conditions.md)
-- **후보별 법령 조사·수치 계산과 남은 일**: [docs/candidate-analysis.md](docs/candidate-analysis.md)
-- **새 진행보드 수정 원고(아직 Notion 미반영)**: [docs/progress-board-update.md](docs/progress-board-update.md)
+| 알고 싶은 것 | 문서 |
+| --- | --- |
+| 전체 서비스가 어떤 순서로 동작해야 하나요? | [확정 파이프라인](docs/pipeline-baseline.md) |
+| 지금 연결된 기능과 안 된 기능은? | [후보 조사·수치 비교 API](docs/candidate-analysis.md) |
+| KG가 공정 순서와 시설 후보를 어떻게 만드나요? | [공정·시설 경로 탐색](docs/kg-process-plans.md) |
+| 이번에 KG에서 무엇을 보강했나요? | [실제 제지 순서·등급 차이·빈 연결 검사](docs/kg-evidence-upgrade.md) |
+| 팀 작업은 어떻게 나눴나요? | [Notion 진행보드 반영 결과](docs/progress-board-update.md) |
+| 데이터·실행·검증 문서는 어디 있나요? | [전체 문서 안내](docs/README.md) |
 
 ## 지금 어디까지 되나요?
 
-| 흐름 | 현재 상태 |
+지금 연결된 조사 흐름은 아래와 같습니다. 시작점은 사용자가 검수한 **구조화된 입력 항목**입니다.
+
+~~~mermaid
+flowchart LR
+    A[폐자원 종류·형태·양 등] --> B[Neo4j 공정·시설 후보 조회]
+    B --> C[시설 공개 조건 대조]
+    C --> D[후보별 법령 근거 검색]
+    D --> E[근거·미확인·다음 확인 사항 반환]
+~~~
+
+**POST /analysis/research**가 이 흐름을 실행하며, 현재 결과는 **검토 필요(REVIEW)**입니다.
+검색한 법령이 해당 로트에 적용되는지 확인하는 Auditor와 실제 허가·인수 검증은 아직 연결되지 않았습니다.
+법령 검색은 로컬 PostgreSQL과 문서 적재가 준비돼 있어야 하며, 실패·검색 결과 없음도 응답에 남깁니다.
+
+| 되는 일 | 아직 필요한 일 |
 | --- | --- |
-| 문서·자연어 입력을 항목으로 정리 | 입력 형식만 정의. OCR·LLM 추출·검수 화면은 후속 작업 |
-| 관련 문헌·공정 후보 찾기 | W2RKG 33,679건을 Neo4j에 적재하고 조회 가능 |
-| 후보를 빠뜨리지 않고 조사에 넘기기 | 페이지 단위 전체 조회·형태 미확인 보존·조건/리스크/근거 묶음·버전 추적 구현 |
-| 기존 공정 지도와 근거 조회 | PET·알루미늄·종이 조건부 템플릿 18개와 조사 카드 69개 유지 |
-| 공정 순서에 따라 시설 조합 만들기 | 별도 공개 자료 7건에서 상태 19개·전이 14개·시설 7개를 연결. PET·PP·PE·캔·폐지의 조사 경로 생성 |
-| 공정별 국내 시설 추가 조사 | 전국 명부 9,604개 등록 레코드 적재·공식 코드표·설비 단어·직선거리로 조사 대상 조회. 공정 수행·현행 허가·인수 가능 여부는 미확인 |
-| 공개 시설 조건과 입력 대조 | 기존 시설–공정 연결 14개에 조건 프로필 추가. 소재·명시적 제외 정책을 대조하고 단계·인계 구간에 미충족·미확인을 표시 |
-| 법령 근거 찾기 | 기존 Hybrid Search·Reranking 사용 가능 |
-| KG 뒤에 법령 조사 연결 | 새 분석 API가 전체 경로·시설 조건과 공정별 법령 검색을 연결. 한도·실패·미확인 보존 |
-| 비용·탄소 계산·Pareto | 별도 시나리오 API 구현. 제출된 수치·근거·같은 경계만 계산. 실제 단가·계수 수집·적합성 검증은 별도 |
-| 허가·규정 판정·최종 추천 | Auditor·현장 자료·검수 규칙·Critic·Router 연동 필요 |
-| 에이전트 통합·최종 추천·3D·보고서 | KG 호출 도구까지 제공. 전체 서비스 연결은 후속 작업 |
+| W2RKG 문헌 관계와 출처 조회 | 문헌 속 기술을 국내 사업장에 적용할 수 있는지 확인 |
+| 별도 공개 자료의 상태 전이를 따라 공정·시설 조합 생성 | 현행 허가·투입 규격·실제 인수·여유 용량 검증 |
+| 국내 시설 명부에서 추가 조사 대상 검색 | 그 시설의 해당 공정 수행 근거 확보 |
+| 단계·운송 구간에 공개 조건과 미확인 연결 | 원문·예외 Auditor와 적합성 종합 판정 |
+| 제출된 수치의 비용·탄소 계산과 Pareto 비교 | 실제 견적·도로거리·LCI 확보 및 검증된 후보와 연결 |
+| 후보별 조사 API와 그래프 호출 도구 | 자연어·문서 추출, 전체 실행기, 최종 Critic·Router·Top K·보고서·3D 연동 |
 
-사용자의 기존 처리 방식은 아는 경우에만 받습니다. 모르면 임의로 만들지 않습니다.
-KG에서는 최대 K개를 미리 고르지 않습니다. 근거를 조사·검증하고 비용·탄소·리스크를
-비교한 **마지막 단계에서 최대 K개를 보여 주는 구조**로 고정했습니다.
-전체 목표 설계는 **공정·시설 후보 → 법규·시설 검증 → 비용·탄소 → 잠정 Top K →
-최종 Critic → PASS/REVISE/REVIEW → 최종 출력**입니다. 시설의 공개 사례 DB는 추가했지만,
-실시간 수용 여부·허가 검증과 이 전체 실행기는 아직 없습니다.
+비용·탄소 계산은 **별도 POST /analysis/compare-scenarios 도구**입니다. 같은 물량·단위·시점·경계의 활동량과 단가·배출계수를 제출해야 합니다.
+빠진 값을 0으로 채우지 않으며, 현재의 수치 비교 결과가 곧 최종 추천은 아닙니다.
 
-**지금 실행되는 분석 흐름:** 입력 항목 → 전체 KG 경로·공개 조건 → 후보별 법령 검색 →
-`검토 필요(REVIEW)`. 아직 Auditor가 없어 검색 결과를 적법성으로 확정하지 않습니다.
-비용·탄소 API는 별도 계산 도구이며, 이 분석 결과가 자동으로 최종 추천에 연결된 상태는 아닙니다.
+예를 들어 검정 PP 스크랩을 입력하면 파쇄품·펠렛·컴파운드까지의 조사 경로를 찾을 수 있습니다.
+각 단계에 공정·시설 근거와 확인할 조건이 붙습니다. 공장 인수 가능성이나 가장 유리한 경로는 추가 검증이 필요합니다.
 
-예를 들어 **검정 PP 스크랩 3톤**을 넣으면 다음 종료점까지의 후보를 만듭니다.
+종이는 실제 공개된 **10개 작업을 5개 공정 단계**로 연결했습니다. HDPE 같은 세부 수지는 PE 소재군과 구분해 남기고,
+등급별 인수 조건은 추가 확인으로 표시합니다. **GET /kg/planning-coverage**로 끊긴 경로·시설 미연결을 볼 수 있습니다.
+현재 별도 참조 자료는 출처 9건·상태 23개·전이 18개·시설 7곳입니다. W2RKG 전체나 현행 인수 가능 시설 수와는 다릅니다.
 
-1. 선별·파쇄 → 파쇄품 공급 후보
-2. 선별·파쇄 → 세척 → 압출 → 펠렛 후보
-3. 선별·파쇄 → 세척 → 압출 → 배합 → 컴파운드 후보
-
-각 단계에는 공개 자료상의 시설 후보와 출처가 붙습니다. 사업장 역할만으로 연결한 시설은
-**가설**로 표시합니다. 이 세 경로가 그 검정 PP를 받아 준다거나 가장 유리하다는 뜻은 아닙니다.
-색상·오염·허가·인수 규격·견적을 확인한 뒤 비교하는 과정이 남아 있습니다.
-W2RKG의 공정 문자열을 임의로 잘라 순서로 만든 것이 아니라, 순서를 확인한 별도 자료를 KG에 추가했습니다.
-
-## 조직 저장소 구성
-
-| 저장소 | 역할 |
-| --- | --- |
-| `Re_client` | 화면과 3D 시각화, `Re_server` API 호출 |
-| `Re_server` | 인증·회원·기업 정보, 업무 API와 서비스 DB |
-| **`Re_ai` (이 저장소)** | AI 오케스트레이션, 근거 검색, 지식 그래프, 규칙과 계산 |
-| `RE-Main` | 현재 통합 프로토타입, 향후 infra 역할 정리 대상 |
-| `.github` | 팀 공통 규칙과 Issue·PR 템플릿 |
-
-호출 경계는 다음을 기준으로 합니다.
-
-```text
-Re_client ──HTTP──▶ Re_server ──HTTP──▶ Re_ai
-                       │                  │
-                       ▼                  ▼
-                  서비스 DB       AI 검색·지식 기반 DB
-```
-
-클라이언트가 AI 서비스를 직접 호출하지 않으며, 서버와 AI 사이의 요청·응답 계약은 별도
-연동 명세로 관리합니다.
+목표 흐름은 **입력 → KG 후보 → 법규·시설 검증 → 비용·탄소 → Pareto·잠정 Top K → 독립 Critic → PASS / REVISE / REVIEW → 최종 보고서·지도**입니다.
+KG에서 후보를 미리 K개로 자르지 않으며, 핵심 정보가 미확인이면 최종 추천을 보류합니다.
 
 ## 빠른 시작
 
-Docker Desktop과 Python 3.11 이상이 필요합니다.
+Python 3.11 이상과 Docker Desktop이 필요합니다. 아래는 저장소 루트에서 실행합니다.
 
-```bash
+Windows PowerShell:
+
+~~~powershell
+Copy-Item .env.example .env
+py -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -e ".[dev,embeddings]"
+~~~
+
+macOS·Linux:
+
+~~~bash
 cp .env.example .env
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -e '.[dev,embeddings]'
+python -m pip install -e '.[dev,embeddings]'
+~~~
 
-docker compose up -d
+.env에 로컬 **NEO4J_PASSWORD**를 정하고, 공식 법령 수집에 사용할 **LAW_API_OC**를 설정합니다.
+두 DB를 실행합니다.
+
+~~~bash
+docker compose -f docker-compose.yml -f docker-compose.neo4j.yml up -d
+~~~
+
+다음 명령은 가상환경의 실행 파일을 사용합니다. Windows에서는 legal-rag를 .\.venv\Scripts\legal-rag.exe,
+resource-kg를 .\.venv\Scripts\resource-kg.exe, uvicorn을 .\.venv\Scripts\uvicorn.exe로 실행하면 활성화 없이 사용할 수 있습니다.
+
+~~~bash
 legal-rag init-db
-```
-
-기본 임베딩은 로컬 `intfloat/multilingual-e5-small`입니다. 최초 실행 시 모델을
-다운로드합니다. 파이프라인 테스트만 할 때는 `.env`에서
-`EMBEDDING_PROVIDER=hash`를 사용할 수 있지만 실제 의미 검색용은 아닙니다.
-
-## 공식 데이터 수집과 적재
-
-수집 범위는 `data/config/legal_scope.json`에 버전과 함께 관리합니다.
-
-```bash
+resource-kg import
 legal-rag collect
 legal-rag validate
 legal-rag ingest data/official/legal_documents.jsonl
-legal-rag evaluate --top-k 5
-```
-
-`collect`는 공식 원문 JSONL과 SHA-256·출처·버전·시행일을 기록한 매니페스트를 함께
-생성합니다. 생성 데이터는 재수집 가능하므로 Git에 포함하지 않습니다. 팀·운영 환경은
-국가법령정보 공동활용 신청 후 발급받은 `LAW_API_OC`를 사용합니다.
-
-현재 평가셋은 구현 회귀 확인용이며 법률 정확도나 전체 서비스 품질을 보장하지 않습니다.
-
-## Hybrid Search와 Reranking
-
-검색은 다음 단계로 동작합니다.
-
-1. multilingual-e5 임베딩과 pgvector 코사인 검색
-2. PostgreSQL `tsvector` 키워드 검색
-3. Reciprocal Rank Fusion(RRF)으로 순위 결합
-4. 공식 출처·시행일·제목/조문 일치도 기반 재정렬
-5. 공식 URL·시행일·인용과 함께 상위 근거 반환
-
-```bash
-legal-rag search "폐기물을 다른 업체에 맡기면 배출자 책임은 없어지나요?"
-```
-
-검색 결과는 법률 근거 후보이며 Rule Engine의 적법성 판정을 대신하지 않습니다.
-
-## API 실행
-
-```bash
 uvicorn resource_ai.main:app --reload
-```
+~~~
 
-- Swagger UI: `http://127.0.0.1:8000/docs`
-- 상태 확인: `GET /health`
-- 근거 검색: `GET /rag/search?q={질문}&top_k=5`
-- 온톨로지 확인: `GET /kg/ontology`
-- 공정 후보 조회: `POST /kg/candidates` — [실행 예시](docs/knowledge-graph.md)
-- **전체 후보·조사 묶음**: `POST /kg/candidate-pool` — [페이지 조회 예시](docs/kg-research-pool.md)
-- **공정·시설 경로 조합**: `POST /kg/process-plans` — [요청·응답과 한계](docs/kg-process-plans.md)
-- **공정별 시설 조사**: `POST /kg/facility-candidates` — [명부 수집·조회와 확인할 조건](docs/kg-facility-matching.md)
-- **한 시설·공정 조건 대조**: `POST /kg/facility-assessment`
-- **경로 생성부터 조건 대조까지**: `POST /kg/assessed-plans` — [실행 예시와 결과 읽기](docs/kg-facility-conditions.md)
-- **전체 경로·조건 대조·법령 조사 연결**: `POST /analysis/research`
-- **제출한 수치·근거의 계산·Pareto 비교**: `POST /analysis/compare-scenarios` — [가상 예제·검증 경계](docs/candidate-analysis.md)
+- API 설명·시험: http://127.0.0.1:8000/docs
+- 프로세스 상태: **GET /health** — DB·데이터가 모두 준비됐다는 확인은 아닙니다.
+- 그래프·참조 자료를 갱신했다면 **resource-kg import --rebuild** 후 **resource-kg audit**로 확인합니다. 이전 세대는 보존합니다.
+- 국내 명부는 별도 수집·적재합니다. [시설 명부 실행 방법](docs/kg-facility-matching.md)을 참고하세요.
 
-이전 v1.1 그래프가 이미 있다면 새 코드 사용 전 `resource-kg import --rebuild`로
-v1.2 새 세대를 적재합니다. 기존 세대는 보존하며, 검사 통과 후에만 전환합니다.
-시설 조건을 포함한 `planning-reference-v2` 사용 시에도 기존 그래프를 같은 명령으로 다시 적재합니다.
+기본 임베딩은 로컬 intfloat/multilingual-e5-small이며 첫 사용에 모델 다운로드가 필요합니다.
+EMBEDDING_PROVIDER=hash는 연결·회귀 검사에만 쓰며 실제 의미 검색용은 아닙니다.
 
-## 기술 스택
+## 데이터와 기술에서 각각 남은 것
 
-| 영역 | 선택 |
+| 구분 | 채울 것 |
 | --- | --- |
-| 언어·API | Python 3.11+, FastAPI, Pydantic |
-| 검색 DB | PostgreSQL 16, pgvector, `tsvector` |
-| 지식그래프 | Neo4j 5.26, 출처·공정·리스크 온톨로지 |
-| 임베딩 | sentence-transformers, multilingual-e5-small |
-| 공식 데이터 | 국가법령정보 공동활용 API |
-| 품질 | Pytest, Ruff, GitHub Actions |
-| 실행 | Docker Compose, Uvicorn |
+| 데이터 | 사업장별 실제 수행 공정, 현행 허가, 해당 로트 인수 규격·물량·견적, 도로 운송 경로, 물질수지, 적용 가능한 LCI·배출계수 |
+| 기술 | OCR·입력 검수, 법규 적용성 Auditor·규칙, 실제 후보와 수치 연결, 잠정 Top K, 독립 Critic·부분 재실행, 영구 실행 이력·서버·화면 통합 |
+| 평가 | 현장·전문가가 검수한 실제 사례 정답셋과 전체 추천 품질 평가 |
 
-## 프로젝트 구조
+실제 자료·가상 입력·가상 산술 예제를 구분합니다. 원본 사용·전송·재배포 조건은 [데이터 관리](data/README.md)를 따릅니다.
+키·비밀번호·국가 LCI 원본·로컬 DB 볼륨은 Git에 올리지 않습니다.
 
-```text
+## 저장소 구조와 팀 경계
+
+~~~text
 src/resource_ai/
-├── api/               FastAPI 라우트와 입출력 스키마
-├── agents/            향후 AI 도구 오케스트레이션
-├── rag/               수집·검증·Hybrid Search·생성
-├── knowledge_graph/   온톨로지·Neo4j 적재·공정 후보 조회
-├── rules/             결정적 법규 판정 (골격)
-├── calculators/       경제성·환경성 계산 (골격)
-├── evidence/          근거 모델과 근거 카드
-├── integrations/      법령 API와 외부 모델 연동
-└── core/              설정과 공통 인프라
-```
+├── api/               내부 API와 입출력 스키마
+├── knowledge_graph/   온톨로지·Neo4j 적재·후보/시설 조회·공개 조건 대조
+├── rag/               공식 문서 수집·청킹·Hybrid Search·Reranking
+├── agents/            후보 조사 실행·그래프/RAG 도구, 전체 실행기는 후속
+├── calculators/       제출된 비용·탄소 수치 계산·Pareto
+├── rules/             검수된 법규·시설 판정 엔진의 골격
+├── evidence/          근거 모델·출처 연결
+├── integrations/      공식 법령 API, 생성 모델 연결 골격
+└── core/              설정·의존성·공통 인프라
+~~~
 
-`rules`와 에이전트 전체 오케스트레이션은 아직 골격입니다.
-`agents/research.py`는 KG→로컬 법령 조사, `calculators/scenarios.py`는 제출된 수치 계산·Pareto를 담당합니다.
-가격·LCI 자동 수집, 법규 판정·최종 Critic·부분 재실행까지 구현했다는 뜻은 아닙니다.
-KG는 별도 모듈로 동작하며 에이전트에서 호출할 Python 도구를 제공합니다.
+화면은 Re_client, 인증·기업·업무 API는 Re_server가 맡습니다. 호출은 **Re_client → Re_server → Re_ai**입니다.
+실제 모듈과 데이터 연결은 [구조 설명](docs/architecture.md), 전체 통합 실행은 인프라 저장소의 절차를 따릅니다.
 
-## 테스트와 CI
+## 검증과 기여
 
-```bash
+가상환경에서 실행합니다.
+
+~~~bash
 ruff check .
 ruff format --check .
 pytest -q
-```
+~~~
 
-GitHub Actions는 PR과 `develop`·`main` push에서 린트, 포맷 검사와 테스트를 실행합니다.
-실제 외부 API·Azure 키 없이 검증하도록 단위 테스트에서는 mock과 테스트 임베딩을
-사용합니다.
+일반 CI는 린트·포맷·테스트를 실행하고, KG CI는 실제 Neo4j·PostgreSQL 경계와 데이터 적재·조회도 검사합니다.
+가상 법령·테스트 임베딩을 사용하는 검사와 실제 법령·현장 정확도 평가는 구분합니다.
+이전 실행 수치와 검증 범위는 [검증 기록 안내](docs/README.md#검증-기록과-이전-설계)에 모았습니다.
 
-2026-10-21: 실제 Neo4j를 사용하는 전체 로컬 테스트 **412개 + 하위 검사 24개 통과**.
-실제 PostgreSQL까지 연결하는 추가 1개는 로컬 DB 미준비로 건너뛰며, CI에서 두 DB를 함께 실행해 검사합니다.
-신규 분석 API의 5소재 KG 연결·가상 산술 검사는 **28/28** 통과했습니다.
-실제 로컬 법령 검색은 DB 연결 실패를 `unavailable`로 기록한 것이며 검색 성공·정확도 검증과 구분합니다.
-전국 명부 시설 검색 검사
-**207/207** 통과. 기존 경로 API **142/142**, 조회 검사 **82/82·50/50** 결과도 유지합니다.
-공개 조건 대조는 가상 입력 16개와 PP 경로 흐름으로 **120/120** 검사 통과.
-추천 정확도·현장 인수 검증과 구분한 [검증 범위](docs/kg-facility-conditions.md)를 참고하세요.
-[시설 검색 검증 범위](docs/kg-facility-matching.md#검증-결과와-남은-부분)를 참고하세요.
-조회·연결 검증이며 현장 인수나 최종 추천 정확도 검증은 아닙니다.
+최근 로컬 검증은 실제 Neo4j를 포함해 **439개 통과·1개 건너뜀**입니다.
+건너뛴 PostgreSQL 통합 검사와 실제 법령 검색 성공은 아직 로컬에서 확인하지 못했습니다.
+[KG 보강 검증·한계](docs/kg-evidence-upgrade.md#이번-검증-결과)를 함께 봅니다.
 
-## 기여 절차
-
-```text
-Issue → develop에서 작업 브랜치 생성 → 구현·테스트 → develop 대상 PR → CI → merge
-```
-
-`main`은 배포용이며 `develop → main` 릴리스 병합은 인프라 담당자가 진행합니다.
+[팀 공통 규칙](https://github.com/resource-ai-team/.github/blob/main/CONTRIBUTING.md)을 따릅니다.
+**Issue → 작업 브랜치 → develop 대상 PR → CI·필요 리뷰 → 병합** 순서입니다.
+API 스키마 변경은 서버 담당자 리뷰·승인 후 병합하며, develop·main에 직접 push하지 않습니다.
+develop → main 릴리스는 인프라·서버 담당자가 진행합니다.

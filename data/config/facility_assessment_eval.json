@@ -188,7 +188,7 @@
     },
     {
       "id": "paper-coating-limits-unknown",
-      "capability": "hansol-damyang--paper-board",
+      "capability": "hansol-damyang--paper-pulping",
       "lot": {
         "material": "종이",
         "input_form": "recovered_paper",
@@ -204,7 +204,7 @@
     },
     {
       "id": "paper-other-form-not-exclusion",
-      "capability": "hansol-damyang--paper-board",
+      "capability": "hansol-damyang--paper-pulping",
       "lot": {
         "material": "종이",
         "input_form": "cardboard"

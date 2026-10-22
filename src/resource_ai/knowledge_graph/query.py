@@ -5,6 +5,7 @@ import json
 from resource_ai.api.schemas.graph import CandidateRequest, CandidateResponse
 from resource_ai.knowledge_graph import graph_store as store
 from resource_ai.knowledge_graph import ontology as graph
+from resource_ai.knowledge_graph.material_scope import PE_GRADES
 
 LIMITATIONS = [
     "문헌 후보는 미검증 자동 추출이며 실제 처리 가능성·국내 허가·업체 인수를 입증하지 않습니다.",
@@ -19,6 +20,8 @@ def resolve_material(value: str | None) -> str | None:
     if value is None:
         return None
     normalized = graph.normalize_label(value)
+    if any(normalized.replace(" ", "") in aliases for aliases in PE_GRADES.values()):
+        return "pe"
     return next(
         (
             key
@@ -32,6 +35,11 @@ def resolve_material(value: str | None) -> str | None:
 class GraphQuery:
     def __init__(self, config: store.Settings | None = None):
         self.config = config
+
+    def planning_coverage(self):
+        from resource_ai.knowledge_graph.planning import ProcessPlanner
+
+        return ProcessPlanner(self.config).coverage()
 
     def candidate_pool(self, request):
         from resource_ai.knowledge_graph.pool import CandidatePool

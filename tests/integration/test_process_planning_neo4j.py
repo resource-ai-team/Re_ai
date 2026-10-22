@@ -118,6 +118,72 @@ def assert_unassessed(page):
             assert leg["transport_kg_co2e"] is None
 
 
+def test_live_coverage_api_reads_imported_reference_and_keeps_site_gaps(planning_graph):
+    config, _, imported = planning_graph
+    with graph_client(config) as client:
+        response = client.get("/kg/planning-coverage")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["backend"] == "neo4j"
+    assert data["graph_trace"]["generation"] == imported["generation"]
+    assert data["counts"] == {
+        "sources": 9,
+        "states": 23,
+        "transitions": 18,
+        "organisations": 5,
+        "facilities": 7,
+        "capabilities": 18,
+    }
+    assert data["facilities_without_transition_keys"] == ["bgf-incheon"]
+    assert data["dispatch_approved"] is False
+
+
+def test_live_paper_path_uses_the_published_ten_step_order(planning_graph):
+    config, _, _ = planning_graph
+    with graph_client(config) as client:
+        response = client.post(
+            "/kg/assessed-plans", json={"material": "종이", "input_form": "cardboard"}
+        )
+    assert response.status_code == 200
+    data = response.json()
+    (plan,) = data["planning"]["items"]
+    stages = plan["research_packet"]["stages"]
+    assert len(stages) == 5
+    assert [step for s in stages for step in s["transition"]["operation_steps"]] == [
+        "해리",
+        "정선",
+        "농축",
+        "고해",
+        "지필형성",
+        "압착탈수",
+        "건조",
+        "광택",
+        "권취",
+        "재단",
+    ]
+    assert {s["facility"]["key"] for s in stages} == {"hansol-damyang"}
+    assert plan["recommended"] is False
+
+
+def test_live_pe_grade_stays_unverified_in_paths_and_facility_risks(planning_graph):
+    config, _, _ = planning_graph
+    with graph_client(config) as client:
+        response = client.post(
+            "/kg/assessed-plans", json={"material": "HDPE", "input_form": "film"}
+        )
+    assert response.status_code == 200
+    data = response.json()
+    scope = data["planning"]["search_scope"]["material_scope"]
+    assert scope["supplied_subtype"] == "hdpe"
+    assert scope["subtype_applicability_verified"] is False
+    for assessment in data["assessments"]:
+        first = assessment["stages"][0]["assessment"]
+        assert any(
+            c["code"] == "material_subtype" and c["status"] == "needs_verification"
+            for c in first["checks"]
+        )
+
+
 @pytest.mark.parametrize(
     ("material", "input_form", "goal", "transitions", "facilities", "handoffs", "bindings"),
     [

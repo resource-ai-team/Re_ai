@@ -18,6 +18,8 @@ from resource_ai.api.schemas.kg_planning import (
 from resource_ai.knowledge_graph import graph_store as store
 from resource_ai.knowledge_graph import ontology as graph
 from resource_ai.knowledge_graph.facility_evidence import assess_binding
+from resource_ai.knowledge_graph.material_scope import material_scope
+from resource_ai.knowledge_graph.planning_diagnostics import coverage_report, diagnose_reference
 from resource_ai.knowledge_graph.planning_reference import (
     GROUPS,
     PlanningReference,
@@ -27,7 +29,7 @@ from resource_ai.knowledge_graph.planning_reference import (
 from resource_ai.knowledge_graph.pool import cursor_error, unknown
 from resource_ai.knowledge_graph.query import resolve_material
 
-ALGORITHM = "typed-state-facility-dfs-v1"
+ALGORITHM = "typed-state-facility-dfs-v2"
 MAX_EXPANSIONS = 10000
 MAX_PLANS = 2000
 LIMITATIONS = [
@@ -218,7 +220,7 @@ def enumerate_paths(value, material, input_form, goal_state, max_steps):
     return result, starts
 
 
-def make_plan(value, path, *, audience, assumed_form):
+def make_plan(value, path, *, audience, assumed_form, supplied_material=None):
     identity = [(t.key, c.key if c else None) for t, c in path]
     pid = graph.identity("plan", identity)
     facilities = {f.key: f for f in value.facilities}
@@ -277,14 +279,20 @@ def make_plan(value, path, *, audience, assumed_form):
         )
         if index > 1:
             previous = stages[-2]["facility"]
-            same = previous and facility and previous["key"] == facility.key
+            resolved = previous is not None and facility is not None
+            same = resolved and previous["key"] == facility.key
             leg_id = f"{pid}:leg:{index - 1}"
             legs.append(
                 {
                     "leg_id": leg_id,
                     "from_stage_id": stages[-2]["stage_id"],
                     "to_stage_id": sid,
-                    "kind": "within_site_candidate" if same else "external_handover_candidate",
+                    "kind": "within_site_candidate"
+                    if same
+                    else "external_handover_candidate"
+                    if resolved
+                    else "unresolved_handover_candidate",
+                    "facility_identity_resolved": resolved,
                     "handover_confirmed": False,
                     "distance_km": None,
                     "transport_cost_krw": None,
@@ -304,6 +312,9 @@ def make_plan(value, path, *, audience, assumed_form):
     blocked = sorted(node_id("Evidence", s.key) for s in evidence if not s.model_transfer_allowed)
     packet = {
         "sequence_basis": "explicit-curated-state-transitions",
+        "material_scope": material_scope(
+            supplied_material, states[path[0][0].input_state].material
+        ),
         "input_form_assumed": assumed_form,
         "input_state_specifications_verified": False,
         "stages": stages,
@@ -318,6 +329,7 @@ def make_plan(value, path, *, audience, assumed_form):
         "cost": {"state": "not_evaluated", "total_krw": None},
         "carbon": {"state": "not_evaluated", "total_kg_co2e": None},
         "not_established": [
+            "material_subtype_applicability",
             "lot_state_specs",
             "current_permit_scope",
             "current_acceptance",
@@ -366,6 +378,34 @@ def decode_cursor(token):
 class ProcessPlanner:
     def __init__(self, config=None):
         self.config = config
+
+    def coverage(self):
+        config = self.config or store.settings()
+
+        def lookup(tx):
+            generation, manifest = store._head(tx, config)
+            value, fingerprint = load_reference(tx, config, generation, manifest)
+            return {
+                "contract_version": "kg-planning-coverage-v1",
+                "backend": "neo4j",
+                **coverage_report(value),
+                "graph_trace": {
+                    "generation": generation,
+                    "graph_sha256": manifest["meta"]["graph_sha256"],
+                    "reference_sha256": fingerprint,
+                    "reference_version": value.version,
+                },
+                "limitations": [
+                    "등록한 자료의 연결 공백 진단입니다. 실제 모든 공정·시설의 완전성을 뜻하지 않습니다.",
+                    "출처 지원 범위는 검수자가 선언한 연결이며 원문 진위·현행 허가·실제 인수를 검증하지 않습니다.",
+                ],
+                "dispatch_approved": False,
+            }
+
+        try:
+            return store._read(config, lookup)
+        except (KeyError, TypeError, ValueError):
+            raise store.integrity() from None
 
     def search(self, request: PathPlanningRequest):
         material = resolve_material(request.material)
@@ -437,7 +477,13 @@ class ProcessPlanner:
             selected = result.paths[offset : offset + request.page_size]
             more = offset + len(selected) < len(result.paths)
             items = [
-                make_plan(value, p, audience=request.audience, assumed_form=form is None)
+                make_plan(
+                    value,
+                    p,
+                    audience=request.audience,
+                    assumed_form=form is None,
+                    supplied_material=request.material,
+                )
                 for p in selected
             ]
             return PathPlanningResponse(
@@ -454,6 +500,10 @@ class ProcessPlanner:
                     complete_in_this_response=not cursor and not more,
                 ),
                 search_scope={
+                    "material_scope": material_scope(request.material, material),
+                    "coverage_diagnostics": diagnose_reference(
+                        value, material, starts, request.goal_state
+                    ),
                     "entry_state_keys": starts,
                     "normalized_form": form,
                     "entry_state_not_covered": not starts,

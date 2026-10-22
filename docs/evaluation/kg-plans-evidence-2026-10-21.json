@@ -1,0 +1,852 @@
+{
+  "evaluated_at": "2026-10-21T14:10:13.393497+00:00",
+  "scope": "source-backed reference path/API integrity regression; not permits, economics or plant validation",
+  "generation": "1f439d6e6a8140f6a9b4a1787802f248",
+  "graph_sha256": "13593292b5841b3188b04cf73ef4fa6f3a0e9c6ac9ed073a29af51d8a02e9e98",
+  "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+  "scenarios": [
+    {
+      "input": {
+        "material": "PET",
+        "input_form": "bottle"
+      },
+      "input_is_synthetic_not_factory_measurement": true,
+      "facility_records_are_public_reference_cases_not_acceptance": true,
+      "expected_transition_paths": [
+        [
+          "pet-prepare",
+          "pet-wash",
+          "pet-finish"
+        ],
+        [
+          "pet-prepare",
+          "pet-wash",
+          "pet-finish",
+          "pet-pelletise"
+        ]
+      ],
+      "received_transition_paths": [
+        [
+          "pet-prepare",
+          "pet-wash",
+          "pet-finish"
+        ],
+        [
+          "pet-prepare",
+          "pet-wash",
+          "pet-finish",
+          "pet-pelletise"
+        ]
+      ],
+      "pages": 2,
+      "plans": 2
+    },
+    {
+      "input": {
+        "material": "PET",
+        "input_form": "flake"
+      },
+      "input_is_synthetic_not_factory_measurement": true,
+      "facility_records_are_public_reference_cases_not_acceptance": true,
+      "expected_transition_paths": [
+        [
+          "pet-pelletise"
+        ]
+      ],
+      "received_transition_paths": [
+        [
+          "pet-pelletise"
+        ]
+      ],
+      "pages": 1,
+      "plans": 1
+    },
+    {
+      "input": {
+        "material": "PP",
+        "input_form": "scrap",
+        "color": "검정",
+        "quantity_kg": 3000
+      },
+      "input_is_synthetic_not_factory_measurement": true,
+      "facility_records_are_public_reference_cases_not_acceptance": true,
+      "expected_transition_paths": [
+        [
+          "pp-prepare"
+        ],
+        [
+          "pp-prepare",
+          "pp-clean",
+          "pp-pelletise"
+        ],
+        [
+          "pp-prepare",
+          "pp-clean",
+          "pp-pelletise",
+          "pp-compound"
+        ]
+      ],
+      "received_transition_paths": [
+        [
+          "pp-prepare"
+        ],
+        [
+          "pp-prepare",
+          "pp-clean",
+          "pp-pelletise"
+        ],
+        [
+          "pp-prepare",
+          "pp-clean",
+          "pp-pelletise",
+          "pp-compound"
+        ]
+      ],
+      "pages": 3,
+      "plans": 3
+    },
+    {
+      "input": {
+        "material": "PP",
+        "input_form": "shredded"
+      },
+      "input_is_synthetic_not_factory_measurement": true,
+      "facility_records_are_public_reference_cases_not_acceptance": true,
+      "expected_transition_paths": [
+        [
+          "pp-clean",
+          "pp-pelletise"
+        ],
+        [
+          "pp-clean",
+          "pp-pelletise",
+          "pp-compound"
+        ]
+      ],
+      "received_transition_paths": [
+        [
+          "pp-clean",
+          "pp-pelletise"
+        ],
+        [
+          "pp-clean",
+          "pp-pelletise",
+          "pp-compound"
+        ]
+      ],
+      "pages": 2,
+      "plans": 2
+    },
+    {
+      "input": {
+        "material": "HDPE",
+        "input_form": "scrap"
+      },
+      "input_is_synthetic_not_factory_measurement": true,
+      "facility_records_are_public_reference_cases_not_acceptance": true,
+      "expected_transition_paths": [
+        [
+          "pe-prepare"
+        ],
+        [
+          "pe-prepare",
+          "pe-clean",
+          "pe-pelletise"
+        ],
+        [
+          "pe-prepare",
+          "pe-clean",
+          "pe-pelletise",
+          "pe-compound"
+        ]
+      ],
+      "received_transition_paths": [
+        [
+          "pe-prepare"
+        ],
+        [
+          "pe-prepare",
+          "pe-clean",
+          "pe-pelletise"
+        ],
+        [
+          "pe-prepare",
+          "pe-clean",
+          "pe-pelletise",
+          "pe-compound"
+        ]
+      ],
+      "pages": 3,
+      "plans": 3
+    },
+    {
+      "input": {
+        "material": "알루미늄",
+        "input_form": "can"
+      },
+      "input_is_synthetic_not_factory_measurement": true,
+      "facility_records_are_public_reference_cases_not_acceptance": true,
+      "expected_transition_paths": [
+        [
+          "al-can-sheet"
+        ]
+      ],
+      "received_transition_paths": [
+        [
+          "al-can-sheet"
+        ]
+      ],
+      "pages": 1,
+      "plans": 1
+    },
+    {
+      "input": {
+        "material": "알루미늄",
+        "input_form": "chips"
+      },
+      "input_is_synthetic_not_factory_measurement": true,
+      "facility_records_are_public_reference_cases_not_acceptance": true,
+      "expected_transition_paths": [],
+      "received_transition_paths": [],
+      "pages": 1,
+      "plans": 0
+    },
+    {
+      "input": {
+        "material": "종이",
+        "input_form": "cardboard"
+      },
+      "input_is_synthetic_not_factory_measurement": true,
+      "facility_records_are_public_reference_cases_not_acceptance": true,
+      "expected_transition_paths": [
+        [
+          "paper-pulping",
+          "paper-stock-preparation",
+          "paper-forming",
+          "paper-drying",
+          "paper-board"
+        ]
+      ],
+      "received_transition_paths": [
+        [
+          "paper-pulping",
+          "paper-stock-preparation",
+          "paper-forming",
+          "paper-drying",
+          "paper-board"
+        ]
+      ],
+      "pages": 1,
+      "plans": 1
+    },
+    {
+      "input": {
+        "material": "PP",
+        "input_form": "scrap",
+        "goal_state": "pp-shredded"
+      },
+      "input_is_synthetic_not_factory_measurement": true,
+      "facility_records_are_public_reference_cases_not_acceptance": true,
+      "expected_transition_paths": [
+        [
+          "pp-prepare"
+        ]
+      ],
+      "received_transition_paths": [
+        [
+          "pp-prepare"
+        ]
+      ],
+      "pages": 1,
+      "plans": 1
+    }
+  ],
+  "checks": [
+    {
+      "name": "case 1 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 1 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 1 independently specified paths",
+      "passed": true
+    },
+    {
+      "name": "case 1 no missing or duplicate page",
+      "passed": true
+    },
+    {
+      "name": "case 1 immutable graph version",
+      "passed": true
+    },
+    {
+      "name": "case 1 complete within declared reference scope",
+      "passed": true
+    },
+    {
+      "name": "case 1 not ranked or approved",
+      "passed": true
+    },
+    {
+      "name": "case 1 no fabricated cost or carbon",
+      "passed": true
+    },
+    {
+      "name": "case 1 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 1 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 1 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 1 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 1 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 1 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 1 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 1 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 1 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 1 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 1 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 1 stage risk targets and provenance resolve",
+      "passed": true
+    },
+    {
+      "name": "case 2 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 2 independently specified paths",
+      "passed": true
+    },
+    {
+      "name": "case 2 no missing or duplicate page",
+      "passed": true
+    },
+    {
+      "name": "case 2 immutable graph version",
+      "passed": true
+    },
+    {
+      "name": "case 2 complete within declared reference scope",
+      "passed": true
+    },
+    {
+      "name": "case 2 not ranked or approved",
+      "passed": true
+    },
+    {
+      "name": "case 2 no fabricated cost or carbon",
+      "passed": true
+    },
+    {
+      "name": "case 2 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 2 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 2 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 2 stage risk targets and provenance resolve",
+      "passed": true
+    },
+    {
+      "name": "case 3 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 3 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 3 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 3 independently specified paths",
+      "passed": true
+    },
+    {
+      "name": "case 3 no missing or duplicate page",
+      "passed": true
+    },
+    {
+      "name": "case 3 immutable graph version",
+      "passed": true
+    },
+    {
+      "name": "case 3 complete within declared reference scope",
+      "passed": true
+    },
+    {
+      "name": "case 3 not ranked or approved",
+      "passed": true
+    },
+    {
+      "name": "case 3 no fabricated cost or carbon",
+      "passed": true
+    },
+    {
+      "name": "case 3 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 3 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 3 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 3 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 3 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 3 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 3 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 3 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 3 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 3 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 3 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 3 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 3 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 3 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 3 stage risk targets and provenance resolve",
+      "passed": true
+    },
+    {
+      "name": "case 4 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 4 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 4 independently specified paths",
+      "passed": true
+    },
+    {
+      "name": "case 4 no missing or duplicate page",
+      "passed": true
+    },
+    {
+      "name": "case 4 immutable graph version",
+      "passed": true
+    },
+    {
+      "name": "case 4 complete within declared reference scope",
+      "passed": true
+    },
+    {
+      "name": "case 4 not ranked or approved",
+      "passed": true
+    },
+    {
+      "name": "case 4 no fabricated cost or carbon",
+      "passed": true
+    },
+    {
+      "name": "case 4 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 4 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 4 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 4 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 4 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 4 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 4 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 4 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 4 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 4 stage risk targets and provenance resolve",
+      "passed": true
+    },
+    {
+      "name": "case 5 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 5 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 5 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 5 independently specified paths",
+      "passed": true
+    },
+    {
+      "name": "case 5 no missing or duplicate page",
+      "passed": true
+    },
+    {
+      "name": "case 5 immutable graph version",
+      "passed": true
+    },
+    {
+      "name": "case 5 complete within declared reference scope",
+      "passed": true
+    },
+    {
+      "name": "case 5 not ranked or approved",
+      "passed": true
+    },
+    {
+      "name": "case 5 no fabricated cost or carbon",
+      "passed": true
+    },
+    {
+      "name": "case 5 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 5 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 5 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 5 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 5 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 5 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 5 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 5 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 5 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 5 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 5 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 5 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 5 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 5 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 5 stage risk targets and provenance resolve",
+      "passed": true
+    },
+    {
+      "name": "case 6 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 6 independently specified paths",
+      "passed": true
+    },
+    {
+      "name": "case 6 no missing or duplicate page",
+      "passed": true
+    },
+    {
+      "name": "case 6 immutable graph version",
+      "passed": true
+    },
+    {
+      "name": "case 6 complete within declared reference scope",
+      "passed": true
+    },
+    {
+      "name": "case 6 not ranked or approved",
+      "passed": true
+    },
+    {
+      "name": "case 6 no fabricated cost or carbon",
+      "passed": true
+    },
+    {
+      "name": "case 6 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 6 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 6 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 6 stage risk targets and provenance resolve",
+      "passed": true
+    },
+    {
+      "name": "case 7 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 7 independently specified paths",
+      "passed": true
+    },
+    {
+      "name": "case 7 no missing or duplicate page",
+      "passed": true
+    },
+    {
+      "name": "case 7 immutable graph version",
+      "passed": true
+    },
+    {
+      "name": "case 7 complete within declared reference scope",
+      "passed": true
+    },
+    {
+      "name": "case 7 not ranked or approved",
+      "passed": true
+    },
+    {
+      "name": "case 7 no fabricated cost or carbon",
+      "passed": true
+    },
+    {
+      "name": "case 7 stage risk targets and provenance resolve",
+      "passed": true
+    },
+    {
+      "name": "case 8 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 8 independently specified paths",
+      "passed": true
+    },
+    {
+      "name": "case 8 no missing or duplicate page",
+      "passed": true
+    },
+    {
+      "name": "case 8 immutable graph version",
+      "passed": true
+    },
+    {
+      "name": "case 8 complete within declared reference scope",
+      "passed": true
+    },
+    {
+      "name": "case 8 not ranked or approved",
+      "passed": true
+    },
+    {
+      "name": "case 8 no fabricated cost or carbon",
+      "passed": true
+    },
+    {
+      "name": "case 8 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 8 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 8 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 8 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 8 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 8 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 8 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 8 stage risk targets and provenance resolve",
+      "passed": true
+    },
+    {
+      "name": "case 9 API 200",
+      "passed": true
+    },
+    {
+      "name": "case 9 independently specified paths",
+      "passed": true
+    },
+    {
+      "name": "case 9 no missing or duplicate page",
+      "passed": true
+    },
+    {
+      "name": "case 9 immutable graph version",
+      "passed": true
+    },
+    {
+      "name": "case 9 complete within declared reference scope",
+      "passed": true
+    },
+    {
+      "name": "case 9 not ranked or approved",
+      "passed": true
+    },
+    {
+      "name": "case 9 no fabricated cost or carbon",
+      "passed": true
+    },
+    {
+      "name": "case 9 typed state continuity",
+      "passed": true
+    },
+    {
+      "name": "case 9 shape is not specification proof",
+      "passed": true
+    },
+    {
+      "name": "case 9 current facility facts unknown",
+      "passed": true
+    },
+    {
+      "name": "case 9 stage risk targets and provenance resolve",
+      "passed": true
+    },
+    {
+      "name": "short horizon never claims complete search",
+      "passed": true
+    },
+    {
+      "name": "missing form labels state assumptions",
+      "passed": true
+    },
+    {
+      "name": "external context removed",
+      "passed": true
+    },
+    {
+      "name": "unknown goal is HTTP 400",
+      "passed": true
+    }
+  ],
+  "passed": 146,
+  "total": 146
+}

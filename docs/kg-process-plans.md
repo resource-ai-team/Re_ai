@@ -22,10 +22,10 @@ v2에는 시설별 공개 조건 프로필이 추가됐습니다. [조건 대조
 | --- | ---: | --- |
 | `Organisation` | 5 | 삼양에코테크, BGF에코사이클, 중앙이엔비, 노벨리스코리아, 한솔페이퍼텍 |
 | `Facility` | 7 | 시화, BGF 인천·예산·화성, 공주, 영주, 담양 사업장 |
-| `MaterialState` | 19 | 병, 파쇄품, 세정 투입물, 펠렛 등 조사용 상태 |
-| `ProcessTransition` | 14 | 입력 상태에서 출력 상태로 이어지는 명시적 전이 |
-| `FacilityCapability` | 14 | 전이를 특정 시설에 연결한 출처와 확인 조건 |
-| `Source` | 7 | 아래에 고정한 공식 출처. 각 출처에 `Evidence`도 연결 |
+| `MaterialState` | 23 | 병, 파쇄품, 세정 투입물, 펠렛, 제지 중간물 등 조사용 상태 |
+| `ProcessTransition` | 18 | 입력 상태에서 출력 상태로 이어지는 명시적 전이 |
+| `FacilityCapability` | 18 | 전이를 특정 시설에 연결한 출처와 확인 조건 |
+| `Source` | 9 | 아래에 고정한 공식 출처. 각 출처에 `Evidence`도 연결 |
 
 시설을 등록했다는 사실만으로 모든 공정을 연결하지 않습니다. 예를 들어 BGF 인천은
 선별사업장으로 등록되어 있지만, 현재 자료에는 인천의 특정 소재 전이가 없습니다.
@@ -126,7 +126,8 @@ BGF 예산의 세정·압출 재생과 화성의 컴파운딩은 현재 `site_ro
 연속 단계의 시설 key가 같으면 `within_site_candidate`, 다르면
 `external_handover_candidate`입니다. PP 예시에서 예산의 세정 → 압출은 전자,
 공주 → 예산과 예산 → 화성은 후자입니다. 같은 회사라도 다른 사업장은 외부 인계
-후보입니다. 두 종류 모두 `handover_confirmed=false`이며 공장 내부의 실제 이동,
+후보입니다. 시설 key가 없으면 `unresolved_handover_candidate`와
+`facility_identity_resolved=false`로 구분합니다. 모든 종류는 `handover_confirmed=false`이며 공장 내부의 실제 이동,
 회사 간 납품 관계, 계약·배차가 확인된 것은 아닙니다.
 
 각 단계의 `suitability`는 `not_assessed`, `input_state_specifications_verified`는
@@ -178,6 +179,8 @@ BGF 예산의 세정·압출 재생과 화성의 컴파운딩은 현재 `site_ro
 | `pagination.has_more`, `next_cursor` | 열거한 결과의 다음 페이지 유무와 커서 |
 | `pagination.complete_in_this_response` | 첫 요청 한 번으로 열거 결과 전부를 전송했는지 표시 |
 | `search_scope.entry_state_keys` | 이번 검색의 시작 상태 key 목록 |
+| `search_scope.material_scope` | 조회 소재군과 입력 세부 수지. 등급별 인수 적합성은 미검증 |
+| `search_scope.coverage_diagnostics` | 입력 시작 상태 기준의 끊긴 가지·미도달 산출물·시설 미연결. 현실의 완전성 판정이 아님 |
 | `search_scope.max_steps` | 경로당 전이 수 한도. 기본 6, 허용 범위 1~8 |
 | `search_scope.max_expansions`, `max_plans` | 현재 구현의 확장 한도 10,000회와 경로 한도 2,000개 |
 | `search_scope.budget_exhausted` | 확장 또는 경로 개수 한도에 도달했는지 표시 |
@@ -187,7 +190,10 @@ BGF 예산의 세정·압출 재생과 화성의 컴파운딩은 현재 `site_ro
 
 검색 한도 필드는 현재 응답의 `search_scope`에 있습니다. 별도 `search_bounds` 필드는
 없습니다. `max_steps`는 전이 내부의 작업 개수와 다릅니다. 한 전이에 여러 작업을 묶은
-알루미늄·종이 사례도 전이 한 단계로 셉니다.
+알루미늄 사례는 전이 한 단계이며, 종이는 여러 작업을 묶은 전이 5개로 셉니다.
+
+`GET /kg/planning-coverage`는 입력별 탐색과 별도로 활성 Neo4j 참조 자료 전체의 수와 연결 공백을 반환합니다.
+[보강한 자료·진단 해석](kg-evidence-upgrade.md)을 참고합니다.
 
 호출자는 `next_cursor=null`까지 페이지를 받고, 동시에
 `search_scope.all_paths_enumerated`와 두 제한 플래그를 확인해야 합니다.
@@ -231,7 +237,7 @@ API와 도구 자체가 외부 모델을 호출하지는 않습니다.
 새 세대를 만들고 검사를 통과한 경우에만 활성화하며, 이전 세대는 삭제하지 않습니다.
 코드와 DB의 온톨로지가 다르면 조용히 이전 자료를 쓰지 않고 `503 integrity`로 알립니다.
 
-아래 7개 출처의 번들 확인일은 2026-10-20입니다. 확인일은 설비 가동·인수·가격의
+기존 7개 출처의 번들 확인일은 2026-10-20, 추가한 제지 공정·PP 지침은 2026-10-21입니다. 확인일은 설비 가동·인수·가격의
 현황을 실사한 날짜가 아닙니다. `source_date`가 없는 항목에 임의 발표일을 채우지
 않습니다.
 
@@ -243,18 +249,20 @@ API와 도구 자체가 외부 모델을 호출하지는 않습니다.
 | `jungang-process` | [중앙이엔비 처리 공정](https://www.jungangenb.com/process) | 반입·선별·파쇄·후선별·출하. 지정폐기물 취급 제외, 세척·펠렛 생산 근거로 확대하지 않음 |
 | `novelis-yeongju` | [Novelis 영주 사업장](https://novelis.com/locations/yeongju-south-korea/) | 소재지와 재활용·주조·판재 생산 역할 |
 | `novelis-can-case` | [Novelis 음료캔 재활용 사례](https://investors.novelis.com/news-events/press-releases/detail/1316/novelis-yeongju-plant-achieves-120-billion-aluminum-cans-recycled-milestone-in-its-first-decade) | 2021-06-20 음료캔→판재 사례. 현재 인수·여유 용량과 절삭칩 적용을 입증하지 않음 |
-| `hansol-paper` | [한솔페이퍼텍](https://www.hansolpapertech.com/home/) | 고지·펄프 배합 **골판지용 표면지** 설명. 모든 종이 등급이나 내부 상세 순서로 확대하지 않음 |
+| `hansol-paper` | [한솔페이퍼텍](https://www.hansolpapertech.com/home/) | 고지·펄프 배합 **골판지용 표면지** 설명. 모든 종이 등급으로 확대하지 않음 |
+| `hansol-process` | [한솔페이퍼텍 생산공정](https://www.hansolpapertech.com/intro/present.jsp) | 해리부터 재단까지 10개 작업 순서·초지기·제품 설명. 특정 로트의 인수·수율·현행 허가 미확인 |
+| `recyclass-pp-design` | [RecyClass PP 포장재 지침](https://recyclass.eu/wp-content/uploads/2025/10/coloured-pp-containers-and-tubes.pdf) | NIR 검출성·첨가물·라벨 관련 기술 확인 질문. 국내 법규·특정 공장 스크랩 규격이 아님 |
 
 중앙이엔비 경로에는 지정폐기물 제외와 해당 로트의 분류·허가 범위 확인을 조건으로
-담았습니다. 자동 법규 판정은 아닙니다. 종이 전이는 `paper-containerboard`라는 key를
-유지하지만 반영한 제품 설명은 표면지 범위입니다. 고지 외 추가 펄프·물질·에너지와
-잔재·회수량을 확보해야 하며, 고지 투입량이 그대로 제품 산출량이 된다고 계산하지
-않습니다. 알루미늄과 종이는 상세 내부 순서를 모델링하지 않은 공정 묶음입니다.
+담았습니다. 자동 법규 판정은 아닙니다. 종이 산출물은 `paper-containerboard`라는 key를
+유지하며, 기존 표면지 설명과 새 생산공정 페이지의 골심지·라이너지 설명을 출처별로 구분합니다.
+종이는 공개된 10개 작업을 5개 전이로 연결했고, 알루미늄은 내부 상세 순서를 나누지 않은 공정 묶음입니다.
+고지 외 추가 펄프·물질·에너지와 잔재·회수량을 확보해야 하며, 고지 투입량이 그대로 제품 산출량이 된다고 계산하지 않습니다.
 
 Novelis 사업장 페이지는 자료 수집 당시 직접 HTTP 요청에 403을 반환했습니다.
 우회하지 않고 웹 도구로 확인한 기록을 보존했으며, 이 항목의
 `digest_basis="curator-record-not-original-page"`는 **검수 기록의 해시**라는 뜻입니다.
-원본 HTML 바이트를 내려받아 해시를 계산했다는 뜻이 아닙니다. 나머지 6개 항목은
+원본 HTML 바이트를 내려받아 해시를 계산했다는 뜻이 아닙니다. 다른 출처 항목은
 `downloaded-original-bytes`로 기록했습니다. 해시가 보장하는 수집 대상이 서로 다릅니다.
 
 W2RKG 저장소의 Apache-2.0은 기업 웹페이지와 제3자 논문 원문에 자동 적용되지 않습니다.
@@ -281,7 +289,8 @@ pytest -q
 `null`입니다. 원점에서 첫 시설까지의 운송도 평가하지 않았습니다. 공시 설계능력으로
 현재 용량을 채우지 않으며, 허가·현재 인수·용량·가격 필드는 참조 자료에서 모두
 `null`로 제한합니다. 현재 구현은 API·에이전트 호출 경계까지이며 사용자 화면 연결,
-법령 RAG·규칙 판정, 비용·탄소 평가 및 최종 추천·평가 흐름의 통합은 후속 작업입니다.
+후보별 법령 RAG 호출은 `/analysis/research`에 연결됐습니다. 검색 결과의 적용성 Auditor·규칙 판정,
+실제 수치 기반 평가 및 최종 추천·평가 흐름의 통합은 후속 작업입니다.
 
 자료 측면에서는 로트 규격·성분·수분·등급, 시설별 설비·허가와 갱신일, 현재 인수·
 용량·가격, 공정별 수율·부산물·추가 투입물, 단계 간 수취 규격과 실제 납품 관계가
@@ -292,7 +301,7 @@ pytest -q
 사용자 검수 화면을 구현해야 합니다. 탐색 한도를 넘는 큰 자료를 다룰 방법과 실제 현장
 정답을 이용한 경로 누락·오연결 평가도 추가로 필요합니다.
 
-## 2026-10-21 검증 결과
+## 초기 구현의 2026-10-21 검증 기록
 
 실제 Neo4j Community 5.26.32에서 테스트 **245개 통과**, 추가 subtests 24개가 통과했습니다.
 Ruff 코드·포맷 검사도 통과했습니다. 단위 검사의 가상 분기 그래프와 공개 출처 사례를
@@ -308,3 +317,6 @@ W2RKG 33,679건을 포함한 전체 DB에서도 다음 API 회귀 검사를 수�
 | v1.2 전체 적재·구조 감사 | 통과 | [kg-import-2026-10-21.json](evaluation/kg-import-2026-10-21.json) |
 
 입력 로트는 가상이며 업체 인수·견적·법률 판단·공정 수율을 실측한 결과가 아닙니다.
+
+위 기록은 보강 전 참조 자료의 결과입니다. 새 출처·제지 단계·연결 진단을 반영한 검증은
+[이번 보강 기록](kg-evidence-upgrade.md)과 파일명에 `evidence`가 들어간 실행 보고서에서 구분합니다.

@@ -191,6 +191,8 @@ class CandidateResearchService:
             input_context=request.lot.model_dump(mode="json", exclude={"cursor"}),
             graph_trace=trace or {},
             coverage={
+                "material_scope": last.planning.search_scope.get("material_scope", {}),
+                "graph_connection_gaps": last.planning.search_scope.get("coverage_diagnostics", {}),
                 "planning_status": last.planning.status,
                 "missing_fields": last.planning.missing_fields,
                 "pages_read": pages,

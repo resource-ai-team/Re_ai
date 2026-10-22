@@ -81,35 +81,38 @@ def synthetic(value):
         }
         for key in ("synthetic-east", "synthetic-west")
     ]
-    return PlanningReference.model_validate(
-        {
-            **raw,
-            "sources": [source],
-            "states": states,
-            "transitions": transitions,
-            "organisations": [{"key": "synthetic-organisation", "label": "Synthetic", **sourced}],
-            "facilities": facilities,
-            "capabilities": [
-                {
-                    "key": f"{transition['key']}--{facility['key']}",
-                    **sourced,
-                    "facility": facility["key"],
-                    "transition": transition["key"],
-                    "basis": "site_role_hypothesis",
-                    "conditions": ["Synthetic site check"],
-                    "input_profile": {
-                        "evidence_scope": "organisation_only_not_site_verified",
-                        "material_examples": ["pet"],
-                        "form_examples": [],
-                        "output_description": "Synthetic output only",
-                        "source_ids": [source["key"]],
-                        "locator": "Synthetic fixture only",
-                    },
-                }
-                for transition, facility in product(transitions, facilities)
-            ],
-        }
-    )
+    payload = {
+        **raw,
+        "sources": [source],
+        "states": states,
+        "transitions": transitions,
+        "organisations": [{"key": "synthetic-organisation", "label": "Synthetic", **sourced}],
+        "facilities": facilities,
+        "capabilities": [
+            {
+                "key": f"{transition['key']}--{facility['key']}",
+                **sourced,
+                "facility": facility["key"],
+                "transition": transition["key"],
+                "basis": "site_role_hypothesis",
+                "conditions": ["Synthetic site check"],
+                "input_profile": {
+                    "evidence_scope": "organisation_only_not_site_verified",
+                    "material_examples": ["pet"],
+                    "form_examples": [],
+                    "output_description": "Synthetic output only",
+                    "source_ids": [source["key"]],
+                    "locator": "Synthetic fixture only",
+                },
+            }
+            for transition, facility in product(transitions, facilities)
+        ],
+    }
+    source["supported_records"] = {
+        group: [row["key"] for row in payload[group]]
+        for group in ("states", "transitions", "organisations", "facilities", "capabilities")
+    }
+    return PlanningReference.model_validate(payload)
 
 
 def paths(value, material="pet", form="bottle", goal=None, max_steps=8):
@@ -170,6 +173,9 @@ def test_missing_facility_keeps_the_route_and_exposes_the_gap(synthetic):
     raw["capabilities"] = [
         cap for cap in raw["capabilities"] if cap["transition"] != "synthetic-a-output"
     ]
+    raw["sources"][0]["supported_records"]["capabilities"] = [
+        cap["key"] for cap in raw["capabilities"]
+    ]
     synthetic = PlanningReference.model_validate(raw)
     result = paths(synthetic)
     assert len(result.paths) == 6
@@ -194,6 +200,7 @@ def test_cycle_guard_does_not_repeat_states_or_hide_the_acyclic_branches(synthet
             "output_state": "synthetic-start",
         }
     )
+    raw["sources"][0]["supported_records"]["transitions"].append("synthetic-cycle")
     cyclic = PlanningReference.model_validate(raw)
     result = paths(cyclic)
     assert [signature(path) for path in result.paths] == [

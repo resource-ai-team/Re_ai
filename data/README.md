@@ -13,6 +13,7 @@
 | `official/` | 공식 API에서 재생성한 JSONL·매니페스트 | 제외 |
 | `knowledge_graph/` | 고정 해시의 W2RKG 인덱스·출처·라이선스 | 포함 |
 | `local/facilities/` | 별도 수집한 국내 시설 명부 원본·매니페스트 | 제외 |
+| `local/source-review/` | 공정 보강에 확인한 공식 원본 HTML·PDF. 해시만 검수 기록에 포함 | 제외 |
 
 KG 조사 카드·출처 메타데이터·조건부 공정 템플릿은 Python 배포에도 포함되도록
 `src/resource_ai/knowledge_graph/resources/`에 둡니다. 원본은 Re-Prototype의
@@ -22,6 +23,9 @@ KG 조사 카드·출처 메타데이터·조건부 공정 템플릿은 Python �
 `bundle-manifest.json.additional_provenance`에서 구분합니다.
 `planning-reference-v2`의 시설별 `input_profile`도 같은 번들에 포함하며, 공개 예시·제외 정책을
 실제 투입 규격·현행 허가·인수 승인과 구분합니다. 원본 해시·출처·확인일을 함께 검토합니다.
+각 출처의 `supported_records`에 사람이 검수한 상태·전이·시설 등의 연결 범위를 명시합니다.
+범위 밖 연결은 거부하지만 원문 의미를 자동으로 검증한 것으로 해석하지 않습니다.
+추가 확보한 제지·PP 지침의 해시와 반영 범위는 `knowledge_graph/planning-source-review-2026-10-21.json`에 기록했습니다.
 국내 시설 명부는 별도 Neo4j 세대에 적재하며 원본 재배포·외부 모델 전송은 활성화하지
 않았습니다. [수집·적재 방법과 한계](../docs/kg-facility-matching.md)를 참고하세요.
 Neo4j 데이터 볼륨·로컬 비밀번호·국가 LCI 원본은 Git에 포함하지 않습니다.

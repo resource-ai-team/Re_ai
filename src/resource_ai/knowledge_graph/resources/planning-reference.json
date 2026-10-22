@@ -14,7 +14,31 @@
       "source_date": null,
       "sha256": "9f7cd399b4c1888bbe5047f451833b576618eb48266b82eeee39ae646ee635c0",
       "model_transfer_allowed": true,
-      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "supported_records": {
+        "states": [
+          "pet-bottle",
+          "pet-flake",
+          "pet-sorted",
+          "pet-washed"
+        ],
+        "transitions": [
+          "pet-finish",
+          "pet-prepare",
+          "pet-wash"
+        ],
+        "organisations": [
+          "samyang-ecotech"
+        ],
+        "facilities": [
+          "samyang-sihwa"
+        ],
+        "capabilities": [
+          "samyang-sihwa--pet-finish",
+          "samyang-sihwa--pet-prepare",
+          "samyang-sihwa--pet-wash"
+        ]
+      }
     },
     {
       "acquisition": "official-html-acquired-and-reviewed",
@@ -28,7 +52,44 @@
       "source_date": null,
       "sha256": "329616b5f025a1e6728b85e94a95ba485a174514a59c3b8c9d90583c7ec7b1cc",
       "model_transfer_allowed": true,
-      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "supported_records": {
+        "states": [
+          "pe-compound",
+          "pe-pellet",
+          "pe-washed",
+          "pet-pellet",
+          "pp-compound",
+          "pp-pellet",
+          "pp-washed"
+        ],
+        "transitions": [
+          "pe-clean",
+          "pe-compound",
+          "pe-pelletise",
+          "pet-pelletise",
+          "pp-clean",
+          "pp-compound",
+          "pp-pelletise"
+        ],
+        "organisations": [
+          "bgf-ecocycle"
+        ],
+        "facilities": [
+          "bgf-hwaseong",
+          "bgf-incheon",
+          "bgf-yesan"
+        ],
+        "capabilities": [
+          "bgf-hwaseong--pe-compound",
+          "bgf-hwaseong--pp-compound",
+          "bgf-yesan--pe-clean",
+          "bgf-yesan--pe-pelletise",
+          "bgf-yesan--pet-pelletise",
+          "bgf-yesan--pp-clean",
+          "bgf-yesan--pp-pelletise"
+        ]
+      }
     },
     {
       "acquisition": "official-html-acquired-and-reviewed",
@@ -42,7 +103,29 @@
       "source_date": null,
       "sha256": "52946fba52a22c2bab1f648dceb827f28f85d522030550178319433008cec943",
       "model_transfer_allowed": true,
-      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "supported_records": {
+        "states": [
+          "pe-scrap",
+          "pe-shredded",
+          "pp-scrap",
+          "pp-shredded"
+        ],
+        "transitions": [
+          "pe-prepare",
+          "pp-prepare"
+        ],
+        "organisations": [
+          "jungang-enb"
+        ],
+        "facilities": [
+          "jungang-gongju"
+        ],
+        "capabilities": [
+          "jungang-gongju--pe-prepare",
+          "jungang-gongju--pp-prepare"
+        ]
+      }
     },
     {
       "acquisition": "official-html-acquired-and-reviewed",
@@ -56,7 +139,24 @@
       "source_date": null,
       "sha256": "8c64d9df4e4b360e708119ff8c3032ac880108e5c5be2334baf5ed794fc0d175",
       "model_transfer_allowed": true,
-      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "supported_records": {
+        "states": [
+          "pe-shredded",
+          "pp-shredded"
+        ],
+        "transitions": [
+          "pe-prepare",
+          "pp-prepare"
+        ],
+        "facilities": [
+          "jungang-gongju"
+        ],
+        "capabilities": [
+          "jungang-gongju--pe-prepare",
+          "jungang-gongju--pp-prepare"
+        ]
+      }
     },
     {
       "acquisition": "official-page-reviewed-via-web-tool; direct-http403-no-bypass",
@@ -70,7 +170,21 @@
       "source_date": null,
       "sha256": "621ba57fbec9dc8a67f9c741bb6ce85de7dbf7ae69fc2dbb5d55fea44a04b560",
       "model_transfer_allowed": true,
-      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "supported_records": {
+        "transitions": [
+          "al-can-sheet"
+        ],
+        "organisations": [
+          "novelis-korea"
+        ],
+        "facilities": [
+          "novelis-yeongju"
+        ],
+        "capabilities": [
+          "novelis-yeongju--al-can-sheet"
+        ]
+      }
     },
     {
       "acquisition": "official-html-acquired-and-reviewed",
@@ -84,7 +198,22 @@
       "source_date": "2021-06-20",
       "sha256": "582fc189c36426976805f82676e2b31dcce15404930efc510cd80fc2a160c4a2",
       "model_transfer_allowed": true,
-      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "supported_records": {
+        "states": [
+          "al-sheet",
+          "al-used-can"
+        ],
+        "transitions": [
+          "al-can-sheet"
+        ],
+        "facilities": [
+          "novelis-yeongju"
+        ],
+        "capabilities": [
+          "novelis-yeongju--al-can-sheet"
+        ]
+      }
     },
     {
       "acquisition": "official-html-acquired-and-reviewed",
@@ -98,7 +227,79 @@
       "source_date": null,
       "sha256": "ee4fc8a81b837d5577292a9a888cf05b6df8d9c2709ea956d83892802aff8596",
       "model_transfer_allowed": true,
-      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "supported_records": {
+        "states": [
+          "paper-containerboard",
+          "paper-recovered"
+        ],
+        "organisations": [
+          "hansol-papertech"
+        ],
+        "facilities": [
+          "hansol-damyang"
+        ]
+      }
+    },
+    {
+      "key": "hansol-process",
+      "url": "https://www.hansolpapertech.com/intro/present.jsp",
+      "publisher": "한솔페이퍼텍",
+      "locator": "생산공정 01~10 및 초지기 현황·본사 주소",
+      "summary": "공개된 제지 생산 순서를 다섯 묶음으로 표현한다. 특정 고지 로트 인수·허가·물질수지·현재 가동은 확인하지 않는다.",
+      "checked_date": "2026-10-21",
+      "source_date": null,
+      "sha256": "5323906a6b548c6252ed40ae949ddaedd6487348a13b6994a09572c39da5fcd6",
+      "acquisition": "official-primary-source-acquired-and-reviewed",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "supported_records": {
+        "states": [
+          "paper-containerboard",
+          "paper-dried-web",
+          "paper-pulp",
+          "paper-recovered",
+          "paper-stock",
+          "paper-wet-web"
+        ],
+        "transitions": [
+          "paper-board",
+          "paper-drying",
+          "paper-forming",
+          "paper-pulping",
+          "paper-stock-preparation"
+        ],
+        "facilities": [
+          "hansol-damyang"
+        ],
+        "capabilities": [
+          "hansol-damyang--paper-board",
+          "hansol-damyang--paper-drying",
+          "hansol-damyang--paper-forming",
+          "hansol-damyang--paper-pulping",
+          "hansol-damyang--paper-stock-preparation"
+        ]
+      }
+    },
+    {
+      "key": "recyclass-pp-design",
+      "url": "https://recyclass.eu/wp-content/uploads/2025/10/coloured-pp-containers-and-tubes.pdf",
+      "publisher": "RecyClass",
+      "locator": "p.1 MAIN BODY COLOURS·ADDITIVES·DECORATION; Last update July 2025",
+      "summary": "유럽의 유색 PP 포장재 재활용성 기술 지침이다. 색소의 광학선별 검출, 충전제의 밀도 영향, 다층재·라벨 간섭 확인에 참고한다. 국내 법규나 산업 스크랩 수탁 규격이 아니다.",
+      "checked_date": "2026-10-21",
+      "source_date": null,
+      "sha256": "63ceca6672b2e824827f1a51ba9a135ef4b61c58c4ffdf31aa38c6195cccdee5",
+      "acquisition": "official-primary-source-acquired-and-reviewed",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "supported_records": {
+        "transitions": [
+          "pp-prepare"
+        ]
+      }
     }
   ],
   "states": [
@@ -325,7 +526,8 @@
         "recovered_paper"
       ],
       "source_ids": [
-        "hansol-paper"
+        "hansol-paper",
+        "hansol-process"
       ],
       "is_entry": true,
       "is_output": false
@@ -336,10 +538,55 @@
       "label": "고지·펄프 배합 골판지용 표면지 원지·규격 미확인",
       "input_forms": [],
       "source_ids": [
-        "hansol-paper"
+        "hansol-paper",
+        "hansol-process"
       ],
       "is_entry": false,
       "is_output": true
+    },
+    {
+      "key": "paper-pulp",
+      "label": "해리 후 고지 원료·실측 규격 미확인",
+      "material": "paper",
+      "input_forms": [],
+      "is_entry": false,
+      "is_output": false,
+      "source_ids": [
+        "hansol-process"
+      ]
+    },
+    {
+      "key": "paper-stock",
+      "label": "정선·농축·고해 후 지료·실측 규격 미확인",
+      "material": "paper",
+      "input_forms": [],
+      "is_entry": false,
+      "is_output": false,
+      "source_ids": [
+        "hansol-process"
+      ]
+    },
+    {
+      "key": "paper-wet-web",
+      "label": "지필형성·압착탈수 후 습지·실측 규격 미확인",
+      "material": "paper",
+      "input_forms": [],
+      "is_entry": false,
+      "is_output": false,
+      "source_ids": [
+        "hansol-process"
+      ]
+    },
+    {
+      "key": "paper-dried-web",
+      "label": "건조·광택 후 종이·실측 규격 미확인",
+      "material": "paper",
+      "input_forms": [],
+      "is_entry": false,
+      "is_output": false,
+      "source_ids": [
+        "hansol-process"
+      ]
     }
   ],
   "transitions": [
@@ -444,7 +691,8 @@
       ],
       "source_ids": [
         "jungang-materials",
-        "jungang-process"
+        "jungang-process",
+        "recyclass-pp-design"
       ],
       "conditions": [
         "단일 수지 여부 및 허용 투입물·이물·배출 특성 확인",
@@ -454,7 +702,9 @@
       "risk_checks": [
         "로트의 조성·오염·수분과 투입 규격 대조",
         "부산물·잔재물과 회수율·추가 투입물 확인",
-        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인",
+        "유색 PP 포장재 지침을 참고하되, 검정색이라는 이유만으로 불가로 단정하지 않고 실제 선별 설비의 NIR 검출 가능성을 확인했습니까?",
+        "해당 기술 지침의 적용 범위를 구분하고 충전제·다층재·라벨의 수지 식별·밀도 분리 영향을 실제 시료로 확인했습니까?"
       ]
     },
     {
@@ -637,24 +887,98 @@
       ]
     },
     {
-      "key": "paper-board",
-      "label": "고지·펄프 배합 골판지용 표면지 원지 생산 공정 묶음",
+      "key": "paper-pulping",
+      "label": "고지 해리",
       "input_state": "paper-recovered",
-      "output_state": "paper-containerboard",
+      "output_state": "paper-pulp",
       "operation_steps": [
-        "고지·펄프 배합 표면지 원지 생산·세부 순서 미모델링"
+        "해리"
       ],
       "source_ids": [
-        "hansol-paper"
+        "hansol-process"
       ],
       "conditions": [
-        "고지 등급·코팅·이물과 실제 인수 규격 확인",
-        "추가 펄프·물질·에너지 투입과 내부 순서 별도 확보"
+        "공개 생산 순서이며 이번 로트의 규격·현행 가동·인수는 별도 확인"
       ],
       "risk_checks": [
-        "로트의 조성·오염·수분과 투입 규격 대조",
-        "부산물·잔재물과 회수율·추가 투입물 확인",
-        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+        "고지의 코팅·혼입물·품질과 이번 로트의 투입 규격을 확인했습니까?"
+      ]
+    },
+    {
+      "key": "paper-stock-preparation",
+      "label": "원질 조성",
+      "input_state": "paper-pulp",
+      "output_state": "paper-stock",
+      "operation_steps": [
+        "정선",
+        "농축",
+        "고해"
+      ],
+      "source_ids": [
+        "hansol-process"
+      ],
+      "conditions": [
+        "공개 생산 순서이며 이번 로트의 규격·현행 가동·인수는 별도 확인"
+      ],
+      "risk_checks": [
+        "이물·분리 잔재물과 세정수·폐수 처리 범위를 확인했습니까?"
+      ]
+    },
+    {
+      "key": "paper-forming",
+      "label": "지필 형성·압착",
+      "input_state": "paper-stock",
+      "output_state": "paper-wet-web",
+      "operation_steps": [
+        "지필형성",
+        "압착탈수"
+      ],
+      "source_ids": [
+        "hansol-process"
+      ],
+      "conditions": [
+        "공개 생산 순서이며 이번 로트의 규격·현행 가동·인수는 별도 확인"
+      ],
+      "risk_checks": [
+        "해당 단계의 수분·품질과 공정수 재이용·처리 범위를 확인했습니까?"
+      ]
+    },
+    {
+      "key": "paper-drying",
+      "label": "건조·광택",
+      "input_state": "paper-wet-web",
+      "output_state": "paper-dried-web",
+      "operation_steps": [
+        "건조",
+        "광택"
+      ],
+      "source_ids": [
+        "hansol-process"
+      ],
+      "conditions": [
+        "공개 생산 순서이며 이번 로트의 규격·현행 가동·인수는 별도 확인"
+      ],
+      "risk_checks": [
+        "건조에 투입되는 실제 연료·전력과 탄소 산정 경계를 확인했습니까?"
+      ]
+    },
+    {
+      "key": "paper-board",
+      "label": "권취·재단·원지 출하 후보",
+      "input_state": "paper-dried-web",
+      "output_state": "paper-containerboard",
+      "operation_steps": [
+        "권취",
+        "재단"
+      ],
+      "source_ids": [
+        "hansol-process"
+      ],
+      "conditions": [
+        "공개 생산 순서이며 이번 로트의 규격·현행 가동·인수는 별도 확인"
+      ],
+      "risk_checks": [
+        "고객 요구 규격·재단 손실·산출량과 실제 판매 조건을 확인했습니까?"
       ]
     }
   ],
@@ -822,7 +1146,8 @@
       "region": "담양군",
       "address": "담양군 대전면 대치7길 80",
       "source_ids": [
-        "hansol-paper"
+        "hansol-paper",
+        "hansol-process"
       ],
       "reported_metrics": [],
       "current_permit_scope": null,
@@ -1221,12 +1546,12 @@
       }
     },
     {
-      "key": "hansol-damyang--paper-board",
+      "key": "hansol-damyang--paper-pulping",
       "facility": "hansol-damyang",
-      "transition": "paper-board",
+      "transition": "paper-pulping",
       "basis": "published_site_process",
       "source_ids": [
-        "hansol-paper"
+        "hansol-process"
       ],
       "conditions": [
         "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
@@ -1239,11 +1564,123 @@
         "form_examples": [
           "recovered_paper"
         ],
+        "output_description": "해리 후 고지 원료·실측 규격 미확인",
+        "source_ids": [
+          "hansol-process"
+        ],
+        "locator": "생산공정 01~10: 해리",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
+    },
+    {
+      "key": "hansol-damyang--paper-stock-preparation",
+      "facility": "hansol-damyang",
+      "transition": "paper-stock-preparation",
+      "basis": "published_site_process",
+      "source_ids": [
+        "hansol-process"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ],
+      "input_profile": {
+        "evidence_scope": "site_publication",
+        "material_examples": [
+          "paper"
+        ],
+        "form_examples": [],
+        "output_description": "정선·농축·고해 후 지료·실측 규격 미확인",
+        "source_ids": [
+          "hansol-process"
+        ],
+        "locator": "생산공정 01~10: 정선 → 농축 → 고해",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
+    },
+    {
+      "key": "hansol-damyang--paper-forming",
+      "facility": "hansol-damyang",
+      "transition": "paper-forming",
+      "basis": "published_site_process",
+      "source_ids": [
+        "hansol-process"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ],
+      "input_profile": {
+        "evidence_scope": "site_publication",
+        "material_examples": [
+          "paper"
+        ],
+        "form_examples": [],
+        "output_description": "지필형성·압착탈수 후 습지·실측 규격 미확인",
+        "source_ids": [
+          "hansol-process"
+        ],
+        "locator": "생산공정 01~10: 지필형성 → 압착탈수",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
+    },
+    {
+      "key": "hansol-damyang--paper-drying",
+      "facility": "hansol-damyang",
+      "transition": "paper-drying",
+      "basis": "published_site_process",
+      "source_ids": [
+        "hansol-process"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ],
+      "input_profile": {
+        "evidence_scope": "site_publication",
+        "material_examples": [
+          "paper"
+        ],
+        "form_examples": [],
+        "output_description": "건조·광택 후 종이·실측 규격 미확인",
+        "source_ids": [
+          "hansol-process"
+        ],
+        "locator": "생산공정 01~10: 건조 → 광택",
+        "excludes_designated_waste": null,
+        "exclusion_source_ids": [],
+        "exclusion_locator": null,
+        "verified_intake_limits_available": false
+      }
+    },
+    {
+      "key": "hansol-damyang--paper-board",
+      "facility": "hansol-damyang",
+      "transition": "paper-board",
+      "basis": "published_site_process",
+      "source_ids": [
+        "hansol-process"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ],
+      "input_profile": {
+        "evidence_scope": "site_publication",
+        "material_examples": [
+          "paper"
+        ],
+        "form_examples": [],
         "output_description": "고지·펄프 배합 골판지용 표면지 원지·규격 미확인",
         "source_ids": [
-          "hansol-paper"
+          "hansol-process"
         ],
-        "locator": "표면지 설명: 고지와 펄프 배합",
+        "locator": "생산공정 01~10: 권취 → 재단",
         "excludes_designated_waste": null,
         "exclusion_source_ids": [],
         "exclusion_locator": null,
