@@ -165,3 +165,11 @@
 구현·검증·남은 일의 자세한 근거는 [경로 검토 설명](grounded-decision-review.md),
 [법령 구조 대조](evaluation/legal-expansion-2026-10-22.json),
 [API 연결 검사](evaluation/grounded-review-2026-10-22.json)입니다.
+
+### Docker 복구 후 최신 현황
+
+Docker 임시 통신 폴더를 백업 이름으로 보존·재생성해 정상화했다. 기존 PostgreSQL 데이터 6문서·216청크와 실제 검색을 재확인했다.
+건너뛴 실제 DB 통합 검사도 별도로 1개 통과했고 [PR #26](https://github.com/resource-ai-team/Re_ai/pull/26)의 GitHub CI 두 작업도 통과했다.
+복구 후 API 연결 검사는 18/19, 기존 검색 품질 평가는 6/7이다. 허가 범위 질문의 기대 제25조 누락 1건은 검색 품질 보강 과제로 남긴다.
+위 표의 “현재 Docker 오류·검색 재검증 보류”는 이 후속 현황으로 갱신한다. 실제 노션 저장은 여전히 미완료다.
+[복구 후 평가 원문](evaluation/grounded-review-recovered-2026-10-22.json)을 참고한다.

@@ -1,0 +1,1344 @@
+{
+  "generated_at": "2026-10-22T04:28:24.123056+00:00",
+  "scope": "real KG/API wiring and local RAG availability check; synthetic lots and numbers",
+  "input_lot_is_synthetic": true,
+  "all_numeric_inputs_are_synthetic": true,
+  "generation_model_calls": 0,
+  "data_provenance": {
+    "kg": "existing curated public process/facility evidence; not current intake approval",
+    "legal_retrieval": "configured local official corpus; success/unavailability recorded in checks",
+    "embedding_model": "intfloat/multilingual-e5-small",
+    "numeric": "artificial values and example.invalid sources; not quotes or LCI evidence"
+  },
+  "template": {
+    "contract_version": "grounded-review-template-v1",
+    "input_sha256": "45999a611d2daa90701aad2a0eff6a22d84a366afce10e91a23f7ab46c80bbd1",
+    "graph_trace": {
+      "generation": "1f439d6e6a8140f6a9b4a1787802f248",
+      "graph_sha256": "13593292b5841b3188b04cf73ef4fa6f3a0e9c6ac9ed073a29af51d8a02e9e98",
+      "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+      "reference_sha256": "d89026e028f4bf9ce41b0048a7536eaae42b5e02239f82f94a903642de3fd9e0",
+      "reference_version": "planning-reference-v2",
+      "algorithm": "typed-state-facility-dfs-v2"
+    },
+    "candidates": [
+      {
+        "candidate_id": "plan:4782d31ee04a0b357a1b1a37ce026683",
+        "stage_ids": [
+          "plan:4782d31ee04a0b357a1b1a37ce026683:stage:1"
+        ],
+        "handoff_ids": [],
+        "stages": [
+          {
+            "stage_id": "plan:4782d31ee04a0b357a1b1a37ce026683:stage:1",
+            "process": "PP 반입 선별·파쇄",
+            "facility": "중앙이엔비 공주 사업장",
+            "intake_verified": false
+          }
+        ],
+        "required_lines": [
+          {
+            "metric": "cost",
+            "category": "process",
+            "target_id": "plan:4782d31ee04a0b357a1b1a37ce026683:stage:1",
+            "line_id": "numeric-line:cf496bcffb763bf7d040df3e557ebb77",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "transport",
+            "target_id": "plan:4782d31ee04a0b357a1b1a37ce026683:origin-transport",
+            "line_id": "numeric-line:de86084c761a68cd286b4f92db4fd981",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "residue",
+            "target_id": "plan:4782d31ee04a0b357a1b1a37ce026683",
+            "line_id": "numeric-line:a9dd202d802182bf186815417fcd4ea7",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "revenue",
+            "target_id": "plan:4782d31ee04a0b357a1b1a37ce026683",
+            "line_id": "numeric-line:253ba2b4816a702c102069653d1c6f98",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "process",
+            "target_id": "plan:4782d31ee04a0b357a1b1a37ce026683:stage:1",
+            "line_id": "numeric-line:6f553fb62f7ce50600515beb035d9b6c",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "transport",
+            "target_id": "plan:4782d31ee04a0b357a1b1a37ce026683:origin-transport",
+            "line_id": "numeric-line:b2f2634553476523ca899a25c34fea19",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "residue",
+            "target_id": "plan:4782d31ee04a0b357a1b1a37ce026683",
+            "line_id": "numeric-line:9f6cc611b5c4b3a681dfebaf2f1d73e4",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          }
+        ]
+      },
+      {
+        "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+        "stage_ids": [
+          "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:1",
+          "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:2",
+          "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:3"
+        ],
+        "handoff_ids": [
+          "plan:73cc941999294c2c4c6dd611b74b1fb8:leg:1",
+          "plan:73cc941999294c2c4c6dd611b74b1fb8:leg:2"
+        ],
+        "stages": [
+          {
+            "stage_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:1",
+            "process": "PP 반입 선별·파쇄",
+            "facility": "중앙이엔비 공주 사업장",
+            "intake_verified": false
+          },
+          {
+            "stage_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:2",
+            "process": "PP 세정 조사",
+            "facility": "BGF에코사이클 재생원료사업장",
+            "intake_verified": false
+          },
+          {
+            "stage_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:3",
+            "process": "PP 압출 재생",
+            "facility": "BGF에코사이클 재생원료사업장",
+            "intake_verified": false
+          }
+        ],
+        "required_lines": [
+          {
+            "metric": "cost",
+            "category": "process",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:1",
+            "line_id": "numeric-line:c1c0552475bbabaed23038759b6b0622",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "process",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:2",
+            "line_id": "numeric-line:425d3d6e9114f9b294fb6feea8d51a43",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "process",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:3",
+            "line_id": "numeric-line:84c4a1965c315fae87762bb584ecdf47",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "transport",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:origin-transport",
+            "line_id": "numeric-line:ae19cdd2128ee6c9c2210bcc809b78a0",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "transport",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:leg:1",
+            "line_id": "numeric-line:6135d99b33e90cc7be047c84818da5ee",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "transport",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:leg:2",
+            "line_id": "numeric-line:e61d0cb676d86d563182ef75f5241c83",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "residue",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+            "line_id": "numeric-line:d2b186d85c40e451ee765d882c611b0d",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "revenue",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+            "line_id": "numeric-line:ec2e6df922e133a5ea91a1f3d0cdf2cc",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "process",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:1",
+            "line_id": "numeric-line:d0a2353cdd61ad7558b03843d3e6e84a",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "process",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:2",
+            "line_id": "numeric-line:5c50529a9ce3a360a91923cb699c0760",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "process",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:3",
+            "line_id": "numeric-line:358a338a98de0bc06283fcced6b57a48",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "transport",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:origin-transport",
+            "line_id": "numeric-line:516b89b223e506d8e85ff9fcc1b090df",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "transport",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:leg:1",
+            "line_id": "numeric-line:55b76828fde1f9e173148e8af86bffe5",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "transport",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:leg:2",
+            "line_id": "numeric-line:c3bccf0f8379436b30d2992dc6e0f941",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "residue",
+            "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+            "line_id": "numeric-line:94e9a267bd8639315ca1bec5d8955165",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          }
+        ]
+      },
+      {
+        "candidate_id": "plan:cf4e094463ddc0c54793564ca995caf1",
+        "stage_ids": [
+          "plan:cf4e094463ddc0c54793564ca995caf1:stage:1",
+          "plan:cf4e094463ddc0c54793564ca995caf1:stage:2",
+          "plan:cf4e094463ddc0c54793564ca995caf1:stage:3",
+          "plan:cf4e094463ddc0c54793564ca995caf1:stage:4"
+        ],
+        "handoff_ids": [
+          "plan:cf4e094463ddc0c54793564ca995caf1:leg:1",
+          "plan:cf4e094463ddc0c54793564ca995caf1:leg:2",
+          "plan:cf4e094463ddc0c54793564ca995caf1:leg:3"
+        ],
+        "stages": [
+          {
+            "stage_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:1",
+            "process": "PP 반입 선별·파쇄",
+            "facility": "중앙이엔비 공주 사업장",
+            "intake_verified": false
+          },
+          {
+            "stage_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:2",
+            "process": "PP 세정 조사",
+            "facility": "BGF에코사이클 재생원료사업장",
+            "intake_verified": false
+          },
+          {
+            "stage_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:3",
+            "process": "PP 압출 재생",
+            "facility": "BGF에코사이클 재생원료사업장",
+            "intake_verified": false
+          },
+          {
+            "stage_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:4",
+            "process": "PP 컴파운딩",
+            "facility": "BGF에코사이클 컴파운드사업장",
+            "intake_verified": false
+          }
+        ],
+        "required_lines": [
+          {
+            "metric": "cost",
+            "category": "process",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:1",
+            "line_id": "numeric-line:ff282dbca6c7dec3435a04f3a455c0a1",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "process",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:2",
+            "line_id": "numeric-line:f22f68526f6c13829a551ca6f4431770",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "process",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:3",
+            "line_id": "numeric-line:ad71ba28c699229fc937bc44515c6a13",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "process",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:4",
+            "line_id": "numeric-line:b31f25b52cc3dbb945106c7aee62a5c1",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "transport",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:origin-transport",
+            "line_id": "numeric-line:7d8868a36c19f32025cd8a246071cf67",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "transport",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:leg:1",
+            "line_id": "numeric-line:414341cc1debd128ddb70966af8e56f7",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "transport",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:leg:2",
+            "line_id": "numeric-line:e743b9af542e6457f49bc8b18d66829a",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "transport",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:leg:3",
+            "line_id": "numeric-line:3cc7747c47f197e18b4e41e79e9cedc9",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "residue",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1",
+            "line_id": "numeric-line:6f5ea46af7c6956213fa1a8764e0fd4c",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "cost",
+            "category": "revenue",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1",
+            "line_id": "numeric-line:f9d331051f8ecf52a17b72982ef4060b",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "process",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:1",
+            "line_id": "numeric-line:5e822a68fe42367d0142996c2381c736",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "process",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:2",
+            "line_id": "numeric-line:001eb3fdc429a65154db0438a6b647f0",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "process",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:3",
+            "line_id": "numeric-line:ca7e0528072faf537a09a402a5a2f422",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "process",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:4",
+            "line_id": "numeric-line:7dac3fc38140a88683d7a13d33fde24b",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "transport",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:origin-transport",
+            "line_id": "numeric-line:bdfe3638fae68d97acb33d5033201d2f",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "transport",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:leg:1",
+            "line_id": "numeric-line:d9f08874fa434471078c7f28054e8ce7",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "transport",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:leg:2",
+            "line_id": "numeric-line:b99550eaba5a54e826d25945c8ba0b05",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "transport",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1:leg:3",
+            "line_id": "numeric-line:58b8bf8b32f45f694127136957776d34",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          },
+          {
+            "metric": "carbon",
+            "category": "residue",
+            "target_id": "plan:cf4e094463ddc0c54793564ca995caf1",
+            "line_id": "numeric-line:9c50e91c8bb5cfa06c93d31d5347f065",
+            "activity": null,
+            "activity_unit": null,
+            "factor": null,
+            "factor_unit": null,
+            "activity_evidence_id": null,
+            "factor_evidence_id": null
+          }
+        ]
+      }
+    ],
+    "coverage": {
+      "collected_candidates": 3,
+      "enumerated_in_graph": 3,
+      "complete_within_curated_scope": true,
+      "next_cursor": null,
+      "missing_fields": [
+        "color",
+        "contamination"
+      ]
+    },
+    "basis_template": {
+      "quantity_kg": "3000.0",
+      "region": "KR",
+      "as_of": null,
+      "assessment_year": null,
+      "carbon_method": null
+    },
+    "instructions": [
+      "원문에서 확인한 활동량·단가·배출계수와 출처를 입력하세요. 빈 값을 0으로 채우지 마세요.",
+      "처음 운송·중간 인계·잔재물·매각 수익도 포함합니다. 0이라는 값에도 근거가 필요합니다.",
+      "input_sha256·graph_trace를 수치와 함께 제출하세요. 로트·그래프가 바뀌면 재검토가 필요합니다."
+    ],
+    "generation_model_called": false,
+    "dispatch_approved": false
+  },
+  "cases": {
+    "missing_numeric": {
+      "run_id": "60aec672-018b-49fc-8654-a124f1b8db02",
+      "route": "REVIEW",
+      "binding": {
+        "input_sha256": "45999a611d2daa90701aad2a0eff6a22d84a366afce10e91a23f7ab46c80bbd1",
+        "graph_trace": {
+          "generation": "1f439d6e6a8140f6a9b4a1787802f248",
+          "graph_sha256": "13593292b5841b3188b04cf73ef4fa6f3a0e9c6ac9ed073a29af51d8a02e9e98",
+          "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+          "reference_sha256": "d89026e028f4bf9ce41b0048a7536eaae42b5e02239f82f94a903642de3fd9e0",
+          "reference_version": "planning-reference-v2",
+          "algorithm": "typed-state-facility-dfs-v2"
+        },
+        "submission_matches": null,
+        "scope": "same_lot_and_current_process_graph"
+      },
+      "candidate_count": 3,
+      "numeric_review": {
+        "submitted": false,
+        "mode": null,
+        "scope": "numeric_comparison_of_kg_bound_candidates_not_recommendation",
+        "pareto_fronts": [],
+        "included_candidate_ids": [],
+        "excluded_submission_ids": [],
+        "unsubmitted_candidate_ids": [
+          "plan:4782d31ee04a0b357a1b1a37ce026683",
+          "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "plan:cf4e094463ddc0c54793564ca995caf1"
+        ],
+        "evidence_content_audited": false,
+        "constraint_feasible_verified": false,
+        "results": []
+      },
+      "router": {
+        "route": "REVIEW",
+        "rules_version": "decision-router-v1",
+        "reason": "핵심 근거의 확인·검수가 남아 있습니다.",
+        "restart_from": null,
+        "invalidate_on_revision": [],
+        "automatic_reexecution": false,
+        "requires_human_data": true,
+        "pass_gate_enabled": false
+      },
+      "issue_codes": [
+        "facility_color",
+        "facility_contamination_pct",
+        "facility_current_acceptance",
+        "facility_current_permit_scope",
+        "facility_designated_waste",
+        "facility_form_example",
+        "facility_handoff_specifications",
+        "facility_material_example",
+        "facility_moisture_pct",
+        "facility_operations_unverified",
+        "facility_quantity_kg",
+        "facility_site_process",
+        "facility_transition_material",
+        "legal_applicability_unverified",
+        "legal_operational_clearance_unverified",
+        "numeric_scenario_missing"
+      ],
+      "map_marker_count": 101,
+      "on_map_count": 101,
+      "legal_searches": [
+        {
+          "status": "retrieved",
+          "result_count": 3,
+          "evidence_ids": [
+            "legal-chunk:242",
+            "legal-chunk:243",
+            "legal-chunk:262"
+          ]
+        }
+      ],
+      "final_recommendations": [],
+      "dispatch_approved": false
+    },
+    "synthetic_numbers_on_real_paths": {
+      "run_id": "87de3666-dccb-4bcb-a74c-9a1736cbbb12",
+      "route": "REVIEW",
+      "binding": {
+        "input_sha256": "45999a611d2daa90701aad2a0eff6a22d84a366afce10e91a23f7ab46c80bbd1",
+        "graph_trace": {
+          "generation": "1f439d6e6a8140f6a9b4a1787802f248",
+          "graph_sha256": "13593292b5841b3188b04cf73ef4fa6f3a0e9c6ac9ed073a29af51d8a02e9e98",
+          "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+          "reference_sha256": "d89026e028f4bf9ce41b0048a7536eaae42b5e02239f82f94a903642de3fd9e0",
+          "reference_version": "planning-reference-v2",
+          "algorithm": "typed-state-facility-dfs-v2"
+        },
+        "submission_matches": true,
+        "scope": "same_lot_and_current_process_graph"
+      },
+      "candidate_count": 3,
+      "numeric_review": {
+        "submitted": true,
+        "mode": "simulation",
+        "scope": "numeric_comparison_of_kg_bound_candidates_not_recommendation",
+        "pareto_fronts": [
+          [
+            "plan:4782d31ee04a0b357a1b1a37ce026683"
+          ],
+          [
+            "plan:73cc941999294c2c4c6dd611b74b1fb8"
+          ],
+          [
+            "plan:cf4e094463ddc0c54793564ca995caf1"
+          ]
+        ],
+        "included_candidate_ids": [
+          "plan:4782d31ee04a0b357a1b1a37ce026683",
+          "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "plan:cf4e094463ddc0c54793564ca995caf1"
+        ],
+        "excluded_submission_ids": [],
+        "unsubmitted_candidate_ids": [],
+        "evidence_content_audited": false,
+        "constraint_feasible_verified": false,
+        "results": [
+          {
+            "candidate_id": "plan:4782d31ee04a0b357a1b1a37ce026683",
+            "status": "comparable_under_declared_inputs",
+            "cost_total_krw": "2",
+            "carbon_total_kg_co2e": "3",
+            "kg_binding": "matched",
+            "included_in_numeric_comparison": true
+          },
+          {
+            "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+            "status": "comparable_under_declared_inputs",
+            "cost_total_krw": "12",
+            "carbon_total_kg_co2e": "14",
+            "kg_binding": "matched",
+            "included_in_numeric_comparison": true
+          },
+          {
+            "candidate_id": "plan:cf4e094463ddc0c54793564ca995caf1",
+            "status": "comparable_under_declared_inputs",
+            "cost_total_krw": "24",
+            "carbon_total_kg_co2e": "27",
+            "kg_binding": "matched",
+            "included_in_numeric_comparison": true
+          }
+        ]
+      },
+      "router": {
+        "route": "REVIEW",
+        "rules_version": "decision-router-v1",
+        "reason": "핵심 근거의 확인·검수가 남아 있습니다.",
+        "restart_from": null,
+        "invalidate_on_revision": [],
+        "automatic_reexecution": false,
+        "requires_human_data": true,
+        "pass_gate_enabled": false
+      },
+      "issue_codes": [
+        "facility_color",
+        "facility_contamination_pct",
+        "facility_current_acceptance",
+        "facility_current_permit_scope",
+        "facility_designated_waste",
+        "facility_form_example",
+        "facility_handoff_specifications",
+        "facility_material_example",
+        "facility_moisture_pct",
+        "facility_operations_unverified",
+        "facility_quantity_kg",
+        "facility_site_process",
+        "facility_transition_material",
+        "legal_applicability_unverified",
+        "legal_operational_clearance_unverified",
+        "numeric_source_content_unverified",
+        "simulation_not_operational_evidence"
+      ],
+      "map_marker_count": 102,
+      "on_map_count": 101,
+      "legal_searches": [
+        {
+          "status": "retrieved",
+          "result_count": 3,
+          "evidence_ids": [
+            "legal-chunk:242",
+            "legal-chunk:243",
+            "legal-chunk:262"
+          ]
+        }
+      ],
+      "final_recommendations": [],
+      "dispatch_approved": false
+    },
+    "stale_input": {
+      "run_id": "11cefd46-a159-457f-bd8e-3fbfcd85c947",
+      "route": "REVISE",
+      "binding": {
+        "input_sha256": "45999a611d2daa90701aad2a0eff6a22d84a366afce10e91a23f7ab46c80bbd1",
+        "graph_trace": {
+          "generation": "1f439d6e6a8140f6a9b4a1787802f248",
+          "graph_sha256": "13593292b5841b3188b04cf73ef4fa6f3a0e9c6ac9ed073a29af51d8a02e9e98",
+          "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+          "reference_sha256": "d89026e028f4bf9ce41b0048a7536eaae42b5e02239f82f94a903642de3fd9e0",
+          "reference_version": "planning-reference-v2",
+          "algorithm": "typed-state-facility-dfs-v2"
+        },
+        "submission_matches": false,
+        "scope": "same_lot_and_current_process_graph"
+      },
+      "candidate_count": 3,
+      "numeric_review": {
+        "submitted": true,
+        "mode": "simulation",
+        "scope": "numeric_comparison_of_kg_bound_candidates_not_recommendation",
+        "pareto_fronts": [],
+        "included_candidate_ids": [],
+        "excluded_submission_ids": [
+          "plan:4782d31ee04a0b357a1b1a37ce026683",
+          "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "plan:cf4e094463ddc0c54793564ca995caf1"
+        ],
+        "unsubmitted_candidate_ids": [],
+        "evidence_content_audited": false,
+        "constraint_feasible_verified": false,
+        "results": [
+          {
+            "candidate_id": "plan:4782d31ee04a0b357a1b1a37ce026683",
+            "status": "comparable_under_declared_inputs",
+            "cost_total_krw": "2",
+            "carbon_total_kg_co2e": "3",
+            "kg_binding": "not_verified",
+            "included_in_numeric_comparison": false
+          },
+          {
+            "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+            "status": "comparable_under_declared_inputs",
+            "cost_total_krw": "12",
+            "carbon_total_kg_co2e": "14",
+            "kg_binding": "not_verified",
+            "included_in_numeric_comparison": false
+          },
+          {
+            "candidate_id": "plan:cf4e094463ddc0c54793564ca995caf1",
+            "status": "comparable_under_declared_inputs",
+            "cost_total_krw": "24",
+            "carbon_total_kg_co2e": "27",
+            "kg_binding": "not_verified",
+            "included_in_numeric_comparison": false
+          }
+        ]
+      },
+      "router": {
+        "route": "REVISE",
+        "rules_version": "decision-router-v1",
+        "reason": "확인된 연결·계산 오류를 수정하세요.",
+        "restart_from": "kg",
+        "invalidate_on_revision": [
+          "kg",
+          "validation",
+          "calculation",
+          "comparison",
+          "critic",
+          "router",
+          "output"
+        ],
+        "automatic_reexecution": false,
+        "requires_human_data": true,
+        "pass_gate_enabled": false
+      },
+      "issue_codes": [
+        "facility_color",
+        "facility_contamination_pct",
+        "facility_current_acceptance",
+        "facility_current_permit_scope",
+        "facility_designated_waste",
+        "facility_form_example",
+        "facility_handoff_specifications",
+        "facility_material_example",
+        "facility_moisture_pct",
+        "facility_operations_unverified",
+        "facility_quantity_kg",
+        "facility_site_process",
+        "facility_transition_material",
+        "legal_applicability_unverified",
+        "legal_operational_clearance_unverified",
+        "numeric_input_changed",
+        "numeric_source_content_unverified",
+        "simulation_not_operational_evidence"
+      ],
+      "map_marker_count": 103,
+      "on_map_count": 101,
+      "legal_searches": [
+        {
+          "status": "retrieved",
+          "result_count": 3,
+          "evidence_ids": [
+            "legal-chunk:242",
+            "legal-chunk:243",
+            "legal-chunk:262"
+          ]
+        }
+      ],
+      "final_recommendations": [],
+      "dispatch_approved": false
+    },
+    "stale_graph": {
+      "run_id": "7b4096ea-d262-4622-834e-b2a9fa14ab59",
+      "route": "REVISE",
+      "binding": {
+        "input_sha256": "45999a611d2daa90701aad2a0eff6a22d84a366afce10e91a23f7ab46c80bbd1",
+        "graph_trace": {
+          "generation": "1f439d6e6a8140f6a9b4a1787802f248",
+          "graph_sha256": "13593292b5841b3188b04cf73ef4fa6f3a0e9c6ac9ed073a29af51d8a02e9e98",
+          "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+          "reference_sha256": "d89026e028f4bf9ce41b0048a7536eaae42b5e02239f82f94a903642de3fd9e0",
+          "reference_version": "planning-reference-v2",
+          "algorithm": "typed-state-facility-dfs-v2"
+        },
+        "submission_matches": false,
+        "scope": "same_lot_and_current_process_graph"
+      },
+      "candidate_count": 3,
+      "numeric_review": {
+        "submitted": true,
+        "mode": "simulation",
+        "scope": "numeric_comparison_of_kg_bound_candidates_not_recommendation",
+        "pareto_fronts": [],
+        "included_candidate_ids": [],
+        "excluded_submission_ids": [
+          "plan:4782d31ee04a0b357a1b1a37ce026683",
+          "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "plan:cf4e094463ddc0c54793564ca995caf1"
+        ],
+        "unsubmitted_candidate_ids": [],
+        "evidence_content_audited": false,
+        "constraint_feasible_verified": false,
+        "results": [
+          {
+            "candidate_id": "plan:4782d31ee04a0b357a1b1a37ce026683",
+            "status": "comparable_under_declared_inputs",
+            "cost_total_krw": "2",
+            "carbon_total_kg_co2e": "3",
+            "kg_binding": "not_verified",
+            "included_in_numeric_comparison": false
+          },
+          {
+            "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+            "status": "comparable_under_declared_inputs",
+            "cost_total_krw": "12",
+            "carbon_total_kg_co2e": "14",
+            "kg_binding": "not_verified",
+            "included_in_numeric_comparison": false
+          },
+          {
+            "candidate_id": "plan:cf4e094463ddc0c54793564ca995caf1",
+            "status": "comparable_under_declared_inputs",
+            "cost_total_krw": "24",
+            "carbon_total_kg_co2e": "27",
+            "kg_binding": "not_verified",
+            "included_in_numeric_comparison": false
+          }
+        ]
+      },
+      "router": {
+        "route": "REVISE",
+        "rules_version": "decision-router-v1",
+        "reason": "확인된 연결·계산 오류를 수정하세요.",
+        "restart_from": "kg",
+        "invalidate_on_revision": [
+          "kg",
+          "validation",
+          "calculation",
+          "comparison",
+          "critic",
+          "router",
+          "output"
+        ],
+        "automatic_reexecution": false,
+        "requires_human_data": true,
+        "pass_gate_enabled": false
+      },
+      "issue_codes": [
+        "facility_color",
+        "facility_contamination_pct",
+        "facility_current_acceptance",
+        "facility_current_permit_scope",
+        "facility_designated_waste",
+        "facility_form_example",
+        "facility_handoff_specifications",
+        "facility_material_example",
+        "facility_moisture_pct",
+        "facility_operations_unverified",
+        "facility_quantity_kg",
+        "facility_site_process",
+        "facility_transition_material",
+        "legal_applicability_unverified",
+        "legal_operational_clearance_unverified",
+        "numeric_graph_changed",
+        "numeric_source_content_unverified",
+        "simulation_not_operational_evidence"
+      ],
+      "map_marker_count": 103,
+      "on_map_count": 101,
+      "legal_searches": [
+        {
+          "status": "retrieved",
+          "result_count": 3,
+          "evidence_ids": [
+            "legal-chunk:242",
+            "legal-chunk:243",
+            "legal-chunk:262"
+          ]
+        }
+      ],
+      "final_recommendations": [],
+      "dispatch_approved": false
+    },
+    "forged_stage": {
+      "run_id": "c3db31e7-da90-49bf-89e9-3d68d3f97f5d",
+      "route": "REVISE",
+      "binding": {
+        "input_sha256": "45999a611d2daa90701aad2a0eff6a22d84a366afce10e91a23f7ab46c80bbd1",
+        "graph_trace": {
+          "generation": "1f439d6e6a8140f6a9b4a1787802f248",
+          "graph_sha256": "13593292b5841b3188b04cf73ef4fa6f3a0e9c6ac9ed073a29af51d8a02e9e98",
+          "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+          "reference_sha256": "d89026e028f4bf9ce41b0048a7536eaae42b5e02239f82f94a903642de3fd9e0",
+          "reference_version": "planning-reference-v2",
+          "algorithm": "typed-state-facility-dfs-v2"
+        },
+        "submission_matches": true,
+        "scope": "same_lot_and_current_process_graph"
+      },
+      "candidate_count": 3,
+      "numeric_review": {
+        "submitted": true,
+        "mode": "simulation",
+        "scope": "numeric_comparison_of_kg_bound_candidates_not_recommendation",
+        "pareto_fronts": [
+          [
+            "plan:73cc941999294c2c4c6dd611b74b1fb8"
+          ],
+          [
+            "plan:cf4e094463ddc0c54793564ca995caf1"
+          ]
+        ],
+        "included_candidate_ids": [
+          "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "plan:cf4e094463ddc0c54793564ca995caf1"
+        ],
+        "excluded_submission_ids": [
+          "plan:4782d31ee04a0b357a1b1a37ce026683"
+        ],
+        "unsubmitted_candidate_ids": [],
+        "evidence_content_audited": false,
+        "constraint_feasible_verified": false,
+        "results": [
+          {
+            "candidate_id": "plan:4782d31ee04a0b357a1b1a37ce026683",
+            "status": "comparable_under_declared_inputs",
+            "cost_total_krw": "1",
+            "carbon_total_kg_co2e": "2",
+            "kg_binding": "not_verified",
+            "included_in_numeric_comparison": false
+          },
+          {
+            "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+            "status": "comparable_under_declared_inputs",
+            "cost_total_krw": "12",
+            "carbon_total_kg_co2e": "14",
+            "kg_binding": "matched",
+            "included_in_numeric_comparison": true
+          },
+          {
+            "candidate_id": "plan:cf4e094463ddc0c54793564ca995caf1",
+            "status": "comparable_under_declared_inputs",
+            "cost_total_krw": "24",
+            "carbon_total_kg_co2e": "27",
+            "kg_binding": "matched",
+            "included_in_numeric_comparison": true
+          }
+        ]
+      },
+      "router": {
+        "route": "REVISE",
+        "rules_version": "decision-router-v1",
+        "reason": "확인된 연결·계산 오류를 수정하세요.",
+        "restart_from": "calculation",
+        "invalidate_on_revision": [
+          "calculation",
+          "comparison",
+          "critic",
+          "router",
+          "output"
+        ],
+        "automatic_reexecution": false,
+        "requires_human_data": true,
+        "pass_gate_enabled": false
+      },
+      "issue_codes": [
+        "comparison_candidate_unbound",
+        "facility_color",
+        "facility_contamination_pct",
+        "facility_current_acceptance",
+        "facility_current_permit_scope",
+        "facility_designated_waste",
+        "facility_form_example",
+        "facility_handoff_specifications",
+        "facility_material_example",
+        "facility_moisture_pct",
+        "facility_operations_unverified",
+        "facility_quantity_kg",
+        "facility_site_process",
+        "facility_transition_material",
+        "legal_applicability_unverified",
+        "legal_operational_clearance_unverified",
+        "numeric_source_content_unverified",
+        "numeric_stage_binding_mismatch",
+        "pareto_candidate_scope_invalid",
+        "simulation_not_operational_evidence"
+      ],
+      "map_marker_count": 105,
+      "on_map_count": 103,
+      "legal_searches": [
+        {
+          "status": "retrieved",
+          "result_count": 3,
+          "evidence_ids": [
+            "legal-chunk:242",
+            "legal-chunk:243",
+            "legal-chunk:262"
+          ]
+        }
+      ],
+      "final_recommendations": [],
+      "dispatch_approved": false
+    }
+  },
+  "retrieval_regression": [
+    {
+      "query": "사업장폐기물을 업체에 위탁할 때 배출자가 확인해야 할 의무는?",
+      "passed": true,
+      "matched": "폐기물관리법 제17조",
+      "result_headings": [
+        "폐기물관리법 / 제17조(사업장폐기물배출자의 의무 등) ①항",
+        "폐기물관리법 / 제17조(사업장폐기물배출자의 의무 등) ⑤항",
+        "폐기물관리법 / 제17조(사업장폐기물배출자의 의무 등) ⑥항",
+        "대법원 2023두62830 조치명령 / 판결요지",
+        "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ①항"
+      ]
+    },
+    {
+      "query": "폐폴리프로필렌을 재활용할 수 있는 R 유형과 재활용 기준",
+      "passed": true,
+      "matched": "별표 4의2",
+      "result_headings": [
+        "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+        "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+        "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+        "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+        "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)"
+      ]
+    },
+    {
+      "query": "경매로 사업장을 인수하면 다른 장소에 방치된 폐기물 의무도 승계하는가?",
+      "passed": true,
+      "matched": "2023두62830",
+      "result_headings": [
+        "대법원 2023두62830 조치명령 / 판시사항",
+        "대법원 2002다46331 토지인도 / 판결요지",
+        "대법원 2023두62830 조치명령 / 판례 전문",
+        "대법원 2023두62830 조치명령 / 판례 전문",
+        "대법원 2002다46331 토지인도 / 판시사항"
+      ]
+    },
+    {
+      "query": "폐기물 처리업체의 허가 업종과 처리 범위를 확인하려면 어떤 조문을 봐야 하나?",
+      "passed": false,
+      "matched": null,
+      "result_headings": [
+        "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ①항",
+        "폐기물관리법 / 제17조(사업장폐기물배출자의 의무 등) ⑤항",
+        "폐기물관리법 / 제17조(사업장폐기물배출자의 의무 등) ①항",
+        "폐기물관리법 / 제17조(사업장폐기물배출자의 의무 등) ⑥항",
+        "대법원 2019다226548 구상금 / 판례 전문"
+      ]
+    },
+    {
+      "query": "폐기물이 아닌 순환자원으로 인정받기 위한 제도적 근거는?",
+      "passed": true,
+      "matched": "제21조",
+      "result_headings": [
+        "순환경제사회 전환 촉진법 / 제21조(순환자원의 인정) ①항",
+        "순환경제사회 전환 촉진법 / 제21조(순환자원의 인정) ⑤항",
+        "대법원 2002다46331 토지인도 / 판결요지",
+        "순환경제사회 전환 촉진법 / 제21조(순환자원의 인정) ⑧항",
+        "순환경제사회 전환 촉진법 / 제23조(순환자원의 고시) ①항"
+      ]
+    },
+    {
+      "query": "새로운 재활용 기술에 규제특례나 임시허가를 신청할 수 있는가?",
+      "passed": true,
+      "matched": "제28조",
+      "result_headings": [
+        "순환경제사회 전환 촉진법 / 제33조(임시허가) ①항",
+        "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+        "순환경제사회 전환 촉진법 / 제30조(실증을 위한 규제특례) ①항",
+        "순환경제사회 전환 촉진법 / 제28조(순환경제 신기술ㆍ서비스의 신속처리) ⑤항",
+        "순환경제사회 전환 촉진법 / 제33조(임시허가) ⑧항"
+      ]
+    },
+    {
+      "query": "폐기물을 부적정 처리하면 누구에게 조치명령을 내릴 수 있는가?",
+      "passed": true,
+      "matched": "폐기물관리법 제48조",
+      "result_headings": [
+        "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ②항",
+        "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ①항",
+        "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ④항",
+        "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ③항",
+        "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ⑥항"
+      ]
+    }
+  ],
+  "retrieval_regression_status": "completed",
+  "checks": [
+    {
+      "name": "actual KG yields multiple paths",
+      "passed": true
+    },
+    {
+      "name": "worksheet enumerates the curated scope",
+      "passed": true
+    },
+    {
+      "name": "worksheet does not call a generation model",
+      "passed": true
+    },
+    {
+      "name": "worksheet leaves all activities/factors unknown",
+      "passed": true
+    },
+    {
+      "name": "missing numbers preserve every path",
+      "passed": true
+    },
+    {
+      "name": "missing data stays REVIEW without invented totals",
+      "passed": true
+    },
+    {
+      "name": "actual local legal retrieval returns evidence",
+      "passed": true
+    },
+    {
+      "name": "unverified facility conditions have map targets",
+      "passed": true
+    },
+    {
+      "name": "synthetic numeric comparison binds to actual path IDs",
+      "passed": true
+    },
+    {
+      "name": "synthetic comparison never grants PASS",
+      "passed": true
+    },
+    {
+      "name": "synthetic comparison remains labelled",
+      "passed": true
+    },
+    {
+      "name": "comparison exposes numeric Pareto only",
+      "passed": true
+    },
+    {
+      "name": "stale_input: old numbers rejected",
+      "passed": true
+    },
+    {
+      "name": "stale_input: invalidation starts at KG",
+      "passed": true
+    },
+    {
+      "name": "stale_graph: old numbers rejected",
+      "passed": true
+    },
+    {
+      "name": "stale_graph: invalidation starts at KG",
+      "passed": true
+    },
+    {
+      "name": "forged cheap stage excluded from numerical comparison",
+      "passed": true
+    },
+    {
+      "name": "other correctly bound paths remain visible",
+      "passed": true
+    },
+    {
+      "name": "existing curated retrieval cases still pass",
+      "passed": false
+    }
+  ],
+  "passed": false,
+  "not_proven": [
+    "source-content correctness and process-specific LCI applicability",
+    "permit legality, facility intake, current capacity, transport distance or prices",
+    "expert recommendation quality, model-based Critic or final Top K",
+    "automatic stage reexecution, persistent runs or live 3D integration"
+  ]
+}

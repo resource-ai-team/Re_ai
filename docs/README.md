@@ -51,6 +51,7 @@
 | [후보 조사와 가상 산술](evaluation/analysis-2026-10-21.json) | 실제 KG/API와 로컬 검색 상태, 별도로 만든 가상 수치 계산 |
 | [법령·판례 보강 구조 검사](evaluation/legal-expansion-2026-10-22.json) | 실제 공식 6문서·119구간과 Neo4j 구조의 대조. 법규 정확도 평가는 아님 |
 | [KG-수치 검토 연결 검사](evaluation/grounded-review-2026-10-22.json) | 실제 Neo4j 경로와 가상 수치. 17/19 통과, PostgreSQL 불가로 검색 2개 확인 실패 |
+| [Docker 복구 후 연결 검사](evaluation/grounded-review-recovered-2026-10-22.json) | 실제 검색 정상·18/19 통과. 검색 품질 회귀 6/7, 허가 범위 질문의 기대 조문 누락 1건 보강 필요 |
 | [이전 파이프라인 v1](pipeline-baseline-v1.md) | 이전 의사결정 기록. 현재 구현의 기준은 v2 문서 |
 
 단위·통합 테스트의 성공은 후보 누락·연결·계산·실패 처리 등을 확인한 결과입니다.

@@ -183,8 +183,14 @@ flowchart TD
 2026-10-22 전체 회귀는 실제 Neo4j를 포함해 **554개와 subtest 24개 통과, PostgreSQL 통합 1개 건너뜀**입니다.
 보고서의 수치 표시는 별도 단위 검사로 확인했습니다. 실제 활성 KG에 가상 PP 3톤·가상 숫자를 넣은
 [API 연결 검사](evaluation/grounded-review-2026-10-22.json)는 **17/19 통과**입니다.
-현재 Docker 시작 오류로 PostgreSQL에 연결되지 않아 실제 검색과 기존 7문항 검색 회귀는 확인 실패로 기록했습니다.
+최초 실행은 Docker 시작 오류로 PostgreSQL에 연결되지 않아 실제 검색과 기존 7문항 검색 회귀를 확인 실패로 기록했습니다.
 이전 적재 성공 기록이나 검색 성공을 현재 실행의 성공으로 대신 쓰지 않습니다. 생성 모델 실호출은 0회입니다.
+
+이후 Docker 임시 통신 폴더를 백업 이름으로 보존하고 재생성해 복구했습니다. PostgreSQL은 healthy이며 기존 6문서·216청크를 재확인했습니다.
+건너뛴 실제 Neo4j→PostgreSQL 통합 검사도 별도로 1개 통과했고 GitHub CI 두 작업도 통과했습니다.
+[복구 후 API 검사](evaluation/grounded-review-recovered-2026-10-22.json)는 **18/19 통과**입니다.
+실제 검색은 정상이나, 자료 보강 후 기존 검색 평가가 **6/7**입니다. 허가 범위·처리 능력 질문의 기대 제25조가 상위 5개에 들지 않은 1건을 검색 품질 보강 과제로 남깁니다.
+DB 장애와 검색 품질 실패를 구분하며, 평가 기대값을 바꿔 통과시키지 않습니다.
 
 ```bash
 python scripts/evaluate_decision_review.py --output docs/evaluation/grounded-review-local.json
@@ -195,7 +201,7 @@ python scripts/evaluate_decision_review.py --output docs/evaluation/grounded-rev
 
 | 순서 | 할 일 | 완료 기준 |
 | --- | --- | --- |
-| 1 | PostgreSQL 실행 환경 복구 후 위 연결 검사 재실행 | 실제 검색과 기존 7문항 회귀도 확인. 실패 기록을 지우지 않고 새 실행 결과로 보관 |
+| 1 | 검색 품질 회귀 1건 원인 분석·보강 | DB 복구·재실행 완료. 허가 범위 질문의 후보 회수·중복·재정렬을 점검하고 기존 기대값 유지·추가 질문으로 검증 |
 | 2 | PP 한 로트와 후보 경로의 실제 근거 채우기 | 공정·품목·사업장별 허가·투입 규격·수탁 가능 여부·견적·운송 조건 확보 |
 | 3 | LCI와 공정별 활동량 연결 | 공정·국가·연도·단위·경계·수율/잔재물 적용 검수. 다른 공정의 계수를 임의로 재사용하지 않음 |
 | 4 | 요청대로 모델은 나중에 연결 | 원문 특징·요건 생성과 실제 Researcher/Auditor 호출을 별도 평가. 가상 응답과 분리 |
