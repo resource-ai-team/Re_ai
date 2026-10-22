@@ -93,12 +93,9 @@ def test_actual_neo4j_pet_bottle_path_maps_one_aggregate_lci(actual_pet_graph):
     assert data["coverage"]["enumerated_in_graph"] == len(data["results"])
     assert len(data["results"]) >= 2
     estimated = [
-        row for row in data["results"]
-        if row["calculation_status"] == "ESTIMATED_REVIEW_REQUIRED"
+        row for row in data["results"] if row["calculation_status"] == "ESTIMATED_REVIEW_REQUIRED"
     ]
-    unmatched = [
-        row for row in data["results"] if row["calculation_status"] == "UNMATCHED"
-    ]
+    unmatched = [row for row in data["results"] if row["calculation_status"] == "UNMATCHED"]
     assert len(estimated) == 1
     assert unmatched
     assert len(estimated[0]["stage_ids"]) == 3
