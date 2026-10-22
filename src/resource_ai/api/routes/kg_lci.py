@@ -30,7 +30,10 @@ def get_lci_datasets():
         # Do not reveal server-local absolute paths and raw XML in HTTP errors.
         raise HTTPException(
             status_code=503,
-            detail={"code": "lci-source-invalid", "message": "Configured LCI sources are unreadable"},
+            detail={
+                "code": "lci-source-invalid",
+                "message": "Configured LCI sources are unreadable",
+            },
         ) from exc
 
 
