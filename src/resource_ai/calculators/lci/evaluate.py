@@ -68,7 +68,11 @@ def evaluate_candidate(candidate: dict[str, Any], datasets: list[LCIDataset]):
     if len(set(steps)) != len(steps):
         return _status(candidate, "REVIEW_REQUIRED", "Repeated step: double-count risk")
     if str(candidate.get("material", "")).strip().lower() not in {
-        "pet", "폐pet", "폐페트", "waste pet", "waste pet bottles"
+        "pet",
+        "폐pet",
+        "폐페트",
+        "waste pet",
+        "waste pet bottles",
     }:
         return _status(candidate, "UNMATCHED", "Only PET material is covered")
     if tuple(steps) in (FLAKE_STEPS, KG_FLAKE_TRANSITIONS):
@@ -79,8 +83,7 @@ def evaluate_candidate(candidate: dict[str, Any], datasets: list[LCIDataset]):
         transport_boundary = "EXCLUDES_EXTERNAL_COLLECTION_TRANSPORT"
     else:
         return _status(
-            candidate, "UNMATCHED", "No validated whole-route LCI mapping",
-            normalized_steps=steps
+            candidate, "UNMATCHED", "No validated whole-route LCI mapping", normalized_steps=steps
         )
     matching = [d for d in datasets if d.process_uuid == uuid]
     if len(matching) != 1:
@@ -115,16 +118,18 @@ def evaluate_candidate(candidate: dict[str, Any], datasets: list[LCIDataset]):
     if d.climate_change_amount < 0:
         return _status(candidate, "REVIEW_REQUIRED", "Negative score needs interpretation", **base)
     if kind == "AGGREGATED":
-        if str(candidate.get("waste_form", "")).upper() not in {
-            "PET_BOTTLES", "WASTE_PET_BOTTLES"
-        }:
-            return _status(candidate, "REVIEW_REQUIRED", "PET bottle feedstock not confirmed", **base)
+        if str(candidate.get("waste_form", "")).upper() not in {"PET_BOTTLES", "WASTE_PET_BOTTLES"}:
+            return _status(
+                candidate, "REVIEW_REQUIRED", "PET bottle feedstock not confirmed", **base
+            )
         if d.reference_direction != "Output" or not d.waste_pet_input_per_ref:
             return _status(candidate, "REVIEW_REQUIRED", "Product yield not verifiable", **base)
         if d.waste_pet_input_per_ref <= 0:
             return _status(candidate, "REVIEW_REQUIRED", "Invalid source mass balance", **base)
         if candidate.get("transport") is not None:
-            return _status(candidate, "REVIEW_REQUIRED", "LCI already contains collection transport", **base)
+            return _status(
+                candidate, "REVIEW_REQUIRED", "LCI already contains collection transport", **base
+            )
         if "recycled_product_yield" in candidate:
             y = decimal_value(candidate["recycled_product_yield"], "recycled_product_yield")
             if not Decimal(0) < y <= Decimal(1):
@@ -141,14 +146,18 @@ def evaluate_candidate(candidate: dict[str, Any], datasets: list[LCIDataset]):
         base["waste_input_per_reference_kg"] = str(d.waste_pet_input_per_ref)
     else:
         if d.reference_direction != "Input":
-            return _status(candidate, "REVIEW_REQUIRED", "Incineration reference should be input", **base)
+            return _status(
+                candidate, "REVIEW_REQUIRED", "Incineration reference should be input", **base
+            )
         refs = mass / d.reference_quantity
         base["reference_flow_quantity_kg"] = str(mass)
     total = d.climate_change_amount * refs
     if candidate.get("transport") is not None:
         t = candidate["transport"]
         if not isinstance(t, dict) or not isinstance(t.get("source"), str) or not t["source"]:
-            return _status(candidate, "REVIEW_REQUIRED", "Transport evidence source required", **base)
+            return _status(
+                candidate, "REVIEW_REQUIRED", "Transport evidence source required", **base
+            )
         extra = decimal_value(t.get("emissions_kgco2e"), "transport.emissions_kgco2e")
         if extra < 0:
             raise ValueError("Transport emissions cannot be negative")
@@ -158,22 +167,26 @@ def evaluate_candidate(candidate: dict[str, Any], datasets: list[LCIDataset]):
         base["transport_boundary"] = "EXTERNAL_TRANSPORT_ADDED_FROM_SUBMITTED_EVIDENCE"
     elif kind == "EXACT":
         base["warnings"].append("External collection transport is absent")
-    base["warnings"].extend([
-        "National-average screening estimate; not a facility measurement",
-        "Climate LCIA method unit is not independently resolved by the 2023 ZIP",
-        "Different functional outputs and transport boundaries are not directly comparable",
-    ])
+    base["warnings"].extend(
+        [
+            "National-average screening estimate; not a facility measurement",
+            "Climate LCIA method unit is not independently resolved by the 2023 ZIP",
+            "Different functional outputs and transport boundaries are not directly comparable",
+        ]
+    )
     if d.valid_until is not None and d.valid_until < 2026:
         base["warnings"].append("Source validity metadata predates 2026")
     return _status(
-        candidate, "ESTIMATED_REVIEW_REQUIRED", "Preliminary source-bound estimate",
-        carbon_kgco2e=str(total), **base
+        candidate,
+        "ESTIMATED_REVIEW_REQUIRED",
+        "Preliminary source-bound estimate",
+        carbon_kgco2e=str(total),
+        **base,
     )
 
 
 def candidate_from_plan(
-    plan: dict[str, Any], *, material: str, input_mass_kg: str | int,
-    waste_form: str | None = None
+    plan: dict[str, Any], *, material: str, input_mass_kg: str | int, waste_form: str | None = None
 ):
     """Adapt a real KG ProcessPlan packet; do not infer a facility's capability."""
     if not isinstance(plan, dict) or not isinstance(plan.get("plan_id"), str):
@@ -181,9 +194,11 @@ def candidate_from_plan(
     packet = plan.get("research_packet")
     if not isinstance(packet, dict) or not isinstance(packet.get("stages"), list):
         return {
-            "candidate_id": plan["plan_id"], "material": material,
-            "input_mass_kg": input_mass_kg, "process_steps": ["UNKNOWN_KG_ROUTE"],
-            "waste_form": waste_form
+            "candidate_id": plan["plan_id"],
+            "material": material,
+            "input_mass_kg": input_mass_kg,
+            "process_steps": ["UNKNOWN_KG_ROUTE"],
+            "waste_form": waste_form,
         }
     keys = []
     for stage in packet["stages"]:
