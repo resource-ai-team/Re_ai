@@ -1,0 +1,22 @@
+[
+  {
+    "candidate_id": "example-pet-flakes",
+    "material": "PET",
+    "waste_form": "PET_BOTTLES",
+    "process_steps": ["pet-prepare", "pet-wash", "pet-finish"],
+    "input_mass_kg": "1000"
+  },
+  {
+    "candidate_id": "example-pet-incineration",
+    "material": "PET",
+    "process_steps": ["incineration"],
+    "input_mass_kg": "1000"
+  },
+  {
+    "candidate_id": "example-pet-pellet-unsupported",
+    "material": "PET",
+    "waste_form": "PET_BOTTLES",
+    "process_steps": ["pet-prepare", "pet-wash", "pet-finish", "pet-pelletise"],
+    "input_mass_kg": "1000"
+  }
+]
