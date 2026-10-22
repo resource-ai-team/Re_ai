@@ -1,0 +1,1136 @@
+{
+  "evaluated_at": "2026-10-20T18:33:42.061354+00:00",
+  "scope": "listing provenance, role separation, uncertainty and API regression; not acceptance or process accuracy",
+  "registry_generation": "94ac29d43d8a4df2934448d990328a0e",
+  "registry_source_sha256": "b083ea497c37bb11bd9374fc0a5b0850b989d290dbdba9d4a713fef353e79c08",
+  "registry_record_count": 9604,
+  "codebook_sha256": "f88a945b838fe898f0765add613750664ddd24b4fec9d145033ef5044cba6f62",
+  "codebook_source": {
+    "title": "폐기물관리법 시행규칙 별표 4: 폐기물의 종류별 세부분류",
+    "url": "https://www.law.go.kr/법령별표서식/(폐기물관리법 시행규칙,20261002,별표4)",
+    "pdf_url": "https://www.law.go.kr/LSW/flDownload.do?flSeq=170401309",
+    "pdf_sha256": "9ccd6593f4e93a216594b634e204d091d42b174d7cf8d69e4fe502865d492023",
+    "law_effective_on": "2026-10-02",
+    "annex_amended_on": "2025-12-30",
+    "verified_on": "2026-10-21",
+    "extraction": "exact six-digit row headers with first-line excerpts; not full legal definitions",
+    "review": "query hints manually reviewed on PDF pages 1, 6, 10, 11, 13, 14"
+  },
+  "scenarios": [
+    {
+      "transition_key": "pp-prepare",
+      "total_registry_candidates": 2355,
+      "returned": 5,
+      "reference_bindings": 1,
+      "search_scope": {
+        "registry_imported": true,
+        "registry_record_count": 9604,
+        "filter_counts": {
+          "non_recycling_registration": 6120,
+          "region_no_match": 0,
+          "no_material_or_code_hit": 1129
+        },
+        "match_counts": {
+          "code_category_only": 1955,
+          "unmapped_codes_require_review": 400
+        },
+        "ordering": "equipment_mentions_then_material_match_bucket_then_straight_line_then_id",
+        "not_feasibility_or_cost_ranking": true,
+        "code_categories_not_material_or_permit_approval": true,
+        "unmapped_codes_preserved": true,
+        "location_filters_apply_to_registry_only": true,
+        "automatic_path_insertion": false
+      },
+      "shown_match_types": [
+        "code_category_only",
+        "code_category_only",
+        "code_category_only",
+        "code_category_only",
+        "code_category_only"
+      ],
+      "shown_equipment_mentions": [
+        [
+          "분쇄"
+        ],
+        [
+          "파쇄",
+          "선별"
+        ],
+        [
+          "파쇄"
+        ],
+        [
+          "파쇄",
+          "분쇄"
+        ],
+        [
+          "파쇄",
+          "분쇄"
+        ]
+      ]
+    },
+    {
+      "transition_key": "pp-clean",
+      "total_registry_candidates": 2355,
+      "returned": 5,
+      "reference_bindings": 1,
+      "search_scope": {
+        "registry_imported": true,
+        "registry_record_count": 9604,
+        "filter_counts": {
+          "non_recycling_registration": 6120,
+          "region_no_match": 0,
+          "no_material_or_code_hit": 1129
+        },
+        "match_counts": {
+          "code_category_only": 1955,
+          "unmapped_codes_require_review": 400
+        },
+        "ordering": "equipment_mentions_then_material_match_bucket_then_straight_line_then_id",
+        "not_feasibility_or_cost_ranking": true,
+        "code_categories_not_material_or_permit_approval": true,
+        "unmapped_codes_preserved": true,
+        "location_filters_apply_to_registry_only": true,
+        "automatic_path_insertion": false
+      },
+      "shown_match_types": [
+        "code_category_only",
+        "code_category_only",
+        "code_category_only",
+        "code_category_only",
+        "code_category_only"
+      ],
+      "shown_equipment_mentions": [
+        [
+          "세척"
+        ],
+        [
+          "세척"
+        ],
+        [
+          "세척"
+        ],
+        [
+          "세척"
+        ],
+        [
+          "세척"
+        ]
+      ]
+    },
+    {
+      "transition_key": "pe-pelletise",
+      "total_registry_candidates": 2355,
+      "returned": 5,
+      "reference_bindings": 1,
+      "search_scope": {
+        "registry_imported": true,
+        "registry_record_count": 9604,
+        "filter_counts": {
+          "non_recycling_registration": 6120,
+          "region_no_match": 0,
+          "no_material_or_code_hit": 1129
+        },
+        "match_counts": {
+          "code_category_only": 1955,
+          "unmapped_codes_require_review": 400
+        },
+        "ordering": "equipment_mentions_then_material_match_bucket_then_straight_line_then_id",
+        "not_feasibility_or_cost_ranking": true,
+        "code_categories_not_material_or_permit_approval": true,
+        "unmapped_codes_preserved": true,
+        "location_filters_apply_to_registry_only": true,
+        "automatic_path_insertion": false
+      },
+      "shown_match_types": [
+        "code_category_only",
+        "code_category_only",
+        "code_category_only",
+        "code_category_only",
+        "code_category_only"
+      ],
+      "shown_equipment_mentions": [
+        [
+          "압출"
+        ],
+        [
+          "압출"
+        ],
+        [
+          "압출"
+        ],
+        [
+          "압출"
+        ],
+        [
+          "압출"
+        ]
+      ]
+    },
+    {
+      "transition_key": "pet-wash",
+      "total_registry_candidates": 2355,
+      "returned": 5,
+      "reference_bindings": 1,
+      "search_scope": {
+        "registry_imported": true,
+        "registry_record_count": 9604,
+        "filter_counts": {
+          "non_recycling_registration": 6120,
+          "region_no_match": 0,
+          "no_material_or_code_hit": 1129
+        },
+        "match_counts": {
+          "code_category_only": 1955,
+          "unmapped_codes_require_review": 400
+        },
+        "ordering": "equipment_mentions_then_material_match_bucket_then_straight_line_then_id",
+        "not_feasibility_or_cost_ranking": true,
+        "code_categories_not_material_or_permit_approval": true,
+        "unmapped_codes_preserved": true,
+        "location_filters_apply_to_registry_only": true,
+        "automatic_path_insertion": false
+      },
+      "shown_match_types": [
+        "code_category_only",
+        "code_category_only",
+        "code_category_only",
+        "code_category_only",
+        "code_category_only"
+      ],
+      "shown_equipment_mentions": [
+        [
+          "세척"
+        ],
+        [
+          "세척"
+        ],
+        [
+          "세척"
+        ],
+        [
+          "세척"
+        ],
+        [
+          "세척"
+        ]
+      ]
+    },
+    {
+      "transition_key": "al-can-sheet",
+      "total_registry_candidates": 692,
+      "returned": 5,
+      "reference_bindings": 1,
+      "search_scope": {
+        "registry_imported": true,
+        "registry_record_count": 9604,
+        "filter_counts": {
+          "non_recycling_registration": 6120,
+          "region_no_match": 0,
+          "no_material_or_code_hit": 2792
+        },
+        "match_counts": {
+          "code_category_only": 123,
+          "unmapped_codes_require_review": 569
+        },
+        "ordering": "equipment_mentions_then_material_match_bucket_then_straight_line_then_id",
+        "not_feasibility_or_cost_ranking": true,
+        "code_categories_not_material_or_permit_approval": true,
+        "unmapped_codes_preserved": true,
+        "location_filters_apply_to_registry_only": true,
+        "automatic_path_insertion": false
+      },
+      "shown_match_types": [
+        "code_category_only",
+        "code_category_only",
+        "unmapped_codes_require_review",
+        "code_category_only",
+        "code_category_only"
+      ],
+      "shown_equipment_mentions": [
+        [
+          "주조"
+        ],
+        [
+          "용해"
+        ],
+        [
+          "용해"
+        ],
+        [],
+        []
+      ]
+    },
+    {
+      "transition_key": "paper-board",
+      "total_registry_candidates": 620,
+      "returned": 5,
+      "reference_bindings": 1,
+      "search_scope": {
+        "registry_imported": true,
+        "registry_record_count": 9604,
+        "filter_counts": {
+          "non_recycling_registration": 6120,
+          "region_no_match": 0,
+          "no_material_or_code_hit": 2864
+        },
+        "match_counts": {
+          "code_category_only": 48,
+          "unmapped_codes_require_review": 572
+        },
+        "ordering": "equipment_mentions_then_material_match_bucket_then_straight_line_then_id",
+        "not_feasibility_or_cost_ranking": true,
+        "code_categories_not_material_or_permit_approval": true,
+        "unmapped_codes_preserved": true,
+        "location_filters_apply_to_registry_only": true,
+        "automatic_path_insertion": false
+      },
+      "shown_match_types": [
+        "code_category_only",
+        "code_category_only",
+        "code_category_only",
+        "code_category_only",
+        "code_category_only"
+      ],
+      "shown_equipment_mentions": [
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "pp-prepare API 200",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare explicit registry state",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare no automatic path insertion",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare registration role only",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare registration role only",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare registration role only",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare registration role only",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare registration role only",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pp-prepare published process does not approve this lot",
+      "passed": true
+    },
+    {
+      "name": "pp-clean API 200",
+      "passed": true
+    },
+    {
+      "name": "pp-clean explicit registry state",
+      "passed": true
+    },
+    {
+      "name": "pp-clean no automatic path insertion",
+      "passed": true
+    },
+    {
+      "name": "pp-clean selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pp-clean registration role only",
+      "passed": true
+    },
+    {
+      "name": "pp-clean versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pp-clean process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pp-clean permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pp-clean no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pp-clean selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pp-clean registration role only",
+      "passed": true
+    },
+    {
+      "name": "pp-clean versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pp-clean process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pp-clean permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pp-clean no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pp-clean selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pp-clean registration role only",
+      "passed": true
+    },
+    {
+      "name": "pp-clean versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pp-clean process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pp-clean permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pp-clean no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pp-clean selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pp-clean registration role only",
+      "passed": true
+    },
+    {
+      "name": "pp-clean versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pp-clean process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pp-clean permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pp-clean no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pp-clean selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pp-clean registration role only",
+      "passed": true
+    },
+    {
+      "name": "pp-clean versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pp-clean process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pp-clean permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pp-clean no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pp-clean published process does not approve this lot",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise API 200",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise explicit registry state",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise no automatic path insertion",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise registration role only",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise registration role only",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise registration role only",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise registration role only",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise registration role only",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pe-pelletise published process does not approve this lot",
+      "passed": true
+    },
+    {
+      "name": "pet-wash API 200",
+      "passed": true
+    },
+    {
+      "name": "pet-wash explicit registry state",
+      "passed": true
+    },
+    {
+      "name": "pet-wash no automatic path insertion",
+      "passed": true
+    },
+    {
+      "name": "pet-wash selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pet-wash registration role only",
+      "passed": true
+    },
+    {
+      "name": "pet-wash versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pet-wash process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pet-wash permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pet-wash no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pet-wash selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pet-wash registration role only",
+      "passed": true
+    },
+    {
+      "name": "pet-wash versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pet-wash process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pet-wash permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pet-wash no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pet-wash selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pet-wash registration role only",
+      "passed": true
+    },
+    {
+      "name": "pet-wash versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pet-wash process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pet-wash permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pet-wash no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pet-wash selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pet-wash registration role only",
+      "passed": true
+    },
+    {
+      "name": "pet-wash versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pet-wash process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pet-wash permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pet-wash no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pet-wash selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "pet-wash registration role only",
+      "passed": true
+    },
+    {
+      "name": "pet-wash versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "pet-wash process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "pet-wash permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "pet-wash no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "pet-wash published process does not approve this lot",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet API 200",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet explicit registry state",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet no automatic path insertion",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet registration role only",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet registration role only",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet registration role only",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet registration role only",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet registration role only",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "al-can-sheet published process does not approve this lot",
+      "passed": true
+    },
+    {
+      "name": "paper-board API 200",
+      "passed": true
+    },
+    {
+      "name": "paper-board explicit registry state",
+      "passed": true
+    },
+    {
+      "name": "paper-board no automatic path insertion",
+      "passed": true
+    },
+    {
+      "name": "paper-board selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "paper-board registration role only",
+      "passed": true
+    },
+    {
+      "name": "paper-board versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "paper-board process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "paper-board permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "paper-board no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "paper-board selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "paper-board registration role only",
+      "passed": true
+    },
+    {
+      "name": "paper-board versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "paper-board process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "paper-board permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "paper-board no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "paper-board selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "paper-board registration role only",
+      "passed": true
+    },
+    {
+      "name": "paper-board versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "paper-board process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "paper-board permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "paper-board no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "paper-board selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "paper-board registration role only",
+      "passed": true
+    },
+    {
+      "name": "paper-board versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "paper-board process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "paper-board permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "paper-board no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "paper-board selected source record intact",
+      "passed": true
+    },
+    {
+      "name": "paper-board registration role only",
+      "passed": true
+    },
+    {
+      "name": "paper-board versioned code interpretations are traceable, not permit validation",
+      "passed": true
+    },
+    {
+      "name": "paper-board process suitability not fabricated",
+      "passed": true
+    },
+    {
+      "name": "paper-board permit and acceptance unknown",
+      "passed": true
+    },
+    {
+      "name": "paper-board no road cost fabrication",
+      "passed": true
+    },
+    {
+      "name": "paper-board published process does not approve this lot",
+      "passed": true
+    },
+    {
+      "name": "external registry packet withheld",
+      "passed": true
+    },
+    {
+      "name": "unknown transition HTTP 400",
+      "passed": true
+    },
+    {
+      "name": "bad cursor HTTP 400",
+      "passed": true
+    }
+  ],
+  "passed": 207,
+  "total": 207
+}

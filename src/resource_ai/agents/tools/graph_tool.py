@@ -1,5 +1,6 @@
 """Callable agent boundary. MCP transport/orchestration are separate work."""
 
+from resource_ai.api.schemas.facility_search import FacilitySearchRequest
 from resource_ai.api.schemas.graph import CandidateRequest
 from resource_ai.api.schemas.kg_planning import PathPlanningRequest
 from resource_ai.api.schemas.kg_pool import CandidatePoolRequest
@@ -30,3 +31,11 @@ def get_process_plan_page(**structured_input) -> dict:
     """
     request = PathPlanningRequest.model_validate({**structured_input, "audience": "external_model"})
     return get_graph_query().process_plans(request).model_dump()
+
+
+def get_facility_candidate_page(**structured_input) -> dict:
+    """External view: curated evidence or withheld listing IDs, never raw registry text."""
+    request = FacilitySearchRequest.model_validate(
+        {**structured_input, "audience": "external_model"}
+    )
+    return get_graph_query().facility_candidates(request).model_dump()

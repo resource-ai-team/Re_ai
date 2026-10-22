@@ -17,6 +17,7 @@ from resource_ai.api.schemas.kg_planning import (
 )
 from resource_ai.knowledge_graph import graph_store as store
 from resource_ai.knowledge_graph import ontology as graph
+from resource_ai.knowledge_graph.facility_evidence import assess_binding
 from resource_ai.knowledge_graph.planning_reference import (
     GROUPS,
     PlanningReference,
@@ -243,6 +244,8 @@ def make_plan(value, path, *, audience, assumed_form):
             if facility
             else None,
             "facility_binding": capability.basis if capability else "missing_facility",
+            "facility_assessment": assess_binding(transition, capability),
+            "facility_search_request": {"transition_key": transition.key},
             "suitability": "not_assessed",
             "input_state_specifications_verified": False,
         }

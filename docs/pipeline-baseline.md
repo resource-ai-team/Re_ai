@@ -44,6 +44,11 @@ ReAct가 전체 단계 순서·계산·분기 규칙을 임의로 바꾸게 하�
 2026-10-21 추가: 별도 공개 자료 기반 상태 전이·시설 후보 DB와 `/kg/process-plans` 경로 탐색.
 범위와 가설 구분은 [공정·시설 경로 API](kg-process-plans.md) 참고.
 
+2026-10-21 시설 조사 보강: 전국 명부의 별도 Neo4j 적재와 `/kg/facility-candidates` 추가.
+공식 폐기물 코드표·설비 단어·직선거리로 조사 대상을 찾고 공정 근거와 미확인 조건을
+구분합니다. 시설을 공정 경로에 자동 삽입하거나 인수를 승인하지 않습니다.
+[실행 방법·검증·남은 부분](kg-facility-matching.md) 참고.
+
 미구현: 시설의 현재 허가·수용 검증, Auditor/ReAct 실행기, 적합성 판정,
 비용·탄소 계산, Trade-off, 최종 Critic·Router와 부분 재실행, 전체 화면 연결.
 일부 템플릿의 `facility_candidate_ids`는 공개 사업 사례 ID이며 실시간 시설 DB가 아닙니다.

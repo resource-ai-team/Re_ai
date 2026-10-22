@@ -11,11 +11,16 @@
 | `processed/` | 전처리 중간 산출물 | 원칙적으로 검토 후 결정 |
 | `official/` | 공식 API에서 재생성한 JSONL·매니페스트 | 제외 |
 | `knowledge_graph/` | 고정 해시의 W2RKG 인덱스·출처·라이선스 | 포함 |
+| `local/facilities/` | 별도 수집한 국내 시설 명부 원본·매니페스트 | 제외 |
 
 KG 조사 카드·출처 메타데이터·조건부 공정 템플릿은 Python 배포에도 포함되도록
 `src/resource_ai/knowledge_graph/resources/`에 둡니다. 원본은 Re-Prototype의
 `414cd8d` 커밋이며 `bundle-manifest.json`이 각 파일 해시를 기록합니다.
 새 근거로 변경할 때는 카드·범위·출처와 해시를 함께 검토합니다.
+공정·시설 참조 자료와 공식 코드표는 별도로 추가한 자료이며, 원본·버전과 출처를
+`bundle-manifest.json.additional_provenance`에서 구분합니다.
+국내 시설 명부는 별도 Neo4j 세대에 적재하며 원본 재배포·외부 모델 전송은 활성화하지
+않았습니다. [수집·적재 방법과 한계](../docs/kg-facility-matching.md)를 참고하세요.
 Neo4j 데이터 볼륨·로컬 비밀번호·국가 LCI 원본은 Git에 포함하지 않습니다.
 
 ## 데이터셋 v1

@@ -25,6 +25,11 @@
   공정·시설 경로 후보를 열거. 시설 역할 가설·인계 구간·출처·확인 과제와 탐색 한도를 반환.
   [실행 예시와 응답](kg-process-plans.md). 잘못된 목표 상태는 `400`.
   `graph_compatible`은 적합성·최적성 검증 전 상태이며 최종 추천이 아님.
+- `POST /kg/facility-candidates`: 공정 전이 key로 공개 시설 연결과 별도 명부 조사 대상을 조회.
+  `api/schemas/facility_search.py`를 사용. 소재 코드·설비 단어·직선거리는 검색 단서이며
+  현행 허가·공정 수행·인수 가능성 판정이 아님. [실행 예시](kg-facility-matching.md).
+  등록 명부가 없으면 `reference_only`, 변조된 명부·코드표는 `503`.
+  외부 모델 보기에서는 명부 본문을 가리며, 지역·발생지 좌표 조건은 내부 검색에서만 사용.
 - 설정 누락·미적재·Neo4j 장애·무결성 오류는 `503`과 `detail.code/message`로 반환.
 - 입력 검증 실패는 `422`, 미지원 소재는 `200` + `status=unsupported_material`,
   소재 누락은 `200` + `status=needs_input`. 후보가 없음을 적법성/안전성으로 해석하지 않음.
