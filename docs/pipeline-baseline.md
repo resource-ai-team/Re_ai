@@ -54,11 +54,18 @@ ReAct가 전체 단계 순서·계산·분기 규칙을 임의로 바꾸게 하�
 현행 허가·실제 인수 검증은 여전히 미완료입니다. [검증 범위](kg-facility-conditions.md) 참고.
 
 미구현: 시설의 현재 허가·수용 검증, Auditor/ReAct 실행기, 적합성 판정,
-비용·탄소 계산, Trade-off, 최종 Critic·Router와 부분 재실행, 전체 화면 연결.
+실제 적합 후보의 비용·탄소 수치 수집·연동, 잠정 Top K, 최종 Critic·Router와 부분 재실행,
+전체 실행 상태·화면 연결. 별도 제출 시나리오의 계산·Pareto 도구는 아래 분석 연결 범위에 구현했습니다.
 일부 템플릿의 `facility_candidate_ids`는 공개 사업 사례 ID이며 실시간 시설 DB가 아닙니다.
 
 기존 KG 응답의 `graph_trace.pipeline_baseline=2026-10-20-fixed-v1`은 KG 기반 구현 당시의
 추적 표식입니다. 새 전체 파이프라인이 실행됐다는 의미가 아니며, 이 문서 변경으로 API 값을 바꾸지 않습니다.
 전체 실행기의 설계 버전·실행 버전은 후속 연동에서 구분해 관리해야 합니다.
+
+2026-10-21 분석 연결 추가: `/analysis/research`는 공정·시설 조합의 전체 페이지,
+공개 조건 대조와 기존 법령 RAG를 연결합니다. 검색만으로 적용성을 확정하지 않습니다.
+별도 `/analysis/compare-scenarios`는 제출된 같은 경계의 수치·근거를 계산하고 Pareto 층을
+구합니다. 실제 적합 후보의 수치 수집·잠정 Top K·최종 Critic·부분 재실행 완료를 뜻하지
+않습니다. [실행 방법·구현 경계](candidate-analysis.md)를 참고합니다.
 
 다음 KG 작업은 [고도화 계획](kg-upgrade-plan.md)에 기록합니다.

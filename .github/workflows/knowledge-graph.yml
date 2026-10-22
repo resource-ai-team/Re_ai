@@ -9,6 +9,17 @@ jobs:
   neo4j:
     runs-on: ubuntu-latest
     services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_DB: re_ai
+          POSTGRES_USER: re_ai
+          POSTGRES_PASSWORD: ci-only-rag-password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U re_ai -d re_ai"
+          --health-interval 5s --health-timeout 5s --health-retries 20
       neo4j:
         image: neo4j:5.26.32-community
         env:
@@ -25,6 +36,9 @@ jobs:
       NEO4J_PASSWORD: ci-only-graph-password
       NEO4J_NAMESPACE: re-ai-ci
       RUN_NEO4J_INTEGRATION: "true"
+      RUN_POSTGRES_INTEGRATION: "true"
+      DATABASE_URL: postgresql://re_ai:ci-only-rag-password@127.0.0.1:5432/re_ai
+      EMBEDDING_PROVIDER: hash
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

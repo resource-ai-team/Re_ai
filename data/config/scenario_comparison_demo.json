@@ -1,0 +1,350 @@
+{
+  "basis": {
+    "quantity_kg": "3000",
+    "as_of": "2026-10-21",
+    "region": "KR",
+    "assessment_year": 2026,
+    "carbon_method": "SYNTHETIC-GWP100-NOT-AN-LCI-FACTOR"
+  },
+  "mode": "simulation",
+  "evidence": [
+    {
+      "evidence_id": "synthetic-activity",
+      "source_url": "https://example.invalid/synthetic-arithmetic-fixture",
+      "locator": "Entirely invented test table; no quote, measurement or LCI values",
+      "kind": "activity_record",
+      "valid_from": "2025-01-01",
+      "valid_until": "2027-12-31",
+      "region": "KR",
+      "assessment_year": 2026,
+      "synthetic": true,
+      "carbon_method": null
+    },
+    {
+      "evidence_id": "synthetic-cost",
+      "source_url": "https://example.invalid/synthetic-arithmetic-fixture",
+      "locator": "Entirely invented test table; no quote, measurement or LCI values",
+      "kind": "cost_factor",
+      "valid_from": "2025-01-01",
+      "valid_until": "2027-12-31",
+      "region": "KR",
+      "assessment_year": 2026,
+      "synthetic": true,
+      "carbon_method": null
+    },
+    {
+      "evidence_id": "synthetic-carbon",
+      "source_url": "https://example.invalid/synthetic-arithmetic-fixture",
+      "locator": "Entirely invented test table; no quote, measurement or LCI values",
+      "kind": "carbon_factor",
+      "valid_from": "2025-01-01",
+      "valid_until": "2027-12-31",
+      "region": "KR",
+      "assessment_year": 2026,
+      "synthetic": true,
+      "carbon_method": "SYNTHETIC-GWP100-NOT-AN-LCI-FACTOR"
+    }
+  ],
+  "scenarios": [
+    {
+      "candidate_id": "simulation-A",
+      "basis": {
+        "quantity_kg": "3000",
+        "as_of": "2026-10-21",
+        "region": "KR",
+        "assessment_year": 2026,
+        "carbon_method": "SYNTHETIC-GWP100-NOT-AN-LCI-FACTOR"
+      },
+      "stage_ids": [
+        "simulation-A:stage:1"
+      ],
+      "handoff_ids": [],
+      "lines": [
+        {
+          "line_id": "simulation-A:0",
+          "target_id": "simulation-A:stage:1",
+          "metric": "cost",
+          "category": "process",
+          "activity": "3000",
+          "activity_unit": "kg",
+          "factor": "100",
+          "factor_unit": "KRW/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-cost"
+        },
+        {
+          "line_id": "simulation-A:1",
+          "target_id": "simulation-A:stage:1",
+          "metric": "carbon",
+          "category": "process",
+          "activity": "3000",
+          "activity_unit": "kg",
+          "factor": "0.2",
+          "factor_unit": "kgCO2e/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-carbon"
+        },
+        {
+          "line_id": "simulation-A:2",
+          "target_id": "simulation-A:origin-transport",
+          "metric": "cost",
+          "category": "transport",
+          "activity": "30",
+          "activity_unit": "t_km",
+          "factor": "500",
+          "factor_unit": "KRW/t_km",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-cost"
+        },
+        {
+          "line_id": "simulation-A:3",
+          "target_id": "simulation-A:origin-transport",
+          "metric": "carbon",
+          "category": "transport",
+          "activity": "30",
+          "activity_unit": "t_km",
+          "factor": "0.1",
+          "factor_unit": "kgCO2e/t_km",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-carbon"
+        },
+        {
+          "line_id": "simulation-A:4",
+          "target_id": "simulation-A",
+          "metric": "cost",
+          "category": "residue",
+          "activity": "300",
+          "activity_unit": "kg",
+          "factor": "50",
+          "factor_unit": "KRW/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-cost"
+        },
+        {
+          "line_id": "simulation-A:5",
+          "target_id": "simulation-A",
+          "metric": "carbon",
+          "category": "residue",
+          "activity": "300",
+          "activity_unit": "kg",
+          "factor": "0.5",
+          "factor_unit": "kgCO2e/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-carbon"
+        },
+        {
+          "line_id": "simulation-A:6",
+          "target_id": "simulation-A",
+          "metric": "cost",
+          "category": "revenue",
+          "activity": "2700",
+          "activity_unit": "kg",
+          "factor": "200",
+          "factor_unit": "KRW/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-cost"
+        }
+      ]
+    },
+    {
+      "candidate_id": "simulation-B",
+      "basis": {
+        "quantity_kg": "3000",
+        "as_of": "2026-10-21",
+        "region": "KR",
+        "assessment_year": 2026,
+        "carbon_method": "SYNTHETIC-GWP100-NOT-AN-LCI-FACTOR"
+      },
+      "stage_ids": [
+        "simulation-B:stage:1"
+      ],
+      "handoff_ids": [],
+      "lines": [
+        {
+          "line_id": "simulation-B:0",
+          "target_id": "simulation-B:stage:1",
+          "metric": "cost",
+          "category": "process",
+          "activity": "3000",
+          "activity_unit": "kg",
+          "factor": "200",
+          "factor_unit": "KRW/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-cost"
+        },
+        {
+          "line_id": "simulation-B:1",
+          "target_id": "simulation-B:stage:1",
+          "metric": "carbon",
+          "category": "process",
+          "activity": "3000",
+          "activity_unit": "kg",
+          "factor": "0.1",
+          "factor_unit": "kgCO2e/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-carbon"
+        },
+        {
+          "line_id": "simulation-B:2",
+          "target_id": "simulation-B:origin-transport",
+          "metric": "cost",
+          "category": "transport",
+          "activity": "30",
+          "activity_unit": "t_km",
+          "factor": "500",
+          "factor_unit": "KRW/t_km",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-cost"
+        },
+        {
+          "line_id": "simulation-B:3",
+          "target_id": "simulation-B:origin-transport",
+          "metric": "carbon",
+          "category": "transport",
+          "activity": "30",
+          "activity_unit": "t_km",
+          "factor": "0.1",
+          "factor_unit": "kgCO2e/t_km",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-carbon"
+        },
+        {
+          "line_id": "simulation-B:4",
+          "target_id": "simulation-B",
+          "metric": "cost",
+          "category": "residue",
+          "activity": "300",
+          "activity_unit": "kg",
+          "factor": "50",
+          "factor_unit": "KRW/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-cost"
+        },
+        {
+          "line_id": "simulation-B:5",
+          "target_id": "simulation-B",
+          "metric": "carbon",
+          "category": "residue",
+          "activity": "300",
+          "activity_unit": "kg",
+          "factor": "0.5",
+          "factor_unit": "kgCO2e/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-carbon"
+        },
+        {
+          "line_id": "simulation-B:6",
+          "target_id": "simulation-B",
+          "metric": "cost",
+          "category": "revenue",
+          "activity": "2700",
+          "activity_unit": "kg",
+          "factor": "200",
+          "factor_unit": "KRW/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-cost"
+        }
+      ]
+    },
+    {
+      "candidate_id": "simulation-C",
+      "basis": {
+        "quantity_kg": "3000",
+        "as_of": "2026-10-21",
+        "region": "KR",
+        "assessment_year": 2026,
+        "carbon_method": "SYNTHETIC-GWP100-NOT-AN-LCI-FACTOR"
+      },
+      "stage_ids": [
+        "simulation-C:stage:1"
+      ],
+      "handoff_ids": [],
+      "lines": [
+        {
+          "line_id": "simulation-C:0",
+          "target_id": "simulation-C:stage:1",
+          "metric": "cost",
+          "category": "process",
+          "activity": "3000",
+          "activity_unit": "kg",
+          "factor": "200",
+          "factor_unit": "KRW/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-cost"
+        },
+        {
+          "line_id": "simulation-C:1",
+          "target_id": "simulation-C:stage:1",
+          "metric": "carbon",
+          "category": "process",
+          "activity": "3000",
+          "activity_unit": "kg",
+          "factor": "0.3",
+          "factor_unit": "kgCO2e/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-carbon"
+        },
+        {
+          "line_id": "simulation-C:2",
+          "target_id": "simulation-C:origin-transport",
+          "metric": "cost",
+          "category": "transport",
+          "activity": "30",
+          "activity_unit": "t_km",
+          "factor": "500",
+          "factor_unit": "KRW/t_km",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-cost"
+        },
+        {
+          "line_id": "simulation-C:3",
+          "target_id": "simulation-C:origin-transport",
+          "metric": "carbon",
+          "category": "transport",
+          "activity": "30",
+          "activity_unit": "t_km",
+          "factor": "0.1",
+          "factor_unit": "kgCO2e/t_km",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-carbon"
+        },
+        {
+          "line_id": "simulation-C:4",
+          "target_id": "simulation-C",
+          "metric": "cost",
+          "category": "residue",
+          "activity": "300",
+          "activity_unit": "kg",
+          "factor": "50",
+          "factor_unit": "KRW/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-cost"
+        },
+        {
+          "line_id": "simulation-C:5",
+          "target_id": "simulation-C",
+          "metric": "carbon",
+          "category": "residue",
+          "activity": "300",
+          "activity_unit": "kg",
+          "factor": "0.5",
+          "factor_unit": "kgCO2e/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-carbon"
+        },
+        {
+          "line_id": "simulation-C:6",
+          "target_id": "simulation-C",
+          "metric": "cost",
+          "category": "revenue",
+          "activity": "2700",
+          "activity_unit": "kg",
+          "factor": "200",
+          "factor_unit": "KRW/kg",
+          "activity_evidence_id": "synthetic-activity",
+          "factor_evidence_id": "synthetic-cost"
+        }
+      ]
+    }
+  ]
+}

@@ -4,9 +4,11 @@
 폐기물과 공정 정보를 바탕으로 관련 근거를 찾고, 이후 지식 그래프·규칙 엔진·계산기를
 결합해 검증 가능한 처리 방안을 만드는 역할을 담당합니다.
 
-현재는 **법령 근거 검색, Neo4j 문헌 조회, 공정·시설 경로 후보 생성, 국내 시설 조사와 공개 조건 대조**까지 동작합니다.
+현재는 **법령 근거 검색, Neo4j 문헌 조회, 공정·시설 경로 후보 생성, 국내 시설 조사와 공개 조건 대조**가 동작합니다.
 폐자원 정보를 넣으면 공정 단계와 시설 후보, 인계 구간, 확인할 조건과 출처를 돌려줍니다.
-법적 판정, 비용·탄소 순위 계산과 최종 추천은 아직 구현되지 않았습니다.
+새 내부 분석 API는 경로의 모든 페이지를 모아 **후보별 법령 조사까지 연결**합니다.
+별도 수치 API는 출처와 비교 기준을 제출하면 비용·탄소를 계산하고 Pareto 집합을 구합니다.
+실제 단가·LCI 자동 확보, 법적 판정, 최종 추천과 전체 실행기는 아직 없습니다.
 
 - 팀 공통 규칙: [resource-ai-team/.github CONTRIBUTING](https://github.com/resource-ai-team/.github/blob/main/CONTRIBUTING.md)
 - 구조 설명: [docs/architecture.md](docs/architecture.md)
@@ -19,6 +21,8 @@
 - **공정 순서·시설 연결·실행 예시**: [docs/kg-process-plans.md](docs/kg-process-plans.md)
 - **국내 시설을 찾는 방법·확인된 정보와 미확인 조건**: [docs/kg-facility-matching.md](docs/kg-facility-matching.md)
 - **시설 조건 대조·위험 표시·PP 시나리오**: [docs/kg-facility-conditions.md](docs/kg-facility-conditions.md)
+- **후보별 법령 조사·수치 계산과 남은 일**: [docs/candidate-analysis.md](docs/candidate-analysis.md)
+- **새 진행보드 수정 원고(아직 Notion 미반영)**: [docs/progress-board-update.md](docs/progress-board-update.md)
 
 ## 지금 어디까지 되나요?
 
@@ -32,7 +36,9 @@
 | 공정별 국내 시설 추가 조사 | 전국 명부 9,604개 등록 레코드 적재·공식 코드표·설비 단어·직선거리로 조사 대상 조회. 공정 수행·현행 허가·인수 가능 여부는 미확인 |
 | 공개 시설 조건과 입력 대조 | 기존 시설–공정 연결 14개에 조건 프로필 추가. 소재·명시적 제외 정책을 대조하고 단계·인계 구간에 미충족·미확인을 표시 |
 | 법령 근거 찾기 | 기존 Hybrid Search·Reranking 사용 가능 |
-| 허가·규정 판정, 비용·탄소·운송 비교 | 검수 데이터와 규칙·계산기 연동 필요 |
+| KG 뒤에 법령 조사 연결 | 새 분석 API가 전체 경로·시설 조건과 공정별 법령 검색을 연결. 한도·실패·미확인 보존 |
+| 비용·탄소 계산·Pareto | 별도 시나리오 API 구현. 제출된 수치·근거·같은 경계만 계산. 실제 단가·계수 수집·적합성 검증은 별도 |
+| 허가·규정 판정·최종 추천 | Auditor·현장 자료·검수 규칙·Critic·Router 연동 필요 |
 | 에이전트 통합·최종 추천·3D·보고서 | KG 호출 도구까지 제공. 전체 서비스 연결은 후속 작업 |
 
 사용자의 기존 처리 방식은 아는 경우에만 받습니다. 모르면 임의로 만들지 않습니다.
@@ -41,6 +47,10 @@ KG에서는 최대 K개를 미리 고르지 않습니다. 근거를 조사·검�
 전체 목표 설계는 **공정·시설 후보 → 법규·시설 검증 → 비용·탄소 → 잠정 Top K →
 최종 Critic → PASS/REVISE/REVIEW → 최종 출력**입니다. 시설의 공개 사례 DB는 추가했지만,
 실시간 수용 여부·허가 검증과 이 전체 실행기는 아직 없습니다.
+
+**지금 실행되는 분석 흐름:** 입력 항목 → 전체 KG 경로·공개 조건 → 후보별 법령 검색 →
+`검토 필요(REVIEW)`. 아직 Auditor가 없어 검색 결과를 적법성으로 확정하지 않습니다.
+비용·탄소 API는 별도 계산 도구이며, 이 분석 결과가 자동으로 최종 추천에 연결된 상태는 아닙니다.
 
 예를 들어 **검정 PP 스크랩 3톤**을 넣으면 다음 종료점까지의 후보를 만듭니다.
 
@@ -142,6 +152,8 @@ uvicorn resource_ai.main:app --reload
 - **공정별 시설 조사**: `POST /kg/facility-candidates` — [명부 수집·조회와 확인할 조건](docs/kg-facility-matching.md)
 - **한 시설·공정 조건 대조**: `POST /kg/facility-assessment`
 - **경로 생성부터 조건 대조까지**: `POST /kg/assessed-plans` — [실행 예시와 결과 읽기](docs/kg-facility-conditions.md)
+- **전체 경로·조건 대조·법령 조사 연결**: `POST /analysis/research`
+- **제출한 수치·근거의 계산·Pareto 비교**: `POST /analysis/compare-scenarios` — [가상 예제·검증 경계](docs/candidate-analysis.md)
 
 이전 v1.1 그래프가 이미 있다면 새 코드 사용 전 `resource-kg import --rebuild`로
 v1.2 새 세대를 적재합니다. 기존 세대는 보존하며, 검사 통과 후에만 전환합니다.
@@ -174,7 +186,9 @@ src/resource_ai/
 └── core/              설정과 공통 인프라
 ```
 
-`rules`, `calculators`, 에이전트 전체 오케스트레이션은 아직 골격입니다.
+`rules`와 에이전트 전체 오케스트레이션은 아직 골격입니다.
+`agents/research.py`는 KG→로컬 법령 조사, `calculators/scenarios.py`는 제출된 수치 계산·Pareto를 담당합니다.
+가격·LCI 자동 수집, 법규 판정·최종 Critic·부분 재실행까지 구현했다는 뜻은 아닙니다.
 KG는 별도 모듈로 동작하며 에이전트에서 호출할 Python 도구를 제공합니다.
 
 ## 테스트와 CI
@@ -189,7 +203,11 @@ GitHub Actions는 PR과 `develop`·`main` push에서 린트, 포맷 검사와 �
 실제 외부 API·Azure 키 없이 검증하도록 단위 테스트에서는 mock과 테스트 임베딩을
 사용합니다.
 
-2026-10-21: 실제 Neo4j를 사용하는 전체 테스트 **362개 통과**. 전국 명부 시설 검색 검사
+2026-10-21: 실제 Neo4j를 사용하는 전체 로컬 테스트 **412개 + 하위 검사 24개 통과**.
+실제 PostgreSQL까지 연결하는 추가 1개는 로컬 DB 미준비로 건너뛰며, CI에서 두 DB를 함께 실행해 검사합니다.
+신규 분석 API의 5소재 KG 연결·가상 산술 검사는 **28/28** 통과했습니다.
+실제 로컬 법령 검색은 DB 연결 실패를 `unavailable`로 기록한 것이며 검색 성공·정확도 검증과 구분합니다.
+전국 명부 시설 검색 검사
 **207/207** 통과. 기존 경로 API **142/142**, 조회 검사 **82/82·50/50** 결과도 유지합니다.
 공개 조건 대조는 가상 입력 16개와 PP 경로 흐름으로 **120/120** 검사 통과.
 추천 정확도·현장 인수 검증과 구분한 [검증 범위](docs/kg-facility-conditions.md)를 참고하세요.
