@@ -12,6 +12,7 @@
 | [후보별 조사·수치 비교](candidate-analysis.md) | 연결된 분석 API 두 개의 입력·출력·현재 한계 |
 | [실제 경로에 연결한 수치 검토](grounded-decision-review.md) | 빈 양식·입력/그래프/단계 연결·계산·결정론적 Critic·검토 보고서 |
 | [검정 PP 3톤 실행 사례](scenarios/pp-scrap-live-2026-10-22.md) | 가상 로트·실제 KG/검색. 세 처리 깊이·사업장 가설·10개 검색·미확인과 지정폐기물 변형 결과 |
+| [배출 사업장 중심 탐색 방향](site-centered-discovery.md) | 내 사업장 선택→공정별 시설 조사→검증→전체 도로거리·총비용 비교. 설계와 현재 미연결 기능 구분 |
 | [법률 그래프·Auditor](legal-hierargraph.md) | 논문 구조·국내 적용 차이·세 검색·Check/Decide·실제 구조 적재와 가상 모델 테스트 구분 |
 | [진행보드 반영 결과](progress-board-update.md) | Notion 기존 11개 수정·신규 3개·완료 3개 보존 및 카드별 남은 일 |
 
