@@ -182,7 +182,7 @@ def parse_archive(filename: str | Path) -> LCIDataset:
         year = _text(root, f".//{P}referenceYear")
         until = _text(root, f".//{P}dataSetValidUntil")
         return LCIDataset(
-            dataset_key=src.stem.replace("(1)", "").lower(),
+            dataset_key=src.stem.replace(" (1)", "").replace("(1)", "").strip().lower(),
             filename=src.name,
             source_sha256=hashlib.sha256(src.read_bytes()).hexdigest(),
             process_uuid=_text(info, f"{C}UUID") or "",
