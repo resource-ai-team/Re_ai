@@ -272,14 +272,6 @@ def test_new_incineration_sources_parse_when_locally_installed():
         "pvc": "1.53644249098189",
     }
     for resin, expected in expectations.items():
-        if resin not in {
-            "hdpe": "LCI-2023-186",
-            "ldpe": "LCI-2023-187",
-            "pp": "LCI-2023-189",
-            "ps": "LCI-2023-190",
-            "pvc": "LCI-2023-191",
-        }:
-            continue
         dataset = known.get(INCINERATION_PROCESS_UUIDS[resin])
         if dataset is None:
             continue  # Supported archives can be installed separately.
