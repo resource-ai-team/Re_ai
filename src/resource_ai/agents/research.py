@@ -90,6 +90,15 @@ class CandidateResearchService:
         except Exception as exc:  # noqa: BLE001 - keep configuration/DB/provider details private
             failure = exc.code if isinstance(exc, LegalGraphError) else "legal-graph-unavailable"
         for candidate in candidates:
+            if not candidate.plan.external_model_allowed or candidate.plan.withheld_evidence_ids:
+                candidate.legal_graph_review = {
+                    "status": "unavailable",
+                    "error_code": "evidence-transfer-not-allowed",
+                    "route": "REVIEW",
+                    "dispatch_approved": False,
+                }
+                candidate.blockers.append("legal_graph_evidence_transfer_not_allowed")
+                continue
             try:
                 if failure or remaining <= 0:
                     raise LegalGraphError(
@@ -127,7 +136,8 @@ class CandidateResearchService:
                 candidate.blockers.append("legal_graph_" + code)
         return options.max_model_calls - remaining
 
-    def run(self, request: ResearchRequest) -> ResearchResponse:
+    def collect(self, request: ResearchRequest):
+        """Collect one stable process-KG snapshot without retrieval or model calls."""
         cursor, trace, seen, candidates = None, None, set(), []
         seen_cursors = set()
         pages, fully_enumerated, expected_count = 0, True, None
@@ -187,6 +197,21 @@ class CandidateResearchService:
                 raise integrity("후보 페이지가 진행하지 않습니다.")
             seen_cursors.add(cursor)
 
+        return {
+            "candidates": candidates,
+            "last": last,
+            "trace": trace or {},
+            "pages": pages,
+            "fully_enumerated": fully_enumerated,
+            "expected_count": expected_count,
+            "cursor": cursor,
+        }
+
+    def run(self, request: ResearchRequest) -> ResearchResponse:
+        collection = self.collect(request)
+        candidates, last, trace = collection["candidates"], collection["last"], collection["trace"]
+        pages, fully_enumerated = collection["pages"], collection["fully_enumerated"]
+        expected_count, cursor = collection["expected_count"], collection["cursor"]
         # Build tasks before executing any retrieval, so budgets cannot hide work.
         queries = {}
         for candidate in candidates:

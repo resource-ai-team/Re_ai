@@ -4,6 +4,19 @@
 
 `GET /health`
 
+## 실제 KG 경로에 연결한 검토
+
+- `POST /analysis/review-template`: `lot`·`max_pages`로 실제 KG 경로의 빈 수치 양식을 조회합니다. RAG·생성 모델 호출 없음.
+  `input_sha256`·`graph_trace`·공정/인계 ID와 함께 활동량·계수·근거 ID를 `null`로 반환합니다.
+- `POST /analysis/review`: `research`와 선택 `numeric`을 받아 후보 조사 → 같은 로트·현재 그래프·순서 대조 → 제출 수치 계산 → 수치상 Pareto → 결정론적 Critic을 실행합니다.
+  `numeric`은 양식의 `input_sha256`, `graph_trace`, 기존 계산 계약의 `comparison`을 포함합니다.
+  다른 입력·구버전·가짜 공정의 수치는 비교에 넣지 않습니다.
+- 자료 부족은 `REVIEW`, 확인된 오류는 `REVISE`와 `router.restart_from`·후속 무효화 범위를 반환합니다.
+  자동 재실행은 없으며 `PASS`·최종 추천·발주 승인을 반환하지 않습니다.
+- `candidate_reviews`, `map_markers`, `report_markdown`은 확인할 조건·오류·다음 행동을 제공합니다. 실제 3D 화면 연동은 후속입니다.
+- 잘못된 목표는 `400`, 그래프 세대 변경은 `409`, DB/무결성 장애는 `503`, 스키마 오류는 `422`입니다.
+- [요청 예제·숫자 확보 방법·제한](grounded-decision-review.md). 두 API는 내부용이며 서버 담당자 검토 후 연동합니다.
+
 ## 법률 근거 검색
 
 `GET /rag/search?q={질문}&top_k=5`

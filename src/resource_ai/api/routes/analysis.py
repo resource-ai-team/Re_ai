@@ -2,12 +2,18 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
 
+from resource_ai.agents.decision_review import DecisionReviewService
 from resource_ai.agents.research import CandidateResearchService
 from resource_ai.api.schemas.analysis import (
     ResearchRequest,
     ResearchResponse,
     ScenarioComparisonRequest,
     ScenarioComparisonResponse,
+)
+from resource_ai.api.schemas.decision_review import (
+    DecisionReviewRequest,
+    DecisionReviewResponse,
+    ReviewTemplateRequest,
 )
 from resource_ai.calculators.scenarios import compare_scenarios
 from resource_ai.core.dependencies import get_graph_query, get_repository
@@ -46,3 +52,31 @@ def research(
 @router.post("/compare-scenarios", response_model=ScenarioComparisonResponse)
 def compare(request: ScenarioComparisonRequest):
     return compare_scenarios(request)
+
+
+@router.post("/review-template")
+def review_template(
+    request: ReviewTemplateRequest,
+    service: Annotated[CandidateResearchService, Depends(get_research_service)],
+):
+    try:
+        return DecisionReviewService(service).template(request)
+    except GraphStoreError as exc:
+        raise HTTPException(
+            status_code={"invalid-goal": 400, "stale-cursor": 409}.get(exc.code, 503),
+            detail={"code": exc.code, "message": str(exc)},
+        ) from exc
+
+
+@router.post("/review", response_model=DecisionReviewResponse)
+def review(
+    request: DecisionReviewRequest,
+    service: Annotated[CandidateResearchService, Depends(get_research_service)],
+):
+    try:
+        return DecisionReviewService(service).run(request)
+    except GraphStoreError as exc:
+        raise HTTPException(
+            status_code={"invalid-goal": 400, "stale-cursor": 409}.get(exc.code, 503),
+            detail={"code": exc.code, "message": str(exc)},
+        ) from exc

@@ -10,6 +10,7 @@
 | [확정 파이프라인 v2](pipeline-baseline.md) | 전체 서비스의 목표 단계·책임·Critic·부분 재실행 원칙. 모든 단계의 구현 완료를 뜻하지 않음 |
 | [코드와 데이터 구조](architecture.md) | 지금 실행되는 기능·모듈·DB·서비스 호출 경계 |
 | [후보별 조사·수치 비교](candidate-analysis.md) | 연결된 분석 API 두 개의 입력·출력·현재 한계 |
+| [실제 경로에 연결한 수치 검토](grounded-decision-review.md) | 빈 양식·입력/그래프/단계 연결·계산·결정론적 Critic·검토 보고서 |
 | [법률 그래프·Auditor](legal-hierargraph.md) | 논문 구조·국내 적용 차이·세 검색·Check/Decide·실제 구조 적재와 가상 모델 테스트 구분 |
 | [진행보드 반영 결과](progress-board-update.md) | Notion 기존 11개 수정·신규 3개·완료 3개 보존 및 카드별 남은 일 |
 
@@ -48,6 +49,8 @@
 | [공정·시설 경로](evaluation/kg-plans-2026-10-21.json) | 등록 상태 전이·경로 열거·시설 연결 |
 | [KG 보강 후 재검증](kg-evidence-upgrade.md#이번-검증-결과) | 새 제지 순서·출처 범위·등급·연결 진단, 실제 활성 세대와 전체 테스트 |
 | [후보 조사와 가상 산술](evaluation/analysis-2026-10-21.json) | 실제 KG/API와 로컬 검색 상태, 별도로 만든 가상 수치 계산 |
+| [법령·판례 보강 구조 검사](evaluation/legal-expansion-2026-10-22.json) | 실제 공식 6문서·119구간과 Neo4j 구조의 대조. 법규 정확도 평가는 아님 |
+| [KG-수치 검토 연결 검사](evaluation/grounded-review-2026-10-22.json) | 실제 Neo4j 경로와 가상 수치. 17/19 통과, PostgreSQL 불가로 검색 2개 확인 실패 |
 | [이전 파이프라인 v1](pipeline-baseline-v1.md) | 이전 의사결정 기록. 현재 구현의 기준은 v2 문서 |
 
 단위·통합 테스트의 성공은 후보 누락·연결·계산·실패 처리 등을 확인한 결과입니다.

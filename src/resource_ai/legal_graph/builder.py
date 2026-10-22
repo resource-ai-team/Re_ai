@@ -5,6 +5,7 @@ import re
 from collections import defaultdict
 from datetime import date, timedelta
 from itertools import pairwise
+from urllib.parse import urlsplit
 
 from resource_ai.legal_graph.llm import PROMPT_VERSION, BudgetModel
 from resource_ai.legal_graph.models import (
@@ -18,6 +19,7 @@ from resource_ai.legal_graph.models import (
 )
 
 FEATURES = ("actor", "conduct", "object", "context")
+CASE_NUMBER = r"(?:\d{4}|\d{2})[가-힣]{1,3}\d+"
 
 
 def feature_text(features):
@@ -44,6 +46,69 @@ def _outer_parts(text):
     yield text[start:].strip()
 
 
+def _reviewed_legal_period(doc):
+    """A curator's explicit complete-period record, never inferred from sparse history."""
+    review = doc.metadata.get("legal_period_review")
+    if not isinstance(review, dict) or review.get("status") != "reviewed_complete":
+        return None
+    try:
+        start, end = iso_date(review["effective_from"]), iso_date(review["effective_until"])
+        reviewed_at = iso_date(review["reviewed_at"])
+        if not isinstance(review["source_url"], str):
+            raise TypeError()
+        source = urlsplit(review["source_url"])
+        if (
+            review.get("history_complete") is not True
+            or not start
+            or not end
+            or not reviewed_at
+            or start != iso_date(doc.effective_from)
+            or end < start
+            or source.scheme != "https"
+            or source.hostname not in {"www.law.go.kr", "law.go.kr", "open.law.go.kr"}
+            or source.username
+            or source.password
+            or source.port not in {None, 443}
+            or not isinstance(review.get("locator"), str)
+            or not review["locator"].strip()
+        ):
+            raise ValueError()
+    except (KeyError, TypeError, ValueError):
+        raise LegalGraphError(
+            "invalid-period-review",
+            "검수된 법령 기간의 시작·종료·연혁 완전성·공식 근거를 확인하세요.",
+        ) from None
+    return {**review, "effective_from": start, "effective_until": end, "reviewed_at": reviewed_at}
+
+
+def _case_identity(doc):
+    number = doc.document_no or doc.metadata.get("case_number")
+    metadata_number = doc.metadata.get("case_number")
+    try:
+        decision = iso_date(doc.metadata.get("decision_date"))
+        version = iso_date(doc.version)
+    except (TypeError, ValueError):
+        decision, version = None, None
+    exact = (
+        isinstance(number, str)
+        and re.fullmatch(CASE_NUMBER, number) is not None
+        and (metadata_number is None or metadata_number == number)
+        and decision is not None
+        and version == decision
+    )
+    return bool(exact)
+
+
+def _reference_decision_date(prefix):
+    match = re.search(r"(\d{4})\.\s*(\d{1,2})\.\s*(\d{1,2})\.\s*선고\s*$", prefix)
+    if not match:
+        return None
+    try:
+        return date(*(int(value) for value in match.groups())).isoformat()
+    except ValueError:
+        return None
+
+
 def build_structural_snapshot(documents, *, dataset_sha256):
     nodes, links, evidence = {}, {}, {}
 
@@ -61,8 +126,16 @@ def build_structural_snapshot(documents, *, dataset_sha256):
             )
 
     article_lookup = defaultdict(list)
+    source_documents, case_lookup = {}, defaultdict(list)
     case_docs, interpretation_docs = [], []
     for doc in documents:
+        if doc.source_id in source_documents:
+            conflict = doc != source_documents[doc.source_id]
+            raise LegalGraphError(
+                "source-identity-conflict" if conflict else "duplicate-source",
+                "같은 source_id의 문서가 중복됩니다. 버전·시행일·본문을 검수해 한 문서로 준비하세요.",
+            )
+        source_documents[doc.source_id] = doc
         if doc.document_type not in {"LAW", "PRECEDENT", "INTERPRETATION"}:
             raise LegalGraphError("unsupported-source", "공식 법령·판례 형식을 사용해 주세요.")
         groups = defaultdict(list)
@@ -77,6 +150,12 @@ def build_structural_snapshot(documents, *, dataset_sha256):
                 "citation": section.citation,
                 "source_org": doc.source_org,
             }
+            if doc.document_type == "PRECEDENT":
+                meta.update(
+                    document_no=doc.document_no,
+                    document_version=doc.version,
+                    document_decision_date=doc.metadata.get("decision_date"),
+                )
             raw_date = section.metadata.get("article_effective_date")
             effective = iso_date(raw_date) if raw_date else iso_date(doc.effective_from)
             span = EvidenceSpan(
@@ -100,6 +179,12 @@ def build_structural_snapshot(documents, *, dataset_sha256):
             else:
                 groups["case"].append(span)
         if doc.document_type == "LAW":
+            period_review = _reviewed_legal_period(doc)
+            historical_snapshot = (
+                doc.metadata.get("historical_snapshot") is True
+                or doc.metadata.get("collection_status")
+                == "historical_candidate_not_applied_version"
+            )
             for article, spans in groups.items():
                 aid = identity("article", [doc.source_id, article])
                 dates = sorted({s.effective_from.isoformat() for s in spans if s.effective_from})
@@ -120,8 +205,23 @@ def build_structural_snapshot(documents, *, dataset_sha256):
                         "table_structure_unverified": article.startswith("별표"),
                         "checklist_status": "not_generated",
                         "is_current": True,
+                        "historical_snapshot": historical_snapshot,
+                        "legal_period_verified": period_review is not None,
+                        "legal_period_review": period_review,
+                        "version_period_basis": "reviewed_complete_period"
+                        if period_review
+                        else "source_snapshot_start_only_not_complete_legal_period",
                     },
                 )
+                if historical_snapshot or doc.metadata.get("required_version_verified") is False:
+                    nodes[aid].data["required_version_verified"] = period_review is not None
+                if period_review:
+                    nodes[aid].data.update(
+                        required_version_verified=True,
+                        effective_until=period_review["effective_until"],
+                        search_effective_until=period_review["effective_until"],
+                        effective_until_basis="reviewed_complete_period",
+                    )
                 article_lookup[doc.title, article].append(aid)
         elif doc.document_type == "INTERPRETATION":
             if not doc.version or not doc.effective_from:
@@ -144,9 +244,12 @@ def build_structural_snapshot(documents, *, dataset_sha256):
                     "case_number": doc.document_no or doc.metadata.get("case_number"),
                     "decision_date": iso_date(doc.metadata.get("decision_date")),
                     "feature_status": "not_extracted",
+                    "reference_identity_verified": _case_identity(doc),
                 },
             )
             case_docs.append((cid, spans))
+            if nodes[cid].data["reference_identity_verified"]:
+                case_lookup[nodes[cid].data["case_number"]].append(cid)
 
     for aids in article_lookup.values():
         versions = sorted(aids, key=lambda aid: (nodes[aid].data["effective_from"] or "", aid))
@@ -157,9 +260,27 @@ def build_structural_snapshot(documents, *, dataset_sha256):
             )
         for current, following in pairwise(versions):
             if nodes[following].data["effective_from"]:
-                nodes[current].data["effective_until"] = (
+                search_upper_bound = (
                     date.fromisoformat(nodes[following].data["effective_from"]) - timedelta(days=1)
                 ).isoformat()
+                node = nodes[current]
+                review = node.data["legal_period_review"]
+                if review and review["effective_until"] > search_upper_bound:
+                    raise LegalGraphError(
+                        "conflicting-period-review",
+                        "검수된 법령 기간이 다음 수집 버전의 시행일과 충돌합니다.",
+                    )
+                node.data.update(
+                    search_effective_until=review["effective_until"]
+                    if review
+                    else search_upper_bound,
+                    effective_until=review["effective_until"] if review else search_upper_bound,
+                    effective_until_basis="reviewed_complete_period"
+                    if review
+                    else "next_collected_snapshot_search_bound_not_legal_validity",
+                    required_version_verified=review is not None,
+                    historical_snapshot=True,
+                )
 
     for doc, spans in interpretation_docs:
         iid = identity("interpretation", doc.source_id)
@@ -192,8 +313,11 @@ def build_structural_snapshot(documents, *, dataset_sha256):
         for span in spans:
             kind = span.metadata.get("section_type")
             if kind == "참조판례":
-                for match in re.finditer(r"\d{4}[가-힣]{1,3}\d+", span.text):
+                for match in re.finditer(
+                    rf"(?<![0-9A-Za-z가-힣]){CASE_NUMBER}(?![0-9A-Za-z가-힣])", span.text
+                ):
                     raw = match.group()
+                    cited_date = _reference_decision_date(span.text[: match.start()])
                     rid = identity("case-reference", [cid, span.id, match.start()])
                     nodes[rid] = LegalNode(
                         id=rid,
@@ -207,9 +331,37 @@ def build_structural_snapshot(documents, *, dataset_sha256):
                             "start": match.start(),
                             "end": match.end(),
                             "resolved": False,
+                            "decision_date": cited_date,
+                            "version_resolved": False,
+                            "applicability_verified": False,
                         },
                     )
                     edge(cid, "CITES_REFERENCE", rid, [span.id])
+                    targets = case_lookup.get(raw, [])
+                    if len(targets) == 1 and cited_date:
+                        target = nodes[targets[0]]
+                        source_date = nodes[cid].data.get("decision_date")
+                        if (
+                            target.data["decision_date"] == cited_date
+                            and source_date
+                            and source_date >= cited_date
+                        ):
+                            nodes[rid].data.update(
+                                kind="case_reference",
+                                resolved=True,
+                                resolution_basis="exact_case_number_and_decision_date_not_legal_applicability",
+                            )
+                            edge(
+                                rid,
+                                "RESOLVES_CASE",
+                                target.id,
+                                sorted({span.id, *target.evidence_ids}),
+                                case_number=raw,
+                                decision_date=cited_date,
+                                version_resolved=False,
+                                applicability_verified=False,
+                                basis="exact_case_number_and_decision_date_not_legal_applicability",
+                            )
             if kind != "참조조문":
                 continue
             law, article, historical = None, None, False
@@ -292,6 +444,8 @@ def build_structural_snapshot(documents, *, dataset_sha256):
             "prompt_version": PROMPT_VERSION,
             "interpretation_scope": "Only explicit interpretation documents; no case-summary conversion",
             "paper_adaptation": "Korean regulatory issues replace Chinese criminal charges; source versions remain explicit",
+            "version_period_policy": "collected_snapshot_bounds_are_retrieval_only_not_complete_legal_periods",
+            "complete_legal_history_assumed": False,
         },
     )
 

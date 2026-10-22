@@ -97,6 +97,7 @@ class GraphSnapshot(Strict):
         kinds = {n.id: n.kind for n in self.nodes}
         relation_kinds = {
             "CITES": ({"Case"}, {"Article"}),
+            "RESOLVES_CASE": ({"Reference"}, {"Case"}),
             "HAS_CHECKLIST": ({"Article"}, {"ChecklistItem"}),
             "HAS_INTERPRETATION": ({"Article"}, {"Interpretation"}),
             "HAS_ISSUE": ({"Case"}, {"Issue"}),

@@ -113,7 +113,7 @@ class Researcher:
                 and nodes[e.target].kind == "Article"
             }
         )
-        allowed_evidence, articles, removed = {}, [], []
+        allowed_evidence, articles, removed, version_checks = {}, [], [], {}
         for aid in candidates:
             article = nodes[aid]
             spans = [
@@ -121,8 +121,17 @@ class Researcher:
                 for eid in article.evidence_ids
                 if evidence[eid].effective_from is None or evidence[eid].effective_from <= as_of
             ]
-            until = article.data.get("effective_until")
+            until = article.data.get("search_effective_until", article.data.get("effective_until"))
             start = article.data.get("effective_from")
+            version_checks[aid] = {
+                "search_effective_from": start,
+                "search_effective_until": until,
+                "period_basis": article.data.get(
+                    "effective_until_basis", article.data.get("version_period_basis")
+                ),
+                "legal_period_verified": article.data.get("legal_period_verified") is True,
+                "requires_version_review": article.data.get("required_version_verified") is False,
+            }
             if (
                 spans
                 and article.data.get("is_current") is not False
@@ -148,6 +157,10 @@ class Researcher:
             "issue_ids": used_issues,
             "eligible_evidence_ids": allowed_evidence,
             "future_or_noncurrent_article_ids": removed,
+            "article_version_checks": version_checks,
+            "historical_period_review_required_ids": [
+                aid for aid in articles if version_checks[aid]["requires_version_review"]
+            ],
             "strategies": {
                 "semantic": {
                     "case_ids": semantic,
@@ -169,6 +182,7 @@ class Researcher:
                 "한국 규제 쟁점을 원논문의 죄명 앵커 대신 사용합니다.",
                 "검색 연결은 조문의 법적 적용·과거 법령 버전·현행 허가를 입증하지 않습니다.",
                 "등록 판례 수가 적으면 커뮤니티 검색의 효과를 검증할 수 없습니다.",
+                "다음 수집 스냅샷의 시행일은 검색 상한이며, 누락 없는 연혁·법적 유효기간을 입증하지 않습니다.",
             ],
             "registered_case_count": len(cases),
         }
