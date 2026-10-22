@@ -33,6 +33,11 @@ class GraphQuery:
     def __init__(self, config: store.Settings | None = None):
         self.config = config
 
+    def candidate_pool(self, request):
+        from resource_ai.knowledge_graph.pool import CandidatePool
+
+        return CandidatePool(self.config).search(request)
+
     def search(self, request: CandidateRequest) -> CandidateResponse:
         material = resolve_material(request.material)
         missing = [

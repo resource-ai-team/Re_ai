@@ -470,7 +470,14 @@ def audit_generation(*, config=None, generation=None):
 
 
 def candidates(
-    connection, material, *, limit=600, config=None, transaction=None, active_snapshot=None
+    connection,
+    material,
+    *,
+    limit=600,
+    config=None,
+    transaction=None,
+    active_snapshot=None,
+    claim_ids=None,
 ):
     if (
         not isinstance(material, str)
@@ -479,6 +486,12 @@ def candidates(
         or not 1 <= limit <= 2000
     ):
         raise ValueError("Invalid graph lookup")
+    if claim_ids is not None and (
+        not isinstance(claim_ids, list)
+        or not 1 <= len(claim_ids) <= 100
+        or any(not isinstance(value, str) or len(value) > 512 for value in claim_ids)
+    ):
+        raise ValueError("Invalid claim IDs")
     config = config or settings()
     alias = graph.normalize_label(material)
     source_hash = graph.source_records_digest(connection) if connection is not None else None
@@ -520,6 +533,7 @@ def candidates(
             MATCH (c:ReSourceNode:TransformationClaim)-[:INPUT_LABEL]->(w)
             MATCH (c)-[:SUPPORTED_BY]->(e:ReSourceNode:Evidence)-[:FROM_SOURCE]->(s:ReSourceNode:Source)
             WHERE all(n IN [w,c,e,s] WHERE n.space=$space AND n.generation=$generation)
+                AND ($claim_ids IS NULL OR c.id IN $claim_ids)
             RETURN c.id AS claim,c.properties_json AS claim_json,c.document_json AS document,
                 c.record_sha256 AS record_sha256,e.id AS evidence,e.properties_json AS evidence_json,s.id AS source
             ORDER BY c.document_id LIMIT $limit""",
@@ -527,6 +541,7 @@ def candidates(
             generation=generation,
             material=expected_material,
             limit=limit,
+            claim_ids=claim_ids,
         )
         seen = set()
         for value in rows:

@@ -36,6 +36,7 @@ jobs:
       - run: resource-kg import --output kg-import.json
       - run: resource-kg audit --output kg-audit.json
       - run: python scripts/evaluate_knowledge_graph.py --output kg-evaluation.json
+      - run: python scripts/evaluate_kg_pool.py --output kg-pool-evaluation.json
       - uses: actions/upload-artifact@v4
         with:
           name: neo4j-validation

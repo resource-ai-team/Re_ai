@@ -13,6 +13,9 @@
 - 데이터 관리: [data/README.md](data/README.md)
 - API 설명: [docs/api.md](docs/api.md)
 - KG 실행·입출력·남은 작업: [docs/knowledge-graph.md](docs/knowledge-graph.md)
+- **확정 파이프라인 그림·순서**: [docs/pipeline-baseline.md](docs/pipeline-baseline.md)
+- **KG 고도화: 이번에 한 일 / 다음에 채울 데이터·기술**: [docs/kg-upgrade-plan.md](docs/kg-upgrade-plan.md)
+- **전체 후보·ReAct 조사 묶음 API**: [docs/kg-research-pool.md](docs/kg-research-pool.md)
 
 ## 지금 어디까지 되나요?
 
@@ -20,12 +23,17 @@
 | --- | --- |
 | 문서·자연어 입력을 항목으로 정리 | 입력 형식만 정의. OCR·LLM 추출·검수 화면은 후속 작업 |
 | 관련 문헌·공정 후보 찾기 | W2RKG 33,679건을 Neo4j에 적재하고 조회 가능 |
+| 후보를 빠뜨리지 않고 조사에 넘기기 | 페이지 단위 전체 조회·형태 미확인 보존·조건/리스크/근거 묶음·버전 추적 구현 |
 | 공정 단계와 리스크·근거 연결 | PET·알루미늄·종이 조건부 경로 18개와 조사 카드 69개. PP·PE는 문헌 탐색부터 가능 |
 | 법령 근거 찾기 | 기존 Hybrid Search·Reranking 사용 가능 |
 | 허가·규정 판정, 비용·탄소·운송 비교 | 검수 데이터와 규칙·계산기 연동 필요 |
 | 에이전트 통합·최종 추천·3D·보고서 | KG 호출 도구까지 제공. 전체 서비스 연결은 후속 작업 |
 
 사용자의 기존 처리 방식은 아는 경우에만 받습니다. 모르면 임의로 만들지 않습니다.
+KG에서는 최대 K개를 미리 고르지 않습니다. 근거를 조사·검증하고 비용·탄소·리스크를
+비교한 **마지막 단계에서 최대 K개를 보여 주는 구조**로 고정했습니다.
+전체 목표 설계는 **공정·시설 후보 → 법규·시설 검증 → 비용·탄소 → 잠정 Top K →
+최종 Critic → PASS/REVISE/REVIEW → 최종 출력**입니다. 시설 DB와 이 전체 실행기는 아직 없습니다.
 
 ## 조직 저장소 구성
 
@@ -111,6 +119,7 @@ uvicorn resource_ai.main:app --reload
 - 근거 검색: `GET /rag/search?q={질문}&top_k=5`
 - 온톨로지 확인: `GET /kg/ontology`
 - 공정 후보 조회: `POST /kg/candidates` — [실행 예시](docs/knowledge-graph.md)
+- **전체 후보·조사 묶음**: `POST /kg/candidate-pool` — [페이지 조회 예시](docs/kg-research-pool.md)
 
 ## 기술 스택
 
