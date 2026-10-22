@@ -27,7 +27,7 @@ def source(uuid, *, name, direction, climate, pet_input=None):
         reference_flow_id="flow-id",
         reference_flow_name="reference",
         reference_direction=direction,
-        reference_quantity=Decimal("1"),
+        reference_quantity=Decimal(1),
         reference_unit="kg",
         climate_change_amount=Decimal(climate) if climate is not None else None,
         climate_method_uuid="climate-method",
@@ -72,7 +72,7 @@ def test_recycled_flake_aggregate_counts_only_once(datasets):
     )
     assert row["calculation_status"] == "ESTIMATED_REVIEW_REQUIRED"
     assert row["lci_mapping_type"] == "AGGREGATED"
-    expected = Decimal("1000") / Decimal("1.27949") * Decimal("0.57164725210341")
+    expected = Decimal(1000) / Decimal("1.27949") * Decimal("0.57164725210341")
     assert Decimal(row["carbon_kgco2e"]) == expected
     assert row["comparable"] is False
 
