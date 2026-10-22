@@ -196,8 +196,12 @@ def test_real_keiti_archives_when_installed():
 def test_other_plastic_incineration_whole_route_only(material, uuid, climate):
     dataset = source(uuid, name=f"{material} incineration", direction="Input", climate=climate)
     result = evaluate_candidate(
-        {"candidate_id": "example", "material": material,
-         "process_steps": ["소각"], "input_mass_kg": "1000"},
+        {
+            "candidate_id": "example",
+            "material": material,
+            "process_steps": ["소각"],
+            "input_mass_kg": "1000",
+        },
         [dataset],
     )
     assert result["calculation_status"] == "ESTIMATED_REVIEW_REQUIRED"
@@ -210,8 +214,12 @@ def test_other_plastic_incineration_whole_route_only(material, uuid, climate):
     assert result["dispatch_approved"] is False
 
     # No inferred recycling, omitted incineration steps, or wrong resin factors.
-    other = {"candidate_id": "x", "material": material,
-             "process_steps": ["sorting", "washing"], "input_mass_kg": 1000}
+    other = {
+        "candidate_id": "x",
+        "material": material,
+        "process_steps": ["sorting", "washing"],
+        "input_mass_kg": 1000,
+    }
     assert evaluate_candidate(other, [dataset])["calculation_status"] == "UNMATCHED"
     other["process_steps"] = ["incineration"]
     other["material"] = "PET"
@@ -223,12 +231,18 @@ def test_incineration_does_not_allow_mixed_plastic_to_assume_one_resin():
 
     assert len(set(INCINERATION_PROCESS_UUIDS.values())) == 6
     test_data = source(
-        INCINERATION_PROCESS_UUIDS["hdpe"], name="HDPE", direction="Input",
-        climate="3.29577066046423"
+        INCINERATION_PROCESS_UUIDS["hdpe"],
+        name="HDPE",
+        direction="Input",
+        climate="3.29577066046423",
     )
     result = evaluate_candidate(
-        {"candidate_id": "mixture", "material": "HDPE/LDPE",
-         "process_steps": ["incineration"], "input_mass_kg": 1000},
+        {
+            "candidate_id": "mixture",
+            "material": "HDPE/LDPE",
+            "process_steps": ["incineration"],
+            "input_mass_kg": 1000,
+        },
         [test_data],
     )
     assert result["calculation_status"] == "UNMATCHED"
@@ -239,12 +253,15 @@ def test_incineration_transport_requires_evidence_for_non_pet_material():
     from resource_ai.calculators.lci.evaluate import INCINERATION_PROCESS_UUIDS
 
     dataset = source(
-        INCINERATION_PROCESS_UUIDS["pp"], name="PP", direction="Input",
-        climate="3.29681341159016"
+        INCINERATION_PROCESS_UUIDS["pp"], name="PP", direction="Input", climate="3.29681341159016"
     )
-    cand = {"candidate_id": "pp", "material": "PP",
-            "process_steps": ["incineration"], "input_mass_kg": 1000,
-            "transport": {"emissions_kgco2e": "40"}}
+    cand = {
+        "candidate_id": "pp",
+        "material": "PP",
+        "process_steps": ["incineration"],
+        "input_mass_kg": 1000,
+        "transport": {"emissions_kgco2e": "40"},
+    }
     assert evaluate_candidate(cand, [dataset])["calculation_status"] == "REVIEW_REQUIRED"
     cand["transport"]["source"] = "user-confirmed-transport"
     result = evaluate_candidate(cand, [dataset])
@@ -255,9 +272,12 @@ def test_incineration_transport_requires_evidence_for_non_pet_material():
 def test_new_incineration_sources_parse_when_locally_installed():
     folder = Path("data/local/lci")
     names = (
-        "LCI-2023-186.zip", "LCI-2023-186 (1).zip",
-        "LCI-2023-187.zip", "LCI-2023-189.zip",
-        "LCI-2023-190.zip", "LCI-2023-191.zip",
+        "LCI-2023-186.zip",
+        "LCI-2023-186 (1).zip",
+        "LCI-2023-187.zip",
+        "LCI-2023-189.zip",
+        "LCI-2023-190.zip",
+        "LCI-2023-191.zip",
     )
     if not any((folder / n).is_file() for n in names):
         pytest.skip("Licensed incineration ILCD archives are not installed in CI")
