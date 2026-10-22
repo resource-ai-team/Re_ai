@@ -58,7 +58,7 @@ def _route_steps(value):
 def evaluate_candidate(candidate: dict[str, Any], datasets: list[LCIDataset]):
     """Compute a screening estimate only for an exactly covered PET treatment route."""
     if not isinstance(candidate, dict):
-        raise ValueError("candidate must be an object")
+        raise TypeError("candidate must be an object")
     if not isinstance(candidate.get("candidate_id"), str) or not candidate["candidate_id"]:
         raise ValueError("candidate_id is required")
     mass = decimal_value(candidate.get("input_mass_kg"), "input_mass_kg")
@@ -177,7 +177,7 @@ def candidate_from_plan(
 ):
     """Adapt a real KG ProcessPlan packet; do not infer a facility's capability."""
     if not isinstance(plan, dict) or not isinstance(plan.get("plan_id"), str):
-        raise ValueError("plan_id is required")
+        raise TypeError("plan_id is required")
     packet = plan.get("research_packet")
     if not isinstance(packet, dict) or not isinstance(packet.get("stages"), list):
         return {
