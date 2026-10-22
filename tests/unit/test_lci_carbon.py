@@ -45,12 +45,17 @@ def datasets():
 
     return [
         source(
-            PET_FLAKE_UUID, name="Recycled PET flake", direction="Output",
-            climate="0.57164725210341", pet_input="1.27949"
+            PET_FLAKE_UUID,
+            name="Recycled PET flake",
+            direction="Output",
+            climate="0.57164725210341",
+            pet_input="1.27949",
         ),
         source(
-            PET_INCINERATION_UUID, name="PET incineration", direction="Input",
-            climate="2.45408129128249"
+            PET_INCINERATION_UUID,
+            name="PET incineration",
+            direction="Input",
+            climate="2.45408129128249",
         ),
     ]
 
@@ -67,9 +72,7 @@ def route(steps, **kwargs):
 
 
 def test_recycled_flake_aggregate_counts_only_once(datasets):
-    row = evaluate_candidate(
-        route(["선별", "파쇄", "세척", "건조"]), datasets
-    )
+    row = evaluate_candidate(route(["선별", "파쇄", "세척", "건조"]), datasets)
     assert row["calculation_status"] == "ESTIMATED_REVIEW_REQUIRED"
     assert row["lci_mapping_type"] == "AGGREGATED"
     expected = Decimal(1000) / Decimal("1.27949") * Decimal("0.57164725210341")
@@ -82,20 +85,15 @@ def test_real_kg_transition_keys_map_only_exact_route(datasets):
         "plan_id": "plan:pet",
         "research_packet": {
             "stages": [
-                {"transition": {"key": k}}
-                for k in ("pet-prepare", "pet-wash", "pet-finish")
+                {"transition": {"key": k}} for k in ("pet-prepare", "pet-wash", "pet-finish")
             ]
         },
     }
-    cand = candidate_from_plan(
-        plan, material="PET", input_mass_kg="1000", waste_form="PET_BOTTLES"
-    )
+    cand = candidate_from_plan(plan, material="PET", input_mass_kg="1000", waste_form="PET_BOTTLES")
     assert cand["process_steps"] == ["pet-prepare", "pet-wash", "pet-finish"]
     assert evaluate_candidate(cand, datasets)["lci_mapping_type"] == "AGGREGATED"
     plan["research_packet"]["stages"].append({"transition": {"key": "pet-pelletise"}})
-    cand = candidate_from_plan(
-        plan, material="PET", input_mass_kg="1000", waste_form="PET_BOTTLES"
-    )
+    cand = candidate_from_plan(plan, material="PET", input_mass_kg="1000", waste_form="PET_BOTTLES")
     assert evaluate_candidate(cand, datasets)["calculation_status"] == "UNMATCHED"
 
 
@@ -115,12 +113,14 @@ def test_missing_feedstock_and_transport_double_count_are_blocked(datasets):
 
 
 def test_unknown_and_duplicate_routes_are_not_estimable(datasets):
-    assert evaluate_candidate(
-        route(["sorting", "pelletizing"]), datasets
-    )["calculation_status"] == "UNMATCHED"
-    assert evaluate_candidate(
-        route(["sorting", "sorting"]), datasets
-    )["calculation_status"] == "REVIEW_REQUIRED"
+    assert (
+        evaluate_candidate(route(["sorting", "pelletizing"]), datasets)["calculation_status"]
+        == "UNMATCHED"
+    )
+    assert (
+        evaluate_candidate(route(["sorting", "sorting"]), datasets)["calculation_status"]
+        == "REVIEW_REQUIRED"
+    )
 
 
 @pytest.mark.parametrize("mass", ["NaN", "-1", "0", "Infinity", "1e20"])
@@ -166,7 +166,9 @@ def test_source_missing_rejects_estimate(datasets):
 def test_kg_packet_absent_does_not_guess_path(datasets):
     cand = candidate_from_plan(
         {"plan_id": "p", "research_packet": None},
-        material="PET", input_mass_kg=1000, waste_form="PET_BOTTLES"
+        material="PET",
+        input_mass_kg=1000,
+        waste_form="PET_BOTTLES",
     )
     assert evaluate_candidate(cand, datasets)["calculation_status"] == "UNMATCHED"
 
