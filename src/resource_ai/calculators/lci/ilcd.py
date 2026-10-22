@@ -57,11 +57,7 @@ def _reference_mass_unit(archive, flow_id):
         return None
     refid = _text(flow, f".//{F}referenceToReferenceFlowProperty")
     prop = next(
-        (
-            p
-            for p in flow.findall(f".//{F}flowProperty")
-            if p.get("dataSetInternalID") == refid
-        ),
+        (p for p in flow.findall(f".//{F}flowProperty") if p.get("dataSetInternalID") == refid),
         None,
     )
     ref = prop.find(f"{F}referenceToFlowPropertyDataSet") if prop is not None else None
@@ -70,7 +66,9 @@ def _reference_mass_unit(archive, flow_id):
         if ref is not None
         else None
     )
-    refgroup = propdoc.find(f".//{FP}referenceToReferenceUnitGroup") if propdoc is not None else None
+    refgroup = (
+        propdoc.find(f".//{FP}referenceToReferenceUnitGroup") if propdoc is not None else None
+    )
     group = (
         _entry_by_uuid(archive, "unitgroups", refgroup.get("refObjectId"))
         if refgroup is not None
@@ -133,11 +131,7 @@ def parse_archive(filename: str | Path) -> LCIDataset:
             raise ValueError("Missing process name")
         refid = _text(root, f".//{P}referenceToReferenceFlow")
         refex = next(
-            (
-                ex
-                for ex in root.findall(f".//{P}exchange")
-                if ex.get("dataSetInternalID") == refid
-            ),
+            (ex for ex in root.findall(f".//{P}exchange") if ex.get("dataSetInternalID") == refid),
             None,
         )
         if refex is None:
@@ -163,9 +157,7 @@ def parse_archive(filename: str | Path) -> LCIDataset:
                     raise ValueError("Ambiguous total Climate change results")
                 climate = decimal_value(_text(result, f"{P}meanAmount"), "LCIA climate")
                 method_uuid = method.get("refObjectId")
-        method_doc = (
-            _entry_by_uuid(archive, "lciamethods", method_uuid) if method_uuid else None
-        )
+        method_doc = _entry_by_uuid(archive, "lciamethods", method_uuid) if method_uuid else None
         unit_status = (
             "NO_LCIA_RESULT"
             if climate is None
@@ -177,13 +169,10 @@ def parse_archive(filename: str | Path) -> LCIDataset:
         for ex in root.findall(f".//{P}exchange"):
             flow = ex.find(f"{P}referenceToFlowDataSet")
             desc = _text(flow, f"{C}shortDescription", "") if flow is not None else ""
-            if (
-                _text(ex, f"{P}exchangeDirection") == "Input"
-                and re.search(
-                    r"waste\s+polyethylene terephthalate\s*\(?pet\)?\s+bottles",
-                    desc,
-                    re.IGNORECASE,
-                )
+            if _text(ex, f"{P}exchangeDirection") == "Input" and re.search(
+                r"waste\s+polyethylene terephthalate\s*\(?pet\)?\s+bottles",
+                desc,
+                re.IGNORECASE,
             ):
                 if waste_in is not None:
                     raise ValueError("Ambiguous waste PET bottle input")
