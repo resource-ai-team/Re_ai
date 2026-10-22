@@ -146,6 +146,7 @@ def parse_archive(filename: str | Path) -> LCIDataset:
         if flow is None or not flow.get("refObjectId"):
             raise ValueError("Missing reference flow UUID")
         flow_uuid = flow.get("refObjectId")
+        reference_flow_name = _text(flow, f"{C}shortDescription") or ""
         ref_amount = decimal_value(_text(refex, f"{P}meanAmount"), "reference quantity")
         if ref_amount <= 0:
             raise ValueError("Reference quantity must be positive")
@@ -201,7 +202,7 @@ def parse_archive(filename: str | Path) -> LCIDataset:
             country=_text(root, f".//{P}locationOfOperationSupplyOrProduction"),
             valid_until=int(until) if until and until.isdigit() else None,
             reference_flow_id=flow_uuid,
-            reference_flow_name=_text(flow, f"{C}shortDescription") or "",
+            reference_flow_name=reference_flow_name,
             reference_direction=_text(refex, f"{P}exchangeDirection") or "",
             reference_quantity=ref_amount,
             reference_unit=unit,
