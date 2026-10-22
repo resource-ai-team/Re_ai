@@ -28,8 +28,7 @@ class FakePetGraph:
         value = reference()
         paths, _ = enumerate_paths(value, "pet", "bottle", None, 6)
         self.plans = [
-            make_plan(value, item, audience="internal", assumed_form=False)
-            for item in paths.paths
+            make_plan(value, item, audience="internal", assumed_form=False) for item in paths.paths
         ]
         assert len(self.plans) >= 2
 
@@ -165,8 +164,10 @@ def test_input_cursor_and_external_audience_rejected():
     client = TestClient(app)
     invalid = {
         "lot": {
-            "material": "PET", "input_form": "bottle", "quantity_kg": 1000,
-            "cursor": "not-first-page"
+            "material": "PET",
+            "input_form": "bottle",
+            "quantity_kg": 1000,
+            "cursor": "not-first-page",
         }
     }
     assert client.post("/analysis/kg-lci", json=invalid).status_code == 422
@@ -185,8 +186,10 @@ def test_api_reads_actual_kg_plan_contract_and_does_not_require_legal_rag():
             "/analysis/kg-lci",
             json={
                 "lot": {
-                    "material": "PET", "input_form": "bottle",
-                    "quantity_kg": 1000, "page_size": 1
+                    "material": "PET",
+                    "input_form": "bottle",
+                    "quantity_kg": 1000,
+                    "page_size": 1,
                 }
             },
         )
