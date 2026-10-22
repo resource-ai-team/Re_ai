@@ -10,6 +10,7 @@
 | 전체 서비스가 어떤 순서로 동작해야 하나요? | [확정 파이프라인](docs/pipeline-baseline.md) |
 | 지금 연결된 기능과 안 된 기능은? | [후보 조사·수치 비교 API](docs/candidate-analysis.md) |
 | 실제 KG 후보에 수치를 붙이고 오류를 검사하려면? | [경로 검토·보고서 API](docs/grounded-decision-review.md) |
+| 한 사례를 실제 DB로 돌리면 무엇이 나오나요? | [검정 PP 3톤 실행 결과 — 로트는 가정](docs/scenarios/pp-scrap-live-2026-10-22.md) |
 | 법률 그래프·Researcher·Auditor는 어떻게 동작하나요? | [법률 그래프와 검증 흐름](docs/legal-hierargraph.md) |
 | KG가 공정 순서와 시설 후보를 어떻게 만드나요? | [공정·시설 경로 탐색](docs/kg-process-plans.md) |
 | 이번에 KG에서 무엇을 보강했나요? | [실제 제지 순서·등급 차이·빈 연결 검사](docs/kg-evidence-upgrade.md) |
