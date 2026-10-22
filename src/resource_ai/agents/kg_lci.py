@@ -68,26 +68,28 @@ class KGPathLCIService:
             ):
                 raise KGPathLCIIntegrityError("Duplicate or mismatched KG plan page")
             assessments = {row["plan_id"]: row for row in page.assessments}
-            if len(assessments) != len(page.assessments) or set(assessments) != set(
-                current_ids
-            ):
+            if len(assessments) != len(page.assessments) or set(assessments) != set(current_ids):
                 raise KGPathLCIIntegrityError("Facility assessments are not aligned to KG plans")
             for plan in planning.items:
                 seen_ids.add(plan.plan_id)
                 assessment = assessments[plan.plan_id]
                 packet = plan.research_packet
                 stages = packet.get("stages") if isinstance(packet, dict) else None
-                stage_ids = [
-                    stage.get("stage_id") for stage in stages if isinstance(stage, dict)
-                ] if isinstance(stages, list) else []
+                stage_ids = (
+                    [stage.get("stage_id") for stage in stages if isinstance(stage, dict)]
+                    if isinstance(stages, list)
+                    else []
+                )
                 if stages is not None and (
                     len(stage_ids) != len(stages) or any(not sid for sid in stage_ids)
                 ):
                     raise KGPathLCIIntegrityError("Stage IDs missing from KG evidence packet")
                 handoffs = packet.get("handoffs") if isinstance(packet, dict) else None
-                handoff_ids = [
-                    leg.get("leg_id") for leg in handoffs if isinstance(leg, dict)
-                ] if isinstance(handoffs, list) else []
+                handoff_ids = (
+                    [leg.get("leg_id") for leg in handoffs if isinstance(leg, dict)]
+                    if isinstance(handoffs, list)
+                    else []
+                )
                 if handoffs is not None and len(handoff_ids) != len(handoffs):
                     raise KGPathLCIIntegrityError("Handoff IDs missing from KG evidence packet")
                 if packet is not None and (
@@ -184,7 +186,9 @@ class KGPathLCIService:
             actions.append("Confirm the incoming lot mass in kg.")
         if any(r["calculation_status"] != "ESTIMATED_REVIEW_REQUIRED" for r in results):
             actions.append("Check unmatched or unavailable KG-to-LCI routes and source boundaries.")
-        actions.append("Verify actual facility intake, law, transport, costs and comparable boundaries.")
+        actions.append(
+            "Verify actual facility intake, law, transport, costs and comparable boundaries."
+        )
         return KGPathLCIResponse(
             input_context=request.lot.model_dump(mode="json"),
             graph_trace=trace or {},
