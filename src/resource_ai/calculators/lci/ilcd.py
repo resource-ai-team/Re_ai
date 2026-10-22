@@ -206,8 +206,20 @@ def load_local_datasets(data_dir: str | Path) -> list[LCIDataset]:
     """Only explicitly recognized local KEITI archives; no untrusted uploads."""
     folder = Path(data_dir)
     datasets = []
-    for name in ("LCI-2023-168.zip", "LCI-2023-188.zip", "LCI-2024-411(1).zip"):
-        path = folder / name
-        if path.is_file():
-            datasets.append(parse_archive(path))
+    source_names = {
+        "LCI-2023-168": ("LCI-2023-168.zip",),
+        "LCI-2023-186": ("LCI-2023-186.zip", "LCI-2023-186 (1).zip"),
+        "LCI-2023-187": ("LCI-2023-187.zip",),
+        "LCI-2023-188": ("LCI-2023-188.zip",),
+        "LCI-2023-189": ("LCI-2023-189.zip",),
+        "LCI-2023-190": ("LCI-2023-190.zip",),
+        "LCI-2023-191": ("LCI-2023-191.zip",),
+        "LCI-2024-411": ("LCI-2024-411(1).zip", "LCI-2024-411.zip"),
+    }
+    for dataset_key, filenames in source_names.items():
+        present = [folder / name for name in filenames if (folder / name).is_file()]
+        if len(present) > 1:
+            raise ValueError(f"Multiple archives for {dataset_key}; keep just one local copy")
+        if present:
+            datasets.append(parse_archive(present[0]))
     return datasets
