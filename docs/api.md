@@ -15,6 +15,10 @@
 ## 지식그래프
 
 - `GET /kg/ontology`: 클래스·관계·추론 금지 조건. Neo4j 없이 확인 가능.
+- `POST /kg/facility-assessment`: 한 `capability_key`와 로트 조건을 공개 프로필에 대조.
+- `POST /kg/assessed-plans`: 공정 경로 생성과 단계별 조건 대조를 연결. 원래 로트의 값을
+  후속 단계의 실측값으로 복사하지 않음. 위험은 공정·인계 구간 ID에 연결.
+  두 API는 내부용이며 현행 허가·인수·적법성 승인이 아님. [실행 예시](kg-facility-conditions.md).
 - `POST /kg/candidates`: `api/schemas/graph.py`의 구조화 입력을 받아 문헌/공정 후보,
   리스크·근거·조회 버전을 반환. 모르는 입력은 `null`로 보존.
 - `POST /kg/candidate-pool`: 소재별 전체 후보를 페이지로 조회하고 ReAct 조사 묶음을 반환.

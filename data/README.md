@@ -6,6 +6,7 @@
 | --- | --- | --- |
 | `config/legal_scope.json` | 공식 API 수집 범위와 데이터셋 버전 | 포함 |
 | `config/retrieval_eval.json` | 질문별 기대 근거 평가셋 | 포함 |
+| `config/facility_assessment_eval.json` | 가상 로트와 문서 기반 조건 대조 기대 결과. 현장 정답 아님 | 포함 |
 | `samples/` | 입력 형식 확인용 가짜 데이터 | 포함 |
 | `raw/` | 수동 확보 원본을 둘 자리 | 원칙적으로 검토 후 결정 |
 | `processed/` | 전처리 중간 산출물 | 원칙적으로 검토 후 결정 |
@@ -19,6 +20,8 @@ KG 조사 카드·출처 메타데이터·조건부 공정 템플릿은 Python �
 새 근거로 변경할 때는 카드·범위·출처와 해시를 함께 검토합니다.
 공정·시설 참조 자료와 공식 코드표는 별도로 추가한 자료이며, 원본·버전과 출처를
 `bundle-manifest.json.additional_provenance`에서 구분합니다.
+`planning-reference-v2`의 시설별 `input_profile`도 같은 번들에 포함하며, 공개 예시·제외 정책을
+실제 투입 규격·현행 허가·인수 승인과 구분합니다. 원본 해시·출처·확인일을 함께 검토합니다.
 국내 시설 명부는 별도 Neo4j 세대에 적재하며 원본 재배포·외부 모델 전송은 활성화하지
 않았습니다. [수집·적재 방법과 한계](../docs/kg-facility-matching.md)를 참고하세요.
 Neo4j 데이터 볼륨·로컬 비밀번호·국가 LCI 원본은 Git에 포함하지 않습니다.

@@ -302,7 +302,7 @@ def test_audit_rejects_incomplete_or_expanded_planning_bindings(stage, change):
                 source,
                 target,
                 graph.canonical(
-                    {"dispatch_approved": False, "basis": "source-backed-planning-reference-v1"}
+                    {"dispatch_approved": False, "basis": "source-backed-planning-reference-v2"}
                 ),
             ),
         )

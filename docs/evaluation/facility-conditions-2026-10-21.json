@@ -1,0 +1,635 @@
+{
+  "evaluated_at": "2026-10-20T19:01:28.494399+00:00",
+  "scope": "synthetic_lots_with_curator_authored_documentary_expectations_not_customer_or_expert_field_validation",
+  "case_version": "documentary-facility-checks-v1",
+  "cases": [
+    {
+      "id": "pp-unknown-designation",
+      "status": "needs_verification",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "pp-explicit-exclusion",
+      "status": "unmet",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "pp-declared-non-designated",
+      "status": "needs_verification",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "pe-same-documented-policy",
+      "status": "unmet",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "different-transition-material",
+      "status": "unmet",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "missing-material",
+      "status": "needs_verification",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "unrecognised-material",
+      "status": "needs_verification",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "org-profile-cannot-prove-site",
+      "status": "needs_verification",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "pet-bottle-example",
+      "status": "needs_verification",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "pet-bale-not-exclusive-rejection",
+      "status": "needs_verification",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "zero-moisture-is-not-missing-or-approved",
+      "status": "needs_verification",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "no-invented-moisture-limit",
+      "status": "needs_verification",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "design-capacity-is-not-available-capacity",
+      "status": "needs_verification",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "chips-are-not-a-can-example",
+      "status": "needs_verification",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "paper-coating-limits-unknown",
+      "status": "needs_verification",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    },
+    {
+      "id": "paper-other-form-not-exclusion",
+      "status": "needs_verification",
+      "graph_trace": {
+        "generation": "e640a70e28054907bc71dc81fb37e736",
+        "reference_sha256": "fc36aed5ef53c6c0c935d68bb62dfbc79cabb6007b387d27cdc426fa526e03b4",
+        "reference_version": "planning-reference-v2"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "pp-unknown-designation API 200",
+      "passed": true
+    },
+    {
+      "name": "pp-unknown-designation expected outcome",
+      "passed": true
+    },
+    {
+      "name": "pp-unknown-designation transition_material",
+      "passed": true
+    },
+    {
+      "name": "pp-unknown-designation site_process",
+      "passed": true
+    },
+    {
+      "name": "pp-unknown-designation material_example",
+      "passed": true
+    },
+    {
+      "name": "pp-unknown-designation designated_waste",
+      "passed": true
+    },
+    {
+      "name": "pp-unknown-designation color",
+      "passed": true
+    },
+    {
+      "name": "pp-unknown-designation quantity_kg",
+      "passed": true
+    },
+    {
+      "name": "pp-unknown-designation no approval",
+      "passed": true
+    },
+    {
+      "name": "pp-unknown-designation observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "pp-explicit-exclusion API 200",
+      "passed": true
+    },
+    {
+      "name": "pp-explicit-exclusion expected outcome",
+      "passed": true
+    },
+    {
+      "name": "pp-explicit-exclusion designated_waste",
+      "passed": true
+    },
+    {
+      "name": "pp-explicit-exclusion no approval",
+      "passed": true
+    },
+    {
+      "name": "pp-explicit-exclusion observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "pp-declared-non-designated API 200",
+      "passed": true
+    },
+    {
+      "name": "pp-declared-non-designated expected outcome",
+      "passed": true
+    },
+    {
+      "name": "pp-declared-non-designated designated_waste",
+      "passed": true
+    },
+    {
+      "name": "pp-declared-non-designated current_permit_scope",
+      "passed": true
+    },
+    {
+      "name": "pp-declared-non-designated current_acceptance",
+      "passed": true
+    },
+    {
+      "name": "pp-declared-non-designated no approval",
+      "passed": true
+    },
+    {
+      "name": "pp-declared-non-designated observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "pe-same-documented-policy API 200",
+      "passed": true
+    },
+    {
+      "name": "pe-same-documented-policy expected outcome",
+      "passed": true
+    },
+    {
+      "name": "pe-same-documented-policy transition_material",
+      "passed": true
+    },
+    {
+      "name": "pe-same-documented-policy designated_waste",
+      "passed": true
+    },
+    {
+      "name": "pe-same-documented-policy no approval",
+      "passed": true
+    },
+    {
+      "name": "pe-same-documented-policy observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "different-transition-material API 200",
+      "passed": true
+    },
+    {
+      "name": "different-transition-material expected outcome",
+      "passed": true
+    },
+    {
+      "name": "different-transition-material transition_material",
+      "passed": true
+    },
+    {
+      "name": "different-transition-material material_example",
+      "passed": true
+    },
+    {
+      "name": "different-transition-material no approval",
+      "passed": true
+    },
+    {
+      "name": "different-transition-material observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "missing-material API 200",
+      "passed": true
+    },
+    {
+      "name": "missing-material expected outcome",
+      "passed": true
+    },
+    {
+      "name": "missing-material transition_material",
+      "passed": true
+    },
+    {
+      "name": "missing-material material_example",
+      "passed": true
+    },
+    {
+      "name": "missing-material no approval",
+      "passed": true
+    },
+    {
+      "name": "missing-material observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "unrecognised-material API 200",
+      "passed": true
+    },
+    {
+      "name": "unrecognised-material expected outcome",
+      "passed": true
+    },
+    {
+      "name": "unrecognised-material transition_material",
+      "passed": true
+    },
+    {
+      "name": "unrecognised-material no approval",
+      "passed": true
+    },
+    {
+      "name": "unrecognised-material observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "org-profile-cannot-prove-site API 200",
+      "passed": true
+    },
+    {
+      "name": "org-profile-cannot-prove-site expected outcome",
+      "passed": true
+    },
+    {
+      "name": "org-profile-cannot-prove-site transition_material",
+      "passed": true
+    },
+    {
+      "name": "org-profile-cannot-prove-site site_process",
+      "passed": true
+    },
+    {
+      "name": "org-profile-cannot-prove-site material_example",
+      "passed": true
+    },
+    {
+      "name": "org-profile-cannot-prove-site form_example",
+      "passed": true
+    },
+    {
+      "name": "org-profile-cannot-prove-site no approval",
+      "passed": true
+    },
+    {
+      "name": "org-profile-cannot-prove-site observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "pet-bottle-example API 200",
+      "passed": true
+    },
+    {
+      "name": "pet-bottle-example expected outcome",
+      "passed": true
+    },
+    {
+      "name": "pet-bottle-example form_example",
+      "passed": true
+    },
+    {
+      "name": "pet-bottle-example material_example",
+      "passed": true
+    },
+    {
+      "name": "pet-bottle-example current_acceptance",
+      "passed": true
+    },
+    {
+      "name": "pet-bottle-example no approval",
+      "passed": true
+    },
+    {
+      "name": "pet-bottle-example observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "pet-bale-not-exclusive-rejection API 200",
+      "passed": true
+    },
+    {
+      "name": "pet-bale-not-exclusive-rejection expected outcome",
+      "passed": true
+    },
+    {
+      "name": "pet-bale-not-exclusive-rejection form_example",
+      "passed": true
+    },
+    {
+      "name": "pet-bale-not-exclusive-rejection no approval",
+      "passed": true
+    },
+    {
+      "name": "pet-bale-not-exclusive-rejection observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "zero-moisture-is-not-missing-or-approved API 200",
+      "passed": true
+    },
+    {
+      "name": "zero-moisture-is-not-missing-or-approved expected outcome",
+      "passed": true
+    },
+    {
+      "name": "zero-moisture-is-not-missing-or-approved moisture_pct",
+      "passed": true
+    },
+    {
+      "name": "zero-moisture-is-not-missing-or-approved no approval",
+      "passed": true
+    },
+    {
+      "name": "zero-moisture-is-not-missing-or-approved observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "no-invented-moisture-limit API 200",
+      "passed": true
+    },
+    {
+      "name": "no-invented-moisture-limit expected outcome",
+      "passed": true
+    },
+    {
+      "name": "no-invented-moisture-limit moisture_pct",
+      "passed": true
+    },
+    {
+      "name": "no-invented-moisture-limit no approval",
+      "passed": true
+    },
+    {
+      "name": "no-invented-moisture-limit observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "design-capacity-is-not-available-capacity API 200",
+      "passed": true
+    },
+    {
+      "name": "design-capacity-is-not-available-capacity expected outcome",
+      "passed": true
+    },
+    {
+      "name": "design-capacity-is-not-available-capacity quantity_kg",
+      "passed": true
+    },
+    {
+      "name": "design-capacity-is-not-available-capacity form_example",
+      "passed": true
+    },
+    {
+      "name": "design-capacity-is-not-available-capacity current_acceptance",
+      "passed": true
+    },
+    {
+      "name": "design-capacity-is-not-available-capacity no approval",
+      "passed": true
+    },
+    {
+      "name": "design-capacity-is-not-available-capacity observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "chips-are-not-a-can-example API 200",
+      "passed": true
+    },
+    {
+      "name": "chips-are-not-a-can-example expected outcome",
+      "passed": true
+    },
+    {
+      "name": "chips-are-not-a-can-example form_example",
+      "passed": true
+    },
+    {
+      "name": "chips-are-not-a-can-example no approval",
+      "passed": true
+    },
+    {
+      "name": "chips-are-not-a-can-example observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "paper-coating-limits-unknown API 200",
+      "passed": true
+    },
+    {
+      "name": "paper-coating-limits-unknown expected outcome",
+      "passed": true
+    },
+    {
+      "name": "paper-coating-limits-unknown transition_material",
+      "passed": true
+    },
+    {
+      "name": "paper-coating-limits-unknown form_example",
+      "passed": true
+    },
+    {
+      "name": "paper-coating-limits-unknown contamination_pct",
+      "passed": true
+    },
+    {
+      "name": "paper-coating-limits-unknown no approval",
+      "passed": true
+    },
+    {
+      "name": "paper-coating-limits-unknown observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "paper-other-form-not-exclusion API 200",
+      "passed": true
+    },
+    {
+      "name": "paper-other-form-not-exclusion expected outcome",
+      "passed": true
+    },
+    {
+      "name": "paper-other-form-not-exclusion form_example",
+      "passed": true
+    },
+    {
+      "name": "paper-other-form-not-exclusion no approval",
+      "passed": true
+    },
+    {
+      "name": "paper-other-form-not-exclusion observed conditions are not an actual incident",
+      "passed": true
+    },
+    {
+      "name": "PP full scenario API 200",
+      "passed": true
+    },
+    {
+      "name": "PP three paths retained",
+      "passed": true
+    },
+    {
+      "name": "PP no final recommendation",
+      "passed": true
+    },
+    {
+      "name": "PP stage no approval",
+      "passed": true
+    },
+    {
+      "name": "PP stage no approval",
+      "passed": true
+    },
+    {
+      "name": "PP stage no approval",
+      "passed": true
+    },
+    {
+      "name": "PP downstream lot facts not copied",
+      "passed": true
+    },
+    {
+      "name": "PP downstream state not treated as measured",
+      "passed": true
+    },
+    {
+      "name": "PP stage no approval",
+      "passed": true
+    },
+    {
+      "name": "PP downstream lot facts not copied",
+      "passed": true
+    },
+    {
+      "name": "PP downstream state not treated as measured",
+      "passed": true
+    },
+    {
+      "name": "PP stage no approval",
+      "passed": true
+    },
+    {
+      "name": "PP stage no approval",
+      "passed": true
+    },
+    {
+      "name": "PP downstream lot facts not copied",
+      "passed": true
+    },
+    {
+      "name": "PP downstream state not treated as measured",
+      "passed": true
+    },
+    {
+      "name": "PP stage no approval",
+      "passed": true
+    },
+    {
+      "name": "PP downstream lot facts not copied",
+      "passed": true
+    },
+    {
+      "name": "PP downstream state not treated as measured",
+      "passed": true
+    },
+    {
+      "name": "PP stage no approval",
+      "passed": true
+    },
+    {
+      "name": "PP downstream lot facts not copied",
+      "passed": true
+    },
+    {
+      "name": "PP downstream state not treated as measured",
+      "passed": true
+    }
+  ],
+  "passed": 120,
+  "total": 120
+}

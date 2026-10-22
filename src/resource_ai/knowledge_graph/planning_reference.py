@@ -76,17 +76,43 @@ class Facility(SourcedRecord):
     longitude: float | None = Field(ge=-180, le=180, allow_inf_nan=False)
 
 
+class FacilityInputProfile(BaseModel):
+    """Public examples are open lists, not exclusive intake specifications."""
+
+    model_config = ConfigDict(extra="forbid")
+    evidence_scope: Literal["site_publication", "organisation_only_not_site_verified"]
+    material_examples: list[str]
+    form_examples: list[str]
+    output_description: str = Field(min_length=1)
+    source_ids: list[str] = Field(min_length=1)
+    locator: str = Field(min_length=1)
+    excludes_designated_waste: Literal[True] | None = None
+    exclusion_source_ids: list[str] = Field(default_factory=list)
+    exclusion_locator: str | None = None
+    verified_intake_limits_available: Literal[False] = False
+
+    @model_validator(mode="after")
+    def scope_is_explicit(self):
+        excluded = self.excludes_designated_waste is True
+        if excluded != bool(self.exclusion_source_ids) or excluded != bool(self.exclusion_locator):
+            raise ValueError("Explicit exclusion needs its own source and locator")
+        if excluded and self.evidence_scope != "site_publication":
+            raise ValueError("Organisation hypothesis cannot assert a site exclusion")
+        return self
+
+
 class Capability(Record):
     facility: str
     transition: str
     basis: Literal["published_site_process", "site_role_hypothesis"]
     source_ids: list[str] = Field(min_length=1)
     conditions: list[str] = Field(min_length=1)
+    input_profile: FacilityInputProfile
 
 
 class PlanningReference(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    version: Literal["planning-reference-v1"]
+    version: Literal["planning-reference-v2"]
     scope: str
     sources: list[SourceRecord]
     states: list[MaterialState]
@@ -138,6 +164,17 @@ class PlanningReference(BaseModel):
                 or capability.transition not in mappings["transitions"]
             ):
                 raise ValueError("Unlinked facility capability")
+            profile = capability.input_profile
+            input_state = states[mappings["transitions"][capability.transition].input_state]
+            if (
+                not set(profile.source_ids + profile.exclusion_source_ids)
+                <= set(capability.source_ids)
+                or any(m not in graph.ontology()["materials"] for m in profile.material_examples)
+                or input_state.material not in profile.material_examples
+                or (profile.evidence_scope == "site_publication")
+                != (capability.basis == "published_site_process")
+            ):
+                raise ValueError("Invalid or unlinked facility input profile")
         return self
 
 
@@ -235,7 +272,7 @@ def import_reference(builder):
     for identifier, node in sorted(nodes.items()):
         builder.node(identifier, node["kind"], node["label"], node["properties"])
     for kind, start, end in sorted(edges):
-        builder.edge(kind, start, end, basis="source-backed-planning-reference-v1")
+        builder.edge(kind, start, end, basis="source-backed-planning-reference-v2")
 
 
 def audit_reference(connection):
@@ -264,7 +301,7 @@ def audit_reference(connection):
             continue
         if json.loads(props) != {
             "dispatch_approved": False,
-            "basis": "source-backed-planning-reference-v1",
+            "basis": "source-backed-planning-reference-v2",
         }:
             raise ValueError("Planning reference edge changed")
         found.add((kind, start, end))

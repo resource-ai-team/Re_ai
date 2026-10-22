@@ -13,8 +13,10 @@ W2RKG 원본 행은 문헌 조사 후보입니다. 원본의 폐기물·공정·
 
 이번 경로 탐색에는 팀이 따로 작성한
 [`planning-reference.json`](../src/resource_ai/knowledge_graph/resources/planning-reference.json)의
-`planning-reference-v1` 자료를 사용합니다. W2RKG에서 자동 추론한 공정망이 아닙니다.
+`planning-reference-v2` 자료를 사용합니다. W2RKG에서 자동 추론한 공정망이 아닙니다.
 현재 범위는 PET·PP·PE·알루미늄·종이의 국내 공개 사례입니다.
+v2에는 시설별 공개 조건 프로필이 추가됐습니다. [조건 대조 API](kg-facility-conditions.md)는
+이 자료를 실제 입력과 대조하며 현행 허가·인수를 승인하는 기능과 구분합니다.
 
 | 자료 | 현재 수 | 의미 |
 | --- | ---: | --- |

@@ -1,0 +1,218 @@
+{
+  "version": "documentary-facility-checks-v1",
+  "scope": "synthetic_lots_with_curator_authored_documentary_expectations_not_customer_or_expert_field_validation",
+  "cases": [
+    {
+      "id": "pp-unknown-designation",
+      "capability": "jungang-gongju--pp-prepare",
+      "lot": {
+        "material": "PP",
+        "input_form": "scrap",
+        "quantity_kg": 3000,
+        "color": "검정"
+      },
+      "status": "needs_verification",
+      "checks": {
+        "transition_material": "matched",
+        "site_process": "matched",
+        "material_example": "matched",
+        "designated_waste": "needs_verification",
+        "color": "needs_verification",
+        "quantity_kg": "needs_verification"
+      }
+    },
+    {
+      "id": "pp-explicit-exclusion",
+      "capability": "jungang-gongju--pp-prepare",
+      "lot": {
+        "material": "PP",
+        "designated_waste": true
+      },
+      "status": "unmet",
+      "checks": {
+        "designated_waste": "unmet"
+      }
+    },
+    {
+      "id": "pp-declared-non-designated",
+      "capability": "jungang-gongju--pp-prepare",
+      "lot": {
+        "material": "PP",
+        "designated_waste": false
+      },
+      "status": "needs_verification",
+      "checks": {
+        "designated_waste": "matched",
+        "current_permit_scope": "needs_verification",
+        "current_acceptance": "needs_verification"
+      }
+    },
+    {
+      "id": "pe-same-documented-policy",
+      "capability": "jungang-gongju--pe-prepare",
+      "lot": {
+        "material": "PE",
+        "designated_waste": true
+      },
+      "status": "unmet",
+      "checks": {
+        "transition_material": "matched",
+        "designated_waste": "unmet"
+      }
+    },
+    {
+      "id": "different-transition-material",
+      "capability": "jungang-gongju--pp-prepare",
+      "lot": {
+        "material": "PET"
+      },
+      "status": "unmet",
+      "checks": {
+        "transition_material": "unmet",
+        "material_example": "needs_verification"
+      }
+    },
+    {
+      "id": "missing-material",
+      "capability": "jungang-gongju--pp-prepare",
+      "lot": {},
+      "status": "needs_verification",
+      "checks": {
+        "transition_material": "needs_verification",
+        "material_example": "needs_verification"
+      }
+    },
+    {
+      "id": "unrecognised-material",
+      "capability": "jungang-gongju--pp-prepare",
+      "lot": {
+        "material": "PPS"
+      },
+      "status": "needs_verification",
+      "checks": {
+        "transition_material": "needs_verification"
+      }
+    },
+    {
+      "id": "org-profile-cannot-prove-site",
+      "capability": "bgf-yesan--pp-clean",
+      "lot": {
+        "material": "PP",
+        "input_form": "shredded"
+      },
+      "status": "needs_verification",
+      "checks": {
+        "transition_material": "matched",
+        "site_process": "needs_verification",
+        "material_example": "needs_verification",
+        "form_example": "needs_verification"
+      }
+    },
+    {
+      "id": "pet-bottle-example",
+      "capability": "samyang-sihwa--pet-prepare",
+      "lot": {
+        "material": "PET",
+        "input_form": "bottle",
+        "quantity_kg": 1000
+      },
+      "status": "needs_verification",
+      "checks": {
+        "form_example": "matched",
+        "material_example": "matched",
+        "current_acceptance": "needs_verification"
+      }
+    },
+    {
+      "id": "pet-bale-not-exclusive-rejection",
+      "capability": "samyang-sihwa--pet-prepare",
+      "lot": {
+        "material": "PET",
+        "input_form": "bale"
+      },
+      "status": "needs_verification",
+      "checks": {
+        "form_example": "needs_verification"
+      }
+    },
+    {
+      "id": "zero-moisture-is-not-missing-or-approved",
+      "capability": "samyang-sihwa--pet-prepare",
+      "lot": {
+        "material": "PET",
+        "moisture_pct": 0
+      },
+      "status": "needs_verification",
+      "checks": {
+        "moisture_pct": "needs_verification"
+      }
+    },
+    {
+      "id": "no-invented-moisture-limit",
+      "capability": "samyang-sihwa--pet-prepare",
+      "lot": {
+        "material": "PET",
+        "moisture_pct": 99
+      },
+      "status": "needs_verification",
+      "checks": {
+        "moisture_pct": "needs_verification"
+      }
+    },
+    {
+      "id": "design-capacity-is-not-available-capacity",
+      "capability": "novelis-yeongju--al-can-sheet",
+      "lot": {
+        "material": "알루미늄",
+        "input_form": "can",
+        "quantity_kg": 1000000000000
+      },
+      "status": "needs_verification",
+      "checks": {
+        "quantity_kg": "needs_verification",
+        "form_example": "matched",
+        "current_acceptance": "needs_verification"
+      }
+    },
+    {
+      "id": "chips-are-not-a-can-example",
+      "capability": "novelis-yeongju--al-can-sheet",
+      "lot": {
+        "material": "알루미늄",
+        "input_form": "chips"
+      },
+      "status": "needs_verification",
+      "checks": {
+        "form_example": "needs_verification"
+      }
+    },
+    {
+      "id": "paper-coating-limits-unknown",
+      "capability": "hansol-damyang--paper-board",
+      "lot": {
+        "material": "종이",
+        "input_form": "recovered_paper",
+        "contamination": "코팅 여부 미확인",
+        "contamination_pct": 40
+      },
+      "status": "needs_verification",
+      "checks": {
+        "transition_material": "matched",
+        "form_example": "matched",
+        "contamination_pct": "needs_verification"
+      }
+    },
+    {
+      "id": "paper-other-form-not-exclusion",
+      "capability": "hansol-damyang--paper-board",
+      "lot": {
+        "material": "종이",
+        "input_form": "cardboard"
+      },
+      "status": "needs_verification",
+      "checks": {
+        "form_example": "needs_verification"
+      }
+    }
+  ]
+}
