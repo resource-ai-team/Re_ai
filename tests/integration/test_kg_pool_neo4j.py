@@ -70,7 +70,9 @@ def test_every_candidate_is_reachable_once_and_counts_match_independent_stage(re
     local = {
         r[0]
         for r in connection.execute(
-            "SELECT source_id FROM kg_edges WHERE kind='FOR_MATERIAL' AND target_id='material:pet'"
+            """SELECT e.source_id FROM kg_edges e JOIN kg_nodes n ON n.id=e.source_id
+            WHERE e.kind='FOR_MATERIAL' AND e.target_id='material:pet'
+            AND n.kind IN ('RouteSnapshot','ScopedClaim')"""
         )
     }
     background = {

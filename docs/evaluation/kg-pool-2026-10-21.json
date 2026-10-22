@@ -1,0 +1,462 @@
+{
+  "pipeline_baseline": "2026-10-20-fixed-v1",
+  "scope": "reference coverage, pagination, provenance and API regression; not legal or plant validation",
+  "generation": "5b06f031b89b4a0c838a23ce2f286aa0",
+  "graph_sha256": "1645e31682ab1395b37e3131ec0293bd5a720b18f1b58eb11a3448b87d275baf",
+  "scenarios": [
+    {
+      "input": {
+        "material": "PET",
+        "page_size": 37
+      },
+      "synthetic_case_not_factory_measurement": true,
+      "counts": {
+        "literature": 161,
+        "scoped_claim": 15,
+        "process": 5
+      },
+      "total": 181,
+      "pages": 5,
+      "missing_fields": [
+        "input_form",
+        "color",
+        "contamination"
+      ],
+      "received_kind_counts": {
+        "literature": 161,
+        "scoped_claim": 15,
+        "process": 5
+      }
+    },
+    {
+      "input": {
+        "material": "알루미늄",
+        "page_size": 37
+      },
+      "synthetic_case_not_factory_measurement": true,
+      "counts": {
+        "literature": 57,
+        "scoped_claim": 54,
+        "process": 8
+      },
+      "total": 119,
+      "pages": 4,
+      "missing_fields": [
+        "input_form",
+        "color",
+        "contamination"
+      ],
+      "received_kind_counts": {
+        "literature": 57,
+        "scoped_claim": 54,
+        "process": 8
+      }
+    },
+    {
+      "input": {
+        "material": "종이",
+        "page_size": 37
+      },
+      "synthetic_case_not_factory_measurement": true,
+      "counts": {
+        "literature": 180,
+        "scoped_claim": 18,
+        "process": 5
+      },
+      "total": 203,
+      "pages": 6,
+      "missing_fields": [
+        "input_form",
+        "color",
+        "contamination"
+      ],
+      "received_kind_counts": {
+        "literature": 180,
+        "scoped_claim": 18,
+        "process": 5
+      }
+    },
+    {
+      "input": {
+        "material": "PP",
+        "page_size": 37,
+        "color": "검정",
+        "quantity_kg": 3000,
+        "generation_process": "사출"
+      },
+      "synthetic_case_not_factory_measurement": true,
+      "counts": {
+        "literature": 60,
+        "scoped_claim": 10,
+        "process": 0
+      },
+      "total": 70,
+      "pages": 2,
+      "missing_fields": [
+        "input_form",
+        "contamination"
+      ],
+      "received_kind_counts": {
+        "literature": 60,
+        "scoped_claim": 10,
+        "process": 0
+      }
+    },
+    {
+      "input": {
+        "material": "HDPE",
+        "page_size": 37
+      },
+      "synthetic_case_not_factory_measurement": true,
+      "counts": {
+        "literature": 144,
+        "scoped_claim": 10,
+        "process": 0
+      },
+      "total": 154,
+      "pages": 5,
+      "missing_fields": [
+        "input_form",
+        "color",
+        "contamination"
+      ],
+      "received_kind_counts": {
+        "literature": 144,
+        "scoped_claim": 10,
+        "process": 0
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "pet page 1 API 200",
+      "passed": true
+    },
+    {
+      "name": "pet page 2 API 200",
+      "passed": true
+    },
+    {
+      "name": "pet page 3 API 200",
+      "passed": true
+    },
+    {
+      "name": "pet page 4 API 200",
+      "passed": true
+    },
+    {
+      "name": "pet page 5 API 200",
+      "passed": true
+    },
+    {
+      "name": "pet paging terminates",
+      "passed": true
+    },
+    {
+      "name": "pet source-exact complete candidate pool",
+      "passed": true
+    },
+    {
+      "name": "pet no duplicate pages",
+      "passed": true
+    },
+    {
+      "name": "pet immutable generation",
+      "passed": true
+    },
+    {
+      "name": "pet total matches independent source counts",
+      "passed": true
+    },
+    {
+      "name": "pet input form does not discard candidates",
+      "passed": true
+    },
+    {
+      "name": "pet no premature top K",
+      "passed": true
+    },
+    {
+      "name": "pet no invented baseline",
+      "passed": true
+    },
+    {
+      "name": "pet no suitability decision",
+      "passed": true
+    },
+    {
+      "name": "pet risk and condition evidence resolves",
+      "passed": true
+    },
+    {
+      "name": "pet questions are not eligibility rules",
+      "passed": true
+    },
+    {
+      "name": "aluminium page 1 API 200",
+      "passed": true
+    },
+    {
+      "name": "aluminium page 2 API 200",
+      "passed": true
+    },
+    {
+      "name": "aluminium page 3 API 200",
+      "passed": true
+    },
+    {
+      "name": "aluminium page 4 API 200",
+      "passed": true
+    },
+    {
+      "name": "aluminium paging terminates",
+      "passed": true
+    },
+    {
+      "name": "aluminium source-exact complete candidate pool",
+      "passed": true
+    },
+    {
+      "name": "aluminium no duplicate pages",
+      "passed": true
+    },
+    {
+      "name": "aluminium immutable generation",
+      "passed": true
+    },
+    {
+      "name": "aluminium total matches independent source counts",
+      "passed": true
+    },
+    {
+      "name": "aluminium input form does not discard candidates",
+      "passed": true
+    },
+    {
+      "name": "aluminium no premature top K",
+      "passed": true
+    },
+    {
+      "name": "aluminium no invented baseline",
+      "passed": true
+    },
+    {
+      "name": "aluminium no suitability decision",
+      "passed": true
+    },
+    {
+      "name": "aluminium risk and condition evidence resolves",
+      "passed": true
+    },
+    {
+      "name": "aluminium questions are not eligibility rules",
+      "passed": true
+    },
+    {
+      "name": "paper page 1 API 200",
+      "passed": true
+    },
+    {
+      "name": "paper page 2 API 200",
+      "passed": true
+    },
+    {
+      "name": "paper page 3 API 200",
+      "passed": true
+    },
+    {
+      "name": "paper page 4 API 200",
+      "passed": true
+    },
+    {
+      "name": "paper page 5 API 200",
+      "passed": true
+    },
+    {
+      "name": "paper page 6 API 200",
+      "passed": true
+    },
+    {
+      "name": "paper paging terminates",
+      "passed": true
+    },
+    {
+      "name": "paper source-exact complete candidate pool",
+      "passed": true
+    },
+    {
+      "name": "paper no duplicate pages",
+      "passed": true
+    },
+    {
+      "name": "paper immutable generation",
+      "passed": true
+    },
+    {
+      "name": "paper total matches independent source counts",
+      "passed": true
+    },
+    {
+      "name": "paper input form does not discard candidates",
+      "passed": true
+    },
+    {
+      "name": "paper no premature top K",
+      "passed": true
+    },
+    {
+      "name": "paper no invented baseline",
+      "passed": true
+    },
+    {
+      "name": "paper no suitability decision",
+      "passed": true
+    },
+    {
+      "name": "paper risk and condition evidence resolves",
+      "passed": true
+    },
+    {
+      "name": "paper questions are not eligibility rules",
+      "passed": true
+    },
+    {
+      "name": "pp page 1 API 200",
+      "passed": true
+    },
+    {
+      "name": "pp page 2 API 200",
+      "passed": true
+    },
+    {
+      "name": "pp paging terminates",
+      "passed": true
+    },
+    {
+      "name": "pp source-exact complete candidate pool",
+      "passed": true
+    },
+    {
+      "name": "pp no duplicate pages",
+      "passed": true
+    },
+    {
+      "name": "pp immutable generation",
+      "passed": true
+    },
+    {
+      "name": "pp total matches independent source counts",
+      "passed": true
+    },
+    {
+      "name": "pp input form does not discard candidates",
+      "passed": true
+    },
+    {
+      "name": "pp no premature top K",
+      "passed": true
+    },
+    {
+      "name": "pp no invented baseline",
+      "passed": true
+    },
+    {
+      "name": "pp no suitability decision",
+      "passed": true
+    },
+    {
+      "name": "pp risk and condition evidence resolves",
+      "passed": true
+    },
+    {
+      "name": "pp questions are not eligibility rules",
+      "passed": true
+    },
+    {
+      "name": "pe page 1 API 200",
+      "passed": true
+    },
+    {
+      "name": "pe page 2 API 200",
+      "passed": true
+    },
+    {
+      "name": "pe page 3 API 200",
+      "passed": true
+    },
+    {
+      "name": "pe page 4 API 200",
+      "passed": true
+    },
+    {
+      "name": "pe page 5 API 200",
+      "passed": true
+    },
+    {
+      "name": "pe paging terminates",
+      "passed": true
+    },
+    {
+      "name": "pe source-exact complete candidate pool",
+      "passed": true
+    },
+    {
+      "name": "pe no duplicate pages",
+      "passed": true
+    },
+    {
+      "name": "pe immutable generation",
+      "passed": true
+    },
+    {
+      "name": "pe total matches independent source counts",
+      "passed": true
+    },
+    {
+      "name": "pe input form does not discard candidates",
+      "passed": true
+    },
+    {
+      "name": "pe no premature top K",
+      "passed": true
+    },
+    {
+      "name": "pe no invented baseline",
+      "passed": true
+    },
+    {
+      "name": "pe no suitability decision",
+      "passed": true
+    },
+    {
+      "name": "pe risk and condition evidence resolves",
+      "passed": true
+    },
+    {
+      "name": "pe questions are not eligibility rules",
+      "passed": true
+    },
+    {
+      "name": "external model API 200",
+      "passed": true
+    },
+    {
+      "name": "private request context not exported",
+      "passed": true
+    },
+    {
+      "name": "blocked candidate bodies withheld",
+      "passed": true
+    },
+    {
+      "name": "no private context leaked",
+      "passed": true
+    },
+    {
+      "name": "top K is not a pool request field",
+      "passed": true
+    }
+  ],
+  "passed": 82,
+  "total": 82
+}

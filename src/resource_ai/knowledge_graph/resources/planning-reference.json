@@ -1,0 +1,1009 @@
+{
+  "version": "planning-reference-v1",
+  "scope": "source-backed-research-transitions; not validated operating routes",
+  "sources": [
+    {
+      "acquisition": "official-html-acquired-and-reviewed",
+      "digest_basis": "downloaded-original-bytes",
+      "key": "samyang-pet",
+      "url": "https://www.samyangpackaging.com/kr/business/pet-recycling",
+      "publisher": "삼양패키징",
+      "locator": "PET 재활용 표 / 생산공정 1~8",
+      "summary": "시화 소재 삼양에코테크의 PET병 회수·플레이크 생산 단계와 공시 생산능력을 소개한다.",
+      "checked_date": "2026-10-20",
+      "source_date": null,
+      "sha256": "9f7cd399b4c1888bbe5047f451833b576618eb48266b82eeee39ae646ee635c0",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+    },
+    {
+      "acquisition": "official-html-acquired-and-reviewed",
+      "digest_basis": "downloaded-original-bytes",
+      "key": "bgf-recycling",
+      "url": "https://www.bgfecomaterials.com/kr/company/business/recycle",
+      "publisher": "BGF에코머티리얼즈",
+      "locator": "사업영역 / 제품 / 계열사·사업소",
+      "summary": "선별·세척·압출 재생·컴파운딩과 r-PP·r-PE·r-PET 제품, 인천·예산·화성 사업장 역할을 소개한다. 개별 사업장별 모든 설비의 가동은 이 자료만으로 입증되지 않는다.",
+      "checked_date": "2026-10-20",
+      "source_date": null,
+      "sha256": "0eb8c83464a18fc9207cf2332097afad9edfc84bd7182ea6dd7873ec01e0090d",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+    },
+    {
+      "acquisition": "official-html-acquired-and-reviewed",
+      "digest_basis": "downloaded-original-bytes",
+      "key": "jungang-materials",
+      "url": "https://www.jungangenb.com/",
+      "publisher": "중앙이엔비",
+      "locator": "FAQ Q01·Q02·Q05 / Address",
+      "summary": "공주 사업장의 PE·PP 반입 상담과 파쇄품의 재활용 원료 공급을 안내한다. 특정 로트의 인수와 순도는 확인되지 않는다.",
+      "checked_date": "2026-10-20",
+      "source_date": null,
+      "sha256": "52946fba52a22c2bab1f648dceb827f28f85d522030550178319433008cec943",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+    },
+    {
+      "acquisition": "official-html-acquired-and-reviewed",
+      "digest_basis": "downloaded-original-bytes",
+      "key": "jungang-process",
+      "url": "https://www.jungangenb.com/process",
+      "publisher": "중앙이엔비",
+      "locator": "단계별 상세 01~05",
+      "summary": "반입 확인, 1차 선별, 파쇄, 후선별과 출하 순서를 설명한다. 정밀 세척이나 펠렛 생산을 뜻하지 않는다.",
+      "checked_date": "2026-10-20",
+      "source_date": null,
+      "sha256": "8c64d9df4e4b360e708119ff8c3032ac880108e5c5be2334baf5ed794fc0d175",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+    },
+    {
+      "acquisition": "official-page-reviewed-via-web-tool; direct-http403-no-bypass",
+      "digest_basis": "curator-record-not-original-page",
+      "key": "novelis-yeongju",
+      "url": "https://novelis.com/locations/yeongju-south-korea/",
+      "publisher": "Novelis",
+      "locator": "Location / About",
+      "summary": "영주 사업장의 소재지와 재활용·주조·판재 생산 역할을 소개한다.",
+      "checked_date": "2026-10-20",
+      "source_date": null,
+      "sha256": "621ba57fbec9dc8a67f9c741bb6ce85de7dbf7ae69fc2dbb5d55fea44a04b560",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+    },
+    {
+      "acquisition": "official-html-acquired-and-reviewed",
+      "digest_basis": "downloaded-original-bytes",
+      "key": "novelis-can-case",
+      "url": "https://investors.novelis.com/news-events/press-releases/detail/1316/novelis-yeongju-plant-achieves-120-billion-aluminum-cans-recycled-milestone-in-its-first-decade",
+      "publisher": "Novelis",
+      "locator": "2021-06-20 press release",
+      "summary": "영주에서 사용 후 음료캔을 회수해 알루미늄 판재를 생산한 사례를 공개했다. 당시 발표 용량은 현재 여유 용량이 아니다.",
+      "checked_date": "2026-10-20",
+      "source_date": "2021-06-20",
+      "sha256": "582fc189c36426976805f82676e2b31dcce15404930efc510cd80fc2a160c4a2",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+    },
+    {
+      "acquisition": "official-html-acquired-and-reviewed",
+      "digest_basis": "downloaded-original-bytes",
+      "key": "hansol-paper",
+      "url": "https://www.hansolpapertech.com/home/",
+      "publisher": "한솔페이퍼텍",
+      "locator": "표면지 설명 / 본사 주소",
+      "summary": "고지와 펄프를 배합한 골판지원지 제품을 안내한다. 내부 공정별 순서나 특정 폐지 로트의 인수 기준은 확인되지 않는다.",
+      "checked_date": "2026-10-20",
+      "source_date": null,
+      "sha256": "c6b42e6e05246eceddf79939f9ea7d3c7358fff7b1d84aa56f289aba169c42e9",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded"
+    }
+  ],
+  "states": [
+    {
+      "key": "pet-bottle",
+      "material": "pet",
+      "label": "PET 병 원료·로트 규격 미확인",
+      "input_forms": [
+        "bottle",
+        "bale"
+      ],
+      "source_ids": [
+        "samyang-pet"
+      ],
+      "is_entry": true,
+      "is_output": false
+    },
+    {
+      "key": "pet-sorted",
+      "material": "pet",
+      "label": "선별된 PET 분쇄 투입물",
+      "input_forms": [],
+      "source_ids": [
+        "samyang-pet"
+      ],
+      "is_entry": false,
+      "is_output": false
+    },
+    {
+      "key": "pet-washed",
+      "material": "pet",
+      "label": "세척 후 PET 파쇄물",
+      "input_forms": [],
+      "source_ids": [
+        "samyang-pet"
+      ],
+      "is_entry": false,
+      "is_output": false
+    },
+    {
+      "key": "pet-flake",
+      "material": "pet",
+      "label": "건조·금속 분리 후 PET 플레이크",
+      "input_forms": [
+        "flake"
+      ],
+      "source_ids": [
+        "samyang-pet"
+      ],
+      "is_entry": true,
+      "is_output": true
+    },
+    {
+      "key": "pet-pellet",
+      "material": "pet",
+      "label": "재생 PET 펠렛·등급 미확인",
+      "input_forms": [],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "is_entry": false,
+      "is_output": true
+    },
+    {
+      "key": "pp-scrap",
+      "material": "pp",
+      "label": "PP 잔재·로트 규격 미확인",
+      "input_forms": [
+        "scrap",
+        "rigid",
+        "film"
+      ],
+      "source_ids": [
+        "jungang-materials"
+      ],
+      "is_entry": true,
+      "is_output": false
+    },
+    {
+      "key": "pp-shredded",
+      "material": "pp",
+      "label": "PP 파쇄품·순도 및 세척 상태 미확인",
+      "input_forms": [
+        "shredded",
+        "flake"
+      ],
+      "source_ids": [
+        "jungang-process",
+        "jungang-materials"
+      ],
+      "is_entry": true,
+      "is_output": true
+    },
+    {
+      "key": "pp-washed",
+      "material": "pp",
+      "label": "PP 세정 투입물·품질 확인 필요",
+      "input_forms": [],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "is_entry": false,
+      "is_output": false
+    },
+    {
+      "key": "pp-pellet",
+      "material": "pp",
+      "label": "재생 PP 펠렛·등급 확인 필요",
+      "input_forms": [
+        "pellet"
+      ],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "is_entry": true,
+      "is_output": true
+    },
+    {
+      "key": "pp-compound",
+      "material": "pp",
+      "label": "PP 재생 컴파운드·물성 확인 필요",
+      "input_forms": [],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "is_entry": false,
+      "is_output": true
+    },
+    {
+      "key": "pe-scrap",
+      "material": "pe",
+      "label": "PE 잔재·로트 규격 미확인",
+      "input_forms": [
+        "scrap",
+        "rigid",
+        "film"
+      ],
+      "source_ids": [
+        "jungang-materials"
+      ],
+      "is_entry": true,
+      "is_output": false
+    },
+    {
+      "key": "pe-shredded",
+      "material": "pe",
+      "label": "PE 파쇄품·순도 및 세척 상태 미확인",
+      "input_forms": [
+        "shredded",
+        "flake"
+      ],
+      "source_ids": [
+        "jungang-process",
+        "jungang-materials"
+      ],
+      "is_entry": true,
+      "is_output": true
+    },
+    {
+      "key": "pe-washed",
+      "material": "pe",
+      "label": "PE 세정 투입물·품질 확인 필요",
+      "input_forms": [],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "is_entry": false,
+      "is_output": false
+    },
+    {
+      "key": "pe-pellet",
+      "material": "pe",
+      "label": "재생 PE 펠렛·등급 확인 필요",
+      "input_forms": [
+        "pellet"
+      ],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "is_entry": true,
+      "is_output": true
+    },
+    {
+      "key": "pe-compound",
+      "material": "pe",
+      "label": "PE 재생 컴파운드·물성 확인 필요",
+      "input_forms": [],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "is_entry": false,
+      "is_output": true
+    },
+    {
+      "key": "al-used-can",
+      "material": "aluminium",
+      "label": "사용 후 알루미늄 음료캔",
+      "input_forms": [
+        "can"
+      ],
+      "source_ids": [
+        "novelis-can-case"
+      ],
+      "is_entry": true,
+      "is_output": false
+    },
+    {
+      "key": "al-sheet",
+      "material": "aluminium",
+      "label": "재활용 알루미늄 판재",
+      "input_forms": [],
+      "source_ids": [
+        "novelis-can-case"
+      ],
+      "is_entry": false,
+      "is_output": true
+    },
+    {
+      "key": "paper-recovered",
+      "material": "paper",
+      "label": "고지·등급과 코팅 확인 필요",
+      "input_forms": [
+        "cardboard",
+        "recovered_paper"
+      ],
+      "source_ids": [
+        "hansol-paper"
+      ],
+      "is_entry": true,
+      "is_output": false
+    },
+    {
+      "key": "paper-containerboard",
+      "material": "paper",
+      "label": "고지·펄프 배합 골판지용 표면지 원지·규격 미확인",
+      "input_forms": [],
+      "source_ids": [
+        "hansol-paper"
+      ],
+      "is_entry": false,
+      "is_output": true
+    }
+  ],
+  "transitions": [
+    {
+      "key": "pet-prepare",
+      "label": "PET 병 전처리·선별",
+      "input_state": "pet-bottle",
+      "output_state": "pet-sorted",
+      "operation_steps": [
+        "압축 원료 확인",
+        "토사류 분리·초기 세정",
+        "색·라벨·뚜껑과 이물 선별"
+      ],
+      "source_ids": [
+        "samyang-pet"
+      ],
+      "conditions": [
+        "병 원료 여부와 색·타수지·이전 내용물 확인"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    },
+    {
+      "key": "pet-wash",
+      "label": "PET 분쇄·반복 세정",
+      "input_state": "pet-sorted",
+      "output_state": "pet-washed",
+      "operation_steps": [
+        "분쇄",
+        "불림 및 세정",
+        "세정액·고형물 분리와 추가 세정"
+      ],
+      "source_ids": [
+        "samyang-pet"
+      ],
+      "conditions": [
+        "세척 조건·폐수와 잔재물 처리 근거 확보"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    },
+    {
+      "key": "pet-finish",
+      "label": "PET 건조·금속 제거",
+      "input_state": "pet-washed",
+      "output_state": "pet-flake",
+      "operation_steps": [
+        "건조",
+        "금속성 이물 분리",
+        "플레이크 산출 확인"
+      ],
+      "source_ids": [
+        "samyang-pet"
+      ],
+      "conditions": [
+        "산출물의 수분·혼입·수취 규격과 회수량 확인"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    },
+    {
+      "key": "pet-pelletise",
+      "label": "PET 압출 재생 조사",
+      "input_state": "pet-flake",
+      "output_state": "pet-pellet",
+      "operation_steps": [
+        "소재에 맞는 압출 재생",
+        "재생 원료 산출"
+      ],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "BGF 일반 공정의 PET 플레이크 적용과 사업장별 설비를 별도 확인",
+        "식품 접촉 적합성을 추정하지 않음"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    },
+    {
+      "key": "pp-prepare",
+      "label": "PP 반입 선별·파쇄",
+      "input_state": "pp-scrap",
+      "output_state": "pp-shredded",
+      "operation_steps": [
+        "반입·성상 확인",
+        "전처리 선별",
+        "파쇄",
+        "후선별·출하 품질 확인"
+      ],
+      "source_ids": [
+        "jungang-materials",
+        "jungang-process"
+      ],
+      "conditions": [
+        "단일 수지 여부 및 허용 투입물·이물·배출 특성 확인",
+        "공개 PE·PP 상담 범위가 이번 로트의 인수를 보장하지 않음",
+        "공식 안내상 지정폐기물은 취급 제외: 해당 로트의 지정폐기물 여부와 허가 범위를 별도 확인"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    },
+    {
+      "key": "pp-clean",
+      "label": "PP 세정 조사",
+      "input_state": "pp-shredded",
+      "output_state": "pp-washed",
+      "operation_steps": [
+        "소재별 세정",
+        "오염물·이취 저감 확인"
+      ],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "BGF 일반 소재 공정과 해당 사업장의 일치 여부 확인",
+        "검정색·첨가제·충전재와 수지 등급·세척 필요성 확인"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    },
+    {
+      "key": "pp-pelletise",
+      "label": "PP 압출 재생",
+      "input_state": "pp-washed",
+      "output_state": "pp-pellet",
+      "operation_steps": [
+        "원료별 압출",
+        "재생 펠렛 산출"
+      ],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "열화·VOCs·등급과 수취 규격 확인",
+        "설비별 적용 수지와 안정적 운전 조건은 별도 검수"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    },
+    {
+      "key": "pp-compound",
+      "label": "PP 컴파운딩",
+      "input_state": "pp-pellet",
+      "output_state": "pp-compound",
+      "operation_steps": [
+        "첨가제·소재 배합",
+        "물성 조정"
+      ],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "배합·첨가제와 요구 물성 및 잔재 처리 근거 확인"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    },
+    {
+      "key": "pe-prepare",
+      "label": "PE 반입 선별·파쇄",
+      "input_state": "pe-scrap",
+      "output_state": "pe-shredded",
+      "operation_steps": [
+        "반입·성상 확인",
+        "전처리 선별",
+        "파쇄",
+        "후선별·출하 품질 확인"
+      ],
+      "source_ids": [
+        "jungang-materials",
+        "jungang-process"
+      ],
+      "conditions": [
+        "단일 수지 여부 및 허용 투입물·이물·배출 특성 확인",
+        "공개 PE·PP 상담 범위가 이번 로트의 인수를 보장하지 않음",
+        "공식 안내상 지정폐기물은 취급 제외: 해당 로트의 지정폐기물 여부와 허가 범위를 별도 확인"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    },
+    {
+      "key": "pe-clean",
+      "label": "PE 세정 조사",
+      "input_state": "pe-shredded",
+      "output_state": "pe-washed",
+      "operation_steps": [
+        "소재별 세정",
+        "오염물·이취 저감 확인"
+      ],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "BGF 일반 소재 공정과 해당 사업장의 일치 여부 확인",
+        "검정색·첨가제·충전재와 수지 등급·세척 필요성 확인"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    },
+    {
+      "key": "pe-pelletise",
+      "label": "PE 압출 재생",
+      "input_state": "pe-washed",
+      "output_state": "pe-pellet",
+      "operation_steps": [
+        "원료별 압출",
+        "재생 펠렛 산출"
+      ],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "열화·VOCs·등급과 수취 규격 확인",
+        "설비별 적용 수지와 안정적 운전 조건은 별도 검수"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    },
+    {
+      "key": "pe-compound",
+      "label": "PE 컴파운딩",
+      "input_state": "pe-pellet",
+      "output_state": "pe-compound",
+      "operation_steps": [
+        "첨가제·소재 배합",
+        "물성 조정"
+      ],
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "배합·첨가제와 요구 물성 및 잔재 처리 근거 확인"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    },
+    {
+      "key": "al-can-sheet",
+      "label": "음료캔 회수·판재 제조 공정 묶음",
+      "input_state": "al-used-can",
+      "output_state": "al-sheet",
+      "operation_steps": [
+        "캔 회수 및 판재 생산 일괄 공정·세부 순서 미모델링"
+      ],
+      "source_ids": [
+        "novelis-can-case",
+        "novelis-yeongju"
+      ],
+      "conditions": [
+        "음료캔 외 절삭칩 등으로 투입 범위를 확대하지 않음",
+        "합금·오염·도료와 수탁 규격을 확인",
+        "2021년 사례를 현재 인수·여유 용량으로 보지 않음"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    },
+    {
+      "key": "paper-board",
+      "label": "고지·펄프 배합 골판지용 표면지 원지 생산 공정 묶음",
+      "input_state": "paper-recovered",
+      "output_state": "paper-containerboard",
+      "operation_steps": [
+        "고지·펄프 배합 표면지 원지 생산·세부 순서 미모델링"
+      ],
+      "source_ids": [
+        "hansol-paper"
+      ],
+      "conditions": [
+        "고지 등급·코팅·이물과 실제 인수 규격 확인",
+        "추가 펄프·물질·에너지 투입과 내부 순서 별도 확보"
+      ],
+      "risk_checks": [
+        "로트의 조성·오염·수분과 투입 규격 대조",
+        "부산물·잔재물과 회수율·추가 투입물 확인",
+        "공정 사이 산출·투입 규격과 보관·이동 조건 확인"
+      ]
+    }
+  ],
+  "organisations": [
+    {
+      "key": "samyang-ecotech",
+      "label": "삼양에코테크",
+      "source_ids": [
+        "samyang-pet"
+      ]
+    },
+    {
+      "key": "bgf-ecocycle",
+      "label": "BGF에코사이클",
+      "source_ids": [
+        "bgf-recycling"
+      ]
+    },
+    {
+      "key": "jungang-enb",
+      "label": "중앙이엔비",
+      "source_ids": [
+        "jungang-materials"
+      ]
+    },
+    {
+      "key": "novelis-korea",
+      "label": "노벨리스코리아",
+      "source_ids": [
+        "novelis-yeongju"
+      ]
+    },
+    {
+      "key": "hansol-papertech",
+      "label": "한솔페이퍼텍",
+      "source_ids": [
+        "hansol-paper"
+      ]
+    }
+  ],
+  "facilities": [
+    {
+      "key": "samyang-sihwa",
+      "organisation": "samyang-ecotech",
+      "label": "삼양에코테크 시화공장",
+      "country": "KR",
+      "region": "경기도 시흥시 시화공단",
+      "address": null,
+      "source_ids": [
+        "samyang-pet"
+      ],
+      "reported_metrics": [
+        {
+          "name": "published_processing_capacity",
+          "value": 50000,
+          "unit": "tonne/year",
+          "scope": "website-reported-design-capacity-not-current-available",
+          "source_id": "samyang-pet"
+        }
+      ],
+      "current_permit_scope": null,
+      "current_available_capacity_kg": null,
+      "current_acceptance": null,
+      "current_price_krw_per_kg": null,
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "key": "bgf-incheon",
+      "organisation": "bgf-ecocycle",
+      "label": "BGF에코사이클 선별사업장",
+      "country": "KR",
+      "region": "인천광역시 서구",
+      "address": "인천시 서구 건지로 121번길 11",
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "reported_metrics": [],
+      "current_permit_scope": null,
+      "current_available_capacity_kg": null,
+      "current_acceptance": null,
+      "current_price_krw_per_kg": null,
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "key": "bgf-yesan",
+      "organisation": "bgf-ecocycle",
+      "label": "BGF에코사이클 재생원료사업장",
+      "country": "KR",
+      "region": "충청남도 예산군",
+      "address": "충남 예산군 고덕면 상몽산단로 180",
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "reported_metrics": [],
+      "current_permit_scope": null,
+      "current_available_capacity_kg": null,
+      "current_acceptance": null,
+      "current_price_krw_per_kg": null,
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "key": "bgf-hwaseong",
+      "organisation": "bgf-ecocycle",
+      "label": "BGF에코사이클 컴파운드사업장",
+      "country": "KR",
+      "region": "경기도 화성시",
+      "address": "경기 화성시 남양읍 매바위로 540",
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "reported_metrics": [],
+      "current_permit_scope": null,
+      "current_available_capacity_kg": null,
+      "current_acceptance": null,
+      "current_price_krw_per_kg": null,
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "key": "jungang-gongju",
+      "organisation": "jungang-enb",
+      "label": "중앙이엔비 공주 사업장",
+      "country": "KR",
+      "region": "충청남도 공주시",
+      "address": "충청남도 공주시 탄천면 차돌배기길 72-14",
+      "source_ids": [
+        "jungang-materials",
+        "jungang-process"
+      ],
+      "reported_metrics": [],
+      "current_permit_scope": null,
+      "current_available_capacity_kg": null,
+      "current_acceptance": null,
+      "current_price_krw_per_kg": null,
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "key": "novelis-yeongju",
+      "organisation": "novelis-korea",
+      "label": "노벨리스 영주공장",
+      "country": "KR",
+      "region": "경상북도 영주시",
+      "address": "23 Jeokseogongdan-ro, Yeongju, Gyeongsangbuk-do",
+      "source_ids": [
+        "novelis-yeongju",
+        "novelis-can-case"
+      ],
+      "reported_metrics": [],
+      "current_permit_scope": null,
+      "current_available_capacity_kg": null,
+      "current_acceptance": null,
+      "current_price_krw_per_kg": null,
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "key": "hansol-damyang",
+      "organisation": "hansol-papertech",
+      "label": "한솔페이퍼텍 담양 사업장",
+      "country": "KR",
+      "region": "담양군",
+      "address": "담양군 대전면 대치7길 80",
+      "source_ids": [
+        "hansol-paper"
+      ],
+      "reported_metrics": [],
+      "current_permit_scope": null,
+      "current_available_capacity_kg": null,
+      "current_acceptance": null,
+      "current_price_krw_per_kg": null,
+      "latitude": null,
+      "longitude": null
+    }
+  ],
+  "capabilities": [
+    {
+      "key": "samyang-sihwa--pet-prepare",
+      "facility": "samyang-sihwa",
+      "transition": "pet-prepare",
+      "basis": "published_site_process",
+      "source_ids": [
+        "samyang-pet"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    },
+    {
+      "key": "samyang-sihwa--pet-wash",
+      "facility": "samyang-sihwa",
+      "transition": "pet-wash",
+      "basis": "published_site_process",
+      "source_ids": [
+        "samyang-pet"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    },
+    {
+      "key": "samyang-sihwa--pet-finish",
+      "facility": "samyang-sihwa",
+      "transition": "pet-finish",
+      "basis": "published_site_process",
+      "source_ids": [
+        "samyang-pet"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    },
+    {
+      "key": "bgf-yesan--pet-pelletise",
+      "facility": "bgf-yesan",
+      "transition": "pet-pelletise",
+      "basis": "site_role_hypothesis",
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    },
+    {
+      "key": "jungang-gongju--pp-prepare",
+      "facility": "jungang-gongju",
+      "transition": "pp-prepare",
+      "basis": "published_site_process",
+      "source_ids": [
+        "jungang-materials",
+        "jungang-process"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    },
+    {
+      "key": "bgf-yesan--pp-clean",
+      "facility": "bgf-yesan",
+      "transition": "pp-clean",
+      "basis": "site_role_hypothesis",
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    },
+    {
+      "key": "bgf-yesan--pp-pelletise",
+      "facility": "bgf-yesan",
+      "transition": "pp-pelletise",
+      "basis": "site_role_hypothesis",
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    },
+    {
+      "key": "bgf-hwaseong--pp-compound",
+      "facility": "bgf-hwaseong",
+      "transition": "pp-compound",
+      "basis": "site_role_hypothesis",
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    },
+    {
+      "key": "jungang-gongju--pe-prepare",
+      "facility": "jungang-gongju",
+      "transition": "pe-prepare",
+      "basis": "published_site_process",
+      "source_ids": [
+        "jungang-materials",
+        "jungang-process"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    },
+    {
+      "key": "bgf-yesan--pe-clean",
+      "facility": "bgf-yesan",
+      "transition": "pe-clean",
+      "basis": "site_role_hypothesis",
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    },
+    {
+      "key": "bgf-yesan--pe-pelletise",
+      "facility": "bgf-yesan",
+      "transition": "pe-pelletise",
+      "basis": "site_role_hypothesis",
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    },
+    {
+      "key": "bgf-hwaseong--pe-compound",
+      "facility": "bgf-hwaseong",
+      "transition": "pe-compound",
+      "basis": "site_role_hypothesis",
+      "source_ids": [
+        "bgf-recycling"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    },
+    {
+      "key": "novelis-yeongju--al-can-sheet",
+      "facility": "novelis-yeongju",
+      "transition": "al-can-sheet",
+      "basis": "published_site_process",
+      "source_ids": [
+        "novelis-can-case",
+        "novelis-yeongju"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    },
+    {
+      "key": "hansol-damyang--paper-board",
+      "facility": "hansol-damyang",
+      "transition": "paper-board",
+      "basis": "published_site_process",
+      "source_ids": [
+        "hansol-paper"
+      ],
+      "conditions": [
+        "현재 허가 범위·시설 가동·수탁 규격·해당 로트 인수 및 여유 용량 재확인"
+      ]
+    }
+  ]
+}

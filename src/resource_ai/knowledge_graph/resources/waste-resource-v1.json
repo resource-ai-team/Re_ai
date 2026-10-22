@@ -1,5 +1,5 @@
 {
-  "id": "re-ai-waste-resource-ontology-v1.1",
+  "id": "re-ai-waste-resource-ontology-v1.2",
   "graph_schema": "resource-property-graph-v1",
   "model": "provenance-aware-property-graph",
   "normalization": "Unicode NFC, casefold, collapse whitespace; complete-label equality only",
@@ -8,45 +8,406 @@
     "comma_lists_imply_process_sequence": false,
     "doi_candidate_implies_article_support": false,
     "lexical_material_hint_implies_composition": false,
-    "dispatch_approved": false
+    "dispatch_approved": false,
+    "material_state_equality_implies_grade_compatibility": false,
+    "published_capacity_implies_available_capacity": false,
+    "site_role_implies_verified_equipment": false
   },
   "classes": {
-    "Material": {"label": "소재 조회 개념", "required": {"canonical_id": "string", "search_scope_only": "boolean"}},
-    "WasteDescription": {"label": "문헌의 투입물 표현", "required": {"normalization_key": "string", "raw_labels": "array", "opaque": "boolean"}},
-    "ProcessDescription": {"label": "문헌의 공정명 표현·묶음", "required": {"normalization_key": "string", "raw_labels": "array", "opaque": "boolean", "sequence_verified": "boolean"}},
-    "OutputDescription": {"label": "문헌의 산출물·특성 표현", "required": {"normalization_key": "string", "raw_labels": "array", "opaque": "boolean", "product_verified": "boolean"}},
-    "TransformationClaim": {"label": "출처 하나의 변환 관계 주장", "required": {"candidate_id": "string", "raw_record": "object", "validation": "string", "components_split": "boolean", "dispatch_approved": "boolean"}},
-    "Source": {"label": "자료 출처", "required": {"source_key": "string", "origin": "string", "metadata": "object"}},
-    "Evidence": {"label": "출처와 위치가 연결된 근거 기록", "required": {"record_key": "string", "locator": "string", "validation": "string", "model_transfer_allowed": "boolean"}},
-    "ScopedClaim": {"label": "적용 범위가 명시된 조사 카드", "required": {"card_id": "string", "statement": "string", "scope": "string", "validation": "string", "raw_record": "object", "dispatch_approved": "boolean"}},
-    "RouteSnapshot": {"label": "조건부 공정 후보의 버전", "required": {"original_route_id": "string", "material": "string", "input_form": "string", "snapshot_hash": "string", "payload": "object", "evidence_map": "object", "evidence_fingerprint": "string", "validation": "string", "dispatch_approved": "boolean"}},
-    "StepOccurrence": {"label": "특정 공정 후보 안의 단계", "required": {"original_id": "string", "route_snapshot_id": "string", "payload": "object", "validation": "string"}},
-    "LinkOccurrence": {"label": "특정 공정 후보 안의 연결 구간", "required": {"original_id": "string", "route_snapshot_id": "string", "payload": "object", "validation": "string"}},
-    "Condition": {"label": "확인해야 할 적용 조건", "required": {"text": "string", "origin": "string", "validation": "string", "dispatch_approved": "boolean"}},
-    "Risk": {"label": "단계·연결 구간의 위험·확인 과제", "required": {"original_id": "string", "route_snapshot_id": "string", "payload": "object", "validation": "string", "dispatch_approved": "boolean"}}
+    "Material": {
+      "label": "소재 조회 개념",
+      "required": {
+        "canonical_id": "string",
+        "search_scope_only": "boolean"
+      }
+    },
+    "WasteDescription": {
+      "label": "문헌의 투입물 표현",
+      "required": {
+        "normalization_key": "string",
+        "raw_labels": "array",
+        "opaque": "boolean"
+      }
+    },
+    "ProcessDescription": {
+      "label": "문헌의 공정명 표현·묶음",
+      "required": {
+        "normalization_key": "string",
+        "raw_labels": "array",
+        "opaque": "boolean",
+        "sequence_verified": "boolean"
+      }
+    },
+    "OutputDescription": {
+      "label": "문헌의 산출물·특성 표현",
+      "required": {
+        "normalization_key": "string",
+        "raw_labels": "array",
+        "opaque": "boolean",
+        "product_verified": "boolean"
+      }
+    },
+    "TransformationClaim": {
+      "label": "출처 하나의 변환 관계 주장",
+      "required": {
+        "candidate_id": "string",
+        "raw_record": "object",
+        "validation": "string",
+        "components_split": "boolean",
+        "dispatch_approved": "boolean"
+      }
+    },
+    "Source": {
+      "label": "자료 출처",
+      "required": {
+        "source_key": "string",
+        "origin": "string",
+        "metadata": "object"
+      }
+    },
+    "Evidence": {
+      "label": "출처와 위치가 연결된 근거 기록",
+      "required": {
+        "record_key": "string",
+        "locator": "string",
+        "validation": "string",
+        "model_transfer_allowed": "boolean"
+      }
+    },
+    "ScopedClaim": {
+      "label": "적용 범위가 명시된 조사 카드",
+      "required": {
+        "card_id": "string",
+        "statement": "string",
+        "scope": "string",
+        "validation": "string",
+        "raw_record": "object",
+        "dispatch_approved": "boolean"
+      }
+    },
+    "RouteSnapshot": {
+      "label": "조건부 공정 후보의 버전",
+      "required": {
+        "original_route_id": "string",
+        "material": "string",
+        "input_form": "string",
+        "snapshot_hash": "string",
+        "payload": "object",
+        "evidence_map": "object",
+        "evidence_fingerprint": "string",
+        "validation": "string",
+        "dispatch_approved": "boolean"
+      }
+    },
+    "StepOccurrence": {
+      "label": "특정 공정 후보 안의 단계",
+      "required": {
+        "original_id": "string",
+        "route_snapshot_id": "string",
+        "payload": "object",
+        "validation": "string"
+      }
+    },
+    "LinkOccurrence": {
+      "label": "특정 공정 후보 안의 연결 구간",
+      "required": {
+        "original_id": "string",
+        "route_snapshot_id": "string",
+        "payload": "object",
+        "validation": "string"
+      }
+    },
+    "Condition": {
+      "label": "확인해야 할 적용 조건",
+      "required": {
+        "text": "string",
+        "origin": "string",
+        "validation": "string",
+        "dispatch_approved": "boolean"
+      }
+    },
+    "Risk": {
+      "label": "단계·연결 구간의 위험·확인 과제",
+      "required": {
+        "original_id": "string",
+        "route_snapshot_id": "string",
+        "payload": "object",
+        "validation": "string",
+        "dispatch_approved": "boolean"
+      }
+    },
+    "MaterialState": {
+      "label": "출처로 정의한 투입·산출 상태",
+      "required": {
+        "planning_key": "string",
+        "planning_bundle_sha256": "string",
+        "record": "object",
+        "validation": "string",
+        "dispatch_approved": "boolean"
+      }
+    },
+    "ProcessTransition": {
+      "label": "출처로 정의한 상태 간 공정 전이",
+      "required": {
+        "planning_key": "string",
+        "planning_bundle_sha256": "string",
+        "record": "object",
+        "validation": "string",
+        "dispatch_approved": "boolean"
+      }
+    },
+    "Organisation": {
+      "label": "공개 자료의 기업",
+      "required": {
+        "planning_key": "string",
+        "planning_bundle_sha256": "string",
+        "record": "object",
+        "validation": "string",
+        "dispatch_approved": "boolean"
+      }
+    },
+    "Facility": {
+      "label": "기업과 구분한 사업장 사례",
+      "required": {
+        "planning_key": "string",
+        "planning_bundle_sha256": "string",
+        "record": "object",
+        "validation": "string",
+        "dispatch_approved": "boolean"
+      }
+    },
+    "FacilityCapability": {
+      "label": "사업장-공정의 공개 주장·역할 가설",
+      "required": {
+        "planning_key": "string",
+        "planning_bundle_sha256": "string",
+        "record": "object",
+        "validation": "string",
+        "dispatch_approved": "boolean"
+      }
+    }
   },
   "relations": {
-    "INPUT_LABEL": {"domain": ["TransformationClaim"], "range": ["WasteDescription"]},
-    "PROCESS_LABEL": {"domain": ["TransformationClaim"], "range": ["ProcessDescription"]},
-    "OUTPUT_LABEL": {"domain": ["TransformationClaim"], "range": ["OutputDescription"]},
-    "MENTIONS_MATERIAL": {"domain": ["WasteDescription"], "range": ["Material"]},
-    "SUPPORTED_BY": {"domain": ["TransformationClaim", "ScopedClaim", "RouteSnapshot", "StepOccurrence", "LinkOccurrence", "Condition", "Risk"], "range": ["Evidence"]},
-    "FROM_SOURCE": {"domain": ["Evidence"], "range": ["Source"]},
-    "FOR_MATERIAL": {"domain": ["ScopedClaim", "RouteSnapshot"], "range": ["Material"]},
-    "HAS_STEP": {"domain": ["RouteSnapshot"], "range": ["StepOccurrence"]},
-    "HAS_LINK": {"domain": ["RouteSnapshot"], "range": ["LinkOccurrence"]},
-    "FROM_STEP": {"domain": ["LinkOccurrence"], "range": ["StepOccurrence"]},
-    "TO_STEP": {"domain": ["LinkOccurrence"], "range": ["StepOccurrence"]},
-    "REQUIRES": {"domain": ["ScopedClaim", "RouteSnapshot"], "range": ["Condition"]},
-    "HAS_RISK": {"domain": ["RouteSnapshot"], "range": ["Risk"]},
-    "TARGETS": {"domain": ["Risk"], "range": ["StepOccurrence", "LinkOccurrence"]}
+    "INPUT_LABEL": {
+      "domain": [
+        "TransformationClaim"
+      ],
+      "range": [
+        "WasteDescription"
+      ]
+    },
+    "PROCESS_LABEL": {
+      "domain": [
+        "TransformationClaim"
+      ],
+      "range": [
+        "ProcessDescription"
+      ]
+    },
+    "OUTPUT_LABEL": {
+      "domain": [
+        "TransformationClaim"
+      ],
+      "range": [
+        "OutputDescription"
+      ]
+    },
+    "MENTIONS_MATERIAL": {
+      "domain": [
+        "WasteDescription"
+      ],
+      "range": [
+        "Material"
+      ]
+    },
+    "SUPPORTED_BY": {
+      "domain": [
+        "TransformationClaim",
+        "ScopedClaim",
+        "RouteSnapshot",
+        "StepOccurrence",
+        "LinkOccurrence",
+        "Condition",
+        "Risk",
+        "MaterialState",
+        "ProcessTransition",
+        "Organisation",
+        "Facility",
+        "FacilityCapability"
+      ],
+      "range": [
+        "Evidence"
+      ]
+    },
+    "FROM_SOURCE": {
+      "domain": [
+        "Evidence"
+      ],
+      "range": [
+        "Source"
+      ]
+    },
+    "FOR_MATERIAL": {
+      "domain": [
+        "ScopedClaim",
+        "RouteSnapshot",
+        "MaterialState",
+        "ProcessTransition"
+      ],
+      "range": [
+        "Material"
+      ]
+    },
+    "HAS_STEP": {
+      "domain": [
+        "RouteSnapshot"
+      ],
+      "range": [
+        "StepOccurrence"
+      ]
+    },
+    "HAS_LINK": {
+      "domain": [
+        "RouteSnapshot"
+      ],
+      "range": [
+        "LinkOccurrence"
+      ]
+    },
+    "FROM_STEP": {
+      "domain": [
+        "LinkOccurrence"
+      ],
+      "range": [
+        "StepOccurrence"
+      ]
+    },
+    "TO_STEP": {
+      "domain": [
+        "LinkOccurrence"
+      ],
+      "range": [
+        "StepOccurrence"
+      ]
+    },
+    "REQUIRES": {
+      "domain": [
+        "ScopedClaim",
+        "RouteSnapshot"
+      ],
+      "range": [
+        "Condition"
+      ]
+    },
+    "HAS_RISK": {
+      "domain": [
+        "RouteSnapshot"
+      ],
+      "range": [
+        "Risk"
+      ]
+    },
+    "TARGETS": {
+      "domain": [
+        "Risk"
+      ],
+      "range": [
+        "StepOccurrence",
+        "LinkOccurrence"
+      ]
+    },
+    "INPUT_STATE": {
+      "domain": [
+        "ProcessTransition"
+      ],
+      "range": [
+        "MaterialState"
+      ]
+    },
+    "OUTPUT_STATE": {
+      "domain": [
+        "ProcessTransition"
+      ],
+      "range": [
+        "MaterialState"
+      ]
+    },
+    "OPERATED_BY": {
+      "domain": [
+        "Facility"
+      ],
+      "range": [
+        "Organisation"
+      ]
+    },
+    "AT_FACILITY": {
+      "domain": [
+        "FacilityCapability"
+      ],
+      "range": [
+        "Facility"
+      ]
+    },
+    "FOR_TRANSITION": {
+      "domain": [
+        "FacilityCapability"
+      ],
+      "range": [
+        "ProcessTransition"
+      ]
+    }
   },
   "materials": {
-    "pet": {"label": "PET", "aliases": ["pet", "페트", "polyethylene terephthalate", "폴리에틸렌테레프탈레이트"], "search_pattern": "\\bPET\\b|poly\\s*\\(?ethylene\\s+terephthalate"},
-    "aluminium": {"label": "알루미늄", "aliases": ["aluminium", "aluminum", "알루미늄"], "search_pattern": "\\balumin(?:um|ium)\\b"},
-    "paper": {"label": "종이류", "aliases": ["paper", "종이", "종이류", "폐지"], "search_pattern": "\\bpaper\\b|\\bcardboard\\b"},
-    "pp": {"label": "PP", "aliases": ["pp", "polypropylene", "폴리프로필렌"], "search_pattern": "\\bPP\\b|\\bpolypropylene\\b"},
-    "pe": {"label": "PE 수지군", "aliases": ["pe", "polyethylene", "폴리에틸렌", "hdpe", "ldpe", "lldpe"], "search_pattern": "\\b(?:PE|HDPE|LDPE|LLDPE)\\b|\\bpolyethylene\\b(?![ -]+terephthalate)|\\bpoly\\s*\\(ethylene\\)(?![ -]+terephthalate)"}
+    "pet": {
+      "label": "PET",
+      "aliases": [
+        "pet",
+        "페트",
+        "polyethylene terephthalate",
+        "폴리에틸렌테레프탈레이트"
+      ],
+      "search_pattern": "\\bPET\\b|poly\\s*\\(?ethylene\\s+terephthalate"
+    },
+    "aluminium": {
+      "label": "알루미늄",
+      "aliases": [
+        "aluminium",
+        "aluminum",
+        "알루미늄"
+      ],
+      "search_pattern": "\\balumin(?:um|ium)\\b"
+    },
+    "paper": {
+      "label": "종이류",
+      "aliases": [
+        "paper",
+        "종이",
+        "종이류",
+        "폐지"
+      ],
+      "search_pattern": "\\bpaper\\b|\\bcardboard\\b"
+    },
+    "pp": {
+      "label": "PP",
+      "aliases": [
+        "pp",
+        "polypropylene",
+        "폴리프로필렌"
+      ],
+      "search_pattern": "\\bPP\\b|\\bpolypropylene\\b"
+    },
+    "pe": {
+      "label": "PE 수지군",
+      "aliases": [
+        "pe",
+        "polyethylene",
+        "폴리에틸렌",
+        "hdpe",
+        "ldpe",
+        "lldpe"
+      ],
+      "search_pattern": "\\b(?:PE|HDPE|LDPE|LLDPE)\\b|\\bpolyethylene\\b(?![ -]+terephthalate)|\\bpoly\\s*\\(ethylene\\)(?![ -]+terephthalate)"
+    }
   },
   "cardinality": {
     "transformation_field_edge": "exactly one for each nonblank original field, otherwise zero",

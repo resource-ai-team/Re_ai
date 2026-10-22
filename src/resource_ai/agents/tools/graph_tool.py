@@ -1,6 +1,7 @@
 """Callable agent boundary. MCP transport/orchestration are separate work."""
 
 from resource_ai.api.schemas.graph import CandidateRequest
+from resource_ai.api.schemas.kg_planning import PathPlanningRequest
 from resource_ai.api.schemas.kg_pool import CandidatePoolRequest
 from resource_ai.core.dependencies import get_graph_query
 
@@ -20,3 +21,12 @@ def get_candidate_pool_page(**structured_input) -> dict:
         {**structured_input, "audience": "external_model"}
     )
     return get_graph_query().candidate_pool(request).model_dump()
+
+
+def get_process_plan_page(**structured_input) -> dict:
+    """Read graph-compatible paths, never claim permission, price or recommendation.
+
+    Check pagination AND search_scope bounds before claiming complete enumeration.
+    """
+    request = PathPlanningRequest.model_validate({**structured_input, "audience": "external_model"})
+    return get_graph_query().process_plans(request).model_dump()
