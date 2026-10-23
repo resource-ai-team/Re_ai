@@ -26,9 +26,11 @@ dev = ["pytest>=8.3,<10", "ruff>=0.8,<1"]
 
 [project.scripts]
 legal-rag = "resource_ai.cli:main"
+resource-rag = "resource_ai.cli:main"
 resource-kg = "resource_ai.knowledge_graph.cli:main"
 resource-facilities = "resource_ai.knowledge_graph.facility_registry:main"
 legal-graph = "resource_ai.legal_graph.cli:main"
+resource-lci = "resource_ai.calculators.lci.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/resource_ai"]

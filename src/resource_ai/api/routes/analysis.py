@@ -28,7 +28,7 @@ def get_research_service(graph: Annotated[GraphQuery, Depends(get_graph_query)])
     # failures become explicit per-query gaps, not a fabricated successful search.
     class LocalRepository:
         def search(self, query, top_k):
-            return get_repository().search(query, top_k)
+            return get_repository().search(query, top_k, corpus_types=["LAW"])
 
     return CandidateResearchService(graph, LocalRepository())
 

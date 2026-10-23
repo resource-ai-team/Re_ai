@@ -37,3 +37,20 @@ def test_load_jsonl(tmp_path: Path) -> None:
     )
     documents = load_jsonl(path)
     assert documents[0].sections[0].heading == "제1조"
+
+
+def test_parse_company_document_keeps_tenant_id() -> None:
+    document = parse_document(
+        {
+            "source_id": "company:1:v1",
+            "document_type": "COMPANY_DOCUMENT",
+            "title": "성적서",
+            "source_url": "https://example.org/company/1",
+            "tenant_id": "tenant-a",
+            "version": "v1",
+            "sections": [{"heading": "결과", "content": "수분 5%", "page_no": 1}],
+        }
+    )
+
+    assert document.tenant_id == "tenant-a"
+    assert document.corpus_type == "COMPANY_DOCUMENT"
