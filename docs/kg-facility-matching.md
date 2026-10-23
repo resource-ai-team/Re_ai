@@ -28,6 +28,12 @@ W2RKG 문헌 조회와 이 기능은 구분합니다. 공정 순서는 별도로
 
 `POST /kg/facility-candidates`
 
+2026-10-24부터 `sort_by`를 선택할 수 있습니다. 기본 `relevance`는 기존 검색 순서를 유지하며,
+`straight_line_distance`는 출발 위도·경도가 모두 필요하고 전체 매칭 목록을 거리순으로 정렬한 뒤 페이지를 자릅니다.
+좌표 없는 레코드는 뒤에 보존합니다. 정렬·좌표를 바꾸면 커서를 재사용할 수 없습니다.
+조회 알고리즘은 v3이며 예전 v2 커서는 첫 페이지부터 다시 조회해야 합니다.
+여러 공정을 한 번에 조사하려면 [사업장별 시설 조사 API](site-discovery-api.md)를 사용합니다.
+
 ```json
 {
   "transition_key": "pp-clean",

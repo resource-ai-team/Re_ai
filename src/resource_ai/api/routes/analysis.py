@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from resource_ai.agents.decision_review import DecisionReviewService
 from resource_ai.agents.research import CandidateResearchService
+from resource_ai.agents.site_discovery import SiteDiscoveryService
 from resource_ai.api.schemas.analysis import (
     ResearchRequest,
     ResearchResponse,
@@ -15,12 +16,29 @@ from resource_ai.api.schemas.decision_review import (
     DecisionReviewResponse,
     ReviewTemplateRequest,
 )
+from resource_ai.api.schemas.site_discovery import SiteDiscoveryRequest, SiteDiscoveryResponse
 from resource_ai.calculators.scenarios import compare_scenarios
 from resource_ai.core.dependencies import get_graph_query, get_repository
 from resource_ai.knowledge_graph.graph_store import GraphStoreError
 from resource_ai.knowledge_graph.query import GraphQuery
 
 router = APIRouter(prefix="/analysis", tags=["internal-analysis"])
+
+
+@router.post("/site-discovery", response_model=SiteDiscoveryResponse)
+def site_discovery(
+    request: SiteDiscoveryRequest,
+    graph: Annotated[GraphQuery, Depends(get_graph_query)],
+):
+    try:
+        return SiteDiscoveryService(graph).run(request)
+    except GraphStoreError as exc:
+        status = {"invalid-goal": 400, "invalid-transition": 400, "stale-cursor": 409}.get(
+            exc.code, 503
+        )
+        raise HTTPException(
+            status_code=status, detail={"code": exc.code, "message": str(exc)}
+        ) from None
 
 
 def get_research_service(graph: Annotated[GraphQuery, Depends(get_graph_query)]):

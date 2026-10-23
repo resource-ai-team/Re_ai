@@ -6,6 +6,10 @@
 
 ## 실제 KG 경로에 연결한 검토
 
+- `POST /analysis/site-discovery`: `origin` 사업장 정보와 `lot`으로 KG의 공정별 시설 명부를 직선거리순 조회합니다.
+  전체 매칭 목록을 정렬한 뒤 페이지를 받고 KG·명부·코드표 버전과 부분 조회 범위를 확인합니다.
+  사업장 권한·좌표 검수는 Re_server 책임입니다. 법규 검색·생성 모델·도로거리·견적은 호출하지 않습니다.
+  `REVIEW`·빈 최종 추천·`dispatch_approved=false`를 반환합니다. [요청·결과·실제 DB 검사](site-discovery-api.md).
 - `POST /analysis/review-template`: `lot`·`max_pages`로 실제 KG 경로의 빈 수치 양식을 조회합니다. RAG·생성 모델 호출 없음.
   `input_sha256`·`graph_trace`·공정/인계 ID와 함께 활동량·계수·근거 ID를 `null`로 반환합니다.
 - `POST /analysis/review`: `research`와 선택 `numeric`을 받아 후보 조사 → 같은 로트·현재 그래프·순서 대조 → 제출 수치 계산 → 수치상 Pareto → 결정론적 Critic을 실행합니다.
