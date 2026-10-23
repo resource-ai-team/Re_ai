@@ -1,10 +1,22 @@
 from dataclasses import dataclass, field
 from datetime import date
+from enum import StrEnum
 from typing import Any
 
 
+class CorpusType(StrEnum):
+    LAW = "LAW"
+    PRECEDENT = "PRECEDENT"
+    TECHNICAL_LITERATURE = "TECHNICAL_LITERATURE"
+    HISTORICAL_CASE = "HISTORICAL_CASE"
+    COMPANY_DOCUMENT = "COMPANY_DOCUMENT"
+
+
+SUPPORTED_CORPUS_TYPES = frozenset(CorpusType)
+
+
 @dataclass(frozen=True)
-class LegalSection:
+class EvidenceSection:
     heading: str
     content: str
     citation: str | None = None
@@ -13,17 +25,23 @@ class LegalSection:
 
 
 @dataclass(frozen=True)
-class LegalDocument:
+class EvidenceDocument:
     source_id: str
     document_type: str
     title: str
     source_url: str
-    sections: list[LegalSection]
+    sections: list[EvidenceSection]
     source_org: str | None = None
     document_no: str | None = None
     effective_from: date | None = None
     version: str | None = None
+    tenant_id: str | None = None
     metadata: dict[str, Any] = field(default_factory=dict)
+
+    @property
+    def corpus_type(self) -> str:
+        """Expose the domain name while preserving the document_type JSON contract."""
+        return self.document_type
 
 
 @dataclass(frozen=True)
@@ -38,3 +56,8 @@ class SearchResult:
     effective_from: date | None
     score: float
     retrieval_method: str = "unknown"
+
+
+# Backward-compatible names for the existing legal collector and API contracts.
+LegalSection = EvidenceSection
+LegalDocument = EvidenceDocument
