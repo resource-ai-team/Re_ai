@@ -1,4 +1,6 @@
 import json
+from collections.abc import Sequence
+from dataclasses import replace
 from pathlib import Path
 
 from pgvector import Vector
@@ -36,7 +38,27 @@ class LegalRepository:
             for path in migration_files:
                 connection.execute(path.read_text(encoding="utf-8"))
 
-    def ingest(self, document: LegalDocument) -> int:
+    @staticmethod
+    def _canonical_source_id(document: LegalDocument) -> str:
+        explicit = document.metadata.get("canonical_source_id")
+        if explicit:
+            return str(explicit)
+        if document.document_type == "LAW" and document.metadata.get("law_id"):
+            return f"law:{document.metadata['law_id']}"
+        if document.document_type == "PRECEDENT" and document.metadata.get("precedent_id"):
+            return f"precedent:{document.metadata['precedent_id']}"
+        return document.source_id
+
+    def _prepare_document(
+        self, document: LegalDocument
+    ) -> tuple[
+        LegalDocument, list[tuple[str, str, str | None, int | None, dict]], list[list[float]]
+    ]:
+        canonical_source_id = self._canonical_source_id(document)
+        document = replace(
+            document,
+            metadata={**document.metadata, "canonical_source_id": canonical_source_id},
+        )
         chunk_records: list[tuple[str, str, str | None, int | None, dict]] = []
         for section in document.sections:
             for chunk in chunk_text(section.content):
@@ -44,11 +66,31 @@ class LegalRepository:
                 chunk_records.append(
                     (section.heading, chunk.content, section.citation, section.page_no, metadata)
                 )
+        if not chunk_records:
+            raise ValueError(f"Document {document.source_id!r} produced no searchable chunks")
         vectors = self.embeddings.embed_documents([record[1] for record in chunk_records])
+        if len(vectors) != len(chunk_records):
+            raise ValueError(
+                f"Embedding count mismatch for {document.source_id}: "
+                f"expected {len(chunk_records)}, got {len(vectors)}"
+            )
+        return document, chunk_records, vectors
 
-        with self.database.connect() as connection:
-            row = connection.execute(
-                """
+    @staticmethod
+    def _write_document(connection, document, chunk_records, vectors) -> int:
+        canonical_source_id = document.metadata["canonical_source_id"]
+        connection.execute(
+            """
+            UPDATE legal_documents
+            SET is_current = false, updated_at = now()
+            WHERE source_id <> %s
+              AND metadata ->> 'canonical_source_id' = %s
+              AND is_current = true
+            """,
+            (document.source_id, canonical_source_id),
+        )
+        row = connection.execute(
+            """
                 INSERT INTO legal_documents (
                     source_id, document_type, title, source_url, source_org,
                     document_no, effective_from, version, metadata
@@ -62,44 +104,59 @@ class LegalRepository:
                     effective_from = EXCLUDED.effective_from,
                     version = EXCLUDED.version,
                     metadata = EXCLUDED.metadata,
+                    is_current = true,
                     updated_at = now()
                 RETURNING id
                 """,
-                (
-                    document.source_id,
-                    document.document_type,
-                    document.title,
-                    document.source_url,
-                    document.source_org,
-                    document.document_no,
-                    document.effective_from,
-                    document.version,
-                    json.dumps(document.metadata, ensure_ascii=False),
-                ),
-            ).fetchone()
-            if row is None:
-                raise RuntimeError("Document upsert did not return an id")
-            document_id = row[0]
-            connection.execute("DELETE FROM legal_chunks WHERE document_id = %s", (document_id,))
-            for record, vector in zip(chunk_records, vectors, strict=True):
-                heading, content, citation, page_no, metadata = record
-                connection.execute(
-                    """
+            (
+                document.source_id,
+                document.document_type,
+                document.title,
+                document.source_url,
+                document.source_org,
+                document.document_no,
+                document.effective_from,
+                document.version,
+                json.dumps(document.metadata, ensure_ascii=False),
+            ),
+        ).fetchone()
+        if row is None:
+            raise RuntimeError("Document upsert did not return an id")
+        document_id = row[0]
+        connection.execute("DELETE FROM legal_chunks WHERE document_id = %s", (document_id,))
+        for record, vector in zip(chunk_records, vectors, strict=True):
+            heading, content, citation, page_no, metadata = record
+            connection.execute(
+                """
                     INSERT INTO legal_chunks (
                         document_id, heading, content, citation, page_no, metadata, embedding
                     ) VALUES (%s, %s, %s, %s, %s, %s::jsonb, %s)
                     """,
-                    (
-                        document_id,
-                        heading,
-                        content,
-                        citation,
-                        page_no,
-                        json.dumps(metadata, ensure_ascii=False),
-                        Vector(vector),
-                    ),
-                )
+                (
+                    document_id,
+                    heading,
+                    content,
+                    citation,
+                    page_no,
+                    json.dumps(metadata, ensure_ascii=False),
+                    Vector(vector),
+                ),
+            )
         return len(chunk_records)
+
+    def ingest_many(self, documents: Sequence[LegalDocument]) -> int:
+        """Validate embeddings first, then index the whole dataset in one transaction."""
+        prepared = [self._prepare_document(document) for document in documents]
+        if not prepared:
+            raise ValueError("At least one document is required")
+        with self.database.connect() as connection:
+            return sum(
+                self._write_document(connection, document, chunk_records, vectors)
+                for document, chunk_records, vectors in prepared
+            )
+
+    def ingest(self, document: LegalDocument) -> int:
+        return self.ingest_many([document])
 
     @staticmethod
     def _results(rows: list[tuple], method: str) -> list[SearchResult]:

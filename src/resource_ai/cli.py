@@ -9,7 +9,11 @@ from resource_ai.rag.evaluation import (
     load_retrieval_cases,
     summarize_evaluations,
 )
-from resource_ai.rag.ingestion.dataset import validate_documents, write_dataset_manifest
+from resource_ai.rag.ingestion.dataset import (
+    validate_documents,
+    verify_dataset_manifest,
+    write_dataset_manifest,
+)
 from resource_ai.rag.ingestion.loader import load_jsonl, write_jsonl
 from resource_ai.rag.ingestion.pipeline import collect_scope
 
@@ -21,6 +25,18 @@ def build_parser() -> argparse.ArgumentParser:
 
     ingest = commands.add_parser("ingest", help="Ingest legal JSONL documents")
     ingest.add_argument("path", type=Path)
+
+    index = commands.add_parser(
+        "index", help="Validate a generated legal dataset and atomically index it"
+    )
+    index.add_argument(
+        "path", type=Path, nargs="?", default=Path("data/official/legal_documents.jsonl")
+    )
+    index.add_argument(
+        "--manifest",
+        type=Path,
+        help="Manifest path (defaults to <dataset>.manifest.json)",
+    )
 
     search = commands.add_parser("search", help="Search legal evidence")
     search.add_argument("query")
@@ -81,6 +97,20 @@ def main() -> None:
                 print(f"ERROR: {error}")
             raise SystemExit(1)
         print("Dataset validation passed")
+        return
+
+    if args.command == "index":
+        manifest_path = args.manifest or args.path.with_suffix(".manifest.json")
+        verify_dataset_manifest(manifest_path, args.path)
+        documents = load_jsonl(args.path)
+        validation = validate_documents(documents)
+        if not validation.passed:
+            for error in validation.errors:
+                print(f"ERROR: {error}")
+            raise SystemExit(1)
+        repository = get_repository()
+        total = repository.ingest_many(documents)
+        print(f"Validated and indexed {validation.document_count} documents / {total} chunks")
         return
 
     repository = get_repository()

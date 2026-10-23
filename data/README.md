@@ -39,10 +39,12 @@ Neo4j 데이터 볼륨·로컬 비밀번호·국가 LCI 원본은 Git에 포함�
 ```bash
 legal-rag collect
 legal-rag validate
+legal-rag index
 ```
 
 수집 시 `legal_documents.jsonl`과 `legal_documents.manifest.json`이 생성된다. 매니페스트에는
 범위와 데이터 파일의 SHA-256, 문서·구획 수, 법령 버전, 시행일과 공식 URL이 기록된다.
+`legal-rag index`는 이 해시와 데이터 검증을 통과한 파일만 pgvector에 원자적으로 적재한다.
 
 ## 신뢰 경계
 

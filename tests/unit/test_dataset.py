@@ -1,9 +1,16 @@
+import json
 from dataclasses import replace
 from datetime import date
 from pathlib import Path
 
+import pytest
+
 from resource_ai.evidence.models import LegalDocument, LegalSection
-from resource_ai.rag.ingestion.dataset import validate_documents, write_dataset_manifest
+from resource_ai.rag.ingestion.dataset import (
+    validate_documents,
+    verify_dataset_manifest,
+    write_dataset_manifest,
+)
 from resource_ai.rag.ingestion.loader import write_jsonl
 
 
@@ -68,3 +75,35 @@ def test_manifest_records_dataset_and_scope_hashes(tmp_path: Path) -> None:
     assert '"dataset_version": "1.0.0"' in content
     assert '"dataset_sha256"' in content
     assert '"scope_sha256"' in content
+
+
+def test_verify_dataset_manifest_accepts_unchanged_dataset(tmp_path: Path) -> None:
+    document = _official_document()
+    dataset_path = tmp_path / "documents.jsonl"
+    scope_path = tmp_path / "scope.json"
+    manifest_path = tmp_path / "documents.manifest.json"
+    scope_path.write_text('{"dataset_version":"1.0.0"}', encoding="utf-8")
+    write_jsonl(dataset_path, [document])
+    write_dataset_manifest(
+        manifest_path,
+        documents=[document],
+        scope_path=scope_path,
+        dataset_path=dataset_path,
+    )
+
+    manifest = verify_dataset_manifest(manifest_path, dataset_path)
+
+    assert manifest["validation"]["document_count"] == 1
+
+
+def test_verify_dataset_manifest_rejects_changed_dataset(tmp_path: Path) -> None:
+    dataset_path = tmp_path / "documents.jsonl"
+    manifest_path = tmp_path / "documents.manifest.json"
+    dataset_path.write_text("original", encoding="utf-8")
+    manifest_path.write_text(
+        json.dumps({"dataset_sha256": "0" * 64}),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="does not match"):
+        verify_dataset_manifest(manifest_path, dataset_path)

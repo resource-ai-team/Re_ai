@@ -87,10 +87,14 @@ resource-kg를 .\.venv\Scripts\resource-kg.exe, uvicorn을 .\.venv\Scripts\uvico
 legal-rag init-db
 resource-kg import
 legal-rag collect
-legal-rag validate
-legal-rag ingest data/official/legal_documents.jsonl
+legal-rag index
 uvicorn resource_ai.main:app --reload
 ~~~
+
+`legal-rag index`는 데이터셋 매니페스트의 SHA-256과 공식 출처 메타데이터를
+검증한 뒤 전체 문서를 하나의 트랜잭션으로 적재합니다. 중간 문서에서 실패하면
+해당 실행의 DB 변경을 모두 되돌립니다. `validate`와 `ingest`는 개별 점검·수동
+적재가 필요할 때 계속 사용할 수 있습니다.
 
 - API 설명·시험: http://127.0.0.1:8000/docs
 - 프로세스 상태: **GET /health** — DB·데이터가 모두 준비됐다는 확인은 아닙니다.
