@@ -1,0 +1,16 @@
+{
+  "dataset_version": "public-evidence-summary-v1",
+  "document_type": "TECHNICAL_LITERATURE",
+  "included_lanes": [
+    "factory",
+    "recipient",
+    "technical"
+  ],
+  "content_form": "reviewed-factual-summary",
+  "raw_document_indexing": false,
+  "notes": [
+    "검수된 공개 출처 요약만 적재하며 원문 전체는 적재하지 않는다.",
+    "법률·비용·탄소 카드는 각각 공식 법률 코퍼스와 구조화 계산 영역에서 관리한다.",
+    "시설·수취 후보 카드는 인수 승인이나 현행 허가를 의미하지 않는다."
+  ]
+}

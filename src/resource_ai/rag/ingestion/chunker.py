@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from resource_ai.evidence.models import CorpusType
+
 
 @dataclass(frozen=True)
 class TextChunk:
@@ -7,8 +9,31 @@ class TextChunk:
     index: int
 
 
+@dataclass(frozen=True)
+class ChunkPolicy:
+    max_chars: int
+    overlap_chars: int
+
+
+CORPUS_CHUNK_POLICIES = {
+    CorpusType.LAW: ChunkPolicy(1200, 150),
+    CorpusType.PRECEDENT: ChunkPolicy(1400, 180),
+    CorpusType.TECHNICAL_LITERATURE: ChunkPolicy(1600, 200),
+    CorpusType.HISTORICAL_CASE: ChunkPolicy(1000, 120),
+    CorpusType.COMPANY_DOCUMENT: ChunkPolicy(1200, 150),
+}
+
+
+def chunk_for_corpus(text: str, corpus_type: str) -> list[TextChunk]:
+    try:
+        policy = CORPUS_CHUNK_POLICIES[CorpusType(corpus_type)]
+    except ValueError as exc:
+        raise ValueError(f"Unsupported corpus type: {corpus_type}") from exc
+    return chunk_text(text, policy.max_chars, policy.overlap_chars)
+
+
 def chunk_text(text: str, max_chars: int = 1200, overlap_chars: int = 150) -> list[TextChunk]:
-    """Split long legal sections while preferring paragraph boundaries."""
+    """Split a document section while preferring paragraph boundaries."""
     normalized = "\n".join(line.strip() for line in text.splitlines() if line.strip())
     if not normalized:
         return []
