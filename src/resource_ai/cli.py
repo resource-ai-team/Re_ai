@@ -19,15 +19,15 @@ from resource_ai.rag.ingestion.pipeline import collect_scope
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Local legal RAG utilities")
+    parser = argparse.ArgumentParser(description="Local multi-corpus RAG utilities")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("init-db", help="Create pgvector tables")
 
-    ingest = commands.add_parser("ingest", help="Ingest legal JSONL documents")
+    ingest = commands.add_parser("ingest", help="Ingest evidence JSONL documents")
     ingest.add_argument("path", type=Path)
 
     index = commands.add_parser(
-        "index", help="Validate a generated legal dataset and atomically index it"
+        "index", help="Validate a generated evidence dataset and atomically index it"
     )
     index.add_argument(
         "path", type=Path, nargs="?", default=Path("data/official/legal_documents.jsonl")
@@ -38,15 +38,17 @@ def build_parser() -> argparse.ArgumentParser:
         help="Manifest path (defaults to <dataset>.manifest.json)",
     )
 
-    search = commands.add_parser("search", help="Search legal evidence")
+    search = commands.add_parser("search", help="Search evidence")
     search.add_argument("query")
     search.add_argument("--top-k", type=int, default=5)
+    search.add_argument("--corpus", action="append", dest="corpus_types")
+    search.add_argument("--tenant-id")
 
     collect = commands.add_parser("collect", help="Collect official Korean legal sources")
     collect.add_argument("--scope", type=Path, default=Path("data/config/legal_scope.json"))
     collect.add_argument("--output", type=Path, default=Path("data/official/legal_documents.jsonl"))
 
-    validate = commands.add_parser("validate", help="Validate an official legal dataset")
+    validate = commands.add_parser("validate", help="Validate an evidence dataset")
     validate.add_argument(
         "path", type=Path, nargs="?", default=Path("data/official/legal_documents.jsonl")
     )
@@ -139,12 +141,21 @@ def main() -> None:
         print("Database initialized")
         return
     if args.command == "ingest":
-        total = 0
-        for document in load_jsonl(args.path):
-            total += repository.ingest(document)
+        documents = load_jsonl(args.path)
+        validation = validate_documents(documents)
+        if not validation.passed:
+            for error in validation.errors:
+                print(f"ERROR: {error}")
+            raise SystemExit(1)
+        total = repository.ingest_many(documents)
         print(f"Ingested {total} chunks")
         return
-    for result in repository.search(args.query, args.top_k):
+    for result in repository.search(
+        args.query,
+        args.top_k,
+        corpus_types=args.corpus_types,
+        tenant_id=args.tenant_id,
+    ):
         print(f"[{result.score:.4f} {result.retrieval_method}] {result.title} {result.heading}")
         print(f"{result.content}\n{result.source_url}\n")
 

@@ -5,15 +5,15 @@ from pathlib import Path
 
 from pgvector import Vector
 
-from resource_ai.evidence.models import LegalDocument, SearchResult
-from resource_ai.rag.ingestion.chunker import chunk_text
+from resource_ai.evidence.models import CorpusType, EvidenceDocument, SearchResult
+from resource_ai.rag.ingestion.chunker import chunk_for_corpus
 from resource_ai.rag.retrieval.embeddings import EmbeddingProvider
 from resource_ai.rag.retrieval.reranker import rerank_legal_results
 from resource_ai.rag.retrieval.retriever import reciprocal_rank_fusion
 from resource_ai.rag.retrieval.vector_store import Database
 
 
-class LegalRepository:
+class EvidenceRepository:
     def __init__(
         self,
         database: Database,
@@ -39,7 +39,7 @@ class LegalRepository:
                 connection.execute(path.read_text(encoding="utf-8"))
 
     @staticmethod
-    def _canonical_source_id(document: LegalDocument) -> str:
+    def _canonical_source_id(document: EvidenceDocument) -> str:
         explicit = document.metadata.get("canonical_source_id")
         if explicit:
             return str(explicit)
@@ -47,12 +47,14 @@ class LegalRepository:
             return f"law:{document.metadata['law_id']}"
         if document.document_type == "PRECEDENT" and document.metadata.get("precedent_id"):
             return f"precedent:{document.metadata['precedent_id']}"
+        if document.document_type == "COMPANY_DOCUMENT":
+            return f"company_document:{document.tenant_id}:{document.source_id}"
         return document.source_id
 
     def _prepare_document(
-        self, document: LegalDocument
+        self, document: EvidenceDocument
     ) -> tuple[
-        LegalDocument, list[tuple[str, str, str | None, int | None, dict]], list[list[float]]
+        EvidenceDocument, list[tuple[str, str, str | None, int | None, dict]], list[list[float]]
     ]:
         canonical_source_id = self._canonical_source_id(document)
         document = replace(
@@ -61,8 +63,17 @@ class LegalRepository:
         )
         chunk_records: list[tuple[str, str, str | None, int | None, dict]] = []
         for section in document.sections:
-            for chunk in chunk_text(section.content):
-                metadata = {**section.metadata, "chunk_index": chunk.index}
+            for chunk in chunk_for_corpus(section.content, document.document_type):
+                metadata = {
+                    **section.metadata,
+                    "chunk_index": chunk.index,
+                    "corpus_type": document.document_type,
+                    "source_id": document.source_id,
+                    "source_url": document.source_url,
+                    "version": document.version,
+                    "tenant_id": document.tenant_id,
+                    "source_position": section.citation or section.page_no,
+                }
                 chunk_records.append(
                     (section.heading, chunk.content, section.citation, section.page_no, metadata)
                 )
@@ -85,17 +96,18 @@ class LegalRepository:
             SET is_current = false, updated_at = now()
             WHERE source_id <> %s
               AND metadata ->> 'canonical_source_id' = %s
+              AND tenant_id IS NOT DISTINCT FROM %s
               AND is_current = true
             """,
-            (document.source_id, canonical_source_id),
+            (document.source_id, canonical_source_id, document.tenant_id),
         )
         row = connection.execute(
             """
                 INSERT INTO legal_documents (
                     source_id, document_type, title, source_url, source_org,
-                    document_no, effective_from, version, metadata
-                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s::jsonb)
-                ON CONFLICT (source_id) DO UPDATE SET
+                    document_no, effective_from, version, tenant_id, metadata
+                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s::jsonb)
+                ON CONFLICT (source_id, tenant_key) DO UPDATE SET
                     document_type = EXCLUDED.document_type,
                     title = EXCLUDED.title,
                     source_url = EXCLUDED.source_url,
@@ -103,6 +115,7 @@ class LegalRepository:
                     document_no = EXCLUDED.document_no,
                     effective_from = EXCLUDED.effective_from,
                     version = EXCLUDED.version,
+                    tenant_id = EXCLUDED.tenant_id,
                     metadata = EXCLUDED.metadata,
                     is_current = true,
                     updated_at = now()
@@ -117,6 +130,7 @@ class LegalRepository:
                 document.document_no,
                 document.effective_from,
                 document.version,
+                document.tenant_id,
                 json.dumps(document.metadata, ensure_ascii=False),
             ),
         ).fetchone()
@@ -144,7 +158,7 @@ class LegalRepository:
             )
         return len(chunk_records)
 
-    def ingest_many(self, documents: Sequence[LegalDocument]) -> int:
+    def ingest_many(self, documents: Sequence[EvidenceDocument]) -> int:
         """Validate embeddings first, then index the whole dataset in one transaction."""
         prepared = [self._prepare_document(document) for document in documents]
         if not prepared:
@@ -155,16 +169,30 @@ class LegalRepository:
                 for document, chunk_records, vectors in prepared
             )
 
-    def ingest(self, document: LegalDocument) -> int:
+    def ingest(self, document: EvidenceDocument) -> int:
         return self.ingest_many([document])
 
     @staticmethod
     def _results(rows: list[tuple], method: str) -> list[SearchResult]:
         return [SearchResult(*row, retrieval_method=method) for row in rows]
 
-    def search(self, query: str, top_k: int = 5) -> list[SearchResult]:
+    def search(
+        self,
+        query: str,
+        top_k: int = 5,
+        *,
+        corpus_types: Sequence[str] | None = None,
+        tenant_id: str | None = None,
+    ) -> list[SearchResult]:
         if top_k <= 0:
             raise ValueError("top_k must be positive")
+        normalized_types = list(dict.fromkeys(corpus_types or [])) or None
+        supported_types = {item.value for item in CorpusType}
+        invalid_types = sorted(set(normalized_types or []) - supported_types)
+        if invalid_types:
+            raise ValueError(f"Unsupported corpus types: {', '.join(invalid_types)}")
+        if CorpusType.COMPANY_DOCUMENT in (normalized_types or []) and not tenant_id:
+            raise ValueError("tenant_id is required when searching company documents")
         query_vector = Vector(self.embeddings.embed_query(query))
         candidate_count = max(top_k * self.candidate_multiplier, top_k)
         with self.database.connect() as connection:
@@ -184,6 +212,8 @@ class LegalRepository:
                 JOIN legal_documents d ON d.id = c.document_id
                 WHERE
                     d.is_current = true
+                    AND (%s::text[] IS NULL OR d.document_type = ANY(%s::text[]))
+                    AND (d.document_type <> 'COMPANY_DOCUMENT' OR d.tenant_id = %s)
                     AND (
                         d.document_type <> 'LAW'
                         OR d.effective_from IS NULL
@@ -192,7 +222,14 @@ class LegalRepository:
                 ORDER BY c.embedding <=> %s
                 LIMIT %s
                 """,
-                (query_vector, query_vector, candidate_count),
+                (
+                    query_vector,
+                    normalized_types,
+                    normalized_types,
+                    tenant_id,
+                    query_vector,
+                    candidate_count,
+                ),
             ).fetchall()
             keyword_rows = connection.execute(
                 """
@@ -213,6 +250,8 @@ class LegalRepository:
                 JOIN legal_documents d ON d.id = c.document_id
                 WHERE
                     d.is_current = true
+                    AND (%s::text[] IS NULL OR d.document_type = ANY(%s::text[]))
+                    AND (d.document_type <> 'COMPANY_DOCUMENT' OR d.tenant_id = %s)
                     AND (
                         d.document_type <> 'LAW'
                         OR d.effective_from IS NULL
@@ -222,7 +261,7 @@ class LegalRepository:
                 ORDER BY score DESC, c.id
                 LIMIT %s
                 """,
-                (query, query, candidate_count),
+                (query, normalized_types, normalized_types, tenant_id, query, candidate_count),
             ).fetchall()
         fused = reciprocal_rank_fusion(
             self._results(vector_rows, "vector"),
@@ -231,3 +270,7 @@ class LegalRepository:
             rrf_k=self.rrf_k,
         )
         return rerank_legal_results(query, fused, limit=top_k)
+
+
+# Existing application code imports LegalRepository. Keep it as a compatibility alias.
+LegalRepository = EvidenceRepository

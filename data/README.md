@@ -46,6 +46,10 @@ legal-rag index
 범위와 데이터 파일의 SHA-256, 문서·구획 수, 법령 버전, 시행일과 공식 URL이 기록된다.
 `legal-rag index`는 이 해시와 데이터 검증을 통과한 파일만 pgvector에 원자적으로 적재한다.
 
+법령 외 기술문헌·과거 사례·기업 문서는 공통 JSONL 계약으로 정규화한 뒤
+`resource-rag validate`와 `resource-rag index`를 사용한다. 코퍼스별 필수 메타데이터와
+기업 문서 권한 경계는 [다중 코퍼스 인덱싱](../docs/rag-multi-corpus.md)에 정의한다.
+
 ## 신뢰 경계
 
 - `samples/`는 실제 법률 근거가 아니다.

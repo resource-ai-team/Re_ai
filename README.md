@@ -1,157 +1,219 @@
 # Re:Source AI
 
-공장에서 생긴 폐자원의 **여러 공정·시설 경로를 찾고, 각 단계에서 확인할 조건과 리스크를 보여 주는 AI 서비스**입니다.
-이 저장소는 화면 뒤에서 후보 탐색·근거 검색·검증·계산을 맡습니다. 기존 처리 방식은 사용자가 알려준 경우에만 받습니다.
+중소 제조기업의 폐자원 처리 의사결정을 지원하는 **AI·지식 기반 서비스 레포**입니다.
+공정·시설 후보 탐색, 근거 문서 검색, 법규·시설 검증 지원, 비용·탄소 계산을 담당합니다.
 
-## 처음 보는 팀원은 여기부터
+- 전체 실행 흐름: [docs/pipeline-baseline.md](docs/pipeline-baseline.md)
+- 코드와 데이터 구조: [docs/architecture.md](docs/architecture.md)
+- 팀 공통 규칙: [resource-ai-team/.github CONTRIBUTING](https://github.com/resource-ai-team/.github/blob/main/CONTRIBUTING.md)
 
-| 알고 싶은 것 | 문서 |
+## 조직 레포 구성
+
+| 레포 | 역할 |
 | --- | --- |
-| 전체 서비스가 어떤 순서로 동작해야 하나요? | [확정 파이프라인](docs/pipeline-baseline.md) |
-| 지금 연결된 기능과 안 된 기능은? | [후보 조사·수치 비교 API](docs/candidate-analysis.md) |
-| KG가 공정 순서와 시설 후보를 어떻게 만드나요? | [공정·시설 경로 탐색](docs/kg-process-plans.md) |
-| 이번에 KG에서 무엇을 보강했나요? | [실제 제지 순서·등급 차이·빈 연결 검사](docs/kg-evidence-upgrade.md) |
-| 팀 작업은 어떻게 나눴나요? | [Notion 진행보드 반영 결과](docs/progress-board-update.md) |
-| 데이터·실행·검증 문서는 어디 있나요? | [전체 문서 안내](docs/README.md) |
-
-## 지금 어디까지 되나요?
-
-지금 연결된 조사 흐름은 아래와 같습니다. 시작점은 사용자가 검수한 **구조화된 입력 항목**입니다.
-
-~~~mermaid
-flowchart LR
-    A[폐자원 종류·형태·양 등] --> B[Neo4j 공정·시설 후보 조회]
-    B --> C[시설 공개 조건 대조]
-    C --> D[후보별 법령 근거 검색]
-    D --> E[근거·미확인·다음 확인 사항 반환]
-~~~
-
-**POST /analysis/research**가 이 흐름을 실행하며, 현재 결과는 **검토 필요(REVIEW)**입니다.
-검색한 법령이 해당 로트에 적용되는지 확인하는 Auditor와 실제 허가·인수 검증은 아직 연결되지 않았습니다.
-법령 검색은 로컬 PostgreSQL과 문서 적재가 준비돼 있어야 하며, 실패·검색 결과 없음도 응답에 남깁니다.
-
-| 되는 일 | 아직 필요한 일 |
-| --- | --- |
-| W2RKG 문헌 관계와 출처 조회 | 문헌 속 기술을 국내 사업장에 적용할 수 있는지 확인 |
-| 별도 공개 자료의 상태 전이를 따라 공정·시설 조합 생성 | 현행 허가·투입 규격·실제 인수·여유 용량 검증 |
-| 국내 시설 명부에서 추가 조사 대상 검색 | 그 시설의 해당 공정 수행 근거 확보 |
-| 단계·운송 구간에 공개 조건과 미확인 연결 | 원문·예외 Auditor와 적합성 종합 판정 |
-| 제출된 수치의 비용·탄소 계산과 Pareto 비교 | 실제 견적·도로거리·LCI 확보 및 검증된 후보와 연결 |
-| 후보별 조사 API와 그래프 호출 도구 | 자연어·문서 추출, 전체 실행기, 최종 Critic·Router·Top K·보고서·3D 연동 |
-
-비용·탄소 계산은 **별도 POST /analysis/compare-scenarios 도구**입니다. 같은 물량·단위·시점·경계의 활동량과 단가·배출계수를 제출해야 합니다.
-빠진 값을 0으로 채우지 않으며, 현재의 수치 비교 결과가 곧 최종 추천은 아닙니다.
-
-예를 들어 검정 PP 스크랩을 입력하면 파쇄품·펠렛·컴파운드까지의 조사 경로를 찾을 수 있습니다.
-각 단계에 공정·시설 근거와 확인할 조건이 붙습니다. 공장 인수 가능성이나 가장 유리한 경로는 추가 검증이 필요합니다.
-
-종이는 실제 공개된 **10개 작업을 5개 공정 단계**로 연결했습니다. HDPE 같은 세부 수지는 PE 소재군과 구분해 남기고,
-등급별 인수 조건은 추가 확인으로 표시합니다. **GET /kg/planning-coverage**로 끊긴 경로·시설 미연결을 볼 수 있습니다.
-현재 별도 참조 자료는 출처 9건·상태 23개·전이 18개·시설 7곳입니다. W2RKG 전체나 현행 인수 가능 시설 수와는 다릅니다.
-
-목표 흐름은 **입력 → KG 후보 → 법규·시설 검증 → 비용·탄소 → Pareto·잠정 Top K → 독립 Critic → PASS / REVISE / REVIEW → 최종 보고서·지도**입니다.
-KG에서 후보를 미리 K개로 자르지 않으며, 핵심 정보가 미확인이면 최종 추천을 보류합니다.
+| `Re_ai` (이 레포) | AI Agent, RAG, Knowledge Graph, 비용·탄소 계산 |
+| `Re_server` | API Gateway, 인증·회원, 기업 정보, 업무 데이터 |
+| `Re_client` | 사용자 화면 |
+| `Re_infra` | 전체 통합 실행, 컨테이너 구성, 클라우드 인프라 |
+| `.github` | 공통 규칙과 Issue·PR 템플릿 |
 
 ## 빠른 시작
 
-Python 3.11 이상과 Docker Desktop이 필요합니다. 아래는 저장소 루트에서 실행합니다.
+### A. macOS·Linux
 
-Windows PowerShell:
+필수 환경은 Python 3.11 이상과 Docker Desktop입니다.
 
-~~~powershell
-Copy-Item .env.example .env
-py -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e ".[dev,embeddings]"
-~~~
-
-macOS·Linux:
-
-~~~bash
+```bash
 cp .env.example .env
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -e '.[dev,embeddings]'
-~~~
+```
 
-.env에 로컬 **NEO4J_PASSWORD**를 정하고, 공식 법령 수집에 사용할 **LAW_API_OC**를 설정합니다.
-두 DB를 실행합니다.
+`.env`에서 아래 값을 설정합니다.
 
-~~~bash
+```dotenv
+NEO4J_PASSWORD=로컬에서_사용할_비밀번호
+LAW_API_OC=국가법령정보_공동활용_API_OC
+```
+
+PostgreSQL·pgvector와 Neo4j를 실행합니다.
+
+```bash
 docker compose -f docker-compose.yml -f docker-compose.neo4j.yml up -d
-~~~
+```
 
-다음 명령은 가상환경의 실행 파일을 사용합니다. Windows에서는 legal-rag를 .\.venv\Scripts\legal-rag.exe,
-resource-kg를 .\.venv\Scripts\resource-kg.exe, uvicorn을 .\.venv\Scripts\uvicorn.exe로 실행하면 활성화 없이 사용할 수 있습니다.
+DB 스키마와 지식그래프를 준비합니다.
 
-~~~bash
-legal-rag init-db
+```bash
+resource-rag init-db
 resource-kg import
+resource-kg audit
+```
+
+공식 법령·판례 데이터를 수집하고 인덱싱합니다.
+
+```bash
 legal-rag collect
 legal-rag index
+```
+
+API를 실행합니다.
+
+```bash
 uvicorn resource_ai.main:app --reload
-~~~
+```
 
-`legal-rag index`는 데이터셋 매니페스트의 SHA-256과 공식 출처 메타데이터를
-검증한 뒤 전체 문서를 하나의 트랜잭션으로 적재합니다. 중간 문서에서 실패하면
-해당 실행의 DB 변경을 모두 되돌립니다. `validate`와 `ingest`는 개별 점검·수동
-적재가 필요할 때 계속 사용할 수 있습니다.
+실행 후 확인:
 
-- API 설명·시험: http://127.0.0.1:8000/docs
-- 프로세스 상태: **GET /health** — DB·데이터가 모두 준비됐다는 확인은 아닙니다.
-- 그래프·참조 자료를 갱신했다면 **resource-kg import --rebuild** 후 **resource-kg audit**로 확인합니다. 이전 세대는 보존합니다.
-- 국내 명부는 별도 수집·적재합니다. [시설 명부 실행 방법](docs/kg-facility-matching.md)을 참고하세요.
+- Swagger UI: http://127.0.0.1:8000/docs
+- 상태 확인: http://127.0.0.1:8000/health
+- Neo4j Browser: http://127.0.0.1:7474
 
-기본 임베딩은 로컬 intfloat/multilingual-e5-small이며 첫 사용에 모델 다운로드가 필요합니다.
-EMBEDDING_PROVIDER=hash는 연결·회귀 검사에만 쓰며 실제 의미 검색용은 아닙니다.
+```bash
+curl http://127.0.0.1:8000/health
+```
 
-## 데이터와 기술에서 각각 남은 것
+정상 응답:
 
-| 구분 | 채울 것 |
+```json
+{"status":"ok"}
+```
+
+### B. Windows PowerShell
+
+```powershell
+Copy-Item .env.example .env
+py -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -e ".[dev,embeddings]"
+docker compose -f docker-compose.yml -f docker-compose.neo4j.yml up -d
+.\.venv\Scripts\resource-rag.exe init-db
+.\.venv\Scripts\resource-kg.exe import
+.\.venv\Scripts\resource-kg.exe audit
+.\.venv\Scripts\legal-rag.exe collect
+.\.venv\Scripts\legal-rag.exe index
+.\.venv\Scripts\uvicorn.exe resource_ai.main:app --reload
+```
+
+### C. 전체 서비스 통합 실행
+
+이 레포의 Docker Compose는 AI 로컬 개발용 PostgreSQL·Neo4j만 실행합니다.
+`Re_client → Re_server → Re_ai` 전체 서비스 실행과 배포는 `Re_infra`의 Compose·운영 절차를 따릅니다.
+
+## RAG 데이터 실행
+
+RAG는 다음 코퍼스를 공통 pgvector 인프라에서 논리적으로 분리합니다.
+
+| 코퍼스 | 대상 |
 | --- | --- |
-| 데이터 | 사업장별 실제 수행 공정, 현행 허가, 해당 로트 인수 규격·물량·견적, 도로 운송 경로, 물질수지, 적용 가능한 LCI·배출계수 |
-| 기술 | OCR·입력 검수, 법규 적용성 Auditor·규칙, 실제 후보와 수치 연결, 잠정 Top K, 독립 Critic·부분 재실행, 영구 실행 이력·서버·화면 통합 |
-| 평가 | 현장·전문가가 검수한 실제 사례 정답셋과 전체 추천 품질 평가 |
+| `LAW` | 법령·시행령·시행규칙·별표 |
+| `PRECEDENT` | 판례 |
+| `TECHNICAL_LITERATURE` | 논문·공공 보고서·공정 설명서 |
+| `HISTORICAL_CASE` | 검수된 성공·실패 처리 사례 |
+| `COMPANY_DOCUMENT` | 성적서·시설 회신·규격·처리계획서 |
 
-실제 자료·가상 입력·가상 산술 예제를 구분합니다. 원본 사용·전송·재배포 조건은 [데이터 관리](data/README.md)를 따릅니다.
-키·비밀번호·국가 LCI 원본·로컬 DB 볼륨은 Git에 올리지 않습니다.
+법령 외 정규화된 JSONL 데이터는 다음과 같이 확인하고 적재합니다.
 
-## 저장소 구조와 팀 경계
+```bash
+resource-rag validate path/to/documents.jsonl
+resource-rag index path/to/documents.jsonl --manifest path/to/documents.manifest.json
+```
 
-~~~text
-src/resource_ai/
-├── api/               내부 API와 입출력 스키마
-├── knowledge_graph/   온톨로지·Neo4j 적재·후보/시설 조회·공개 조건 대조
-├── rag/               공식 문서 수집·청킹·Hybrid Search·Reranking
-├── agents/            후보 조사 실행·그래프/RAG 도구, 전체 실행기는 후속
-├── calculators/       제출된 비용·탄소 수치 계산·Pareto
-├── rules/             검수된 법규·시설 판정 엔진의 골격
-├── evidence/          근거 모델·출처 연결
-├── integrations/      공식 법령 API, 생성 모델 연결 골격
-└── core/              설정·의존성·공통 인프라
-~~~
+문서 계약과 기업별 권한 격리는 [다중 코퍼스 인덱싱](docs/rag-multi-corpus.md)을 참고합니다.
+OCR과 사용자 문서 입력값 추출은 입력 영역, 시설·비용·탄소의 확정값은 구조화 데이터 영역에서 담당합니다.
 
-화면은 Re_client, 인증·기업·업무 API는 Re_server가 맡습니다. 호출은 **Re_client → Re_server → Re_ai**입니다.
-실제 모듈과 데이터 연결은 [구조 설명](docs/architecture.md), 전체 통합 실행은 인프라 저장소의 절차를 따릅니다.
+## 기술스택
 
-## 검증과 기여
+| 영역 | 선택 |
+| --- | --- |
+| 언어·API | Python 3.11+ / FastAPI |
+| RAG 저장소 | PostgreSQL 16 / pgvector |
+| 지식그래프 | Neo4j 5 |
+| 검색 | Vector Search + Keyword Search + RRF + Reranking |
+| 임베딩 | `intfloat/multilingual-e5-small` |
+| DB 클라이언트 | psycopg / Neo4j Python Driver |
+| 품질 | pytest / ruff |
+| 로컬 인프라 | Docker Compose |
 
-가상환경에서 실행합니다.
+`EMBEDDING_PROVIDER=hash`는 테스트용이며 실제 의미 검색에는 사용하지 않습니다.
 
-~~~bash
+## 현재 구조
+
+```text
+Re_ai/
+├── src/resource_ai/
+│   ├── agents/            후보 조사 실행과 RAG·KG 호출
+│   ├── api/               FastAPI 라우터와 입출력 스키마
+│   ├── calculators/       비용·탄소·시나리오 비교
+│   ├── core/              설정과 의존성 구성
+│   ├── evidence/          공통 근거 문서·검색 결과 모델
+│   ├── integrations/      국가법령정보 공동활용 API 연동
+│   ├── knowledge_graph/   Neo4j 적재·공정 경로·시설 후보 조회
+│   ├── rag/               수집·검증·청킹·임베딩·검색
+│   └── rules/             검수된 판정 규칙 골격
+├── migrations/            PostgreSQL·pgvector 마이그레이션
+├── data/                  설정·샘플·평가 데이터
+├── docs/                  아키텍처·실행·검증 문서
+├── tests/                 단위·통합 테스트
+├── docker-compose.yml     PostgreSQL·pgvector
+└── docker-compose.neo4j.yml
+```
+
+## 주요 API
+
+| 메서드 | 경로 | 설명 |
+| --- | --- | --- |
+| `GET` | `/health` | API 프로세스 상태 확인 |
+| `GET` | `/rag/search` | RAG 근거 검색 |
+| `GET` | `/kg/ontology` | 지식그래프 온톨로지 조회 |
+| `GET` | `/kg/planning-coverage` | 공정·시설 연결 범위 진단 |
+| `POST` | `/kg/candidates` | 소재 기반 공정 후보 조회 |
+| `POST` | `/kg/candidate-pool` | 전체 후보 조사 묶음 조회 |
+| `POST` | `/kg/process-plans` | 공정·시설 경로 후보 생성 |
+| `POST` | `/kg/facility-candidates` | 시설 후보 조회 |
+| `POST` | `/kg/facility-assessment` | 시설 공개 조건 대조 |
+| `POST` | `/kg/assessed-plans` | 경로 생성과 시설 조건 대조 |
+| `POST` | `/analysis/research` | KG 후보와 법률 근거 연결 |
+| `POST` | `/analysis/compare-scenarios` | 비용·탄소·Pareto 비교 |
+
+API별 입력·출력과 현재 한계는 [docs/api.md](docs/api.md)와 실행 중인 Swagger UI에서 확인합니다.
+
+## 테스트
+
+```bash
 ruff check .
 ruff format --check .
 pytest -q
-~~~
+```
 
-일반 CI는 린트·포맷·테스트를 실행하고, KG CI는 실제 Neo4j·PostgreSQL 경계와 데이터 적재·조회도 검사합니다.
-가상 법령·테스트 임베딩을 사용하는 검사와 실제 법령·현장 정확도 평가는 구분합니다.
-이전 실행 수치와 검증 범위는 [검증 기록 안내](docs/README.md#검증-기록과-이전-설계)에 모았습니다.
+실제 PostgreSQL 통합 테스트:
 
-최근 로컬 검증은 실제 Neo4j를 포함해 **439개 통과·1개 건너뜀**입니다.
-건너뛴 PostgreSQL 통합 검사와 실제 법령 검색 성공은 아직 로컬에서 확인하지 못했습니다.
-[KG 보강 검증·한계](docs/kg-evidence-upgrade.md#이번-검증-결과)를 함께 봅니다.
+```bash
+docker compose up -d postgres
+RUN_POSTGRES_INTEGRATION=true pytest -q tests/integration/test_multi_corpus_postgres.py
+```
 
-[팀 공통 규칙](https://github.com/resource-ai-team/.github/blob/main/CONTRIBUTING.md)을 따릅니다.
-**Issue → 작업 브랜치 → develop 대상 PR → CI·필요 리뷰 → 병합** 순서입니다.
-API 스키마 변경은 서버 담당자 리뷰·승인 후 병합하며, develop·main에 직접 push하지 않습니다.
-develop → main 릴리스는 인프라·서버 담당자가 진행합니다.
+실제 Neo4j 통합 테스트는 `RUN_NEO4J_INTEGRATION=true`를 지정해 실행합니다.
+
+## 문서
+
+| 문서 | 내용 |
+| --- | --- |
+| [docs/pipeline-baseline.md](docs/pipeline-baseline.md) | 전체 서비스 파이프라인과 역할 경계 |
+| [docs/architecture.md](docs/architecture.md) | 코드·DB·서비스 구조 |
+| [docs/api.md](docs/api.md) | API 목록과 오류 처리 |
+| [docs/rag-multi-corpus.md](docs/rag-multi-corpus.md) | RAG 문서 계약과 코퍼스별 정책 |
+| [docs/knowledge-graph.md](docs/knowledge-graph.md) | KG 적재·조회·검증 |
+| [docs/candidate-analysis.md](docs/candidate-analysis.md) | 후보 조사와 비용·탄소 비교 |
+| [data/README.md](data/README.md) | 데이터 위치·출처·권리 관리 |
+| [docs/README.md](docs/README.md) | 전체 문서 안내 |
+
+## 기여 방법
+
+1. Jira 티켓과 GitHub Issue를 생성합니다.
+2. `develop`에서 `feat/깃허브이슈번호-작업명` 브랜치를 만듭니다.
+3. 커밋은 `feat:`, `fix:`, `refactor:`, `docs:` 머리말을 사용합니다.
+4. 모든 PR은 `develop`을 대상으로 생성하고 CI와 리뷰를 통과합니다.
+5. PR이 병합되면 Jira 티켓을 `Done`으로 변경합니다.
+
+`develop → main` 배포 PR은 인프라 담당자만 병합합니다.
