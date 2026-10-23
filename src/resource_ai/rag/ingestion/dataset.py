@@ -64,6 +64,25 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def verify_dataset_manifest(manifest_path: Path, dataset_path: Path) -> dict:
+    """Verify that a generated dataset still matches its recorded manifest."""
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"Invalid dataset manifest: {exc}") from exc
+
+    expected_hash = manifest.get("dataset_sha256")
+    if not expected_hash:
+        raise ValueError("Dataset manifest is missing dataset_sha256")
+    actual_hash = _sha256(dataset_path)
+    if actual_hash != expected_hash:
+        raise ValueError(
+            "Dataset SHA-256 does not match the manifest "
+            f"(expected {expected_hash}, got {actual_hash})"
+        )
+    return manifest
+
+
 def write_dataset_manifest(
     path: Path,
     *,
