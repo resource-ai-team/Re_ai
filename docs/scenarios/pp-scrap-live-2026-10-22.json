@@ -1,0 +1,522 @@
+{
+  "case_id": "pp-live-local-2026-10-22",
+  "generated_at": "2026-10-22T04:33:07.100721+00:00",
+  "business_lot_is_synthetic": true,
+  "real_customer_document_provided": false,
+  "graph_backend": "actual local Neo4j",
+  "legal_backend": "actual local PostgreSQL/pgvector official corpus",
+  "embedding_model": "intfloat/multilingual-e5-small",
+  "generation_model_calls": 0,
+  "numeric_values_fabricated": false,
+  "prices_distances_carbon_factors_submitted": false,
+  "actual_intake_permits_capacity_verified": false,
+  "request": {
+    "research": {
+      "lot": {
+        "material": "PP",
+        "input_form": "scrap",
+        "quantity_kg": 3000,
+        "color": "검정",
+        "page_size": 1
+      },
+      "max_pages": 20,
+      "max_legal_queries": 100,
+      "legal_top_k": 3
+    }
+  },
+  "route": "REVIEW",
+  "coverage": {
+    "material_scope": {
+      "search_family": "pp",
+      "supplied_subtype": null,
+      "subtype_basis": "not_supplied_or_not_resolved",
+      "candidate_scope": "material_family_only",
+      "subtype_applicability_verified": false
+    },
+    "graph_connection_gaps": {
+      "material": "pp",
+      "requested_goal_state": null,
+      "entry_state_keys": [
+        "pp-scrap"
+      ],
+      "registered_states": 5,
+      "registered_transitions": 4,
+      "reachable_state_keys": [
+        "pp-compound",
+        "pp-pellet",
+        "pp-scrap",
+        "pp-shredded",
+        "pp-washed"
+      ],
+      "unreachable_transition_keys": [],
+      "unreachable_output_state_keys": [],
+      "non_output_dead_end_state_keys": [],
+      "reachable_states_without_output_path": [],
+      "transitions_without_facility_keys": [],
+      "facility_bindings_by_basis": {
+        "published_site_process": 1,
+        "site_role_hypothesis": 3
+      },
+      "scope": "registered_curated_graph_only_not_all_real_world_options",
+      "not_a_feasibility_decision": true
+    },
+    "planning_status": "plans",
+    "missing_fields": [
+      "contamination",
+      "region"
+    ],
+    "pages_read": 3,
+    "enumerated_in_graph": 3,
+    "collected_candidates": 3,
+    "all_pages_read": true,
+    "all_paths_enumerated_within_curated_scope": true,
+    "complete_within_curated_scope": true,
+    "next_cursor": null,
+    "legal_unique_queries": 10,
+    "legal_executed_queries": 10,
+    "legal_provider_failed": false,
+    "legal_retrieval_complete": true,
+    "legal_audit_complete": false,
+    "legal_method": "hybrid_retrieval",
+    "legal_graph_model_calls": 0,
+    "legal_graph_reviews": 0
+  },
+  "graph_trace": {
+    "generation": "1f439d6e6a8140f6a9b4a1787802f248",
+    "graph_sha256": "13593292b5841b3188b04cf73ef4fa6f3a0e9c6ac9ed073a29af51d8a02e9e98",
+    "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+    "reference_sha256": "d89026e028f4bf9ce41b0048a7536eaae42b5e02239f82f94a903642de3fd9e0",
+    "reference_version": "planning-reference-v2",
+    "algorithm": "typed-state-facility-dfs-v2"
+  },
+  "search_statuses": {
+    "retrieved": 10
+  },
+  "critic_issue_counts": {
+    "facility_operations_unverified": 8,
+    "facility_designated_waste": 8,
+    "facility_moisture_pct": 8,
+    "facility_contamination_pct": 8,
+    "facility_color": 8,
+    "facility_quantity_kg": 8,
+    "facility_current_permit_scope": 8,
+    "facility_current_acceptance": 8,
+    "facility_handoff_specifications": 8,
+    "legal_applicability_unverified": 3,
+    "legal_operational_clearance_unverified": 3,
+    "facility_transition_material": 5,
+    "facility_site_process": 5,
+    "facility_material_example": 5,
+    "facility_form_example": 5,
+    "numeric_scenario_missing": 3
+  },
+  "marker_counts": {
+    "all": 101,
+    "on_map": 101,
+    "by_target_type": {
+      "stage": 87,
+      "candidate": 9,
+      "handoff": 5
+    }
+  },
+  "designated_waste_variant": {
+    "route": "REVISE",
+    "candidate_count": 3,
+    "error_codes": [
+      "facility_designated_waste"
+    ],
+    "restart_from": "validation"
+  },
+  "checks": {
+    "review_route": true,
+    "all_graph_candidates_preserved": true,
+    "legal_questions_not_budget_truncated": true,
+    "all_legal_searches_return_evidence": true,
+    "no_made_up_numbers": true,
+    "no_final_recommendation_or_dispatch": true,
+    "changed_exclusion_input_revises_without_hiding_candidates": true
+  },
+  "run_id": "0f77c9a1-85df-4795-b6f5-72270c96cff9",
+  "raw_response_sha256": "5611a92093a0fdcf3e05c999e149df3a4613d1d4abc0be62f7ef292496d7c033",
+  "paths": [
+    {
+      "candidate_id": "plan:4782d31ee04a0b357a1b1a37ce026683",
+      "stages": [
+        {
+          "stage_id": "plan:4782d31ee04a0b357a1b1a37ce026683:stage:1",
+          "process": "PP 반입 선별·파쇄",
+          "facility": "중앙이엔비 공주 사업장",
+          "facility_key": "jungang-gongju",
+          "capability_basis": "published_site_process"
+        }
+      ]
+    },
+    {
+      "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+      "stages": [
+        {
+          "stage_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:1",
+          "process": "PP 반입 선별·파쇄",
+          "facility": "중앙이엔비 공주 사업장",
+          "facility_key": "jungang-gongju",
+          "capability_basis": "published_site_process"
+        },
+        {
+          "stage_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:2",
+          "process": "PP 세정 조사",
+          "facility": "BGF에코사이클 재생원료사업장",
+          "facility_key": "bgf-yesan",
+          "capability_basis": "site_role_hypothesis"
+        },
+        {
+          "stage_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:3",
+          "process": "PP 압출 재생",
+          "facility": "BGF에코사이클 재생원료사업장",
+          "facility_key": "bgf-yesan",
+          "capability_basis": "site_role_hypothesis"
+        }
+      ]
+    },
+    {
+      "candidate_id": "plan:cf4e094463ddc0c54793564ca995caf1",
+      "stages": [
+        {
+          "stage_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:1",
+          "process": "PP 반입 선별·파쇄",
+          "facility": "중앙이엔비 공주 사업장",
+          "facility_key": "jungang-gongju",
+          "capability_basis": "published_site_process"
+        },
+        {
+          "stage_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:2",
+          "process": "PP 세정 조사",
+          "facility": "BGF에코사이클 재생원료사업장",
+          "facility_key": "bgf-yesan",
+          "capability_basis": "site_role_hypothesis"
+        },
+        {
+          "stage_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:3",
+          "process": "PP 압출 재생",
+          "facility": "BGF에코사이클 재생원료사업장",
+          "facility_key": "bgf-yesan",
+          "capability_basis": "site_role_hypothesis"
+        },
+        {
+          "stage_id": "plan:cf4e094463ddc0c54793564ca995caf1:stage:4",
+          "process": "PP 컴파운딩",
+          "facility": "BGF에코사이클 컴파운드사업장",
+          "facility_key": "bgf-hwaseong",
+          "capability_basis": "site_role_hypothesis"
+        }
+      ]
+    }
+  ],
+  "legal_search_evidence": [
+    {
+      "query": "pp 폐기물 분류 사업장폐기물 지정폐기물",
+      "status": "retrieved",
+      "results": [
+        {
+          "evidence_id": "legal-chunk:242",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 4 폐기물의 종류별 세부분류(제4조의2제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 4",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:243",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 4 폐기물의 종류별 세부분류(제4조의2제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 4",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:262",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 4의3 폐기물의 종류별 재활용 가능 유형(제4조의2제3항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 4의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        }
+      ]
+    },
+    {
+      "query": "pp PP 반입 선별·파쇄 재활용 유형 처리기준 재활용 기준 예외",
+      "status": "retrieved",
+      "results": [
+        {
+          "evidence_id": "legal-chunk:299",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 5의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:315",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 5의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:302",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 5의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        }
+      ]
+    },
+    {
+      "query": "pp PP 반입 선별·파쇄 중앙이엔비 공주 사업장 폐기물처리업 허가 수탁 확인",
+      "status": "retrieved",
+      "results": [
+        {
+          "evidence_id": "legal-chunk:404",
+          "title": "대법원 2019다226548 구상금",
+          "heading": "판례 전문",
+          "citation": "대법원 2019다226548 판례 전문",
+          "source_url": "https://www.law.go.kr/precInfoP.do?precSeq=226949",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:262",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 4의3 폐기물의 종류별 재활용 가능 유형(제4조의2제3항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 4의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:405",
+          "title": "대법원 2019다226548 구상금",
+          "heading": "판례 전문",
+          "citation": "대법원 2019다226548 판례 전문",
+          "source_url": "https://www.law.go.kr/precInfoP.do?precSeq=226949",
+          "applicability": "not_audited"
+        }
+      ]
+    },
+    {
+      "query": "pp 폐기물 위탁 수집 운반 인계 배출자 확인 책임",
+      "status": "retrieved",
+      "results": [
+        {
+          "evidence_id": "legal-chunk:223",
+          "title": "폐기물관리법",
+          "heading": "제48조(폐기물 처리에 대한 조치명령 등) ①항",
+          "citation": "폐기물관리법 제48조 ①항",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:198",
+          "title": "폐기물관리법",
+          "heading": "제17조(사업장폐기물배출자의 의무 등) ⑤항",
+          "citation": "폐기물관리법 제17조 ⑤항",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:400",
+          "title": "대법원 2002다46331 토지인도",
+          "heading": "판례 전문",
+          "citation": "대법원 2002다46331 판례 전문",
+          "source_url": "https://www.law.go.kr/precInfoP.do?precSeq=82028",
+          "applicability": "not_audited"
+        }
+      ]
+    },
+    {
+      "query": "pp PP 세정 조사 재활용 유형 처리기준 재활용 기준 예외",
+      "status": "retrieved",
+      "results": [
+        {
+          "evidence_id": "legal-chunk:299",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 5의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:305",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 5의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:300",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 5의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        }
+      ]
+    },
+    {
+      "query": "pp PP 세정 조사 BGF에코사이클 재생원료사업장 폐기물처리업 허가 수탁 확인",
+      "status": "retrieved",
+      "results": [
+        {
+          "evidence_id": "legal-chunk:219",
+          "title": "폐기물관리법",
+          "heading": "제25조(폐기물처리업) ⑭항",
+          "citation": "폐기물관리법 제25조 ⑭항",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:198",
+          "title": "폐기물관리법",
+          "heading": "제17조(사업장폐기물배출자의 의무 등) ⑤항",
+          "citation": "폐기물관리법 제17조 ⑤항",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:389",
+          "title": "대법원 2023두62830 조치명령",
+          "heading": "판례 전문",
+          "citation": "대법원 2023두62830 판례 전문",
+          "source_url": "https://www.law.go.kr/precInfoP.do?precSeq=615977",
+          "applicability": "not_audited"
+        }
+      ]
+    },
+    {
+      "query": "pp PP 압출 재생 재활용 유형 처리기준 재활용 기준 예외",
+      "status": "retrieved",
+      "results": [
+        {
+          "evidence_id": "legal-chunk:315",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 5의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:300",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 5의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:307",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 5의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        }
+      ]
+    },
+    {
+      "query": "pp PP 압출 재생 BGF에코사이클 재생원료사업장 폐기물처리업 허가 수탁 확인",
+      "status": "retrieved",
+      "results": [
+        {
+          "evidence_id": "legal-chunk:219",
+          "title": "폐기물관리법",
+          "heading": "제25조(폐기물처리업) ⑭항",
+          "citation": "폐기물관리법 제25조 ⑭항",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:389",
+          "title": "대법원 2023두62830 조치명령",
+          "heading": "판례 전문",
+          "citation": "대법원 2023두62830 판례 전문",
+          "source_url": "https://www.law.go.kr/precInfoP.do?precSeq=615977",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:198",
+          "title": "폐기물관리법",
+          "heading": "제17조(사업장폐기물배출자의 의무 등) ⑤항",
+          "citation": "폐기물관리법 제17조 ⑤항",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95",
+          "applicability": "not_audited"
+        }
+      ]
+    },
+    {
+      "query": "pp PP 컴파운딩 재활용 유형 처리기준 재활용 기준 예외",
+      "status": "retrieved",
+      "results": [
+        {
+          "evidence_id": "legal-chunk:307",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 5의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:300",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 5의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:313",
+          "title": "폐기물관리법 시행규칙",
+          "heading": "별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+          "citation": "폐기물관리법 시행규칙 별표 5의3",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99",
+          "applicability": "not_audited"
+        }
+      ]
+    },
+    {
+      "query": "pp PP 컴파운딩 BGF에코사이클 컴파운드사업장 폐기물처리업 허가 수탁 확인",
+      "status": "retrieved",
+      "results": [
+        {
+          "evidence_id": "legal-chunk:219",
+          "title": "폐기물관리법",
+          "heading": "제25조(폐기물처리업) ⑭항",
+          "citation": "폐기물관리법 제25조 ⑭항",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:389",
+          "title": "대법원 2023두62830 조치명령",
+          "heading": "판례 전문",
+          "citation": "대법원 2023두62830 판례 전문",
+          "source_url": "https://www.law.go.kr/precInfoP.do?precSeq=615977",
+          "applicability": "not_audited"
+        },
+        {
+          "evidence_id": "legal-chunk:198",
+          "title": "폐기물관리법",
+          "heading": "제17조(사업장폐기물배출자의 의무 등) ⑤항",
+          "citation": "폐기물관리법 제17조 ⑤항",
+          "source_url": "https://www.law.go.kr/법령/%ED%8F%90%EA%B8%B0%EB%AC%BC%EA%B4%80%EB%A6%AC%EB%B2%95",
+          "applicability": "not_audited"
+        }
+      ]
+    }
+  ],
+  "not_proven": [
+    "facility-specific intake or permit clearance",
+    "legal applicability or complete statute coverage",
+    "real costs, carbon or best route",
+    "LLM Auditor/Critic quality or live 3D integration"
+  ]
+}

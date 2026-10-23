@@ -1,0 +1,211 @@
+{
+  "generated_at": "2026-10-23T17:18:57.368114+00:00",
+  "origin_and_lot_are_synthetic": true,
+  "sources": "actual local Neo4j process KG and active national facility registry",
+  "dependency_overrides": false,
+  "request": {
+    "origin": {
+      "organisation_id": "synthetic-org",
+      "site_id": "synthetic-origin",
+      "label": "가상 발생 사업장: 실제 SK 공장 아님",
+      "pickup_address": "가상 좌표 시연: 실제 공장 주소 아님",
+      "latitude": 37.2,
+      "longitude": 127.0
+    },
+    "lot": {
+      "material": "PP",
+      "input_form": "scrap",
+      "quantity_kg": 3000,
+      "color": "검정",
+      "page_size": 1
+    },
+    "facility_page_size": 3,
+    "max_facility_pages": 1
+  },
+  "context_sha256": "b8dfc2f2689a06157cc235cf7e6d30ae496541e44864b1d933b1817dc9fb4d00",
+  "graph_trace": {
+    "generation": "1f439d6e6a8140f6a9b4a1787802f248",
+    "graph_sha256": "13593292b5841b3188b04cf73ef4fa6f3a0e9c6ac9ed073a29af51d8a02e9e98",
+    "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+    "reference_sha256": "d89026e028f4bf9ce41b0048a7536eaae42b5e02239f82f94a903642de3fd9e0",
+    "reference_version": "planning-reference-v2",
+    "algorithm": "typed-state-facility-dfs-v2"
+  },
+  "coverage": {
+    "planning_status": "plans",
+    "collected_plans": 3,
+    "enumerated_plans": 3,
+    "all_plan_pages_read": true,
+    "all_paths_enumerated": true,
+    "next_plan_cursor": null,
+    "missing_lot_fields": [
+      "contamination",
+      "region"
+    ],
+    "unique_transitions_searched": 4,
+    "all_facility_pages_read": false,
+    "nationwide_facility_coverage_verified": false
+  },
+  "processes": [
+    {
+      "transition_key": "pp-prepare",
+      "coverage": {
+        "total_registry_candidates": 2355,
+        "collected_registry_candidates": 3,
+        "pages_read": 1,
+        "complete_within_matching_registry": false,
+        "next_cursor": "eyJhbGdvcml0aG0iOiJyZWdpc3RyeS1mYWNpbGl0eS1kaXNjb3ZlcnktdjMiLCJjb2RlcyI6ImY4OGE5NDViODM4ZmU4OThmMDc2NWFkZDYxMzc1MDY2NGRkZDI0YjRmZWM5ZDE0NTAzM2VmNTA0NGNiYTZmNjIiLCJncmFwaCI6IjFmNDM5ZDZlNmE4MTQwZjZhOWI0YTE3ODc4MDJmMjQ4IiwibmFtZXNwYWNlIjoicmUtYWktcmVmZXJlbmNlIiwib2Zmc2V0IjozLCJyZWdpc3RyeSI6Ijk0YWMyOWQ0M2Q4YTRkZjI5MzQ0NDhkOTkwMzI4YTBlIiwicmVxdWVzdCI6ImZjMGFhMDQwYjc1Y2U1MzNlYTI4MTFiZTRlMjk4YTNmMWJlZmJmYTVmNmFiYjMzMTQ2ZDY1ZTllNTliMTQxMzYifQ",
+        "registry_imported": true
+      },
+      "ordering": "straight_line_then_equipment_then_material_match_then_id",
+      "registry_record_count": 9604,
+      "leads": [
+        {
+          "listing_id": "facility-listing:af1b3b34621ca47b0b73cdf5c34365f2",
+          "straight_line_distance_km": 0.6,
+          "road_distance_km": null,
+          "stage_capability": "not_established",
+          "material_match": "code_category_only",
+          "source_as_of": "2026-02-27"
+        },
+        {
+          "listing_id": "facility-listing:c2bf22d42e4cdff9c5b6284196978fe7",
+          "straight_line_distance_km": 0.8,
+          "road_distance_km": null,
+          "stage_capability": "not_established",
+          "material_match": "unmapped_codes_require_review",
+          "source_as_of": "2026-02-27"
+        },
+        {
+          "listing_id": "facility-listing:5add9dca8c777c2458359c59dcf0d493",
+          "straight_line_distance_km": 0.9,
+          "road_distance_km": null,
+          "stage_capability": "not_established",
+          "material_match": "code_category_only",
+          "source_as_of": "2026-02-27"
+        }
+      ]
+    },
+    {
+      "transition_key": "pp-clean",
+      "coverage": {
+        "total_registry_candidates": 2355,
+        "collected_registry_candidates": 3,
+        "pages_read": 1,
+        "complete_within_matching_registry": false,
+        "next_cursor": "eyJhbGdvcml0aG0iOiJyZWdpc3RyeS1mYWNpbGl0eS1kaXNjb3ZlcnktdjMiLCJjb2RlcyI6ImY4OGE5NDViODM4ZmU4OThmMDc2NWFkZDYxMzc1MDY2NGRkZDI0YjRmZWM5ZDE0NTAzM2VmNTA0NGNiYTZmNjIiLCJncmFwaCI6IjFmNDM5ZDZlNmE4MTQwZjZhOWI0YTE3ODc4MDJmMjQ4IiwibmFtZXNwYWNlIjoicmUtYWktcmVmZXJlbmNlIiwib2Zmc2V0IjozLCJyZWdpc3RyeSI6Ijk0YWMyOWQ0M2Q4YTRkZjI5MzQ0NDhkOTkwMzI4YTBlIiwicmVxdWVzdCI6IjIxODQxNTNkNGIwNDYzYjBkMzAzNzcwOGJkOTRhY2VhZWE3YTQ2MzkzZDUxYzY0OWRhMWM2MDgxOTQ2ZTM1NjYifQ",
+        "registry_imported": true
+      },
+      "ordering": "straight_line_then_equipment_then_material_match_then_id",
+      "registry_record_count": 9604,
+      "leads": [
+        {
+          "listing_id": "facility-listing:af1b3b34621ca47b0b73cdf5c34365f2",
+          "straight_line_distance_km": 0.6,
+          "road_distance_km": null,
+          "stage_capability": "not_established",
+          "material_match": "code_category_only",
+          "source_as_of": "2026-02-27"
+        },
+        {
+          "listing_id": "facility-listing:c2bf22d42e4cdff9c5b6284196978fe7",
+          "straight_line_distance_km": 0.8,
+          "road_distance_km": null,
+          "stage_capability": "not_established",
+          "material_match": "unmapped_codes_require_review",
+          "source_as_of": "2026-02-27"
+        },
+        {
+          "listing_id": "facility-listing:5add9dca8c777c2458359c59dcf0d493",
+          "straight_line_distance_km": 0.9,
+          "road_distance_km": null,
+          "stage_capability": "not_established",
+          "material_match": "code_category_only",
+          "source_as_of": "2026-02-27"
+        }
+      ]
+    },
+    {
+      "transition_key": "pp-pelletise",
+      "coverage": {
+        "total_registry_candidates": 2355,
+        "collected_registry_candidates": 3,
+        "pages_read": 1,
+        "complete_within_matching_registry": false,
+        "next_cursor": "eyJhbGdvcml0aG0iOiJyZWdpc3RyeS1mYWNpbGl0eS1kaXNjb3ZlcnktdjMiLCJjb2RlcyI6ImY4OGE5NDViODM4ZmU4OThmMDc2NWFkZDYxMzc1MDY2NGRkZDI0YjRmZWM5ZDE0NTAzM2VmNTA0NGNiYTZmNjIiLCJncmFwaCI6IjFmNDM5ZDZlNmE4MTQwZjZhOWI0YTE3ODc4MDJmMjQ4IiwibmFtZXNwYWNlIjoicmUtYWktcmVmZXJlbmNlIiwib2Zmc2V0IjozLCJyZWdpc3RyeSI6Ijk0YWMyOWQ0M2Q4YTRkZjI5MzQ0NDhkOTkwMzI4YTBlIiwicmVxdWVzdCI6ImIwMTYyMTAwYTZkNzBlMmExNGZlYzNmZmM5Mjc4NDVkYTdmODIxNjFkZWM2MjU2Y2RhZTViMWQwNjI0NWYzODQifQ",
+        "registry_imported": true
+      },
+      "ordering": "straight_line_then_equipment_then_material_match_then_id",
+      "registry_record_count": 9604,
+      "leads": [
+        {
+          "listing_id": "facility-listing:af1b3b34621ca47b0b73cdf5c34365f2",
+          "straight_line_distance_km": 0.6,
+          "road_distance_km": null,
+          "stage_capability": "not_established",
+          "material_match": "code_category_only",
+          "source_as_of": "2026-02-27"
+        },
+        {
+          "listing_id": "facility-listing:c2bf22d42e4cdff9c5b6284196978fe7",
+          "straight_line_distance_km": 0.8,
+          "road_distance_km": null,
+          "stage_capability": "not_established",
+          "material_match": "unmapped_codes_require_review",
+          "source_as_of": "2026-02-27"
+        },
+        {
+          "listing_id": "facility-listing:5add9dca8c777c2458359c59dcf0d493",
+          "straight_line_distance_km": 0.9,
+          "road_distance_km": null,
+          "stage_capability": "not_established",
+          "material_match": "code_category_only",
+          "source_as_of": "2026-02-27"
+        }
+      ]
+    },
+    {
+      "transition_key": "pp-compound",
+      "coverage": {
+        "total_registry_candidates": 2355,
+        "collected_registry_candidates": 3,
+        "pages_read": 1,
+        "complete_within_matching_registry": false,
+        "next_cursor": "eyJhbGdvcml0aG0iOiJyZWdpc3RyeS1mYWNpbGl0eS1kaXNjb3ZlcnktdjMiLCJjb2RlcyI6ImY4OGE5NDViODM4ZmU4OThmMDc2NWFkZDYxMzc1MDY2NGRkZDI0YjRmZWM5ZDE0NTAzM2VmNTA0NGNiYTZmNjIiLCJncmFwaCI6IjFmNDM5ZDZlNmE4MTQwZjZhOWI0YTE3ODc4MDJmMjQ4IiwibmFtZXNwYWNlIjoicmUtYWktcmVmZXJlbmNlIiwib2Zmc2V0IjozLCJyZWdpc3RyeSI6Ijk0YWMyOWQ0M2Q4YTRkZjI5MzQ0NDhkOTkwMzI4YTBlIiwicmVxdWVzdCI6Ijg1MTlmMWM5ZDZlNjM1ZjNmYjUwZTA1MTA2ODk0MmRmMWNmOWFlYjJhNzE5NWRkNjY3NTU5NTMzMGZhNGJkN2MifQ",
+        "registry_imported": true
+      },
+      "ordering": "straight_line_then_equipment_then_material_match_then_id",
+      "registry_record_count": 9604,
+      "leads": [
+        {
+          "listing_id": "facility-listing:af1b3b34621ca47b0b73cdf5c34365f2",
+          "straight_line_distance_km": 0.6,
+          "road_distance_km": null,
+          "stage_capability": "not_established",
+          "material_match": "code_category_only",
+          "source_as_of": "2026-02-27"
+        },
+        {
+          "listing_id": "facility-listing:c2bf22d42e4cdff9c5b6284196978fe7",
+          "straight_line_distance_km": 0.8,
+          "road_distance_km": null,
+          "stage_capability": "not_established",
+          "material_match": "unmapped_codes_require_review",
+          "source_as_of": "2026-02-27"
+        },
+        {
+          "listing_id": "facility-listing:5add9dca8c777c2458359c59dcf0d493",
+          "straight_line_distance_km": 0.9,
+          "road_distance_km": null,
+          "stage_capability": "not_established",
+          "material_match": "code_category_only",
+          "source_as_of": "2026-02-27"
+        }
+      ]
+    }
+  ],
+  "dispatch_approved": false,
+  "route": "REVIEW",
+  "generation_model_called": false,
+  "registry_text_omitted_from_git": true
+}

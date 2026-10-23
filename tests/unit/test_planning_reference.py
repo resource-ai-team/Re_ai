@@ -31,6 +31,47 @@ def record(payload, group, key):
     return next(row for row in payload[group] if row["key"] == key)
 
 
+def identity_link():
+    return {
+        "listing_id": "facility-listing:" + "a" * 32,
+        "registry_source_sha256": "b" * 64,
+        "record_sha256": "c" * 64,
+        "source_ids": ["samyang-pet"],
+        "checked_date": "2026-10-24",
+        "basis": "official_site_address_and_registry_record_review",
+    }
+
+
+@pytest.mark.parametrize("fault", ["missing_address", "unlinked_source", "duplicate", "other_site"])
+def test_registry_identity_requires_sourced_site_and_unique_listing(payload, fault):
+    facility = record(payload, "facilities", "samyang-sihwa")
+    facility["address"] = "Synthetic address for schema verification"
+    facility["registry_identity_links"] = [identity_link()]
+    if fault == "missing_address":
+        facility["address"] = None
+    elif fault == "unlinked_source":
+        facility["registry_identity_links"][0]["source_ids"] = ["novelis-yeongju"]
+    elif fault == "duplicate":
+        facility["registry_identity_links"].append(identity_link())
+    else:
+        other = record(payload, "facilities", "novelis-yeongju")
+        other["registry_identity_links"] = [{**identity_link(), "source_ids": ["novelis-yeongju"]}]
+    with pytest.raises(ValidationError):
+        planning.PlanningReference.model_validate(payload)
+
+
+def test_identity_link_cannot_assert_automatic_name_match_or_bad_snapshot():
+    for change in (
+        {"basis": "same_name"},
+        {"registry_source_sha256": "not-a-hash"},
+        {"checked_date": "2026-02-30"},
+        {"source_ids": ["samyang-pet", "samyang-pet"]},
+        {"listing_id": "company:permanent-id"},
+    ):
+        with pytest.raises(ValidationError):
+            planning.RegistryIdentityLink.model_validate({**identity_link(), **change})
+
+
 def reseal_and_audit(connection):
     # Prove semantic validation catches tampering even if its checksum is resealed.
     connection.execute(
@@ -267,12 +308,12 @@ def test_curated_stage_imports_the_complete_planning_corpus_with_source_links(st
         "WHERE json_extract(properties,'$.planning_key') IS NOT NULL"
     ).fetchall()
     assert Counter(row[1] for row in rows) == {
-        "Source": 9,
-        "Evidence": 9,
+        "Source": 12,
+        "Evidence": 12,
         "MaterialState": 23,
         "ProcessTransition": 18,
-        "Organisation": 5,
-        "Facility": 7,
+        "Organisation": 6,
+        "Facility": 8,
         "FacilityCapability": 18,
     }
     planning_edges = stage.execute(
@@ -281,7 +322,7 @@ def test_curated_stage_imports_the_complete_planning_corpus_with_source_links(st
     ).fetchall()
     expected_edges = planning.compile_reference()[3]
     assert len(planning_edges) == len(expected_edges)
-    assert Counter(kind for kind, _ in planning_edges)["FROM_SOURCE"] == 9
+    assert Counter(kind for kind, _ in planning_edges)["FROM_SOURCE"] == 12
     assert all(json.loads(props)["dispatch_approved"] is False for _, props in planning_edges)
     assert len({json.loads(row[2])["planning_bundle_sha256"] for row in rows}) == 1
     planning.audit_reference(stage)

@@ -1,11 +1,11 @@
 {
-  "dataset_version": "1.0.0",
+  "dataset_version": "1.1.0",
   "source": "Re:Source AI 기획서 v3 및 법령·규정 조사 문서",
   "purpose": "폐기물 처리 의사결정의 공식 법률 근거 검색 기준선",
   "laws": [
     {
       "title": "폐기물관리법",
-      "articles": ["17", "25", "48"]
+      "articles": ["17", "25", "48", "2", "33"]
     },
     {
       "title": "폐기물관리법 시행규칙",
@@ -19,6 +19,12 @@
   "precedents": [
     {
       "case_number": "2023두62830"
+    },
+    {
+      "case_number": "2002다46331"
+    },
+    {
+      "case_number": "2019다226548"
     }
   ]
 }

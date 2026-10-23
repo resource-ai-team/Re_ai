@@ -25,9 +25,20 @@ POST /analysis/research는 구조화된 폐자원 정보를 받아 다음을 수
 3. 공정·시설·인계 구간별 확인 질문을 만들고 기존 로컬 법령 검색을 호출합니다.
 4. 원문·조문·시행일·출처, 검색 실패·근거 없음·예산 초과와 미확인을 보존해 REVIEW로 반환합니다.
 
-이 실행은 agents/research.py에 있습니다. 검색 결과의 적용성 Auditor, 현행 허가·실제 인수 검증,
-적합성 종합 판정, 최종 순위는 아직 없습니다. 자료가 없다는 이유로 후보를 숨기거나 통과시키지 않습니다.
+이 실행은 agents/research.py에 있습니다. 선택 필드 `legal_graph`를 주면 기본 Hybrid 검색 대신
+별도 법률 그래프의 Researcher → Auditor → Adjudicator를 후보별로 실행합니다. 실제 모델 연결은 미실행이며
+현재는 구조 적재와 가상 모델 테스트를 구분합니다. [법률 그래프 상세](legal-hierargraph.md)를 참고하세요.
+현행 허가·실제 인수 검증, 적합성 종합 판정, 최종 순위는 아직 없습니다. 자료가 없다는 이유로 후보를 숨기거나 통과시키지 않습니다.
 현재는 동기 실행이며 전체 단계의 영구 이력·진행 이벤트·취소·재시작 복구까지 구현한 실행기는 아닙니다.
+
+추가된 `POST /analysis/review-template`은 같은 후보를 조회하되 RAG·모델을 호출하지 않고 경로별 빈 수치 양식을 만듭니다.
+`POST /analysis/review`는 연구 서비스를 다시 호출하고 입력 해시·현재 KG 세대·공정/인계 ID와 순서·같은 투입 물량을 대조합니다.
+올바르게 연결되고 계산 항목이 완성된 수치만 별도의 수치상 Pareto에 넣습니다. 나머지 경로와 누락·오류도 결과에서 보존합니다.
+이 비교는 적합성 검증 통과나 최종 추천을 뜻하지 않습니다.
+
+결정론적 Critic이 전체 후보의 연결·조건·계산·Pareto 층을 검사하며, `REVIEW / REVISE`와 원인 단계·후속 무효화 범위를 반환합니다.
+후보별 다음 행동, Markdown 검토 보고서와 지도 마커 데이터까지 생성합니다. 의미적 모델 반박·PASS 게이트·최종 Top K·자동 부분 재실행·영구 이력·실제 화면 연결은 남았습니다.
+[계약과 예제](grounded-decision-review.md)를 참고하세요.
 
 ## KG의 세 자료층
 
@@ -73,7 +84,8 @@ POST /analysis/compare-scenarios는 별도로 제출된 수치·근거를 calcul
 누락된 값은 미완성 총계로 남기며, 비교 가능한 수치 시나리오에 Pareto 층을 계산합니다.
 실제 견적·도로거리·LCI를 찾거나 검증된 KG 후보를 최종 추천하는 API는 아닙니다.
 
-두 분석 API는 현재 외부 생성 모델 없이 동작합니다. 별도 화면 프로토타입의 모델 연동을
+분석 API의 기본 경로는 현재 외부 생성 모델 없이 동작합니다. 법률 그래프 선택 경로는 모델 설정과
+특징·요건 생성이 필요합니다. 별도 화면 프로토타입의 모델 연동을
 이 저장소의 전체 Agent 실행기 구현으로 간주하지 않습니다.
 [분석 계약·예제·남은 범위](candidate-analysis.md)를 참고합니다.
 
@@ -84,7 +96,9 @@ POST /analysis/compare-scenarios는 별도로 제출된 수치·근거를 calcul
 | api/routes, api/schemas | 내부 HTTP API·입출력·검증 오류 |
 | knowledge_graph | 온톨로지·번들 검증, Neo4j 적재·조회, 공정 경로·시설 조사·공개 조건 대조 |
 | rag/ingestion, rag/retrieval | 공식 문서 수집·청킹·pgvector·Hybrid Search·Reranking |
+| legal_graph | 법률 계층 그래프·별도 Neo4j 세대·세 검색·요건별 Check/Decide·근거 제한 판단 |
 | agents/research.py, agents/tools | 후보 조사 실행과 KG/RAG 도구 경계 |
+| agents/decision_review.py, agents/decision_critic.py | KG-수치 연결, 독립 산술/비교 검사, REVIEW/REVISE·검토 보고서·지도 마커 |
 | calculators/scenarios.py | 제출된 수치·근거의 산술·비교 조건 검사·Pareto |
 | evidence | 근거 모델·출처와 연결 |
 | core, integrations/law_api.py | 설정·의존성과 공식 법령 API |

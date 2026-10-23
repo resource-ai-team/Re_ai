@@ -4,6 +4,23 @@
 
 `GET /health`
 
+## 실제 KG 경로에 연결한 검토
+
+- `POST /analysis/site-discovery`: `origin` 사업장 정보와 `lot`으로 KG의 공정별 시설 명부를 직선거리순 조회합니다.
+  전체 매칭 목록을 정렬한 뒤 페이지를 받고 KG·명부·코드표 버전과 부분 조회 범위를 확인합니다.
+  사업장 권한·좌표 검수는 Re_server 책임입니다. 법규 검색·생성 모델·도로거리·견적은 호출하지 않습니다.
+  `REVIEW`·빈 최종 추천·`dispatch_approved=false`를 반환합니다. [요청·결과·실제 DB 검사](site-discovery-api.md).
+- `POST /analysis/review-template`: `lot`·`max_pages`로 실제 KG 경로의 빈 수치 양식을 조회합니다. RAG·생성 모델 호출 없음.
+  `input_sha256`·`graph_trace`·공정/인계 ID와 함께 활동량·계수·근거 ID를 `null`로 반환합니다.
+- `POST /analysis/review`: `research`와 선택 `numeric`을 받아 후보 조사 → 같은 로트·현재 그래프·순서 대조 → 제출 수치 계산 → 수치상 Pareto → 결정론적 Critic을 실행합니다.
+  `numeric`은 양식의 `input_sha256`, `graph_trace`, 기존 계산 계약의 `comparison`을 포함합니다.
+  다른 입력·구버전·가짜 공정의 수치는 비교에 넣지 않습니다.
+- 자료 부족은 `REVIEW`, 확인된 오류는 `REVISE`와 `router.restart_from`·후속 무효화 범위를 반환합니다.
+  자동 재실행은 없으며 `PASS`·최종 추천·발주 승인을 반환하지 않습니다.
+- `candidate_reviews`, `map_markers`, `report_markdown`은 확인할 조건·오류·다음 행동을 제공합니다. 실제 3D 화면 연동은 후속입니다.
+- 잘못된 목표는 `400`, 그래프 세대 변경은 `409`, DB/무결성 장애는 `503`, 스키마 오류는 `422`입니다.
+- [요청 예제·숫자 확보 방법·제한](grounded-decision-review.md). 두 API는 내부용이며 서버 담당자 검토 후 연동합니다.
+
 ## 법률 근거 검색
 
 `GET /rag/search?q={질문}&top_k=5`
@@ -12,7 +29,19 @@
 점수와 `retrieval_method`가 포함됩니다. `retrieval_method`는 벡터·키워드 후보 포함 여부와
 재정렬 적용을 표시합니다. 검색 실패 시 `503`을 반환합니다.
 
-## 지식그래프
+## 법률 그래프 검증
+
+- `GET /legal-graph/status`: 별도 법률 Neo4j 세대·원문 수·모델 보강 여부. `analysis_ready=false`면 구조만 적재된 상태.
+- `POST /legal-graph/analyze`: 특징·커뮤니티·쟁점의 세 검색 → Auditor Check/Decide → 검증 근거 요약.
+  입력은 `query`, `facts`, `top_k`, `max_model_calls`, `max_articles`. 모델·그래프·임베딩 설정은 서버에서만 받음.
+- `POST /analysis/research`의 선택 필드 `legal_graph`: 각 공정 후보를 가설로 전달해 위 법규 검증을 실행.
+  전체 후보가 모델 호출 한도를 공유하고 후보별 `legal_graph_review`에 결과·미확인·실패를 표시.
+  생략하면 기존 Hybrid 검색 유지. 실제 생성 모델은 아직 연결하지 않았음.
+- 모델 미연결·외부 전송 비활성·그래프 미적재·구조 전용 그래프·무결성 오류는 `503`과 명시적 `detail.code`.
+  항목 검증 중 자료 부족·모델 오류는 `unknown`, 최종 결과는 `REVIEW`. 허가·인수 승인이 아님.
+- [입출력 예시·논문 반영 범위](legal-hierargraph.md). 이 API는 내부용이며 Re_server 검토 후 연동.
+
+## 공정·시설 지식그래프
 
 - `GET /kg/ontology`: 클래스·관계·추론 금지 조건. Neo4j 없이 확인 가능.
 - `GET /kg/planning-coverage`: 활성 Neo4j 공정 참조 자료의 수·끊긴 가지·도달 불가 산출물·시설 미연결·출처 메타데이터.

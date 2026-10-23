@@ -19,6 +19,7 @@ class HashEmbeddingProvider:
 
     def __init__(self, dimension: int = 384) -> None:
         self.dimension = dimension
+        self.model_name = f"test-only-hash-{dimension}"
 
     def _embed(self, text: str) -> list[float]:
         vector = [0.0] * self.dimension
@@ -39,6 +40,7 @@ class HashEmbeddingProvider:
 
 class SentenceTransformerEmbeddingProvider:
     def __init__(self, model_name: str, dimension: int) -> None:
+        self.model_name = model_name
         try:
             from sentence_transformers import SentenceTransformer
         except ImportError as exc:

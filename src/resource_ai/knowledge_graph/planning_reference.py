@@ -82,6 +82,25 @@ class ReportedMetric(BaseModel):
     source_id: str
 
 
+class RegistryIdentityLink(BaseModel):
+    """A reviewed snapshot record is not a permanent facility identifier."""
+
+    model_config = ConfigDict(extra="forbid")
+    listing_id: str = Field(pattern=r"^facility-listing:[a-f0-9]{32}$")
+    registry_source_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+    record_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+    source_ids: list[str] = Field(min_length=1)
+    checked_date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
+    basis: Literal["official_site_address_and_registry_record_review"]
+
+    @model_validator(mode="after")
+    def reviewed_link(self):
+        date.fromisoformat(self.checked_date)
+        if len(self.source_ids) != len(set(self.source_ids)):
+            raise ValueError("Duplicate identity source")
+        return self
+
+
 class Facility(SourcedRecord):
     organisation: str
     country: Literal["KR"]
@@ -95,6 +114,7 @@ class Facility(SourcedRecord):
     current_price_krw_per_kg: None
     latitude: float | None = Field(ge=-90, le=90, allow_inf_nan=False)
     longitude: float | None = Field(ge=-180, le=180, allow_inf_nan=False)
+    registry_identity_links: list[RegistryIdentityLink] = Field(default_factory=list)
 
 
 class FacilityInputProfile(BaseModel):
@@ -181,6 +201,7 @@ class PlanningReference(BaseModel):
                 != states[transition.output_state].material
             ):
                 raise ValueError("Invalid or cross-material transition")
+        linked_listings = set()
         for facility in self.facilities:
             if facility.organisation not in mappings["organisations"]:
                 raise ValueError("Unlinked organisation")
@@ -188,6 +209,12 @@ class PlanningReference(BaseModel):
                 raise ValueError("Unlinked reported metric")
             if (facility.latitude is None) != (facility.longitude is None):
                 raise ValueError("Incomplete location point")
+            for link in facility.registry_identity_links:
+                if facility.address is None or not set(link.source_ids) <= set(facility.source_ids):
+                    raise ValueError("Identity link needs sourced site address")
+                if link.listing_id in linked_listings:
+                    raise ValueError("Duplicate or ambiguous registry identity link")
+                linked_listings.add(link.listing_id)
         for capability in self.capabilities:
             if (
                 capability.facility not in mappings["facilities"]
