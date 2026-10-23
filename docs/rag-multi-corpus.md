@@ -47,9 +47,17 @@ JSONL을 전달받습니다.
 
 ~~~bash
 resource-rag init-db
+resource-rag build-public-evidence
+resource-rag validate data/official/public_evidence_summaries.jsonl
+resource-rag index data/official/public_evidence_summaries.jsonl
 resource-rag validate path/to/documents.jsonl
 resource-rag index path/to/documents.jsonl --manifest path/to/documents.manifest.json
 ~~~
+
+`build-public-evidence`는 해시로 고정된 공개 출처 번들에서 검수 및 로컬 원본 확인을 통과한
+카드만 선택한다. 원문 전체가 아니라 검수 요약·원문 위치·한계·확인되지 않은 사항을
+`TECHNICAL_LITERATURE`로 생성한다. 법률·비용·탄소 카드는 제외하며, 실제 처리 결과가 없는
+시설·수취 후보 자료를 `HISTORICAL_CASE`로 분류하지 않는다.
 
 인덱싱은 전체 데이터셋을 하나의 트랜잭션으로 처리합니다. 동일한
 `canonical_source_id`의 새 버전이 들어오면 이전 버전은 보존하되 검색 대상에서 제외합니다.

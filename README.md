@@ -56,6 +56,8 @@ resource-kg audit
 ```bash
 legal-rag collect
 legal-rag index
+resource-rag build-public-evidence
+resource-rag index data/official/public_evidence_summaries.jsonl
 ```
 
 API를 실행합니다.
@@ -112,7 +114,16 @@ RAG는 다음 코퍼스를 공통 pgvector 인프라에서 논리적으로 분�
 | `HISTORICAL_CASE` | 검수된 성공·실패 처리 사례 |
 | `COMPANY_DOCUMENT` | 성적서·시설 회신·규격·처리계획서 |
 
-법령 외 정규화된 JSONL 데이터는 다음과 같이 확인하고 적재합니다.
+저장소의 검수된 공개 출처 요약은 다음 명령으로 재생성하고 적재합니다. 원문 전체가 아니라
+출처 위치·적용 범위·한계를 포함한 검수 요약을 `TECHNICAL_LITERATURE`로 저장합니다.
+
+```bash
+resource-rag build-public-evidence
+resource-rag validate data/official/public_evidence_summaries.jsonl
+resource-rag index data/official/public_evidence_summaries.jsonl
+```
+
+그 밖의 정규화된 JSONL 데이터는 다음과 같이 확인하고 적재합니다.
 
 ```bash
 resource-rag validate path/to/documents.jsonl

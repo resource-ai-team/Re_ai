@@ -5,6 +5,7 @@
 | 경로 | 역할 | Git 포함 |
 | --- | --- | --- |
 | `config/legal_scope.json` | 공식 API 수집 범위와 데이터셋 버전 | 포함 |
+| `config/public_evidence_scope.json` | 검수된 공개 근거 요약의 RAG 적재 범위 | 포함 |
 | `config/retrieval_eval.json` | 질문별 기대 근거 평가셋 | 포함 |
 | `config/facility_assessment_eval.json` | 가상 로트와 문서 기반 조건 대조 기대 결과. 현장 정답 아님 | 포함 |
 | `samples/` | 입력 형식 확인용 가짜 데이터 | 포함 |
@@ -49,6 +50,14 @@ legal-rag index
 법령 외 기술문헌·과거 사례·기업 문서는 공통 JSONL 계약으로 정규화한 뒤
 `resource-rag validate`와 `resource-rag index`를 사용한다. 코퍼스별 필수 메타데이터와
 기업 문서 권한 경계는 [다중 코퍼스 인덱싱](../docs/rag-multi-corpus.md)에 정의한다.
+
+검수된 공개 근거 카드는 아래 명령으로 기술문헌 요약 데이터셋을 재생성한다. 저작권이
+확인되지 않은 원문 전체 대신 검수 요약과 출처 위치만 포함한다.
+
+```bash
+resource-rag build-public-evidence
+resource-rag index data/official/public_evidence_summaries.jsonl
+```
 
 ## 신뢰 경계
 

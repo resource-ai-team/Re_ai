@@ -16,6 +16,7 @@ from resource_ai.rag.ingestion.dataset import (
 )
 from resource_ai.rag.ingestion.loader import load_jsonl, write_jsonl
 from resource_ai.rag.ingestion.pipeline import collect_scope
+from resource_ai.rag.ingestion.public_evidence import build_public_evidence_summaries
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -48,6 +49,21 @@ def build_parser() -> argparse.ArgumentParser:
     collect.add_argument("--scope", type=Path, default=Path("data/config/legal_scope.json"))
     collect.add_argument("--output", type=Path, default=Path("data/official/legal_documents.jsonl"))
 
+    public_evidence = commands.add_parser(
+        "build-public-evidence",
+        help="Build searchable reviewed summaries from the pinned public evidence bundle",
+    )
+    public_evidence.add_argument(
+        "--scope",
+        type=Path,
+        default=Path("data/config/public_evidence_scope.json"),
+    )
+    public_evidence.add_argument(
+        "--output",
+        type=Path,
+        default=Path("data/official/public_evidence_summaries.jsonl"),
+    )
+
     validate = commands.add_parser("validate", help="Validate an evidence dataset")
     validate.add_argument(
         "path", type=Path, nargs="?", default=Path("data/official/legal_documents.jsonl")
@@ -61,6 +77,29 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> None:
     args = build_parser().parse_args()
+    if args.command == "build-public-evidence":
+        documents = build_public_evidence_summaries(args.scope)
+        validation = validate_documents(documents)
+        if not validation.passed:
+            for error in validation.errors:
+                print(f"ERROR: {error}")
+            raise SystemExit(1)
+        write_jsonl(args.output, documents)
+        manifest_path = args.output.with_suffix(".manifest.json")
+        write_dataset_manifest(
+            manifest_path,
+            documents=documents,
+            scope_path=args.scope,
+            dataset_path=args.output,
+        )
+        print(
+            f"Built {validation.document_count} reviewed-summary documents / "
+            f"{validation.section_count} sections"
+        )
+        print(args.output)
+        print(manifest_path)
+        return
+
     if args.command == "collect":
         settings = get_settings()
         with LawOpenApiClient(
