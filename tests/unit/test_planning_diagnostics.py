@@ -100,7 +100,7 @@ def test_resin_alias_never_claims_grade_specific_intake(label, subtype):
 
 def test_global_coverage_reports_unbound_site_without_fabricating_capabilities():
     report = coverage_report(reference())
-    assert report["facilities_without_transition_keys"] == ["bgf-incheon"]
+    assert report["facilities_without_transition_keys"] == ["bgf-incheon", "rm-hwaseong"]
     assert {row["material"] for row in report["materials"]} == {
         "pet",
         "pp",

@@ -59,6 +59,10 @@ Re_server는 회원이 해당 사업장에 접근 가능한지와 수거 지점�
 | `straight_line_distance_km` | 배출 사업장→해당 명부 좌표의 직선거리 |
 | `stage_capability`, 허가·인수 관련 필드 | 실제 공정 수행·허가·해당 로트 인수는 여전히 미확인 |
 | `coverage`와 공정별 `next_cursor` | 수집 건수·전체 매칭 건수·불완전 조회 범위 |
+| `facility_searches[].evidence_coverage` | 받은 페이지 중 검수된 사업장 식별·이번 공정의 직접 근거·역할 가설 건수를 분리. 전체 명부 검증률이 아님 |
+
+명부 항목의 `research_packet.evidence_links`는 [사업장 식별·공정 근거 연결](facility-identity-evidence.md)을 표시합니다.
+같은 사업장으로 확인돼도 이번 요청 공정의 수행 근거가 없으면 `stage_capability=not_established`를 유지합니다.
 
 `road_distance_km`·`transport_cost_krw`는 아직 `null`입니다.
 후속 공정의 거리도 **출발 사업장에 대한 근접성 조사**이며, 앞 처리시설에서 다음 시설까지 운송하는 거리로 사용하면 안 됩니다.

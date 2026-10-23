@@ -1,0 +1,69 @@
+{
+  "evaluated_at": "2026-10-23T19:33:49.967127+00:00",
+  "scope": "Actual KG and registry HTTP; not an operational permit or intake accuracy evaluation",
+  "graph_generation": "b5185b51c85a41eb9f9093d8d3f0b8b5",
+  "reference_sha256": "13efe7eb3cfcdc295925093cd18f7cbfa3451c5a20175d8626bb2ecd72a025c5",
+  "registry_generation": "94ac29d43d8a4df2934448d990328a0e",
+  "registry_source_sha256": "b083ea497c37bb11bd9374fc0a5b0850b989d290dbdba9d4a713fef353e79c08",
+  "registry_record_count": 9604,
+  "rows": [
+    {
+      "facility_key": "rm-hwaseong",
+      "listing_id": "facility-listing:34c65596f6357599b607a3590093585c",
+      "transition_key": "pet-wash",
+      "identity_status": "reviewed_same_site",
+      "stage_capability": "not_established",
+      "capability_keys": [],
+      "source_evidence": [
+        {
+          "source_id": "cosmo-rm-cups",
+          "checked_date": "2026-10-24",
+          "source_date": null,
+          "url": "https://www.cosmo.or.kr/boardDownload.es?bid=0001&list_no=50188&mid=a10401000000&seq=1",
+          "locator": "1쪽 적격 사업자 세부내역: 업체·대상품목·사업장 주소"
+        },
+        {
+          "source_id": "keco-rm-recycled-input",
+          "checked_date": "2026-10-24",
+          "source_date": "2025-07-09",
+          "url": "https://portal.budamgum.or.kr/cmb/portal/board.do?boardId=9384&menuId=11&search_sys=EPR&tp=N",
+          "locator": "2025-07-09 공지: 사업자명·소재지·생산 유효기간·변경 가능 안내"
+        }
+      ],
+      "current_acceptance": null,
+      "current_permit_scope": null,
+      "dispatch_approved": false
+    },
+    {
+      "facility_key": "rm-hwaseong",
+      "listing_id": "facility-listing:34c65596f6357599b607a3590093585c",
+      "transition_key": "pp-clean",
+      "identity_status": "reviewed_same_site",
+      "stage_capability": "not_established",
+      "capability_keys": [],
+      "source_evidence": [
+        {
+          "source_id": "cosmo-rm-cups",
+          "checked_date": "2026-10-24",
+          "source_date": null,
+          "url": "https://www.cosmo.or.kr/boardDownload.es?bid=0001&list_no=50188&mid=a10401000000&seq=1",
+          "locator": "1쪽 적격 사업자 세부내역: 업체·대상품목·사업장 주소"
+        },
+        {
+          "source_id": "keco-rm-recycled-input",
+          "checked_date": "2026-10-24",
+          "source_date": "2025-07-09",
+          "url": "https://portal.budamgum.or.kr/cmb/portal/board.do?boardId=9384&menuId=11&search_sys=EPR&tp=N",
+          "locator": "2025-07-09 공지: 사업자명·소재지·생산 유효기간·변경 가능 안내"
+        }
+      ],
+      "current_acceptance": null,
+      "current_permit_scope": null,
+      "dispatch_approved": false
+    }
+  ],
+  "registry_raw_text_included": false,
+  "actual_api_rows_checked": 2,
+  "generation_model_calls": 0,
+  "dispatch_approved": false
+}

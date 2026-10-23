@@ -27,6 +27,7 @@
 | [공정·시설 경로 탐색](kg-process-plans.md) | 별도 상태 전이, 여러 공정 순서·시설 조합, 역할 가설·검색 한도 |
 | [공정 근거와 빈 연결 보강](kg-evidence-upgrade.md) | 제지 10개 작업·PE 등급 구분·PP 확인 질문·출처 연결 범위·연결 진단 API |
 | [국내 시설 추가 조사](kg-facility-matching.md) | 등록 명부 수집·적재·공정별 검색·직선거리와 확인할 조건 |
+| [사업장 식별과 공정 근거 연결](facility-identity-evidence.md) | 검수한 명부 행→사업장→요청 공정 연결, 원본 버전 변경·동명 회사·공정 확대 해석 방지 |
 | [시설 공개 조건 대조](kg-facility-conditions.md) | 소재·명시적 제외·미확인 대조, 공정·운송 구간별 표시와 PP 사례 |
 | [KG 고도화 계획과 기록](kg-upgrade-plan.md) | 추가할 데이터·기술과 각 조회 버전의 실행 기록 |
 
@@ -50,6 +51,7 @@
 | 기록 | 검증 범위 |
 | --- | --- |
 | [KG 조회](evaluation/knowledge-graph-2026-10-21.json) | 고정 문헌·참조 자료 조회와 연결 |
+| [시설 식별 실제 API 검사](evaluation/facility-identity-2026-10-24.json) | 공공 주소 근거·명부 행을 연결하되 PET/PP 세척 능력은 미확인으로 유지 |
 | [전체 후보 조사 묶음](evaluation/kg-pool-2026-10-21.json) | 후보·페이지·출처·자료 범위 |
 | [공정·시설 경로](evaluation/kg-plans-2026-10-21.json) | 등록 상태 전이·경로 열거·시설 연결 |
 | [KG 보강 후 재검증](kg-evidence-upgrade.md#이번-검증-결과) | 새 제지 순서·출처 범위·등급·연결 진단, 실제 활성 세대와 전체 테스트 |

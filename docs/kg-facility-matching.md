@@ -56,12 +56,14 @@ W2RKG 문헌 조회와 이 기능은 구분합니다. 공정 순서는 별도로
 | `material_match` | 소재 이름·넓은 분류·코드·미해석 코드 중 어떤 단서로 찾았는지 표시 |
 | `code_interpretations` | 코드의 명칭 일부, PDF 쪽수, 지정/일반/생활 분류 구획과 미해석 상태 |
 | `equipment_mentions` | 해당 단계와 관련된 설비 단어가 명부에 있는지 표시. 전체 공정 수행 능력을 입증하지 않음 |
+| `evidence_links` | 검수한 명부 행·사업장 식별과 이번 요청 공정의 공개 근거. 이름만 자동 매칭하지 않음 |
 | `straight_line_distance_km` | 좌표가 있을 때만 직선거리. 도로 운송거리·운송비가 아님 |
 | `current_permit_scope`, `current_acceptance`, `current_available_capacity_kg` | 확보하지 못했으므로 `null` |
 | `search_scope.match_counts` | 검색 단서별 건수. 미해석 코드의 확인 대상도 별도로 집계 |
 | `graph_trace` | 공정 KG·명부·코드표의 조회 버전과 해시 |
 
 검색 순서는 **관련 설비 단어 → 소재 단서의 종류 → 직선거리 → ID**입니다.
+검수된 사업장 연결·공정 근거는 [별도 상태](facility-identity-evidence.md)로 표시하며 거리 정렬이나 실제 허가·인수 승인과 구분합니다.
 설비 단어가 없거나 주소가 비어 있는 후보도 보존합니다.
 운반업·처분업 등록을 재활용 공정 시설로 바꾸지 않습니다. 해당 역할의 별도 탐색은 후속 범위입니다.
 지역 필터는 주소의 문자열 포함 여부이며, 행정구역 정규화나 도로 경로 검색은 아직 없습니다.

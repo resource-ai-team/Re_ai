@@ -346,7 +346,10 @@ def test_blocked_source_outside_a_route_does_not_withhold_unrelated_evidence(val
     assert plan.external_model_allowed is True
     assert plan.withheld_evidence_ids == []
     assert plan.research_packet is not None
-    assert {source["key"] for source in plan.research_packet["evidence"]} == {"samyang-pet"}
+    assert {source["key"] for source in plan.research_packet["evidence"]} == {
+        "samyang-pet",
+        "samyang-site-address",
+    }
 
 
 @pytest.fixture

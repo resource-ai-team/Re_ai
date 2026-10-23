@@ -12,6 +12,7 @@ from resource_ai.knowledge_graph import graph_store as store
 from resource_ai.knowledge_graph import ontology as graph
 from resource_ai.knowledge_graph.facility_codes import code_interpretations, load_codebook
 from resource_ai.knowledge_graph.facility_evidence import assess_binding
+from resource_ai.knowledge_graph.facility_identity import identity_evidence
 from resource_ai.knowledge_graph.facility_registry import read_registry
 from resource_ai.knowledge_graph.planning import load_reference
 from resource_ai.knowledge_graph.planning_reference import node_id
@@ -257,13 +258,15 @@ class FacilitySearch:
             items = []
             for record, match, distance in selected:
                 packet = {k: v for k, v in record.items() if k != "raw_record"}
+                identity = identity_evidence(value, record, transition.key)
                 packet.update(
                     material_match=match,
                     code_interpretations=code_interpretations(
                         record["waste_codes"], material, codebook
                     ),
                     code_mapping_source=codebook["source"],
-                    stage_capability="not_established",
+                    stage_capability=identity["stage_capability"],
+                    evidence_links=identity,
                     equipment_mentions=equipment_mentions(record, transition.key),
                     equipment_evidence_scope="literal_mentions_only_not_whole_transition_or_material_compatibility",
                     region_match="not_requested"

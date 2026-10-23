@@ -6,7 +6,7 @@ import pytest
 from fastapi.testclient import TestClient
 from pydantic import ValidationError
 
-from resource_ai.agents.site_discovery import SiteDiscoveryService
+from resource_ai.agents.site_discovery import SiteDiscoveryService, evidence_coverage
 from resource_ai.api.schemas.facility_search import FacilitySearchRequest, FacilitySearchResponse
 from resource_ai.api.schemas.site_discovery import SiteDiscoveryRequest
 from resource_ai.core.dependencies import get_graph_query
@@ -32,6 +32,34 @@ def request(**kwargs):
         "max_facility_pages": 2,
     }
     return SiteDiscoveryRequest.model_validate({**data, **kwargs})
+
+
+def test_coverage_does_not_equate_identity_with_process_or_entire_registry():
+    leads = [
+        {
+            "research_packet": {
+                "evidence_links": {
+                    "identity_status": "reviewed_same_site",
+                    "stage_capability": "not_established",
+                }
+            }
+        },
+        {
+            "research_packet": {
+                "evidence_links": {
+                    "identity_status": "reviewed_same_site",
+                    "stage_capability": "published_site_process",
+                }
+            }
+        },
+        {"research_packet": {"evidence_links": {"identity_status": "not_linked"}}},
+    ]
+    result = evidence_coverage(leads, [])
+    assert result["registry_leads_collected"] == 3
+    assert result["registry_same_site_reviewed"] == 2
+    assert result["registry_requested_process_publication_supported"] == 1
+    assert result["scope"] == "collected_pages_only_not_entire_matching_registry"
+    assert result["current_permit_and_intake_verified"] is False
 
 
 class Graph(FakeGraph):

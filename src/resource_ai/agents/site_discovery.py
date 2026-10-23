@@ -22,6 +22,32 @@ LIMITATIONS = [
 ]
 
 
+def evidence_coverage(items, bindings):
+    """Describe only fetched leads; identity and public process support stay separate."""
+    links = [(row.get("research_packet") or {}).get("evidence_links", {}) for row in items]
+    references = [(row.get("research_packet") or {}).get("assessment", {}) for row in bindings]
+    return {
+        "scope": "collected_pages_only_not_entire_matching_registry",
+        "registry_leads_collected": len(items),
+        "registry_same_site_reviewed": sum(
+            link.get("identity_status") == "reviewed_same_site" for link in links
+        ),
+        "registry_requested_process_publication_supported": sum(
+            link.get("stage_capability") == "published_site_process" for link in links
+        ),
+        "registry_requested_process_role_hypotheses": sum(
+            link.get("stage_capability") == "site_role_hypothesis" for link in links
+        ),
+        "reference_bindings_with_site_publication": sum(
+            row.get("binding_basis") == "published_site_process" for row in references
+        ),
+        "reference_bindings_with_role_hypothesis": sum(
+            row.get("binding_basis") == "site_role_hypothesis" for row in references
+        ),
+        "current_permit_and_intake_verified": False,
+    }
+
+
 class SiteDiscoveryService:
     def __init__(self, graph):
         self.graph = graph
@@ -114,6 +140,7 @@ class SiteDiscoveryService:
                     "status": first.status,
                     "reference_bindings": first.reference_bindings,
                     "registry_candidates": items,
+                    "evidence_coverage": evidence_coverage(items, first.reference_bindings),
                     "graph_trace": first.graph_trace,
                     "search_scope": first.search_scope,
                     "coverage": {
