@@ -33,6 +33,7 @@
 - [API 목록과 오류](api.md), 실행 중 서비스의 /docs: 각 내부 엔드포인트와 스키마.
 - [분석 API 상세](candidate-analysis.md): /analysis/research, /analysis/compare-scenarios의 예제와 별도 가상 수치 시나리오.
 - [데이터 관리](../data/README.md): 원본·가상 데이터·공식 수집 범위·사용 조건·Git 포함 여부.
+- [RAG 다중 코퍼스 인덱싱](rag-multi-corpus.md): 코퍼스별 문서 계약·검증·권한 경계·실행 방법.
 - [루트 빠른 시작](../README.md#빠른-시작): Python·DB·적재·API 실행 순서.
 - [팀 CONTRIBUTING](https://github.com/resource-ai-team/.github/blob/main/CONTRIBUTING.md): 레포 역할·브랜치·PR·API 변경 규칙.
 

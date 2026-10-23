@@ -24,6 +24,7 @@ dev = ["pytest>=8.3,<10", "ruff>=0.8,<1"]
 
 [project.scripts]
 legal-rag = "resource_ai.cli:main"
+resource-rag = "resource_ai.cli:main"
 resource-kg = "resource_ai.knowledge_graph.cli:main"
 resource-facilities = "resource_ai.knowledge_graph.facility_registry:main"
 resource-lci = "resource_ai.calculators.lci.cli:main"
