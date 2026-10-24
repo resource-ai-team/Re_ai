@@ -12,5 +12,7 @@ models/
 data/official/
 /data/local/facilities/
 /data/local/source-review/
+/data/local/historical-cases/
+/data/local/company-documents/
 
 /data/local/lci/

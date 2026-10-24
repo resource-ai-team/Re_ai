@@ -15,6 +15,8 @@
 | `knowledge_graph/` | 고정 해시의 W2RKG 인덱스·출처·라이선스 | 포함 |
 | `local/facilities/` | 별도 수집한 국내 시설 명부 원본·매니페스트 | 제외 |
 | `local/source-review/` | 공정 보강에 확인한 공식 원본 HTML·PDF. 해시만 검수 기록에 포함 | 제외 |
+| `local/historical-cases/` | 익명화·검수된 실제 처리 결과 반입 원본 | 제외 |
+| `local/company-documents/<tenant_id>/` | 고객사별 성적서·회신·규격·견적서 등 비공개 원본 | 제외 |
 
 KG 조사 카드·출처 메타데이터·조건부 공정 템플릿은 Python 배포에도 포함되도록
 `src/resource_ai/knowledge_graph/resources/`에 둡니다. 원본은 Re-Prototype의
@@ -31,11 +33,12 @@ KG 조사 카드·출처 메타데이터·조건부 공정 템플릿은 Python �
 않았습니다. [수집·적재 방법과 한계](../docs/kg-facility-matching.md)를 참고하세요.
 Neo4j 데이터 볼륨·로컬 비밀번호·국가 LCI 원본은 Git에 포함하지 않습니다.
 
-## 데이터셋 v1
+## 공식 법률 데이터셋 v2
 
-현재 v1은 기획의 P0 법률 근거 검색 기준선이다. 국가법령정보 공동활용 API에서
-폐기물관리법 제17·25·48조, 시행규칙 별표 4·4의2·4의3·5의3,
-순환경제사회 전환 촉진법 제15·21·23·28·30·33조, 대법원 2023두62830을 수집한다.
+현재 v2는 국가법령정보 공동활용 API에서 폐기물 처리·재활용 관련 현행 법률·시행령·
+시행규칙 15종의 전체 조문·별표와 관련 판례 12건을 수집한다. 정확한 수집 범위는
+`config/legal_scope.json`을 단일 기준으로 사용하며, `official/`의 생성 데이터와
+매니페스트는 Git에 포함하지 않고 공식 API에서 재생성한다.
 
 ```bash
 legal-rag collect
