@@ -11,6 +11,7 @@ from resource_ai.api.schemas.analysis import (
 )
 from resource_ai.calculators.scenarios import compare_scenarios
 from resource_ai.core.dependencies import get_graph_query, get_repository
+from resource_ai.evidence.models import SearchGroup
 from resource_ai.knowledge_graph.graph_store import GraphStoreError
 from resource_ai.knowledge_graph.query import GraphQuery
 
@@ -22,7 +23,7 @@ def get_research_service(graph: Annotated[GraphQuery, Depends(get_graph_query)])
     # failures become explicit per-query gaps, not a fabricated successful search.
     class LocalRepository:
         def search(self, query, top_k):
-            return get_repository().search(query, top_k, corpus_types=["LAW"])
+            return get_repository().search(query, top_k, search_group=SearchGroup.LEGAL)
 
     return CandidateResearchService(graph, LocalRepository())
 

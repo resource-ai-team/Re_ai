@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from resource_ai.api.schemas.response import SearchItem
 from resource_ai.core.config import get_settings
 from resource_ai.core.dependencies import get_repository
+from resource_ai.evidence.models import SearchGroup
 from resource_ai.rag.service import LegalRepository
 
 router = APIRouter(prefix="/rag", tags=["rag"])
@@ -15,9 +16,20 @@ def search(
     q: Annotated[str, Query(min_length=2)],
     repository: Annotated[LegalRepository, Depends(get_repository)],
     top_k: Annotated[int | None, Query(ge=1, le=20)] = None,
+    search_group: Annotated[SearchGroup | None, Query()] = None,
+    tenant_id: Annotated[str | None, Query(min_length=1)] = None,
 ) -> list[SearchItem]:
+    if search_group == SearchGroup.COMPANY and not tenant_id:
+        raise HTTPException(status_code=400, detail="tenant_id is required for COMPANY search")
     try:
-        results = repository.search(q, top_k or get_settings().search_top_k)
+        results = repository.search(
+            q,
+            top_k or get_settings().search_top_k,
+            search_group=search_group,
+            tenant_id=tenant_id,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
     except Exception as exc:
         raise HTTPException(status_code=503, detail="Retrieval service is unavailable") from exc
     return [

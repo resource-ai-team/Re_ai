@@ -15,6 +15,25 @@ class CorpusType(StrEnum):
 SUPPORTED_CORPUS_TYPES = frozenset(CorpusType)
 
 
+class SearchGroup(StrEnum):
+    LEGAL = "LEGAL"
+    TECHNICAL = "TECHNICAL"
+    COMPANY = "COMPANY"
+
+
+SEARCH_GROUP_CORPUS_TYPES: dict[SearchGroup, tuple[CorpusType, ...]] = {
+    SearchGroup.LEGAL: (CorpusType.LAW, CorpusType.PRECEDENT),
+    SearchGroup.TECHNICAL: (CorpusType.TECHNICAL_LITERATURE,),
+    SearchGroup.COMPANY: (CorpusType.COMPANY_DOCUMENT,),
+}
+
+
+def corpus_types_for_search_group(search_group: SearchGroup | str) -> tuple[str, ...]:
+    """Resolve the public search group without changing stored document types."""
+    group = SearchGroup(search_group)
+    return tuple(corpus_type.value for corpus_type in SEARCH_GROUP_CORPUS_TYPES[group])
+
+
 @dataclass(frozen=True)
 class EvidenceSection:
     heading: str

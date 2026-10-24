@@ -116,12 +116,12 @@ def test_real_postgres_indexes_versions_and_isolates_company_documents() -> None
 
         tenant_a = repository.search(
             "수분",
-            corpus_types=["COMPANY_DOCUMENT"],
+            search_group="COMPANY",
             tenant_id="tenant-a",
         )
         tenant_b = repository.search(
             "수분",
-            corpus_types=["COMPANY_DOCUMENT"],
+            search_group="COMPANY",
             tenant_id="tenant-b",
         )
         public_results = repository.search("수분")

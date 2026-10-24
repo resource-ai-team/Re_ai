@@ -104,15 +104,16 @@ docker compose -f docker-compose.yml -f docker-compose.neo4j.yml up -d
 
 ## RAG 데이터 실행
 
-RAG는 다음 코퍼스를 공통 pgvector 인프라에서 논리적으로 분리합니다.
+RAG 검색 API는 다음 세 그룹을 제공합니다.
 
-| 코퍼스 | 대상 |
+| 검색 그룹 | 대상 |
 | --- | --- |
-| `LAW` | 법령·시행령·시행규칙·별표 |
-| `PRECEDENT` | 판례 |
-| `TECHNICAL_LITERATURE` | 논문·공공 보고서·공정 설명서 |
-| `HISTORICAL_CASE` | 검수된 성공·실패 처리 사례 |
-| `COMPANY_DOCUMENT` | 성적서·시설 회신·규격·처리계획서 |
+| `LEGAL` | 법령·시행령·시행규칙·별표·판례 |
+| `TECHNICAL` | 논문·공공 보고서·공정 설명서 |
+| `COMPANY` | 기업별 성적서·시설 회신·규격·처리계획서 |
+
+내부 저장소는 기존 문서 유형을 유지하며 검색 시 위 그룹으로 매핑합니다. 실제 처리 이력은
+업무 DB에서 관리하고 기본 RAG 검색 그룹에 포함하지 않습니다.
 
 저장소의 검수된 공개 출처 요약은 다음 명령으로 재생성하고 적재합니다. 원문 전체가 아니라
 출처 위치·적용 범위·한계를 포함한 검수 요약을 `TECHNICAL_LITERATURE`로 저장합니다.

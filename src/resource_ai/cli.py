@@ -3,6 +3,7 @@ from pathlib import Path
 
 from resource_ai.core.config import get_settings
 from resource_ai.core.dependencies import get_repository
+from resource_ai.evidence.models import SearchGroup
 from resource_ai.integrations.law_api import LawOpenApiClient
 from resource_ai.rag.evaluation import (
     evaluate_case,
@@ -42,7 +43,9 @@ def build_parser() -> argparse.ArgumentParser:
     search = commands.add_parser("search", help="Search evidence")
     search.add_argument("query")
     search.add_argument("--top-k", type=int, default=5)
-    search.add_argument("--corpus", action="append", dest="corpus_types")
+    search_scope = search.add_mutually_exclusive_group()
+    search_scope.add_argument("--corpus", action="append", dest="corpus_types")
+    search_scope.add_argument("--search-group", choices=[group.value for group in SearchGroup])
     search.add_argument("--tenant-id")
 
     collect = commands.add_parser("collect", help="Collect official Korean legal sources")
@@ -194,6 +197,7 @@ def main() -> None:
         args.top_k,
         corpus_types=args.corpus_types,
         tenant_id=args.tenant_id,
+        search_group=args.search_group,
     ):
         print(f"[{result.score:.4f} {result.retrieval_method}] {result.title} {result.heading}")
         print(f"{result.content}\n{result.source_url}\n")

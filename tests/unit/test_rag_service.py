@@ -8,6 +8,8 @@ from resource_ai.evidence.models import (
     EvidenceSection,
     LegalDocument,
     LegalSection,
+    SearchGroup,
+    corpus_types_for_search_group,
 )
 from resource_ai.rag.retrieval.embeddings import HashEmbeddingProvider
 from resource_ai.rag.service import LegalRepository
@@ -116,6 +118,32 @@ def test_company_search_requires_tenant() -> None:
 
     with pytest.raises(ValueError, match="tenant_id is required"):
         repository.search("성적서", corpus_types=["COMPANY_DOCUMENT"])
+
+
+def test_search_groups_resolve_to_stored_corpus_types() -> None:
+    assert corpus_types_for_search_group(SearchGroup.LEGAL) == ("LAW", "PRECEDENT")
+    assert corpus_types_for_search_group(SearchGroup.TECHNICAL) == ("TECHNICAL_LITERATURE",)
+    assert corpus_types_for_search_group(SearchGroup.COMPANY) == ("COMPANY_DOCUMENT",)
+    assert all(
+        "HISTORICAL_CASE" not in corpus_types_for_search_group(group) for group in SearchGroup
+    )
+
+
+def test_company_search_group_requires_tenant() -> None:
+    repository = LegalRepository(SearchDatabase(), HashEmbeddingProvider())
+
+    with pytest.raises(ValueError, match="tenant_id is required"):
+        repository.search("성적서", search_group=SearchGroup.COMPANY)
+
+
+def test_legal_search_group_filters_law_and_precedent() -> None:
+    database = SearchDatabase()
+    repository = LegalRepository(database, HashEmbeddingProvider())
+
+    assert repository.search("책임", search_group=SearchGroup.LEGAL) == []
+
+    assert len(database.calls) == 2
+    assert all(["LAW", "PRECEDENT"] in params for _, params in database.calls)
 
 
 def test_company_search_applies_tenant_filter_to_both_queries() -> None:

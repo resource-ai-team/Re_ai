@@ -4,13 +4,27 @@
 
 `GET /health`
 
-## 법률 근거 검색
+## RAG 근거 검색
 
-`GET /rag/search?q={질문}&top_k=5`
+`GET /rag/search?q={질문}&top_k=5&search_group=LEGAL`
+
+`search_group`은 다음 세 그룹을 지원합니다.
+
+| 값 | 검색 문서 |
+| --- | --- |
+| `LEGAL` | 법령·판례 |
+| `TECHNICAL` | 기술문헌 |
+| `COMPANY` | 기업 업로드 문서 |
+
+`COMPANY` 검색에는 `tenant_id`가 필수이며 해당 기업 문서만 반환합니다.
+`search_group`을 생략하는 기존 호출도 호환됩니다.
+`tenant_id`는 외부 사용자 입력을 그대로 신뢰하지 않고 인증을 마친 Re_server가 전달해야 합니다.
+
+`GET /rag/search?q={질문}&search_group=COMPANY&tenant_id={기업 ID}`
 
 결과에는 문서 유형, 제목, 조문 또는 판례 구획, 인용, 공식 출처 URL, 시행일, 결합 검색
 점수와 `retrieval_method`가 포함됩니다. `retrieval_method`는 벡터·키워드 후보 포함 여부와
-재정렬 적용을 표시합니다. 검색 실패 시 `503`을 반환합니다.
+재정렬 적용을 표시합니다. 잘못된 검색 조건은 `400` 또는 `422`, 검색 장애는 `503`을 반환합니다.
 
 ## 지식그래프
 
