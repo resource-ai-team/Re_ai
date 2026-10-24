@@ -5,7 +5,13 @@ from pathlib import Path
 
 from pgvector import Vector
 
-from resource_ai.evidence.models import CorpusType, EvidenceDocument, SearchResult
+from resource_ai.evidence.models import (
+    CorpusType,
+    EvidenceDocument,
+    SearchGroup,
+    SearchResult,
+    corpus_types_for_search_group,
+)
 from resource_ai.rag.ingestion.chunker import chunk_for_corpus
 from resource_ai.rag.retrieval.embeddings import EmbeddingProvider
 from resource_ai.rag.retrieval.reranker import rerank_legal_results
@@ -183,14 +189,21 @@ class EvidenceRepository:
         *,
         corpus_types: Sequence[str] | None = None,
         tenant_id: str | None = None,
+        search_group: SearchGroup | str | None = None,
     ) -> list[SearchResult]:
         if top_k <= 0:
             raise ValueError("top_k must be positive")
-        normalized_types = list(dict.fromkeys(corpus_types or [])) or None
+        if search_group is not None and corpus_types:
+            raise ValueError("search_group and corpus_types cannot be used together")
+        if search_group is not None:
+            normalized_types = list(corpus_types_for_search_group(search_group))
+        else:
+            normalized_types = list(dict.fromkeys(corpus_types or [])) or None
         supported_types = {item.value for item in CorpusType}
         invalid_types = sorted(set(normalized_types or []) - supported_types)
         if invalid_types:
             raise ValueError(f"Unsupported corpus types: {', '.join(invalid_types)}")
+        tenant_id = tenant_id.strip() if tenant_id else None
         if CorpusType.COMPANY_DOCUMENT in (normalized_types or []) and not tenant_id:
             raise ValueError("tenant_id is required when searching company documents")
         query_vector = Vector(self.embeddings.embed_query(query))

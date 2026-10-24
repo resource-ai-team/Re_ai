@@ -2,7 +2,7 @@
 
 ## 범위
 
-하나의 pgvector 기반에서 문서를 다음 코퍼스로 구분합니다.
+하나의 pgvector 기반에서 저장 문서를 다음 유형으로 구분합니다.
 
 | `document_type` | 대상 | 필수 검증 |
 | --- | --- | --- |
@@ -11,6 +11,17 @@
 | `TECHNICAL_LITERATURE` | 논문·공공 보고서·공정 설명서 | 발행기관·색인 권리 |
 | `HISTORICAL_CASE` | 성공·실패·거절·보류 처리 사례 | 검수 완료 여부 |
 | `COMPANY_DOCUMENT` | 성적서·시설 회신·규격·처리계획서 | 기업 ID·검수 상태·외부 전송 차단 |
+
+외부 검색 API는 저장 유형을 그대로 노출하지 않고 세 검색 그룹으로 묶습니다.
+
+| `search_group` | 포함하는 `document_type` |
+| --- | --- |
+| `LEGAL` | `LAW`, `PRECEDENT` |
+| `TECHNICAL` | `TECHNICAL_LITERATURE` |
+| `COMPANY` | `COMPANY_DOCUMENT` |
+
+`HISTORICAL_CASE`는 운영 DB에서 관리할 구조화 처리 이력과 혼동하지 않도록 세 검색 그룹에서
+제외합니다. 장문 메모 검색이 필요해질 때 별도 Case Memory 계약으로 추가합니다.
 
 시설 정보와 검수된 비용·탄소 계산값은 구조화 데이터 저장소에서 관리하며 RAG 코퍼스에
 포함하지 않습니다. OCR과 사용자 문서 추출도 입력 영역의 책임입니다. RAG는 정규화된
