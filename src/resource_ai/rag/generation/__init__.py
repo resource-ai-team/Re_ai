@@ -1,1 +1,1 @@
-"""Grounded answer generation package."""
+"""검색 근거에 기반한 답변 생성 기능을 위한 패키지."""

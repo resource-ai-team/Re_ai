@@ -1,1 +1,1 @@
-"""Document collection, parsing, and chunking."""
+"""RAG 문서의 수집·파싱·검증·청킹 기능."""

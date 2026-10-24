@@ -1,3 +1,5 @@
+"""정규화된 JSONL과 내부 EvidenceDocument 사이의 입출력을 담당한다."""
+
 import json
 from dataclasses import asdict
 from datetime import date
@@ -12,6 +14,7 @@ def _parse_date(value: str | None) -> date | None:
 
 
 def parse_document(payload: dict[str, Any]) -> EvidenceDocument:
+    """JSON 객체를 공통 RAG 문서 모델로 변환한다."""
     required = ("source_id", "document_type", "title", "source_url", "sections")
     missing = [key for key in required if key not in payload]
     if missing:
@@ -44,6 +47,7 @@ def parse_document(payload: dict[str, Any]) -> EvidenceDocument:
 
 
 def load_jsonl(path: Path) -> list[EvidenceDocument]:
+    """오류가 발생한 줄 번호를 보존하며 JSONL 문서를 읽는다."""
     documents: list[EvidenceDocument] = []
     with path.open(encoding="utf-8") as source:
         for line_number, line in enumerate(source, start=1):

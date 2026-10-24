@@ -1,3 +1,5 @@
+"""RAG 저장 문서 유형과 외부 검색 그룹의 공통 데이터 모델."""
+
 from dataclasses import dataclass, field
 from datetime import date
 from enum import StrEnum
@@ -5,6 +7,8 @@ from typing import Any
 
 
 class CorpusType(StrEnum):
+    """DB에 저장되는 세부 문서 유형."""
+
     LAW = "LAW"
     PRECEDENT = "PRECEDENT"
     TECHNICAL_LITERATURE = "TECHNICAL_LITERATURE"
@@ -16,6 +20,8 @@ SUPPORTED_CORPUS_TYPES = frozenset(CorpusType)
 
 
 class SearchGroup(StrEnum):
+    """API 사용자가 선택하는 상위 검색 범위."""
+
     LEGAL = "LEGAL"
     TECHNICAL = "TECHNICAL"
     COMPANY = "COMPANY"
@@ -29,7 +35,7 @@ SEARCH_GROUP_CORPUS_TYPES: dict[SearchGroup, tuple[CorpusType, ...]] = {
 
 
 def corpus_types_for_search_group(search_group: SearchGroup | str) -> tuple[str, ...]:
-    """Resolve the public search group without changing stored document types."""
+    """저장 형식을 바꾸지 않고 외부 검색 그룹을 세부 문서 유형으로 변환한다."""
     group = SearchGroup(search_group)
     return tuple(corpus_type.value for corpus_type in SEARCH_GROUP_CORPUS_TYPES[group])
 
@@ -59,7 +65,7 @@ class EvidenceDocument:
 
     @property
     def corpus_type(self) -> str:
-        """Expose the domain name while preserving the document_type JSON contract."""
+        """기존 document_type JSON 계약을 유지하면서 코퍼스 이름을 제공한다."""
         return self.document_type
 
 
@@ -77,6 +83,6 @@ class SearchResult:
     retrieval_method: str = "unknown"
 
 
-# Backward-compatible names for the existing legal collector and API contracts.
+# 기존 법령 수집기와 API가 사용하던 이름을 유지해 이전 호출이 깨지지 않게 한다.
 LegalSection = EvidenceSection
 LegalDocument = EvidenceDocument

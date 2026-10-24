@@ -1,3 +1,5 @@
+"""고정된 수집 범위에 따라 공식 법령과 판례 원문을 재현 가능하게 수집한다."""
+
 from __future__ import annotations
 
 import json
@@ -26,6 +28,7 @@ def _exact_law(client: LawOpenApiClient, title: str):
 
 
 def collect_law(client: LawOpenApiClient, spec: dict[str, Any]) -> LegalDocument:
+    """법령명과 선택 조문·별표 또는 전체 원문을 수집한다."""
     item = _exact_law(client, spec["title"])
     documents: list[LegalDocument] = []
     for article in spec.get("articles", []):
@@ -48,6 +51,7 @@ def collect_law(client: LawOpenApiClient, spec: dict[str, Any]) -> LegalDocument
 
 
 def collect_precedent(client: LawOpenApiClient, case_number: str) -> LegalDocument:
+    """사건번호가 정확히 일치하는 판례 한 건을 수집한다."""
     matches = [
         item
         for item in parse_precedent_search(client.search_precedents(case_number))
@@ -59,6 +63,7 @@ def collect_precedent(client: LawOpenApiClient, case_number: str) -> LegalDocume
 
 
 def collect_scope(client: LawOpenApiClient, scope_path: Path) -> list[LegalDocument]:
+    """범위 설정의 법령·판례를 수집하고 데이터셋 버전과 수집 시각을 기록한다."""
     scope = json.loads(scope_path.read_text(encoding="utf-8"))
     documents = [collect_law(client, spec) for spec in scope.get("laws", [])]
     documents.extend(

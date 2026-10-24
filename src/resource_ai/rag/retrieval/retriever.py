@@ -1,3 +1,5 @@
+"""서로 다른 검색 순위를 RRF로 결합하는 Hybrid Search 기능."""
+
 from collections.abc import Sequence
 from dataclasses import replace
 
@@ -11,7 +13,7 @@ def reciprocal_rank_fusion(
     limit: int,
     rrf_k: int = 60,
 ) -> list[SearchResult]:
-    """Combine ranked vector and keyword candidates without comparing raw scores."""
+    """척도가 다른 원점수를 직접 비교하지 않고 검색 순위만으로 후보를 결합한다."""
     if limit <= 0:
         raise ValueError("limit must be positive")
     if rrf_k < 0:

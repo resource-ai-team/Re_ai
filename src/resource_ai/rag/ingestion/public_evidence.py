@@ -1,3 +1,5 @@
+"""검수되고 해시로 고정된 공개 근거를 기술문헌 검색용 요약으로 변환한다."""
+
 from __future__ import annotations
 
 import json
@@ -63,7 +65,7 @@ def _section(card: dict[str, Any]) -> EvidenceSection:
 
 
 def build_public_evidence_summaries(scope_path: Path) -> list[EvidenceDocument]:
-    """Build searchable summaries from the hash-pinned, locally reviewed evidence bundle."""
+    """해시와 검수 상태가 확인된 공개 근거만 검색 가능한 요약으로 만든다."""
     scope = _load_scope(scope_path)
     lanes = set(scope["included_lanes"])
     sources = {item["source_id"]: item for item in read_bundle("source-registry.json")}

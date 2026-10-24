@@ -1,3 +1,5 @@
+"""문서 유형별 정책에 따라 원문 위치를 유지하며 검색 청크를 생성한다."""
+
 from dataclasses import dataclass
 
 from resource_ai.evidence.models import CorpusType
@@ -25,6 +27,7 @@ CORPUS_CHUNK_POLICIES = {
 
 
 def chunk_for_corpus(text: str, corpus_type: str) -> list[TextChunk]:
+    """문서 유형에 맞는 길이와 겹침 범위로 텍스트를 나눈다."""
     try:
         policy = CORPUS_CHUNK_POLICIES[CorpusType(corpus_type)]
     except ValueError as exc:
@@ -33,7 +36,7 @@ def chunk_for_corpus(text: str, corpus_type: str) -> list[TextChunk]:
 
 
 def chunk_text(text: str, max_chars: int = 1200, overlap_chars: int = 150) -> list[TextChunk]:
-    """Split a document section while preferring paragraph boundaries."""
+    """문단 경계를 우선하되 긴 문단은 겹침 구간을 두고 분할한다."""
     normalized = "\n".join(line.strip() for line in text.splitlines() if line.strip())
     if not normalized:
         return []

@@ -1,3 +1,5 @@
+"""RAG 근거 검색 HTTP API."""
+
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -19,6 +21,8 @@ def search(
     search_group: Annotated[SearchGroup | None, Query()] = None,
     tenant_id: Annotated[str | None, Query(min_length=1)] = None,
 ) -> list[SearchItem]:
+    """선택한 검색 그룹의 근거를 조회하고 내부 결과를 API 응답으로 변환한다."""
+    # 기업 문서는 공개 코퍼스와 달리 반드시 인증된 기업 범위로 제한해야 한다.
     if search_group == SearchGroup.COMPANY and not tenant_id:
         raise HTTPException(status_code=400, detail="tenant_id is required for COMPANY search")
     try:
@@ -31,6 +35,7 @@ def search(
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     except Exception as exc:
+        # DB·임베딩 장애를 단순히 검색 결과가 없는 상태로 숨기지 않는다.
         raise HTTPException(status_code=503, detail="Retrieval service is unavailable") from exc
     return [
         SearchItem(
