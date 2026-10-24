@@ -1,3 +1,5 @@
+"""국가법령정보센터 XML을 출처 위치가 있는 법령·판례 문서로 변환한다."""
+
 from __future__ import annotations
 
 import html
@@ -32,6 +34,7 @@ def _date(value: str) -> date | None:
 
 
 def parse_law_search(xml_text: str) -> list[LawSearchItem]:
+    """법령 검색 XML에서 수집 대상 식별 정보를 추출한다."""
     root = ET.fromstring(xml_text)
     return [
         LawSearchItem(
@@ -47,6 +50,7 @@ def parse_law_search(xml_text: str) -> list[LawSearchItem]:
 
 
 def parse_precedent_search(xml_text: str) -> list[PrecedentSearchItem]:
+    """판례 검색 XML에서 사건번호와 원문 식별 정보를 추출한다."""
     root = ET.fromstring(xml_text)
     return [
         PrecedentSearchItem(
@@ -87,6 +91,7 @@ def parse_law_document(
     selected_annexes: set[str] | None = None,
     include_articles: bool = True,
 ) -> LegalDocument:
+    """법령 원문을 조·항·별표 단위의 검색 가능한 구획으로 변환한다."""
     root = ET.fromstring(xml_text)
     info = root.find("기본정보")
     if info is None:
@@ -199,6 +204,7 @@ def parse_law_document(
 
 
 def merge_law_documents(documents: list[LegalDocument]) -> LegalDocument:
+    """같은 법령 버전을 부분 수집한 경우 구획을 하나의 문서로 합친다."""
     if not documents:
         raise ValueError("At least one law document is required")
     first = documents[0]
@@ -220,6 +226,7 @@ def merge_law_documents(documents: list[LegalDocument]) -> LegalDocument:
 
 
 def parse_precedent_document(xml_text: str) -> LegalDocument:
+    """판례 원문을 판시사항·판결요지·전문 등의 검색 구획으로 변환한다."""
     root = ET.fromstring(xml_text)
     precedent_id = _text(root, "판례정보일련번호")
     case_name = _text(root, "사건명")

@@ -1,1 +1,1 @@
-"""Evidence-card assembly service."""
+"""검수된 근거 카드를 API용 표현으로 조립하는 서비스."""

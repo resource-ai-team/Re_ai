@@ -1,3 +1,5 @@
+"""RRF로 결합한 법률 검색 후보를 결정론적 규칙으로 재정렬한다."""
+
 from __future__ import annotations
 
 import re
@@ -22,7 +24,7 @@ def rerank_legal_results(
     limit: int,
     as_of: date | None = None,
 ) -> list[SearchResult]:
-    """Apply small deterministic bonuses without replacing the hybrid relevance score."""
+    """Hybrid 관련성 점수를 유지하면서 법률 근거 특성에 작은 가산점을 적용한다."""
     if limit <= 0:
         raise ValueError("limit must be positive")
     as_of = as_of or date.today()

@@ -1,4 +1,4 @@
-"""Evidence models and presentation services."""
+"""RAG 근거 문서·검색 결과의 공통 모델."""
 
 from resource_ai.evidence.models import (
     CorpusType,

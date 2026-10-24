@@ -1,3 +1,5 @@
+"""RAG 문서의 공통 필드와 코퍼스별 적재 조건을 검증한다."""
+
 from __future__ import annotations
 
 import hashlib
@@ -45,6 +47,7 @@ def _validate_common(document: EvidenceDocument, errors: list[str]) -> None:
 
 
 def _validate_corpus_policy(document: EvidenceDocument, errors: list[str]) -> None:
+    """출처·권리·기업 격리 등 문서 유형별 필수 조건을 검사한다."""
     prefix = document.source_id or document.title
     corpus_type = document.document_type
     if corpus_type in {CorpusType.LAW, CorpusType.PRECEDENT}:
@@ -92,6 +95,7 @@ def _validate_corpus_policy(document: EvidenceDocument, errors: list[str]) -> No
 
 
 def validate_documents(documents: list[EvidenceDocument]) -> DatasetValidation:
+    """전체 데이터셋을 적재하기 전에 중복과 문서별 오류를 한 번에 수집한다."""
     errors: list[str] = []
     source_keys = [(document.tenant_id or "", document.source_id) for document in documents]
     duplicates = sorted(
@@ -121,7 +125,7 @@ def _sha256(path: Path) -> str:
 
 
 def verify_dataset_manifest(manifest_path: Path, dataset_path: Path) -> dict:
-    """Verify that a generated dataset still matches its recorded manifest."""
+    """생성 데이터가 기록된 매니페스트의 SHA-256과 같은지 확인한다."""
     try:
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:

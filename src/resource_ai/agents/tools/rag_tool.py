@@ -1,1 +1,1 @@
-"""RAG retrieval adapter for the future orchestrator."""
+"""향후 파이프라인 오케스트레이터가 사용할 RAG 검색 어댑터."""

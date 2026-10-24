@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+"""기대 근거 포함 여부를 이용한 기본 검색 회귀 평가."""
+
 import json
 from dataclasses import dataclass
 from pathlib import Path
@@ -29,6 +31,7 @@ class RetrievalSummary:
 
 
 def summarize_evaluations(evaluations: list[RetrievalEvaluation]) -> RetrievalSummary:
+    """개별 평가 결과를 전체 통과율로 요약한다."""
     if not evaluations:
         raise ValueError("At least one evaluation is required")
     passed = sum(evaluation.passed for evaluation in evaluations)
@@ -40,6 +43,7 @@ def summarize_evaluations(evaluations: list[RetrievalEvaluation]) -> RetrievalSu
 
 
 def load_retrieval_cases(path: Path) -> list[RetrievalCase]:
+    """버전 관리되는 JSON 평가셋을 검색 평가 사례로 읽는다."""
     payload = json.loads(path.read_text(encoding="utf-8"))
     cases = [
         RetrievalCase(item["query"], tuple(item["expected_any"]))
@@ -53,6 +57,7 @@ def load_retrieval_cases(path: Path) -> list[RetrievalCase]:
 
 
 def evaluate_case(case: RetrievalCase, results: list[SearchResult]) -> RetrievalEvaluation:
+    """Top K 결과에 기대 근거 문자열이 하나 이상 포함됐는지 확인한다."""
     result_text = "\n".join(
         f"{result.title}\n{result.heading}\n{result.content}\n{result.citation or ''}"
         for result in results
