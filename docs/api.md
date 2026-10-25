@@ -59,3 +59,14 @@ COMPANY는 시험 항목·현재 문서 버전·원문 위치를 기준으로 �
 
 기존 `/rag/search` 계약은 유지했습니다. KG는 Re_server/에이전트용 추가 API이며
 사용법과 한계는 [knowledge-graph.md](knowledge-graph.md)를 참고합니다.
+
+## KG 연계 LCI 예비 산정
+
+`POST /analysis/kg-lci`: 구조화한 폐기물 로트 입력으로 Neo4j의 전체
+`assessed-plans` 경로를 페이지 끝까지 조회하고, 서버에 설치된 국가 LCI DB를
+정확히 일치하는 공정 경로에만 매핑해 **예비 탄소값·미산정 사유·KG ID·출처**를 반환.
+기능단위·수거운송 경계가 서로 다른 후보의 자동 순위화는 수행하지 않음.
+원본 데이터가 없으면 `UNAVAILABLE`, 그래프 조회 세대·페이지 불일치는 `409`.
+
+[입력·출력·경계·실행 예시](kg-lci-integration.md).
+기존 `/analysis/research`, `/analysis/compare-scenarios`는 변경되지 않음.
