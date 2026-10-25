@@ -13,14 +13,19 @@ def test_build_public_evidence_summaries_uses_only_reviewed_summary_content() ->
 
     validation = validate_documents(documents)
     assert validation.passed is True
-    assert len(documents) == 33
-    assert sum(len(document.sections) for document in documents) == 54
+    assert len(documents) == 12
+    assert sum(len(document.sections) for document in documents) == 24
     assert {document.document_type for document in documents} == {CorpusType.TECHNICAL_LITERATURE}
     assert all(
         document.metadata["rights"]["raw_indexing_allowed"] is False for document in documents
     )
     assert all(
         section.content.startswith("검수 요약:")
+        for document in documents
+        for section in document.sections
+    )
+    assert all(
+        section.metadata["collection_lane"] == "technical"
         for document in documents
         for section in document.sections
     )
