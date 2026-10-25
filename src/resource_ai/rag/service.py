@@ -85,13 +85,17 @@ class EvidenceRepository:
                     "version": document.version,
                     "tenant_id": document.tenant_id,
                     "source_position": section.citation or section.page_no,
+                    "embedding_recipe": "document-heading-content-v1",
                 }
                 chunk_records.append(
                     (section.heading, chunk.content, section.citation, section.page_no, metadata)
                 )
         if not chunk_records:
             raise ValueError(f"Document {document.source_id!r} produced no searchable chunks")
-        vectors = self.embeddings.embed_documents([record[1] for record in chunk_records])
+        # Source context belongs in local embeddings, not in the quoted raw text.
+        vectors = self.embeddings.embed_documents(
+            [f"{document.title}\n{record[0]}\n{record[1]}" for record in chunk_records]
+        )
         if len(vectors) != len(chunk_records):
             raise ValueError(
                 f"Embedding count mismatch for {document.source_id}: "
@@ -303,7 +307,7 @@ class EvidenceRepository:
                     d.source_url,
                     d.effective_from,
                     ts_rank_cd(
-                        c.search_vector,
+                        c.context_search_vector,
                         websearch_to_tsquery('simple', %s)
                     ) AS score,
                     d.version,
@@ -320,7 +324,7 @@ class EvidenceRepository:
                         OR d.effective_from IS NULL
                         OR d.effective_from <= CURRENT_DATE
                     )
-                    AND c.search_vector @@ websearch_to_tsquery('simple', %s)
+                    AND c.context_search_vector @@ websearch_to_tsquery('simple', %s)
                 ORDER BY score DESC, c.id
                 LIMIT %s
                 """,

@@ -121,6 +121,8 @@ class DecisionReviewService:
         return {
             "contract_version": "grounded-review-template-v1",
             "input_sha256": input_hash(request.lot),
+            "site_context_sha256": request.site_context_sha256,
+            "site_context_basis": "backend_supplied_digest_not_independently_verified",
             "graph_trace": collected["trace"],
             "candidates": rows,
             "coverage": {
@@ -157,13 +159,28 @@ class DecisionReviewService:
             "input_sha256": input_hash(request.research.lot),
             "graph_trace": research.graph_trace,
             "submission_matches": None,
-            "scope": "same_lot_and_current_process_graph",
+            "site_context_sha256": request.site_context_sha256,
+            "origin_bound": request.site_context_sha256 is not None,
+            "site_context_basis": "backend_supplied_digest_not_independently_verified",
+            "scope": "same_lot_graph_and_backend_site_context"
+            if request.site_context_sha256
+            else "same_lot_and_current_process_graph_origin_not_bound",
         }
         numeric = request.numeric.comparison if request.numeric else None
         raw_comparison = compare_scenarios(numeric) if numeric is not None else None
         issues = inspect_review(research, numeric, raw_comparison)
         if request.numeric is not None:
             binding["submission_matches"] = True
+            if request.numeric.site_context_sha256 != request.site_context_sha256:
+                binding["submission_matches"] = False
+                issues.append(
+                    issue(
+                        "numeric_site_changed",
+                        "kg",
+                        "수치 양식을 만든 사업장 맥락과 현재 사업장 맥락이 다릅니다.",
+                        "현재 site-discovery의 context_sha256으로 양식·운송·견적을 다시 확인하세요.",
+                    )
+                )
             if request.numeric.input_sha256 != binding["input_sha256"]:
                 binding["submission_matches"] = False
                 issues.append(

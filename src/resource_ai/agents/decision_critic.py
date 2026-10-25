@@ -293,6 +293,23 @@ def inspect_review(
                     evidence=[sources[s] for s in check.get("source_ids", []) if sources.get(s)],
                 )
         legal = candidate.legal_graph_review
+        technical = {search.search_id: search for search in research.technical_searches}
+        for task in candidate.technical_tasks:
+            search = technical.get(task["search_id"])
+            retrieved = search is not None and search.status == "retrieved" and search.results
+            add(
+                "technical_applicability_unverified" if retrieved else "technical_evidence_missing",
+                "validation",
+                "missing",
+                "기술 근거를 찾았으나 이 로트·공정에 대한 적용성 검수는 남아 있습니다."
+                if retrieved
+                else "이 공정의 기술 근거 조사가 미완료입니다.",
+                "원문에서 투입 성상·오염 허용치·전처리·수율을 확인하세요. 검색 한도·장애·자료 없음도 확인하세요.",
+                candidate=pid,
+                target=task["target_id"],
+                target_type="stage",
+                evidence=[r["evidence_id"] for r in search.results] if retrieved else (),
+            )
         if not legal or legal.get("audit", {}).get("coverage_complete") is not True:
             add(
                 "legal_applicability_unverified",

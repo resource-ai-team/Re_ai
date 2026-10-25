@@ -50,6 +50,23 @@ def test_prepare_document_adds_stable_canonical_source_id() -> None:
     assert len(chunks) == len(vectors) == 1
 
 
+def test_embedding_receives_document_and_section_context_without_changing_quotes():
+    class Capture(HashEmbeddingProvider):
+        def embed_documents(self, texts):
+            self.received = list(texts)
+            return super().embed_documents(texts)
+
+    embedding = Capture()
+    doc = _law()
+    _, chunks, _ = LegalRepository(UnusedDatabase(), embedding)._prepare_document(doc)
+    assert (
+        embedding.received[0]
+        == f"{doc.title}\n{doc.sections[0].heading}\n{doc.sections[0].content}"
+    )
+    assert chunks[0][1] == doc.sections[0].content
+    assert chunks[0][4]["embedding_recipe"] == "document-heading-content-v1"
+
+
 def test_explicit_canonical_source_id_is_preserved() -> None:
     repository = LegalRepository(UnusedDatabase(), HashEmbeddingProvider())
     document = replace(_law(), metadata={"canonical_source_id": "custom:law"})

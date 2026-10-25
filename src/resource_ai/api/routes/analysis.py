@@ -6,6 +6,7 @@ from fastapi import APIRouter, Depends, Header, HTTPException
 from resource_ai.agents.decision_review import DecisionReviewService
 from resource_ai.agents.research import CandidateResearchService
 from resource_ai.agents.site_discovery import SiteDiscoveryService
+from resource_ai.api.routes.kg_lci import get_lci_datasets
 from resource_ai.api.schemas.analysis import (
     ResearchRequest,
     ResearchResponse,
@@ -19,6 +20,7 @@ from resource_ai.api.schemas.decision_review import (
 )
 from resource_ai.api.schemas.road_routing import RoadRoutesRequest, RoadRoutesResponse
 from resource_ai.api.schemas.site_discovery import SiteDiscoveryRequest, SiteDiscoveryResponse
+from resource_ai.api.schemas.site_review import SiteReviewRequest, SiteReviewResponse
 from resource_ai.calculators.scenarios import compare_scenarios
 from resource_ai.core.dependencies import get_graph_query, get_repository
 from resource_ai.evidence.models import SearchGroup
@@ -83,7 +85,44 @@ def get_research_service(graph: Annotated[GraphQuery, Depends(get_graph_query)])
         def search(self, query, top_k):
             return get_repository().search(query, top_k, search_group=SearchGroup.LEGAL)
 
+        def search_technical(self, query, top_k):
+            return get_repository().search(query, top_k, search_group=SearchGroup.TECHNICAL)
+
     return CandidateResearchService(graph, LocalRepository())
+
+
+def get_site_review_lci_datasets(request: SiteReviewRequest):
+    return get_lci_datasets() if request.include_lci else []
+
+
+@router.post("/site-review", response_model=SiteReviewResponse)
+def site_review(
+    request: SiteReviewRequest,
+    graph: Annotated[GraphQuery, Depends(get_graph_query)],
+    research_service: Annotated[CandidateResearchService, Depends(get_research_service)],
+    datasets: Annotated[list, Depends(get_site_review_lci_datasets)],
+    authorization: Annotated[str | None, Header()] = None,
+):
+    from resource_ai.agents.kg_lci import KGPathLCIIntegrityError
+    from resource_ai.agents.site_review import SiteReviewService
+
+    road_service = get_road_routing_service() if request.road_routing is not None else None
+    if road_service is not None:
+        require_road_service_auth(road_service, authorization)
+    try:
+        return SiteReviewService(graph, research_service, datasets, road_service=road_service).run(
+            request
+        )
+    except (GraphStoreError, KGPathLCIIntegrityError) as exc:
+        code = getattr(exc, "code", "site-review-generation-changed")
+        status = {
+            "invalid-goal": 400,
+            "stale-cursor": 409,
+            "site-review-generation-changed": 409,
+        }.get(code, 503)
+        raise HTTPException(
+            status_code=status, detail={"code": code, "message": str(exc)}
+        ) from None
 
 
 @router.post("/research", response_model=ResearchResponse)

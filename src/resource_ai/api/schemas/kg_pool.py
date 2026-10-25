@@ -4,6 +4,8 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from resource_ai.api.schemas.numbers import NonBooleanFloat
+
 
 class CandidatePoolRequest(BaseModel):
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
@@ -12,7 +14,7 @@ class CandidatePoolRequest(BaseModel):
     input_form: str | None = Field(default=None, min_length=1, max_length=80)
     color: str | None = Field(default=None, min_length=1, max_length=80)
     contamination: str | None = Field(default=None, min_length=1, max_length=500)
-    quantity_kg: float | None = Field(default=None, gt=0, allow_inf_nan=False)
+    quantity_kg: NonBooleanFloat | None = Field(default=None, gt=0, le=1e12, allow_inf_nan=False)
     generation_process: str | None = Field(default=None, max_length=200)
     region: str | None = Field(default=None, max_length=200)
     current_treatment: str | None = Field(default=None, max_length=200)

@@ -38,29 +38,38 @@ def legal_questions(material, stage):
     ]
 
 
-def retrieve(repository, query, top_k):
+def retrieve(repository, query, top_k, *, technical=False):
     try:
-        hits = repository.search(query, top_k)
+        search = repository.search_technical if technical else repository.search
+        hits = search(query, top_k)
         results = []
         for hit in hits:
             flags = []
+            if technical and hit.document_type != "TECHNICAL_LITERATURE":
+                raise ValueError("Unexpected technical search corpus")
             # 공식 출처 형식 확인만으로 해당 법령의 실제 적용성이 확정되지는 않는다.
-            if urlsplit(hit.source_url).hostname not in {"www.law.go.kr", "law.go.kr"}:
+            if not technical and urlsplit(hit.source_url).hostname not in {
+                "www.law.go.kr",
+                "law.go.kr",
+            }:
                 flags.append("official_origin_not_confirmed")
-            if hit.document_type != "LAW":
+            if not technical and hit.document_type != "LAW":
                 flags.append("not_a_statute")
-            if hit.effective_from is None:
+            if not technical and hit.effective_from is None:
                 flags.append("effective_date_unknown")
-            elif hit.effective_from > date.today():
+            elif not technical and hit.effective_from > date.today():
                 flags.append("future_effective_date")
             results.append(
                 {
-                    "evidence_id": f"legal-chunk:{hit.chunk_id}",
+                    "evidence_id": f"{'technical' if technical else 'legal'}-chunk:{hit.chunk_id}",
                     "title": hit.title,
                     "document_type": hit.document_type,
                     "heading": hit.heading,
                     "content": hit.content,
                     "citation": hit.citation,
+                    "version": getattr(hit, "version", None),
+                    "page_no": getattr(hit, "page_no", None),
+                    "source_position": getattr(hit, "source_position", None),
                     "source_url": hit.source_url,
                     "effective_from": hit.effective_from.isoformat()
                     if hit.effective_from
@@ -81,6 +90,50 @@ class CandidateResearchService:
         self.graph = graph
         self.repository = repository
         self.legal_graph_factory = legal_graph_factory
+
+    def _technical_research(self, request, candidates, material):
+        if request.max_technical_queries == 0:
+            return []
+        queries = {}
+        for candidate in candidates:
+            for stage in (candidate.plan.research_packet or {}).get("stages", []):
+                transition = stage["transition"]["label"]
+                query = f"{material} {transition} 재활용 공정 투입 성상 전처리 오염 수율 적용 조건"
+                sid = identity("technical-search", query)
+                queries.setdefault(sid, query)
+                candidate.technical_tasks.append(
+                    {
+                        "target_id": stage["stage_id"],
+                        "target_type": "stage",
+                        "search_id": sid,
+                        "topic": "process_conditions",
+                    }
+                )
+        searches, failed = [], False
+        for index, (sid, query) in enumerate(queries.items()):
+            attempted = index < request.max_technical_queries and not failed
+            if index >= request.max_technical_queries:
+                status, results = "budget_exhausted", []
+            elif failed:
+                status, results = "unavailable", []
+            else:
+                status, results = retrieve(
+                    self.repository, query, request.technical_top_k, technical=True
+                )
+                failed = status == "unavailable"
+            searches.append(
+                LegalSearch(
+                    search_id=sid, query=query, status=status, results=results, attempted=attempted
+                )
+            )
+        states = {s.search_id: s.status for s in searches}
+        for candidate in candidates:
+            candidate.blockers.extend(
+                f"technical_search_{states[task['search_id']]}"
+                for task in candidate.technical_tasks
+                if states[task["search_id"]] != "retrieved"
+            )
+        return searches
 
     def _graph_legal_reviews(self, request, candidates):
         from resource_ai.legal_graph.models import LegalGraphError
@@ -215,6 +268,10 @@ class CandidateResearchService:
         candidates, last, trace = collection["candidates"], collection["last"], collection["trace"]
         pages, fully_enumerated = collection["pages"], collection["fully_enumerated"]
         expected_count, cursor = collection["expected_count"], collection["cursor"]
+        process_sequences = {
+            tuple(stage["transition"]["key"] for stage in candidate.plan.research_packet["stages"])
+            for candidate in candidates
+        }
         # Build tasks before executing any retrieval, so budgets cannot hide work.
         queries = {}
         for candidate in candidates:
@@ -257,6 +314,9 @@ class CandidateResearchService:
         graph_calls = (
             self._graph_legal_reviews(request, candidates) if request.legal_graph is not None else 0
         )
+        technical_searches = self._technical_research(
+            request, candidates, last.planning.normalized_material
+        )
         for candidate in candidates:
             for task in candidate.legal_tasks:
                 search = search_states[task["search_id"]]
@@ -280,6 +340,8 @@ class CandidateResearchService:
                 "pages_read": pages,
                 "enumerated_in_graph": expected_count,
                 "collected_candidates": len(candidates),
+                "distinct_curated_process_sequences": len(process_sequences),
+                "multiple_curated_process_sequences": len(process_sequences) >= 2,
                 "all_pages_read": cursor is None,
                 "all_paths_enumerated_within_curated_scope": fully_enumerated,
                 "complete_within_curated_scope": cursor is None and fully_enumerated,
@@ -293,10 +355,24 @@ class CandidateResearchService:
                 "legal_method": "hierarchical_graph" if request.legal_graph else "hybrid_retrieval",
                 "legal_graph_model_calls": graph_calls,
                 "legal_graph_reviews": sum(c.legal_graph_review is not None for c in candidates),
+                "technical_requested": request.max_technical_queries > 0,
+                "technical_unique_queries": len(technical_searches),
+                "technical_executed_queries": sum(s.attempted for s in technical_searches),
+                "technical_retrieval_complete": bool(technical_searches)
+                and all(s.status == "retrieved" for s in technical_searches),
+                "technical_applicability_audited": False,
             },
             candidates=candidates,
             legal_searches=searches,
+            technical_searches=technical_searches,
             next_actions=[
+                *(
+                    [
+                        "현재 근거가 연결된 공정 순서가 하나뿐입니다. 대안 공정·시설 근거를 보강한 뒤 경로 간 비교를 진행하세요."
+                    ]
+                    if len(process_sequences) == 1
+                    else []
+                ),
                 *(
                     ["누락된 입력을 확인하세요: " + ", ".join(last.planning.missing_fields)]
                     if last.planning.missing_fields

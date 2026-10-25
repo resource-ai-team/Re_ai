@@ -1,0 +1,13 @@
+{
+  "scope": "Developer-derived paraphrase probes, not expert-labelled legal validation or an independent benchmark",
+  "cases": [
+    {"query": "폐기물을 대신 처리해 주는 회사는 어떤 종류의 영업허가를 받아야 해?", "expected_any": ["폐기물관리법 제25조"]},
+    {"query": "처리업 허가를 받을 때 업종은 어떤 기준으로 나뉘나요?", "expected_any": ["폐기물관리법 제25조"]},
+    {"query": "사업장폐기물을 다른 업체에 넘길 때 배출자가 점검할 사항", "expected_any": ["폐기물관리법 제17조"]},
+    {"query": "폐기물 처리 위탁자가 해야 하는 확인 절차", "expected_any": ["폐기물관리법 제17조", "폐기물관리법 시행규칙 제17조의2"]},
+    {"query": "폐기물을 순환자원으로 인정받으려면 어떤 제도를 확인해야 하나요?", "expected_any": ["순환경제사회 전환 촉진법 제21조"]},
+    {"query": "신기술 재활용을 위해 임시허가를 받을 수 있나", "expected_any": ["순환경제사회 전환 촉진법 제33조"]},
+    {"query": "방치 폐기물 조치명령의 대상은 누구인가", "expected_any": ["폐기물관리법 제48조"]},
+    {"query": "공장을 경매로 사면 밖에 남겨진 폐기물도 책임져야 하는가", "expected_any": ["2023두62830"]}
+  ]
+}

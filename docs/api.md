@@ -6,6 +6,12 @@
 
 ## 실제 KG 경로에 연결한 검토
 
+- `POST /analysis/site-review`: `site-discovery` 요청에 `max_legal_queries`(기본 12), `max_technical_queries`(기본 6),
+  `include_lci`(기본 true), 선택 `numeric`·`legal_graph`를 추가해 사업장 조사→근거 검색→수치 검토→선택 LCI를 묶습니다.
+  응답의 `site`, `review`, `lci`, `report_markdown`을 사용합니다. 단계 사이 KG 세대가 달라지면 409입니다.
+  명부 후보를 공정에 자동 삽입하거나 LCI 예비값을 총계에 합산하지 않습니다. `include_lci=false`면 로컬 LCI 파일도 열지 않습니다.
+  도로 옵션은 기존 서버 허용 설정·키·Bearer 인증을 따릅니다. 생성 모델은 `legal_graph` 생략 시 호출하지 않습니다.
+  `REVIEW/REVISE`만 반환합니다. [실제 검증·남은 범위](pipeline-validation-2026-10-25.md).
 - `POST /analysis/site-discovery`: `origin` 사업장 정보와 `lot`으로 KG의 공정별 시설 명부를 직선거리순 조회합니다.
   전체 매칭 목록을 정렬한 뒤 페이지를 받고 KG·명부·코드표 버전과 부분 조회 범위를 확인합니다.
   `road_routing` 옵션과 서버 키·허용 설정·Bearer 인증이 있으면 한정한 시설의 도로 경로를 조회합니다.
@@ -16,6 +22,8 @@
   지도 키가 없어 실호출 미검증이며 비용·화물차 통행 가능성·허가를 확정하지 않습니다. [설정·입출력](road-routing.md).
 - `POST /analysis/review-template`: `lot`·`max_pages`로 실제 KG 경로의 빈 수치 양식을 조회합니다. RAG·생성 모델 호출 없음.
   `input_sha256`·`graph_trace`·공정/인계 ID와 함께 활동량·계수·근거 ID를 `null`로 반환합니다.
+  선택한 `site_context_sha256`을 양식과 `numeric`에 보존합니다. `/analysis/review`의 동일 필드 또는 site-review가
+  새로 계산한 맥락과 다르면 수치를 제외합니다. 둘 다 생략한 기존 호출은 사업장 미연결로 명시됩니다. 서버 제출 해시이며 인증 수단은 아닙니다.
 - `POST /analysis/review`: `research`와 선택 `numeric`을 받아 후보 조사 → 같은 로트·현재 그래프·순서 대조 → 제출 수치 계산 → 수치상 Pareto → 결정론적 Critic을 실행합니다.
   `numeric`은 양식의 `input_sha256`, `graph_trace`, 기존 계산 계약의 `comparison`을 포함합니다.
   다른 입력·구버전·가짜 공정의 수치는 비교에 넣지 않습니다.
@@ -24,6 +32,13 @@
 - `candidate_reviews`, `map_markers`, `report_markdown`은 확인할 조건·오류·다음 행동을 제공합니다. 실제 3D 화면 연동은 후속입니다.
 - 잘못된 목표는 `400`, 그래프 세대 변경은 `409`, DB/무결성 장애는 `503`, 스키마 오류는 `422`입니다.
 - [요청 예제·숫자 확보 방법·제한](grounded-decision-review.md). 두 API는 내부용이며 서버 담당자 검토 후 연동합니다.
+
+`/analysis/research`와 review의 `research`에는 `max_technical_queries`(기본 0, 최대 50), `technical_top_k`(기본 3, 최대 5)를
+지정할 수 있습니다. 공정별 `technical_tasks`·`technical_searches`·검색 범위와 문서 버전·페이지·원문 위치를 보존합니다.
+기술 자료 미확보·한도 소진·적용성 미검수는 공정별 확인 과제입니다. 법규 적합 판정으로 사용하지 않습니다.
+
+로트 수량은 bool·비유한값을 받지 않으며 `0 < quantity_kg <= 1e12`입니다. 스키마 오류 422의 `detail`은
+`loc/type/msg`만 포함하고 제출 원문 `input`·`ctx`는 제외합니다. NaN·Infinity가 오류 응답 직렬화에서 500을 일으키지 않습니다.
 
 ## RAG 근거 검색
 

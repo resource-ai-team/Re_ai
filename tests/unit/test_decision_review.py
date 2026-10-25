@@ -70,6 +70,41 @@ def test_missing_data_is_review_not_infeasible_and_keeps_every_candidate():
     assert any(m["on_map"] and m["target_type"] == "stage" for m in result.map_markers)
 
 
+@pytest.mark.parametrize(
+    "current,previous", [("a" * 64, None), (None, "a" * 64), ("a" * 64, "b" * 64)]
+)
+def test_changed_or_stripped_site_context_rejects_old_transport_numbers(current, previous):
+    service, request, bound = setup()
+    bound["site_context_sha256"] = previous
+    result = DecisionReviewService(service).run(
+        DecisionReviewRequest(
+            research=request,
+            numeric=bound,
+            site_context_sha256=current,
+        )
+    )
+    assert result.route == "REVISE" and not result.numeric_review["included_candidate_ids"]
+    assert "numeric_site_changed" in {i.code for i in result.critic}
+
+
+def test_matching_site_context_is_preserved_without_claiming_identity_verification():
+    service, request, bound = setup()
+    bound["site_context_sha256"] = "a" * 64
+    result = DecisionReviewService(service).run(
+        DecisionReviewRequest(
+            research=request,
+            numeric=bound,
+            site_context_sha256="a" * 64,
+        )
+    )
+    assert result.binding["submission_matches"] is True
+    assert result.binding["origin_bound"] is True
+    assert (
+        result.binding["site_context_basis"] == "backend_supplied_digest_not_independently_verified"
+    )
+    assert not result.dispatch_approved
+
+
 def test_bound_synthetic_comparison_is_still_not_operational_recommendation():
     service, request, bound = setup()
     result = review(service, request, bound)

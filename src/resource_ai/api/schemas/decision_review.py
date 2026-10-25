@@ -15,6 +15,7 @@ from resource_ai.api.schemas.facility_assessment import AssessedPlansRequest
 
 class ReviewTemplateRequest(StrictModel):
     lot: AssessedPlansRequest
+    site_context_sha256: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
     max_pages: int = Field(default=20, ge=1, le=20)
 
     @model_validator(mode="after")
@@ -28,11 +29,13 @@ class NumericBinding(StrictModel):
     input_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
     graph_trace: dict[str, str] = Field(min_length=1, max_length=20)
     comparison: ScenarioComparisonRequest
+    site_context_sha256: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
 
 
 class DecisionReviewRequest(StrictModel):
     research: ResearchRequest
     numeric: NumericBinding | None = None
+    site_context_sha256: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
 
 
 class CriticIssue(StrictModel):

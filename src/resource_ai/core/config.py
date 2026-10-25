@@ -8,7 +8,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
-    database_url: str = "postgresql://re_ai:local_password@localhost:5432/re_ai"
+    database_url: str = "postgresql://re_ai:local_password@127.0.0.1:5432/re_ai"
     database_connect_timeout_seconds: int = Field(default=5, ge=1, le=30)
     embedding_provider: str = "sentence-transformers"
     embedding_model: str = "intfloat/multilingual-e5-small"
