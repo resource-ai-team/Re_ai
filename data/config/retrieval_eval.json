@@ -1,32 +1,21 @@
 {
+  "dataset_version": "2.0.0",
+  "top_k": 5,
+  "thresholds": {"recall_at_k": 0.8, "mrr": 0.6},
   "cases": [
-    {
-      "query": "사업장폐기물을 업체에 위탁할 때 배출자가 확인해야 할 의무는?",
-      "expected_any": ["폐기물관리법 제17조", "폐기물관리법 제48조"]
-    },
-    {
-      "query": "폐폴리프로필렌을 재활용할 수 있는 R 유형과 재활용 기준",
-      "expected_any": ["별표 4의2", "별표 4의3", "별표 5의3"]
-    },
-    {
-      "query": "경매로 사업장을 인수하면 다른 장소에 방치된 폐기물 의무도 승계하는가?",
-      "expected_any": ["2023두62830"]
-    },
-    {
-      "query": "폐기물 처리업체의 허가 업종과 처리 범위를 확인하려면 어떤 조문을 봐야 하나?",
-      "expected_any": ["폐기물관리법 제25조"]
-    },
-    {
-      "query": "폐기물이 아닌 순환자원으로 인정받기 위한 제도적 근거는?",
-      "expected_any": ["제21조", "제23조"]
-    },
-    {
-      "query": "새로운 재활용 기술에 규제특례나 임시허가를 신청할 수 있는가?",
-      "expected_any": ["제28조", "제30조", "제33조"]
-    },
-    {
-      "query": "폐기물을 부적정 처리하면 누구에게 조치명령을 내릴 수 있는가?",
-      "expected_any": ["폐기물관리법 제48조", "2023두62830"]
-    }
+    {"id": "legal-001", "search_group": "LEGAL", "query": "사업장폐기물을 업체에 위탁할 때 배출자가 확인해야 할 의무는?", "expected_any": ["폐기물관리법 제17조", "폐기물관리법 제48조"]},
+    {"id": "legal-002", "search_group": "LEGAL", "query": "폐폴리프로필렌을 재활용할 수 있는 R 유형과 재활용 기준", "expected_any": ["별표 4의2", "별표 4의3", "별표 5의3"]},
+    {"id": "legal-003", "search_group": "LEGAL", "query": "경매로 사업장을 인수하면 다른 장소에 방치된 폐기물 의무도 승계하는가?", "expected_any": ["2023두62830"]},
+    {"id": "legal-004", "search_group": "LEGAL", "query": "폐기물 처리업체의 허가 업종과 처리 범위를 확인하려면 어떤 조문을 봐야 하나?", "expected_any": ["폐기물관리법 제25조"]},
+    {"id": "legal-005", "search_group": "LEGAL", "query": "폐기물이 아닌 순환자원으로 인정받기 위한 제도적 근거는?", "expected_any": ["제21조", "제23조"]},
+    {"id": "legal-006", "search_group": "LEGAL", "query": "새로운 재활용 기술에 규제특례나 임시허가를 신청할 수 있는가?", "expected_any": ["제28조", "제30조", "제33조"]},
+    {"id": "legal-007", "search_group": "LEGAL", "query": "폐기물을 부적정 처리하면 누구에게 조치명령을 내릴 수 있는가?", "expected_any": ["폐기물관리법 제48조", "2023두62830"]},
+    {"id": "technical-001", "search_group": "TECHNICAL", "query": "코팅·라미네이트 종이를 재활용할 때 공정 선정에서 무엇을 고려해야 하나?", "expected_any": ["코팅 종이는 맞는 제지 공정을 찾아야 함"]},
+    {"id": "technical-002", "search_group": "TECHNICAL", "query": "PET 병 재활용성을 평가할 때 라벨과 접착제를 어떻게 봐야 하나?", "expected_any": ["PET는 병·색·라벨·접착·이전 내용물을 분리"]},
+    {"id": "technical-003", "search_group": "TECHNICAL", "query": "알루미늄 용융금속에 물이 들어가면 어떤 위험이 있나?", "expected_any": ["용융금속과 물의 접촉 위험", "입고 후 보관 중 생기는 수분도 재확인"]},
+    {"id": "technical-004", "search_group": "TECHNICAL", "query": "폐알루미늄 재용해 전에 합금을 분리해야 하는가?", "expected_any": ["같은 알루미늄도 합금 분리가 먼저"]},
+    {"id": "technical-005", "search_group": "TECHNICAL", "query": "알루미늄 절삭칩을 재용해하기 전에 전처리가 필요한가?", "expected_any": ["절삭칩 전처리는 조건부 대안"]},
+    {"id": "technical-006", "search_group": "TECHNICAL", "query": "공정 스크랩의 탄소를 자동으로 0으로 계산해도 되나?", "expected_any": ["공정스크랩을 자동 탄소 0으로 두지 않음"]},
+    {"id": "technical-007", "search_group": "TECHNICAL", "query": "단일 합금 알루미늄 칩과 혼합 칩은 같은 거래 등급인가?", "expected_any": ["단일 합금 칩과 혼합 칩은 다른 거래 등급"]}
   ]
 }
