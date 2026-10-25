@@ -202,6 +202,7 @@ class EvidenceRepository:
                 version=row[9],
                 page_no=row[10],
                 source_position=row[11],
+                metadata=(row[12] or {}) if len(row) > 12 else {},
             )
             for row in rows
         ]
@@ -251,8 +252,9 @@ class EvidenceRepository:
                         d.effective_from,
                         d.version,
                         c.page_no,
-                        c.metadata,
-                        c.embedding
+                        c.metadata AS chunk_metadata,
+                        c.embedding,
+                        jsonb_build_object('document', d.metadata, 'chunk', c.metadata) AS metadata
                     FROM legal_chunks c
                     JOIN legal_documents d ON d.id = c.document_id
                     WHERE
@@ -277,7 +279,8 @@ class EvidenceRepository:
                     1 - (embedding <=> %s) AS score,
                     version,
                     page_no,
-                    COALESCE(citation, metadata ->> 'source_position') AS source_position
+                    COALESCE(citation, chunk_metadata ->> 'source_position') AS source_position,
+                    metadata
                 FROM filtered_chunks
                 ORDER BY embedding <=> %s
                 LIMIT %s
@@ -308,7 +311,8 @@ class EvidenceRepository:
                     ) AS score,
                     d.version,
                     c.page_no,
-                    COALESCE(c.citation, c.metadata ->> 'source_position') AS source_position
+                    COALESCE(c.citation, c.metadata ->> 'source_position') AS source_position,
+                    jsonb_build_object('document', d.metadata, 'chunk', c.metadata) AS metadata
                 FROM legal_chunks c
                 JOIN legal_documents d ON d.id = c.document_id
                 WHERE
