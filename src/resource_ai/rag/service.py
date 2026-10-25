@@ -239,38 +239,54 @@ class EvidenceRepository:
             # 의미 유사도 검색과 정확한 용어 검색을 따로 수행한 뒤 순위 기반으로 결합한다.
             vector_rows = connection.execute(
                 """
+                WITH filtered_chunks AS MATERIALIZED (
+                    SELECT
+                        c.id,
+                        d.title,
+                        d.document_type,
+                        c.heading,
+                        c.content,
+                        c.citation,
+                        d.source_url,
+                        d.effective_from,
+                        d.version,
+                        c.page_no,
+                        c.metadata,
+                        c.embedding
+                    FROM legal_chunks c
+                    JOIN legal_documents d ON d.id = c.document_id
+                    WHERE
+                        d.is_current = true
+                        AND (%s::text[] IS NULL OR d.document_type = ANY(%s::text[]))
+                        AND (d.document_type <> 'COMPANY_DOCUMENT' OR d.tenant_id = %s)
+                        AND (
+                            d.document_type <> 'LAW'
+                            OR d.effective_from IS NULL
+                            OR d.effective_from <= CURRENT_DATE
+                        )
+                )
                 SELECT
-                    c.id,
-                    d.title,
-                    d.document_type,
-                    c.heading,
-                    c.content,
-                    c.citation,
-                    d.source_url,
-                    d.effective_from,
-                    1 - (c.embedding <=> %s) AS score,
-                    d.version,
-                    c.page_no,
-                    COALESCE(c.citation, c.metadata ->> 'source_position') AS source_position
-                FROM legal_chunks c
-                JOIN legal_documents d ON d.id = c.document_id
-                WHERE
-                    d.is_current = true
-                    AND (%s::text[] IS NULL OR d.document_type = ANY(%s::text[]))
-                    AND (d.document_type <> 'COMPANY_DOCUMENT' OR d.tenant_id = %s)
-                    AND (
-                        d.document_type <> 'LAW'
-                        OR d.effective_from IS NULL
-                        OR d.effective_from <= CURRENT_DATE
-                    )
-                ORDER BY c.embedding <=> %s
+                    id,
+                    title,
+                    document_type,
+                    heading,
+                    content,
+                    citation,
+                    source_url,
+                    effective_from,
+                    1 - (embedding <=> %s) AS score,
+                    version,
+                    page_no,
+                    COALESCE(citation, metadata ->> 'source_position') AS source_position
+                FROM filtered_chunks
+                ORDER BY embedding <=> %s
                 LIMIT %s
                 """,
                 (
-                    query_vector,
                     normalized_types,
                     normalized_types,
                     tenant_id,
+                    query_vector,
                     query_vector,
                     candidate_count,
                 ),

@@ -171,6 +171,20 @@ def test_legal_search_group_filters_law_and_precedent() -> None:
     assert all(["LAW", "PRECEDENT"] in params for _, params in database.calls)
 
 
+def test_vector_search_filters_group_before_ranking_candidates() -> None:
+    database = SearchDatabase()
+    repository = LegalRepository(database, HashEmbeddingProvider())
+
+    assert repository.search("재활용 공정", search_group=SearchGroup.TECHNICAL) == []
+
+    vector_query, params = database.calls[0]
+    assert "WITH filtered_chunks AS MATERIALIZED" in vector_query
+    assert vector_query.index("d.document_type = ANY") < vector_query.index(
+        "ORDER BY embedding <=>"
+    )
+    assert ["TECHNICAL_LITERATURE"] in params
+
+
 def test_company_search_applies_tenant_filter_to_both_queries() -> None:
     database = SearchDatabase()
     repository = LegalRepository(database, HashEmbeddingProvider())
