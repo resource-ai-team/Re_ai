@@ -28,6 +28,10 @@
 `HISTORICAL_CASE`는 운영 DB에서 관리할 구조화 처리 이력과 혼동하지 않도록 세 검색 그룹에서
 제외합니다. 장문 메모 검색이 필요해질 때 별도 Case Memory 계약으로 추가합니다.
 
+`TECHNICAL`은 `collection_lane=technical`로 검수된 기술 문헌만 포함합니다. 시설·수취처
+(`factory`, `recipient`) 자료는 KG와 업무 DB의 후보 근거로 관리하며 Technical RAG에
+적재하지 않습니다.
+
 시설 정보와 검수된 비용·탄소 계산값은 구조화 데이터 저장소에서 관리하며 RAG 코퍼스에
 포함하지 않습니다. OCR과 사용자 문서 추출도 입력 영역의 책임입니다. RAG는 정규화된
 JSONL을 전달받습니다.
