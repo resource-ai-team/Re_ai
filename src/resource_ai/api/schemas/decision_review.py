@@ -11,6 +11,7 @@ from resource_ai.api.schemas.analysis import (
     StrictModel,
 )
 from resource_ai.api.schemas.facility_assessment import AssessedPlansRequest
+from resource_ai.evidence.critic_models import SemanticCriticOptions, SemanticCriticRun
 
 
 class ReviewTemplateRequest(StrictModel):
@@ -36,6 +37,7 @@ class DecisionReviewRequest(StrictModel):
     research: ResearchRequest
     numeric: NumericBinding | None = None
     site_context_sha256: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
+    semantic_critic: SemanticCriticOptions | None = None
 
 
 class CriticIssue(StrictModel):
@@ -48,6 +50,8 @@ class CriticIssue(StrictModel):
     evidence_ids: list[str] = Field(default_factory=list)
     message: str
     next_action: str
+    origin: Literal["code", "model_concern"] = "code"
+    semantic_finding_id: str | None = None
 
 
 class DecisionReviewResponse(StrictModel):
@@ -57,6 +61,7 @@ class DecisionReviewResponse(StrictModel):
     binding: dict[str, Any]
     numeric_review: dict[str, Any]
     critic: list[CriticIssue]
+    semantic_critic: SemanticCriticRun = Field(default_factory=SemanticCriticRun)
     router: dict[str, Any]
     candidate_reviews: list[dict[str, Any]]
     map_markers: list[dict[str, Any]]

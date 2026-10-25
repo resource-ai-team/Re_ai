@@ -13,9 +13,12 @@ from resource_ai.knowledge_graph.graph_store import integrity
 
 
 class SiteReviewService:
-    def __init__(self, graph, research_service, datasets, *, road_service=None):
+    def __init__(
+        self, graph, research_service, datasets, *, road_service=None, semantic_service=None
+    ):
         self.graph, self.research_service, self.datasets = graph, research_service, datasets
         self.road_service = road_service
+        self.semantic_service = semantic_service
 
     def run(self, request):
         site_request = SiteDiscoveryRequest.model_validate(
@@ -26,7 +29,10 @@ class SiteReviewService:
             if self.road_service is None:
                 raise integrity("도로 조회 서비스 설정을 확인하세요.")
             site = enrich_road_distances(site, request.road_routing, self.road_service)
-        review = DecisionReviewService(self.research_service).run(
+        review_service = DecisionReviewService(self.research_service).set_semantic_service(
+            self.semantic_service
+        )
+        review = review_service.run(
             DecisionReviewRequest(
                 research=ResearchRequest(
                     lot=request.lot,
@@ -55,6 +61,13 @@ class SiteReviewService:
         )
         if lci is not None and lci.graph_trace != site.graph_trace:
             raise KGPathLCIIntegrityError("Graph changed between review and LCI screening")
+        # The optional critic runs once, after site and LCI screening have finished.
+        review = review_service.enrich_semantic(
+            review,
+            request.semantic_critic,
+            numeric=request.numeric.comparison if request.numeric else None,
+            extra={"site": site, "lci": lci},
+        )
         estimated = sum(r["carbon_kgco2e"] is not None for r in lci.results) if lci else 0
         lci_scope = (
             f"국가 LCI 예비 산정 경로 {estimated}개. 같은 경계로 검수되지 않아 비용·탄소 총계나 순위에 자동 합산하지 않았습니다."

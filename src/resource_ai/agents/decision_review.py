@@ -1,8 +1,8 @@
 """Join real KG candidates to submitted arithmetic and expose review gaps.
 
 This bounded stage does not grant PASS, rank legal feasibility, fetch prices,
-or automatically rerun upstream stages. Its critic is a deterministic integrity
-check, not a model-based assessment of source truth.
+or automatically rerun upstream stages. Code checks always run; optional semantic
+review adds citation-checked concerns without establishing source truth.
 """
 
 from collections import Counter
@@ -18,7 +18,7 @@ LIMITATIONS = [
     "실제 KG 경로와 제출한 수치의 연결·산술·비교 범위를 확인합니다. 가격·LCI 원문의 진위와 적용성을 확정하지 않습니다.",
     "법률 검증의 모델 응답·시설 공개 조건은 현행 허가·로트 인수·처리 용량의 확인을 대신하지 않습니다.",
     "수치상 Pareto는 조사 결과입니다. 최종 Top K·추천·발주·운송 승인이 아니며 PASS를 반환하지 않습니다.",
-    "Critic은 ID·범위·산술·비교 구조를 검사합니다. 의미적 반박·전문가 법규 판단·가격 조사는 별도 작업입니다.",
+    "Critic은 코드 검사와 선택 AI 반박의 인용 대조를 제공합니다. 모델 반박의 정확도·전문가 법규 판단·가격 조사는 별도 검증이 필요합니다.",
     "REVISE는 재검토할 단계와 무효화 범위를 제시합니다. 자동 부분 재실행·영구 실행 이력·3D 화면 연동은 아직 없습니다.",
 ]
 
@@ -77,8 +77,13 @@ def route_issues(issues):
 
 
 class DecisionReviewService:
-    def __init__(self, research_service):
+    def __init__(self, research_service, *, semantic_service=None):
         self.research_service = research_service
+        self.semantic_service = semantic_service
+
+    def set_semantic_service(self, service):
+        self.semantic_service = service
+        return self
 
     def template(self, request):
         # collect() deliberately does not call RAG or any generation model.
@@ -309,7 +314,7 @@ class DecisionReviewService:
                 }
             )
         markers = self._markers(research, issues)
-        return DecisionReviewResponse(
+        response = DecisionReviewResponse(
             run_id=str(uuid4()),
             research=research,
             binding=binding,
@@ -342,6 +347,93 @@ class DecisionReviewService:
             report_markdown=self._report(research, numeric_review, issues, router),
             route=router["route"],
             limitations=LIMITATIONS,
+        )
+        return self.enrich_semantic(response, request.semantic_critic, numeric=numeric)
+
+    def enrich_semantic(self, review, options, *, numeric=None, extra=None):
+        if options is None:
+            return review
+        from resource_ai.agents.semantic_critic import get_semantic_critic_service
+
+        issues = [i.model_dump(mode="json") for i in review.critic]
+        service = self.semantic_service or get_semantic_critic_service()
+        result = service.run(
+            review.research, review.numeric_review, numeric, issues, options, extra=extra
+        )
+        for finding in result.findings:
+            issues.append(
+                {
+                    "code": "semantic_" + finding["kind"],
+                    "stage": finding["stage"],
+                    "severity": "missing",
+                    "candidate_id": finding["candidate_id"],
+                    "target_type": finding["target_type"],
+                    "target_id": finding["target_id"],
+                    "evidence_ids": sorted({c["evidence_id"] for c in finding["citations"]}),
+                    "message": "AI 추가 검토 제안: " + finding["message"],
+                    "next_action": finding["next_action"],
+                    "origin": "model_concern",
+                    "semantic_finding_id": finding["finding_id"],
+                }
+            )
+        if result.status != "completed":
+            issues.append(
+                {
+                    "code": "semantic_critic_incomplete",
+                    "stage": "validation",
+                    "severity": "missing",
+                    "candidate_id": None,
+                    "target_type": "global",
+                    "target_id": None,
+                    "evidence_ids": [],
+                    "message": f"요청한 AI 반박 검토가 완전하지 않습니다 ({result.status}).",
+                    "next_action": "모델 설정·입력 한도·제외 자료·기각된 인용을 확인하세요.",
+                }
+            )
+        router = route_issues(issues)
+        markers = self._markers(review.research, issues)
+        candidates = []
+        for previous in review.candidate_reviews:
+            scoped = [i for i in issues if i["candidate_id"] in {None, previous["candidate_id"]}]
+            candidates.append(
+                {
+                    **previous,
+                    "issue_codes": sorted({i["code"] for i in scoped}),
+                    "next_actions": list(dict.fromkeys(i["next_action"] for i in scoped)),
+                }
+            )
+        statuses = [
+            {**s, "status": "code_checks_and_model_concerns_" + result.status}
+            if s["stage"] == "critic"
+            else {**s, "status": router["route"]}
+            if s["stage"] == "router"
+            else s
+            for s in review.stage_statuses
+        ]
+        report = self._report(review.research, review.numeric_review, issues, router)
+        report += (
+            "\n\n## AI 반박 검토\n\n"
+            f"- 실행 상태: `{result.status}` · 모델 호출 시도 {result.model_calls}회\n"
+            f"- 인용 대조를 통과한 제안 {len(result.findings)}개. 의미적 정확도 검증·적법 판정이 아닙니다.\n"
+            "- 모델 제안은 확인 사항으로 추가하며 기존 오류·계산 결과를 지우지 않습니다.\n"
+        )
+        return DecisionReviewResponse.model_validate(
+            {
+                **review.model_dump(mode="json"),
+                "critic": issues,
+                "semantic_critic": result,
+                "candidate_reviews": candidates,
+                "map_markers": markers,
+                "map_marker_groups": self._marker_groups(markers),
+                "router": router,
+                "route": router["route"],
+                "stage_statuses": statuses,
+                "report_markdown": report,
+                "limitations": [
+                    *review.limitations,
+                    "AI 반박은 인용 일치 검사를 거친 제안입니다. 의미적·법적 정확도는 별도 검증이 필요합니다.",
+                ],
+            }
         )
 
     @staticmethod
@@ -413,6 +505,8 @@ class DecisionReviewService:
             {
                 "marker_id": identity("review-marker", [index, row]),
                 **row,
+                "origin": row.get("origin", "code"),
+                "semantic_finding_id": row.get("semantic_finding_id"),
                 "on_map": row["candidate_id"] in targets
                 and row["target_id"] in targets.get(row["candidate_id"], set()),
                 "meaning": "수정할 입력·계산 오류"

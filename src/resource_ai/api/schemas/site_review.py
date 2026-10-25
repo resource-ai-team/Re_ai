@@ -9,6 +9,7 @@ from resource_ai.api.schemas.decision_review import DecisionReviewResponse, Nume
 from resource_ai.api.schemas.kg_lci import KGPathLCIResponse
 from resource_ai.api.schemas.legal_graph import LegalGraphRequest
 from resource_ai.api.schemas.site_discovery import SiteDiscoveryRequest, SiteDiscoveryResponse
+from resource_ai.evidence.critic_models import SemanticCriticOptions
 
 
 class SiteReviewRequest(SiteDiscoveryRequest):
@@ -19,6 +20,7 @@ class SiteReviewRequest(SiteDiscoveryRequest):
     include_lci: StrictBool = True
     numeric: NumericBinding | None = None
     legal_graph: LegalGraphRequest | None = None
+    semantic_critic: SemanticCriticOptions | None = None
 
 
 class SiteReviewResponse(StrictModel):

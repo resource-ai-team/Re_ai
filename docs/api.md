@@ -6,6 +6,13 @@
 
 ## 실제 KG 경로에 연결한 검토
 
+`/analysis/review`와 `/analysis/site-review`에 선택 `semantic_critic: {"max_findings": 4}`를 추가할 수 있습니다.
+서버의 GPT Critic·외부 전송 설정과 **X-Critic-Service-Token** 헤더가 있어야 실제 모델 호출을 실행합니다.
+기본은 호출하지 않으며, 요청했지만 비활성/차단/자료 한도이면 결과에 그 상태를 남깁니다.
+`semantic_critic` 결과와 `critic[].origin`·`semantic_finding_id`로 모델 제안과 코드 검사를 구분합니다.
+제안은 인용·ID 대조를 통과해도 확인 사항이며 PASS·확정 오류·발주 승인으로 승격하지 않습니다.
+현재 실제 GPT의 반박 정확도는 미검증입니다. [설정·전송 목록·상태·한도](semantic-critic.md).
+
 공정 검토 응답에 `research.legal_baselines`와 후보의 `legal_baseline_tasks`가 추가됐습니다.
 벡터 검색과 별도로 현재 로컬 공개 법령의 기본 조문 10개를 정확한 법령·조문 ID로 조회합니다.
 확보는 적용성 검증이 아닙니다. 조회 일부 누락·버전 충돌·제목/인용 변경을 표시하며,

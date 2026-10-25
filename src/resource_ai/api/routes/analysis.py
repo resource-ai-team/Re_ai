@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends, Header, HTTPException
 
 from resource_ai.agents.decision_review import DecisionReviewService
 from resource_ai.agents.research import CandidateResearchService
+from resource_ai.agents.semantic_critic import get_semantic_critic_service
 from resource_ai.agents.site_discovery import SiteDiscoveryService
 from resource_ai.api.routes.kg_lci import get_lci_datasets
 from resource_ai.api.schemas.analysis import (
@@ -29,6 +30,16 @@ from resource_ai.knowledge_graph.graph_store import GraphStoreError
 from resource_ai.knowledge_graph.query import GraphQuery
 
 router = APIRouter(prefix="/analysis", tags=["internal-analysis"])
+
+
+def require_critic_service_auth(service, token):
+    if service.unavailable_status() is not None:
+        return
+    expected = service.config.semantic_critic_service_token.get_secret_value()
+    if not expected:
+        raise HTTPException(status_code=503, detail={"code": "critic-service-auth-not-configured"})
+    if not token or not compare_digest(token.encode(), expected.encode()):
+        raise HTTPException(status_code=401, detail={"code": "critic-service-auth-required"})
 
 
 def require_road_service_auth(service, authorization):
@@ -117,18 +128,27 @@ def site_review(
     graph: Annotated[GraphQuery, Depends(get_graph_query)],
     research_service: Annotated[CandidateResearchService, Depends(get_research_service)],
     datasets: Annotated[list, Depends(get_site_review_lci_datasets)],
+    critic_service: Annotated[object, Depends(get_semantic_critic_service)],
     authorization: Annotated[str | None, Header()] = None,
+    x_critic_service_token: Annotated[str | None, Header()] = None,
 ):
     from resource_ai.agents.kg_lci import KGPathLCIIntegrityError
     from resource_ai.agents.site_review import SiteReviewService
+
+    if request.semantic_critic is not None:
+        require_critic_service_auth(critic_service, x_critic_service_token)
 
     road_service = get_road_routing_service() if request.road_routing is not None else None
     if road_service is not None:
         require_road_service_auth(road_service, authorization)
     try:
-        return SiteReviewService(graph, research_service, datasets, road_service=road_service).run(
-            request
-        )
+        return SiteReviewService(
+            graph,
+            research_service,
+            datasets,
+            road_service=road_service,
+            semantic_service=critic_service,
+        ).run(request)
     except (GraphStoreError, KGPathLCIIntegrityError) as exc:
         code = getattr(exc, "code", "site-review-generation-changed")
         status = {
@@ -180,9 +200,13 @@ def review_template(
 def review(
     request: DecisionReviewRequest,
     service: Annotated[CandidateResearchService, Depends(get_research_service)],
+    critic_service: Annotated[object, Depends(get_semantic_critic_service)],
+    x_critic_service_token: Annotated[str | None, Header()] = None,
 ):
+    if request.semantic_critic is not None:
+        require_critic_service_auth(critic_service, x_critic_service_token)
     try:
-        return DecisionReviewService(service).run(request)
+        return DecisionReviewService(service).set_semantic_service(critic_service).run(request)
     except GraphStoreError as exc:
         raise HTTPException(
             status_code={"invalid-goal": 400, "stale-cursor": 409}.get(exc.code, 503),

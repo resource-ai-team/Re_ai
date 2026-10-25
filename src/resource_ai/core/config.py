@@ -40,6 +40,12 @@ class Settings(BaseSettings):
     azure_openai_reasoning_effort: Literal["high"] = "high"
     azure_openai_max_output_tokens: int = Field(default=16384, ge=1024, le=32768)
     azure_openai_api_key: SecretStr = Field(default=SecretStr(""), repr=False)
+    semantic_critic_enabled: bool = False
+    semantic_critic_allow_external: bool = False
+    semantic_critic_service_token: SecretStr = Field(default=SecretStr(""), repr=False)
+    semantic_critic_timeout_seconds: int = Field(default=120, ge=5, le=180)
+    semantic_critic_max_input_chars: int = Field(default=120000, ge=1000, le=120000)
+    semantic_critic_max_output_tokens: int = Field(default=8192, ge=1024, le=16384)
     upstage_api_key: SecretStr = Field(default=SecretStr(""), repr=False)
     road_routing_enabled: bool = False
     road_routing_allow_external: bool = False

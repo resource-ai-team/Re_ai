@@ -1,7 +1,10 @@
 # Azure GPT-6 Astra 연결
 
 서버 모델 어댑터는 **Azure Responses API / GPT-6 Astra / reasoning high**로 구현했습니다.
-현재 연결 위치는 기존 `legal_graph` 선택 경로의 특징 추출·근거 검사·요약입니다.
+연결 위치는 기존 `legal_graph` 선택 경로와 별도의 선택 `semantic_critic`입니다.
+GPT Critic은 기존 코드 검사 뒤에 전체 후보·허용 근거를 읽고 추가 반박을 제안합니다.
+별도 서버 전송 설정·서비스 토큰이 필요하며 구현·모의 전송 검증까지입니다. 실제 GPT 반박 품질은 미검증입니다.
+[GPT Critic 설정·전송 범위](semantic-critic.md)를 참고하세요.
 기본 법령 RAG 검색이나 Python 비용·탄소 계산이 LLM 호출로 바뀐 것은 아닙니다.
 전체 파이프라인의 자동 실행·OCR·웹 검색은 별도 작업입니다.
 
@@ -24,6 +27,7 @@ LEGAL_GRAPH_ALLOW_EXTERNAL=true
 실제 Astra 배포·모델 사용 권한·키가 있어야 호출됩니다. 로그인 비밀번호를 API 키로 사용하지 않습니다.
 API 키는 Git에서 제외된 `.env` 또는 서버 비밀 저장소에서 관리합니다.
 기업 자료 전송 범위 검토 전에는 `LEGAL_GRAPH_ALLOW_EXTERNAL=false`를 유지합니다.
+GPT Critic의 `SEMANTIC_CRITIC_ALLOW_EXTERNAL`은 이 값과 독립적이며 기본 false입니다.
 
 Azure 모드에서 Solar로 자동 대체하지 않습니다. 응답이 모델명 대신 배포 별칭을 반환할 수 있으므로,
 포털에서 해당 endpoint·배포의 실제 모델을 확인한 뒤에만 `DEPLOYMENT_MODEL=gpt-6-astra`를 설정합니다.
