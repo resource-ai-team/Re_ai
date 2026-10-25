@@ -16,7 +16,7 @@ from resource_ai.evidence.models import (
 )
 from resource_ai.rag.ingestion.chunker import chunk_for_corpus
 from resource_ai.rag.retrieval.embeddings import EmbeddingProvider
-from resource_ai.rag.retrieval.reranker import rerank_legal_results
+from resource_ai.rag.retrieval.reranker import rerank_results
 from resource_ai.rag.retrieval.retriever import reciprocal_rank_fusion
 from resource_ai.rag.retrieval.vector_store import Database
 
@@ -187,7 +187,24 @@ class EvidenceRepository:
 
     @staticmethod
     def _results(rows: list[tuple], method: str) -> list[SearchResult]:
-        return [SearchResult(*row, retrieval_method=method) for row in rows]
+        return [
+            SearchResult(
+                chunk_id=row[0],
+                title=row[1],
+                document_type=row[2],
+                heading=row[3],
+                content=row[4],
+                citation=row[5],
+                source_url=row[6],
+                effective_from=row[7],
+                score=row[8],
+                retrieval_method=method,
+                version=row[9],
+                page_no=row[10],
+                source_position=row[11],
+            )
+            for row in rows
+        ]
 
     def search(
         self,
@@ -231,7 +248,10 @@ class EvidenceRepository:
                     c.citation,
                     d.source_url,
                     d.effective_from,
-                    1 - (c.embedding <=> %s) AS score
+                    1 - (c.embedding <=> %s) AS score,
+                    d.version,
+                    c.page_no,
+                    COALESCE(c.citation, c.metadata ->> 'source_position') AS source_position
                 FROM legal_chunks c
                 JOIN legal_documents d ON d.id = c.document_id
                 WHERE
@@ -269,7 +289,10 @@ class EvidenceRepository:
                     ts_rank_cd(
                         c.search_vector,
                         websearch_to_tsquery('simple', %s)
-                    ) AS score
+                    ) AS score,
+                    d.version,
+                    c.page_no,
+                    COALESCE(c.citation, c.metadata ->> 'source_position') AS source_position
                 FROM legal_chunks c
                 JOIN legal_documents d ON d.id = c.document_id
                 WHERE
@@ -293,7 +316,12 @@ class EvidenceRepository:
             limit=candidate_count,
             rrf_k=self.rrf_k,
         )
-        return rerank_legal_results(query, fused, limit=top_k)
+        return rerank_results(
+            query,
+            fused,
+            limit=top_k,
+            search_group=search_group,
+        )
 
 
 # 기존 애플리케이션의 import 경로를 깨지 않도록 이전 이름을 호환 별칭으로 유지한다.

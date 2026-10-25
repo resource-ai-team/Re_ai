@@ -20,6 +20,11 @@
 | `TECHNICAL` | `TECHNICAL_LITERATURE` |
 | `COMPANY` | `COMPANY_DOCUMENT` |
 
+세 그룹은 벡터 검색과 키워드 검색 결과를 RRF로 결합한 뒤 서로 다른 기준으로 재정렬합니다.
+법률의 공식 출처·시행일 가산점은 `LEGAL`에만 적용하고, `TECHNICAL`과 `COMPANY`에는
+제목·본문·원문 위치 일치도를 적용합니다. 기업 문서는 현재 버전만 검색하며 `tenant_id`로
+기업 범위를 제한합니다.
+
 `HISTORICAL_CASE`는 운영 DB에서 관리할 구조화 처리 이력과 혼동하지 않도록 세 검색 그룹에서
 제외합니다. 장문 메모 검색이 필요해질 때 별도 Case Memory 계약으로 추가합니다.
 
