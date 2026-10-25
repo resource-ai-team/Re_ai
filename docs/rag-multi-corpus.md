@@ -83,3 +83,16 @@ resource-rag index path/to/documents.jsonl --manifest path/to/documents.manifest
 `canonical_source_id`의 새 버전이 들어오면 이전 버전은 보존하되 검색 대상에서 제외합니다.
 기업 문서는 검색 시 `tenant_id`가 없으면 반환되지 않으며, 기업 문서 코퍼스를 명시해
 검색할 때는 `tenant_id`가 필수입니다.
+
+## 검색 품질 평가
+
+`data/config/retrieval_eval.json`은 Legal·Technical 질문과 기대 근거, Top K, 최소
+Recall@K·MRR 기준을 버전 관리합니다. 전체 평균과 각 검색 그룹이 모두 기준을
+통과해야 명령이 성공합니다.
+
+~~~bash
+resource-rag evaluate --cases data/config/retrieval_eval.json
+~~~
+
+Company 평가셋은 실제 기업 문서와 답은 운영 환경에서만 관리합니다. 대신 CI에서
+`tenant_id` 필수·교차 노출 차단을 계속 검증합니다.
