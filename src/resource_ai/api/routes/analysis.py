@@ -1,6 +1,7 @@
+from secrets import compare_digest
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, Header, HTTPException
 
 from resource_ai.agents.decision_review import DecisionReviewService
 from resource_ai.agents.research import CandidateResearchService
@@ -16,22 +17,55 @@ from resource_ai.api.schemas.decision_review import (
     DecisionReviewResponse,
     ReviewTemplateRequest,
 )
+from resource_ai.api.schemas.road_routing import RoadRoutesRequest, RoadRoutesResponse
 from resource_ai.api.schemas.site_discovery import SiteDiscoveryRequest, SiteDiscoveryResponse
 from resource_ai.calculators.scenarios import compare_scenarios
 from resource_ai.core.dependencies import get_graph_query, get_repository
+from resource_ai.integrations.road_routing import get_road_routing_service
 from resource_ai.knowledge_graph.graph_store import GraphStoreError
 from resource_ai.knowledge_graph.query import GraphQuery
 
 router = APIRouter(prefix="/analysis", tags=["internal-analysis"])
 
 
+def require_road_service_auth(service, authorization):
+    # Disabled/unconfigured diagnostics do not trigger any external calls.
+    if service.unavailable_status() is not None:
+        return
+    token = service.config.road_routing_service_token.get_secret_value()
+    if not token:
+        raise HTTPException(status_code=503, detail={"code": "routing-service-auth-not-configured"})
+    expected = "Bearer " + token
+    if not authorization or not compare_digest(authorization.encode(), expected.encode()):
+        raise HTTPException(status_code=401, detail={"code": "routing-service-auth-required"})
+
+
+@router.post("/road-routes", response_model=RoadRoutesResponse)
+def road_routes(
+    request: RoadRoutesRequest,
+    service: Annotated[object, Depends(get_road_routing_service)],
+    authorization: Annotated[str | None, Header()] = None,
+):
+    require_road_service_auth(service, authorization)
+    return service.run(request)
+
+
 @router.post("/site-discovery", response_model=SiteDiscoveryResponse)
 def site_discovery(
     request: SiteDiscoveryRequest,
     graph: Annotated[GraphQuery, Depends(get_graph_query)],
+    authorization: Annotated[str | None, Header()] = None,
 ):
+    road_service = get_road_routing_service() if request.road_routing is not None else None
+    if road_service is not None:
+        require_road_service_auth(road_service, authorization)
     try:
-        return SiteDiscoveryService(graph).run(request)
+        result = SiteDiscoveryService(graph).run(request)
+        if road_service is not None:
+            from resource_ai.agents.road_discovery import enrich_road_distances
+
+            result = enrich_road_distances(result, request.road_routing, road_service)
+        return result
     except GraphStoreError as exc:
         status = {"invalid-goal": 400, "invalid-transition": 400, "stale-cursor": 409}.get(
             exc.code, 503

@@ -8,8 +8,12 @@
 
 - `POST /analysis/site-discovery`: `origin` 사업장 정보와 `lot`으로 KG의 공정별 시설 명부를 직선거리순 조회합니다.
   전체 매칭 목록을 정렬한 뒤 페이지를 받고 KG·명부·코드표 버전과 부분 조회 범위를 확인합니다.
-  사업장 권한·좌표 검수는 Re_server 책임입니다. 법규 검색·생성 모델·도로거리·견적은 호출하지 않습니다.
+  `road_routing` 옵션과 서버 키·허용 설정·Bearer 인증이 있으면 한정한 시설의 도로 경로를 조회합니다.
+  옵션 생략 시 직선거리 조사입니다. 사업장 권한·좌표 검수는 Re_server 책임입니다. 법규 검색·생성 모델·견적은 호출하지 않습니다.
   `REVIEW`·빈 최종 추천·`dispatch_approved=false`를 반환합니다. [요청·결과·실제 DB 검사](site-discovery-api.md).
+- `POST /analysis/road-routes`: 실제 선택한 시설 간 연결 구간의 카카오/네이버 도로거리·시간·선택 geometry 조회.
+  chain은 모든 구간이 연결되고 조회 성공한 경우만 합계를 반환합니다. 키 미설정·실패를 직선거리로 대체하지 않습니다.
+  지도 키가 없어 실호출 미검증이며 비용·화물차 통행 가능성·허가를 확정하지 않습니다. [설정·입출력](road-routing.md).
 - `POST /analysis/review-template`: `lot`·`max_pages`로 실제 KG 경로의 빈 수치 양식을 조회합니다. RAG·생성 모델 호출 없음.
   `input_sha256`·`graph_trace`·공정/인계 ID와 함께 활동량·계수·근거 ID를 `null`로 반환합니다.
 - `POST /analysis/review`: `research`와 선택 `numeric`을 받아 후보 조사 → 같은 로트·현재 그래프·순서 대조 → 제출 수치 계산 → 수치상 Pareto → 결정론적 Critic을 실행합니다.
@@ -36,7 +40,7 @@
   입력은 `query`, `facts`, `top_k`, `max_model_calls`, `max_articles`. 모델·그래프·임베딩 설정은 서버에서만 받음.
 - `POST /analysis/research`의 선택 필드 `legal_graph`: 각 공정 후보를 가설로 전달해 위 법규 검증을 실행.
   전체 후보가 모델 호출 한도를 공유하고 후보별 `legal_graph_review`에 결과·미확인·실패를 표시.
-  생략하면 기존 Hybrid 검색 유지. 실제 생성 모델은 아직 연결하지 않았음.
+  생략하면 기존 Hybrid 검색 유지. Azure Astra high 배포·실제 합성 호출 검증 완료. 기업 자료 전송은 아직 비활성. [연결 기록](azure-model.md) 참고.
 - 모델 미연결·외부 전송 비활성·그래프 미적재·구조 전용 그래프·무결성 오류는 `503`과 명시적 `detail.code`.
   항목 검증 중 자료 부족·모델 오류는 `unknown`, 최종 결과는 `REVIEW`. 허가·인수 승인이 아님.
 - [입출력 예시·논문 반영 범위](legal-hierargraph.md). 이 API는 내부용이며 Re_server 검토 후 연동.

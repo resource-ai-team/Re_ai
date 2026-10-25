@@ -6,6 +6,7 @@ from pydantic import Field, model_validator
 
 from resource_ai.api.schemas.analysis import CandidateResearch, StrictModel
 from resource_ai.api.schemas.facility_assessment import AssessedPlansRequest
+from resource_ai.api.schemas.road_routing import SiteRoadOptions
 
 
 class OriginSite(StrictModel):
@@ -24,6 +25,7 @@ class SiteDiscoveryRequest(StrictModel):
     max_plan_pages: int = Field(default=20, ge=1, le=20)
     facility_page_size: int = Field(default=25, ge=1, le=100)
     max_facility_pages: int = Field(default=2, ge=1, le=20)
+    road_routing: SiteRoadOptions | None = None
 
     @model_validator(mode="after")
     def first_page(self):
@@ -43,6 +45,7 @@ class SiteDiscoveryResponse(StrictModel):
     coverage: dict[str, Any]
     candidates: list[CandidateResearch]
     facility_searches: list[dict[str, Any]]
+    road_routing: dict[str, Any] | None = None
     legal_search_performed: Literal[False] = False
     generation_model_called: Literal[False] = False
     cost_carbon_evaluated: Literal[False] = False

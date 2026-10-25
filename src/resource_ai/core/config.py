@@ -1,4 +1,5 @@
 from functools import lru_cache
+from typing import Literal
 
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -28,7 +29,24 @@ class Settings(BaseSettings):
     legal_graph_allow_external: bool = False
     legal_graph_model: str = "solar-pro4"
     legal_graph_timeout_seconds: int = Field(default=60, ge=5, le=180)
+    legal_graph_model_provider: Literal["azure", "solar"] = "azure"
+    azure_openai_endpoint: str = ""
+    azure_openai_deployment: str = "gpt-6-astra"
+    azure_openai_deployment_model: Literal["", "gpt-6-astra"] = ""
+    azure_openai_reasoning_effort: Literal["high"] = "high"
+    azure_openai_max_output_tokens: int = Field(default=16384, ge=1024, le=32768)
+    azure_openai_api_key: SecretStr = Field(default=SecretStr(""), repr=False)
     upstage_api_key: SecretStr = Field(default=SecretStr(""), repr=False)
+    road_routing_enabled: bool = False
+    road_routing_allow_external: bool = False
+    road_routing_provider: Literal["none", "kakao", "naver"] = "none"
+    road_routing_timeout_seconds: float = Field(default=5, ge=1, le=15)
+    road_routing_total_timeout_seconds: float = Field(default=20, ge=1, le=60)
+    road_routing_max_calls: int = Field(default=10, ge=1, le=20)
+    road_routing_service_token: SecretStr = Field(default=SecretStr(""), repr=False)
+    kakao_mobility_rest_api_key: SecretStr = Field(default=SecretStr(""), repr=False)
+    naver_maps_api_key_id: SecretStr = Field(default=SecretStr(""), repr=False)
+    naver_maps_api_key: SecretStr = Field(default=SecretStr(""), repr=False)
 
 
 @lru_cache

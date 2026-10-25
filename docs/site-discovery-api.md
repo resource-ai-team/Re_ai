@@ -64,7 +64,9 @@ Re_server는 회원이 해당 사업장에 접근 가능한지와 수거 지점�
 명부 항목의 `research_packet.evidence_links`는 [사업장 식별·공정 근거 연결](facility-identity-evidence.md)을 표시합니다.
 같은 사업장으로 확인돼도 이번 요청 공정의 수행 근거가 없으면 `stage_capability=not_established`를 유지합니다.
 
-`road_distance_km`·`transport_cost_krw`는 아직 `null`입니다.
+`road_routing` 옵션을 넣고 서버 키·외부 허용·Bearer 인증을 설정하면 선택 시설의 `road_distance_km`을 조회할 수 있습니다.
+키 미설정·미조회·실패는 `null`이며 `transport_cost_krw`는 계속 `null`입니다.
+지도 키가 없어 실도로 호출 검증은 남아 있습니다. [도로 API 설정·반환 필드](road-routing.md)를 참고하세요.
 후속 공정의 거리도 **출발 사업장에 대한 근접성 조사**이며, 앞 처리시설에서 다음 시설까지 운송하는 거리로 사용하면 안 됩니다.
 주소가 없는 후보·넓은 폐합성수지 분류·미해석 코드도 남기므로, 가까운 순서가 처리 적합성·가격 순위는 아닙니다.
 
@@ -76,6 +78,7 @@ Re_server는 회원이 해당 사업장에 접근 가능한지와 수거 지점�
 
 기존 `/analysis/research`, `/analysis/review`, `/analysis/kg-lci`를 대체하지 않습니다.
 사업장 조사는 검색 모델·법규 Auditor·가격·LCI 계산을 호출하지 않으며, 등록 KG가 지원하지 않는 소재를 새로 만들어 넣지 않습니다.
+도로 API는 선택 옵션으로 연결돼 있고, 시설 간 운송 체인은 `/analysis/road-routes`로 별도 조회합니다.
 `/analysis/kg-lci`는 별도 PR #30의 기능이며 해당 PR 반영 여부와 별개로 이 API는 실행됩니다.
 시설 조사 결과를 기존 수치 비교에 바로 주입하는 기능도 없습니다.
 

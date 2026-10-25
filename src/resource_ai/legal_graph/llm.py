@@ -186,7 +186,7 @@ def configured_model():
     from resource_ai.core.config import get_settings
 
     config = get_settings()
-    if not config.legal_graph_model_enabled or not config.upstage_api_key.get_secret_value():
+    if not config.legal_graph_model_enabled:
         raise LegalGraphError(
             "model-not-configured",
             "생성 모델 연결이 필요합니다. 구조 그래프와 가상 모델 검증은 별도로 확인하세요.",
@@ -195,6 +195,20 @@ def configured_model():
         raise LegalGraphError(
             "model-transfer-disabled", "법률 그래프의 외부 모델 전송 설정이 활성화되지 않았습니다."
         )
+    if config.legal_graph_model_provider == "azure":
+        from resource_ai.integrations.azure_model import AzureResponsesModel
+
+        return AzureResponsesModel(
+            config.azure_openai_api_key.get_secret_value(),
+            endpoint=config.azure_openai_endpoint,
+            deployment=config.azure_openai_deployment,
+            deployment_model=config.azure_openai_deployment_model,
+            reasoning_effort=config.azure_openai_reasoning_effort,
+            max_output_tokens=config.azure_openai_max_output_tokens,
+            timeout=config.legal_graph_timeout_seconds,
+        )
+    if not config.upstage_api_key.get_secret_value():
+        raise LegalGraphError("model-not-configured", "Solar API 키가 설정되지 않았습니다.")
     return SolarModel(
         config.upstage_api_key.get_secret_value(),
         model=config.legal_graph_model,
