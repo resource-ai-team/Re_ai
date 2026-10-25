@@ -104,6 +104,21 @@ def test_prepare_company_document_records_tenant_and_source_metadata() -> None:
     assert chunks[0][4]["source_position"] == 2
 
 
+@pytest.mark.parametrize("lane", ["factory", "recipient"])
+def test_old_public_facility_dataset_cannot_reactivate_technical_records(lane):
+    doc = EvidenceDocument(
+        source_id="public-evidence:old-facility:v1",
+        document_type="TECHNICAL_LITERATURE",
+        title="시설 소개",
+        source_url="https://example.org/facility",
+        version="v1",
+        sections=[EvidenceSection("소개", "공개 시설 후보", metadata={"collection_lane": lane})],
+        metadata={"rights": {"indexing_allowed": True}},
+    )
+    with pytest.raises(ValueError, match="not Technical RAG"):
+        LegalRepository(UnusedDatabase(), HashEmbeddingProvider()).ingest(doc)
+
+
 def test_search_row_keeps_version_and_source_position() -> None:
     rows = [
         (

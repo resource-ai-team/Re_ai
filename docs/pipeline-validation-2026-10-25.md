@@ -5,7 +5,7 @@
 
 ## 먼저 확인한 팀원 PR
 
-조직의 PR 35개를 확인했습니다. Re_ai 24개(병합 19·열림 5), Re_server 9개, Re_client·Re_infra 각 1개입니다.
+조직의 PR 36개를 확인했습니다. Re_ai 25개(병합 20·열림 5), Re_server 9개, Re_client·Re_infra 각 1개입니다.
 상태·본문·변경 범위를 확인하고, 최근 AI 변경의 실제 diff와 연결되는 서버 계약을 우선 검토했습니다.
 과거 35개 PR의 모든 줄을 새로 보안 감사했다는 뜻은 아닙니다.
 
@@ -14,11 +14,12 @@
 | AI [#36](https://github.com/resource-ai-team/Re_ai/pull/36) | 법령 수집 v2 범위를 유지: 법령 15종·판례 12건 |
 | AI [#38](https://github.com/resource-ai-team/Re_ai/pull/38), [#42](https://github.com/resource-ai-team/Re_ai/pull/42), [#44](https://github.com/resource-ai-team/Re_ai/pull/44) | LEGAL/TECHNICAL/COMPANY 그룹, 출처 위치·버전, 그룹 내 벡터 검색을 현재 브랜치에 통합 |
 | AI [#40](https://github.com/resource-ai-team/Re_ai/pull/40) | 동료의 한국어 주석 정리를 보존 |
+| AI [#46](https://github.com/resource-ai-team/Re_ai/pull/46) | 마지막 재확인에서 추가 병합 확인. technical 분류 12문서만 남기고 factory·recipient 21문서를 현재 RAG 검색에서 제외. 원본 행은 보존 |
 | 열린 AI #24·#26·#29·#30 | 법률 그래프·경로 검토·LCI를 로컬 검증 브랜치에서 함께 실행. GitHub 병합과 구분 |
 | 열린 AI [#23](https://github.com/resource-ai-team/Re_ai/pull/23) | 개발용 KG 탐색기. 충돌 상태이며 이번 엔진 통합에는 포함하지 않음 |
 | 서버 [#10](https://github.com/resource-ai-team/Re_server/pull/10), [#12](https://github.com/resource-ai-team/Re_server/pull/12), [#14](https://github.com/resource-ai-team/Re_server/pull/14) | 회사 ID·회사 프로필·오류 형식 확인. 본사 주소를 공장 수거 위치로 사용하면 안 됨 |
 
-확인한 develop 기준은 `5463951`입니다. 과거 AI PR #2·#3·#5·#7·#9·#11·#13·#15·#17·#19·#21·#27·#31·#33은
+최종 반영한 develop 기준은 `6fddb2c`입니다. 과거 AI PR #2·#3·#5·#7·#9·#11·#13·#15·#17·#19·#21·#27·#31·#33은
 [이전 점검](pr-audit-2026-10-24.md)과 이번 통합 회귀 검사를 함께 참고합니다.
 서버의 나머지 PR #1·#2·#3·#5·#6·#8은 초기화·회원/인증·배포 구성 변경을 확인했습니다.
 클라이언트·인프라의 CI PR만으로 웹→서버→AI 통합이 완성됐다고 판단하지 않았습니다.
@@ -55,7 +56,7 @@ flowchart TD
 69개 HTTP 시나리오와 338개 세부 검사를 실행합니다. 통과/실패의 원자료는
 [시나리오 검사 기록](evaluation/pipeline-matrix-2026-10-25.json)에 있습니다.
 기대 HTTP 응답은 69건 모두 일치했고 세부 검사는 **336/338 통과**입니다. 남은 두 실패는 같은 허가 질문의 검색 문제입니다.
-별도 전체 코드 테스트는 실제 Neo4j·PostgreSQL을 켜고 **770개 + subtest 24개 통과·skip 0개**, Ruff·format도 통과했습니다.
+별도 전체 코드 테스트는 실제 Neo4j·PostgreSQL을 켜고 **772개 + subtest 24개 통과·skip 0개**, Ruff·format도 통과했습니다.
 [테스트 기록](evaluation/pipeline-tests-2026-10-25.json)과 [Neo4j 감사](evaluation/kg-audit-2026-10-25.json)를 함께 참고하세요.
 이 매트릭스의 소재별 조사·묶음 요청은 법령 3회·기술 3회로 제한했습니다. 전체 KG 경로 조회와 모든 쟁점 조사 완료는 다릅니다.
 한도 밖 질의는 `budget_exhausted`로 보존하며, 기술 적용성·법규 적용성 검수 완료로 표시하지 않습니다.
@@ -85,7 +86,7 @@ flowchart TD
 
 1. 오래된 활성 KG를 v1.2 참조 자료로 다시 적재하고, 오래된 PostgreSQL에 누락된 마이그레이션을 적용했습니다. 기존 세대와 데이터는 삭제하지 않았습니다.
 2. 공식 API에서 v2 법령·판례 27문서, 2,920구간을 수집·인덱싱했습니다. 기존 추가 판례 2건도 유지했습니다.
-3. 공개 기술 근거 요약 33문서를 적재하고 공정별 TECHNICAL 검색을 연결했습니다. 원문 논문 전체 33편을 확보했다는 뜻은 아닙니다.
+3. 공개 근거 요약 33문서를 처음 적재한 뒤, 동료 PR #46에 맞춰 기술 분류 12문서·24청크만 현재 TECHNICAL 검색에 남겼습니다. 시설·수취처 자료는 KG·업무 DB 영역으로 분리했습니다. 오래된 factory/recipient JSONL을 다시 적재해 기술 검색에 복귀시키는 것도 차단했습니다. 원문 논문 전체를 수집한 것은 아닙니다.
 4. 국가 시설 명부 9,604건과 보유 LCI 원본 7개를 로컬에 연결했습니다. 원본 업체 명부·제한된 LCI ZIP·비밀값은 Git에서 제외했습니다.
 5. 검색 결과의 문서 버전·페이지·원문 위치를 조사 응답까지 보존합니다. 로컬 임베딩에 제목·구획 맥락을 넣고 키워드 검색에 구획·인용 위치를 보강했습니다.
 6. 수량의 bool·무한값·과도한 값 처리와 422 오류 응답을 수정했습니다. 유효 범위는 `0 < quantity_kg <= 1e12`입니다.
@@ -93,7 +94,8 @@ flowchart TD
 8. Windows의 `localhost` 접속 지연을 확인해 로컬 DB 기본값을 `127.0.0.1`로 바꿨습니다. 연결 측정은 약 5.06초→0.026초였습니다.
 9. 경로가 하나뿐인 경우 대안 자료 보강 필요를 표시하고, 기술 근거 미완료·적용성 미확인도 지도 대상 단계에 연결했습니다.
 
-현재 로컬 검색 자료는 법령 15 + 판례 14 + 기술 요약 33 = **62문서·3,415청크**입니다.
+현재 로컬 검색 자료는 법령 15 + 판례 14 + 기술 요약 12 = **41문서·3,385청크**입니다.
+[현재 활성 자료 집계](evaluation/runtime-data-2026-10-25.json)에는 검색에서 제외한 시설·수취처 21문서도 별도로 기록했습니다.
 KG의 원본 W2RKG 주장 33,679건과 국내 조건부 공정 전이 18개·시설 수행 연결 18개·참조 시설 8개는 별개입니다.
 국가 명부 9,604행이 모두 공정 수행 연결 9,604개가 된 것은 아닙니다.
 
@@ -124,4 +126,5 @@ $env:RUN_POSTGRES_INTEGRATION='true'
 
 실제 시나리오에는 Neo4j 활성 KG·명부, pgvector 법령·기술문헌 인덱스, 캐시된 E5 모델과 로컬 LCI 파일이 필요합니다.
 스크립트는 모델·지도 호출을 비활성화합니다. **검색 품질 실패를 포함하면 종료 코드가 1**이므로, 코드 테스트 성공과 혼동하지 마세요.
-`init-db`는 기존 마이그레이션과 `004_heading_search.sql`을 적용합니다. 기존 청크에 제목 맥락을 반영하려면 검증된 전체 데이터셋을 다시 인덱싱해야 합니다.
+`init-db`는 기존 마이그레이션과 동료의 `004_cleanup_technical_corpus.sql`, 새 `005_heading_search.sql`을 적용합니다.
+기존 청크에 제목 맥락을 반영하려면 검증된 전체 데이터셋을 다시 인덱싱해야 합니다. 공개 기술 요약은 `resource-rag build-public-evidence`로 새 범위에 맞춰 재생성합니다.

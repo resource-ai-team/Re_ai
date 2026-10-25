@@ -68,6 +68,16 @@ class EvidenceRepository:
         EvidenceDocument, list[tuple[str, str, str | None, int | None, dict]], list[list[float]]
     ]:
         """DB 트랜잭션 전에 청킹과 임베딩을 끝내 적재 중간 실패를 줄인다."""
+        if document.document_type == CorpusType.TECHNICAL_LITERATURE and any(
+            lane in ("factory", "recipient")
+            for lane in (
+                document.metadata.get("collection_lane"),
+                *(section.metadata.get("collection_lane") for section in document.sections),
+            )
+        ):
+            raise ValueError(
+                "Facility/recipient records belong to KG or business DB, not Technical RAG"
+            )
         canonical_source_id = self._canonical_source_id(document)
         document = replace(
             document,

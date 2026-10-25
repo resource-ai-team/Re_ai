@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-10-25T11:54:44.727647+00:00",
-  "code_sha256": "5eb0574c32595cdc3bb0b6766bfed1b5e2f01919a093de3dad0bb076e9d4bbf2",
-  "files_hashed": 170,
+  "generated_at": "2026-10-25T12:14:03.948979+00:00",
+  "code_sha256": "2b564c9876718b81958417e8c1e59871cbb0d1acfe7843cb8d177bca6dfa9c21",
+  "files_hashed": 171,
   "newline_normalisation": "LF",
-  "scope": "770 pytest tests plus 24 subtests, actual local Neo4j and PostgreSQL enabled; no skip",
+  "scope": "772 pytest tests plus 24 subtests, actual local Neo4j and PostgreSQL enabled; no skip",
   "pytest": {
-    "passed": 770,
+    "passed": 772,
     "subtests_passed": 24,
     "failed": 0,
     "skipped": 0,
-    "seconds": 90.954
+    "seconds": 90.242
   },
   "ruff_check": "passed",
   "ruff_format": "213 files already formatted",
@@ -28,5 +28,6 @@
     "passed": 5,
     "total": 8,
     "labels": "developer-derived, expert validation pending"
-  }
+  },
+  "integrated_develop_commit": "6fddb2c9e3667d016793aa295ed8caca3b8ee064"
 }
