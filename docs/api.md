@@ -25,13 +25,29 @@
 - 잘못된 목표는 `400`, 그래프 세대 변경은 `409`, DB/무결성 장애는 `503`, 스키마 오류는 `422`입니다.
 - [요청 예제·숫자 확보 방법·제한](grounded-decision-review.md). 두 API는 내부용이며 서버 담당자 검토 후 연동합니다.
 
-## 법률 근거 검색
+## RAG 근거 검색
 
-`GET /rag/search?q={질문}&top_k=5`
+`GET /rag/search?q={질문}&top_k=5&search_group=LEGAL`
 
-결과에는 문서 유형, 제목, 조문 또는 판례 구획, 인용, 공식 출처 URL, 시행일, 결합 검색
-점수와 `retrieval_method`가 포함됩니다. `retrieval_method`는 벡터·키워드 후보 포함 여부와
-재정렬 적용을 표시합니다. 검색 실패 시 `503`을 반환합니다.
+`search_group`은 다음 세 그룹을 지원합니다.
+
+| 값 | 검색 문서 |
+| --- | --- |
+| `LEGAL` | 법령·판례 |
+| `TECHNICAL` | 기술문헌 |
+| `COMPANY` | 기업 업로드 문서 |
+
+`COMPANY` 검색에는 `tenant_id`가 필수이며 해당 기업 문서만 반환합니다.
+`search_group`을 생략하는 기존 호출도 호환됩니다.
+`tenant_id`는 외부 사용자 입력을 그대로 신뢰하지 않고 인증을 마친 Re_server가 전달해야 합니다.
+
+`GET /rag/search?q={질문}&search_group=COMPANY&tenant_id={기업 ID}`
+
+결과에는 문서 유형, 제목, 구획, 인용, 출처 URL, 시행일, 문서 버전, 페이지·원문 위치,
+결합 검색 점수와 `retrieval_method`가 포함됩니다. 벡터·키워드 후보를 RRF로 결합한 뒤
+LEGAL은 공식 출처·시행일·인용 위치, TECHNICAL은 제목·공정 문맥·원문 위치,
+COMPANY는 시험 항목·현재 문서 버전·원문 위치를 기준으로 재정렬합니다. 잘못된 검색 조건은
+`400` 또는 `422`, 검색 장애는 `503`을 반환합니다.
 
 ## 법률 그래프 검증
 

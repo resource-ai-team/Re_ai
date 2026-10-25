@@ -8,6 +8,8 @@ from resource_ai.evidence.models import (
     EvidenceSection,
     LegalDocument,
     LegalSection,
+    SearchGroup,
+    corpus_types_for_search_group,
 )
 from resource_ai.rag.retrieval.embeddings import HashEmbeddingProvider
 from resource_ai.rag.service import LegalRepository
@@ -85,6 +87,31 @@ def test_prepare_company_document_records_tenant_and_source_metadata() -> None:
     assert chunks[0][4]["source_position"] == 2
 
 
+def test_search_row_keeps_version_and_source_position() -> None:
+    rows = [
+        (
+            1,
+            "성적서",
+            "COMPANY_DOCUMENT",
+            "시험 결과",
+            "수분 5%",
+            None,
+            "https://example.org/report/1",
+            None,
+            0.02,
+            "v2",
+            3,
+            "표 1 / 수분",
+        )
+    ]
+
+    result = LegalRepository._results(rows, "vector")[0]
+
+    assert result.version == "v2"
+    assert result.page_no == 3
+    assert result.source_position == "표 1 / 수분"
+
+
 class EmptyCursor:
     def __init__(self, calls):
         self.calls = calls
@@ -116,6 +143,46 @@ def test_company_search_requires_tenant() -> None:
 
     with pytest.raises(ValueError, match="tenant_id is required"):
         repository.search("성적서", corpus_types=["COMPANY_DOCUMENT"])
+
+
+def test_search_groups_resolve_to_stored_corpus_types() -> None:
+    assert corpus_types_for_search_group(SearchGroup.LEGAL) == ("LAW", "PRECEDENT")
+    assert corpus_types_for_search_group(SearchGroup.TECHNICAL) == ("TECHNICAL_LITERATURE",)
+    assert corpus_types_for_search_group(SearchGroup.COMPANY) == ("COMPANY_DOCUMENT",)
+    assert all(
+        "HISTORICAL_CASE" not in corpus_types_for_search_group(group) for group in SearchGroup
+    )
+
+
+def test_company_search_group_requires_tenant() -> None:
+    repository = LegalRepository(SearchDatabase(), HashEmbeddingProvider())
+
+    with pytest.raises(ValueError, match="tenant_id is required"):
+        repository.search("성적서", search_group=SearchGroup.COMPANY)
+
+
+def test_legal_search_group_filters_law_and_precedent() -> None:
+    database = SearchDatabase()
+    repository = LegalRepository(database, HashEmbeddingProvider())
+
+    assert repository.search("책임", search_group=SearchGroup.LEGAL) == []
+
+    assert len(database.calls) == 2
+    assert all(["LAW", "PRECEDENT"] in params for _, params in database.calls)
+
+
+def test_vector_search_filters_group_before_ranking_candidates() -> None:
+    database = SearchDatabase()
+    repository = LegalRepository(database, HashEmbeddingProvider())
+
+    assert repository.search("재활용 공정", search_group=SearchGroup.TECHNICAL) == []
+
+    vector_query, params = database.calls[0]
+    assert "WITH filtered_chunks AS MATERIALIZED" in vector_query
+    assert vector_query.index("d.document_type = ANY") < vector_query.index(
+        "ORDER BY embedding <=>"
+    )
+    assert ["TECHNICAL_LITERATURE"] in params
 
 
 def test_company_search_applies_tenant_filter_to_both_queries() -> None:

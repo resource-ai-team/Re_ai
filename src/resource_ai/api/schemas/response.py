@@ -14,3 +14,6 @@ class SearchItem(BaseModel):
     effective_from: date | None
     score: float
     retrieval_method: str
+    version: str | None = None
+    page_no: int | None = None
+    source_position: str | None = None

@@ -21,6 +21,7 @@ from resource_ai.api.schemas.road_routing import RoadRoutesRequest, RoadRoutesRe
 from resource_ai.api.schemas.site_discovery import SiteDiscoveryRequest, SiteDiscoveryResponse
 from resource_ai.calculators.scenarios import compare_scenarios
 from resource_ai.core.dependencies import get_graph_query, get_repository
+from resource_ai.evidence.models import SearchGroup
 from resource_ai.integrations.road_routing import get_road_routing_service
 from resource_ai.knowledge_graph.graph_store import GraphStoreError
 from resource_ai.knowledge_graph.query import GraphQuery
@@ -76,11 +77,11 @@ def site_discovery(
 
 
 def get_research_service(graph: Annotated[GraphQuery, Depends(get_graph_query)]):
-    # Lazy retrieval avoids loading embeddings for an empty KG result. Initialization
-    # failures become explicit per-query gaps, not a fabricated successful search.
+    # KG 후보가 없을 때 불필요하게 임베딩 모델을 올리지 않도록 검색 저장소를 지연 생성한다.
+    # 초기화 실패는 질의별 검색 실패로 남기며, 근거를 찾지 못한 정상 결과로 바꾸지 않는다.
     class LocalRepository:
         def search(self, query, top_k):
-            return get_repository().search(query, top_k, corpus_types=["LAW"])
+            return get_repository().search(query, top_k, search_group=SearchGroup.LEGAL)
 
     return CandidateResearchService(graph, LocalRepository())
 

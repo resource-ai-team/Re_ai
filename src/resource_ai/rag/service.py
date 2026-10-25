@@ -1,3 +1,5 @@
+"""RAG 문서 인덱싱과 벡터·키워드 결합 검색을 제공하는 저장소 서비스."""
+
 import json
 from collections.abc import Sequence
 from dataclasses import replace
@@ -5,15 +7,23 @@ from pathlib import Path
 
 from pgvector import Vector
 
-from resource_ai.evidence.models import CorpusType, EvidenceDocument, SearchResult
+from resource_ai.evidence.models import (
+    CorpusType,
+    EvidenceDocument,
+    SearchGroup,
+    SearchResult,
+    corpus_types_for_search_group,
+)
 from resource_ai.rag.ingestion.chunker import chunk_for_corpus
 from resource_ai.rag.retrieval.embeddings import EmbeddingProvider
-from resource_ai.rag.retrieval.reranker import rerank_legal_results
+from resource_ai.rag.retrieval.reranker import rerank_results
 from resource_ai.rag.retrieval.retriever import reciprocal_rank_fusion
 from resource_ai.rag.retrieval.vector_store import Database
 
 
 class EvidenceRepository:
+    """문서 버전·기업 경계를 보존하며 RAG 근거를 적재하고 검색한다."""
+
     def __init__(
         self,
         database: Database,
@@ -33,13 +43,14 @@ class EvidenceRepository:
         )
         if not migration_files:
             raise ValueError(f"No SQL migrations found in {migration_path}")
-        # The vector type does not exist until this migration creates the extension.
+        # 첫 마이그레이션이 vector 확장을 만들기 전에는 pgvector 타입을 등록할 수 없다.
         with self.database.connect(register_vector_types=False) as connection:
             for path in migration_files:
                 connection.execute(path.read_text(encoding="utf-8"))
 
     @staticmethod
     def _canonical_source_id(document: EvidenceDocument) -> str:
+        """버전이 달라도 같은 원문임을 식별할 안정적인 출처 ID를 만든다."""
         explicit = document.metadata.get("canonical_source_id")
         if explicit:
             return str(explicit)
@@ -56,6 +67,7 @@ class EvidenceRepository:
     ) -> tuple[
         EvidenceDocument, list[tuple[str, str, str | None, int | None, dict]], list[list[float]]
     ]:
+        """DB 트랜잭션 전에 청킹과 임베딩을 끝내 적재 중간 실패를 줄인다."""
         canonical_source_id = self._canonical_source_id(document)
         document = replace(
             document,
@@ -89,6 +101,7 @@ class EvidenceRepository:
 
     @staticmethod
     def _write_document(connection, document, chunk_records, vectors) -> int:
+        """동일 원문의 이전 버전을 비활성화하고 현재 버전의 청크를 교체한다."""
         canonical_source_id = document.metadata["canonical_source_id"]
         connection.execute(
             """
@@ -159,7 +172,7 @@ class EvidenceRepository:
         return len(chunk_records)
 
     def ingest_many(self, documents: Sequence[EvidenceDocument]) -> int:
-        """Validate embeddings first, then index the whole dataset in one transaction."""
+        """모든 임베딩을 먼저 검증한 뒤 데이터셋 전체를 한 트랜잭션으로 적재한다."""
         prepared = [self._prepare_document(document) for document in documents]
         if not prepared:
             raise ValueError("At least one document is required")
@@ -174,7 +187,24 @@ class EvidenceRepository:
 
     @staticmethod
     def _results(rows: list[tuple], method: str) -> list[SearchResult]:
-        return [SearchResult(*row, retrieval_method=method) for row in rows]
+        return [
+            SearchResult(
+                chunk_id=row[0],
+                title=row[1],
+                document_type=row[2],
+                heading=row[3],
+                content=row[4],
+                citation=row[5],
+                source_url=row[6],
+                effective_from=row[7],
+                score=row[8],
+                retrieval_method=method,
+                version=row[9],
+                page_no=row[10],
+                source_position=row[11],
+            )
+            for row in rows
+        ]
 
     def search(
         self,
@@ -183,50 +213,80 @@ class EvidenceRepository:
         *,
         corpus_types: Sequence[str] | None = None,
         tenant_id: str | None = None,
+        search_group: SearchGroup | str | None = None,
     ) -> list[SearchResult]:
+        """검색 그룹 범위 안에서 벡터·키워드 후보를 결합해 Top K 근거를 반환한다."""
         if top_k <= 0:
             raise ValueError("top_k must be positive")
-        normalized_types = list(dict.fromkeys(corpus_types or [])) or None
+        if search_group is not None and corpus_types:
+            raise ValueError("search_group and corpus_types cannot be used together")
+        if search_group is not None:
+            # 외부에는 세 검색 그룹만 노출하고 DB의 세부 문서 유형은 그대로 유지한다.
+            normalized_types = list(corpus_types_for_search_group(search_group))
+        else:
+            normalized_types = list(dict.fromkeys(corpus_types or [])) or None
         supported_types = {item.value for item in CorpusType}
         invalid_types = sorted(set(normalized_types or []) - supported_types)
         if invalid_types:
             raise ValueError(f"Unsupported corpus types: {', '.join(invalid_types)}")
+        tenant_id = tenant_id.strip() if tenant_id else None
+        # 기업 문서 검색은 tenant_id가 있어야 하며 SQL에서도 같은 값으로 범위를 제한한다.
         if CorpusType.COMPANY_DOCUMENT in (normalized_types or []) and not tenant_id:
             raise ValueError("tenant_id is required when searching company documents")
         query_vector = Vector(self.embeddings.embed_query(query))
         candidate_count = max(top_k * self.candidate_multiplier, top_k)
         with self.database.connect() as connection:
+            # 의미 유사도 검색과 정확한 용어 검색을 따로 수행한 뒤 순위 기반으로 결합한다.
             vector_rows = connection.execute(
                 """
+                WITH filtered_chunks AS MATERIALIZED (
+                    SELECT
+                        c.id,
+                        d.title,
+                        d.document_type,
+                        c.heading,
+                        c.content,
+                        c.citation,
+                        d.source_url,
+                        d.effective_from,
+                        d.version,
+                        c.page_no,
+                        c.metadata,
+                        c.embedding
+                    FROM legal_chunks c
+                    JOIN legal_documents d ON d.id = c.document_id
+                    WHERE
+                        d.is_current = true
+                        AND (%s::text[] IS NULL OR d.document_type = ANY(%s::text[]))
+                        AND (d.document_type <> 'COMPANY_DOCUMENT' OR d.tenant_id = %s)
+                        AND (
+                            d.document_type <> 'LAW'
+                            OR d.effective_from IS NULL
+                            OR d.effective_from <= CURRENT_DATE
+                        )
+                )
                 SELECT
-                    c.id,
-                    d.title,
-                    d.document_type,
-                    c.heading,
-                    c.content,
-                    c.citation,
-                    d.source_url,
-                    d.effective_from,
-                    1 - (c.embedding <=> %s) AS score
-                FROM legal_chunks c
-                JOIN legal_documents d ON d.id = c.document_id
-                WHERE
-                    d.is_current = true
-                    AND (%s::text[] IS NULL OR d.document_type = ANY(%s::text[]))
-                    AND (d.document_type <> 'COMPANY_DOCUMENT' OR d.tenant_id = %s)
-                    AND (
-                        d.document_type <> 'LAW'
-                        OR d.effective_from IS NULL
-                        OR d.effective_from <= CURRENT_DATE
-                    )
-                ORDER BY c.embedding <=> %s
+                    id,
+                    title,
+                    document_type,
+                    heading,
+                    content,
+                    citation,
+                    source_url,
+                    effective_from,
+                    1 - (embedding <=> %s) AS score,
+                    version,
+                    page_no,
+                    COALESCE(citation, metadata ->> 'source_position') AS source_position
+                FROM filtered_chunks
+                ORDER BY embedding <=> %s
                 LIMIT %s
                 """,
                 (
-                    query_vector,
                     normalized_types,
                     normalized_types,
                     tenant_id,
+                    query_vector,
                     query_vector,
                     candidate_count,
                 ),
@@ -245,7 +305,10 @@ class EvidenceRepository:
                     ts_rank_cd(
                         c.search_vector,
                         websearch_to_tsquery('simple', %s)
-                    ) AS score
+                    ) AS score,
+                    d.version,
+                    c.page_no,
+                    COALESCE(c.citation, c.metadata ->> 'source_position') AS source_position
                 FROM legal_chunks c
                 JOIN legal_documents d ON d.id = c.document_id
                 WHERE
@@ -269,8 +332,13 @@ class EvidenceRepository:
             limit=candidate_count,
             rrf_k=self.rrf_k,
         )
-        return rerank_legal_results(query, fused, limit=top_k)
+        return rerank_results(
+            query,
+            fused,
+            limit=top_k,
+            search_group=search_group,
+        )
 
 
-# Existing application code imports LegalRepository. Keep it as a compatibility alias.
+# 기존 애플리케이션의 import 경로를 깨지 않도록 이전 이름을 호환 별칭으로 유지한다.
 LegalRepository = EvidenceRepository

@@ -1,4 +1,7 @@
-"""Bounded KG -> local legal retrieval. No LLM, suitability verdict or ranking."""
+"""조회 한도를 지키며 KG 후보에 로컬 법률 근거를 연결한다.
+
+LLM 호출, 법률 적용성 판정, 적합성 판정, 후보 순위 결정은 수행하지 않는다.
+"""
 
 from datetime import UTC, date, datetime
 from urllib.parse import urlsplit
@@ -41,7 +44,7 @@ def retrieve(repository, query, top_k):
         results = []
         for hit in hits:
             flags = []
-            # A source-format check does not establish the applicability of a law.
+            # 공식 출처 형식 확인만으로 해당 법령의 실제 적용성이 확정되지는 않는다.
             if urlsplit(hit.source_url).hostname not in {"www.law.go.kr", "law.go.kr"}:
                 flags.append("official_origin_not_confirmed")
             if hit.document_type != "LAW":
@@ -68,8 +71,8 @@ def retrieve(repository, query, top_k):
                 }
             )
         return "retrieved" if results else "no_hits", results
-    except Exception:  # noqa: BLE001 - provider failures are explicit gaps, never a legal verdict
-        # Raw DB/model exceptions may include connection strings or user content.
+    except Exception:  # noqa: BLE001 - 검색 제공자 장애는 법률 판단이 아니라 명시적 공백이다.
+        # DB·모델의 원본 예외에는 연결 문자열이나 사용자 내용이 포함될 수 있다.
         return "unavailable", []
 
 

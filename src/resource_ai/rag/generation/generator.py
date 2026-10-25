@@ -1,1 +1,1 @@
-"""Answer generation will be implemented after retrieval evaluation."""
+"""답변 생성은 검색 평가와 인용·응답 보류 기준을 확정한 뒤 구현한다."""

@@ -1,3 +1,5 @@
+"""운영용 의미 임베딩과 테스트용 결정론적 임베딩 구현."""
+
 from __future__ import annotations
 
 import hashlib
@@ -15,7 +17,7 @@ class EmbeddingProvider(Protocol):
 
 
 class HashEmbeddingProvider:
-    """Deterministic offline provider for tests only; not semantic retrieval."""
+    """오프라인 테스트 전용 구현이며 의미 검색 품질을 검증하는 용도가 아니다."""
 
     def __init__(self, dimension: int = 384) -> None:
         self.dimension = dimension
@@ -39,6 +41,8 @@ class HashEmbeddingProvider:
 
 
 class SentenceTransformerEmbeddingProvider:
+    """문서와 질의 접두어를 구분해 다국어 E5 계열 임베딩을 생성한다."""
+
     def __init__(self, model_name: str, dimension: int) -> None:
         self.model_name = model_name
         try:
