@@ -1,4 +1,5 @@
 import json
+from dataclasses import replace
 from datetime import date
 from pathlib import Path
 
@@ -11,6 +12,7 @@ from resource_ai.rag.evaluation import (
     load_retrieval_cases,
     load_retrieval_dataset,
     meets_thresholds,
+    required_cases_pass,
     summarize_by_group,
     summarize_evaluations,
 )
@@ -121,3 +123,46 @@ def test_group_summary_and_thresholds_detect_a_weak_group(tmp_path: Path) -> Non
 
     assert meets_thresholds(summaries[SearchGroup.LEGAL], dataset) is True
     assert meets_thresholds(summaries[SearchGroup.TECHNICAL], dataset) is False
+
+
+def test_locator_scope_does_not_count_body_cross_reference_or_a_different_article():
+    case = RetrievalCase(
+        "처리업 허가", ("폐기물관리법 제25조",), match_scope="locator", required=True
+    )
+    wrong = replace(_result("폐기물관리법 제25조의3"), content="폐기물관리법 제25조를 참고")
+    assert not evaluate_case(case, [wrong]).passed
+    assert not evaluate_case(case, [replace(wrong, citation="폐기물관리법 제17조")]).passed
+    assert evaluate_case(case, [_result("폐기물관리법 제25조 ⑤항")]).passed
+
+
+def test_required_case_failure_cannot_be_hidden_by_average_score():
+    good = evaluate_case(RetrievalCase("q", ("제17조",)), [_result("제17조")])
+    bad = evaluate_case(RetrievalCase("q", ("제25조",), required=True), [_result("제17조")])
+    assert summarize_evaluations([good] * 9 + [bad]).recall_at_k == 0.9
+    assert not required_cases_pass([good] * 9 + [bad])
+
+
+def test_wrong_corpus_cannot_make_a_quality_probe_pass():
+    case = RetrievalCase("q", ("제17조",))
+    value = evaluate_case(case, [replace(_result("제17조"), document_type="COMPANY_DOCUMENT")])
+    assert not value.passed and value.group_violations == ("COMPANY_DOCUMENT",)
+    assert value.result_headings == ("[withheld: unexpected corpus]",)
+
+
+@pytest.mark.parametrize(
+    "change",
+    [
+        {"top_k": True},
+        {"top_k": 1.5},
+        {"thresholds": {"recall_at_k": True}},
+        {"cases": [{"query": "q", "expected_any": "제17조"}]},
+    ],
+)
+def test_malformed_quality_dataset_is_rejected(tmp_path, change):
+    p = tmp_path / "bad.json"
+    p.write_text(
+        json.dumps({"cases": [{"query": "q", "expected_any": ["제17조"]}], **change}),
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError):
+        load_retrieval_dataset(p)

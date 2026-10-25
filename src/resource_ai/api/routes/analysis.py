@@ -88,6 +88,19 @@ def get_research_service(graph: Annotated[GraphQuery, Depends(get_graph_query)])
         def search_technical(self, query, top_k):
             return get_repository().search(query, top_k, search_group=SearchGroup.TECHNICAL)
 
+        def legal_baselines(self):
+            from resource_ai.core.config import get_settings
+            from resource_ai.rag.legal_baselines import fetch_baselines
+            from resource_ai.rag.retrieval.vector_store import Database
+
+            settings = get_settings()
+            return fetch_baselines(
+                Database(
+                    settings.database_url,
+                    connect_timeout_seconds=settings.database_connect_timeout_seconds,
+                )
+            )
+
     return CandidateResearchService(graph, LocalRepository())
 
 

@@ -9,6 +9,7 @@ from resource_ai.rag.evaluation import (
     evaluate_case,
     load_retrieval_dataset,
     meets_thresholds,
+    required_cases_pass,
     summarize_by_group,
     summarize_evaluations,
 )
@@ -162,7 +163,9 @@ def main() -> None:
     repository = get_repository()
     if args.command == "evaluate":
         dataset = load_retrieval_dataset(args.cases)
-        top_k = args.top_k or dataset.top_k
+        top_k = args.top_k if args.top_k is not None else dataset.top_k
+        if not 1 <= top_k <= 100:
+            raise ValueError("top_k must be between 1 and 100")
         evaluations = [
             evaluate_case(
                 case,
@@ -189,9 +192,14 @@ def main() -> None:
             f"(minimum {dataset.minimum_recall_at_k:.1%}), "
             f"MRR={summary.mrr:.3f} (minimum {dataset.minimum_mrr:.3f})"
         )
-        if not meets_thresholds(summary, dataset) or any(
-            not meets_thresholds(group_summary, dataset)
-            for group_summary in group_summaries.values()
+        print(f"Required-case failures: {sum(e.required and not e.passed for e in evaluations)}")
+        if (
+            not required_cases_pass(evaluations)
+            or not meets_thresholds(summary, dataset)
+            or any(
+                not meets_thresholds(group_summary, dataset)
+                for group_summary in group_summaries.values()
+            )
         ):
             raise SystemExit(1)
         return

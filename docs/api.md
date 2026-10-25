@@ -6,6 +6,15 @@
 
 ## 실제 KG 경로에 연결한 검토
 
+공정 검토 응답에 `research.legal_baselines`와 후보의 `legal_baseline_tasks`가 추가됐습니다.
+벡터 검색과 별도로 현재 로컬 공개 법령의 기본 조문 10개를 정확한 법령·조문 ID로 조회합니다.
+확보는 적용성 검증이 아닙니다. 조회 일부 누락·버전 충돌·제목/인용 변경을 표시하며,
+확인된 조문 연결 오류는 검증 단계 `REVISE`입니다. [필드 의미와 제한](pipeline-followup-2026-10-25.md).
+
+`review.map_marker_groups`는 후보·단계/인계별 배지용 집계입니다. `issue_count`, `error_count`,
+`confirmation_count`, `marker_ids`, `evidence_ids`를 제공합니다. 원래 `map_markers`·`critic`은 유지합니다.
+전역 항목은 지도 집계에서 제외하므로 기존 critic 목록도 함께 표시해야 합니다.
+
 - `POST /analysis/site-review`: `site-discovery` 요청에 `max_legal_queries`(기본 12), `max_technical_queries`(기본 6),
   `include_lci`(기본 true), 선택 `numeric`·`legal_graph`를 추가해 사업장 조사→근거 검색→수치 검토→선택 LCI를 묶습니다.
   응답의 `site`, `review`, `lci`, `report_markdown`을 사용합니다. 단계 사이 KG 세대가 달라지면 409입니다.

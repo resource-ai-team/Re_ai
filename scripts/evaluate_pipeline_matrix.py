@@ -179,6 +179,22 @@ def evaluate():
             continue
         research = data["research"]
         check(
+            "BASELINES",
+            material + ": ten starting articles retrieved",
+            research["coverage"]["legal_baseline_retrieved"] == 10,
+        )
+        check(
+            "BASELINES",
+            material + ": no applicability inference",
+            research["coverage"]["legal_baseline_applicability_audited"] is False,
+        )
+        check(
+            "MAP",
+            material + ": grouped issues preserve every map marker",
+            sum(g["issue_count"] for g in data["map_marker_groups"])
+            == sum(m["on_map"] for m in data["map_markers"]),
+        )
+        check(
             "RESEARCH",
             material + ": all bounded paths",
             research["coverage"]["complete_within_curated_scope"],
@@ -464,15 +480,16 @@ def evaluate():
     regression = []
     repository = get_repository()
     for case in load_retrieval_cases(Path("data/config/retrieval_eval.json")):
-        hits = repository.search(case.query, 5, search_group=SearchGroup.LEGAL)
+        hits = repository.search(case.query, 5, search_group=case.search_group)
         row = asdict(evaluate_case(case, hits))
         row["locator_matched"] = any(
             expected in (hit.citation or "") for expected in case.expected_any for hit in hits
         )
         regression.append(row)
         check("RAG", case.query, row["passed"])
-        check("RAG_LOCATOR", case.query, row["locator_matched"])
-        if not row["locator_matched"]:
+        if case.search_group == SearchGroup.LEGAL:
+            check("RAG_LOCATOR", case.query, row["passed"])
+        if not row["passed"]:
             quality_gaps.append(
                 {
                     "area": "LEGAL_RETRIEVAL",

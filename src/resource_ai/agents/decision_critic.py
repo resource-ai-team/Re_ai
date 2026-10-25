@@ -63,6 +63,23 @@ def inspect_review(
 
     candidates = {}
     targets = {}
+    statute_versions = {}
+    for reference in research.legal_baselines:
+        for hit in reference.get("sources", []):
+            if hit.get("version"):
+                statute_versions.setdefault(hit["title"], set()).add(hit["version"])
+    for search in research.legal_searches:
+        for hit in search.results:
+            if hit.get("document_type") == "LAW" and hit.get("version"):
+                statute_versions.setdefault(hit["title"], set()).add(hit["version"])
+    if any(len(versions) > 1 for versions in statute_versions.values()):
+        add(
+            "legal_source_version_changed",
+            "validation",
+            "error",
+            "같은 법령의 서로 다른 버전이 이번 조사에 섞였습니다.",
+            "현재 법령 인덱스에서 기본 조문과 벡터 검색 근거를 같은 버전으로 다시 조회하세요.",
+        )
     if not research.candidates:
         add(
             "kg_no_candidates",
@@ -293,6 +310,38 @@ def inspect_review(
                     evidence=[sources[s] for s in check.get("source_ids", []) if sources.get(s)],
                 )
         legal = candidate.legal_graph_review
+        baseline_refs = {r["id"]: r for r in research.legal_baselines}
+        for task in candidate.legal_baseline_tasks:
+            refs = [baseline_refs.get(key) for key in task["reference_ids"]]
+            complete = bool(refs) and all(r is not None and r.get("complete") is True for r in refs)
+            corrupt = any(
+                {"ambiguous_current_version", "source_locator_mismatch"}.intersection(
+                    r.get("source_checks", [])
+                )
+                for r in refs
+                if r is not None
+            )
+            baseline_code = (
+                "legal_baseline_applicability_unverified"
+                if complete
+                else "legal_baseline_incomplete"
+            )
+            if corrupt:
+                baseline_code = "legal_baseline_integrity_error"
+            labels = ", ".join(f"{r['law_title']} {r['article']}" for r in refs if r is not None)
+            add(
+                baseline_code,
+                "validation",
+                "error" if corrupt else "missing",
+                f"기본 확인 조문 {'확보·적용성 미검수' if complete else '확보 미완료'}: {labels or task['topic']}",
+                "허가·신고·자체 처리 등 해당 경로의 적용 요건·예외·위임 규정·사실관계를 원문에서 검수하세요.",
+                candidate=pid,
+                target=task["target_id"],
+                target_type=task["target_type"],
+                evidence=[
+                    s["evidence_id"] for r in refs if r is not None for s in r.get("sources", [])
+                ],
+            )
         technical = {search.search_id: search for search in research.technical_searches}
         for task in candidate.technical_tasks:
             search = technical.get(task["search_id"])

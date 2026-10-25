@@ -91,6 +91,49 @@ class CandidateResearchService:
         self.repository = repository
         self.legal_graph_factory = legal_graph_factory
 
+    def _baseline_research(self, candidates):
+        from resource_ai.rag.legal_baselines import catalog, reference_ids, unavailable_references
+
+        if not candidates:
+            return []
+        for candidate in candidates:
+            packet = candidate.plan.research_packet
+            for index, stage in enumerate(packet["stages"]):
+                for topic in ("classification", "process", "facility", "handover"):
+                    on_leg = topic == "handover" and index > 0
+                    candidate.legal_baseline_tasks.append(
+                        {
+                            "target_id": packet["handoffs"][index - 1]["leg_id"]
+                            if on_leg
+                            else stage["stage_id"],
+                            "target_type": "handoff" if on_leg else "stage",
+                            "topic": topic,
+                            "reference_ids": reference_ids(topic),
+                        }
+                    )
+        try:
+            references = self.repository.legal_baselines()
+            ids = [r["id"] for r in references]
+            expected = {r["id"] for r in catalog()[0]["references"]}
+            if len(ids) != len(expected) or set(ids) != expected:
+                raise ValueError("Incomplete legal baseline response")
+            if any(
+                r.get("complete") and (r.get("status") != "retrieved" or not r.get("sources"))
+                for r in references
+            ):
+                raise ValueError("Invalid legal baseline completeness")
+        except Exception:  # noqa: BLE001 - missing provider/DB is a visible review gap, no raw exception exposure.
+            references = unavailable_references()
+        states = {r["id"]: r["complete"] for r in references}
+        for candidate in candidates:
+            if any(
+                not states[ref]
+                for task in candidate.legal_baseline_tasks
+                for ref in task["reference_ids"]
+            ):
+                candidate.blockers.append("legal_baseline_evidence_incomplete")
+        return references
+
     def _technical_research(self, request, candidates, material):
         if request.max_technical_queries == 0:
             return []
@@ -317,6 +360,9 @@ class CandidateResearchService:
         technical_searches = self._technical_research(
             request, candidates, last.planning.normalized_material
         )
+        baselines = self._baseline_research(candidates)
+        from resource_ai.rag.legal_baselines import catalog
+
         for candidate in candidates:
             for task in candidate.legal_tasks:
                 search = search_states[task["search_id"]]
@@ -361,10 +407,18 @@ class CandidateResearchService:
                 "technical_retrieval_complete": bool(technical_searches)
                 and all(s.status == "retrieved" for s in technical_searches),
                 "technical_applicability_audited": False,
+                "legal_baseline_catalog_sha256": catalog()[1],
+                "legal_baseline_jurisdiction": "KR",
+                "legal_baseline_expected": len(baselines),
+                "legal_baseline_retrieved": sum(r["complete"] for r in baselines),
+                "legal_baseline_retrieval_complete": bool(baselines)
+                and all(r["complete"] for r in baselines),
+                "legal_baseline_applicability_audited": False,
             },
             candidates=candidates,
             legal_searches=searches,
             technical_searches=technical_searches,
+            legal_baselines=baselines,
             next_actions=[
                 *(
                     [

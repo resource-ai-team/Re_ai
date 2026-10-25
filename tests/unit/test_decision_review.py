@@ -289,3 +289,44 @@ def test_source_transfer_restriction_blocks_only_affected_candidate():
     )
     assert len(spy.calls) == len(response.candidates) - 1
     assert all("restricted-source" not in str(call) for call in spy.calls)
+
+
+def test_grouped_map_badges_preserve_issues_and_keep_unconfirmed_conditions_distinct():
+    markers = [
+        {
+            "on_map": True,
+            "candidate_id": "p",
+            "target_type": "stage",
+            "target_id": "s",
+            "marker_id": "m1",
+            "code": "missing_evidence",
+            "severity": "missing",
+            "evidence_ids": ["e1"],
+        },
+        {
+            "on_map": True,
+            "candidate_id": "p",
+            "target_type": "stage",
+            "target_id": "s",
+            "marker_id": "m2",
+            "code": "bad_unit",
+            "severity": "error",
+            "evidence_ids": ["e1", "e2"],
+        },
+        {
+            "on_map": False,
+            "candidate_id": None,
+            "target_type": "global",
+            "target_id": None,
+            "marker_id": "m3",
+            "code": "global_gap",
+            "severity": "missing",
+            "evidence_ids": [],
+        },
+    ]
+    groups = DecisionReviewService._marker_groups(markers)
+    assert len(groups) == 1 and groups[0]["issue_count"] == 2
+    assert groups[0]["error_count"] == 1 and groups[0]["confirmation_count"] == 1
+    assert groups[0]["evidence_ids"] == ["e1", "e2"]
+    assert groups[0]["marker_ids"] == ["m1", "m2"]
+    assert not groups[0]["confirmed_operational_incident"]

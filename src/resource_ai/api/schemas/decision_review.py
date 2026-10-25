@@ -60,6 +60,7 @@ class DecisionReviewResponse(StrictModel):
     router: dict[str, Any]
     candidate_reviews: list[dict[str, Any]]
     map_markers: list[dict[str, Any]]
+    map_marker_groups: list[dict[str, Any]] = Field(default_factory=list)
     stage_statuses: list[dict[str, str]]
     report_markdown: str
     route: Literal["REVIEW", "REVISE"]

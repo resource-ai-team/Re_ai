@@ -8,7 +8,7 @@ from pathlib import Path
 
 from resource_ai.core.dependencies import get_repository
 from resource_ai.evidence.models import SearchGroup
-from resource_ai.rag.evaluation import load_retrieval_cases
+from resource_ai.rag.evaluation import evaluate_case, load_retrieval_cases
 
 
 def main():
@@ -26,11 +26,7 @@ def main():
                 "query": case.query,
                 "expected_any": case.expected_any,
                 "locators": [h.citation for h in hits],
-                "passed": any(
-                    expected in (hit.citation or "")
-                    for expected in case.expected_any
-                    for hit in hits
-                ),
+                "passed": evaluate_case(case, hits).passed,
             }
         )
     report = {

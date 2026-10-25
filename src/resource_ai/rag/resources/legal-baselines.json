@@ -1,0 +1,17 @@
+{
+  "catalog_version": "kr-waste-review-starting-points-v1",
+  "reviewed_against_local_official_collection": "2026-10-25",
+  "scope": "조사 출발점이며 적용 법령·예외의 전체 목록이나 적법 판정 규칙이 아님",
+  "references": [
+    {"id":"waste-definition","topic":"classification","canonical_source_id":"law:001771","law_title":"폐기물관리법","article":"제2조","article_title":"정의","purpose":"사업장·생활·지정폐기물 등 입력 분류를 확인할 출발점"},
+    {"id":"waste-treatment-standards","topic":"process","canonical_source_id":"law:001771","law_title":"폐기물관리법","article":"제13조","article_title":"폐기물의 처리 기준 등","purpose":"선택한 처리 방식에 필요한 기준과 위임 규정 확인"},
+    {"id":"waste-recycling-principles","topic":"process","canonical_source_id":"law:001771","law_title":"폐기물관리법","article":"제13조의2","article_title":"폐기물의 재활용 원칙 및 준수사항","purpose":"재활용 원칙·제한·기준 및 예외를 추가 조사"},
+    {"id":"waste-recycling-environment-assessment","topic":"process","canonical_source_id":"law:001771","law_title":"폐기물관리법","article":"제13조의3","article_title":"폐기물의 재활용 시 환경성평가","purpose":"새 활용 공정의 환경성평가 대상 여부를 추가 조사"},
+    {"id":"waste-business-permit","topic":"facility","canonical_source_id":"law:001771","law_title":"폐기물관리법","article":"제25조","article_title":"폐기물처리업","purpose":"처리업 업종·허가·변경과 제외 대상 확인. 모든 경로가 동일 허가를 요구한다는 뜻은 아님"},
+    {"id":"waste-facility-installation","topic":"facility","canonical_source_id":"law:001771","law_title":"폐기물관리법","article":"제29조","article_title":"폐기물처리시설의 설치","purpose":"자체 처리와 시설 설치·변경 관련 요건을 분리 조사"},
+    {"id":"waste-treatment-notification","topic":"facility","canonical_source_id":"law:001771","law_title":"폐기물관리법","article":"제46조","article_title":"폐기물처리 신고","purpose":"허가와 구분되는 신고 대상·범위 및 예외를 조사"},
+    {"id":"waste-producer-obligations","topic":"handover","canonical_source_id":"law:001771","law_title":"폐기물관리법","article":"제17조","article_title":"사업장폐기물배출자의 의무 등","purpose":"배출자의 확인·신고 등 요건을 조사"},
+    {"id":"waste-consignment-treatment","topic":"handover","canonical_source_id":"law:001771","law_title":"폐기물관리법","article":"제18조","article_title":"사업장폐기물의 처리","purpose":"자체 처리와 위탁 상대방의 자격·처리 절차를 조사"},
+    {"id":"waste-processor-obligations","topic":"handover","canonical_source_id":"law:001771","law_title":"폐기물관리법","article":"제19조","article_title":"사업장폐기물처리자의 의무","purpose":"수집·운반·처리 상대방의 의무와 인계 사항을 조사"}
+  ]
+}

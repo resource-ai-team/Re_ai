@@ -48,6 +48,7 @@ class CandidateResearch(StrictModel):
     status: Literal["unmet", "needs_verification"]
     legal_graph_review: dict[str, Any] | None = None
     technical_tasks: list[dict[str, str]] = Field(default_factory=list)
+    legal_baseline_tasks: list[dict[str, Any]] = Field(default_factory=list)
     recommended: Literal[False] = False
 
 
@@ -62,6 +63,7 @@ class ResearchResponse(StrictModel):
     candidates: list[CandidateResearch]
     legal_searches: list[LegalSearch]
     technical_searches: list[LegalSearch] = Field(default_factory=list)
+    legal_baselines: list[dict[str, Any]] = Field(default_factory=list)
     next_actions: list[str]
     route: Literal["REVIEW"] = "REVIEW"
     final_recommendations: list[str] = Field(default_factory=list, max_length=0)

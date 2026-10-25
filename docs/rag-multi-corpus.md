@@ -86,6 +86,12 @@ resource-rag index path/to/documents.jsonl --manifest path/to/documents.manifest
 
 ## 검색 품질 평가
 
+평가셋 v2.1은 법령의 `match_scope=locator`와 핵심 문항의 `required=true`를 지원합니다.
+본문의 교차 인용·제25조의3 등을 제25조 정답으로 잘못 세지 않습니다. 핵심 문항이 실패하면
+평균 Recall/MRR이 기준 이상이어도 종료 코드 1입니다. 현재의 핵심 허가 조문 회수 실패를 숨기지 않습니다.
+전체 공정 검토는 [별도 기본 조문 직접 조회](pipeline-followup-2026-10-25.md)를 함께 실행하지만,
+그 결과를 벡터 검색의 점수에 합치지는 않습니다.
+
 `data/config/retrieval_eval.json`은 Legal·Technical 질문과 기대 근거, Top K, 최소
 Recall@K·MRR 기준을 버전 관리합니다. 전체 평균과 각 검색 그룹이 모두 기준을
 통과해야 명령이 성공합니다.

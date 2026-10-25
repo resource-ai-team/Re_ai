@@ -318,6 +318,7 @@ class DecisionReviewService:
             router=router,
             candidate_reviews=candidate_reviews,
             map_markers=markers,
+            map_marker_groups=self._marker_groups(markers),
             stage_statuses=[
                 {
                     "stage": "kg",
@@ -361,6 +362,41 @@ class DecisionReviewService:
                 continue
             result.add(plan.plan_id)
         return result
+
+    @staticmethod
+    def _marker_groups(markers):
+        grouped = {}
+        for marker in markers:
+            if not marker["on_map"]:
+                continue
+            key = (marker["candidate_id"], marker["target_type"], marker["target_id"])
+            group = grouped.setdefault(
+                key,
+                {
+                    "group_id": identity("map-review-group", list(key)),
+                    "candidate_id": key[0],
+                    "target_type": key[1],
+                    "target_id": key[2],
+                    "issue_count": 0,
+                    "error_count": 0,
+                    "confirmation_count": 0,
+                    "marker_ids": [],
+                    "issue_codes": [],
+                    "evidence_ids": [],
+                    "confirmed_operational_incident": False,
+                },
+            )
+            group["issue_count"] += 1
+            group["error_count"] += marker["severity"] == "error"
+            group["confirmation_count"] += marker["severity"] != "error"
+            group["marker_ids"].append(marker["marker_id"])
+            group["issue_codes"].append(marker["code"])
+            group["evidence_ids"].extend(marker["evidence_ids"])
+        for group in grouped.values():
+            group["issue_codes"] = sorted(set(group["issue_codes"]))
+            group["evidence_ids"] = sorted(set(group["evidence_ids"]))
+            group["severity"] = "error" if group["error_count"] else "needs_verification"
+        return list(grouped.values())
 
     @staticmethod
     def _markers(research, issues):
