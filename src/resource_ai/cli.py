@@ -7,7 +7,9 @@ from resource_ai.evidence.models import SearchGroup
 from resource_ai.integrations.law_api import LawOpenApiClient
 from resource_ai.rag.evaluation import (
     evaluate_case,
-    load_retrieval_cases,
+    load_retrieval_dataset,
+    meets_thresholds,
+    summarize_by_group,
     summarize_evaluations,
 )
 from resource_ai.rag.ingestion.dataset import (
@@ -74,7 +76,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     evaluate = commands.add_parser("evaluate", help="Evaluate retrieval against expected evidence")
     evaluate.add_argument("--cases", type=Path, default=Path("data/config/retrieval_eval.json"))
-    evaluate.add_argument("--top-k", type=int, default=5)
+    evaluate.add_argument("--top-k", type=int)
     return parser
 
 
@@ -159,22 +161,38 @@ def main() -> None:
 
     repository = get_repository()
     if args.command == "evaluate":
+        dataset = load_retrieval_dataset(args.cases)
+        top_k = args.top_k or dataset.top_k
         evaluations = [
-            evaluate_case(case, repository.search(case.query, args.top_k))
-            for case in load_retrieval_cases(args.cases)
+            evaluate_case(
+                case,
+                repository.search(case.query, top_k, search_group=case.search_group),
+            )
+            for case in dataset.cases
         ]
         for evaluation in evaluations:
             status = "PASS" if evaluation.passed else "FAIL"
-            print(f"[{status}] {evaluation.query}")
+            print(f"[{status}] [{evaluation.search_group}] {evaluation.query}")
             print(f"  matched: {evaluation.matched or '-'}")
+            print(f"  rank: {evaluation.first_relevant_rank or '-'}")
             for heading in evaluation.result_headings:
                 print(f"  - {heading}")
         summary = summarize_evaluations(evaluations)
+        group_summaries = summarize_by_group(evaluations)
+        for group, group_summary in group_summaries.items():
+            print(
+                f"  {group}: Recall@{top_k}={group_summary.recall_at_k:.1%}, "
+                f"MRR={group_summary.mrr:.3f}"
+            )
         print(
-            f"Retrieval evaluation: {summary.passed}/{summary.total} passed "
-            f"({summary.pass_rate:.1%})"
+            f"Retrieval evaluation: Recall@{top_k}={summary.recall_at_k:.1%} "
+            f"(minimum {dataset.minimum_recall_at_k:.1%}), "
+            f"MRR={summary.mrr:.3f} (minimum {dataset.minimum_mrr:.3f})"
         )
-        if summary.passed != summary.total:
+        if not meets_thresholds(summary, dataset) or any(
+            not meets_thresholds(group_summary, dataset)
+            for group_summary in group_summaries.values()
+        ):
             raise SystemExit(1)
         return
 

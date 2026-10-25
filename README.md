@@ -247,6 +247,12 @@ RUN_POSTGRES_INTEGRATION=true pytest -q tests/integration/test_multi_corpus_post
 
 실제 Neo4j 통합 테스트는 `RUN_NEO4J_INTEGRATION=true`를 지정해 실행합니다.
 
+Legal·Technical RAG 검색 품질은 적재가 완료된 PostgreSQL에서 다음과 같이 확인합니다.
+
+```bash
+resource-rag evaluate --cases data/config/retrieval_eval.json
+```
+
 ## 문서
 
 | 문서 | 내용 |
