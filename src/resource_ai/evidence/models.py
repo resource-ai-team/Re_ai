@@ -81,6 +81,9 @@ class SearchResult:
     effective_from: date | None
     score: float
     retrieval_method: str = "unknown"
+    version: str | None = None
+    page_no: int | None = None
+    source_position: str | None = None
 
 
 # 기존 법령 수집기와 API가 사용하던 이름을 유지해 이전 호출이 깨지지 않게 한다.

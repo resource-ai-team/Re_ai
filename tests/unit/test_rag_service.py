@@ -87,6 +87,31 @@ def test_prepare_company_document_records_tenant_and_source_metadata() -> None:
     assert chunks[0][4]["source_position"] == 2
 
 
+def test_search_row_keeps_version_and_source_position() -> None:
+    rows = [
+        (
+            1,
+            "성적서",
+            "COMPANY_DOCUMENT",
+            "시험 결과",
+            "수분 5%",
+            None,
+            "https://example.org/report/1",
+            None,
+            0.02,
+            "v2",
+            3,
+            "표 1 / 수분",
+        )
+    ]
+
+    result = LegalRepository._results(rows, "vector")[0]
+
+    assert result.version == "v2"
+    assert result.page_no == 3
+    assert result.source_position == "표 1 / 수분"
+
+
 class EmptyCursor:
     def __init__(self, calls):
         self.calls = calls

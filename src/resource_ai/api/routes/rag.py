@@ -49,6 +49,9 @@ def search(
             effective_from=item.effective_from,
             score=item.score,
             retrieval_method=item.retrieval_method,
+            version=item.version,
+            page_no=item.page_no,
+            source_position=item.source_position,
         )
         for item in results
     ]

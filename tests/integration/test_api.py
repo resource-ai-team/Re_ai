@@ -31,6 +31,9 @@ class StubRepository:
                 effective_from=date(2026, 9, 18),
                 score=0.03,
                 retrieval_method="keyword+vector+reranked",
+                version="20260317",
+                page_no=1,
+                source_position="폐기물관리법 제17조",
             )
         ]
 
@@ -44,6 +47,9 @@ def test_search_returns_hybrid_retrieval_metadata() -> None:
 
     assert response.status_code == 200
     assert response.json()[0]["retrieval_method"] == "keyword+vector+reranked"
+    assert response.json()[0]["version"] == "20260317"
+    assert response.json()[0]["page_no"] == 1
+    assert response.json()[0]["source_position"] == "폐기물관리법 제17조"
 
 
 def test_search_maps_legal_group_to_repository() -> None:
