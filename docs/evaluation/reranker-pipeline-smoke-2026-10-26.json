@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-10-25T15:28:53.037650+00:00",
+  "input": "fully synthetic",
+  "execution": "FastAPI TestClient with real local KG/PostgreSQL/model",
+  "external_inference_and_map_calls": 0,
+  "status_code": 200,
+  "duration_seconds": 66.071,
+  "model_scope": "experimental wiring check, rejected as default by retrieval validation",
+  "route": "REVIEW",
+  "candidate_count": 3,
+  "final_recommendations": [],
+  "dispatch_approved": false,
+  "neural_hit_count": 3,
+  "legal_contexts": [
+    {
+      "status": "review_required",
+      "primary_chunks": 9,
+      "unresolved_count": 4
+    },
+    {
+      "status": "review_required",
+      "primary_chunks": 2,
+      "unresolved_count": 3
+    },
+    {
+      "status": "review_required",
+      "primary_chunks": 9,
+      "unresolved_count": 4
+    }
+  ]
+}

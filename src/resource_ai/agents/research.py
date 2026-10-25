@@ -28,12 +28,10 @@ LIMITATIONS = [
 
 def legal_questions(material, stage):
     transition = stage["transition"]["label"]
-    facility = stage.get("facility") or {}
-    name = facility.get("label", "시설 미정")
     return [
         ("classification", f"{material} 폐기물 분류 사업장폐기물 지정폐기물"),
         ("process", f"{material} {transition} 재활용 유형 처리기준 재활용 기준 예외"),
-        ("facility", f"{material} {transition} {name} 폐기물처리업 허가 수탁 확인"),
+        ("facility", f"폐기물처리업 허가 업종 영업 범위 수탁 확인 {material} {transition}"),
         ("handover", f"{material} 폐기물 위탁 수집 운반 인계 배출자 확인 책임"),
     ]
 
@@ -42,6 +40,12 @@ def retrieve(repository, query, top_k, *, technical=False):
     try:
         search = repository.search_technical if technical else repository.search
         hits = search(query, top_k)
+        contexts = {}
+        if not technical and hasattr(repository, "expand_legal_context"):
+            try:
+                contexts = repository.expand_legal_context(hits)
+            except Exception:  # noqa: BLE001 - preserve retrieval, expose context failure separately.
+                contexts = {}
         results = []
         for hit in hits:
             flags = []
@@ -75,6 +79,24 @@ def retrieve(repository, query, top_k, *, technical=False):
                     if hit.effective_from
                     else None,
                     "retrieval_method": hit.retrieval_method,
+                    "reranker_score": getattr(hit, "reranker_score", None),
+                    "reranker_model": getattr(hit, "reranker_model", None),
+                    **(
+                        {
+                            "legal_context": contexts.get(
+                                hit.chunk_id,
+                                {
+                                    "status": "unavailable",
+                                    "primary": [],
+                                    "linked": [],
+                                    "source_checks": ["context_provider_unavailable"],
+                                    "applicability": "not_audited",
+                                },
+                            )
+                        }
+                        if not technical
+                        else {}
+                    ),
                     "source_checks": flags,
                     "applicability": "not_audited",
                 }

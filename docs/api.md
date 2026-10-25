@@ -51,6 +51,15 @@
 
 ## RAG 근거 검색
 
+후보 풀은 최종 Top K와 별도로 최대 100개까지 설정할 수 있습니다. 기본값은 기존 규칙 정렬입니다.
+선택한 로컬 ONNX 재정렬 모드에서는 `reranker_score`·`reranker_model`이 추가됩니다.
+이 값은 신경망 원점수·버전이며 적법성 확률이 아닙니다. 누락 모델·실행 장애는 `503`으로 표시합니다.
+실험한 MiniLM은 검증용 법령 점수가 떨어져 기본 적용하지 않았습니다.
+
+파이프라인의 `research.legal_searches[].results[].legal_context`는 같은 버전의 조문 전체와
+명시된 참조 조문·별표를 보충합니다. 자료 누락·불명확한 위임·한도 초과는 `unresolved`·`source_checks`에 남습니다.
+`/rag/search` 자체는 이 확장을 수행하지 않습니다. [범위와 필드](rag-hardening-2026-10-26.md).
+
 `GET /rag/search?q={질문}&top_k=5&search_group=LEGAL`
 
 `search_group`은 다음 세 그룹을 지원합니다.

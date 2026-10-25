@@ -88,6 +88,9 @@ def get_research_service(graph: Annotated[GraphQuery, Depends(get_graph_query)])
         def search_technical(self, query, top_k):
             return get_repository().search(query, top_k, search_group=SearchGroup.TECHNICAL)
 
+        def expand_legal_context(self, hits):
+            return get_repository().expand_legal_context(hits)
+
         def legal_baselines(self):
             from resource_ai.core.config import get_settings
             from resource_ai.rag.legal_baselines import fetch_baselines

@@ -1,0 +1,463 @@
+{
+  "generated_at": "2026-10-25T15:05:58.743547+00:00",
+  "split": "dev",
+  "dataset_sha256": "5c307932dbb081624200601e1e12f4c76d017fab99898a26fe0d79ec74445a64",
+  "label_status": "developer_source_checked_expert_review_pending",
+  "completed": 4,
+  "total": 27,
+  "models": {
+    "bge": "onnx-community/bge-reranker-v2-m3-ONNX@6f5ff65298512715a1e669753bc754d2bc8f367b",
+    "minilm": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1@1427fd652930e4ba29e8149678df786c240d8825"
+  },
+  "max_length": 512,
+  "summary": {
+    "rules20": {
+      "LEGAL": {
+        "total": 4,
+        "passed": 1,
+        "pass_rate": 0.25,
+        "recall_at_k": 0.25,
+        "mrr": 0.05
+      }
+    },
+    "rules50": {
+      "LEGAL": {
+        "total": 4,
+        "passed": 1,
+        "pass_rate": 0.25,
+        "recall_at_k": 0.25,
+        "mrr": 0.05
+      }
+    },
+    "rules100": {
+      "LEGAL": {
+        "total": 4,
+        "passed": 1,
+        "pass_rate": 0.25,
+        "recall_at_k": 0.25,
+        "mrr": 0.05
+      }
+    },
+    "bge50": {
+      "LEGAL": {
+        "total": 4,
+        "passed": 3,
+        "pass_rate": 0.75,
+        "recall_at_k": 0.75,
+        "mrr": 0.625
+      }
+    },
+    "bge100": {
+      "LEGAL": {
+        "total": 4,
+        "passed": 3,
+        "pass_rate": 0.75,
+        "recall_at_k": 0.75,
+        "mrr": 0.625
+      }
+    },
+    "minilm50": {
+      "LEGAL": {
+        "total": 4,
+        "passed": 2,
+        "pass_rate": 0.5,
+        "recall_at_k": 0.5,
+        "mrr": 0.5
+      }
+    },
+    "minilm100": {
+      "LEGAL": {
+        "total": 4,
+        "passed": 3,
+        "pass_rate": 0.75,
+        "recall_at_k": 0.75,
+        "mrr": 0.5833333333333334
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "producer-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제19조 ②항",
+            "폐기물관리법 시행규칙 제17조의4"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제19조 ②항",
+            "폐기물관리법 시행규칙 제17조의4"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제19조 ②항",
+            "폐기물관리법 시행규칙 제17조의4"
+          ]
+        },
+        "bge50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제17조 ⑥항",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제17조의4"
+          ]
+        },
+        "bge100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제17조 ⑥항",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제17조의4"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제17조 ⑥항",
+            "폐기물관리법 제19조 ②항",
+            "폐기물관리법 시행규칙 제17조의2 ②항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제17조 ⑥항",
+            "폐기물관리법 제19조 ②항",
+            "폐기물관리법 시행규칙 제17조의2 ②항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "bge": 67.304,
+        "minilm": 14.972
+      },
+      "seconds": 82.554
+    },
+    {
+      "id": "producer-2",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 5,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 5의8",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제15조의2 ③항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행령 별표 5",
+            "폐기물관리법 제17조 ①항"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 5,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 5의8",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제15조의2 ③항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행령 별표 5",
+            "폐기물관리법 제17조 ①항"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 5,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 5의8",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제15조의2 ③항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행령 별표 5",
+            "폐기물관리법 제17조 ①항"
+          ]
+        },
+        "bge50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제19조 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제15조의2 ⑤항"
+          ]
+        },
+        "bge100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제19조 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제18조의2 ③항"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "폐기물관리법 제19조 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "폐기물관리법 제19조 ②항",
+            "대법원 2023두62830 판결요지"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "bge": 78.146,
+        "minilm": 16.667
+      },
+      "seconds": 95.243
+    },
+    {
+      "id": "producer-3",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제17조의4",
+            "폐기물관리법 제66조",
+            "폐기물관리법 시행규칙 별표 5의8",
+            "대법원 2017도9582 판례 전문"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제17조의4",
+            "폐기물관리법 제66조",
+            "폐기물관리법 시행규칙 별표 5의8",
+            "대법원 2017도9582 판례 전문"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제17조의4",
+            "폐기물관리법 제66조",
+            "폐기물관리법 시행규칙 별표 5의8",
+            "대법원 2017도9582 판례 전문"
+          ]
+        },
+        "bge50": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제18조의2 ⑤항",
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제25조의3 ①항",
+            "폐기물관리법 제36조 ①항",
+            "폐기물관리법 시행규칙 제18조 ②항"
+          ]
+        },
+        "bge100": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제18조의2 ⑤항",
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제33조 ④항",
+            "폐기물관리법 제25조의3 ①항",
+            "폐기물관리법 제17조 ⑥항"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2019다226548 판례 전문",
+            "대법원 2017도9582 판례 전문",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "폐기물관리법 시행규칙 제18조의2 ⑤항",
+            "폐기물관리법 제25조의3 ①항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 3,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2019다226548 판례 전문",
+            "대법원 2017도9582 판례 전문",
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "폐기물관리법 시행규칙 제18조의2 ⑤항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "bge": 69.845,
+        "minilm": 14.856
+      },
+      "seconds": 85.137
+    },
+    {
+      "id": "permit-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의4",
+            "폐기물관리법 시행규칙 별표 5의8",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제12조 ⑥항",
+            "폐기물관리법 시행규칙 제16조의12"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의4",
+            "폐기물관리법 시행규칙 별표 5의8",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제12조 ⑥항",
+            "폐기물관리법 시행규칙 제16조의12"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의4",
+            "폐기물관리법 시행규칙 별표 5의8",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제12조 ⑥항",
+            "폐기물관리법 시행규칙 제16조의12"
+          ]
+        },
+        "bge50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제18조의2 ⑨항",
+            "폐기물관리법 시행규칙 제18조 ⑤항",
+            "폐기물관리법 시행규칙 제28조 ③항",
+            "폐기물관리법 시행규칙 제47조 ③항",
+            "폐기물관리법 제27조 ②항"
+          ]
+        },
+        "bge100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제18조의2 ⑨항",
+            "폐기물관리법 시행규칙 제18조 ⑤항",
+            "폐기물관리법 시행규칙 제28조 ③항",
+            "폐기물관리법 시행규칙 제47조 ③항",
+            "폐기물관리법 시행규칙 제28조 ④항"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행령 별표 5의3",
+            "폐기물관리법 시행규칙 제28조 ③항",
+            "폐기물관리법 제27조 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제12조 ⑥항",
+            "폐기물관리법 제27조 ①항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제28조 ①항",
+            "폐기물관리법 시행규칙 제28조 ④항",
+            "폐기물관리법 시행령 별표 5의3",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제8조의2 ①항",
+            "폐기물관리법 시행규칙 제28조 ③항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "bge": 77.559,
+        "minilm": 16.086
+      },
+      "seconds": 94.026
+    }
+  ],
+  "status": "stopped_for_latency_after_3_completed_questions",
+  "selection_reason": "BGE 100-candidate CPU reranking 67-78 seconds in 3 completed queries; not a completed quality comparison",
+  "hash_line_endings": "LF normalized"
+}

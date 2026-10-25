@@ -16,6 +16,10 @@ class Settings(BaseSettings):
     search_top_k: int = 5
     hybrid_candidate_multiplier: int = 4
     hybrid_rrf_k: int = 60
+    hybrid_candidate_minimum: int = Field(default=0, ge=0, le=100)
+    retrieval_article_diversity: bool = False
+    reranker_provider: Literal["rules", "onnx-bge", "onnx-minilm"] = "rules"
+    reranker_model_directory: str = ""
     law_api_oc: str = "test"
     law_api_base_url: str = "https://www.law.go.kr/DRF"
     law_api_timeout_seconds: float = 30.0

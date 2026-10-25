@@ -72,6 +72,27 @@ def inspect_review(
         for hit in search.results:
             if hit.get("document_type") == "LAW" and hit.get("version"):
                 statute_versions.setdefault(hit["title"], set()).add(hit["version"])
+            context = hit.get("legal_context", {})
+            context_sources = list(context.get("primary", []))
+            for link in context.get("linked", []):
+                context_sources.extend(link.get("sources", []))
+            for source in context_sources:
+                if source.get("version"):
+                    statute_versions.setdefault(source["title"], set()).add(source["version"])
+            if hit.get("document_type") == "LAW" and context.get("status") != "retrieved":
+                corrupt = bool(
+                    {"stale_or_unresolvable_seed", "ambiguous_current_version"}.intersection(
+                        context.get("source_checks", [])
+                    )
+                )
+                add(
+                    "legal_context_stale" if corrupt else "legal_context_incomplete",
+                    "validation",
+                    "error" if corrupt else "missing",
+                    "검색 조문의 전체 항목·명시 참조 자료가 아직 완전하지 않습니다.",
+                    "조문 전체·위임 규정·별표와 미해결 참조를 원문에서 확인하세요.",
+                    evidence=[hit["evidence_id"]],
+                )
     if any(len(versions) > 1 for versions in statute_versions.values()):
         add(
             "legal_source_version_changed",

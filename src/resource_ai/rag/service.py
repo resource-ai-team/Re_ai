@@ -31,11 +31,19 @@ class EvidenceRepository:
         *,
         candidate_multiplier: int = 4,
         rrf_k: int = 60,
+        candidate_minimum: int = 0,
+        reranker=None,
+        article_diversity: bool = False,
     ) -> None:
         self.database = database
         self.embeddings = embeddings
         self.candidate_multiplier = candidate_multiplier
         self.rrf_k = rrf_k
+        if not 0 <= candidate_minimum <= 100:
+            raise ValueError("candidate_minimum must be between 0 and 100")
+        self.candidate_minimum = candidate_minimum
+        self.reranker = reranker
+        self.article_diversity = article_diversity
 
     def initialize(self, migration_path: Path) -> None:
         migration_files = (
@@ -199,6 +207,11 @@ class EvidenceRepository:
     def ingest(self, document: EvidenceDocument) -> int:
         return self.ingest_many([document])
 
+    def expand_legal_context(self, hits):
+        from resource_ai.rag.legal_context import expand_context
+
+        return expand_context(self.database, hits)
+
     @staticmethod
     def _results(rows: list[tuple], method: str) -> list[SearchResult]:
         return [
@@ -220,7 +233,7 @@ class EvidenceRepository:
             for row in rows
         ]
 
-    def search(
+    def retrieve_candidates(
         self,
         query: str,
         top_k: int = 5,
@@ -230,8 +243,8 @@ class EvidenceRepository:
         search_group: SearchGroup | str | None = None,
     ) -> list[SearchResult]:
         """검색 그룹 범위 안에서 벡터·키워드 후보를 결합해 Top K 근거를 반환한다."""
-        if top_k <= 0:
-            raise ValueError("top_k must be positive")
+        if isinstance(top_k, bool) or not isinstance(top_k, int) or not 1 <= top_k <= 100:
+            raise ValueError("top_k must be an integer between 1 and 100")
         if search_group is not None and corpus_types:
             raise ValueError("search_group and corpus_types cannot be used together")
         if search_group is not None:
@@ -248,7 +261,9 @@ class EvidenceRepository:
         if CorpusType.COMPANY_DOCUMENT in (normalized_types or []) and not tenant_id:
             raise ValueError("tenant_id is required when searching company documents")
         query_vector = Vector(self.embeddings.embed_query(query))
-        candidate_count = max(top_k * self.candidate_multiplier, top_k)
+        candidate_count = min(
+            100, max(top_k * self.candidate_multiplier, top_k, self.candidate_minimum)
+        )
         with self.database.connect() as connection:
             # 의미 유사도 검색과 정확한 용어 검색을 따로 수행한 뒤 순위 기반으로 결합한다.
             vector_rows = connection.execute(
@@ -271,6 +286,7 @@ class EvidenceRepository:
                     JOIN legal_documents d ON d.id = c.document_id
                     WHERE
                         d.is_current = true
+                        AND (d.tenant_id IS NULL OR d.document_type = 'COMPANY_DOCUMENT')
                         AND (%s::text[] IS NULL OR d.document_type = ANY(%s::text[]))
                         AND (d.document_type <> 'COMPANY_DOCUMENT' OR d.tenant_id = %s)
                         AND (
@@ -327,6 +343,7 @@ class EvidenceRepository:
                 JOIN legal_documents d ON d.id = c.document_id
                 WHERE
                     d.is_current = true
+                    AND (d.tenant_id IS NULL OR d.document_type = 'COMPANY_DOCUMENT')
                     AND (%s::text[] IS NULL OR d.document_type = ANY(%s::text[]))
                     AND (d.document_type <> 'COMPANY_DOCUMENT' OR d.tenant_id = %s)
                     AND (
@@ -346,12 +363,26 @@ class EvidenceRepository:
             limit=candidate_count,
             rrf_k=self.rrf_k,
         )
-        return rerank_results(
-            query,
-            fused,
-            limit=top_k,
-            search_group=search_group,
+        return fused
+
+    def search(
+        self, query: str, top_k: int = 5, *, corpus_types=None, tenant_id=None, search_group=None
+    ) -> list[SearchResult]:
+        """Retrieve a bounded candidate pool, then rank; model failures remain visible."""
+        fused = self.retrieve_candidates(
+            query, top_k, corpus_types=corpus_types, tenant_id=tenant_id, search_group=search_group
         )
+        limit = (len(fused) or top_k) if self.article_diversity else top_k
+        ranked = (
+            self.reranker.rerank(query, fused, limit=limit, search_group=search_group)
+            if self.reranker is not None
+            else rerank_results(query, fused, limit=limit, search_group=search_group)
+        )
+        if self.article_diversity:
+            from resource_ai.rag.retrieval.diversity import distinct_articles
+
+            return distinct_articles(ranked, top_k)
+        return ranked
 
 
 # 기존 애플리케이션의 import 경로를 깨지 않도록 이전 이름을 호환 별칭으로 유지한다.
