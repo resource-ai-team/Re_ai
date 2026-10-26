@@ -1,5 +1,7 @@
 # 법령 검색 보강
 
+이 문서는 **1차 보강 당시의 기록**입니다. 이후 여섯 실패 질문을 수정에 사용했고, 한국어 BM25 결합 선택 기능도 추가했습니다. [현재 결과·사용법·남은 문제](korean-bm25-2026-10-27.md)를 함께 보세요. 아래 동결 검증 결과는 당시 실험 기록이며, 현재 독립 검증 지표는 아닙니다.
+
 **비슷한 문단을 찾은 뒤, 원문에 명시된 상위법 조문도 함께 가져오도록 바꿨습니다.** 기존 E5 임베딩과 PostgreSQL·pgvector를 사용합니다. 10월 26일 확보한 법령·고시 98문서는 그대로 검색합니다.
 
 ## 무엇이 달라졌나요?
@@ -83,7 +85,7 @@ python scripts/evaluate_grounded_rag.py --split test --profiles legacy grounded 
 
 Critic의 `coverage`에는 `available_legal_evidence_count`, `selected_legal_evidence_count`, `omitted_legal_evidence_count`, `omitted_legal_by_document`, `all_legal_contexts_included`가 추가됩니다. 누락이 있으면 모델이 전체 법령을 검토했다고 볼 수 없습니다.
 
-## 남은 문제와 실험
+## 1차 보강 당시 남은 문제와 실험
 
 - 검증용 법령 질문 6개는 아직 기대 조문을 Top 5에 회수하지 못합니다. 추가 표현 질문도 1개 남았습니다.
 - 화학물질 취급 질문에서 기대한 일반 취급기준 대신 시설·진열 관련 조문이 상위에 오는 사례가 있습니다. 라벨과 실제 적용 범위를 전문가가 함께 확인해야 합니다.

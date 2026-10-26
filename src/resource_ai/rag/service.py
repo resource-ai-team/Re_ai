@@ -122,6 +122,10 @@ class EvidenceRepository:
                     "source_position": section.citation or section.page_no,
                     "embedding_recipe": "document-heading-content-v1",
                 }
+                # A section's stale/claimed recipe is not proof that this new chunk
+                # was indexed. Only this preparation step may set these fields.
+                metadata.pop("korean_lexical_recipe", None)
+                metadata.pop("_korean_lexical_inputs", None)
                 if (
                     self.korean_tokenizer is not None
                     and document.tenant_id is None
@@ -313,6 +317,9 @@ class EvidenceRepository:
             and set(normalized_types) <= {"LAW", "PRECEDENT"}
         ):
             candidate_count = max(candidate_count, 60)
+        from resource_ai.rag.retrieval.diversity import article_identity
+
+        fusion_identity = article_identity if enhanced_legal else None
         with self.database.connect() as connection:
             # 의미 유사도 검색과 정확한 용어 검색을 따로 수행한 뒤 순위 기반으로 결합한다.
             vector_rows = connection.execute(
@@ -410,29 +417,31 @@ class EvidenceRepository:
                 (query, normalized_types, normalized_types, tenant_id, query, candidate_count),
             ).fetchall()
             keyword_results = self._results(keyword_rows, "keyword")
-            korean_ids = set()
+            korean_keys = set()
             if enhanced_legal:
                 from resource_ai.rag.retrieval.korean_lexical import lexical_search
 
                 korean_rows = lexical_search(
                     connection, query, self.korean_tokenizer, candidate_count, normalized_types
                 )
-                korean_ids = {row[0] for row in korean_rows}
+                korean_keys = {article_identity(h) for h in self._results(korean_rows, "bm25")}
                 keyword_results = reciprocal_rank_fusion(
-                    self._results(korean_rows, "korean-keyword"),
+                    self._results(korean_rows, "korean-bm25"),
                     keyword_results,
                     limit=candidate_count,
                     rrf_k=self.rrf_k,
+                    identity=fusion_identity,
                 )
         fused = reciprocal_rank_fusion(
             self._results(vector_rows, "vector"),
             keyword_results,
             limit=candidate_count,
             rrf_k=self.rrf_k,
+            identity=fusion_identity,
         )
         return [
-            replace(hit, retrieval_method=hit.retrieval_method + "+korean-lexical")
-            if hit.chunk_id in korean_ids
+            replace(hit, retrieval_method=hit.retrieval_method + "+korean-bm25")
+            if article_identity(hit) in korean_keys
             else hit
             for hit in fused
         ]
@@ -474,9 +483,19 @@ class EvidenceRepository:
             if not ranked:
                 return []
 
+            bm25_roots = any("+korean-bm25" in h.retrieval_method for h in ranked)
             basis = cited_basis(
-                self.database, ranked, Vector(self.embeddings.embed_query(query)), self._results
+                self.database,
+                ranked,
+                Vector(self.embeddings.embed_query(query)),
+                self._results,
+                include_seed_sections=bm25_roots,
+                prefer_statutes=bm25_roots,
             )
+            # A companion is supporting context, not a reason to consume most
+            # of a small result window and displace direct operative provisions.
+            if bm25_roots:
+                basis = basis[:1]
             return balance_basis(ranked, basis, top_k, self.rrf_k, query)
         return ranked
 

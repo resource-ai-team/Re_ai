@@ -94,8 +94,16 @@ def explicit_locator(database, query, result_builder):
     return results
 
 
-def cited_basis(database, seeds, query_vector, result_builder):
-    """At most 3 current public administrative seeds, 12 exact references, 2 basis articles."""
+def cited_basis(
+    database,
+    seeds,
+    query_vector,
+    result_builder,
+    *,
+    include_seed_sections=False,
+    prefer_statutes=False,
+):
+    """At most 3 public seeds, 12 literal upward references, 2 basis articles."""
     origins = {}
     processed_admin = set()
     with database.connect() as c:
@@ -116,16 +124,20 @@ def cited_basis(database, seeds, query_vector, result_builder):
             ).fetchone()
             if not row:
                 continue
-            if row[2] == "administrative_rule":
-                if row[0] in processed_admin:
-                    continue
-                processed_admin.add(row[0])
             level = instrument_level(seed.title, row[2])
             if level >= 3:
                 continue
             aliases, _ = verified_aliases(c, row[0], row[1])
-            purposes = (
-                c.execute(
+            # The actual retrieved section may cite a more specific basis than
+            # the instrument's purpose. Alias verification applies to both.
+            bodies = (
+                [(seed.chunk_id, seed.content)]
+                if row[2] != "administrative_rule" or include_seed_sections
+                else []
+            )
+            if row[2] == "administrative_rule" and row[0] not in processed_admin:
+                processed_admin.add(row[0])
+                purposes = c.execute(
                     """
                 SELECT id,content FROM legal_chunks
                 WHERE document_id=%s AND (
@@ -135,11 +147,8 @@ def cited_basis(database, seeds, query_vector, result_builder):
             """,
                     (row[0], row[0]),
                 ).fetchall()
-                if row[2] == "administrative_rule"
-                else [(seed.chunk_id, seed.content)]
-            )
-            for source_id, body in purposes:
-                text = purpose_text(body) if row[2] == "administrative_rule" else body
+                bodies.extend((id_, purpose_text(body)) for id_, body in purposes)
+            for source_id, text in bodies:
                 if not text:
                     continue
                 found, _ = references(
@@ -193,7 +202,17 @@ def cited_basis(database, seeds, query_vector, result_builder):
                         reference_sources=tuple(sorted(origin_ids)),
                     )
                 )
-    return sorted(records, key=lambda h: (-h.score, h.chunk_id))[:2]
+    # A statutory foundation and delegated implementation detail have different
+    # roles. Optional BM25 mode reserves only one companion, preferring a literal
+    # parent statute; the retrieved rule remains a direct result.
+    return sorted(
+        records,
+        key=lambda h: (
+            -instrument_level(h.title, "statute") if prefer_statutes else 0,
+            -h.score,
+            h.chunk_id,
+        ),
+    )[:2]
 
 
 def balance_basis(ranked, basis, limit, rrf_k=60, query=""):

@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-10-26T18:09:35.647139+00:00",
+  "recipe": "kiwi-0.24.0-cong-legal-nouns-compounds-v1",
+  "mode": "check_only",
+  "eligible_chunks": 22071,
+  "indexed_chunks": 22071,
+  "missing_chunks": 0,
+  "complete": true,
+  "by_corpus": {
+    "LAW": {
+      "eligible": 21979,
+      "indexed": 21979
+    },
+    "PRECEDENT": {
+      "eligible": 92,
+      "indexed": 92
+    }
+  }
+}

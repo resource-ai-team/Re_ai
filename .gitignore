@@ -10,6 +10,7 @@ htmlcov/
 postgres_data/
 models/
 data/official/
+/data/local/
 /data/local/facilities/
 /data/local/source-review/
 /data/local/historical-cases/

@@ -12,7 +12,8 @@ import httpx
 from fastapi.testclient import TestClient
 
 from resource_ai.agents.semantic_critic import SemanticCriticService, get_semantic_critic_service
-from resource_ai.core.config import Settings
+from resource_ai.core.config import Settings, get_settings
+from resource_ai.core.dependencies import get_repository
 from resource_ai.evidence.critic_models import SemanticCriticOptions
 from resource_ai.integrations.azure_model import AzureResponsesModel
 from resource_ai.main import app
@@ -104,12 +105,21 @@ def build_service(mode, capture):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--korean-bm25", action="store_true")
     args = parser.parse_args()
     os.environ["HF_HUB_OFFLINE"] = "1"
     os.environ["TRANSFORMERS_OFFLINE"] = "1"
     import torch
 
     torch.set_num_threads(4)
+    settings = get_settings()
+    settings.retrieval_korean_lexical = args.korean_bm25
+    settings.road_routing_enabled = False
+    settings.legal_graph_model_enabled = False
+    settings.legal_graph_allow_external = False
+    settings.semantic_critic_enabled = False
+    settings.semantic_critic_allow_external = False
+    get_repository.cache_clear()
     capture = []
     service = build_service("valid", capture)
     previous = dict(app.dependency_overrides)
@@ -217,6 +227,12 @@ def main():
         "scope": "real local KG/PostgreSQL/LCI, synthetic lot, simulated Azure; contract tests only",
         "live_gpt_calls": 0,
         "semantic_reasoning_quality_evaluated": False,
+        "korean_bm25_enabled": get_repository().korean_tokenizer is not None,
+        "bm25_hit_count": sum(
+            "korean-bm25" in hit.get("retrieval_method", "")
+            for search in data.review.research.legal_searches
+            for hit in search.results
+        ),
         "http_status": response.status_code,
         "candidate_count": len(data.review.candidate_reviews),
         "packet_characters": len(json.dumps(packet, ensure_ascii=False)) if packet else 0,

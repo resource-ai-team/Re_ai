@@ -113,6 +113,66 @@ def test_korean_lane_never_widens_corpus_or_tenant_scope():
     assert len(company.calls) == 2
 
 
+@pytest.mark.parametrize("types", [None, [], ["COMPANY_DOCUMENT"], ["LAW", "TECHNICAL_LITERATURE"]])
+def test_bm25_requires_explicit_public_legal_scope(types):
+    from resource_ai.rag.retrieval.korean_lexical import lexical_search
+
+    with pytest.raises(ValueError, match="explicit public legal"):
+        lexical_search(None, "query", None, 5, types)
+
+
+@pytest.mark.parametrize("limit", [True, 0, -1, 101, 1.2])
+def test_bm25_candidate_budget_is_bounded(limit):
+    from resource_ai.rag.retrieval.korean_lexical import lexical_search
+
+    with pytest.raises(ValueError, match="integer between"):
+        lexical_search(None, "query", None, limit, ["LAW"])
+
+
+def test_article_fusion_does_not_reward_many_chunks_or_miss_cross_paragraph_support():
+    from resource_ai.rag.retrieval.diversity import article_identity
+    from resource_ai.rag.retrieval.retriever import reciprocal_rank_fusion
+
+    base = replace(
+        _result(1, "example"),
+        document_type="LAW",
+        title="가상법",
+        version="v1",
+        citation="가상법 제25조 ①항",
+        metadata={"original": True},
+    )
+    second = replace(base, chunk_id=2, citation="가상법 제25조 ②항")
+    branch = replace(base, chunk_id=3, citation="가상법 제25조의3")
+    ranked = reciprocal_rank_fusion(
+        [base, second, branch], [second, second], limit=5, identity=article_identity
+    )
+    assert [h.chunk_id for h in ranked] == [1, 3]
+    assert ranked[0].score == pytest.approx(2 / 61)
+    assert ranked[0].metadata == {"original": True}
+    assert ranked[1].score == pytest.approx(1 / 62)
+    assert article_identity(replace(base, version="v2")) != article_identity(base)
+
+
+def test_reingest_cannot_claim_unbuilt_lexical_recipe_from_section_metadata():
+    from tests.unit.test_rag_service import UnusedDatabase, _law
+
+    doc = _law()
+    doc = replace(
+        doc,
+        sections=[
+            replace(
+                doc.sections[0],
+                metadata={"korean_lexical_recipe": "claimed", "_korean_lexical_inputs": ("x",) * 3},
+            )
+        ],
+    )
+    _, chunks, _ = EvidenceRepository(UnusedDatabase(), HashEmbeddingProvider())._prepare_document(
+        doc
+    )
+    assert "korean_lexical_recipe" not in chunks[0][4]
+    assert "_korean_lexical_inputs" not in chunks[0][4]
+
+
 def test_basis_balancing_preserves_exact_requested_document_and_limit():
     from resource_ai.rag.retrieval.legal_basis import balance_basis, purpose_text
 

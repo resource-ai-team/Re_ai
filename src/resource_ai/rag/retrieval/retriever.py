@@ -1,6 +1,6 @@
 """서로 다른 검색 순위를 RRF로 결합하는 Hybrid Search 기능."""
 
-from collections.abc import Sequence
+from collections.abc import Callable, Hashable, Sequence
 from dataclasses import replace
 
 from resource_ai.evidence.models import SearchResult
@@ -12,6 +12,7 @@ def reciprocal_rank_fusion(
     *,
     limit: int,
     rrf_k: int = 60,
+    identity: Callable[[SearchResult], Hashable] | None = None,
 ) -> list[SearchResult]:
     """척도가 다른 원점수를 직접 비교하지 않고 검색 순위만으로 후보를 결합한다."""
     if limit <= 0:
@@ -19,17 +20,24 @@ def reciprocal_rank_fusion(
     if rrf_k < 0:
         raise ValueError("rrf_k must not be negative")
 
-    records: dict[int, SearchResult] = {}
-    scores: dict[int, float] = {}
-    methods: dict[int, set[str]] = {}
+    key_for = identity or (lambda result: result.chunk_id)
+    records: dict[Hashable, SearchResult] = {}
+    scores: dict[Hashable, float] = {}
+    methods: dict[Hashable, set[str]] = {}
 
     for method, results in (("vector", vector_results), ("keyword", keyword_results)):
-        for rank, result in enumerate(results, start=1):
-            records.setdefault(result.chunk_id, result)
-            scores[result.chunk_id] = scores.get(result.chunk_id, 0.0) + 1.0 / (rrf_k + rank)
-            methods.setdefault(result.chunk_id, set()).add(method)
+        seen = set()
+        for result in results:
+            key = key_for(result)
+            if key in seen:
+                continue
+            seen.add(key)
+            rank = len(seen)
+            records.setdefault(key, result)
+            scores[key] = scores.get(key, 0.0) + 1.0 / (rrf_k + rank)
+            methods.setdefault(key, set()).add(method)
 
-    ranked_ids = sorted(scores, key=lambda chunk_id: (-scores[chunk_id], chunk_id))[:limit]
+    ranked_ids = sorted(scores, key=lambda key: (-scores[key], records[key].chunk_id))[:limit]
     return [
         replace(
             records[chunk_id],
