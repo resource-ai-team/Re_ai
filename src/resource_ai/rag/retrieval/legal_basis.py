@@ -105,7 +105,8 @@ def cited_basis(database, seeds, query_vector, result_builder):
                 continue
             row = c.execute(
                 """
-                SELECT d.id,d.metadata->'declared_legal_aliases',d.metadata->>'legal_source_kind'
+                SELECT d.id,d.metadata->'declared_legal_aliases',d.metadata->>'legal_source_kind',
+                       d.metadata->'conflicting_legal_aliases'
                 FROM legal_chunks ch JOIN legal_documents d ON d.id=ch.document_id
                 WHERE ch.id=%s AND ch.content=%s AND d.title=%s AND d.version=%s
                   AND d.source_url=%s AND d.tenant_id IS NULL AND d.is_current
@@ -146,6 +147,7 @@ def cited_basis(database, seeds, query_vector, result_builder):
                     seed.title,
                     administrative_rule=row[2] == "administrative_rule",
                     aliases=aliases,
+                    blocked_aliases=row[3],
                 )
                 for title, locator in found:
                     if (

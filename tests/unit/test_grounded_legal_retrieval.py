@@ -133,6 +133,19 @@ def test_nonstandard_rule_does_not_invent_a_parent_law_name():
     assert refs == [] and unknown[0].startswith("unresolved_legal_alias:")
 
 
+def test_conflicting_definition_cannot_fall_back_to_a_guessed_parent_statute():
+    refs, unknown = references(
+        "법 제17조 및 「폐기물관리법」 제25조",
+        "폐기물관리법 시행규칙",
+        aliases={"법": "폐기물관리법"},
+        blocked_aliases=["법"],
+    )
+    assert refs == [("폐기물관리법", "제25조")]
+    assert unknown[0].startswith("conflicting_legal_alias:")
+    refs, unknown = references("규칙 제2조", "폐기물관리법 시행령")
+    assert refs == [] and unknown[0].startswith("unresolved_legal_alias:")
+
+
 def test_basis_requires_official_public_source_urls():
     from resource_ai.rag.retrieval.legal_basis import official_url
 

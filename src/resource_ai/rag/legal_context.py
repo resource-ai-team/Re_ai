@@ -18,7 +18,7 @@ _EXPLICIT = re.compile(
 _LOCAL_ANNEX = re.compile(_ANNEX)
 
 
-def references(text, title, *, administrative_rule=False, aliases=None):
+def references(text, title, *, administrative_rule=False, aliases=None, blocked_aliases=None):
     """Resolve only explicit document names, 법/영 and same-document annexes."""
     base = re.sub(r"\s*(?:시행령|시행규칙)$", "", title)
     found, unresolved, spans = set(), set(), []
@@ -34,12 +34,18 @@ def references(text, title, *, administrative_rule=False, aliases=None):
             continue
         if owner.startswith("「"):
             target = owner[1:-1]
+        elif ({"같은법": "법", "같은법시행령": "법"}.get(owner, owner)) in (blocked_aliases or []):
+            unresolved.add("conflicting_legal_alias:" + match.group())
+            continue
         elif owner in (aliases or {}):
             target = aliases[owner]
         elif owner == "같은법" and "법" in (aliases or {}):
             target = aliases["법"]
         elif owner == "같은법시행령" and "법" in (aliases or {}):
             target = aliases["법"] + " 시행령"
+        elif owner == "규칙":
+            unresolved.add("unresolved_legal_alias:" + match.group())
+            continue
         elif administrative_rule or not re.search(r"(법|법률|시행령|시행규칙)$", title):
             # 지침의 '법'은 앞에서 정의한 상위법일 수 있다. 지침명에 결합하지 않는다.
             prefix = (
@@ -118,7 +124,8 @@ def expand_context(database, hits, *, max_roots=5, max_links=8, max_chunks=48, m
                 """
                 SELECT d.id, d.title, d.version, d.source_url, c.content,
                     c.metadata->>'article', c.metadata->>'article_title', c.metadata->>'annex',
-                    d.metadata->>'legal_source_kind',d.metadata->'declared_legal_aliases'
+                    d.metadata->>'legal_source_kind',d.metadata->'declared_legal_aliases',
+                    d.metadata->'conflicting_legal_aliases'
                 FROM legal_chunks c JOIN legal_documents d ON d.id=c.document_id
                 WHERE c.id=%s AND d.document_type='LAW' AND d.tenant_id IS NULL
                   AND d.is_current=true AND d.effective_from<=CURRENT_DATE
@@ -217,6 +224,7 @@ def expand_context(database, hits, *, max_roots=5, max_links=8, max_chunks=48, m
                 hit.title,
                 administrative_rule=anchor[8] == "administrative_rule",
                 aliases=aliases,
+                blocked_aliases=anchor[10],
             )
             explicit = [r for r in explicit if r != (hit.title, root_locator)]
             packet["unresolved"].extend(unresolved)
