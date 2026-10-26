@@ -77,7 +77,8 @@ def explicit_locator(database, query, result_builder):
                 """
                 SELECT ch.id,d.title,d.document_type,ch.heading,ch.content,ch.citation,
                     d.source_url,d.effective_from,1.0,d.version,ch.page_no,
-                    COALESCE(ch.citation,ch.metadata->>'source_position')
+                    COALESCE(ch.citation,ch.metadata->>'source_position'),
+                    jsonb_build_object('document',d.metadata,'chunk',ch.metadata)
                 FROM legal_chunks ch JOIN legal_documents d ON d.id=ch.document_id
                 WHERE d.id=%s AND ch.metadata->>'article'=%s
                   AND COALESCE(ch.metadata->>'article_title','')<>''
@@ -171,7 +172,8 @@ def cited_basis(database, seeds, query_vector, result_builder):
                 """
                 SELECT ch.id,d.title,d.document_type,ch.heading,ch.content,ch.citation,
                     d.source_url,d.effective_from,1-(ch.embedding<=>%s),d.version,ch.page_no,
-                    COALESCE(ch.citation,ch.metadata->>'source_position')
+                    COALESCE(ch.citation,ch.metadata->>'source_position'),
+                    jsonb_build_object('document',d.metadata,'chunk',ch.metadata)
                 FROM legal_chunks ch JOIN legal_documents d ON d.id=ch.document_id
                 WHERE d.id=%s AND ch.metadata->>'article'=%s
                   AND COALESCE(ch.metadata->>'article_title','')<>''

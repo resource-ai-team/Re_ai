@@ -89,6 +89,8 @@ class SearchResult:
     evidence_role: str = "retrieved"
     reference_sources: tuple[str, ...] = ()
 
+    metadata: dict[str, Any] = field(default_factory=dict)
+
 
 # 기존 법령 수집기와 API가 사용하던 이름을 유지해 이전 호출이 깨지지 않게 한다.
 LegalSection = EvidenceSection

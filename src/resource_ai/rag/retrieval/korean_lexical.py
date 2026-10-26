@@ -63,7 +63,8 @@ def lexical_search(connection, query, tokenizer, limit, corpus_types):
         """
         SELECT c.id,d.title,d.document_type,c.heading,c.content,c.citation,d.source_url,
                d.effective_from,ts_rank_cd(c.korean_search_vector,to_tsquery('simple',%s),32),
-               d.version,c.page_no,COALESCE(c.citation,c.metadata->>'source_position')
+               d.version,c.page_no,COALESCE(c.citation,c.metadata->>'source_position'),
+               jsonb_build_object('document',d.metadata,'chunk',c.metadata)
         FROM legal_chunks c JOIN legal_documents d ON d.id=c.document_id
         WHERE d.is_current AND d.tenant_id IS NULL AND d.document_type=ANY(%s::text[])
           AND (d.document_type<>'LAW' OR d.effective_from<=CURRENT_DATE)

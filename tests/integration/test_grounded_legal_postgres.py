@@ -88,8 +88,10 @@ def test_literal_basis_alias_proofs_current_public_versions_and_freeform_section
         basis = cited_basis(repo.database, [seed], vector, repo._results)
         assert len(basis) == 1 and basis[0].title == "가상폐기물법"
         assert basis[0].evidence_role == "cited_basis" and basis[0].reference_sources
+        assert basis[0].metadata["document"]["legal_source_kind"] == "statute"
         exact = explicit_locator(repo.database, "가상폐기물법 제25조", repo._results)
         assert len(exact) == 1 and exact[0].evidence_role == "explicit_locator"
+        assert exact[0].metadata["chunk"]["article"] == "제25조"
         assert explicit_locator(repo.database, "구 가상폐기물법 제25조", repo._results) == []
         assert (
             explicit_locator(repo.database, "가상폐기물법 제25조 말고 제26조", repo._results) == []

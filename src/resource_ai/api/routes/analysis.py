@@ -4,6 +4,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, Header, HTTPException
 
 from resource_ai.agents.decision_review import DecisionReviewService
+from resource_ai.agents.evidence_validation import ReferenceValidationService
 from resource_ai.agents.research import CandidateResearchService
 from resource_ai.agents.semantic_critic import get_semantic_critic_service
 from resource_ai.agents.site_discovery import SiteDiscoveryService
@@ -18,6 +19,10 @@ from resource_ai.api.schemas.decision_review import (
     DecisionReviewRequest,
     DecisionReviewResponse,
     ReviewTemplateRequest,
+)
+from resource_ai.api.schemas.evidence_validation import (
+    ReferenceValidationRequest,
+    ReferenceValidationResponse,
 )
 from resource_ai.api.schemas.road_routing import RoadRoutesRequest, RoadRoutesResponse
 from resource_ai.api.schemas.site_discovery import SiteDiscoveryRequest, SiteDiscoveryResponse
@@ -161,6 +166,13 @@ def site_review(
         ) from None
 
 
+def get_reference_validation_service(
+    graph: Annotated[GraphQuery, Depends(get_graph_query)],
+    repository: Annotated[object, Depends(get_repository)],
+):
+    return ReferenceValidationService(graph, repository)
+
+
 @router.post("/research", response_model=ResearchResponse)
 def research(
     request: ResearchRequest,
@@ -172,6 +184,20 @@ def research(
         status = {"invalid-goal": 400, "invalid-cursor": 400, "stale-cursor": 409}.get(
             exc.code, 503
         )
+        raise HTTPException(
+            status_code=status, detail={"code": exc.code, "message": str(exc)}
+        ) from exc
+
+
+@router.post("/reference-validation", response_model=ReferenceValidationResponse)
+def reference_validation(
+    request: ReferenceValidationRequest,
+    service: Annotated[ReferenceValidationService, Depends(get_reference_validation_service)],
+):
+    try:
+        return service.run(request)
+    except GraphStoreError as exc:
+        status = {"invalid-cursor": 400, "stale-cursor": 409}.get(exc.code, 503)
         raise HTTPException(
             status_code=status, detail={"code": exc.code, "message": str(exc)}
         ) from exc
