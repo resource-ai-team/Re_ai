@@ -19,3 +19,5 @@ class SearchItem(BaseModel):
     source_position: str | None = None
     reranker_score: float | None = None
     reranker_model: str | None = None
+    evidence_role: str = "retrieved"
+    reference_sources: tuple[str, ...] = ()

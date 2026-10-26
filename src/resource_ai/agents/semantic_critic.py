@@ -63,6 +63,7 @@ class SemanticCriticService:
                 issues,
                 max_findings=options.max_findings,
                 extra=extra,
+                max_input_chars=self.config.semantic_critic_max_input_chars,
             )
         except PacketError as exc:
             return result.model_copy(update={"status": str(exc)})

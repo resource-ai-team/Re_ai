@@ -1,6 +1,8 @@
 """Minimized, permission-bounded critic input. Never serialize whole engine objects."""
 
 import json
+import re
+from collections import Counter
 from datetime import date
 from urllib.parse import urlsplit
 
@@ -15,9 +17,12 @@ def canonical(value):
     return json.dumps(value, ensure_ascii=False, sort_keys=True, default=str)
 
 
-def build_packet(research, numeric_review, numeric, issues, *, max_findings, extra=None):
+def build_packet(
+    research, numeric_review, numeric, issues, *, max_findings, extra=None, max_input_chars=None
+):
     records, by_key, targets = {}, {}, {}
     excluded, legal_incomplete = set(), 0
+    priorities = {}
 
     def add(key, text, *, candidate=None, target=None, kind="engine_record", metadata=None):
         if key in by_key:
@@ -169,7 +174,7 @@ def build_packet(research, numeric_review, numeric, issues, *, max_findings, ext
                 target=scenario.candidate_id,
             )
 
-    def law(hit):
+    def law(hit, priority=2):
         nonlocal legal_incomplete
         key = hit.get("evidence_id", "unknown")
         try:
@@ -196,7 +201,7 @@ def build_packet(research, numeric_review, numeric, issues, *, max_findings, ext
         ):
             excluded.add(str(key))
             return
-        add(
+        ref = add(
             str(key),
             hit["content"],
             kind="official_statute",
@@ -205,21 +210,22 @@ def build_packet(research, numeric_review, numeric, issues, *, max_findings, ext
                 for k in ("title", "citation", "version", "effective_from", "source_url")
             },
         )
+        priorities[ref] = min(priorities.get(ref, priority), priority)
 
     for search in research.legal_searches:
         for hit in search.results:
-            law(hit)
+            law(hit, 1)
             context = hit.get("legal_context") or {}
             legal_incomplete += context.get("status") != "retrieved"
             for source in context.get("primary", []):
-                law(source)
+                law(source, 2)
             for linked in context.get("linked", []):
                 for source in linked.get("sources", []):
-                    law(source)
+                    law(source, 2)
     for ref in research.legal_baselines:
         if ref.get("complete") is True:
             for source in ref.get("sources", []):
-                law(source)
+                law(source, 0)
         else:
             legal_incomplete += 1
     for search in research.technical_searches:
@@ -273,4 +279,78 @@ def build_packet(research, numeric_review, numeric, issues, *, max_findings, ext
     payload["allowed_targets"] = {
         p: {k: sorted(v) for k, v in groups.items()} for p, groups in targets.items()
     }
+    if max_input_chars is not None:
+        payload, records, coverage = select_evidence(payload, records, priorities, max_input_chars)
     return payload, records, targets, coverage, digest(payload)
+
+
+def select_evidence(payload, records, priorities, max_chars):
+    """Keep every engine fact, then whole supplied legal article/annex groups.
+
+    A selected group is not a claim that all applicable exceptions were collected.
+    Omitted aliases are removed from the verifier as well as from the model packet.
+    """
+    available = [ref for ref, r in records.items() if r["kind"] == "official_statute"]
+    fixed = {ref for ref, r in records.items() if r["kind"] != "official_statute"}
+    coverage_ref = next(
+        ref for ref, r in records.items() if r["evidence_id"] == "semantic-coverage"
+    )
+    original_coverage = dict(payload["coverage"])
+
+    def render(selected):
+        omitted = [ref for ref in available if ref not in selected]
+        coverage = {
+            **original_coverage,
+            "evidence_count": len(fixed) + len(selected),
+            "available_legal_evidence_count": len(available),
+            "selected_legal_evidence_count": len(selected),
+            "omitted_legal_evidence_count": len(omitted),
+            "all_legal_contexts_included": not omitted,
+            "omitted_legal_by_document": dict(
+                Counter(records[r]["metadata"].get("title", "unknown") for r in omitted)
+            ),
+            "legal_selection_strategy": "engine_facts_then_baselines_then_roots_then_linked_whole_groups",
+            "legal_document_completeness_guaranteed": False,
+        }
+        included = {ref: r for ref, r in records.items() if ref in fixed or ref in selected}
+        included[coverage_ref] = {**included[coverage_ref], "text": canonical(coverage)}
+        candidate = {
+            **payload,
+            "coverage": coverage,
+            "evidence": [
+                {k: v for k, v in r.items() if k != "evidence_id"} for r in included.values()
+            ],
+        }
+        return candidate, included, coverage
+
+    full = render(set(available))
+    if len(json.dumps(full[0], ensure_ascii=False)) <= max_chars:
+        return full
+    minimal = render(set())
+    if len(json.dumps(minimal[0], ensure_ascii=False)) > max_chars:
+        raise PacketError("context_budget_exceeded")
+    groups = {}
+    for ref in available:
+        meta = records[ref]["metadata"]
+        locator = re.search(
+            r"별표\s*\d+(?:\s*의\s*\d+)?|제\s*\d+\s*조(?:\s*의\s*\d+)?", meta.get("citation") or ""
+        )
+        key = (
+            meta.get("title"),
+            meta.get("version"),
+            meta.get("source_url"),
+            re.sub(r"\s+", "", locator.group()) if locator else meta.get("citation"),
+        )
+        groups.setdefault(key, []).append(ref)
+    selected = set()
+    for group in sorted(
+        groups.values(),
+        key=lambda refs: (
+            min(priorities.get(r, 2) for r in refs),
+            min(available.index(r) for r in refs),
+        ),
+    ):
+        attempt = render(selected | set(group))
+        if len(json.dumps(attempt[0], ensure_ascii=False)) <= max_chars:
+            selected.update(group)
+    return render(selected)

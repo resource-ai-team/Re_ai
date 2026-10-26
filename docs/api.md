@@ -1,5 +1,17 @@
 # API
 
+## 법령 근거 동반 조회
+
+LEGAL 검색과 명시한 법률 코퍼스 검색은 일반 근거와 원문에서 인용한 상위 근거를 함께 조회합니다. 정확한 현행 법령명·한 조문을 명시하면 직접 조회도 사용합니다. 검색 완료는 법규 적용성 검증 완료가 아닙니다.
+
+- `/rag/search`와 파이프라인 법령 결과의 `evidence_role`: `retrieved`, `cited_basis`, `explicit_locator`.
+- `reference_sources`: 상위 근거를 명시적으로 인용한 공개 원문 조각 ID. `top_k`는 동반 근거를 포함한 최종 개수입니다.
+- 응답 순서는 근거 역할을 고려합니다. `score`는 법적 적합성 확률이 아니며 서로 다른 검색 경로의 절대 점수로 비교하지 않습니다.
+- `legal_context.alias_definitions`: 같은 현재 문서에서 대조한 법·영·규칙 별칭 정의와 출처.
+- Critic `coverage`: 사용 가능·선택·제외 법령 조각 수와 문서별 제외 수를 표시합니다. 전송하지 않은 근거의 인용은 거절합니다.
+
+기본 `RETRIEVAL_LEGAL_BASIS=true`입니다. 배포 전 `resource-rag init-db`와 `scripts/build_legal_aliases.py`로 기존 문서의 정의 메타데이터를 준비하세요. 요청 계약은 유지되며 추가 필드·설정·검증 범위는 [법령 검색 보강](grounded-rag-2026-10-27.md)을 참고하세요.
+
 ## 상태 확인
 
 `GET /health`

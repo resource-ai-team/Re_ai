@@ -81,6 +81,8 @@ def retrieve(repository, query, top_k, *, technical=False):
                     "retrieval_method": hit.retrieval_method,
                     "reranker_score": getattr(hit, "reranker_score", None),
                     "reranker_model": getattr(hit, "reranker_model", None),
+                    "evidence_role": getattr(hit, "evidence_role", "retrieved"),
+                    "reference_sources": list(getattr(hit, "reference_sources", ())),
                     **(
                         {
                             "legal_context": contexts.get(

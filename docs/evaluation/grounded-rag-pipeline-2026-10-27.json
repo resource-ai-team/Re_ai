@@ -1,0 +1,161 @@
+{
+  "generated_at": "2026-10-26T16:35:02.643722+00:00",
+  "scope": "real local KG/PostgreSQL/LCI, synthetic lot, simulated Azure; contract tests only",
+  "live_gpt_calls": 0,
+  "semantic_reasoning_quality_evaluated": false,
+  "http_status": 200,
+  "candidate_count": 3,
+  "packet_characters": 102285,
+  "source_kinds": {
+    "engine_record": 6,
+    "official_statute": 84
+  },
+  "coverage": {
+    "candidate_count": 3,
+    "all_candidate_contexts_included": true,
+    "evidence_count": 90,
+    "excluded_source_count": 3,
+    "incomplete_legal_context_count": 3,
+    "technical_raw_transfer_allowed": false,
+    "registry_raw_transfer_allowed": false,
+    "licensed_lci_raw_transfer_allowed": false,
+    "additional_context": {
+      "site": {
+        "facility_searches": 4,
+        "registry_rows_transferred": false,
+        "origin_identity_transferred": false,
+        "road_requested": false,
+        "permit_and_intake_verified": false
+      },
+      "lci": {
+        "screening_result_count": 3,
+        "raw_inventory_or_factors_transferred": false,
+        "screening_not_added_to_numeric_totals": true
+      }
+    },
+    "semantically_verified": false,
+    "available_legal_evidence_count": 121,
+    "selected_legal_evidence_count": 84,
+    "omitted_legal_evidence_count": 37,
+    "all_legal_contexts_included": false,
+    "omitted_legal_by_document": {
+      "폐기물관리법 시행규칙": 37
+    },
+    "legal_selection_strategy": "engine_facts_then_baselines_then_roots_then_linked_whole_groups",
+    "legal_document_completeness_guaranteed": false,
+    "findings_limit_reached": false
+  },
+  "pipeline_checks": [
+    {
+      "name": "full pipeline HTTP",
+      "passed": true
+    },
+    {
+      "name": "one simulated call after LCI",
+      "passed": true
+    },
+    {
+      "name": "accepted scoped concerns",
+      "passed": true
+    },
+    {
+      "name": "no recommendation or PASS",
+      "passed": true
+    },
+    {
+      "name": "origin identifiers excluded",
+      "passed": true
+    }
+  ],
+  "adversarial_cases": [
+    {
+      "case": "valid",
+      "status": "completed",
+      "simulated_calls": 1,
+      "accepted": 3,
+      "rejected": 0,
+      "passed": true
+    },
+    {
+      "case": "unknown_evidence",
+      "status": "partial",
+      "simulated_calls": 1,
+      "accepted": 2,
+      "rejected": 1,
+      "passed": true
+    },
+    {
+      "case": "bad_quote",
+      "status": "partial",
+      "simulated_calls": 1,
+      "accepted": 2,
+      "rejected": 1,
+      "passed": true
+    },
+    {
+      "case": "unknown_target",
+      "status": "partial",
+      "simulated_calls": 1,
+      "accepted": 2,
+      "rejected": 1,
+      "passed": true
+    },
+    {
+      "case": "cross_candidate",
+      "status": "partial",
+      "simulated_calls": 1,
+      "accepted": 2,
+      "rejected": 1,
+      "passed": true
+    },
+    {
+      "case": "illegal_verdict",
+      "status": "invalid_output",
+      "simulated_calls": 1,
+      "accepted": 0,
+      "rejected": 0,
+      "passed": true
+    },
+    {
+      "case": "provider_429",
+      "status": "unavailable",
+      "simulated_calls": 1,
+      "accepted": 0,
+      "rejected": 0,
+      "passed": true
+    },
+    {
+      "case": "empty",
+      "status": "completed",
+      "simulated_calls": 1,
+      "accepted": 0,
+      "rejected": 0,
+      "passed": true
+    },
+    {
+      "case": "budget",
+      "status": "context_budget_exceeded",
+      "simulated_calls": 0,
+      "accepted": 0,
+      "rejected": 0,
+      "passed": true
+    },
+    {
+      "case": "disabled",
+      "status": "disabled",
+      "simulated_calls": 0,
+      "accepted": 0,
+      "rejected": 0,
+      "passed": true
+    },
+    {
+      "case": "external_disabled",
+      "status": "external_transfer_disabled",
+      "simulated_calls": 0,
+      "accepted": 0,
+      "rejected": 0,
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

@@ -34,6 +34,8 @@ class EvidenceRepository:
         candidate_minimum: int = 0,
         reranker=None,
         article_diversity: bool = False,
+        korean_tokenizer=None,
+        legal_basis_enabled: bool = False,
     ) -> None:
         self.database = database
         self.embeddings = embeddings
@@ -44,6 +46,8 @@ class EvidenceRepository:
         self.candidate_minimum = candidate_minimum
         self.reranker = reranker
         self.article_diversity = article_diversity
+        self.korean_tokenizer = korean_tokenizer
+        self.legal_basis_enabled = legal_basis_enabled
 
     def initialize(self, migration_path: Path) -> None:
         migration_files = (
@@ -91,6 +95,19 @@ class EvidenceRepository:
             document,
             metadata={**document.metadata, "canonical_source_id": canonical_source_id},
         )
+        if document.document_type == "LAW" and document.tenant_id is None:
+            from resource_ai.rag.legal_aliases import RECIPE, extract_aliases
+
+            aliases, conflicts = extract_aliases(document.sections)
+            document = replace(
+                document,
+                metadata={
+                    **document.metadata,
+                    "declared_legal_aliases": aliases,
+                    "conflicting_legal_aliases": conflicts,
+                    "legal_alias_recipe": RECIPE,
+                },
+            )
         chunk_records: list[tuple[str, str, str | None, int | None, dict]] = []
         for section in document.sections:
             for chunk in chunk_for_corpus(section.content, document.document_type):
@@ -105,6 +122,19 @@ class EvidenceRepository:
                     "source_position": section.citation or section.page_no,
                     "embedding_recipe": "document-heading-content-v1",
                 }
+                if (
+                    self.korean_tokenizer is not None
+                    and document.tenant_id is None
+                    and document.document_type in {"LAW", "PRECEDENT"}
+                ):
+                    metadata["korean_lexical_recipe"] = self.korean_tokenizer.recipe
+                    metadata["_korean_lexical_inputs"] = (
+                        self.korean_tokenizer.text(document.title),
+                        self.korean_tokenizer.text(
+                            section.heading + " " + (section.citation or "")
+                        ),
+                        self.korean_tokenizer.text(chunk.content),
+                    )
                 chunk_records.append(
                     (section.heading, chunk.content, section.citation, section.page_no, metadata)
                 )
@@ -175,11 +205,17 @@ class EvidenceRepository:
         connection.execute("DELETE FROM legal_chunks WHERE document_id = %s", (document_id,))
         for record, vector in zip(chunk_records, vectors, strict=True):
             heading, content, citation, page_no, metadata = record
+            metadata = dict(metadata)
+            lexical = metadata.pop("_korean_lexical_inputs", (None, None, None))
             connection.execute(
                 """
                     INSERT INTO legal_chunks (
-                        document_id, heading, content, citation, page_no, metadata, embedding
-                    ) VALUES (%s, %s, %s, %s, %s, %s::jsonb, %s)
+                        document_id, heading, content, citation, page_no, metadata, embedding,
+                        korean_search_vector
+                    ) VALUES (%s, %s, %s, %s, %s, %s::jsonb, %s,
+                        setweight(to_tsvector('simple',%s),'A') ||
+                        setweight(to_tsvector('simple',%s),'B') ||
+                        setweight(to_tsvector('simple',%s),'D'))
                     """,
                 (
                     document_id,
@@ -189,6 +225,7 @@ class EvidenceRepository:
                     page_no,
                     json.dumps(metadata, ensure_ascii=False),
                     Vector(vector),
+                    *lexical,
                 ),
             )
         return len(chunk_records)
@@ -264,6 +301,17 @@ class EvidenceRepository:
         candidate_count = min(
             100, max(top_k * self.candidate_multiplier, top_k, self.candidate_minimum)
         )
+        enhanced_legal = (
+            self.korean_tokenizer is not None
+            and bool(normalized_types)
+            and set(normalized_types) <= {"LAW", "PRECEDENT"}
+        )
+        if enhanced_legal or (
+            self.legal_basis_enabled
+            and normalized_types
+            and set(normalized_types) <= {"LAW", "PRECEDENT"}
+        ):
+            candidate_count = max(candidate_count, 60)
         with self.database.connect() as connection:
             # 의미 유사도 검색과 정확한 용어 검색을 따로 수행한 뒤 순위 기반으로 결합한다.
             vector_rows = connection.execute(
@@ -357,13 +405,33 @@ class EvidenceRepository:
                 """,
                 (query, normalized_types, normalized_types, tenant_id, query, candidate_count),
             ).fetchall()
+            keyword_results = self._results(keyword_rows, "keyword")
+            korean_ids = set()
+            if enhanced_legal:
+                from resource_ai.rag.retrieval.korean_lexical import lexical_search
+
+                korean_rows = lexical_search(
+                    connection, query, self.korean_tokenizer, candidate_count, normalized_types
+                )
+                korean_ids = {row[0] for row in korean_rows}
+                keyword_results = reciprocal_rank_fusion(
+                    self._results(korean_rows, "korean-keyword"),
+                    keyword_results,
+                    limit=candidate_count,
+                    rrf_k=self.rrf_k,
+                )
         fused = reciprocal_rank_fusion(
             self._results(vector_rows, "vector"),
-            self._results(keyword_rows, "keyword"),
+            keyword_results,
             limit=candidate_count,
             rrf_k=self.rrf_k,
         )
-        return fused
+        return [
+            replace(hit, retrieval_method=hit.retrieval_method + "+korean-lexical")
+            if hit.chunk_id in korean_ids
+            else hit
+            for hit in fused
+        ]
 
     def search(
         self, query: str, top_k: int = 5, *, corpus_types=None, tenant_id=None, search_group=None
@@ -372,16 +440,40 @@ class EvidenceRepository:
         fused = self.retrieve_candidates(
             query, top_k, corpus_types=corpus_types, tenant_id=tenant_id, search_group=search_group
         )
-        limit = (len(fused) or top_k) if self.article_diversity else top_k
+        legal_scope = (
+            search_group == SearchGroup.LEGAL
+            or bool(corpus_types)
+            and set(corpus_types) <= {"LAW", "PRECEDENT"}
+        )
+        diversity = self.article_diversity or (self.legal_basis_enabled and legal_scope)
+        law_allowed = search_group == SearchGroup.LEGAL or "LAW" in (corpus_types or [])
+        limit = (len(fused) or top_k) if diversity else top_k
         ranked = (
             self.reranker.rerank(query, fused, limit=limit, search_group=search_group)
             if self.reranker is not None
             else rerank_results(query, fused, limit=limit, search_group=search_group)
         )
-        if self.article_diversity:
+        if diversity:
             from resource_ai.rag.retrieval.diversity import distinct_articles
 
-            return distinct_articles(ranked, top_k)
+            ranked = distinct_articles(ranked, top_k)
+        if self.legal_basis_enabled and law_allowed:
+            from resource_ai.rag.retrieval.diversity import distinct_articles
+            from resource_ai.rag.retrieval.legal_basis import (
+                balance_basis,
+                cited_basis,
+                explicit_locator,
+            )
+
+            exact = explicit_locator(self.database, query, self._results)
+            ranked = distinct_articles([*exact, *ranked], top_k)
+            if not ranked:
+                return []
+
+            basis = cited_basis(
+                self.database, ranked, Vector(self.embeddings.embed_query(query)), self._results
+            )
+            return balance_basis(ranked, basis, top_k, self.rrf_k, query)
         return ranked
 
 

@@ -18,6 +18,8 @@ class Settings(BaseSettings):
     hybrid_rrf_k: int = 60
     hybrid_candidate_minimum: int = Field(default=0, ge=0, le=100)
     retrieval_article_diversity: bool = False
+    retrieval_legal_basis: bool = True
+    retrieval_korean_lexical: bool = False
     reranker_provider: Literal["rules", "onnx-bge", "onnx-minilm"] = "rules"
     reranker_model_directory: str = ""
     law_api_oc: str = "test"

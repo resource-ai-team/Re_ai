@@ -54,6 +54,8 @@ def search(
             source_position=item.source_position,
             reranker_score=item.reranker_score,
             reranker_model=item.reranker_model,
+            evidence_role=item.evidence_role,
+            reference_sources=item.reference_sources,
         )
         for item in results
     ]

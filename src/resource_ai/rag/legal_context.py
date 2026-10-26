@@ -7,16 +7,18 @@ Unknown references, stale seeds, duplicate versions and budgets remain visible.
 import re
 from urllib.parse import urlsplit
 
+from resource_ai.rag.legal_aliases import DEFINITION_GAP, verified_aliases
+
 _ARTICLE = r"제\s*\d+\s*조(?:\s*의\s*\d+)?"
 _ANNEX = r"별표\s*\d+(?:\s*의\s*\d+)?"
 _EXPLICIT = re.compile(
-    rf"(?<![가-힣A-Za-z])(?P<owner>「[^」]+」|같은\s*법\s*시행령|같은\s*법|이\s*법|이\s*영|이\s*규칙|법|영)"
-    rf"\s*(?:의\s*)?(?P<locator>{_ARTICLE}|{_ANNEX})"
+    rf"(?<![가-힣A-Za-z])(?P<owner>「[^」]+」|같은\s*법\s*시행령|같은\s*법|이\s*법|이\s*영|이\s*규칙|법|영|규칙)"
+    rf"\s*(?:{DEFINITION_GAP}\s*)?(?:의\s*)?(?P<locator>{_ARTICLE}|{_ANNEX})"
 )
 _LOCAL_ANNEX = re.compile(_ANNEX)
 
 
-def references(text, title, *, administrative_rule=False):
+def references(text, title, *, administrative_rule=False, aliases=None):
     """Resolve only explicit document names, 법/영 and same-document annexes."""
     base = re.sub(r"\s*(?:시행령|시행규칙)$", "", title)
     found, unresolved, spans = set(), set(), []
@@ -32,9 +34,20 @@ def references(text, title, *, administrative_rule=False):
             continue
         if owner.startswith("「"):
             target = owner[1:-1]
-        elif administrative_rule:
+        elif owner in (aliases or {}):
+            target = aliases[owner]
+        elif owner == "같은법" and "법" in (aliases or {}):
+            target = aliases["법"]
+        elif owner == "같은법시행령" and "법" in (aliases or {}):
+            target = aliases["법"] + " 시행령"
+        elif administrative_rule or not re.search(r"(법|법률|시행령|시행규칙)$", title):
             # 지침의 '법'은 앞에서 정의한 상위법일 수 있다. 지침명에 결합하지 않는다.
-            unresolved.add("unresolved_administrative_alias:" + match.group())
+            prefix = (
+                "unresolved_administrative_alias:"
+                if administrative_rule
+                else "unresolved_legal_alias:"
+            )
+            unresolved.add(prefix + match.group())
             continue
         elif owner in {"이규칙", "이영"}:
             target = title
@@ -105,7 +118,7 @@ def expand_context(database, hits, *, max_roots=5, max_links=8, max_chunks=48, m
                 """
                 SELECT d.id, d.title, d.version, d.source_url, c.content,
                     c.metadata->>'article', c.metadata->>'article_title', c.metadata->>'annex',
-                    d.metadata->>'legal_source_kind'
+                    d.metadata->>'legal_source_kind',d.metadata->'declared_legal_aliases'
                 FROM legal_chunks c JOIN legal_documents d ON d.id=c.document_id
                 WHERE c.id=%s AND d.document_type='LAW' AND d.tenant_id IS NULL
                   AND d.is_current=true AND d.effective_from<=CURRENT_DATE
@@ -115,11 +128,16 @@ def expand_context(database, hits, *, max_roots=5, max_links=8, max_chunks=48, m
             if not anchor or anchor[1:5] != (hit.title, hit.version, hit.source_url, hit.content):
                 packet["source_checks"].append("stale_or_unresolvable_seed")
                 continue
+            aliases, alias_proofs = verified_aliases(connection, anchor[0], anchor[9])
+            packet["alias_definitions"] = alias_proofs
             root_locator = (
                 anchor[5]
                 if anchor[5] and anchor[6]
                 else ("별표" + anchor[7] if anchor[7] else None)
             )
+            if root_locator is None and anchor[8] == "administrative_rule":
+                root_locator = "section:" + hit.heading
+                packet["scope"] = "indexed_admin_section_plus_explicit_one_hop_references"
             if not root_locator:
                 packet["source_checks"].append("non_normative_or_missing_locator")
                 continue
@@ -140,17 +158,34 @@ def expand_context(database, hits, *, max_roots=5, max_links=8, max_chunks=48, m
                 if len(docs) != 1:
                     return [], "ambiguous_current_version"
                 is_annex = locator.startswith("별표")
-                key, value = ("annex", locator[2:]) if is_annex else ("article", locator)
+                is_section = locator.startswith("section:")
+                key, value = (
+                    ("heading", locator[8:])
+                    if is_section
+                    else ("annex", locator[2:])
+                    if is_annex
+                    else ("article", locator)
+                )
                 rows = connection.execute(
                     """
                     SELECT c.id,d.title,c.heading,c.content,c.citation,d.source_url,
                         d.version,d.effective_from,d.source_id
                     FROM legal_chunks c JOIN legal_documents d ON d.id=c.document_id
-                    WHERE d.id=%s AND c.metadata->>%s=%s
-                      AND (%s OR COALESCE(c.metadata->>'article_title','')<>'')
+                    WHERE d.id=%s AND (
+                        (%s AND c.heading=%s) OR (NOT %s AND c.metadata->>%s=%s
+                        AND (%s OR COALESCE(c.metadata->>'article_title','')<>'')))
                     ORDER BY c.id LIMIT %s
                 """,
-                    (docs[0][0], key, value, is_annex, max_chunks + 1),
+                    (
+                        docs[0][0],
+                        is_section,
+                        value,
+                        is_section,
+                        key,
+                        value,
+                        is_annex,
+                        max_chunks + 1,
+                    ),
                 ).fetchall()
                 if not rows:
                     return [], "locator_not_indexed"
@@ -181,6 +216,7 @@ def expand_context(database, hits, *, max_roots=5, max_links=8, max_chunks=48, m
                 "\n".join(s["content"] for s in primary),
                 hit.title,
                 administrative_rule=anchor[8] == "administrative_rule",
+                aliases=aliases,
             )
             explicit = [r for r in explicit if r != (hit.title, root_locator)]
             packet["unresolved"].extend(unresolved)

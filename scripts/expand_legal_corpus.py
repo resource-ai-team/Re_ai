@@ -120,6 +120,18 @@ def index(args):
     repository = get_repository()
     rows = []
     for doc in documents:
+        from resource_ai.rag.legal_aliases import RECIPE, extract_aliases
+
+        aliases, conflicts = extract_aliases(doc.sections)
+        doc = replace(
+            doc,
+            metadata={
+                **doc.metadata,
+                "declared_legal_aliases": aliases,
+                "conflicting_legal_aliases": conflicts,
+                "legal_alias_recipe": RECIPE,
+            },
+        )
         fingerprint = content_fingerprint(doc)
         with repository.database.connect() as connection:
             existing = connection.execute(

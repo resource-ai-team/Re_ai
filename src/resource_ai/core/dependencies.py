@@ -34,6 +34,11 @@ def get_repository() -> EvidenceRepository:
         settings.embedding_model,
         settings.embedding_dimension,
     )
+    korean_tokenizer = None
+    if settings.retrieval_korean_lexical:
+        from resource_ai.rag.retrieval.korean_lexical import KoreanLegalTokenizer
+
+        korean_tokenizer = KoreanLegalTokenizer()
     return EvidenceRepository(
         Database(
             settings.database_url, connect_timeout_seconds=settings.database_connect_timeout_seconds
@@ -44,4 +49,6 @@ def get_repository() -> EvidenceRepository:
         candidate_minimum=settings.hybrid_candidate_minimum,
         reranker=reranker,
         article_diversity=settings.retrieval_article_diversity,
+        korean_tokenizer=korean_tokenizer,
+        legal_basis_enabled=settings.retrieval_legal_basis,
     )

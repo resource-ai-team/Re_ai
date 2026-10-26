@@ -86,6 +86,8 @@ class SearchResult:
     source_position: str | None = None
     reranker_score: float | None = None
     reranker_model: str | None = None
+    evidence_role: str = "retrieved"
+    reference_sources: tuple[str, ...] = ()
 
 
 # 기존 법령 수집기와 API가 사용하던 이름을 유지해 이전 호출이 깨지지 않게 한다.

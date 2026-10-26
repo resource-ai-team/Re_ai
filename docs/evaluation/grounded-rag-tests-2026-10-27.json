@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-10-26T16:38:46.396149+00:00",
+  "scope": "Full suite with actual PostgreSQL/Neo4j; literal reference retrieval, exact locators, source/tenant/date gates and bounded critic evidence selection",
+  "pytest_passed": 870,
+  "subtests_passed": 24,
+  "junit_tests": 894,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 121.053,
+  "raw_junit_sha256": "a7bcd8fe0151093828d99f70203434f4265e5ec62551ba18731d6b2c3baf5f34",
+  "live_paid_model_calls": 0
+}
