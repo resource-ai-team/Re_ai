@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-10-26T19:01:43.354788+00:00",
+  "scope": "Full suite, actual local PostgreSQL and Neo4j. Azure calls inside pytest are mocked; two live focused calls are separate receipts.",
+  "pytest_passed": 911,
+  "subtests_passed": 24,
+  "junit_tests": 935,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 179.743,
+  "raw_junit_sha256": "57c52c3f7692b85e586214eca26a202a5a11aa3d31e42ff9f1ecd45e3da2f732",
+  "paid_model_calls_in_pytest": 0,
+  "separate_live_focused_calls": 2,
+  "live_proof_report": "docs/evaluation/azure-critic-revision-2026-10-27.json"
+}

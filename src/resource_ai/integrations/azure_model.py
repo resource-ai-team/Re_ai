@@ -136,6 +136,17 @@ class AzureResponsesModel:
                 ) as response,
             ):
                 self.last_call["http_status"] = response.status_code
+                self.last_call["rate_limits"] = {
+                    name: int(response.headers[name])
+                    for name in (
+                        "x-ratelimit-limit-tokens",
+                        "x-ratelimit-limit-requests",
+                        "x-ratelimit-remaining-tokens",
+                        "x-ratelimit-remaining-requests",
+                        "retry-after",
+                    )
+                    if name in response.headers and re.fullmatch(r"\d{1,9}", response.headers[name])
+                }
                 response.raise_for_status()
                 chunks, size = [], 0
                 for chunk in response.iter_bytes(65536):
@@ -144,6 +155,20 @@ class AzureResponsesModel:
                         raise ValueError()
                     chunks.append(chunk)
                 result = json.loads(b"".join(chunks))
+            # Even a token-limited/locally rejected response may have been billed.
+            usage = result.get("usage") or {}
+            counts = {name: usage.get(name) for name in ("input_tokens", "output_tokens")}
+            counts["reasoning_tokens"] = (usage.get("output_tokens_details") or {}).get(
+                "reasoning_tokens"
+            )
+            self.last_call["usage"] = {
+                name: count for name, count in counts.items() if type(count) is int and count >= 0
+            }
+            if result.get("status") in {"completed", "incomplete", "failed", "cancelled"}:
+                self.last_call["provider_status"] = result["status"]
+            reason = (result.get("incomplete_details") or {}).get("reason")
+            if reason in {"max_output_tokens", "content_filter"}:
+                self.last_call["incomplete_reason"] = reason
             if result.get("status") != "completed":
                 raise ValueError()
             actual_model = result.get("model", "")
@@ -166,14 +191,6 @@ class AzureResponsesModel:
                 if canonical_model
                 else "operator_checked_azure_deployment"
             )
-            usage = result.get("usage") or {}
-            counts = {name: usage.get(name) for name in ("input_tokens", "output_tokens")}
-            counts["reasoning_tokens"] = (usage.get("output_tokens_details") or {}).get(
-                "reasoning_tokens"
-            )
-            self.last_call["usage"] = {
-                name: count for name, count in counts.items() if type(count) is int and count >= 0
-            }
             texts = []
             for item in result["output"]:
                 if item.get("type") == "message":

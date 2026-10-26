@@ -56,6 +56,54 @@ def test_responses_contract_is_astra_high_stateless_and_structured():
     }
 
 
+def test_incomplete_response_keeps_billable_usage_without_saving_provider_content():
+    provider = model(
+        lambda request: httpx.Response(
+            200,
+            json=result(
+                status="incomplete",
+                incomplete_details={"reason": "max_output_tokens"},
+                usage={
+                    "input_tokens": 9,
+                    "output_tokens": 1024,
+                    "output_tokens_details": {"reasoning_tokens": 1000},
+                },
+            ),
+        )
+    )
+    with pytest.raises(LegalGraphError):
+        provider.complete("summarize_community", {})
+    assert provider.last_call["usage"] == {
+        "input_tokens": 9,
+        "output_tokens": 1024,
+        "reasoning_tokens": 1000,
+    }
+    assert provider.last_call["incomplete_reason"] == "max_output_tokens"
+    assert "summary" not in json.dumps(provider.last_call)
+
+
+def test_rate_limit_failure_keeps_only_allowlisted_numeric_headers():
+    provider = model(
+        lambda request: httpx.Response(
+            429,
+            headers={
+                "x-ratelimit-limit-tokens": "1000",
+                "retry-after": "60",
+                "x-ratelimit-remaining-tokens": "bad " + KEY,
+                "api-key": KEY,
+            },
+            text="private provider body " + KEY,
+        )
+    )
+    with pytest.raises(LegalGraphError):
+        provider.complete("summarize_community", {})
+    assert provider.last_call["rate_limits"] == {
+        "x-ratelimit-limit-tokens": 1000,
+        "retry-after": 60,
+    }
+    assert KEY not in json.dumps(provider.last_call)
+
+
 @pytest.mark.parametrize(
     "endpoint",
     [

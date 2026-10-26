@@ -1,7 +1,7 @@
 <div id="critic-revision-replay">
-  <h3>Critic → 수정 → 재검사</h3>
+  <h3 data-role="title">Critic → 수정 → 재검사</h3>
   <div class="viz-row text-small">
-    <span>PP 스크랩 3톤</span><span>KG·RAG 실제 조회</span><span>가상 수치·오류 주입</span><span>GPT 호출 0회</span>
+    <span>PP 스크랩 3톤</span><span>KG·RAG 실제 조회</span><span>가상 수치·오류 주입</span><span data-role="model-status">GPT 호출 0회</span>
   </div>
   <hr>
   <div class="viz-controls">
@@ -18,7 +18,8 @@
   <div data-role="unit" class="viz-row tabular-nums"></div>
   <table class="table table-sm">
     <tbody>
-      <tr><th scope="row">지적</th><td data-role="criticism"></td></tr>
+      <tr data-role="gpt-row" hidden><th scope="row">GPT 지적</th><td data-role="gpt-findings"></td></tr>
+      <tr><th scope="row">코드 지적</th><td data-role="criticism"></td></tr>
       <tr><th scope="row">수정</th><td data-role="action"></td></tr>
       <tr><th scope="row">남은 확인</th><td data-role="remaining"></td></tr>
     </tbody>
@@ -49,6 +50,10 @@
   const next = root.querySelector('[data-action="next"]');
   const play = root.querySelector('[data-action="play"]');
   const names = ['초안에서 오류 발견', 'KG를 다시 조회하고 재검사', '단위를 환산하고 다시 계산'];
+  if (trace.azure_reviews) {
+    el('title').textContent = 'Azure GPT 비판 → 수정 → 재검사';
+    el('model-status').textContent = 'GPT-6 Astra / high 실제 2회 · 1개 경로 집중 검사';
+  }
   let index = 0, timer = null;
   const saved = window.openai?.widgetState?.privateContent;
   if (saved?.schema === trace.schema && Number.isInteger(saved.round)) index = Math.max(0, Math.min(saved.round, trace.rounds.length - 1));
@@ -102,6 +107,14 @@
     el('round-title').textContent = names[index] || `검사 ${index+1}`;
     el('route').textContent = row.route === 'REVISE' ? '수정 필요 · REVISE' : '사람 확인 필요 · REVIEW';
     el('error-count').textContent = `확인된 오류 ${row.errors.length}개`;
+    el('gpt-row').hidden = !trace.azure_reviews;
+    if (trace.azure_reviews) {
+      const review = trace.azure_reviews[index === trace.rounds.length - 1 ? 'after' : 'before'];
+      const prefix = index === 1 ? '이전 GPT 지적 · 이 단계에서는 추가 호출 없음: ' : '';
+      el('gpt-findings').textContent = prefix + (review.concerns.length ?
+        review.concerns.map(c => c.message).join(' ') :
+        '같은 KG·견적 기준으로 재검사한 결과, 연결·단위 범위의 추가 지적 없음. 허가·인수 검증은 남음.');
+    }
     const unit = row.focus.transport_line;
     const price = Number(unit.factor).toLocaleString('ko-KR');
     el('unit').textContent = `운송 단가 ${price} ${unit.factor_unit} · 투입 ${Number(unit.activity).toLocaleString('ko-KR')} ${unit.activity_unit}`;
@@ -121,7 +134,12 @@
       `후보 ${trace.candidate_count}개의 미확인 검사 항목 ${row.missing_count}건 · 위반 확정 아님`;
     const tbody = el('records'); tbody.replaceChildren();
     const records = row.errors.length ? row.errors.map(e => [e.code,e.message]) : [['주입 오류','재검사 오류 0개']];
-    records.push(['다시 시작할 단계', row.router.restart_from || '없음'],['실제 API 자동 재실행',String(row.router.automatic_reexecution)],['모델 호출',String(row.model_calls)],['실제 발주 승인',String(row.dispatch_approved)]);
+    records.push(['다시 시작할 단계', row.router.restart_from || '없음'],['실제 API 자동 재실행',String(row.router.automatic_reexecution)],['이번 GPT 호출',String(trace.azure_reviews ? (index === 1 ? 0 : 1) : row.model_calls)],['실제 발주 승인',String(row.dispatch_approved)]);
+    if (trace.azure_reviews) {
+      const review = trace.azure_reviews[index === trace.rounds.length - 1 ? 'after' : 'before'];
+      records.push(['GPT 응답 확인', `${review.call.verified_model} / ${review.call.reasoning_effort} / HTTP ${review.call.http_status}`]);
+      review.concerns.forEach(c => c.citations.forEach(citation => records.push([citation.ref_id,citation.quote])));
+    }
     records.forEach(values => {
       const tr = document.createElement('tr');
       values.forEach(value => { const td=document.createElement('td');td.textContent=value;tr.append(td); });
