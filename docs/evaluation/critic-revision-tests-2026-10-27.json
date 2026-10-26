@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-10-26T18:34:35.099410+00:00",
+  "scope": "Targeted code Critic, decision review, semantic Critic and replay regression tests; synthetic in-process fixtures",
+  "pytest_passed": 82,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 6.991,
+  "raw_junit_sha256": "2179acec0c2dad355c81020b9f2bb45a05e266d1e4bac0b8a0887b07ffe45730",
+  "live_gpt_calls": 0,
+  "full_suite_rerun": false,
+  "previous_full_suite_report": "docs/evaluation/bm25-tests-2026-10-27.json"
+}
