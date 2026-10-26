@@ -102,37 +102,6 @@ docker compose -f docker-compose.yml -f docker-compose.neo4j.yml up -d
 이 레포의 Docker Compose는 AI 로컬 개발용 PostgreSQL·Neo4j만 실행합니다.
 `Re_client → Re_server → Re_ai` 전체 서비스 실행과 배포는 `Re_infra`의 Compose·운영 절차를 따릅니다.
 
-## RAG 데이터 실행
-
-RAG 검색 API는 다음 세 그룹을 제공합니다.
-
-| 검색 그룹 | 대상 |
-| --- | --- |
-| `LEGAL` | 법령·시행령·시행규칙·별표·판례 |
-| `TECHNICAL` | 논문·공공 보고서·공정 설명서 |
-| `COMPANY` | 기업별 성적서·시설 회신·규격·처리계획서 |
-
-내부 저장소는 기존 문서 유형을 유지하며 검색 시 위 그룹으로 매핑합니다. 실제 처리 이력은
-업무 DB에서 관리하고 기본 RAG 검색 그룹에 포함하지 않습니다.
-
-저장소의 검수된 공개 출처 요약은 다음 명령으로 재생성하고 적재합니다. 원문 전체가 아니라
-출처 위치·적용 범위·한계를 포함한 검수 요약을 `TECHNICAL_LITERATURE`로 저장합니다.
-
-```bash
-resource-rag build-public-evidence
-resource-rag validate data/official/public_evidence_summaries.jsonl
-resource-rag index data/official/public_evidence_summaries.jsonl
-```
-
-그 밖의 정규화된 JSONL 데이터는 다음과 같이 확인하고 적재합니다.
-
-```bash
-resource-rag validate path/to/documents.jsonl
-resource-rag index path/to/documents.jsonl --manifest path/to/documents.manifest.json
-```
-
-문서 계약과 기업별 권한 격리는 [다중 코퍼스 인덱싱](docs/rag-multi-corpus.md)을 참고합니다.
-OCR과 사용자 문서 입력값 추출은 입력 영역, 시설·비용·탄소의 확정값은 구조화 데이터 영역에서 담당합니다.
 
 ## 기술스택
 

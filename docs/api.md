@@ -59,3 +59,17 @@ COMPANY는 시험 항목·현재 문서 버전·원문 위치를 기준으로 �
 
 기존 `/rag/search` 계약은 유지했습니다. KG는 Re_server/에이전트용 추가 API이며
 사용법과 한계는 [knowledge-graph.md](knowledge-graph.md)를 참고합니다.
+
+## KG reference와 RAG 근거 검증
+
+`POST /analysis/reference-validation`
+
+KG 후보 풀을 첫 페이지부터 조회하고 후보에 연결된 Evidence ID, reference 문자열과 DOI 후보를
+Technical RAG 검색 결과에 연결합니다. 단순 DOI·URL 일치는 논문 내용의 지지를 뜻하지 않으므로
+`UNKNOWN`을 유지합니다. 검수된 RAG 청크가 `kg_evidence_ids`와 `kg_claim_status`를 명시한
+경우에만 `SUPPORTED`, `CONFLICT`, `SCOPE_MISMATCH`를 확정합니다.
+
+근거가 `UNKNOWN`이면 `max_critic_retries` 범위에서 출처·원문 위치를 포함해 재검색합니다.
+충돌은 `REVISE`, 미확인은 `REVIEW`, 모든 근거가 명시적으로 지지된 후보만 `PASS`입니다.
+응답에는 KG Evidence ID, RAG Chunk ID, 출처 URL과 인용 위치가 포함됩니다. 원문 이용 권한이
+없는 자료를 이 API가 새로 수집하거나 저장하지는 않습니다.
