@@ -16,7 +16,7 @@ _EXPLICIT = re.compile(
 _LOCAL_ANNEX = re.compile(_ANNEX)
 
 
-def references(text, title):
+def references(text, title, *, administrative_rule=False):
     """Resolve only explicit document names, 법/영 and same-document annexes."""
     base = re.sub(r"\s*(?:시행령|시행규칙)$", "", title)
     found, unresolved, spans = set(), set(), []
@@ -32,6 +32,10 @@ def references(text, title):
             continue
         if owner.startswith("「"):
             target = owner[1:-1]
+        elif administrative_rule:
+            # 지침의 '법'은 앞에서 정의한 상위법일 수 있다. 지침명에 결합하지 않는다.
+            unresolved.add("unresolved_administrative_alias:" + match.group())
+            continue
         elif owner in {"이규칙", "이영"}:
             target = title
         elif "시행령" in owner or owner == "영":
@@ -100,7 +104,8 @@ def expand_context(database, hits, *, max_roots=5, max_links=8, max_chunks=48, m
             anchor = connection.execute(
                 """
                 SELECT d.id, d.title, d.version, d.source_url, c.content,
-                    c.metadata->>'article', c.metadata->>'article_title', c.metadata->>'annex'
+                    c.metadata->>'article', c.metadata->>'article_title', c.metadata->>'annex',
+                    d.metadata->>'legal_source_kind'
                 FROM legal_chunks c JOIN legal_documents d ON d.id=c.document_id
                 WHERE c.id=%s AND d.document_type='LAW' AND d.tenant_id IS NULL
                   AND d.is_current=true AND d.effective_from<=CURRENT_DATE
@@ -172,7 +177,11 @@ def expand_context(database, hits, *, max_roots=5, max_links=8, max_chunks=48, m
             packet["primary"] = primary
             if issue:
                 packet["source_checks"].append(issue)
-            explicit, unresolved = references("\n".join(s["content"] for s in primary), hit.title)
+            explicit, unresolved = references(
+                "\n".join(s["content"] for s in primary),
+                hit.title,
+                administrative_rule=anchor[8] == "administrative_rule",
+            )
             explicit = [r for r in explicit if r != (hit.title, root_locator)]
             packet["unresolved"].extend(unresolved)
             for position, (title, locator) in enumerate(explicit):

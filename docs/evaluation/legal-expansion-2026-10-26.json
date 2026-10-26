@@ -1,0 +1,1097 @@
+{
+  "generated_at": "2026-10-26T05:46:45.671797+00:00",
+  "as_of": "2026-10-26",
+  "scope": "Local real DB and local E5; developer-authored retrieval probes, not expert legal validation",
+  "live_model_api_calls": 0,
+  "dataset_sha256": "8ca8c44214f31d4bd5f249f0b01460a76a453409facaa7ef19800a8922da027c",
+  "coverage": {
+    "dataset_sources": 98,
+    "stored_sources": 98,
+    "stored_chunks": 21979,
+    "all_sources_present": true,
+    "same_embedding_recipe": true,
+    "duplicate_current_canonical_sources": [],
+    "all_xml_cache_hashes_verified": true,
+    "stored_source_hashes_match_dataset": true,
+    "missing_cross_reference_documents_present": true
+  },
+  "current_corpus_counts": [
+    [
+      "LAW",
+      98,
+      21979
+    ],
+    [
+      "PRECEDENT",
+      14,
+      92
+    ],
+    [
+      "TECHNICAL_LITERATURE",
+      12,
+      24
+    ]
+  ],
+  "suites": [
+    {
+      "name": "legacy_regression",
+      "dataset": "data/config/retrieval_eval.json",
+      "by_group": {
+        "LEGAL": {
+          "total": 7,
+          "passed": 5,
+          "pass_rate": 0.7142857142857143,
+          "recall_at_k": 0.7142857142857143,
+          "mrr": 0.619047619047619
+        },
+        "TECHNICAL": {
+          "total": 7,
+          "passed": 7,
+          "pass_rate": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 0.9285714285714286
+        }
+      },
+      "cases": [
+        {
+          "query": "사업장폐기물을 업체에 위탁할 때 배출자가 확인해야 할 의무는?",
+          "passed": true,
+          "matched": "폐기물관리법 제17조",
+          "result_headings": [
+            "건설폐기물의 재활용촉진에 관한 법률 / 제16조(건설폐기물 처리용역의 위탁ㆍ수탁 계약 등) ①항",
+            "폐기물관리법 시행규칙 / 제17조의2(사업장폐기물배출자의 확인 등) ②항",
+            "폐기물관리법 / 제17조(사업장폐기물배출자의 의무 등) ①항",
+            "폐기물관리법 / 제19조(사업장폐기물처리자의 의무) ②항",
+            "폐기물관리법 / 제18조(사업장폐기물의 처리) ①항"
+          ],
+          "first_relevant_rank": 3,
+          "reciprocal_rank": 0.3333333333333333,
+          "search_group": "LEGAL",
+          "required": true,
+          "group_violations": [],
+          "expected_any": [
+            "폐기물관리법 제17조",
+            "폐기물관리법 제48조"
+          ],
+          "locators": [
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 제19조 ②항",
+            "폐기물관리법 제18조 ①항"
+          ]
+        },
+        {
+          "query": "폐폴리프로필렌을 재활용할 수 있는 R 유형과 재활용 기준",
+          "passed": true,
+          "matched": "별표 5의3",
+          "result_headings": [
+            "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+            "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+            "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+            "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+            "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "별표 4의2",
+            "별표 4의3",
+            "별표 5의3"
+          ],
+          "locators": [
+            "폐기물관리법 시행규칙 별표 5의3",
+            "폐기물관리법 시행규칙 별표 5의3",
+            "폐기물관리법 시행규칙 별표 5의3",
+            "폐기물관리법 시행규칙 별표 5의3",
+            "폐기물관리법 시행규칙 별표 5의3"
+          ]
+        },
+        {
+          "query": "경매로 사업장을 인수하면 다른 장소에 방치된 폐기물 의무도 승계하는가?",
+          "passed": true,
+          "matched": "2023두62830",
+          "result_headings": [
+            "대법원 2023두62830 조치명령 / 판시사항",
+            "대법원 2023두62830 조치명령 / 판례 전문",
+            "대법원 2023두62830 조치명령 / 판결요지",
+            "대법원 2002다46331 토지인도 / 판결요지",
+            "폐기물관리법 / 제17조(사업장폐기물배출자의 의무 등) ⑨항"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "2023두62830"
+          ],
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판결요지",
+            "대법원 2002다46331 판결요지",
+            "폐기물관리법 제17조 ⑨항"
+          ]
+        },
+        {
+          "query": "폐기물 처리업체의 허가 업종과 처리 범위를 확인하려면 어떤 조문을 봐야 하나?",
+          "passed": false,
+          "matched": null,
+          "result_headings": [
+            "건설폐기물의 처리 등에 관한 업무처리지침 / Ⅵ. 건설폐기물 처리업 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 / Ⅲ. 허가신청서류 검토 및 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 / Ⅹ. 수집ㆍ운반업의 영업구역 협의절차",
+            "폐기물처리업 허가 등에 관한 업무처리지침 / Ⅹ. 수집ㆍ운반업의 영업구역 협의절차",
+            "폐기물처리업 허가 등에 관한 업무처리지침 / Ⅹ. 수집ㆍ운반업의 영업구역 협의절차"
+          ],
+          "first_relevant_rank": null,
+          "reciprocal_rank": 0.0,
+          "search_group": "LEGAL",
+          "required": true,
+          "group_violations": [],
+          "expected_any": [
+            "폐기물관리법 제25조"
+          ],
+          "locators": [
+            "건설폐기물의 처리 등에 관한 업무처리지침 Ⅵ. 건설폐기물 처리업 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅲ. 허가신청서류 검토 및 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅹ. 수집ㆍ운반업의 영업구역 협의절차",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅹ. 수집ㆍ운반업의 영업구역 협의절차",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅹ. 수집ㆍ운반업의 영업구역 협의절차"
+          ]
+        },
+        {
+          "query": "폐기물이 아닌 순환자원으로 인정받기 위한 제도적 근거는?",
+          "passed": false,
+          "matched": null,
+          "result_headings": [
+            "순환자원의 기준 및 용도에 관한 고시 / 제3조(순환이용의 기준) 폐기물이 순환자원으로 인정받기 위해서는 다음 각 호의 기준을 모두 충족해야 한다.",
+            "순환자원의 기준 및 용도에 관한 고시 / 제4조(순환이용의 용도) 폐기물이 순환자원으로 인정받기 위해서는 다음 각 호의 요건을 모두 충족하는 용도로 사용해야 한다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 / 제2조(정의) 이 고시에서 사용하는 용어의 정의는 다음과 같다.",
+            "순환경제사회 전환 촉진법 / 제2조(정의)",
+            "순환경제사회 전환 촉진법 시행규칙 / 제12조(순환자원의 인정 시 고려 사항) ②항"
+          ],
+          "first_relevant_rank": null,
+          "reciprocal_rank": 0.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "제21조",
+            "제23조"
+          ],
+          "locators": [
+            "순환자원의 기준 및 용도에 관한 고시 제3조(순환이용의 기준) 폐기물이 순환자원으로 인정받기 위해서는 다음 각 호의 기준을 모두 충족해야 한다.",
+            "순환자원의 기준 및 용도에 관한 고시 제4조(순환이용의 용도) 폐기물이 순환자원으로 인정받기 위해서는 다음 각 호의 요건을 모두 충족하는 용도로 사용해야 한다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 제2조(정의) 이 고시에서 사용하는 용어의 정의는 다음과 같다.",
+            "순환경제사회 전환 촉진법 제2조",
+            "순환경제사회 전환 촉진법 시행규칙 제12조 ②항"
+          ]
+        },
+        {
+          "query": "새로운 재활용 기술에 규제특례나 임시허가를 신청할 수 있는가?",
+          "passed": true,
+          "matched": "제33조",
+          "result_headings": [
+            "순환경제사회 전환 촉진법 / 제33조(임시허가) ①항",
+            "순환경제사회 전환 촉진법 시행령 / 별표 6 과태료의 부과기준(제51조 관련)",
+            "순환경제사회 전환 촉진법 시행령 / 제29조(규제특례의 연장 등) ⑨항",
+            "순환경제사회 전환 촉진법 시행령 / 제30조(임시허가의 신청 등) ①항",
+            "순환경제사회 전환 촉진법 / 제30조(실증을 위한 규제특례) ①항"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "제28조",
+            "제30조",
+            "제33조"
+          ],
+          "locators": [
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "순환경제사회 전환 촉진법 시행령 별표 6",
+            "순환경제사회 전환 촉진법 시행령 제29조 ⑨항",
+            "순환경제사회 전환 촉진법 시행령 제30조 ①항",
+            "순환경제사회 전환 촉진법 제30조 ①항"
+          ]
+        },
+        {
+          "query": "폐기물을 부적정 처리하면 누구에게 조치명령을 내릴 수 있는가?",
+          "passed": true,
+          "matched": "폐기물관리법 제48조",
+          "result_headings": [
+            "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ②항",
+            "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ③항",
+            "폐기물관리법 시행령 / 제23조의5(조치명령대상자 순위의 예외 기준)",
+            "폐기물관리법 시행규칙 / 제68조의3(폐기물 처리에 대한 조치명령 등) ①항",
+            "폐기물관리법 시행규칙 / 제68조의3(폐기물 처리에 대한 조치명령 등) ②항"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "폐기물관리법 제48조",
+            "2023두62830"
+          ],
+          "locators": [
+            "폐기물관리법 제48조 ②항",
+            "폐기물관리법 제48조 ③항",
+            "폐기물관리법 시행령 제23조의5",
+            "폐기물관리법 시행규칙 제68조의3 ①항",
+            "폐기물관리법 시행규칙 제68조의3 ②항"
+          ]
+        },
+        {
+          "query": "코팅·라미네이트 종이를 재활용할 때 공정 선정에서 무엇을 고려해야 하나?",
+          "passed": true,
+          "matched": "코팅 종이는 맞는 제지 공정을 찾아야 함",
+          "result_headings": [
+            "Paper-based packaging recyclability guidelines / 코팅 종이는 맞는 제지 공정을 찾아야 함",
+            "How to Treat Scrap Flows in Carbon Footprint Calculations for Aluminium Products / 지역 기본값은 이번 재활용 공정 실측값이 아님",
+            "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 재용해 설비 적합성이 수율을 바꿈",
+            "Harmonised European laboratory test method, Part I, Version 3 / 시험법의 대상 공정과 시료 대표성 검토",
+            "용해 공정 원재료 투입 시 수증기 폭발 / 입고 후 보관 중 생기는 수분도 재확인"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "TECHNICAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "코팅 종이는 맞는 제지 공정을 찾아야 함"
+          ],
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "재해개요; 재해예방대책"
+          ]
+        },
+        {
+          "query": "PET 병 재활용성을 평가할 때 라벨과 접착제를 어떻게 봐야 하나?",
+          "passed": true,
+          "matched": "PET는 병·색·라벨·접착·이전 내용물을 분리",
+          "result_headings": [
+            "Design Guidelines for PET bottles in contact with food and non-food products / PET는 병·색·라벨·접착·이전 내용물을 분리",
+            "Paper-based packaging recyclability guidelines / 코팅 종이는 맞는 제지 공정을 찾아야 함",
+            "Harmonised European laboratory test method, Part I, Version 3 / 시험법의 대상 공정과 시료 대표성 검토",
+            "How to Treat Scrap Flows in Carbon Footprint Calculations for Aluminium Products / 지역 기본값은 이번 재활용 공정 실측값이 아님",
+            "Specifiers' Guide to IAI's Carbon Footprint Methodology / 제품 탄소와 회사 Scope 1은 다른 범위"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "TECHNICAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "PET는 병·색·라벨·접착·이전 내용물을 분리"
+          ],
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        },
+        {
+          "query": "알루미늄 용융금속에 물이 들어가면 어떤 위험이 있나?",
+          "passed": true,
+          "matched": "입고 후 보관 중 생기는 수분도 재확인",
+          "result_headings": [
+            "용해 공정 원재료 투입 시 수증기 폭발 / 입고 후 보관 중 생기는 수분도 재확인",
+            "Safety hazards in the molten metal industries / 용융금속과 물의 접촉 위험",
+            "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 재용해 설비 적합성이 수율을 바꿈",
+            "Aluminum Dynamics LLC Scrap Supplier Manual Revision 3 / 일반 허용치와 품목별 금지조항 충돌 검토",
+            "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 같은 알루미늄도 합금 분리가 먼저"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "TECHNICAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "용융금속과 물의 접촉 위험",
+            "입고 후 보관 중 생기는 수분도 재확인"
+          ],
+          "locators": [
+            "재해개요; 재해예방대책",
+            "Safety topics > Molten metal/water explosions",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "8.0 general requirements p.12; 8.2 bales p.16; 8.3 densified p.17",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389"
+          ]
+        },
+        {
+          "query": "폐알루미늄 재용해 전에 합금을 분리해야 하는가?",
+          "passed": true,
+          "matched": "같은 알루미늄도 합금 분리가 먼저",
+          "result_headings": [
+            "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 재용해 설비 적합성이 수율을 바꿈",
+            "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 같은 알루미늄도 합금 분리가 먼저",
+            "How to Treat Scrap Flows in Carbon Footprint Calculations for Aluminium Products / 지역 기본값은 이번 재활용 공정 실측값이 아님",
+            "용해 공정 원재료 투입 시 수증기 폭발 / 입고 후 보관 중 생기는 수분도 재확인",
+            "Scrap Specifications Circular, effective 15 February 2024 / 단일 합금 칩과 혼합 칩은 다른 거래 등급"
+          ],
+          "first_relevant_rank": 2,
+          "reciprocal_rank": 0.5,
+          "search_group": "TECHNICAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "같은 알루미늄도 합금 분리가 먼저"
+          ],
+          "locators": [
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "재해개요; 재해예방대책",
+            "Nonferrous guidelines / Tease and Telic; printed p.11, PDF p.13"
+          ]
+        },
+        {
+          "query": "알루미늄 절삭칩을 재용해하기 전에 전처리가 필요한가?",
+          "passed": true,
+          "matched": "절삭칩 전처리는 조건부 대안",
+          "result_headings": [
+            "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 절삭칩 전처리는 조건부 대안",
+            "용해 공정 원재료 투입 시 수증기 폭발 / 입고 후 보관 중 생기는 수분도 재확인",
+            "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 같은 알루미늄도 합금 분리가 먼저",
+            "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 재용해 설비 적합성이 수율을 바꿈",
+            "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 전처리 비용·에너지도 비교에 포함"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "TECHNICAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "절삭칩 전처리는 조건부 대안"
+          ],
+          "locators": [
+            "4.1.4.1.1; 4.3.4.3; printed pp.389, 466–470",
+            "재해개요; 재해예방대책",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469"
+          ]
+        },
+        {
+          "query": "공정 스크랩의 탄소를 자동으로 0으로 계산해도 되나?",
+          "passed": true,
+          "matched": "공정스크랩을 자동 탄소 0으로 두지 않음",
+          "result_headings": [
+            "How to Treat Scrap Flows in Carbon Footprint Calculations for Aluminium Products / 공정스크랩을 자동 탄소 0으로 두지 않음",
+            "How to Treat Scrap Flows in Carbon Footprint Calculations for Aluminium Products / 지역 기본값은 이번 재활용 공정 실측값이 아님",
+            "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 전처리 비용·에너지도 비교에 포함",
+            "Specifiers' Guide to IAI's Carbon Footprint Methodology / 제품 탄소와 회사 Scope 1은 다른 범위",
+            "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 같은 알루미늄도 합금 분리가 먼저"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "TECHNICAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "공정스크랩을 자동 탄소 0으로 두지 않음"
+          ],
+          "locators": [
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389"
+          ]
+        },
+        {
+          "query": "단일 합금 알루미늄 칩과 혼합 칩은 같은 거래 등급인가?",
+          "passed": true,
+          "matched": "단일 합금 칩과 혼합 칩은 다른 거래 등급",
+          "result_headings": [
+            "Scrap Specifications Circular, effective 15 February 2024 / 단일 합금 칩과 혼합 칩은 다른 거래 등급",
+            "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 같은 알루미늄도 합금 분리가 먼저",
+            "How to Treat Scrap Flows in Carbon Footprint Calculations for Aluminium Products / 같은 회사보다 같은 제품시스템인지가 핵심",
+            "Aluminum Dynamics LLC Scrap Supplier Manual Revision 3 / 운송 중 수분과 계근 차이도 거래 위험",
+            "용해 공정 원재료 투입 시 수증기 폭발 / 입고 후 보관 중 생기는 수분도 재확인"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "TECHNICAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "단일 합금 칩과 혼합 칩은 다른 거래 등급"
+          ],
+          "locators": [
+            "Nonferrous guidelines / Tease and Telic; printed p.11, PDF p.13",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "3.3 Delivery modes; printed pp.5–6",
+            "재해개요; 재해예방대책"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "legacy_paraphrases",
+      "dataset": "data/config/retrieval_eval_paraphrases_v1.json",
+      "by_group": {
+        "LEGAL": {
+          "total": 8,
+          "passed": 3,
+          "pass_rate": 0.375,
+          "recall_at_k": 0.375,
+          "mrr": 0.22916666666666666
+        }
+      },
+      "cases": [
+        {
+          "query": "폐기물을 대신 처리해 주는 회사는 어떤 종류의 영업허가를 받아야 해?",
+          "passed": false,
+          "matched": null,
+          "result_headings": [
+            "물환경보전법 / 제62조(폐수처리업의 허가) ②항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 / Ⅲ. 허가신청서류 검토 및 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 / Ⅲ. 허가신청서류 검토 및 허가",
+            "건설폐기물의 재활용촉진에 관한 법률 / 제25조(허가취소 등) ①항",
+            "물환경보전법 / 제62조(폐수처리업의 허가) ①항"
+          ],
+          "first_relevant_rank": null,
+          "reciprocal_rank": 0.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "폐기물관리법 제25조"
+          ],
+          "locators": [
+            "물환경보전법 제62조 ②항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅲ. 허가신청서류 검토 및 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅲ. 허가신청서류 검토 및 허가",
+            "건설폐기물의 재활용촉진에 관한 법률 제25조 ①항",
+            "물환경보전법 제62조 ①항"
+          ]
+        },
+        {
+          "query": "처리업 허가를 받을 때 업종은 어떤 기준으로 나뉘나요?",
+          "passed": false,
+          "matched": null,
+          "result_headings": [
+            "물환경보전법 / 제62조(폐수처리업의 허가) ②항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 / Ⅲ. 허가신청서류 검토 및 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 / Ⅱ. 사업계획 검토 및 적정통보",
+            "자원의 절약과 재활용촉진에 관한 법률 시행령 / 제32조(재활용지정사업자 관련 업종)",
+            "순환경제사회 전환 촉진법 시행규칙 / 제3조(자원순환산업)"
+          ],
+          "first_relevant_rank": null,
+          "reciprocal_rank": 0.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "폐기물관리법 제25조"
+          ],
+          "locators": [
+            "물환경보전법 제62조 ②항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅲ. 허가신청서류 검토 및 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅱ. 사업계획 검토 및 적정통보",
+            "자원의 절약과 재활용촉진에 관한 법률 시행령 제32조",
+            "순환경제사회 전환 촉진법 시행규칙 제3조"
+          ]
+        },
+        {
+          "query": "사업장폐기물을 다른 업체에 넘길 때 배출자가 점검할 사항",
+          "passed": false,
+          "matched": null,
+          "result_headings": [
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 / ⅩⅠ. 폐기물배출사업장 관리",
+            "폐기물관리법 시행규칙 / 제17조의2(사업장폐기물배출자의 확인 등) ②항",
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 / Ⅶ. 사업장폐기물 배출자신고",
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 / Ⅶ. 사업장폐기물 배출자신고",
+            "폐기물관리법 시행규칙 / 제18조(사업장폐기물배출자의 신고) ②항"
+          ],
+          "first_relevant_rank": null,
+          "reciprocal_rank": 0.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "폐기물관리법 제17조"
+          ],
+          "locators": [
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 ⅩⅠ. 폐기물배출사업장 관리",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 Ⅶ. 사업장폐기물 배출자신고",
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 Ⅶ. 사업장폐기물 배출자신고",
+            "폐기물관리법 시행규칙 제18조 ②항"
+          ]
+        },
+        {
+          "query": "폐기물 처리 위탁자가 해야 하는 확인 절차",
+          "passed": false,
+          "matched": null,
+          "result_headings": [
+            "폐기물관리법 시행규칙 / 별표 5의8 음식물류 폐기물 배출자 및 사업장폐기물배출자의 폐기물 적정처리 여부 확인 방법(제17조의4 관련)",
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 / Ⅷ. 사업장 지정폐기물 처리계획의 확인",
+            "폐기물관리법 시행규칙 / 제16조의10(음식물류 폐기물 발생 억제 및 처리 계획의 신고) ②항",
+            "폐기물관리법 시행규칙 / 제16조의12(위탁ㆍ수탁의 기준 및 절차)",
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 / Ⅷ. 사업장 지정폐기물 처리계획의 확인"
+          ],
+          "first_relevant_rank": null,
+          "reciprocal_rank": 0.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "폐기물관리법 제17조",
+            "폐기물관리법 시행규칙 제17조의2"
+          ],
+          "locators": [
+            "폐기물관리법 시행규칙 별표 5의8",
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 Ⅷ. 사업장 지정폐기물 처리계획의 확인",
+            "폐기물관리법 시행규칙 제16조의10 ②항",
+            "폐기물관리법 시행규칙 제16조의12",
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 Ⅷ. 사업장 지정폐기물 처리계획의 확인"
+          ]
+        },
+        {
+          "query": "폐기물을 순환자원으로 인정받으려면 어떤 제도를 확인해야 하나요?",
+          "passed": false,
+          "matched": null,
+          "result_headings": [
+            "순환자원의 기준 및 용도에 관한 고시 / 제3조(순환이용의 기준) 폐기물이 순환자원으로 인정받기 위해서는 다음 각 호의 기준을 모두 충족해야 한다.",
+            "순환자원의 기준 및 용도에 관한 고시 / 제4조(순환이용의 용도) 폐기물이 순환자원으로 인정받기 위해서는 다음 각 호의 요건을 모두 충족하는 용도로 사용해야 한다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 / 별표 1 순환자원 인정여부 검토방법(제5조 관련)",
+            "순환경제사회 전환 촉진법 시행규칙 / 제13조(순환자원의 인정 절차 등) ②항",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 / 별표 1 순환자원 인정여부 검토방법(제5조 관련)"
+          ],
+          "first_relevant_rank": null,
+          "reciprocal_rank": 0.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "순환경제사회 전환 촉진법 제21조"
+          ],
+          "locators": [
+            "순환자원의 기준 및 용도에 관한 고시 제3조(순환이용의 기준) 폐기물이 순환자원으로 인정받기 위해서는 다음 각 호의 기준을 모두 충족해야 한다.",
+            "순환자원의 기준 및 용도에 관한 고시 제4조(순환이용의 용도) 폐기물이 순환자원으로 인정받기 위해서는 다음 각 호의 요건을 모두 충족하는 용도로 사용해야 한다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 별표 1",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ②항",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 별표 1"
+          ]
+        },
+        {
+          "query": "신기술 재활용을 위해 임시허가를 받을 수 있나",
+          "passed": true,
+          "matched": "순환경제사회 전환 촉진법 제33조",
+          "result_headings": [
+            "순환경제사회 전환 촉진법 시행령 / 별표 6 과태료의 부과기준(제51조 관련)",
+            "순환경제사회 전환 촉진법 / 제33조(임시허가) ①항",
+            "순환경제사회 전환 촉진법 / 제33조(임시허가) ⑪항",
+            "순환경제사회 전환 촉진법 / 제33조(임시허가) ⑭항",
+            "순환경제사회 전환 촉진법 시행령 / 제30조(임시허가의 신청 등) ①항"
+          ],
+          "first_relevant_rank": 2,
+          "reciprocal_rank": 0.5,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "순환경제사회 전환 촉진법 제33조"
+          ],
+          "locators": [
+            "순환경제사회 전환 촉진법 시행령 별표 6",
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "순환경제사회 전환 촉진법 제33조 ⑪항",
+            "순환경제사회 전환 촉진법 제33조 ⑭항",
+            "순환경제사회 전환 촉진법 시행령 제30조 ①항"
+          ]
+        },
+        {
+          "query": "방치 폐기물 조치명령의 대상은 누구인가",
+          "passed": true,
+          "matched": "폐기물관리법 제48조",
+          "result_headings": [
+            "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ②항",
+            "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ③항",
+            "폐기물관리법 시행규칙 / 제68조의3(폐기물 처리에 대한 조치명령 등) ①항",
+            "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ④항",
+            "폐기물관리법 시행규칙 / 제68조의3(폐기물 처리에 대한 조치명령 등) ②항"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "폐기물관리법 제48조"
+          ],
+          "locators": [
+            "폐기물관리법 제48조 ②항",
+            "폐기물관리법 제48조 ③항",
+            "폐기물관리법 시행규칙 제68조의3 ①항",
+            "폐기물관리법 제48조 ④항",
+            "폐기물관리법 시행규칙 제68조의3 ②항"
+          ]
+        },
+        {
+          "query": "공장을 경매로 사면 밖에 남겨진 폐기물도 책임져야 하는가",
+          "passed": true,
+          "matched": "2023두62830",
+          "result_headings": [
+            "대법원 2002다46331 토지인도 / 판례 전문",
+            "대법원 2019다226548 구상금 / 판례 전문",
+            "대법원 2023두62830 조치명령 / 판례 전문",
+            "대법원 2023두62830 조치명령 / 판결요지",
+            "대법원 2023두62830 조치명령 / 판례 전문"
+          ],
+          "first_relevant_rank": 3,
+          "reciprocal_rank": 0.3333333333333333,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "2023두62830"
+          ],
+          "locators": [
+            "대법원 2002다46331 판례 전문",
+            "대법원 2019다226548 판례 전문",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판결요지",
+            "대법원 2023두62830 판례 전문"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "new_source_probes",
+      "dataset": "data/config/legal_expansion_eval.json",
+      "by_group": {
+        "LEGAL": {
+          "total": 15,
+          "passed": 15,
+          "pass_rate": 1.0,
+          "recall_at_k": 1.0,
+          "mrr": 1.0
+        }
+      },
+      "cases": [
+        {
+          "query": "에너지법 제2조 에너지의 정의",
+          "passed": true,
+          "matched": "에너지법 제2조",
+          "result_headings": [
+            "에너지법 / 제2조(정의)",
+            "에너지법 시행규칙 / 제2조(열사용기자재)",
+            "에너지법 시행령 / 제2조(에너지위원회의 구성) ①항",
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 / 제2조(정의)",
+            "기후위기 대응을 위한 탄소중립ㆍ녹색성장 기본법 / 제2조(정의)"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "에너지법 제2조"
+          ],
+          "locators": [
+            "에너지법 제2조",
+            "에너지법 시행규칙 제2조",
+            "에너지법 시행령 제2조 ①항",
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 제2조",
+            "기후위기 대응을 위한 탄소중립ㆍ녹색성장 기본법 제2조"
+          ]
+        },
+        {
+          "query": "비료관리법 제4조 공정규격",
+          "passed": true,
+          "matched": "비료관리법 제4조",
+          "result_headings": [
+            "비료관리법 / 제4조(공정규격의 설정등) ⑤항",
+            "비료관리법 / 제4조(공정규격의 설정등) ③항",
+            "비료관리법 / 제4조(공정규격의 설정등) ①항",
+            "비료관리법 / 제4조(공정규격의 설정등) ④항",
+            "비료관리법 / 제4조(공정규격의 설정등) ⑥항"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "비료관리법 제4조"
+          ],
+          "locators": [
+            "비료관리법 제4조 ⑤항",
+            "비료관리법 제4조 ③항",
+            "비료관리법 제4조 ①항",
+            "비료관리법 제4조 ④항",
+            "비료관리법 제4조 ⑥항"
+          ]
+        },
+        {
+          "query": "수도법 제7조 상수원보호구역 지정",
+          "passed": true,
+          "matched": "수도법 제7조",
+          "result_headings": [
+            "수도법 / 제7조(상수원보호구역 지정 등) ①항",
+            "수도법 / 제7조(상수원보호구역 지정 등) ⑥항",
+            "수도법 / 제7조(상수원보호구역 지정 등) ④항",
+            "수도법 / 제7조(상수원보호구역 지정 등) ②항",
+            "수도법 / 제7조(상수원보호구역 지정 등) ⑤항"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "수도법 제7조"
+          ],
+          "locators": [
+            "수도법 제7조 ①항",
+            "수도법 제7조 ⑥항",
+            "수도법 제7조 ④항",
+            "수도법 제7조 ②항",
+            "수도법 제7조 ⑤항"
+          ]
+        },
+        {
+          "query": "산업입지 및 개발에 관한 법률 제2조 산업단지 정의",
+          "passed": true,
+          "matched": "산업입지 및 개발에 관한 법률 제2조",
+          "result_headings": [
+            "산업입지 및 개발에 관한 법률 / 제2조(정의)",
+            "산업입지 및 개발에 관한 법률 / 제2조(정의)",
+            "산업입지 및 개발에 관한 법률 / 제8조의2(산업단지 지정의 제한) ①항",
+            "산업입지 및 개발에 관한 법률 시행령 / 제29조(산업단지 외의 사업에 대한 준용)",
+            "산업입지 및 개발에 관한 법률 / 제44조(유치지역 지정에 따른 산업단지개발) ②항"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "산업입지 및 개발에 관한 법률 제2조"
+          ],
+          "locators": [
+            "산업입지 및 개발에 관한 법률 제2조",
+            "산업입지 및 개발에 관한 법률 제2조",
+            "산업입지 및 개발에 관한 법률 제8조의2 ①항",
+            "산업입지 및 개발에 관한 법률 시행령 제29조",
+            "산업입지 및 개발에 관한 법률 제44조 ②항"
+          ]
+        },
+        {
+          "query": "자동차관리법 제2조 자동차의 정의",
+          "passed": true,
+          "matched": "자동차관리법 제2조",
+          "result_headings": [
+            "자동차관리법 / 제2조(정의)",
+            "자동차관리법 / 제2조(정의)",
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 / 제2조(정의)",
+            "자동차관리법 / 제2조(정의)",
+            "대기환경보전법 / 제2조(정의)"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "자동차관리법 제2조"
+          ],
+          "locators": [
+            "자동차관리법 제2조",
+            "자동차관리법 제2조",
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 제2조",
+            "자동차관리법 제2조",
+            "대기환경보전법 제2조"
+          ]
+        },
+        {
+          "query": "해양폐기물 및 해양오염퇴적물 관리법 제19조",
+          "passed": true,
+          "matched": "해양폐기물 및 해양오염퇴적물 관리법 제19조",
+          "result_headings": [
+            "해양폐기물 및 해양오염퇴적물 관리법 / 제19조(해양폐기물관리업의 등록) ①항",
+            "해양폐기물 및 해양오염퇴적물 관리법 시행규칙 / 제19조(해양폐기물 수거 등을 위한 선박 등의 운영) ②항",
+            "해양폐기물 및 해양오염퇴적물 관리법 / 제19조(해양폐기물관리업의 등록) ②항",
+            "해양폐기물 및 해양오염퇴적물 관리법 시행규칙 / 제19조(해양폐기물 수거 등을 위한 선박 등의 운영) ①항",
+            "해양폐기물 및 해양오염퇴적물 관리법 시행령 / 제3조(기본계획 및 시행계획의 수립ㆍ시행) ③항"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "해양폐기물 및 해양오염퇴적물 관리법 제19조"
+          ],
+          "locators": [
+            "해양폐기물 및 해양오염퇴적물 관리법 제19조 ①항",
+            "해양폐기물 및 해양오염퇴적물 관리법 시행규칙 제19조 ②항",
+            "해양폐기물 및 해양오염퇴적물 관리법 제19조 ②항",
+            "해양폐기물 및 해양오염퇴적물 관리법 시행규칙 제19조 ①항",
+            "해양폐기물 및 해양오염퇴적물 관리법 시행령 제3조 ③항"
+          ]
+        },
+        {
+          "query": "환경정책기본법 제12조 환경기준",
+          "passed": true,
+          "matched": "환경정책기본법 제12조",
+          "result_headings": [
+            "환경정책기본법 / 제12조(환경기준의 설정) ③항",
+            "환경정책기본법 / 제12조(환경기준의 설정) ②항",
+            "환경정책기본법 시행령 / 제2조(환경기준)",
+            "환경정책기본법 / 제12조(환경기준의 설정) ①항",
+            "환경정책기본법 / 제12조의2(환경기준 등의 공표) ①항"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "환경정책기본법 제12조"
+          ],
+          "locators": [
+            "환경정책기본법 제12조 ③항",
+            "환경정책기본법 제12조 ②항",
+            "환경정책기본법 시행령 제2조",
+            "환경정책기본법 제12조 ①항",
+            "환경정책기본법 제12조의2 ①항"
+          ]
+        },
+        {
+          "query": "화학물질관리법 제13조 유해화학물질 취급기준",
+          "passed": true,
+          "matched": "화학물질관리법 제13조",
+          "result_headings": [
+            "화학물질관리법 / 제13조(유해화학물질 취급기준)",
+            "화학물질관리법 시행령 / 제13조(유해화학물질 취급 담당자)",
+            "화학물질관리법 시행규칙 / 제8조(유해화학물질 취급기준)",
+            "화학물질관리법 시행규칙 / 제12조(유해화학물질의 표시대상 및 방법) ①항",
+            "화학물질관리법 시행령 / 제12조(유해화학물질관리자) ③항"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "화학물질관리법 제13조"
+          ],
+          "locators": [
+            "화학물질관리법 제13조",
+            "화학물질관리법 시행령 제13조",
+            "화학물질관리법 시행규칙 제8조",
+            "화학물질관리법 시행규칙 제12조 ①항",
+            "화학물질관리법 시행령 제12조 ③항"
+          ]
+        },
+        {
+          "query": "대기환경보전법 제23조 배출시설 설치 허가 및 신고",
+          "passed": true,
+          "matched": "대기환경보전법 제23조",
+          "result_headings": [
+            "대기환경보전법 / 제23조(배출시설의 설치 허가 및 신고) ①항",
+            "대기환경보전법 / 제23조(배출시설의 설치 허가 및 신고) ⑦항",
+            "대기환경보전법 / 제23조(배출시설의 설치 허가 및 신고) ⑧항",
+            "대기환경보전법 / 제23조(배출시설의 설치 허가 및 신고) ③항",
+            "대기환경보전법 / 제23조(배출시설의 설치 허가 및 신고) ⑤항"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "대기환경보전법 제23조"
+          ],
+          "locators": [
+            "대기환경보전법 제23조 ①항",
+            "대기환경보전법 제23조 ⑦항",
+            "대기환경보전법 제23조 ⑧항",
+            "대기환경보전법 제23조 ③항",
+            "대기환경보전법 제23조 ⑤항"
+          ]
+        },
+        {
+          "query": "물환경보전법 제33조 배출시설 설치 허가 및 신고",
+          "passed": true,
+          "matched": "물환경보전법 제33조",
+          "result_headings": [
+            "물환경보전법 / 제33조(배출시설의 설치 허가 및 신고) ⑪항",
+            "물환경보전법 / 제33조(배출시설의 설치 허가 및 신고) ①항",
+            "물환경보전법 / 제33조(배출시설의 설치 허가 및 신고) ③항",
+            "물환경보전법 / 제33조(배출시설의 설치 허가 및 신고) ②항",
+            "물환경보전법 / 제33조(배출시설의 설치 허가 및 신고) ⑥항"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "물환경보전법 제33조"
+          ],
+          "locators": [
+            "물환경보전법 제33조 ⑪항",
+            "물환경보전법 제33조 ①항",
+            "물환경보전법 제33조 ③항",
+            "물환경보전법 제33조 ②항",
+            "물환경보전법 제33조 ⑥항"
+          ]
+        },
+        {
+          "query": "산업안전보건기준에 관한 규칙 제253조 금속부스러기에 물이 섞여 용해로에 투입될 때 폭발을 방지하기 위한 확인 사항",
+          "passed": true,
+          "matched": "산업안전보건기준에 관한 규칙 제253조",
+          "result_headings": [
+            "산업안전보건기준에 관한 규칙 / 제253조(금속의 용해로에 금속부스러기를 넣는 작업)",
+            "산업안전보건기준에 관한 규칙 / 제252조(고열 금속찌꺼기 처리작업)",
+            "산업안전보건기준에 관한 규칙 / 제251조(고열의 금속찌꺼기 물처리 등)",
+            "산업안전보건기준에 관한 규칙 / 제356조(용접 등 작업 시의 조치)",
+            "산업안전보건기준에 관한 규칙 / 제250조(용융고열물의 취급작업)"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "산업안전보건기준에 관한 규칙 제253조"
+          ],
+          "locators": [
+            "산업안전보건기준에 관한 규칙 제253조",
+            "산업안전보건기준에 관한 규칙 제252조",
+            "산업안전보건기준에 관한 규칙 제251조",
+            "산업안전보건기준에 관한 규칙 제356조",
+            "산업안전보건기준에 관한 규칙 제250조"
+          ]
+        },
+        {
+          "query": "순환자원 인정 절차 및 방법 등에 관한 고시의 신청 절차",
+          "passed": true,
+          "matched": "순환자원 인정 절차 및 방법 등에 관한 고시",
+          "result_headings": [
+            "순환자원 인정 절차 및 방법 등에 관한 고시 / 제4조(순환자원 인정 신청 및 접수 등) ① 순환자원 인정을 신청하고자 하는 자(이하 \"신청인\"이라 한다)는 「순환경제사회 전환 촉진법 시행규칙」(이하 \"규칙\"이라 한다) 제13조제1항에 따른 순환자원 인정신청서 및 첨부서류(이하 \"신청서\"라 한다)를 관할 지방환경관서의 장에게 제출하여",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 / 제6조(관계행정기관 등 의견조회) ① 지방환경관서의 장은 순환자원 인정을 신청한 폐기물의 사용에 대하여 다른 법률에서 용도나 방법, 기준 등을 정하고 있는지 여부 등을 확인하기 위하여 관계행정기관의 의견을 들을 수 있다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 / 제10조(순환자원 인정 등) ① 지방환경관서의 장은 제5조부터 제9조까지의 검토사항을 종합적으로 고려하여 순환자원 인정기준을 모두 충족하는지를 확인하여 순환자원 인정여부를 결정하여야 한다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 / 제12조(순환자원 인정서 기재사항 변경) ① 제10조 및 제11조에 따라 순환자원 인정서를 발급받은 자가 순환자원 인정서 기재사항 중 다음 각 호의 사항을 변경하려는 경우에는 관할 지방환경관서의 장에게 변경신청을 해야 한다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 / 제5조(순환자원 인정여부 검토) ① 지방환경관서의 장은 제4조제4항에 따라 신청서를 접수한 경우 다음 각 호의 절차에 따라 순환자원 인정여부를 검토하여야 한다. 다만, 제4조제3항에 따라 제출된 신청서를 접수한 경우에는 신청인 중 일부(신청대상 폐기물의 성상, 배출 특성, 처리 방법 등"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "순환자원 인정 절차 및 방법 등에 관한 고시"
+          ],
+          "locators": [
+            "순환자원 인정 절차 및 방법 등에 관한 고시 제4조(순환자원 인정 신청 및 접수 등) ① 순환자원 인정을 신청하고자 하는 자(이하 \"신청인\"이라 한다)는 「순환경제사회 전환 촉진법 시행규칙」(이하 \"규칙\"이라 한다) 제13조제1항에 따른 순환자원 인정신청서 및 첨부서류(이하 \"신청서\"라 한다)를 관할 지방환경관서의 장에게 제출하여",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 제6조(관계행정기관 등 의견조회) ① 지방환경관서의 장은 순환자원 인정을 신청한 폐기물의 사용에 대하여 다른 법률에서 용도나 방법, 기준 등을 정하고 있는지 여부 등을 확인하기 위하여 관계행정기관의 의견을 들을 수 있다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 제10조(순환자원 인정 등) ① 지방환경관서의 장은 제5조부터 제9조까지의 검토사항을 종합적으로 고려하여 순환자원 인정기준을 모두 충족하는지를 확인하여 순환자원 인정여부를 결정하여야 한다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 제12조(순환자원 인정서 기재사항 변경) ① 제10조 및 제11조에 따라 순환자원 인정서를 발급받은 자가 순환자원 인정서 기재사항 중 다음 각 호의 사항을 변경하려는 경우에는 관할 지방환경관서의 장에게 변경신청을 해야 한다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 제5조(순환자원 인정여부 검토) ① 지방환경관서의 장은 제4조제4항에 따라 신청서를 접수한 경우 다음 각 호의 절차에 따라 순환자원 인정여부를 검토하여야 한다. 다만, 제4조제3항에 따라 제출된 신청서를 접수한 경우에는 신청인 중 일부(신청대상 폐기물의 성상, 배출 특성, 처리 방법 등"
+          ]
+        },
+        {
+          "query": "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시의 인계 정보 입력",
+          "passed": true,
+          "matched": "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시",
+          "result_headings": [
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 / 제1조(목적) 이 고시는「폐기물관리법」 제18조제3항 및 제36조제3항,「건설폐기물의 재활용촉진에 관한 법률」(이하 「건설폐기물법」이라 한다) 제18조제1항 및 제4항,「폐기물의 국가 간 이동 및 그 처리에 관한 법률」(이하「폐기물국가간이동법」이라 한다) 제18조의5제1항에 따라 전자정",
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 / 제2조(정의) 이 고시에서 사용하는 용어의 정의는 다음과 같다.",
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 / 제14조(전자인계서의 수정) ① 사용자가 제11조부터 제13조까지에 따라 입력한 전자인계서를 수정하고자 하는 경우에는 해당 전자인계서를 처분 또는 재활용하는 자의 처리실적 입력일까지 수정할 수 있다. 다만, 「폐기물관리법 시행규칙」 별표 6, 「건설폐기물법 시행규칙」 별표 2의2 및 「",
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 / 제5조(사용자 등의 주요업무) 올바로시스템을 이용하는 사용자, 특별시장ㆍ광역시장ㆍ특별자치시장ㆍ도지사ㆍ특별자치도지사(이하\"시ㆍ도지사\"라 한다), 시장ㆍ군수ㆍ구청장, 유역환경청장ㆍ지방환경청장(이하 \"지방환경관서의 장\"이라 한다) 및 전산처리기구 장의 주요업무는 다음 각 호와 같다.",
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 / 제13조(처분 또는 재활용하는 자의 전자인계서 작성 및 처리실적 입력) ① 폐기물 처분 또는 재활용하는 자가 폐기물수집ㆍ운반자로부터 폐기물을 인수한 때에는 인계번호, 배출자명, 폐기물종류ㆍ성상, 차량번호, 인수량, 처리방법, 인수일자, 인수자명을 올바로시스템을 통해 확인해야 한다."
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시"
+          ],
+          "locators": [
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 제1조(목적) 이 고시는「폐기물관리법」 제18조제3항 및 제36조제3항,「건설폐기물의 재활용촉진에 관한 법률」(이하 「건설폐기물법」이라 한다) 제18조제1항 및 제4항,「폐기물의 국가 간 이동 및 그 처리에 관한 법률」(이하「폐기물국가간이동법」이라 한다) 제18조의5제1항에 따라 전자정",
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 제2조(정의) 이 고시에서 사용하는 용어의 정의는 다음과 같다.",
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 제14조(전자인계서의 수정) ① 사용자가 제11조부터 제13조까지에 따라 입력한 전자인계서를 수정하고자 하는 경우에는 해당 전자인계서를 처분 또는 재활용하는 자의 처리실적 입력일까지 수정할 수 있다. 다만, 「폐기물관리법 시행규칙」 별표 6, 「건설폐기물법 시행규칙」 별표 2의2 및 「",
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 제5조(사용자 등의 주요업무) 올바로시스템을 이용하는 사용자, 특별시장ㆍ광역시장ㆍ특별자치시장ㆍ도지사ㆍ특별자치도지사(이하\"시ㆍ도지사\"라 한다), 시장ㆍ군수ㆍ구청장, 유역환경청장ㆍ지방환경청장(이하 \"지방환경관서의 장\"이라 한다) 및 전산처리기구 장의 주요업무는 다음 각 호와 같다.",
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 제13조(처분 또는 재활용하는 자의 전자인계서 작성 및 처리실적 입력) ① 폐기물 처분 또는 재활용하는 자가 폐기물수집ㆍ운반자로부터 폐기물을 인수한 때에는 인계번호, 배출자명, 폐기물종류ㆍ성상, 차량번호, 인수량, 처리방법, 인수일자, 인수자명을 올바로시스템을 통해 확인해야 한다."
+          ]
+        },
+        {
+          "query": "폐기물공정시험기준 ES 06000.b 총칙 적용범위",
+          "passed": true,
+          "matched": "폐기물공정시험기준 / 1. 총칙/ES 06000.b",
+          "result_headings": [
+            "폐기물공정시험기준 / ES 06000.b  총칙 · PDF 1쪽",
+            "폐기물공정시험기준 / ES 06000.b  총칙 · PDF 5쪽",
+            "폐기물공정시험기준 / ES 06000.b  총칙 · PDF 7쪽",
+            "폐기물공정시험기준 / ES 06000.b  총칙 · PDF 6쪽",
+            "폐기물공정시험기준 / ES 06130.d 시료의 채취 · PDF 1쪽"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "폐기물공정시험기준 / 1. 총칙/ES 06000.b"
+          ],
+          "locators": [
+            "폐기물공정시험기준 / 1. 총칙/ES 06000.b  총칙.pdf / PDF 1쪽",
+            "폐기물공정시험기준 / 1. 총칙/ES 06000.b  총칙.pdf / PDF 5쪽",
+            "폐기물공정시험기준 / 1. 총칙/ES 06000.b  총칙.pdf / PDF 7쪽",
+            "폐기물공정시험기준 / 1. 총칙/ES 06000.b  총칙.pdf / PDF 6쪽",
+            "폐기물공정시험기준 / 3. 일반시험기준/ES 06130.d 시료의 채취.pdf / PDF 1쪽"
+          ]
+        },
+        {
+          "query": "폐기물의 재활용 용도 및 방법에 관한 규정 제2조 하수처리오니 고화처리물의 기준",
+          "passed": true,
+          "matched": "폐기물의 재활용 용도 및 방법에 관한 규정 제2조",
+          "result_headings": [
+            "폐기물의 재활용 용도 및 방법에 관한 규정 / 제2조(폐기물의 재활용 용도 및 방법)「폐기물관리법 시행규칙」 제14조의3제1항 별표 5의3 제2호라목1)라)(1) 단서규정에 따른 폐기물의 재활용에 따른 기준 및 절차 방법은 다음과 같다.",
+            "폐기물의 재활용 용도 및 방법에 관한 규정 / 제2조(폐기물의 재활용 용도 및 방법)「폐기물관리법 시행규칙」 제14조의3제1항 별표 5의3 제2호라목1)라)(1) 단서규정에 따른 폐기물의 재활용에 따른 기준 및 절차 방법은 다음과 같다.",
+            "폐기물의 재활용 용도 및 방법에 관한 규정 / 제1조(목적) 이 규정은 「폐기물관리법 시행규칙」 제14조의3제1항 별표 5의3 제2호라목1)라)(1) 단서규정에 따른 폐기물의 재활용에 따른 기준 및 절차ㆍ방법을 정함을 목적으로 한다.",
+            "폐기물 재활용시설 외의 장소에서의 폐기물 재활용 용도 또는 방법에 관한 규정 / 제3조(폐기물 재활용시설 외의 장소에서의 재활용 방법) 제2조 각 호의 재활용 용도에 따라 재활용하는 경우 시행규칙 별표 5의3에 따른 폐기물의 재활용 기준을 준수하여야 한다.",
+            "순환자원 지정 등에 관한 고시 / 별표 2 순환이용의 용도, 방법 및 기준 등(제3조 관련)"
+          ],
+          "first_relevant_rank": 1,
+          "reciprocal_rank": 1.0,
+          "search_group": "LEGAL",
+          "required": false,
+          "group_violations": [],
+          "expected_any": [
+            "폐기물의 재활용 용도 및 방법에 관한 규정 제2조"
+          ],
+          "locators": [
+            "폐기물의 재활용 용도 및 방법에 관한 규정 제2조(폐기물의 재활용 용도 및 방법)「폐기물관리법 시행규칙」 제14조의3제1항 별표 5의3 제2호라목1)라)(1) 단서규정에 따른 폐기물의 재활용에 따른 기준 및 절차 방법은 다음과 같다.",
+            "폐기물의 재활용 용도 및 방법에 관한 규정 제2조(폐기물의 재활용 용도 및 방법)「폐기물관리법 시행규칙」 제14조의3제1항 별표 5의3 제2호라목1)라)(1) 단서규정에 따른 폐기물의 재활용에 따른 기준 및 절차 방법은 다음과 같다.",
+            "폐기물의 재활용 용도 및 방법에 관한 규정 제1조(목적) 이 규정은 「폐기물관리법 시행규칙」 제14조의3제1항 별표 5의3 제2호라목1)라)(1) 단서규정에 따른 폐기물의 재활용에 따른 기준 및 절차ㆍ방법을 정함을 목적으로 한다.",
+            "폐기물 재활용시설 외의 장소에서의 폐기물 재활용 용도 또는 방법에 관한 규정 제3조(폐기물 재활용시설 외의 장소에서의 재활용 방법) 제2조 각 호의 재활용 용도에 따라 재활용하는 경우 시행규칙 별표 5의3에 따른 폐기물의 재활용 기준을 준수하여야 한다.",
+            "순환자원 지정 등에 관한 고시 별표 2"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -72,3 +72,17 @@ class LawOpenApiClient:
 
     def fetch_precedent(self, precedent_id: str) -> str:
         return self._get("lawService.do", target="prec", ID=precedent_id)
+
+    def search_effective_laws(self, query: str) -> str:
+        """공포 기준 최신법이 아닌 시행일 기준 현행법을 찾는다."""
+        return self._get("lawSearch.do", target="eflaw", query=query, nw=3, display=100)
+
+    def fetch_effective_law(self, mst: str, effective_date: str) -> str:
+        """목록에서 확인한 시행 버전을 고정해서 가져온다."""
+        return self._get("lawService.do", target="eflaw", MST=mst, efYd=effective_date)
+
+    def search_administrative_rules(self, query: str) -> str:
+        return self._get("lawSearch.do", target="admrul", query=query, nw=1, display=100)
+
+    def fetch_administrative_rule(self, serial: str) -> str:
+        return self._get("lawService.do", target="admrul", ID=serial)

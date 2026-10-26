@@ -5,9 +5,13 @@
 
 ## 10월 26일 RAG 보강
 
+- **팀 저장 방식 유지:** PostgreSQL·pgvector + `multilingual-e5-small` 384차원을 그대로 사용합니다.
+- **공식 원문 적재:** 법령 73개·행정규칙 25개, **98문서·21,979조각**을 로컬 RAG에 넣었습니다. 허가·재활용·운송·유해특성·환경·안전을 포함합니다. 첨부로만 제공되는 시험기준도 PDF 파일·페이지 단위로 읽습니다. [수집 범위·저장 위치·다시 넣는 방법](docs/legal-corpus-expansion.md)
 - **조문 일부만 읽는 문제:** 검색한 조문의 다른 항·단서와 명시된 참조 조문·별표를 함께 조회합니다.
 - **찾지 못한 근거도 표시:** 법명 불명확·누락 자료·위임 규정·조각 한도·버전 충돌을 확인 사항으로 남깁니다.
-- **실제 모델 비교:** 질문 50개를 주제별로 개발용 27개·검증용 23개로 나눴습니다. MiniLM은 개발용에서 좋아졌지만 검증용 법령은 기존 10/14 → 8/14로 떨어져 **기본 모델 교체를 보류**했습니다. BGE는 이 CPU에서 너무 느려 제외했습니다.
+- **확장 전 모델 비교:** 질문 50개를 주제별로 개발용 27개·검증용 23개로 나눴습니다. MiniLM은 개발용에서 좋아졌지만 검증용 법령은 기존 10/14 → 8/14로 떨어져 **기본 모델 교체를 보류**했습니다. BGE는 이 CPU에서 너무 느려 제외했습니다.
+
+**자료 확장 후 자연어 검색은 추가 보강이 필요합니다.** 신규 제목·조문 조회는 15/15지만 기존 검증 질문의 법령 회수는 10/14 → 6/14로 낮아졌습니다. 상위법 조문과 새 고시·지침을 함께 회수하고 질문별 법령 범위를 좁히는 작업이 다음입니다.
 
 조문 보충과 리스크 표시는 적용됐습니다. 기존 규칙 정렬을 유지하며, 새로운 모델은 비교 시험용으로 연결할 수 있습니다. [변경 내용·평가 결과·실행 방법](docs/rag-hardening-2026-10-26.md)
 
@@ -53,10 +57,10 @@
 2026-10-26 기준, 실제 Neo4j·PostgreSQL·로컬 LCI로 검증했습니다. 사업장·폐기물 로트·단가는 가상입니다.
 
 - 69개 API 시나리오: PP·PE·PET·알루미늄·종이, 형태 누락/불일치, 잘못된 수량, 여러 사업장, 오래된 수치, LCI 매핑 등을 검사했습니다.
-- 실제 DB를 켠 코드 테스트는 **840개 + subtest 24개 통과, skip 0개**입니다. [최신 검사 기록](docs/evaluation/semantic-critic-tests-2026-10-26.json)
-- 69개 시나리오의 세부 검사는 **358/360 통과**. 남은 두 실패는 같은 법령 질문의 핵심 제25조 회수 문제입니다. [최신 시나리오 기록](docs/evaluation/pipeline-rag-hardening-2026-10-26.json). 모든 법규·현장 사례의 정확도를 검증한 결과가 아닙니다.
-- 추가 표현 8개로 법령 검색도 더 시험했고 **5/8**이었습니다. 이 질문·정답은 개발자가 만든 점검용이라 전문가 검수와 검색 개선이 필요합니다.
-- 공식 법령·판례와 기술 요약 **41문서·3,385청크**, 실제 시설 명부 **9,604건**, 보유 LCI 원본 **7개**를 로컬에 연결했습니다. 동료 PR #46에 맞춰 시설·수취처 자료는 기술 RAG 검색에서 제외했습니다.
+- 실제 DB를 켠 코드 테스트는 **857개 + subtest 24개 통과, skip 0개**입니다. [최신 검사 기록](docs/evaluation/legal-expansion-tests-2026-10-26.json)
+- 코퍼스 확장 전 69개 시나리오의 세부 검사는 **358/360 통과**. 남은 두 실패는 같은 법령 질문의 핵심 제25조 회수 문제입니다. [최신 시나리오 기록](docs/evaluation/pipeline-rag-hardening-2026-10-26.json). 모든 법규·현장 사례의 정확도를 검증한 결과가 아닙니다.
+- 자료 확장 후 기존 법령 질문은 **5/7**, 추가 표현은 **3/8**, 신규 자료 조회는 **15/15**입니다. 개발자 점검용 질문이며 법률 적용성 평가는 아닙니다. [이번 검색 결과](docs/evaluation/legal-expansion-2026-10-26.json)
+- 공식 법령·판례와 기술 요약 **124문서·22,095청크**, 실제 시설 명부 **9,604건**, 보유 LCI 원본 **7개**를 로컬에 연결했습니다. 동료 PR #46에 맞춰 시설·수취처 자료는 기술 RAG 검색에서 제외했습니다.
 - 이번 시나리오에서 유료 모델·지도 API 호출은 하지 않았습니다. Azure Astra high는 앞선 합성 연결 시험만 성공한 상태입니다.
 
 팀원 PR 확인, 발견한 문제, 수정 내용, **데이터/기술별 다음 작업**은 [이번 전체 검증 정리](docs/pipeline-validation-2026-10-25.md)를 보면 됩니다.
@@ -94,7 +98,7 @@
 cp .env.example .env
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e '.[dev,embeddings]'
+python -m pip install -e '.[dev,embeddings,legal-attachments]'
 ```
 
 `.env`에서 아래 값을 설정합니다.
@@ -118,14 +122,16 @@ resource-kg import
 resource-kg audit
 ```
 
-공식 법령·판례 데이터를 수집하고 인덱싱합니다.
+확장 법령 코퍼스와 기술 요약을 수집하고 인덱싱합니다. 원본은 로컬에 저장합니다.
 
 ```bash
-legal-rag collect
-legal-rag index
+python scripts/expand_legal_corpus.py collect
+python scripts/expand_legal_corpus.py index
 resource-rag build-public-evidence
 resource-rag index data/official/public_evidence_summaries.jsonl
 ```
+
+판례도 새로 준비할 때는 기존 `legal-rag collect` → `legal-rag index`를 **확장 법령 적재 전에** 실행합니다. 기존 수집 명령은 15개 법령도 포함하므로 나중에 실행하면 확장 수집 버전을 교체할 수 있습니다. [자세한 데이터 관리 방법](docs/legal-corpus-expansion.md)
 
 API를 실행합니다.
 
@@ -154,7 +160,7 @@ curl http://127.0.0.1:8000/health
 ```powershell
 Copy-Item .env.example .env
 py -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e ".[dev,embeddings]"
+.\.venv\Scripts\python.exe -m pip install -e ".[dev,embeddings,legal-attachments]"
 docker compose -f docker-compose.yml -f docker-compose.neo4j.yml up -d
 .\.venv\Scripts\resource-rag.exe init-db
 .\.venv\Scripts\resource-kg.exe import

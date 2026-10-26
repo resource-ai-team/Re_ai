@@ -105,12 +105,18 @@ def parse_law_document(
     sections: list[LegalSection] = []
 
     for unit in root.findall("./조문/조문단위") if include_articles else []:
+        # 시행일 API는 편·장 제목도 조문단위(조문여부=전문)로 반환한다.
+        if _text(unit, "조문여부") == "전문":
+            continue
         article = _article_label(unit)
         article_title = _text(unit, "조문제목")
         article_heading = f"{article}({article_title})" if article_title else article
         article_text = _clean(_text(unit, "조문내용"))
         paragraphs = unit.findall("항")
         if not paragraphs:
+            article_text = "\n".join(
+                dict.fromkeys(part for part in [article_text, *_descendant_text(unit)] if part)
+            )
             if article_text:
                 sections.append(
                     LegalSection(
