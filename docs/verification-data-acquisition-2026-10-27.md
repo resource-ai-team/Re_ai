@@ -6,6 +6,11 @@
 
 ## Azure에서 받을 수 있는 것
 
+**후속 확인:** 같은 날 로그인된 Azure·본인 ML 작업 영역·Power Platform을 직접
+확인하고 공식 계수 원본 7파일을 추가 확보했습니다. 아래 표는 최초 공개 문서 조사이며,
+최신 계정 확인·실제 배출계수·사용 범위는
+[후속 기록](emission-factors-and-azure-2026-10-27.md)을 참고하세요.
+
 | 확인한 서비스 | 프로젝트에 도움이 되는 자료 | 접근 조건과 이번 확인 범위 |
 | --- | --- | --- |
 | [Azure Open Datasets](https://learn.microsoft.com/en-us/azure/open-datasets/dataset-catalog) | 확인한 목록은 교통·인구·경제·공공안전 등이 중심 | 국내 폐기물 성적서·시설 허가·견적이 연결된 완성 사례는 목록에서 찾지 못함. Azure 전체에 그런 자료가 없다는 뜻은 아님 |

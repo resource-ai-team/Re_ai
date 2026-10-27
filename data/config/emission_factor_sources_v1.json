@@ -1,0 +1,168 @@
+{
+  "version": "emission-factor-sources-v1",
+  "checked_on": "2026-10-27",
+  "sources": [
+    {
+      "id": "defra-2026-flat",
+      "file": "defra-2026-flat.xlsx",
+      "url": "https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2026",
+      "download_url": "https://assets.publishing.service.gov.uk/media/6a6c9748862aaf18d9c62ac9/ghg-conversion-factors-2026-flat-format-revised.xlsx",
+      "sha256": "a9a455ab396dae226d510c7be6233748416d490c41a5d20f3dc7a0c45feecd5e",
+      "bytes": 515426,
+      "retrieved_at": "2026-10-27T11:05:16.906334+00:00",
+      "geography": "GB",
+      "version": "2026 July 31 revised flat format",
+      "license": "Open Government Licence v3.0 except separately identified third-party content",
+      "scope": "Waste/transport/material reporting factors; not a universal recycling process LCA"
+    },
+    {
+      "id": "defra-2026-full",
+      "file": "defra-2026-full.xlsx",
+      "url": "https://assets.publishing.service.gov.uk/media/6a29392bade52dc0882218a8/ghg-conversion-factors-2026-full-set.xlsx",
+      "download_url": "https://assets.publishing.service.gov.uk/media/6a29392bade52dc0882218a8/ghg-conversion-factors-2026-full-set.xlsx",
+      "sha256": "b5c4f2f86cdc74707337b2fb013b44ded189a1b528f5e29ea99856ba65ae0205",
+      "bytes": 2109334,
+      "retrieved_at": "2026-10-27T11:05:16.580748+00:00",
+      "geography": "GB",
+      "version": "2026 full set",
+      "license": "OGL v3.0 with third-party exceptions",
+      "scope": "Read-only cross-check of notes; do not overwrite workbook"
+    },
+    {
+      "id": "defra-2026-methodology",
+      "file": "defra-2026-methodology.pdf",
+      "url": "https://assets.publishing.service.gov.uk/media/6a2940543b15d05a7ce3202e/2026-GHG-conversion-factors-methodology-report.pdf",
+      "download_url": "https://assets.publishing.service.gov.uk/media/6a2940543b15d05a7ce3202e/2026-GHG-conversion-factors-methodology-report.pdf",
+      "sha256": "e15e575e3d54c75a723e32b7aebcbd4e294abe39267d585d6daa231fc5cbd7d7",
+      "bytes": 1761487,
+      "retrieved_at": "2026-10-27T11:06:51.418293+00:00",
+      "geography": "GB",
+      "version": "2026",
+      "license": "OGL v3.0 with third-party exceptions",
+      "scope": "Waste reporting boundary sections 12.22-12.27, printed pages 123-124"
+    },
+    {
+      "id": "epa-2025-hub",
+      "file": "epa-2025-hub.xlsx",
+      "url": "https://www.epa.gov/climateleadership/ghg-emission-factors-hub",
+      "download_url": "https://www.epa.gov/system/files/other-files/2025-01/ghg-emission-factors-hub-2025.xlsx",
+      "sha256": "43afb91d79b2ae765b3a447549d9e1021a144a407cec5eb804be9fcf69a668a7",
+      "bytes": 1014275,
+      "retrieved_at": "2026-10-27T11:08:09.424490+00:00",
+      "geography": "US",
+      "version": "2025",
+      "license": "EPA public source; third-party attribution/reuse conditions remain applicable",
+      "scope": "Table 9 Scope 3 waste reporting. Transport embedded; avoided emissions excluded; AR4 GWP"
+    },
+    {
+      "id": "epa-hub-vs-warm",
+      "file": "epa-hub-vs-warm.pdf",
+      "url": "https://www.epa.gov/sites/default/files/2020-04/documents/guidanceefwastefactors_vs_warm.pdf",
+      "download_url": "https://www.epa.gov/sites/default/files/2020-04/documents/guidanceefwastefactors_vs_warm.pdf",
+      "sha256": "4d3aec5ff581225f4da0100ba9404419a92ecac9b40e626898b46292d916d581",
+      "bytes": 259666,
+      "retrieved_at": "2026-10-27T11:09:41.125755+00:00",
+      "geography": "US",
+      "version": "2020 guidance",
+      "license": "EPA public source; third-party conditions may apply",
+      "scope": "Hub reporting and WARM option-comparison are not interchangeable"
+    },
+    {
+      "id": "gir-approved-2025",
+      "file": "gir-approved-2025.pdf",
+      "url": "https://www.gir.go.kr/home/board/read.do?boardId=86&boardMasterId=2&menuId=36",
+      "download_url": "https://www.gir.go.kr/home/file/readDownloadFile.do?encFileId=4f78ea92f01c7ac071a4354282de4d7f6aa82ddb120ef314&fileSeq=2",
+      "sha256": "9d10cbda28e072a1e6efd13a368f1b6f7d34d1fa4a2093dc93235a2ac04ebc9d",
+      "bytes": 387652,
+      "retrieved_at": "2026-10-27T11:06:51.646827+00:00",
+      "geography": "KR",
+      "version": "2025 approval; published 2025-12-18; 2023 and 2021-2023 reference data",
+      "license": "Official publicly downloadable GIR source; full-file redistribution not performed",
+      "scope": "Grid electricity consumption/generation; not a treatment factor; IPCC 2006 method / AR5 GWP"
+    },
+    {
+      "id": "gir-electricity-approved-2024",
+      "file": "gir-electricity-approved-2024.pdf",
+      "url": "https://www.gir.go.kr/home/board/read.do?boardId=82&boardMasterId=2&menuId=36",
+      "download_url": "https://www.gir.go.kr/home/file/readDownloadFile.do?encFileId=ee0a5e3171b6918e8e1a64a71b5e5fa1a5e56ba1b3605f8a&fileSeq=1",
+      "sha256": "56fedb7db3b46434fe13a09d9b1dd249c84795e983a0c04a3448ce702596757f",
+      "bytes": 63929,
+      "retrieved_at": "2026-10-27T11:06:50.337902+00:00",
+      "geography": "KR",
+      "version": "2024 approval; published 2025-03-31; 2020-2022 data",
+      "license": "Official publicly downloadable GIR source; full-file redistribution not performed",
+      "scope": "Historical comparison; not silently substituted for the 2025-approved method"
+    }
+  ],
+  "visually_checked_grid_records": [
+    {
+      "id": "gir-2025-consumption-2023",
+      "source_id": "gir-approved-2025",
+      "locator": "PDF page 1, consumption CO2-eq rows; methodology footnotes page 2 (visually checked)",
+      "geography": "KR",
+      "approval_year": 2025,
+      "published_on": "2025-12-18",
+      "reference_years": [
+        2023
+      ],
+      "averaging": "single_year",
+      "side": "consumption",
+      "gwp_basis": "IPCC_AR5",
+      "inventory_method": "IPCC_2006",
+      "t_co2e_per_mwh": "0.4173",
+      "kg_co2e_per_kwh": "0.4173",
+      "purpose": "grid_electricity_component_requires_measured_kwh_and_explicit_year_method_selection",
+      "automatic_kr_route_ranking_admission": false,
+      "facility_measurement": false,
+      "model_transfer_enabled": false
+    },
+    {
+      "id": "gir-2025-consumption-2021-2023-average",
+      "source_id": "gir-approved-2025",
+      "locator": "PDF page 1, consumption CO2-eq rows; methodology footnotes page 2 (visually checked)",
+      "geography": "KR",
+      "approval_year": 2025,
+      "published_on": "2025-12-18",
+      "reference_years": [
+        2021,
+        2022,
+        2023
+      ],
+      "averaging": "three_year_average",
+      "side": "consumption",
+      "gwp_basis": "IPCC_AR5",
+      "inventory_method": "IPCC_2006",
+      "t_co2e_per_mwh": "0.4330",
+      "kg_co2e_per_kwh": "0.4330",
+      "purpose": "grid_electricity_component_requires_measured_kwh_and_explicit_year_method_selection",
+      "automatic_kr_route_ranking_admission": false,
+      "facility_measurement": false,
+      "model_transfer_enabled": false
+    }
+  ],
+  "reviewed_transport_reference": {
+    "source_id": "defra-2026-flat",
+    "factor_id": "27_304_3140_14_1",
+    "locator": "Factors by Category!J6389",
+    "value": "0.10356",
+    "unit": "kg_CO2e_per_tonne_km",
+    "vehicle": "Average non-refrigerated diesel HGV; average laden",
+    "geography": "GB",
+    "wtt_factor_id": "28_907_3140_14_1",
+    "wtt_locator": "Factors by Category!J7228",
+    "wtt_value": "0.02359",
+    "wtt_unit": "kg_CO2e_per_tonne_km",
+    "use": "Separate transport components, explicit foreign proxy only. Do not automatically add to LCIs with transport embedded.",
+    "automatic_kr_route_ranking_admission": false
+  },
+  "global_rules": [
+    "Missing/NA means unknown, never zero",
+    "Approval/publication year is not the activity/reference year",
+    "Match country, activity unit, gas unit, GWP, vehicle/loading, mass basis and boundary",
+    "DEFRA waste factors cannot rank lifecycle merits of waste treatment alternatives",
+    "EPA Table 9 recycling is sorting and transport, not full recycling process emissions",
+    "Do not add road emissions to transport-inclusive factors without removing overlap",
+    "Do not infer facility energy consumption, real acceptance or route feasibility",
+    "Raw files and generated factor rows remain local; no model transfer or DB update"
+  ]
+}

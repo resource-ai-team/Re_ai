@@ -1,6 +1,7 @@
 {
   "version": "public-verification-sources-v1",
   "checked_on": "2026-10-27",
+  "azure_account_followup": "docs/emission-factors-and-azure-2026-10-27.md (direct signed-in inspection and factor acquisition)",
   "purpose": "검증 자료 준비. 실제 거래 승인이나 독립 평가 정답셋이 아님.",
   "sources": [
     {"id":"keco-prices","file":"keco-prices.csv","kind":"market_prices","as_of":"2026-10-26","url":"https://www.data.go.kr/data/3076421/fileData.do","license":"공공누리 제1유형. 한국환경공단 출처표시.","use":"품목·가공형태·권역별 조사 평균. 특정 로트의 계약 견적 아님."},
