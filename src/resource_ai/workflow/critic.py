@@ -36,6 +36,7 @@ class WorkflowCritic:
         if not records:
             return {"status": "no_explicitly_permitted_evidence", "model_calls": 0}
         targets, candidates = {}, []
+        evidence_bindings = {key: set() for key in sources}
         for candidate in (
             (state.get("engine") or {}).get("review", {}).get("research", {}).get("candidates", [])
         ):
@@ -54,6 +55,12 @@ class WorkflowCritic:
                 if line["activity"]["evidence_id"] in sources
                 and line["factor"]["evidence_id"] in sources
             ]
+            for line in permitted_lines:
+                for observation in (line["activity"], line["factor"]):
+                    evidence_bindings[observation["evidence_id"]].add(pid)
+            for selection in [*draft.get("facilities", []), *draft.get("tails", [])]:
+                if selection["evidence_id"] in evidence_bindings:
+                    evidence_bindings[selection["evidence_id"]].add(pid)
             candidates.append(
                 {
                     "candidate_id": pid,
@@ -96,6 +103,17 @@ class WorkflowCritic:
             findings, rejected = [], []
             for concern in output.concerns:
                 reason = SemanticCriticService._check(concern, records, targets)
+                if (
+                    not reason
+                    and concern.candidate_id is not None
+                    and any(
+                        evidence_bindings[records[c.ref_id]["evidence_id"]]
+                        and concern.candidate_id
+                        not in evidence_bindings[records[c.ref_id]["evidence_id"]]
+                        for c in concern.citations
+                    )
+                ):
+                    reason = "cross_candidate_evidence"
                 if reason:
                     rejected.append(reason)
                 else:

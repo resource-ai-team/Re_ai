@@ -83,6 +83,41 @@ def test_critic_rate_limit_does_not_send_a_second_request(state, monkeypatch):
     assert result["model_calls"] == 0 and model.payload is None
 
 
+def test_another_candidates_quote_is_not_admitted_as_its_evidence(state, monkeypatch):
+    state = deepcopy(state)
+    state["evidence"]["synthetic-evidence"]["external_model_allowed"] = True
+    bound = next(iter(state["drafts"]))
+    other = next(
+        c["plan"]["plan_id"]
+        for c in state["engine"]["review"]["research"]["candidates"]
+        if c["plan"]["plan_id"] != bound
+    )
+    model = Model(
+        {
+            "concerns": [
+                {
+                    "stage": "calculation",
+                    "kind": "potential_error",
+                    "candidate_id": other,
+                    "target_type": "candidate",
+                    "target_id": other,
+                    "message": "다른 후보의 가상 견적을 잘못 인용하는 검사입니다.",
+                    "next_action": "올바른 후보의 근거를 확인하세요.",
+                    "citations": [
+                        {
+                            "ref_id": "E0001",
+                            "quote": state["evidence"]["synthetic-evidence"]["content"],
+                        }
+                    ],
+                }
+            ]
+        }
+    )
+    monkeypatch.setattr(critic, "_last_started", 0)
+    result = critic.WorkflowCritic(service(model), clock=lambda: 1000)(state)
+    assert result["findings"] == [] and result["rejected"] == ["cross_candidate_evidence"]
+
+
 @pytest.mark.parametrize("raw_text", ["1000000 KRW/t", "100000 kg; the quote is 20 KRW/t"])
 def test_unit_repair_does_not_combine_unrelated_numbers_and_units(state, raw_text):
     state = deepcopy(state)
