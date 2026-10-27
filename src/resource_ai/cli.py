@@ -1,10 +1,12 @@
 import argparse
+import json
 from pathlib import Path
 
 from resource_ai.core.config import get_settings
 from resource_ai.core.dependencies import get_repository
 from resource_ai.evidence.models import SearchGroup
 from resource_ai.integrations.law_api import LawOpenApiClient
+from resource_ai.rag.audit import audit_index, format_audit_report
 from resource_ai.rag.evaluation import (
     evaluate_case,
     load_retrieval_dataset,
@@ -21,12 +23,18 @@ from resource_ai.rag.ingestion.dataset import (
 from resource_ai.rag.ingestion.loader import load_jsonl, write_jsonl
 from resource_ai.rag.ingestion.pipeline import collect_scope
 from resource_ai.rag.ingestion.public_evidence import build_public_evidence_summaries
+from resource_ai.rag.retrieval.vector_store import Database
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Local multi-corpus RAG utilities")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("init-db", help="Create pgvector tables")
+
+    audit = commands.add_parser(
+        "audit-index", help="Audit RAG documents, chunks, embeddings, and indexes"
+    )
+    audit.add_argument("--json", action="store_true", dest="json_output")
 
     ingest = commands.add_parser("ingest", help="Ingest evidence JSONL documents")
     ingest.add_argument("path", type=Path)
@@ -83,6 +91,23 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> None:
     args = build_parser().parse_args()
+    if args.command == "audit-index":
+        settings = get_settings()
+        report = audit_index(
+            Database(
+                settings.database_url,
+                connect_timeout_seconds=settings.database_connect_timeout_seconds,
+            ),
+            embedding_dimension=settings.embedding_dimension,
+        )
+        if args.json_output:
+            print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
+        else:
+            print(format_audit_report(report))
+        if not report.passed:
+            raise SystemExit(1)
+        return
+
     if args.command == "build-public-evidence":
         documents = build_public_evidence_summaries(args.scope)
         validation = validate_documents(documents)

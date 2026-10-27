@@ -6,6 +6,7 @@ import pytest
 
 from resource_ai.core.config import get_settings
 from resource_ai.evidence.models import EvidenceDocument, EvidenceSection
+from resource_ai.rag.audit import audit_index
 from resource_ai.rag.retrieval.embeddings import HashEmbeddingProvider
 from resource_ai.rag.retrieval.vector_store import Database
 from resource_ai.rag.service import EvidenceRepository
@@ -128,6 +129,13 @@ def test_real_postgres_indexes_versions_and_isolates_company_documents() -> None
         assert {result.title for result in tenant_a} == {"A기업 성적서"}
         assert {result.title for result in tenant_b} == {"B기업 성적서"}
         assert all(result.document_type != "COMPANY_DOCUMENT" for result in public_results)
+
+        audit = audit_index(repository.database)
+        assert audit.passed is True
+        assert audit.corpora["TECHNICAL_LITERATURE"].current_documents == 1
+        assert audit.corpora["TECHNICAL_LITERATURE"].inactive_documents == 1
+        assert audit.corpora["COMPANY_DOCUMENT"].current_documents == 2
+        assert audit.capabilities["basic_keyword_search"] is True
     finally:
         assert schema.startswith("re_ai_corpus_test_") and len(schema) == 50
         with psycopg.connect(database_url, connect_timeout=5) as connection:
