@@ -92,7 +92,8 @@ def extract_defra(rows, source_id):
                 classification=list(row[3:7]),
                 activity_unit=row[7],
                 gas_unit=row[8],
-                geography="GB",
+                reporting_jurisdiction="GB",
+                geography="source_specific_not_verified_for_KR",
                 publication_year=2026,
                 purpose=CATEGORIES[row[2]],
                 methodology_reference=(

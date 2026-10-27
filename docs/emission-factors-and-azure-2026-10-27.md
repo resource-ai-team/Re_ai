@@ -55,6 +55,8 @@ IEA는 Premium 기능이며, 숫자 조회·PDF 출력에도 제한이 있습니
 DEFRA는 [2026년 공식 배포](https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2026)의
 **7월 31일 수정 flat 파일**을 읽었습니다. 미제공 값을 0으로 잘못 해석하지 않도록
 빈칸을 유지합니다. 운송값은 `Factors by Category`의 J6389·J7228입니다.
+영국 보고 체계라는 것과 모든 활동의 물리적 지역이 영국이라는 것은 다르므로,
+전체 추출 행에는 보고 국가와 적용 지역 미확인을 따로 기록합니다.
 
 EPA는 [2025 Hub 원본](https://www.epa.gov/climateleadership/ghg-emission-factors-hub)의
 Table 9, D443과 C499 주석입니다. 운송이 포함되고 회피 배출은 제외되며 AR4 GWP입니다.

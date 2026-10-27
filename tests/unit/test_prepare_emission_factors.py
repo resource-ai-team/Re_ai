@@ -65,6 +65,8 @@ def test_scope3_waste_number_is_not_admitted_as_route_lca():
     assert missing["factor_value"] is None
     assert available["factor_value"] == "4.65358"
     assert available["activity_unit"] == "tonnes"  # NOT kg
+    assert available["reporting_jurisdiction"] == "GB"
+    assert available["geography"] == "source_specific_not_verified_for_KR"
     assert available["transport_embedded"]
     assert "not_route_lca" in available["purpose"]
     assert not available["automatic_kr_route_ranking_admission"]
