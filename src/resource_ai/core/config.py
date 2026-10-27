@@ -59,6 +59,11 @@ class Settings(BaseSettings):
     kakao_mobility_rest_api_key: SecretStr = Field(default=SecretStr(""), repr=False)
     naver_maps_api_key_id: SecretStr = Field(default=SecretStr(""), repr=False)
     naver_maps_api_key: SecretStr = Field(default=SecretStr(""), repr=False)
+    workflow_service_token: SecretStr = Field(default=SecretStr(""), repr=False)
+    workflow_ocr_enabled: bool = False
+    workflow_ocr_allow_external: bool = False
+    workflow_ocr_endpoint: str = ""
+    workflow_ocr_api_key: SecretStr = Field(default=SecretStr(""), repr=False)
 
 
 @lru_cache

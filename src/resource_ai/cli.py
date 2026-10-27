@@ -30,6 +30,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Local multi-corpus RAG utilities")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("init-db", help="Create pgvector tables")
+    commands.add_parser("init-workflow", help="Create workflow tables without loading models")
 
     audit = commands.add_parser(
         "audit-index", help="Audit RAG documents, chunks, embeddings, and indexes"
@@ -91,6 +92,14 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> None:
     args = build_parser().parse_args()
+    if args.command == "init-workflow":
+        settings = get_settings()
+        with Database(settings.database_url).connect(register_vector_types=False) as connection:
+            connection.execute(
+                Path("migrations/007_workflow_cases.sql").read_text(encoding="utf-8")
+            )
+        print("Workflow tables ready; existing KG/RAG data unchanged")
+        return
     if args.command == "audit-index":
         settings = get_settings()
         report = audit_index(
