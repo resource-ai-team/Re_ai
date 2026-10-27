@@ -1,0 +1,64 @@
+{
+  "version": "public-case-facts-v1",
+  "status": "developer_source_checked_not_independent_not_expert_reviewed",
+  "purpose": "다음 Critic 검증셋을 만들기 위한 실제 공개 사실 묶음. 아직 평가 실행 결과가 아님.",
+  "as_of": "2026-10-27",
+  "production_admission": false,
+  "model_transfer_allowed": false,
+  "packs": [
+    {
+      "id": "sr-2026-plastic-treatment",
+      "source_id": "sr-plastics-treatment-2026",
+      "locator": "공고 1. 입찰 개요, 3. 참가자격, 5. 공동수급 및 출고 조건",
+      "facts": {"planned_quantity_kg":"400000","base_rate_krw_per_kg":"310","base_total_krw":"124000000","rate_type":"tender_base_not_awarded_quote","includes_loading":true,"includes_transport":true,"includes_treatment":true,"includes_vat":true,"period_start":"2026-01-01","period_end":"2026-12-31","waste_description":"폐합성수지 등","polymer_composition_verified":false},
+      "checks_to_label": ["물량×단가 산술", "운송비 중복 가산", "기초금액을 낙찰단가로 단정", "혼합수지를 순수 PP로 오인", "이번 공고의 처리 목적·참가조건 누락"],
+      "remaining_unknowns": ["실제 낙찰 업체와 계약단가", "개별 로트 성적서", "수취시설의 현행 허가와 현재 인수", "시설별 탄소"],
+      "caution": "SRF 등 이 공고의 계약상 제한을 모든 폐합성수지의 법적 의무로 확대하지 않는다."
+    },
+    {
+      "id": "sr-2025-shredded-plastic-sale",
+      "source_id": "sr-plastics-sale-2025",
+      "locator": "공고 1. 사. 품목별 예정단가 및 예정수량",
+      "facts": {"material_description":"소형가전 파쇄 폐합성수지","planned_quantity_kg":"878770","reserve_rate_krw_per_kg":"258","reserve_total_krw":"226722660","rate_type":"sale_reserve_not_actual_revenue","includes_vat":true,"period_start":"2025-04-01","period_end":"2026-03-31","expired_at_review_date":true},
+      "checks_to_label": ["매각 수익과 처리 비용의 방향 혼동", "과거 예정가격의 현재 견적 오인", "가전 파쇄수지를 PP·PET 단일수지로 오인"],
+      "remaining_unknowns": ["실제 낙찰단가", "현재 거래 가능 여부", "수지 조성·오염·수율"],
+      "caution": "SR 처리 공고의 폐기물과 다른 물량이다. 두 가격을 동일 로트의 대안으로 비교하지 않는다."
+    },
+    {
+      "id": "sr-2026-aluminium-sash-sale",
+      "source_id": "sr-metal-sale-2026",
+      "locator": "공고 1. 품목별 예정단가 및 예정수량: A샷시 행",
+      "facts": {"item":"A샷시","form":"비압축","planned_quantity_kg":"23908","reserve_rate_krw_per_kg":"2660","reserve_total_krw":"63595280","rate_type":"sale_reserve_not_actual_revenue"},
+      "checks_to_label": ["물량×단가 산술", "샷시와 음료캔의 소재·형상 차이 누락", "매각 예정단가를 신규 견적으로 사용"],
+      "remaining_unknowns": ["최종 계약단가", "정확한 합금·순도", "수취시설 규격과 허가"],
+      "caution": "현재 KG의 알루미늄 음료캔 경로에 샷시를 그대로 통과시키지 않는다."
+    },
+    {
+      "id": "keco-2026-10-regional-pp-prices",
+      "source_id": "keco-prices",
+      "locator": "CSV: 수도권 열, 압축-PP(잡색)·플레이크-PP(잡색)·펠렛-PP(잡색) 행",
+      "facts": {"region":"수도권","observed_on":"2026-10-10","published_on":"2026-10-26","unit":"KRW/kg","compressed_pp":"381.0","flake_pp":"533.0","pellet_pp":"802.0","price_basis":"regional_survey_average"},
+      "checks_to_label": ["가공형태별 가격 차이 보존", "산출수율·공정비 없이 펠렛이 가장 이익이라고 단정", "미공표 칸을 0원으로 변환", "표본 평균을 개별 계약단가로 단정"],
+      "remaining_unknowns": ["사용자 로트 매입가", "전처리비·수율·운송비", "CSV에서 명시하지 않은 가격 포함 범위"],
+      "caution": "802−381을 kg당 순이익으로 사용하지 않는다. 가격 차이만 있고 가공비·회수율은 없다."
+    },
+    {
+      "id": "geumgang-published-capacity",
+      "source_id": "gg-designated-facilities",
+      "locator": {"sheet":"재활용업","row":4,"capacity_column":"1일 처리능력"},
+      "facts": {"declared_waste":"폐유기용제","declared_process":"정제,냉각,여과","published_capacity_raw":"폐유기용제 28㎥/일","as_of":"2026-01-31","unit":"m3/day","current_spare_capacity":null},
+      "checks_to_label": ["㎥를 밀도 없이 톤으로 환산", "공시 용량을 현재 여유 용량으로 단정", "최초허가일·명부 등록을 현행 원허가 확인으로 단정"],
+      "remaining_unknowns": ["밀도·농도·실제 인수 조건", "당일 가동 및 잔여 처리능력", "현행 허가증 원본"],
+      "caution": "폐유기용제는 현재 5개 소재 KG의 직접 지원 범위 밖이다. 명부 확보만으로 새 공정 추천 기능이 생기지 않는다."
+    },
+    {
+      "id": "warm-us-scope-check",
+      "source_id": "epa-warm-v16",
+      "locator": "Summary Data: PP/PET/Aluminum Cans/Corrugated Containers 행. 원본 설명과 함께 검토.",
+      "facts": {"version":"16","released_on":"2023-12","region":"US","reference_only":true,"kr_facility_measurement":false,"includes_avoided_emission_logic":true},
+      "checks_to_label": ["미국 조건을 국내 시설 실측으로 단정", "short ton과 metric tonne 혼동", "순배출·회피배출을 직접 공정배출과 혼합", "기존 국내 LCI에 운송·회피배출 중복 가산"],
+      "remaining_unknowns": ["한국 전력·운송·처리 조건으로의 이전 가능성", "각 경로의 동일 시스템 경계"],
+      "caution": "한국 후보의 기본 탄소 순위에 자동 적용하지 않는다."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "version": "public-verification-sources-v1",
+  "checked_on": "2026-10-27",
+  "purpose": "검증 자료 준비. 실제 거래 승인이나 독립 평가 정답셋이 아님.",
+  "sources": [
+    {"id":"keco-prices","file":"keco-prices.csv","kind":"market_prices","as_of":"2026-10-26","url":"https://www.data.go.kr/data/3076421/fileData.do","license":"공공누리 제1유형. 한국환경공단 출처표시.","use":"품목·가공형태·권역별 조사 평균. 특정 로트의 계약 견적 아님."},
+    {"id":"gwangsan-recyclers","file":"gwangsan-recyclers.csv","kind":"municipal_registry","as_of":"2026-05-27","url":"https://www.data.go.kr/data/15055958/fileData.do","license":"포털 표시: 이용허락범위 제한 없음.","use":"공개 업종·폐기물 종류·주소. 현행 허가증·인수 승인은 별도."},
+    {"id":"hwaseong-handlers","file":"hwaseong-handlers.csv","kind":"municipal_registry","as_of":"2026-07-15","url":"https://www.data.go.kr/data/3046882/fileData.do","license":"포털 표시: 이용허락범위 제한 없음.","use":"처리업종·주소 조사. 소재별 수행 공정이나 인수 규격을 제공하지 않음."},
+    {"id":"ndg-designated-facilities","file":"ndg-designated-facilities.xlsx","kind":"environmental_office_register","as_of":"2026-07","url":"https://mcee.go.kr/ndg/web/board/read.do?boardId=1878510&boardMasterId=160&condition.hideCate=1&menuId=3245","license":"기관 이용조건 확인 필요. 원본은 로컬 보관.","use":"낙동강유역환경청 공개 명부. 사무실 주소를 처리시설 위치로 확정하지 않음."},
+    {"id":"gg-designated-facilities","file":"gg-designated-facilities.xlsx","kind":"environmental_office_register","as_of":"2026-01-31","url":"https://mcee.go.kr/gg/web/board/read.do?boardId=1841750&boardMasterId=228&menuId=2246","license":"기관 이용조건 확인 필요. 원본은 로컬 보관.","use":"금강유역환경청. 대상폐기물·처리방법·공시 용량·최초허가일. 원허가증 확인을 대체하지 않음."},
+    {"id":"smg-designated-facilities","file":"smg-designated-facilities.xlsx","kind":"environmental_office_register","as_of":"2026-02-26","url":"https://mcee.go.kr/smg/web/board/read.do?boardId=1845700&boardMasterId=282&menuId=826","license":"기관 이용조건 확인 필요. 원본은 로컬 보관.","use":"전북지방환경청 공개 명부. 지정·의료 폐기물과 일반 폐기물의 범위를 구분."},
+    {"id":"daegu-designated-facilities","file":"daegu-designated-facilities.xlsx","kind":"environmental_office_register","as_of":"2026-05-20","url":"https://mcee.go.kr/daegu/web/board/read.do?boardId=1865350&boardMasterId=499&menuId=703","license":"기관 이용조건 확인 필요. 원본은 로컬 보관.","use":"대구지방환경청 공개 업종·영업대상 폐기물. 실제 처리능력·현재 인수는 미확인."},
+    {"id":"sr-plastics-treatment-2026","file":"sr-plastics-treatment-2026.html","kind":"tender","as_of":"2025-11-20","url":"https://srcenter.kr/bidding/?bmode=view&idx=168684088","license":"원문 재배포·모델 전송 조건 미확인. 로컬 검토용.","use":"2026년 40만 kg 처리 공고의 기초단가·비용 포함 범위·참가 조건. 실제 낙찰단가 아님."},
+    {"id":"sr-treatment-specification-1","file":"sr-treatment-specification-1.hwp","kind":"tender_specification","as_of":"2025-11-20","url":"https://srcenter.kr/bidding/?bmode=view&idx=168684088","license":"원문 재배포·모델 전송 조건 미확인. 로컬 검토용.","use":"위 공고의 과업지시서. 명시된 위탁 범위·증빙·기한을 확인하는 자료."},
+    {"id":"sr-plastics-sale-2025","file":"sr-plastics-sale-2025.html","kind":"tender","as_of":"2025-03-14","url":"https://srcenter.kr/bidding/?bmode=view&idx=157899470","license":"원문 재배포·모델 전송 조건 미확인. 로컬 검토용.","use":"소형가전 파쇄수지의 과거 매각 예정가격. 순수 PP·PET 가격이나 현재 거래가 아님."},
+    {"id":"sr-metal-sale-2026","file":"sr-metal-sale-2026.html","kind":"tender","as_of":"2025-11-27","url":"https://srcenter.kr/bidding/?bmode=view&idx=168784452","license":"원문 재배포·모델 전송 조건 미확인. 로컬 검토용.","use":"알루미늄 등 품목별 형상·예정물량·예정단가. 폐음료캔이나 현재 매입가로 대체하지 않음."},
+    {"id":"paik-rfp-2026","file":"paik-rfp-2026.pdf","kind":"public_rfp","as_of":"2026-01","url":"https://www.paik.ac.kr/haeundae/cmmn/file/fileDown.do?atchFileId=35378fb2b66c4023bdb03f9b9d777d7b&bbsId=BMSR00064&fileSn=2&menuNo=500124","license":"원문 재배포·모델 전송 조건 미확인. 로컬 검토용.","use":"생활계 폐기물·폐지·알루미늄캔 등의 공개 제안요청서. 공장 성적서·견적은 아님."},
+    {"id":"epa-warm-v16","file":"epa-warm-v16.xls","kind":"foreign_carbon_reference","as_of":"2023-12","url":"https://www.epa.gov/waste-reduction-model/versions-waste-reduction-model","download_url":"https://www.epa.gov/system/files/documents/2023-12/warm_v16.xls","license":"EPA 원문·제3자 자료의 이용조건 확인. 원본은 로컬 보관.","use":"미국 조건의 비교 LCA. 국내 LCI·시설 실측을 대신하지 않으며 회피배출·운송·질량 기준을 대조해야 함."}
+  ],
+  "azure_research": [
+    {"id":"azure-open-datasets","url":"https://learn.microsoft.com/en-us/azure/open-datasets/dataset-catalog","finding":"확인한 공개 카탈로그에 국내 폐자원 로트·허가·견적 완성 자료는 없음. Azure 전체에 그런 자료가 전혀 없다는 증명은 아님."},
+    {"id":"sustainability-factors","url":"https://learn.microsoft.com/en-us/industry/sustainability/calculate-emission-factors","finding":"표준·사용자·데모 계수 라이브러리. 데모값은 실제 근거에서 제외. 실제 제품 라이선스·환경 접근은 확인 전."},
+    {"id":"sustainability-iea","url":"https://marketplace.microsoft.com/en-us/product/saas/mscrm.sust_iea2025?tab=overview","finding":"IEA 계수 패키지는 Sustainability Manager Premium용. Azure 크레딧만으로 이용 가능하다고 확인하지 않음."},
+    {"id":"azure-maps-korea","url":"https://learn.microsoft.com/en-us/azure/azure-maps/routing-coverage","finding":"한국 경로·교통·트럭 지원 표시. 최신 Route 서비스 및 데이터 처리 설정 필요. 리소스 생성·과금 호출은 하지 않음."},
+    {"id":"azure-maps-processing","url":"https://learn.microsoft.com/en-us/azure/azure-maps/how-to-manage-consent","finding":"한국 자료에 대한 데이터 처리 위치 설정 안내. 기존 공유 리소스의 설정을 변경하지 않음."}
+  ]
+}
