@@ -7,6 +7,7 @@ import time
 from resource_ai.agents.semantic_critic import SemanticCriticService
 from resource_ai.evidence.critic_models import SemanticCriticOutput
 from resource_ai.knowledge_graph.ontology import digest
+from resource_ai.workflow.decisions import build_conditions
 
 _slot = threading.Lock()
 _last_started = 0.0
@@ -37,6 +38,7 @@ class WorkflowCritic:
             return {"status": "no_explicitly_permitted_evidence", "model_calls": 0}
         targets, candidates = {}, []
         evidence_bindings = {key: set() for key in sources}
+        conditions = build_conditions(state)
         for candidate in (
             (state.get("engine") or {}).get("review", {}).get("research", {}).get("candidates", [])
         ):
@@ -61,11 +63,41 @@ class WorkflowCritic:
             for selection in [*draft.get("facilities", []), *draft.get("tails", [])]:
                 if selection["evidence_id"] in evidence_bindings:
                     evidence_bindings[selection["evidence_id"]].add(pid)
+            permitted_conditions = []
+            for condition in conditions:
+                if condition["candidate_id"] != pid:
+                    continue
+                parts = [r for r in (condition["requirement"], condition["observation"]) if r]
+                for part in parts:
+                    if part["evidence_id"] in evidence_bindings:
+                        evidence_bindings[part["evidence_id"]].add(pid)
+                if not parts or any(r["evidence_id"] not in sources for r in parts):
+                    continue
+                permitted_conditions.append(
+                    {
+                        "condition_id": condition["condition_id"],
+                        "target_id": condition["target_id"],
+                        "field": condition["field"],
+                        "status": condition["status"],
+                        **{
+                            k: {
+                                name: v
+                                for name, v in condition[k].items()
+                                if name
+                                in {"operator", "limit", "value", "unit", "evidence_id", "quote"}
+                            }
+                            if condition[k]
+                            else None
+                            for k in ("requirement", "observation")
+                        },
+                    }
+                )
             candidates.append(
                 {
                     "candidate_id": pid,
                     "allowed_targets": {k: sorted(v) for k, v in targets[pid].items()},
                     "declared_lines": permitted_lines,
+                    "declared_conditions": permitted_conditions,
                     "withheld_lines": len(draft.get("lines", [])) - len(permitted_lines),
                 }
             )
@@ -73,7 +105,7 @@ class WorkflowCritic:
             "max_findings": 8,
             "candidates": candidates,
             "records": [{"ref_id": key, "text": row["text"]} for key, row in records.items()],
-            "scope": "explicitly_permitted_numeric_sources_only; no permit approval; private prompts/origin/documents withheld",
+            "scope": "explicitly_permitted_numeric_and_intake_condition_sources_only; no permit approval; private prompts/origin/documents/actors withheld",
         }
         encoded = json.dumps(payload, ensure_ascii=False)
         if len(encoded) > self.service.config.semantic_critic_max_input_chars:

@@ -1,6 +1,7 @@
 """Internal tenant-scoped case API. Backend supplies tenant after authenticating user."""
 
 import json
+from copy import deepcopy
 from pathlib import Path
 from secrets import compare_digest
 from typing import Annotated
@@ -24,9 +25,11 @@ from resource_ai.integrations.road_routing import get_road_routing_service
 from resource_ai.knowledge_graph.graph_store import GraphStoreError
 from resource_ai.rag.retrieval.vector_store import Database
 from resource_ai.workflow.critic import WorkflowCritic
+from resource_ai.workflow.decisions import what_if
 from resource_ai.workflow.documents import AzureLayoutOCR, present_documents
 from resource_ai.workflow.models import (
     CaseCreate,
+    ConditionsUpdate,
     DocumentFactApply,
     DocumentUpload,
     DraftUpdate,
@@ -34,8 +37,9 @@ from resource_ai.workflow.models import (
     ExtractionConfirmation,
     InputUpdate,
     RunOptions,
+    WhatIfRequest,
 )
-from resource_ai.workflow.service import CaseService
+from resource_ai.workflow.service import CaseService, recompute
 from resource_ai.workflow.store import PostgresCaseStore, WorkflowError
 
 router = APIRouter(prefix="/workflow", tags=["internal-evidence-workflow"])
@@ -133,7 +137,16 @@ def list_cases(tenant: Tenant, store: Annotated[PostgresCaseStore, Depends(get_c
 def read(
     case_id: UUID, tenant: Tenant, store: Annotated[PostgresCaseStore, Depends(get_case_store)]
 ):
-    return guarded(lambda: present_documents(store.get(tenant, str(case_id))))
+    def present():
+        value = deepcopy(store.get(tenant, str(case_id)))
+        if (
+            value["evaluation"].get("decision_support", {}).get("version")
+            != "condition-decision-v2"
+        ):
+            recompute(value)  # Derived current view only, no write or KG/RAG/provider calls.
+        return present_documents(value)
+
+    return guarded(present)
 
 
 @router.get("/cases/{case_id}/history")
@@ -217,6 +230,28 @@ def document(
     case_id: UUID, request: DocumentUpload, tenant: Tenant, service: Service, idempotency_key: Key
 ):
     return mutate(service, tenant, case_id, idempotency_key, "document", request)
+
+
+@router.put("/cases/{case_id}/conditions")
+def conditions(
+    case_id: UUID,
+    request: ConditionsUpdate,
+    tenant: Tenant,
+    service: Service,
+    idempotency_key: Key,
+    actor: Actor,
+):
+    return mutate(service, tenant, case_id, idempotency_key, "conditions", request, actor)
+
+
+@router.post("/cases/{case_id}/what-if")
+def preview(
+    case_id: UUID,
+    request: WhatIfRequest,
+    tenant: Tenant,
+    store: Annotated[PostgresCaseStore, Depends(get_case_store)],
+):
+    return guarded(lambda: what_if(store.get(tenant, str(case_id)), request))
 
 
 @router.post("/cases/{case_id}/documents/confirm")

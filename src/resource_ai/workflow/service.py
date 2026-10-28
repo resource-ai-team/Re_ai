@@ -13,6 +13,7 @@ from resource_ai.workflow.calculation import (
     issues_for_source,
     robust_pareto,
 )
+from resource_ai.workflow.decisions import apply_reviews, build_conditions, decision_support, delta
 from resource_ai.workflow.documents import (
     decode_document,
     local_extraction,
@@ -95,6 +96,22 @@ def validate_draft(state, draft):
     return plan
 
 
+def internal_leg_ids(plan, draft):
+    selected = {f["stage_id"]: f for f in draft["facilities"]}
+    result = set()
+    for handoff in plan["research_packet"]["handoffs"]:
+        a, b = selected.get(handoff.get("from_stage_id")), selected.get(handoff.get("to_stage_id"))
+        if (
+            handoff.get("kind") == "within_site_candidate"
+            and a
+            and b
+            and a["facility_id"] == b["facility_id"]
+            and a["gate"] == b["gate"]
+        ):
+            result.add(handoff["leg_id"])
+    return result
+
+
 def query_candidate_roads(state, plan, draft, service):
     selected = {f["stage_id"]: f for f in draft["facilities"]}
     stages = plan["research_packet"]["stages"]
@@ -111,12 +128,14 @@ def query_candidate_roads(state, plan, draft, service):
     previous = RoadPoint(latitude=origin["latitude"], longitude=origin["longitude"])
     legs = []
     handoffs = plan["research_packet"]["handoffs"]
+    internal = internal_leg_ids(plan, draft)
     for index, stage in enumerate(stages):
         gate = RoadPoint.model_validate(selected[stage["stage_id"]]["gate"])
         leg_id = (
             f"{plan['plan_id']}:origin-transport" if index == 0 else handoffs[index - 1]["leg_id"]
         )
-        legs.append(RoadLeg(leg_id=leg_id, origin=previous, destination=gate))
+        if leg_id not in internal:
+            legs.append(RoadLeg(leg_id=leg_id, origin=previous, destination=gate))
         previous = gate
     # Per-candidate batching preserves one caller-controlled budget, not one budget per tail.
     for tail in draft["tails"]:
@@ -131,10 +150,26 @@ def query_candidate_roads(state, plan, draft, service):
         )
     batch = service.run(RoadRoutesRequest(legs=legs, mode="independent", include_geometry=True))
     return {
-        "status": batch.status,
-        "all_legs_routed": batch.all_legs_routed,
-        "measurements": {r.leg_id: r.model_dump(mode="json") for r in batch.routes},
-        "total_road_distance_km": batch.total_road_distance_km,
+        "status": "internal_movements_unmeasured"
+        if internal and batch.all_legs_routed
+        else batch.status,
+        "all_legs_routed": batch.all_legs_routed and not internal,
+        "all_external_legs_routed": batch.all_legs_routed,
+        "internal_leg_ids": sorted(internal),
+        "measurements": {
+            **{r.leg_id: r.model_dump(mode="json") for r in batch.routes},
+            **{
+                leg: {
+                    "leg_id": leg,
+                    "status": "internal_site_unmeasured",
+                    "road_distance_km": None,
+                    "scope": "internal_activity_needs_separate_evidence",
+                }
+                for leg in internal
+            },
+        },
+        "total_road_distance_km": None if internal else batch.total_road_distance_km,
+        "external_road_distance_km": batch.total_road_distance_km,
         "scope": "ordered_main_process_chain_and_explicit_branches_not_dispatch_clearance",
         "coverage": batch.coverage,
     }
@@ -257,7 +292,45 @@ def recompute(state):
                     "message": text,
                 }
             )
-    existing = (state.get("engine") or {}).get("review", {}).get("map_markers", [])
+    condition_rows = build_conditions(state)
+    support = decision_support(state, condition_rows, results)
+    for result in results:
+        if any(
+            c["candidate_id"] == result["candidate_id"] and c["status"] == "unmet"
+            for c in condition_rows
+        ):
+            result["comparable"] = False
+            result["condition_blocked"] = True
+    replaced = {
+        (c["candidate_id"], c["target_id"], "facility_" + c["field"]) for c in condition_rows
+    }
+    existing = [
+        m
+        for m in (state.get("engine") or {}).get("review", {}).get("map_markers", [])
+        if (m.get("candidate_id"), m.get("target_id"), m.get("code")) not in replaced
+    ]
+    for c in condition_rows:
+        if c["status"] == "met":
+            continue
+        existing.append(
+            {
+                "marker_id": c["condition_id"],
+                "condition_id": c["condition_id"],
+                "candidate_id": c["candidate_id"],
+                "target_id": c["target_id"],
+                "code": "intake_condition_" + c["status"],
+                "severity": "error" if c["status"] == "unmet" else "missing",
+                "message": c["label"] + " · " + c["explanation"],
+                "next_action": "확인한 시설 기준과 해당 단계 로트의 성적서를 대조하세요.",
+                "origin": "code",
+                "confirmed_operational_incident": False,
+                "evidence_ids": [
+                    r["evidence_id"]
+                    for r in (c["requirement"], c["observation"])
+                    if r and r.get("evidence_id")
+                ],
+            }
+        )
     for run in state.get("critic_runs", []):
         if run.get("superseded_by_repair"):
             continue
@@ -310,6 +383,7 @@ def recompute(state):
                     thresholds.extend(break_even(plan, draft, row, other))
     unique_questions = {q["question_id"]: q for q in questions}
     state["evaluation"] = {
+        "decision_support": support,
         "results": results,
         "pareto_for_review": front,
         "break_even": thresholds[:100],
@@ -330,7 +404,9 @@ def recompute(state):
             "markers": markers,
             "view": "process_concept_not_geographic_map",
         },
-        "route": "REVISE" if any(r["errors"] for r in results) else "REVIEW",
+        "route": "REVISE"
+        if any(r["errors"] for r in results) or any(c["status"] == "unmet" for c in condition_rows)
+        else "REVIEW",
         "dispatch_approved": False,
         "expert_review_completed": False,
         "generated_at": now(),
@@ -369,6 +445,32 @@ def report(state):
         "## 다음 확인",
         *[f"- {q['question']} ({q['target_id']})" for q in evaluation["questions"]],
     ]
+    support = evaluation.get("decision_support", {})
+    if support.get("conditions"):
+        lines += [
+            "",
+            "## 시설 조건 대조",
+            "제출한 수탁 기준과 해당 단계 로트 측정값의 대조입니다. 현행 허가·법규 적용·인수 승인은 별도 확인합니다.",
+        ]
+        for condition in support["conditions"]:
+            lines.append(
+                f"- {condition['stage_label']} / {condition['label']}: {condition['status']} — {condition['explanation']}"
+            )
+            for part in (condition["requirement"], condition["observation"]):
+                if part:
+                    lines.append(f"  - 근거 {part['evidence_id']}: {part['quote']}")
+        lines += ["", "## 먼저 확인할 자료"]
+        lines += [
+            f"- {a['title']} / {a['owner']} / {a['required_document']} / {a['why']}"
+            for a in support["first_actions"]
+        ]
+    if state.get("last_decision_change"):
+        change = state["last_decision_change"]
+        lines += ["", f"## 변경 기록 v{change['from_revision']} → v{change['to_revision']}"]
+        lines += [
+            f"- {c['label']}: {c['before_status']} → {c['after_status']} / {c['explanation']}"
+            for c in change["condition_changes"]
+        ]
     lines += ["", "## 제출 근거 목록"]
     lines += [
         f"- {s['evidence_id']}: {s['title']} / {s['locator']} / {'확인함' if s.get('user_confirmed') else '미확인'} / {'가상' if s.get('synthetic') else '제출 자료'}"
@@ -446,6 +548,7 @@ class CaseService:
             "events": [],
             "critic_runs": [],
             "field_provenance": {},
+            "condition_reviews": {"rules": {}, "readings": {}},
             "created_at": now(),
         }
         return self.store.create(tenant, recompute(state))
@@ -456,6 +559,12 @@ class CaseService:
         )
         if replay:
             return state
+        if (
+            state.get("evaluation", {}).get("decision_support", {}).get("version")
+            != "condition-decision-v2"
+        ):
+            recompute(state)  # Derive the old-version baseline without retrieval or a write.
+        before = deepcopy(state)
         try:
             state.pop("active_operation", None)
             state["events"].append(
@@ -520,6 +629,8 @@ class CaseService:
                 self._document(tenant, state, payload)
             elif action == "apply_document_facts":
                 self._apply_document_facts(state, payload, actor)
+            elif action == "conditions":
+                apply_reviews(state, payload, actor, now())
             elif action == "confirm_document":
                 document = state["documents"].get(payload["document_id"])
                 if document is None:
@@ -552,10 +663,13 @@ class CaseService:
                 "draft",
                 "apply_document_facts",
                 "confirm_document",
+                "conditions",
             }:
                 state["critic_runs"] = []
                 state["model_recheck_pending"] = True
             recompute(state)
+            state["last_decision_change"] = delta(before, state)
+            state["report_markdown"] = report(state)
             state["events"].append(
                 {"stage": action, "status": "completed", "at": now(), "operation_id": op_id}
             )
@@ -689,7 +803,11 @@ class CaseService:
             for plan in plans(state):
                 draft = state["drafts"].get(plan["plan_id"])
                 if draft:
-                    required = len(plan["research_packet"]["stages"]) + len(draft["tails"])
+                    required = (
+                        len(plan["research_packet"]["stages"])
+                        - len(internal_leg_ids(plan, draft))
+                        + len(draft["tails"])
+                    )
                     if required > remaining:
                         state["roads"][plan["plan_id"]] = {
                             "status": "budget_exhausted",

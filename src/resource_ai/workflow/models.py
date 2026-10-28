@@ -177,3 +177,38 @@ class DocumentFactApply(Revision):
     document_id: Identifier
     field_ids: list[Identifier] = Field(min_length=1, max_length=3)
     same_lot_confirmed: StrictBool = False
+
+
+class ConditionRule(StrictModel):
+    condition_id: Identifier
+    facility_id: Identifier
+    operator: Literal["le", "lt", "ge", "gt", "eq"]
+    limit: Number
+    unit: Literal["%", "kg"]
+    evidence_id: Identifier
+    applicability_confirmed: StrictBool = False
+
+
+class ConditionReading(StrictModel):
+    condition_id: Identifier
+    value: Number
+    unit: Literal["%", "kg"]
+    evidence_id: Identifier
+    same_lot_and_stage_confirmed: StrictBool = False
+
+
+class ConditionsUpdate(Revision):
+    rules: list[ConditionRule] = Field(default_factory=list, max_length=30)
+    readings: list[ConditionReading] = Field(default_factory=list, max_length=30)
+    remove_rules: list[Identifier] = Field(default_factory=list, max_length=30)
+    remove_readings: list[Identifier] = Field(default_factory=list, max_length=30)
+
+
+class AssumedReading(StrictModel):
+    condition_id: Identifier
+    value: Number
+    unit: Literal["%", "kg"]
+
+
+class WhatIfRequest(Revision):
+    readings: list[AssumedReading] = Field(min_length=1, max_length=10)
