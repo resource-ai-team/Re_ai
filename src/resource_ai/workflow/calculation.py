@@ -53,6 +53,43 @@ def expected_targets(plan, tails=()):
     }
 
 
+def target_mass_binding(plan, category, target_id, tails=()):
+    """Return the one physical mass basis belonging to this stage or transport leg."""
+    stages = plan["research_packet"]["stages"]
+    if category == "process":
+        return "stage_input", target_id
+    if category == "revenue":
+        return "stage_output", stages[-1]["stage_id"]
+    if category == "residue":
+        return "total_residue", None
+    if target_id == f"{plan['plan_id']}:origin-transport":
+        return "lot_input", None
+    for index, leg in enumerate(plan["research_packet"]["handoffs"]):
+        if leg["leg_id"] == target_id:
+            return "stage_input", stages[index + 1]["stage_id"]
+    for raw in tails:
+        tail = raw.model_dump() if hasattr(raw, "model_dump") else raw
+        if tail["leg_id"] == target_id:
+            return ("stage_residue" if tail["purpose"] == "residue" else "stage_output"), tail[
+                "from_stage_id"
+            ]
+    return None, None
+
+
+def physical_mass(binding, stage_id, mass_map, quantity):
+    if binding == "lot_input":
+        return Decimal(str(quantity)) if quantity else None
+    row = mass_map.get(stage_id)
+    if binding == "total_residue":
+        return sum((r.residue_kg for r in mass_map.values()), ZERO)
+    key = {
+        "stage_input": "input_kg",
+        "stage_output": "output_kg",
+        "stage_residue": "residue_kg",
+    }.get(binding)
+    return getattr(row, key, None) if key else None
+
+
 def evaluate_candidate(plan, draft, sources, inputs, roads=None):
     model = CandidateDraft.model_validate(draft)
     wanted = expected_targets(plan, model.tails)
@@ -86,6 +123,9 @@ def evaluate_candidate(plan, draft, sources, inputs, roads=None):
         row_errors = []
         key = (line.metric, line.category, line.target_id)
         component = (*key, line.component)
+        expected_binding, expected_stage = target_mass_binding(
+            plan, line.category, line.target_id, model.tails
+        )
         if key not in wanted or component in seen or line.line_id in line_ids:
             row_errors.append("unexpected_or_duplicate_component")
         seen.add(component)
@@ -148,6 +188,11 @@ def evaluate_candidate(plan, draft, sources, inputs, roads=None):
         ):
             row_errors.append("revenue_requires_final_output_mass")
         if line.mass_binding != "none":
+            actual_stage = line.mass_stage_id or (
+                line.target_id if line.category == "process" else None
+            )
+            if line.mass_binding != expected_binding or actual_stage != expected_stage:
+                row_errors.append("mass_binding_target_mismatch")
             target_mass = mass_map.get(line.mass_stage_id or line.target_id)
             bound_mass = (
                 Decimal(str(inputs["engine_request"]["lot"].get("quantity_kg") or 0))
@@ -169,9 +214,10 @@ def evaluate_candidate(plan, draft, sources, inputs, roads=None):
                     else None
                 )
             multiplier = Decimal(1000) if line.activity.unit == "t" else Decimal(1)
-            if (
+            if bound_mass is None and line.activity.unit in ("kg", "t"):
+                row_errors.append("bound_mass_missing")
+            elif (
                 line.activity.unit not in ("kg", "t")
-                or bound_mass is None
                 or line.activity.low * multiplier != bound_mass
                 or line.activity.high * multiplier != bound_mass
             ):
@@ -212,8 +258,24 @@ def evaluate_candidate(plan, draft, sources, inputs, roads=None):
                         row_errors.append("transport_payload_missing")
                     else:
                         distance *= line.payload_kg_per_trip / Decimal(1000)
+                        required_mass = physical_mass(
+                            expected_binding,
+                            expected_stage,
+                            mass_map,
+                            inputs["engine_request"]["lot"].get("quantity_kg"),
+                        )
+                        if required_mass is None:
+                            row_errors.append("transport_mass_missing")
+                        elif line.payload_kg_per_trip * line.trip_count != required_mass:
+                            row_errors.append("transport_payload_mass_mismatch")
                 if line.activity.low != distance or line.activity.high != distance:
                     row_errors.append("transport_activity_differs_from_measured_route")
+        if (
+            line.category == "transport"
+            and line.activity.unit == "trip"
+            and (line.activity.low != line.trip_count or line.activity.high != line.trip_count)
+        ):
+            row_errors.append("transport_trip_count_mismatch")
         if row_errors:
             unknown = {
                 "evidence_missing",
@@ -222,6 +284,8 @@ def evaluate_candidate(plan, draft, sources, inputs, roads=None):
                 "road_distance_unverified",
                 "transport_payload_missing",
                 "carbon_boundary_and_allocation_required",
+                "transport_mass_missing",
+                "bound_mass_missing",
             }
             for code in dict.fromkeys(row_errors):
                 (missing if code in unknown else errors).append(

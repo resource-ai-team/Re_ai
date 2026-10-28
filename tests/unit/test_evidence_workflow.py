@@ -13,7 +13,12 @@ from resource_ai.agents.site_review import SiteReviewService
 from resource_ai.api.routes.workflow import get_case_service, get_case_store, identity
 from resource_ai.core.config import Settings
 from resource_ai.main import app
-from resource_ai.workflow.calculation import evaluate_candidate, expected_targets, robust_pareto
+from resource_ai.workflow.calculation import (
+    evaluate_candidate,
+    expected_targets,
+    robust_pareto,
+    target_mass_binding,
+)
 from resource_ai.workflow.documents import AzureLayoutOCR, local_extraction, suggest_fields
 from resource_ai.workflow.models import CandidateDraft, CaseCreate, Source
 from resource_ai.workflow.service import CaseService, plans
@@ -141,7 +146,9 @@ def complete_draft(state, plan, multiplier=1):
         elif line["category"] == "process":
             line["mass_binding"] = "stage_input"
         else:
-            line["mass_binding"] = "lot_input"
+            line["mass_binding"], line["mass_stage_id"] = target_mass_binding(
+                plan, line["category"], line["target_id"]
+            )
     return CandidateDraft.model_validate(draft).model_dump(mode="json")
 
 

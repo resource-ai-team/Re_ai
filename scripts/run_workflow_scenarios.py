@@ -8,7 +8,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from resource_ai.api.routes.workflow import get_case_service, get_case_store
-from resource_ai.workflow.calculation import expected_targets
+from resource_ai.workflow.calculation import expected_targets, target_mass_binding
 from resource_ai.workflow.models import CaseCreate
 from resource_ai.workflow.service import plans
 
@@ -51,7 +51,7 @@ def main():
         step("run", {"max_repairs": 0})
         assert plans(state), material
         assert state["evaluation"]["questions"] and not state["evaluation"]["dispatch_approved"]
-        text = f"Synthetic QA only. {material}: 1000 kg. 100000 KRW/t. Not a market quote."
+        text = f"Synthetic QA only. {material}. 중량: 1 톤. 100000 KRW/t. Not a market quote."
         step(
             "document",
             {
@@ -64,6 +64,17 @@ def main():
         )
         doc = next(iter(state["documents"].values()))
         assert not doc["user_confirmed"]
+        field = next(r for r in doc["review_fields"] if r["target_field"] == "quantity_kg")
+        step(
+            "apply_document_facts",
+            {
+                "document_id": doc["document_id"],
+                "field_ids": [field["field_id"]],
+                "same_lot_confirmed": True,
+            },
+        )
+        assert state["inputs"]["engine_request"]["lot"]["quantity_kg"] == 1000
+        assert state["field_provenance"]["quantity_kg"]["conversion"] == "1 t = 1000 kg"
         step(
             "confirm_document",
             {
@@ -148,13 +159,8 @@ def main():
                             "basis": basis,
                             "evidence_id": eid,
                         },
-                        "mass_binding": {
-                            "revenue": "stage_output",
-                            "residue": "total_residue",
-                            "process": "stage_input",
-                            "transport": "lot_input",
-                        }[category],
-                        "mass_stage_id": stages[-1]["stage_id"] if category == "revenue" else None,
+                        "mass_binding": target_mass_binding(plan, category, target)[0],
+                        "mass_stage_id": target_mass_binding(plan, category, target)[1],
                         "scope": {
                             "region": "KR",
                             "reference_year": date.today().year,
@@ -187,6 +193,7 @@ def main():
                 "questions": len(state["evaluation"]["questions"]),
                 "revision": state["revision"],
                 "document_status": doc["extraction"]["status"],
+                "document_fact_applied": "quantity_kg",
                 "model_calls": 0,
                 "map_calls": 0,
                 "paid_ocr_calls": 0,

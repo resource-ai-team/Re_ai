@@ -8,11 +8,13 @@ import re
 import subprocess
 import sys
 import time
+from decimal import Decimal
 from io import BytesIO
 from urllib.parse import urlparse
 
 import httpx
 
+from resource_ai.knowledge_graph.ontology import identity
 from resource_ai.workflow.store import WorkflowError
 
 
@@ -195,7 +197,7 @@ def suggest_fields(extraction):
     """Literal candidates only. Multiple matches stay ambiguous; nothing is auto-confirmed."""
     suggestions = []
     pattern = re.compile(
-        r"(?P<label>물량|중량|수량|함수율|수분|처리단가|매각단가|단가)\s*[:：]?\s*(?P<value>\d[\d,]*(?:\.\d+)?)\s*(?P<unit>kg|톤|t|%|원/kg|원/톤|KRW/kg|KRW/t)",
+        r"(?P<label>물량|중량|수량|함수율|수분|오염도|오염함량|처리단가|매각단가|단가)\s*[:：]?\s*(?P<value>\d+(?:,\d{3})*(?:\.\d+)?)\s*(?P<unit>kg|톤|t|%|원/kg|원/톤|KRW/kg|KRW/t)(?![A-Za-z가-힣/])",
         re.IGNORECASE,
     )
     for page in extraction.get("pages", []):
@@ -213,3 +215,75 @@ def suggest_fields(extraction):
                 }
             )
     return suggestions[:100]
+
+
+def reviewable_fields(document_id, extraction):
+    """Only literal lot fields; prices, site identity and inferred facts stay manual."""
+    rows = []
+    for item in suggest_fields(extraction):
+        page_text = next(p["text"] for p in extraction["pages"] if p["page"] == item["page"])
+        start = max(page_text.rfind("\n", 0, item["start"]) + 1, item["start"] - 160)
+        end = page_text.find("\n", item["end"])
+        end = min(len(page_text) if end < 0 else end, item["end"] + 160)
+        context_quote = page_text[start:end]
+        qualified = re.search(
+            r"(?:최대|최소|예상|추정|약)\s*$", page_text[max(0, item["start"] - 8) : item["start"]]
+        ) or re.match(
+            r"\s*(?:[~～–—±-]|이상|이하|미만|초과|내외|정도|까지|또는|혹은|to\b|or\b)",
+            page_text[item["end"] : item["end"] + 20],
+            re.IGNORECASE,
+        )
+        unit = item["unit"].lower()
+        target, normalized_unit, multiplier = None, None, Decimal(1)
+        if item["field"] in {"물량", "중량", "수량"} and unit in {"kg", "톤", "t"}:
+            target, normalized_unit = "quantity_kg", "kg"
+            multiplier = Decimal(1000) if unit in {"톤", "t"} else Decimal(1)
+        elif item["field"] in {"함수율", "수분"} and unit == "%":
+            target, normalized_unit = "moisture_pct", "%"
+        elif item["field"] in {"오염도", "오염함량"} and unit == "%":
+            target, normalized_unit = "contamination_pct", "%"
+        # Bound precision before multiplication; do not round a literal into an accepted fact.
+        value = Decimal(item["value"]) * multiplier if len(item["value"]) <= 24 else None
+        valid = (
+            target is not None
+            and value is not None
+            and (
+                Decimal(0) < value <= Decimal("1e12")
+                if target == "quantity_kg"
+                else Decimal(0) <= value <= Decimal(100)
+            )
+        )
+        valid = bool(valid and not qualified and Decimal(str(float(value))) == value)
+        rows.append(
+            {
+                **item,
+                "field_id": identity("document-field", [document_id, item]),
+                "target_field": target,
+                "normalized_value": str(value) if valid else None,
+                "normalized_unit": normalized_unit,
+                "can_apply": valid,
+                "conversion": "1 t = 1000 kg" if multiplier == 1000 else "literal_same_unit",
+                "requires_user_confirmation": True,
+                "context_quote": context_quote,
+                "context_start": start,
+                "context_end": end,
+            }
+        )
+    counts = {}
+    for row in rows:
+        if row["target_field"]:
+            counts[row["target_field"]] = counts.get(row["target_field"], 0) + 1
+    for row in rows:
+        row["multiple_matches"] = counts.get(row["target_field"], 0) > 1
+    return rows
+
+
+def present_documents(state):
+    """Read-time enrichment for earlier saved documents; never changes stored revision."""
+    return {
+        **state,
+        "documents": {
+            key: {**doc, "review_fields": reviewable_fields(key, doc["extraction"])}
+            for key, doc in state["documents"].items()
+        },
+    }

@@ -13,8 +13,13 @@ from resource_ai.workflow.calculation import (
     issues_for_source,
     robust_pareto,
 )
-from resource_ai.workflow.documents import decode_document, local_extraction, suggest_fields
-from resource_ai.workflow.models import CandidateDraft, CaseCreate
+from resource_ai.workflow.documents import (
+    decode_document,
+    local_extraction,
+    reviewable_fields,
+    suggest_fields,
+)
+from resource_ai.workflow.models import CandidateDraft, CaseCreate, DocumentFactApply
 from resource_ai.workflow.store import WorkflowError
 
 
@@ -32,9 +37,9 @@ def plans(state):
     ]
 
 
-def _question(code, target, text, *, candidate=None, field=None, priority=2):
+def _question(code, target, text, *, candidate=None, field=None, priority=2, context=None):
     return {
-        "question_id": identity("question", [code, target, candidate]),
+        "question_id": identity("question", [code, target, candidate, context]),
         "code": code,
         "target_id": target,
         "candidate_id": candidate,
@@ -42,6 +47,7 @@ def _question(code, target, text, *, candidate=None, field=None, priority=2):
         "priority": priority,
         "question": text,
         "status": "unanswered",
+        "context": context,
     }
 
 
@@ -217,6 +223,11 @@ def recompute(state):
             text = {
                 "mass_balance_missing": "단계별 투입·산출·잔재물 물량과 근거를 입력해 주세요.",
                 "mass_balance_mismatch": "앞 단계 산출량과 다음 단계 투입량·잔재물 수지를 확인해 주세요.",
+                "mass_binding_target_mismatch": "발생지 물량·단계별 투입·산출·잔재물 중 이 구간이 실제로 옮기는 물량을 연결해 주세요.",
+                "transport_payload_mass_mismatch": "1회 평균 실적재량 × 운행 횟수가 이 구간의 실제 이동 물량과 같은지 확인해 주세요.",
+                "transport_trip_count_mismatch": "운송 활동량의 운행 횟수와 입력한 운행 횟수를 맞춰 주세요.",
+                "transport_mass_missing": "이 구간에서 옮기는 단계별 물량의 근거를 먼저 입력해 주세요.",
+                "bound_mass_missing": "계산에 연결한 단계별 물량이 비어 있습니다. 투입·산출·잔재물 근거를 먼저 입력해 주세요.",
                 "full_component_missing": f"{ {'cost': '비용', 'carbon': '탄소'}.get(issue.get('metric'), '') } · { {'process': '공정', 'transport': '운송', 'residue': '잔재물 처리', 'revenue': '매각 수익'}.get(issue.get('category'), '') } 전체 범위와 근거가 필요합니다.",
                 "reporting_factor_not_route_lca": "보고용 폐기물 계수 대신 해당 공정 경계의 LCI·활동량을 확인해 주세요.",
                 "factor_transfer_explanation_required": "계수의 국가·기준연도가 이번 평가에 적용되는 이유를 기록해 주세요.",
@@ -232,6 +243,7 @@ def recompute(state):
                     text,
                     candidate=pid,
                     priority=0 if issue in result["errors"] else 2,
+                    context={k: issue[k] for k in ("metric", "category") if k in issue} or None,
                 )
             )
             markers.append(
@@ -269,11 +281,15 @@ def recompute(state):
             _question(
                 marker.get("code", "engine_review_required"),
                 marker.get("target_id") or "global",
-                marker.get("next_action")
-                or marker.get("message")
+                "\n".join(
+                    dict.fromkeys(filter(None, [marker.get("message"), marker.get("next_action")]))
+                )
                 or "연결된 근거를 확인해 주세요.",
                 candidate=marker.get("candidate_id"),
                 priority=0 if marker.get("severity") == "error" else 1,
+                context={
+                    "marker_id": marker.get("marker_id") or identity("marker-question", marker)
+                },
             )
         )
         markers.append(
@@ -358,6 +374,16 @@ def report(state):
         f"- {s['evidence_id']}: {s['title']} / {s['locator']} / {'확인함' if s.get('user_confirmed') else '미확인'} / {'가상' if s.get('synthetic') else '제출 자료'}"
         for s in state["evidence"].values()
     ]
+    if state.get("field_provenance"):
+        lines += [
+            "",
+            "## 문서에서 선택해 입력한 값",
+            "선택한 로트 항목만 사용자 확인했습니다. 문서 전체·허가·인수 승인을 뜻하지 않습니다.",
+        ]
+        for name, item in state["field_provenance"].items():
+            lines.append(
+                f"- {name}: {item['normalized_value']} {item['normalized_unit']} / 원문: {item['quote']} / p.{item['page']} / 환산: {item['conversion']} / 근거: {item['evidence_id']}"
+            )
     if state.get("engine"):
         lines += ["", "## KG·법령·기술 조사 상세", state["engine"]["review"]["report_markdown"]]
     return "\n".join(lines)
@@ -419,6 +445,7 @@ class CaseService:
             "engine": None,
             "events": [],
             "critic_runs": [],
+            "field_provenance": {},
             "created_at": now(),
         }
         return self.store.create(tenant, recompute(state))
@@ -435,8 +462,28 @@ class CaseService:
                 {"stage": action, "status": "started", "at": now(), "operation_id": op_id}
             )
             if action == "inputs":
+                previous_inputs = state["inputs"]
                 state["inputs"] = CaseCreate.model_validate(payload).model_dump(mode="json")
-                self._refresh(state, force=True)
+                self._prune_field_provenance(state)
+                old_request = previous_inputs.get("engine_request") or {}
+                new_request = state["inputs"].get("engine_request") or {}
+                if (
+                    previous_inputs["mode"] != state["inputs"]["mode"]
+                    or old_request.get("origin") != new_request.get("origin")
+                    or any(
+                        (old_request.get("lot") or {}).get(k)
+                        != (new_request.get("lot") or {}).get(k)
+                        for k in ("material", "input_form")
+                    )
+                ):
+                    state["field_provenance"] = {}
+                changed = (
+                    previous_inputs["engine_request"] != state["inputs"]["engine_request"]
+                    or previous_inputs["mode"] != state["inputs"]["mode"]
+                )
+                if changed or not state.get("engine"):
+                    self._refresh(state, force=changed)
+                state["critic_runs"] = []
             elif action == "evidence":
                 for source in payload["evidence"]:
                     if (
@@ -456,6 +503,7 @@ class CaseService:
                         ):
                             state["roads"].pop(pid, None)
                 state["critic_runs"] = []  # old judgments cannot silently apply to new evidence.
+                self._prune_field_provenance(state)
             elif action == "draft":
                 draft = CandidateDraft.model_validate(payload["draft"])
                 validate_draft(state, draft)
@@ -470,6 +518,8 @@ class CaseService:
                 state["critic_runs"] = []
             elif action == "document":
                 self._document(tenant, state, payload)
+            elif action == "apply_document_facts":
+                self._apply_document_facts(state, payload, actor)
             elif action == "confirm_document":
                 document = state["documents"].get(payload["document_id"])
                 if document is None:
@@ -496,6 +546,15 @@ class CaseService:
                 self._run(state, payload)
             else:
                 raise WorkflowError("unknown-operation", 422)
+            if action in {
+                "inputs",
+                "evidence",
+                "draft",
+                "apply_document_facts",
+                "confirm_document",
+            }:
+                state["critic_runs"] = []
+                state["model_recheck_pending"] = True
             recompute(state)
             state["events"].append(
                 {"stage": action, "status": "completed", "at": now(), "operation_id": op_id}
@@ -504,6 +563,99 @@ class CaseService:
         except Exception:
             self.store.fail(tenant, case_id, op_id)
             raise
+
+    @staticmethod
+    def _prune_field_provenance(state):
+        lot = (state["inputs"].get("engine_request") or {}).get("lot", {})
+        for field, record in list(state.get("field_provenance", {}).items()):
+            current = lot.get(field)
+            evidence = state["evidence"].get(record["evidence_id"], {})
+            if (
+                current is None
+                or Decimal(str(current)) != Decimal(record["normalized_value"])
+                or not evidence.get("user_confirmed")
+                or evidence.get("content") != record.get("context_quote", record["quote"])
+                or evidence.get("sha256") != record["document_sha256"]
+            ):
+                del state["field_provenance"][field]
+
+    def _apply_document_facts(self, state, payload, actor):
+        selection = DocumentFactApply.model_validate(
+            {**payload, "expected_revision": state["revision"]}
+        )
+        if not selection.same_lot_confirmed:
+            raise WorkflowError("document-lot-confirmation-required", 422)
+        document = state["documents"].get(selection.document_id)
+        if document is None:
+            raise WorkflowError("document-not-in-case", 404)
+        if state["inputs"]["engine_request"] is None:
+            raise WorkflowError("origin-and-lot-required-before-document-facts", 422)
+        fields = {
+            r["field_id"]: r
+            for r in reviewable_fields(selection.document_id, document["extraction"])
+        }
+        if len(set(selection.field_ids)) != len(selection.field_ids) or any(
+            k not in fields or not fields[k]["can_apply"] for k in selection.field_ids
+        ):
+            raise WorkflowError("document-field-selection-invalid", 422)
+        chosen = [fields[k] for k in selection.field_ids]
+        if len({r["target_field"] for r in chosen}) != len(chosen):
+            raise WorkflowError("choose-one-document-observation-per-field", 422)
+        previous = deepcopy(state["inputs"])
+        updated = deepcopy(previous)
+        for item in chosen:
+            updated["engine_request"]["lot"][item["target_field"]] = item["normalized_value"]
+        state["inputs"] = CaseCreate.model_validate(updated).model_dump(mode="json")
+        for item in chosen:
+            eid = "field:" + item["field_id"]
+            state["evidence"][eid] = {
+                "evidence_id": eid,
+                "title": document["filename"] + " · " + item["field"],
+                "locator": f"p.{item['page']} chars {item['context_start']}:{item['context_end']}; value {item['start']}:{item['end']}",
+                "content": item["context_quote"],
+                "document_id": selection.document_id,
+                "sha256": document["sha256"],
+                "kind": "activity",
+                "user_confirmed": True,
+                "synthetic": state["inputs"]["mode"] == "simulation",
+                "external_model_allowed": False,
+                "confirmed_by": actor,
+                "observed_on": None,
+                "valid_until": None,
+            }
+            state.setdefault("field_provenance", {})[item["target_field"]] = {
+                **item,
+                "document_id": selection.document_id,
+                "evidence_id": eid,
+                "confirmed_by": actor,
+                "confirmed_at": now(),
+                "document_sha256": document["sha256"],
+                "user_confirmed": True,
+            }
+        document["user_confirmed"] = True
+        document["confirmation_scope"] = "selected_fields_only_not_entire_document"
+        if previous["engine_request"] != state["inputs"]["engine_request"] or not state.get(
+            "engine"
+        ):
+            self._refresh(state, force=True)
+        state["critic_runs"] = []
+        state["events"].append(
+            {
+                "stage": "document_facts",
+                "at": now(),
+                "status": "completed",
+                "document_id": selection.document_id,
+                "fields": [
+                    {
+                        "field": r["target_field"],
+                        "before": previous["engine_request"]["lot"].get(r["target_field"]),
+                        "after": state["inputs"]["engine_request"]["lot"].get(r["target_field"]),
+                        "evidence_id": "field:" + r["field_id"],
+                    }
+                    for r in chosen
+                ],
+            }
+        )
 
     def _refresh(self, state, *, force=False):
         request = CaseCreate.model_validate(state["inputs"]).engine_request
@@ -619,5 +771,6 @@ class CaseService:
             "media_type": upload.media_type,
             "extraction": extraction,
             "suggested_fields": suggest_fields(extraction),
+            "review_fields": reviewable_fields(doc_id, extraction),
             "user_confirmed": False,
         }

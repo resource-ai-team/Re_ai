@@ -24,9 +24,10 @@ from resource_ai.integrations.road_routing import get_road_routing_service
 from resource_ai.knowledge_graph.graph_store import GraphStoreError
 from resource_ai.rag.retrieval.vector_store import Database
 from resource_ai.workflow.critic import WorkflowCritic
-from resource_ai.workflow.documents import AzureLayoutOCR
+from resource_ai.workflow.documents import AzureLayoutOCR, present_documents
 from resource_ai.workflow.models import (
     CaseCreate,
+    DocumentFactApply,
     DocumentUpload,
     DraftUpdate,
     EvidenceUpdate,
@@ -132,7 +133,7 @@ def list_cases(tenant: Tenant, store: Annotated[PostgresCaseStore, Depends(get_c
 def read(
     case_id: UUID, tenant: Tenant, store: Annotated[PostgresCaseStore, Depends(get_case_store)]
 ):
-    return guarded(lambda: store.get(tenant, str(case_id)))
+    return guarded(lambda: present_documents(store.get(tenant, str(case_id))))
 
 
 @router.get("/cases/{case_id}/history")
@@ -228,6 +229,18 @@ def confirm_document(
     actor: Actor,
 ):
     return mutate(service, tenant, case_id, idempotency_key, "confirm_document", request, actor)
+
+
+@router.post("/cases/{case_id}/documents/apply-facts")
+def apply_document_facts(
+    case_id: UUID,
+    request: DocumentFactApply,
+    tenant: Tenant,
+    service: Service,
+    idempotency_key: Key,
+    actor: Actor,
+):
+    return mutate(service, tenant, case_id, idempotency_key, "apply_document_facts", request, actor)
 
 
 @router.get("/cases/{case_id}/documents/{document_id}")

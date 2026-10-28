@@ -4,7 +4,7 @@ from datetime import date
 from decimal import Decimal
 from typing import Annotated, Literal
 
-from pydantic import Field, StrictBool, model_validator
+from pydantic import Field, StrictBool, StrictInt, model_validator
 
 from resource_ai.api.schemas.analysis import StrictModel
 from resource_ai.api.schemas.road_routing import RoadPoint
@@ -79,7 +79,7 @@ class MetricLine(StrictModel):
     ] = "none"
     payload_kg_per_trip: Number | None = None
     mass_stage_id: Identifier | None = None
-    trip_count: int = Field(default=1, ge=1, le=100000)
+    trip_count: StrictInt = Field(default=1, ge=1, le=100000)
 
 
 class StageMass(StrictModel):
@@ -171,3 +171,9 @@ class ExtractionConfirmation(Revision):
     text: str = Field(min_length=1, max_length=30000)
     locator: str = Field(min_length=1, max_length=500)
     kind: Literal["document", "quote", "activity", "factor", "facility"] = "document"
+
+
+class DocumentFactApply(Revision):
+    document_id: Identifier
+    field_ids: list[Identifier] = Field(min_length=1, max_length=3)
+    same_lot_confirmed: StrictBool = False
