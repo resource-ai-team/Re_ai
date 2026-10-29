@@ -21,8 +21,17 @@ from resource_ai.api.routes.analysis import (
 from resource_ai.api.routes.kg_lci import get_lci_datasets
 from resource_ai.core.config import get_settings
 from resource_ai.core.dependencies import get_graph_query
+from resource_ai.integrations.recycling_prices import load_snapshot
 from resource_ai.integrations.road_routing import get_road_routing_service
 from resource_ai.knowledge_graph.graph_store import GraphStoreError
+from resource_ai.material_quality.models import (
+    QualityConfirmation,
+    QualityInputUpdate,
+    QualityResearchUpdate,
+    QualityScenarioComparison,
+    QualityScenarioUpdate,
+)
+from resource_ai.material_quality.service import assess, build_profile, compare_quality_scenarios
 from resource_ai.rag.retrieval.vector_store import Database
 from resource_ai.workflow.critic import WorkflowCritic
 from resource_ai.workflow.decisions import what_if
@@ -39,6 +48,7 @@ from resource_ai.workflow.models import (
     RunOptions,
     WhatIfRequest,
 )
+from resource_ai.workflow.pp_study import PPStudyUpdate
 from resource_ai.workflow.service import CaseService, recompute
 from resource_ai.workflow.store import PostgresCaseStore, WorkflowError
 
@@ -123,6 +133,18 @@ def reference_factors(tenant: Tenant):
     ]
 
 
+@router.get("/pp-reference-prices")
+def pp_reference_prices(tenant: Tenant):
+    root = Path(__file__).resolve().parents[4] / "data/curated/recycling_prices"
+    manifest_path = root / "keco-2026-10.manifest.json"
+    if not manifest_path.is_file():
+        return {"status": "raw_csv_not_acquired", "records": []}
+    manifest = json.loads(manifest_path.read_text("utf-8"))
+    value = load_snapshot(root / "keco-2026-10.csv", manifest)
+    value["records"] = [r for r in value["records"] if "-PP(" in r["item"]]
+    return value
+
+
 @router.post("/cases")
 def create(request: CaseCreate, tenant: Tenant, service: Service):
     return guarded(lambda: service.create(tenant, request))
@@ -140,7 +162,9 @@ def read(
     def present():
         value = deepcopy(store.get(tenant, str(case_id)))
         if (
-            value["evaluation"].get("decision_support", {}).get("version")
+            value.get("material_quality")
+            or value.get("pp_study")
+            or value["evaluation"].get("decision_support", {}).get("version")
             != "condition-decision-v2"
         ):
             recompute(value)  # Derived current view only, no write or KG/RAG/provider calls.
@@ -208,6 +232,18 @@ def draft(
     return mutate(service, tenant, case_id, idempotency_key, "draft", request)
 
 
+@router.put("/cases/{case_id}/pp-study")
+def pp_study(
+    case_id: UUID,
+    request: PPStudyUpdate,
+    tenant: Tenant,
+    service: Service,
+    idempotency_key: Key,
+    actor: Actor,
+):
+    return mutate(service, tenant, case_id, idempotency_key, "pp_study", request, actor)
+
+
 @router.post("/cases/{case_id}/run")
 def run(
     case_id: UUID,
@@ -223,6 +259,87 @@ def run(
     if request.run_critic:
         require_critic_service_auth(service.critic.service, x_critic_service_token)
     return mutate(service, tenant, case_id, idempotency_key, "run", request)
+
+
+@router.get("/cases/{case_id}/waste-profile")
+def waste_profile(
+    case_id: UUID, tenant: Tenant, store: Annotated[PostgresCaseStore, Depends(get_case_store)]
+):
+    state = guarded(lambda: store.get(tenant, str(case_id)))
+    return build_profile(state)[0].model_dump(mode="json")
+
+
+@router.get("/cases/{case_id}/pp-assessment")
+def pp_assessment(
+    case_id: UUID, tenant: Tenant, store: Annotated[PostgresCaseStore, Depends(get_case_store)]
+):
+    return assess(guarded(lambda: store.get(tenant, str(case_id))))
+
+
+@router.put("/cases/{case_id}/quality-inputs")
+def quality_inputs(
+    case_id: UUID,
+    request: QualityInputUpdate,
+    tenant: Tenant,
+    service: Service,
+    idempotency_key: Key,
+    actor: Actor,
+):
+    return mutate(service, tenant, case_id, idempotency_key, "quality_inputs", request, actor)
+
+
+@router.post("/cases/{case_id}/pp-scenarios")
+def pp_scenarios(
+    case_id: UUID,
+    request: QualityScenarioComparison,
+    tenant: Tenant,
+    store: Annotated[PostgresCaseStore, Depends(get_case_store)],
+):
+    def compare():
+        state = store.get(tenant, str(case_id))
+        if state["revision"] != request.expected_revision:
+            raise WorkflowError("revision-conflict", 409)
+        return compare_quality_scenarios(state, request.scenarios)
+
+    return guarded(compare)
+
+
+@router.post("/cases/{case_id}/quality-research")
+def quality_research(
+    case_id: UUID,
+    request: QualityResearchUpdate,
+    tenant: Tenant,
+    service: Service,
+    idempotency_key: Key,
+    actor: Actor,
+):
+    return mutate(service, tenant, case_id, idempotency_key, "quality_research", request, actor)
+
+
+@router.put("/cases/{case_id}/quality-confirmations")
+def quality_confirmations(
+    case_id: UUID,
+    request: QualityConfirmation,
+    tenant: Tenant,
+    service: Service,
+    idempotency_key: Key,
+    actor: Actor,
+):
+    return mutate(
+        service, tenant, case_id, idempotency_key, "quality_confirmations", request, actor
+    )
+
+
+@router.put("/cases/{case_id}/quality-scenario")
+def quality_scenario(
+    case_id: UUID,
+    request: QualityScenarioUpdate,
+    tenant: Tenant,
+    service: Service,
+    idempotency_key: Key,
+    actor: Actor,
+):
+    return mutate(service, tenant, case_id, idempotency_key, "quality_scenario", request, actor)
 
 
 @router.post("/cases/{case_id}/documents")

@@ -164,6 +164,10 @@ class AzureLayoutOCR:
                             pages.append(
                                 {
                                     "page": p["pageNumber"],
+                                    "width": p.get("width"),
+                                    "height": p.get("height"),
+                                    "unit": p.get("unit"),
+                                    "lines": p.get("lines", [])[:1500],
                                     "text": "\n".join(
                                         line.get("content", "") for line in p.get("lines", [])
                                     )[:6000],
@@ -181,6 +185,7 @@ class AzureLayoutOCR:
                             "status": "extracted",
                             "provider": "azure-layout",
                             "pages": pages,
+                            "tables": data.get("analyzeResult", {}).get("tables", [])[:100],
                             "scope": "pages_1_to_5_unconfirmed_not_field_validation",
                         }
                     self.sleep(1)
@@ -220,6 +225,13 @@ def suggest_fields(extraction):
 def reviewable_fields(document_id, extraction):
     """Only literal lot fields; prices, site identity and inferred facts stay manual."""
     rows = []
+    from resource_ai.document_processing.reports import classify
+
+    if classify("\n".join(p.get("text", "") for p in extraction.get("pages", []))) in {
+        "food_contact_migration",
+        "mechanical_material_test",
+    }:
+        return rows
     for item in suggest_fields(extraction):
         page_text = next(p["text"] for p in extraction["pages"] if p["page"] == item["page"])
         start = max(page_text.rfind("\n", 0, item["start"]) + 1, item["start"] - 160)

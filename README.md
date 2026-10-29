@@ -148,6 +148,15 @@ DEFRA·EPA의 폐기물 계수는 보고용 범위여서 공정 전체 탄소 �
 공식 문서·시설 명부·사용 조건이 있는 LCI 파일은 각 개발 환경에 별도로 준비합니다. 원본·키는 Git에 올리지 않습니다.
 팀 공통 규칙: [CONTRIBUTING](https://github.com/resource-ai-team/.github/blob/main/CONTRIBUTING.md)
 
+
+## PP 자료 기반 사전 평가
+
+성적서 이미지·담당자 입력·현장 사진을 같은 로트에 연결하고, 근거 상태에 따라 Level 0~3으로 분석 범위를 나눕니다. 단위·시료·충돌을 확인한 값만 Python 물질수지에 사용합니다. 기존 KG·RAG·비용·탄소 API를 유지합니다.
+
+- [쉬운 설명·입력 수준·실제 구현 범위](docs/pp-quality-mvp.md)
+- [Re_server용 내부 API와 요청 예시](docs/pp-quality-api.md)
+- [데이터 감사·실제 다운로드와 해시](docs/evaluation/pp-quality-audit-2026-10-29.json)
+
 ## 조직 레포 구성
 
 | 레포 | 역할 |

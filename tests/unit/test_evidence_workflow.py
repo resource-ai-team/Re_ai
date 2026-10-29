@@ -404,6 +404,21 @@ def test_azure_layout_request_and_success_preserve_unconfirmed_page_values():
             json={
                 "status": "succeeded",
                 "analyzeResult": {
+                    "tables": [
+                        {
+                            "rowCount": 2,
+                            "cells": [
+                                {
+                                    "rowIndex": 1,
+                                    "columnIndex": 3,
+                                    "content": "20",
+                                    "boundingRegions": [
+                                        {"pageNumber": 1, "polygon": [0, 0, 1, 0, 1, 1, 0, 1]}
+                                    ],
+                                }
+                            ],
+                        }
+                    ],
                     "pages": [
                         {
                             "pageNumber": 1,
@@ -416,7 +431,7 @@ def test_azure_layout_request_and_success_preserve_unconfirmed_page_values():
                                 }
                             ],
                         }
-                    ]
+                    ],
                 },
             },
         )
@@ -433,6 +448,7 @@ def test_azure_layout_request_and_success_preserve_unconfirmed_page_values():
     )
     assert result["status"] == "extracted" and len(calls) == 2
     assert result["pages"][0]["words"][0]["confidence"] == 0.7
+    assert result["tables"][0]["cells"][0]["boundingRegions"][0]["pageNumber"] == 1
     assert not suggest_fields(result)[0]["user_confirmed"]
 
 

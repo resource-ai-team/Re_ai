@@ -1,0 +1,138 @@
+{
+  "checked_on": "2026-10-29",
+  "develop_commit": "c210b5c6d61fd2777bf00088479eace7d5f71576",
+  "base_work_commit": "b40c2cd75e5cfeb05efd202aa1a1efc354761980",
+  "develop_is_ancestor": true,
+  "pr54": {
+    "commit": "b6bb3b1c8204fd6cec61e2443fee055875f99bf0",
+    "state": "OPEN_DRAFT_NOT_MERGED",
+    "reuse": "Three factual data files copied at identical repository paths; PR was not merged or approved."
+  },
+  "required_documents": {
+    "README.md": {
+      "sha256": "52c0c6ea40657fe5d8e5365546829f0b191b73ada3c72adc1d2dff4caa8bde66",
+      "bytes": 7134,
+      "read": true
+    },
+    "docs/pipeline-baseline.md": {
+      "sha256": "22e8286a8ede15322b54312570f4fec35f03655676015c2a926fbc1132fd8aa8",
+      "bytes": 6281,
+      "read": true
+    },
+    "docs/architecture.md": {
+      "sha256": "caa550fa657a3af057a9f0c152018c06369cbb0f4e42414341a96858bf578555",
+      "bytes": 8050,
+      "read": true
+    },
+    "docs/candidate-analysis.md": {
+      "sha256": "e87ce1f347961dafe2cf936ccf2293997ede4430b3ae6b0ed20cbc4de4baa3d6",
+      "bytes": 10451,
+      "read": true
+    },
+    "docs/kg-facility-conditions.md": {
+      "sha256": "47acddbef54c4c85679100d272e8adac4a3a4f11ee90bcf3334c42e53a86c630",
+      "bytes": 10980,
+      "read": true
+    },
+    "docs/lci-carbon.md": {
+      "sha256": "7aa13883e6d2fe64298ec152e9d1467ac9cd2e3f01aac6984733082cebb3670c",
+      "bytes": 3799,
+      "read": true
+    },
+    "docs/rag-multi-corpus.md": {
+      "sha256": "0c138236dc86aaffab6664c8b065506289e839d2b305c5f3d13fcb983d5e284d",
+      "bytes": 4847,
+      "read": true
+    },
+    "data/README.md": {
+      "sha256": "f78c2b73253798ea18a780ed376e53a0d3c6a766d0ee0f2c89e15cd4b4f97868",
+      "bytes": 4769,
+      "read": true
+    }
+  },
+  "datasets": {
+    "keco_202609": {
+      "status": "existing_bytes_reused_no_redownload",
+      "bytes": 1672,
+      "sha256": "0bcbbec7f81e581735ef6b8c010f5b207ebaec17a60b9925a4be52ce5f003d6b"
+    },
+    "keco_202610": {
+      "source_url": "https://www.data.go.kr/data/3076421/fileData.do",
+      "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007743804&fileDetailSn=1&insertDataPrcus=N",
+      "sha256": "562bf85c2f9a2047649b52d9875da462fdb2ca14be36e21cfd1950ff976dfeb3",
+      "bytes": 1730,
+      "period": "2026-10",
+      "rows": 26,
+      "license": "KOGL Type 1",
+      "encoding": "cp949",
+      "downloaded": true,
+      "checked_on": "2026-10-29",
+      "adapter_status": "loaded",
+      "region_records": 208,
+      "pp_records": 24
+    },
+    "w2rkg": {
+      "status": "existing_bundle_reused",
+      "path": "data/knowledge_graph/w2rkg_candidate_index.jsonl"
+    },
+    "facilities": {
+      "status": "existing_Neo4j_registry_reused_no_collection",
+      "acceptance_verified": false
+    },
+    "legal_rag": {
+      "status": "existing_pgvector_E5_hybrid_reused_no_collection"
+    },
+    "pet_lci": {
+      "status": "existing_retained_not_mapped_to_PP"
+    },
+    "pp_lci": {
+      "status": "not_acquired"
+    },
+    "ks_m_3843": {
+      "status": "metadata_only_full_text_not_acquired",
+      "numeric_thresholds": []
+    },
+    "reclaim": {
+      "status": "official_Zenodo_API_license_checked_archive_not_downloaded",
+      "license": "CC-BY-4.0",
+      "bytes": 1625675427,
+      "annotations": "not_inspected_no_training_performed"
+    },
+    "aihub_88": {
+      "status": "public_catalog_checked_login_application_and_terms_needed_no_bulk_download",
+      "scope": "public_administration_OCR_not_PP_test_reports"
+    }
+  },
+  "services": {
+    "azure_document_intelligence": "adapter_implemented_paid_live_call_not_run_external_disabled_in_local_launcher",
+    "mock_ocr": "injected_in_unit_and_real_PostgreSQL_HTTP_tests",
+    "local_windows_ocr": "one_user_supplied_report_executed_text_extracted_table_numeric_values_incomplete",
+    "blob_storage": "not_deployed_existing_private_PostgreSQL_originals_reused",
+    "vision": "unavailable_and_mock_adapters_only",
+    "data_factory_functions": "not_deployed_python_loader_used",
+    "sustainability_model": "schema_reference_only_no_dataset_no_Dataverse"
+  },
+  "verification": {
+    "engine_unit_and_PostgreSQL_tests": 990,
+    "pytest_subtests": 24,
+    "ruff_check": "passed",
+    "ruff_format": "314 files passed",
+    "frontend_tests": 341,
+    "frontend_pp_focused_tests": 5,
+    "frontend_build": "passed; existing Three.js large-chunk warning",
+    "proxy_unit_tests": 2,
+    "browser": [
+      "provided document local OCR and private preview",
+      "synthetic manual data without contamination remains Level1",
+      "explicit synthetic contamination20 + target5 gives Level2 and minimum removal157.895kg"
+    ],
+    "azure_paid_live_calls": 0,
+    "live_research_record": "pp-quality-live-research-2026-10-29.json",
+    "not_claimed": [
+      "industrial recommendation accuracy",
+      "Azure OCR accuracy",
+      "verified Korean PP process performance",
+      "facility acceptance approval"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "checked_on": "2026-10-29",
+  "synthetic": true,
+  "real_http": true,
+  "real_PostgreSQL": true,
+  "actual_KG_RAG_called": true,
+  "case_id": "7d93cea2-5e3c-489b-aa8e-4126be16360d",
+  "revision": 3,
+  "level": 1,
+  "kg_candidates_loaded": true,
+  "candidate_count": 3,
+  "legal_search_statuses": [
+    "retrieved",
+    "budget_exhausted",
+    "budget_exhausted",
+    "budget_exhausted",
+    "budget_exhausted",
+    "budget_exhausted",
+    "budget_exhausted",
+    "budget_exhausted",
+    "budget_exhausted",
+    "budget_exhausted"
+  ],
+  "recommended": false,
+  "dispatch_approved": false,
+  "paid_model_or_road_calls": false
+}

@@ -1,0 +1,12 @@
+{
+  "source_url": "https://www.data.go.kr/data/3076421/fileData.do",
+  "download_url": "https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000007743804&fileDetailSn=1&insertDataPrcus=N",
+  "sha256": "562bf85c2f9a2047649b52d9875da462fdb2ca14be36e21cfd1950ff976dfeb3",
+  "bytes": 1730,
+  "period": "2026-10",
+  "rows": 26,
+  "license": "KOGL Type 1",
+  "encoding": "cp949",
+  "downloaded": true,
+  "checked_on": "2026-10-29"
+}

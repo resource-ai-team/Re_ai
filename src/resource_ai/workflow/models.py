@@ -164,6 +164,16 @@ class DocumentUpload(Revision):
     media_type: Literal["application/pdf", "image/png", "image/jpeg", "text/plain"]
     base64_content: str = Field(min_length=1, max_length=8_000_000)
     use_azure_ocr: StrictBool = False
+    input_kind: Literal["test_document", "field_photo"] = "test_document"
+    use_local_image_ocr: StrictBool = False
+
+    @model_validator(mode="after")
+    def one_ocr_provider(self):
+        if self.use_azure_ocr and self.use_local_image_ocr:
+            raise ValueError("select exactly one OCR provider")
+        if self.input_kind == "field_photo" and (self.use_azure_ocr or self.use_local_image_ocr):
+            raise ValueError("field photos must use the qualitative photo adapter")
+        return self
 
 
 class ExtractionConfirmation(Revision):

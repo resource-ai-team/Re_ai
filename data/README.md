@@ -87,3 +87,7 @@ resource-rag index data/official/public_evidence_summaries.jsonl
 - 검색 결과는 근거 후보이며 적법성 판정이 아니다.
 - 판정은 검수된 규칙 엔진이 담당하고 미확인 값은 확정하지 않는다.
 - 판례·논문·행정해석은 출처와 이용 조건을 확인한 항목만 범위 설정에 추가한다.
+
+## PP 확장 데이터
+
+`curated/pp_evidence/`는 Draft PR54의 문헌·해외 거래 참고 사실을 재사용합니다. `curated/recycling_prices/`는 실제 다운로드한 2026-10 KECO CSV와 해시·출처·공공누리 제1유형 manifest입니다. 기존 9월 자료는 다시 수집하지 않았습니다. 고객 원본은 기존 비공개 저장소와 Git 제외 경로에만 보관합니다. [범위와 한계](../docs/pp-quality-mvp.md)를 확인하세요.

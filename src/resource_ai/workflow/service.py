@@ -6,7 +6,9 @@ from datetime import UTC, datetime
 from decimal import Decimal
 
 from resource_ai.api.schemas.road_routing import RoadLeg, RoadPoint, RoadRoutesRequest
+from resource_ai.document_processing.windows_ocr import WindowsLocalOCR
 from resource_ai.knowledge_graph.ontology import digest, identity
+from resource_ai.material_quality import service as quality_service
 from resource_ai.workflow.calculation import (
     break_even,
     evaluate_candidate,
@@ -21,6 +23,7 @@ from resource_ai.workflow.documents import (
     suggest_fields,
 )
 from resource_ai.workflow.models import CandidateDraft, CaseCreate, DocumentFactApply
+from resource_ai.workflow.pp_study import evaluate_study, report_lines, save_study
 from resource_ai.workflow.store import WorkflowError
 
 
@@ -415,6 +418,12 @@ def recompute(state):
     state["status"] = (
         "needs_input" if not plans(state) else "review_ready" if front else "needs_evidence"
     )
+    if state.get("pp_study"):
+        state["evaluation"]["pp_study"] = evaluate_study(state)
+        if not plans(state):
+            state["status"] = "pp_study_" + state["evaluation"]["pp_study"]["status"]
+    if state.get("material_quality"):
+        state["evaluation"]["material_quality"] = quality_service.assess(state)
     state["report_markdown"] = report(state)
     return state
 
@@ -488,6 +497,25 @@ def report(state):
             )
     if state.get("engine"):
         lines += ["", "## KG·법령·기술 조사 상세", state["engine"]["review"]["report_markdown"]]
+    lines += report_lines(evaluation.get("pp_study"))
+    if evaluation.get("material_quality"):
+        quality = evaluation["material_quality"]
+        lines += [
+            "",
+            "## PP 자료 기반 사전 평가",
+            f"- Level {quality['level']} / {quality['status']} / {quality['mode']}",
+        ]
+        if quality["mass_balance"]:
+            lines.append(
+                "- 이론적 최소 오염물 제거량 kg: "
+                + quality["mass_balance"]["minimum_contaminant_removal_kg"]
+            )
+        for conflict in quality["profile"]["conflicts"]:
+            lines.append(
+                f"- 충돌: {conflict['field']} / {conflict['values']} / 원문·시료 확인 필요"
+            )
+        lines += ["- " + q["question"] for q in quality["questions"]]
+        lines += ["- 실제 시설 인수·허가·실행 승인 미확인. PP 탄소계수 미확보."]
     return "\n".join(lines)
 
 
@@ -532,12 +560,16 @@ def repair_units(state):
 
 
 class CaseService:
-    def __init__(self, store, engine_reader, *, road_service=None, critic=None, ocr=None):
+    def __init__(
+        self, store, engine_reader, *, road_service=None, critic=None, ocr=None, local_ocr=None
+    ):
         self.store, self.engine_reader = store, engine_reader
         self.road_service, self.critic, self.ocr = road_service, critic, ocr
+        self.local_ocr = local_ocr or WindowsLocalOCR()
 
     def create(self, tenant, request):
         state = {
+            "tenant_id": tenant,
             "contract_version": "evidence-workflow-v1",
             "inputs": request.model_dump(mode="json"),
             "evidence": {},
@@ -559,6 +591,7 @@ class CaseService:
         )
         if replay:
             return state
+        state["tenant_id"] = tenant
         if (
             state.get("evaluation", {}).get("decision_support", {}).get("version")
             != "condition-decision-v2"
@@ -631,6 +664,22 @@ class CaseService:
                 self._apply_document_facts(state, payload, actor)
             elif action == "conditions":
                 apply_reviews(state, payload, actor, now())
+            elif action == "pp_study":
+                save_study(state, payload, actor, now())
+            elif action == "quality_inputs":
+                quality_service.add_inputs(state, payload, actor)
+            elif action == "quality_confirmations":
+                quality_service.confirm(state, payload, actor, now())
+            elif action == "quality_scenario":
+                quality_service.set_scenario(state, payload, actor)
+            elif action == "quality_research":
+                request, profile_hash = quality_service.to_research_request(state, **payload)
+                state["inputs"]["engine_request"] = request.model_dump(mode="json")
+                self._refresh(state, force=True)
+                state["material_quality"]["research_binding"] = {
+                    "profile_sha256": profile_hash,
+                    "origin": payload["origin"],
+                }
             elif action == "confirm_document":
                 document = state["documents"].get(payload["document_id"])
                 if document is None:
@@ -664,6 +713,10 @@ class CaseService:
                 "apply_document_facts",
                 "confirm_document",
                 "conditions",
+                "pp_study",
+                "quality_inputs",
+                "quality_confirmations",
+                "quality_scenario",
             }:
                 state["critic_runs"] = []
                 state["model_recheck_pending"] = True
@@ -862,6 +915,8 @@ class CaseService:
         from resource_ai.workflow.models import DocumentUpload
 
         upload = DocumentUpload.model_validate(payload)
+        if upload.input_kind == "field_photo" and upload.use_azure_ocr:
+            raise WorkflowError("field-photo-is-not-a-test-document", 422)
         content, checksum = decode_document(upload)
         doc_id = checksum[:32]
         if doc_id in state["documents"] and upload.use_azure_ocr:
@@ -875,7 +930,11 @@ class CaseService:
         ):
             raise WorkflowError("ocr-already-claimed-check-provider-before-resubmission", 409)
         extraction = (
-            self.ocr.extract(content, upload.media_type)
+            {"status": "photo_observation_unavailable", "provider": "none", "pages": []}
+            if upload.input_kind == "field_photo"
+            else self.local_ocr.extract(content, upload.media_type)
+            if upload.use_local_image_ocr
+            else self.ocr.extract(content, upload.media_type)
             if upload.use_azure_ocr and self.ocr
             else local_extraction(content, upload.media_type)
         )
@@ -887,8 +946,12 @@ class CaseService:
             "sha256": checksum,
             "filename": upload.filename.replace("\\", "/").rsplit("/", 1)[-1],
             "media_type": upload.media_type,
+            "input_kind": upload.input_kind,
             "extraction": extraction,
             "suggested_fields": suggest_fields(extraction),
             "review_fields": reviewable_fields(doc_id, extraction),
             "user_confirmed": False,
         }
+        state["documents"][doc_id]["structured_report"] = quality_service.add_document_claims(
+            state, doc_id, extraction
+        )
