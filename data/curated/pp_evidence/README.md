@@ -1,11 +1,13 @@
 # PP-specific external evidence pack (2026-10-29)
 
+> **Korean deployment warning:** these files are NOT a domestic PP waste standard, licensed Korean facility operating data, or a set of verified Korean industrial input/output records. Only the KECO October 2026 price survey represents Korean market observations; its raw CSV has not yet been downloaded.
+
 Scope: new source facts not found in the existing Re_ai develop branch reference/data listings; no existing dataset modified. This is **not** an operational recommendation engine or a verified industrial process model.
 
 ## Files
 
-- `rema_pp_small_rigid_2023.json`: selected independently structured factual thresholds for a **foreign PP small-rigid buyer guideline**. Source attribution required; do not treat as domestic legal requirement, automatic acceptance rule, or plant specification.
-- `tno_pp_process_metrics_2025.csv`: **9** reported metrics/values from Kasper et al., Waste Management 191 (2025), DOI 10.1016/j.wasman.2024.11.029. Exact source context matters; 85% yield and stage losses are referenced to **pure PP input**, not input mixed PP bale mass; do not double-count overlapping losses.
+- `rema_pp_small_rigid_2023.json`: selected independently structured factual thresholds for a **US-origin, predominantly post-consumer PP small-rigid bale guideline**. Source attribution required; do not treat as domestic legal requirement, automatic acceptance rule, or plant specification.
+- `tno_pp_process_metrics_2025.csv`: **9** reported metrics/values from a **Netherlands-based research-scale/post-consumer PP recycling study**, Kasper et al., Waste Management 191 (2025), DOI 10.1016/j.wasman.2024.11.029. Exact source context matters; 85% yield and stage losses are referenced to **pure PP input**, not input mixed PP bale mass; do not double-count overlapping losses.
 - `external_dataset_catalog_2026-10.json`: new online datasets and precise acquisition state. **The KECO October CSV and two Zenodo ZIPs are not stored here**; no actual PP prices or pixel-level training labels have been invented.
 
 ## Integration boundaries
@@ -19,7 +21,7 @@ Scope: new source facts not found in the existing Re_ai develop branch reference
 ## Availability and licenses
 
 - **Curated in this repository**: factual numerical thresholds and published research values, with source links and caution flags.
-- **Metadata verified, bytes NOT acquired**: KECO 2026-10 CSV (26 rows/8 regions), RECLAIM PP/PS archive (1.6 GB), 2026 PP laboratory-recyclate ZIP bundles (22.7 MB).
+- **Metadata verified, bytes NOT acquired**: KECO 2026-10 CSV (26 rows/8 regions; domestic average-price survey), EU RECLAIM PP/PS archive (1.6 GB), and a European study's laboratory-consumables PP ZIP bundles (22.7 MB). Overseas data must not be represented as Korean field measurements.
 - **Do not copy into Git**: industrial documents, private test reports, uncertified quotations, protected raw corpora, or any archive without license review. Keep bulk downloads in `data/local/`/Azure Blob Storage and store hashes/provenance in Git.
 
 ## Primary sources
@@ -31,3 +33,15 @@ Scope: new source facts not found in the existing Re_ai develop branch reference
 - PP laboratory recyclate: https://zenodo.org/records/19370161
 
 Before making any result numeric in an API, verify unit, denominator, material state, data recency, provenance, and required license.
+
+## Korea-specific usability decisions
+
+| Source | Korea use | May seed default domestic operational recommendation? |
+| --- | --- | --- |
+| KECO 2026-10 | Korean 8-region **market survey** for quoted time/material grade, with KOGL Type 1 attribution | **No**: indicative price, not supplier-specific bid or treatment cost |
+| ReMA PP spec | Foreign post-consumer **trade benchmark** only; opt-in selection with source scope and buyer agreement | **No**: not a Korean legal rule or Korean buyer intake guarantee |
+| TNO 2025 | Literature-based **sensitivity scenario** and validation case | **No**: Netherlands process, pure-PP input denominator; not local plant loss/contaminant removal |
+| EU RECLAIM image | Research/training for appearance and sorting, CC BY 4.0 with attribution | **No**: camera setting and geography differ, cannot determine measured wt% |
+| EU PP lab consumables | Optional materials-science research (MVR/DSC/OIT etc.), CC BY 4.0 | **No**: steam-sterilized laboratory consumables differ from domestic rigid packaging |
+
+Data usage rights (copyright/license) and application validity (Korean law, Korean plant input characteristics) are independent checks. A permissive license does not justify transferring experimental coefficients.
