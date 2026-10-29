@@ -91,6 +91,22 @@
       "domestic_use_category": "foreign_postconsumer_trade_benchmark_only",
       "domestic_default_operational_coefficient_allowed": false,
       "caution": "Not Korean law, not a default for domestic industrial PP lots; buyer contract and actual lot testing still required."
+    },
+    {
+      "id": "ks_m_3843_2026",
+      "title": "KS M 3843 플라스틱 — 재활용 성형 재료 — 폴리프로필렌(PP)",
+      "url": "https://www.kssn.net/search/stddetail.do?itemNo=K001010157018",
+      "origin_country": "KR",
+      "korean_market_data": false,
+      "published": "2026-01-12",
+      "publisher": "국가기술표준원/한국표준협회 유통",
+      "format": "paid Korean standard PDF (8,500 KRW shown in catalog)",
+      "license": "copyrighted KS standard; full text needs lawful purchase and rights review",
+      "acquisition_status": "official_scope_verified_full_text_not_acquired_no_numeric_thresholds_imported",
+      "domestic_use_category": "domestic_technical_standard_for_recycled_PP_moulding_material_after_processing",
+      "domestic_default_operational_coefficient_allowed": false,
+      "usage": "possible normative end-product material quality target if product scope applies; confirm original clauses",
+      "caution": "This standard addresses recycled PP moulding materials; not a blanket input-waste acceptance standard, contamination threshold, recycling facility approval or license. No full-text copied."
     }
   ]
 }
