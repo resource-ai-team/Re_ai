@@ -45,3 +45,7 @@ Before making any result numeric in an API, verify unit, denominator, material s
 | EU PP lab consumables | Optional materials-science research (MVR/DSC/OIT etc.), CC BY 4.0 | **No**: steam-sterilized laboratory consumables differ from domestic rigid packaging |
 
 Data usage rights (copyright/license) and application validity (Korean law, Korean plant input characteristics) are independent checks. A permissive license does not justify transferring experimental coefficients.
+
+## Newly identified Korea-specific technical standard (metadata only)
+
+**KS M 3843 (2026-01-12)**: "Plastics — Recycled moulding materials — Polypropylene(PP)". The Korean Standards Association lists it as a current national standard for PP recycled moulding materials (output-stage quality), with paid text. No clauses or numeric acceptance limits are included here because the full text has **not** been obtained. It is not an automatic standard for incoming mixed PP waste bales. Official listing: https://www.kssn.net/search/stddetail.do?itemNo=K001010157018
