@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "record_id": "REMA_PP_SMALL_RIGID_2023",
+  "name": "PP Small Rigid Plastic",
+  "publisher": "ReMA (formerly ISRI)",
+  "source_url": "https://www.isrispecs.org/orpheus_resource/pp-small-rigid-plastic/",
+  "effective_date": "2023-10-18",
+  "checked_on": "2026-10-29",
+  "applicability": "post-consumer PP small rigid products/packaging from positive sort; buyer-specific confirmation required; not Korean statutory permit or facility intake criterion",
+  "license_note": "Original website may be copyrighted. This file contains only independently structured factual thresholds, not reproduced narrative text; retain attribution and consult original.",
+  "rules": [
+    {
+      "id": "pp_total_contamination",
+      "kind": "maximum",
+      "material": "all_non_target_contaminants",
+      "threshold": 15,
+      "unit": "wt%",
+      "basis": "mass fraction of bale",
+      "qualifier": "total contaminants; do not substitute for moisture or individual contaminant test"
+    },
+    {
+      "id": "hdpe_or_ldpe_rigid",
+      "kind": "maximum",
+      "material": "HDPE or LDPE rigid plastic",
+      "threshold": 10,
+      "unit": "wt%",
+      "basis": "bale mass",
+      "qualifier": "source gives exception 10%; grouping/individual interpretation needs buyer verification"
+    },
+    {
+      "id": "pet_and_ps_rigid_combined",
+      "kind": "maximum",
+      "material": "PET and PS rigid plastic combined",
+      "threshold": 3,
+      "unit": "wt%",
+      "basis": "bale mass",
+      "qualifier": "source says 3% maximum combined"
+    },
+    {
+      "id": "other_non_pp_rigid",
+      "kind": "maximum",
+      "material": "other non-PP rigid plastic (including #7 / PLA / PHA)",
+      "threshold": 1,
+      "unit": "wt%",
+      "basis": "bale mass",
+      "qualifier": "under source category interpretation"
+    },
+    {
+      "id": "pvc",
+      "kind": "prohibited",
+      "material": "PVC #3",
+      "threshold": 0,
+      "unit": "presence",
+      "basis": "visual/test confirmed",
+      "qualifier": "do not infer absence from camera image alone"
+    },
+    {
+      "id": "plastic_bags_film",
+      "kind": "prohibited",
+      "material": "plastic bags or film",
+      "threshold": 0,
+      "unit": "presence",
+      "basis": "visual/test confirmed",
+      "qualifier": "operational rejection guidance; not quantified as individual mass tolerance"
+    }
+  ],
+  "constraints": {
+    "can_determine_final_acceptance": false,
+    "require_lot_measurement": true,
+    "not_equivalent_to_domestic_pp_spec": true,
+    "do_not_treat_ocr_text_as_verified_measurement": true
+  }
+}
