@@ -21,6 +21,7 @@ class HashEmbeddingProvider:
 
     def __init__(self, dimension: int = 384) -> None:
         self.dimension = dimension
+        self.model_name = f"test-only-hash-{dimension}"
 
     def _embed(self, text: str) -> list[float]:
         vector = [0.0] * self.dimension
@@ -43,6 +44,7 @@ class SentenceTransformerEmbeddingProvider:
     """문서와 질의 접두어를 구분해 다국어 E5 계열 임베딩을 생성한다."""
 
     def __init__(self, model_name: str, dimension: int) -> None:
+        self.model_name = model_name
         try:
             from sentence_transformers import SentenceTransformer
         except ImportError as exc:

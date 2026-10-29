@@ -77,9 +77,58 @@ def retrieve(repository, query, top_k):
 
 
 class CandidateResearchService:
-    def __init__(self, graph, repository):
+    def __init__(self, graph, repository, *, legal_graph_factory=None):
         self.graph = graph
         self.repository = repository
+        self.legal_graph_factory = legal_graph_factory
+
+    def _graph_legal_reviews(self, request, candidates):
+        from resource_ai.legal_graph.models import LegalGraphError
+        from resource_ai.legal_graph.service import configured_service
+
+        options = request.legal_graph
+        remaining, service, failure = options.max_model_calls, None, None
+        try:
+            service = (self.legal_graph_factory or configured_service)().pin()
+        except Exception as exc:  # noqa: BLE001 - keep configuration/DB/provider details private
+            failure = exc.code if isinstance(exc, LegalGraphError) else "legal-graph-unavailable"
+        for candidate in candidates:
+            try:
+                if failure or remaining <= 0:
+                    raise LegalGraphError(
+                        failure or "model-budget",
+                        "법률 그래프 검증이 미완료되어 추가 확인이 필요합니다.",
+                    )
+                # Proposed KG routes are not observations or evidence of a facility permit.
+                facts = {
+                    **options.facts,
+                    "proposed_route": candidate.plan.research_packet,
+                    "submitted_lot": request.lot.model_dump(mode="json", exclude_none=True),
+                }
+                result = service.run(
+                    options.query,
+                    facts,
+                    top_k=options.top_k,
+                    max_model_calls=remaining,
+                    max_articles=options.max_articles,
+                )
+                remaining -= result["model_calls"]
+                candidate.legal_graph_review = result
+                if result["audit"]["coverage_complete"]:
+                    candidate.blockers.remove("legal_applicability_not_audited")
+                else:
+                    candidate.blockers.append("legal_graph_coverage_incomplete")
+            except Exception as exc:  # noqa: BLE001 - failure is a review gap, never approval
+                code = exc.code if isinstance(exc, LegalGraphError) else "legal-graph-unavailable"
+                failure = code
+                candidate.legal_graph_review = {
+                    "status": "unavailable",
+                    "error_code": code,
+                    "route": "REVIEW",
+                    "dispatch_approved": False,
+                }
+                candidate.blockers.append("legal_graph_" + code)
+        return options.max_model_calls - remaining
 
     def run(self, request: ResearchRequest) -> ResearchResponse:
         cursor, trace, seen, candidates = None, None, set(), []
@@ -144,6 +193,8 @@ class CandidateResearchService:
         # 검색 한도 때문에 필요한 검토 항목 자체가 사라지지 않도록 작업을 먼저 전부 만든다.
         queries = {}
         for candidate in candidates:
+            if request.legal_graph is not None:
+                continue
             packet = candidate.plan.research_packet
             for index, stage in enumerate(packet["stages"]):
                 for topic, query in legal_questions(last.planning.normalized_material, stage):
@@ -178,6 +229,9 @@ class CandidateResearchService:
                 )
             )
         search_states = {s.search_id: s for s in searches}
+        graph_calls = (
+            self._graph_legal_reviews(request, candidates) if request.legal_graph is not None else 0
+        )
         for candidate in candidates:
             for task in candidate.legal_tasks:
                 search = search_states[task["search_id"]]
@@ -211,6 +265,9 @@ class CandidateResearchService:
                 "legal_retrieval_complete": bool(searches)
                 and all(s.status == "retrieved" for s in searches),
                 "legal_audit_complete": False,
+                "legal_method": "hierarchical_graph" if request.legal_graph else "hybrid_retrieval",
+                "legal_graph_model_calls": graph_calls,
+                "legal_graph_reviews": sum(c.legal_graph_review is not None for c in candidates),
             },
             candidates=candidates,
             legal_searches=searches,
@@ -231,5 +288,14 @@ class CandidateResearchService:
                 "시설별 현행 허가·해당 로트 규격·인수·수탁 가능 물량·공정 간 인계를 확인하세요.",
                 "동일 경계의 실제 비용·탄소 자료를 확보한 뒤 계산·비교하세요.",
             ],
-            limitations=LIMITATIONS,
+            limitations=(
+                LIMITATIONS
+                if request.legal_graph is None
+                else [
+                    "선택한 법률 그래프의 Researcher → Auditor → Adjudicator로 후보별 법규를 조사합니다.",
+                    "전체 후보가 하나의 모델 호출 한도를 공유합니다. 한도·버전·요건 부족은 확인 필요로 남깁니다.",
+                    "공정 후보는 실행 가설이며 시설 허가·인수·최종 추천이 아닙니다.",
+                    "최종 Critic·비용·탄소 비교·Top K와의 전체 연결은 후속 작업입니다.",
+                ]
+            ),
         )

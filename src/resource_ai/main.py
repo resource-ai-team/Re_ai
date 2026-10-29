@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from resource_ai.api.routes.analysis import router as analysis_router
 from resource_ai.api.routes.graph import router as graph_router
+from resource_ai.api.routes.legal_graph import router as legal_graph_router
 from resource_ai.api.routes.rag import router as rag_router
 
 app = FastAPI(
@@ -12,6 +13,7 @@ app = FastAPI(
 app.include_router(rag_router)
 app.include_router(graph_router)
 app.include_router(analysis_router)
+app.include_router(legal_graph_router)
 
 
 @app.get("/health")

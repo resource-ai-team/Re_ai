@@ -23,6 +23,12 @@ class Settings(BaseSettings):
     neo4j_password: SecretStr = Field(default=SecretStr(""), repr=False)
     neo4j_database: str = "neo4j"
     neo4j_namespace: str = "re-ai-reference"
+    legal_graph_namespace: str = "re-ai-legal"
+    legal_graph_model_enabled: bool = False
+    legal_graph_allow_external: bool = False
+    legal_graph_model: str = "solar-pro4"
+    legal_graph_timeout_seconds: int = Field(default=60, ge=5, le=180)
+    upstage_api_key: SecretStr = Field(default=SecretStr(""), repr=False)
 
 
 @lru_cache

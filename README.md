@@ -5,6 +5,7 @@
 
 - 전체 실행 흐름: [docs/pipeline-baseline.md](docs/pipeline-baseline.md)
 - 코드와 데이터 구조: [docs/architecture.md](docs/architecture.md)
+- 법률 그래프·Researcher·Auditor: [구현·가상 검증·실제 모델 미연결 범위](docs/legal-hierargraph.md)
 - 팀 공통 규칙: [resource-ai-team/.github CONTRIBUTING](https://github.com/resource-ai-team/.github/blob/main/CONTRIBUTING.md)
 
 ## 조직 레포 구성
