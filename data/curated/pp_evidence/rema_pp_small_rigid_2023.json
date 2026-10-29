@@ -47,21 +47,30 @@
     },
     {
       "id": "pvc",
-      "kind": "prohibited",
+      "kind": "potential_rejection",
       "material": "PVC #3",
-      "threshold": 0,
-      "unit": "presence",
+      "threshold": null,
+      "unit": null,
       "basis": "visual/test confirmed",
-      "qualifier": "do not infer absence from camera image alone"
+      "qualifier": "ReMA says item is not allowed and its presence MAY result in shipment rejection; buyer-specific acceptance review required, not an unconditional legal prohibition."
     },
     {
       "id": "plastic_bags_film",
-      "kind": "prohibited",
+      "kind": "potential_rejection",
       "material": "plastic bags or film",
-      "threshold": 0,
-      "unit": "presence",
+      "threshold": null,
+      "unit": null,
       "basis": "visual/test confirmed",
-      "qualifier": "operational rejection guidance; not quantified as individual mass tolerance"
+      "qualifier": "ReMA says item is not allowed and its presence MAY result in shipment rejection; buyer-specific acceptance review required, not an unconditional legal prohibition."
+    },
+    {
+      "id": "other_listed_individual_contaminants",
+      "kind": "maximum",
+      "material": "liquid/residues, loose paper/cardboard, aluminum cans and other low-level specified contaminants",
+      "threshold": 2,
+      "unit": "wt%",
+      "basis": "bale mass, each individually",
+      "qualifier": "Check full ReMA source and buyer agreement for precise definitions and exemptions."
     }
   ],
   "constraints": {
@@ -69,5 +78,11 @@
     "require_lot_measurement": true,
     "not_equivalent_to_domestic_pp_spec": true,
     "do_not_treat_ocr_text_as_verified_measurement": true
-  }
+  },
+  "country_of_origin": "United States",
+  "application_region": "foreign_trade_reference_only",
+  "source_stream": "predominantly_post_consumer_rigid_PP_packaging",
+  "use_for_domestic_regulatory_compliance": false,
+  "use_as_default_industrial_pp_plant_intake_spec": false,
+  "requires_explicit_selection_of_foreign_trade_guideline": true
 }
