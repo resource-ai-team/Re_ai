@@ -1,0 +1,491 @@
+{
+  "generated_at": "2026-10-26T05:47:17.801238+00:00",
+  "split": "test",
+  "dataset_sha256": "5c307932dbb081624200601e1e12f4c76d017fab99898a26fe0d79ec74445a64",
+  "hash_line_endings": "LF normalized",
+  "label_status": "developer_source_checked_expert_review_pending",
+  "completed": 23,
+  "total": 23,
+  "models": {},
+  "max_length": 512,
+  "summary": {
+    "rules20": {
+      "LEGAL": {
+        "total": 14,
+        "passed": 6,
+        "pass_rate": 0.42857142857142855,
+        "recall_at_k": 0.42857142857142855,
+        "mrr": 0.19285714285714287
+      },
+      "TECHNICAL": {
+        "total": 9,
+        "passed": 9,
+        "pass_rate": 1.0,
+        "recall_at_k": 1.0,
+        "mrr": 0.7962962962962963
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "installation-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 3,
+          "candidate_hit": true,
+          "locators": [
+            "건설폐기물의 처리 등에 관한 업무처리지침 Ⅶ. 건설폐기물처리시설 설치승인 및 신고",
+            "건설폐기물의 처리 등에 관한 업무처리지침 Ⅶ. 건설폐기물처리시설 설치승인 및 신고",
+            "폐기물관리법 제29조 ④항",
+            "폐기물관리법 시행규칙 제11조 ④항",
+            "폐기물관리법 시행규칙 제18조 ②항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.172
+    },
+    {
+      "id": "installation-2",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": false,
+          "locators": [
+            "건설폐기물의 처리 등에 관한 업무처리지침 Ⅶ. 건설폐기물처리시설 설치승인 및 신고",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제16조 ③항",
+            "폐기물관리법 시행규칙 제39조 ③항",
+            "건설폐기물의 재활용촉진에 관한 법률 제30조 ①항",
+            "건설폐기물의 처리 등에 관한 업무처리지침 Ⅶ. 건설폐기물처리시설 설치승인 및 신고"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.189
+    },
+    {
+      "id": "installation-3",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": false,
+          "locators": [
+            "폐기물관리법 시행규칙 제41조의4 ①항",
+            "물환경보전법 시행규칙 제70조의2 ②항",
+            "폐기물관리법 시행규칙 제41조의5 ②항",
+            "폐기물관리법 시행규칙 제41조의4 ④항",
+            "물환경보전법 시행규칙 별표 20"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.165
+    },
+    {
+      "id": "notification-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제67조 ③항",
+            "폐기물관리법 제46조 ①항",
+            "폐기물관리법 시행규칙 제66조 ③항",
+            "자원의 절약과 재활용촉진에 관한 법률 시행규칙 제19조 ②항",
+            "건설폐기물의 처리 등에 관한 업무처리지침 Ⅶ. 건설폐기물처리시설 설치승인 및 신고"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.165
+    },
+    {
+      "id": "notification-2",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": false,
+          "locators": [
+            "폐기물관리법 시행규칙 제67조 ③항",
+            "폐기물관리법 시행규칙 제40조 ③항",
+            "폐기물관리법 시행규칙 제33조 ①항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "물환경보전법 시행규칙 제90조의2 ①항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.161
+    },
+    {
+      "id": "notification-3",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": false,
+          "locators": [
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅹ. 수집ㆍ운반업의 영업구역 협의절차",
+            "폐기물관리법 시행규칙 제67조 ③항",
+            "폐기물관리법 시행규칙 제67조 ①항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제9조 ③항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅴ. 폐기물처리업 변경신고"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.159
+    },
+    {
+      "id": "environment-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 3,
+          "candidate_hit": true,
+          "locators": [
+            "재활용환경성평가를 위한 절차와 방법 등에 관한 규정 제8조(평가기준 제시) ① 평가기관은 「폐기물관리법」별표 5의3에 따른 재활용 기준 중 유사한 유형의 기준 및 「자원의절약과 재활용촉진에 관한 법률」제33조 등에 명시된 재활용 제품 등의 기준을 고려하여 제6조에서 채취한 시료 등의 적정성 평가에 기준으로 활용하여야 한다.",
+            "재활용환경성평가를 위한 절차와 방법 등에 관한 규정 제7조(유해특성평가 등) ① 평가기관은 폐기물에 관한 공정시험기준을 따라 해당 재활용 용도ㆍ방법의 유해특성을 평가하여야 한다.",
+            "폐기물관리법 제13조의3 ②항",
+            "폐기물관리법 제13조의3 ①항",
+            "재활용환경성평가를 위한 절차와 방법 등에 관한 규정 제21조(환경성평가 결과의 검토) ① 평가기관은 서류검토, 현장조사, 폐기물 유해특성평가, 함량시험, 유출시험, 사후관리계획 등의 검토결과를 바탕으로 해당 재활용 용도 또는 방법의 환경성평가에 대한 최종의견을 다음 각 호 중 하나로 결정하여야 한다."
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.166
+    },
+    {
+      "id": "environment-2",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 5,
+          "candidate_hit": true,
+          "locators": [
+            "재활용환경성평가를 위한 절차와 방법 등에 관한 규정 제21조(환경성평가 결과의 검토) ① 평가기관은 서류검토, 현장조사, 폐기물 유해특성평가, 함량시험, 유출시험, 사후관리계획 등의 검토결과를 바탕으로 해당 재활용 용도 또는 방법의 환경성평가에 대한 최종의견을 다음 각 호 중 하나로 결정하여야 한다.",
+            "재활용환경성평가를 위한 절차와 방법 등에 관한 규정 제10조(환경성평가 결과의 검토) ① 평가기관은 서류검토, 현장조사, 폐기물 유해특성평가 및 시험분석 결과 등을 종합적으로 검토하여 해당 재활용 용도 또는 방법에 대한 환경성평가의 최종의견을 다음 각 호 중 하나로 결정하여야 한다.",
+            "재활용환경성평가를 위한 절차와 방법 등에 관한 규정 제8조(평가기준 제시) ① 평가기관은 「폐기물관리법」별표 5의3에 따른 재활용 기준 중 유사한 유형의 기준 및 「자원의절약과 재활용촉진에 관한 법률」제33조 등에 명시된 재활용 제품 등의 기준을 고려하여 제6조에서 채취한 시료 등의 적정성 평가에 기준으로 활용하여야 한다.",
+            "재활용환경성평가서 작성 기준 및 방법 등에 관한 규정 별표 2",
+            "폐기물관리법 제13조의3 ①항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.168
+    },
+    {
+      "id": "environment-3",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "재활용환경성평가를 위한 절차와 방법 등에 관한 규정 제8조(평가기준 제시) ① 평가기관은 「폐기물관리법」별표 5의3에 따른 재활용 기준 중 유사한 유형의 기준 및 「자원의절약과 재활용촉진에 관한 법률」제33조 등에 명시된 재활용 제품 등의 기준을 고려하여 제6조에서 채취한 시료 등의 적정성 평가에 기준으로 활용하여야 한다.",
+            "재활용환경성평가를 위한 절차와 방법 등에 관한 규정 제21조(환경성평가 결과의 검토) ① 평가기관은 서류검토, 현장조사, 폐기물 유해특성평가, 함량시험, 유출시험, 사후관리계획 등의 검토결과를 바탕으로 해당 재활용 용도 또는 방법의 환경성평가에 대한 최종의견을 다음 각 호 중 하나로 결정하여야 한다.",
+            "재활용환경성평가에 따른 재활용 승인 관련 업무처리지침 제19조(현장적용성시험의 실시 필요성 결정 및 통보) ① 과학원장은 제13조와 제16조에 따른 서류검토 및 현장조사 결과, 제17조의 자문위원회, 제18조의 심의위원회의 등을 참고하여 현장적용성시험의 실시 필요성에 대한 사전검토 결과를 결정하여야 한다.",
+            "재활용환경성평가를 위한 절차와 방법 등에 관한 규정 제11조(평가대상 범위) 평가기관은 재활용환경성 평가를 신청한 신청자의 재활용 용도 또는 방법이 다음 각 호에 해당하는 경우 매체접촉형 재활용환경성평가를 수행하여야 한다.",
+            "재활용환경성평가를 위한 절차와 방법 등에 관한 규정 제10조(환경성평가 결과의 검토) ① 평가기관은 서류검토, 현장조사, 폐기물 유해특성평가 및 시험분석 결과 등을 종합적으로 검토하여 해당 재활용 용도 또는 방법에 대한 환경성평가의 최종의견을 다음 각 호 중 하나로 결정하여야 한다."
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.18
+    },
+    {
+      "id": "definitions-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 Ⅴ. 사업장폐기물의 종류",
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 Ⅶ. 사업장폐기물 배출자신고",
+            "폐기물관리법 시행규칙 별표 5",
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 Ⅷ. 사업장 지정폐기물 처리계획의 확인",
+            "건설폐기물의 재활용촉진에 관한 법률 제2조"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.194
+    },
+    {
+      "id": "definitions-2",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": false,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 10",
+            "폐기물관리법 시행규칙 별표 21",
+            "폐기물관리법 시행규칙 별표 5의4",
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 시행령 별표 7의3",
+            "폐기물관리법 시행령 제37조 ③항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.178
+    },
+    {
+      "id": "definitions-3",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 3,
+          "candidate_hit": true,
+          "locators": [
+            "건설폐기물의 재활용촉진에 관한 법률 시행령 제27조의2 ①항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 별표 3",
+            "폐기물관리법 제2조",
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 제35조 ③항",
+            "대법원 2019두43474 판례 전문"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.169
+    },
+    {
+      "id": "processor-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 제12조(수집ㆍ운반자의 전자인계서 작성 및 인계번호 전달) ① 폐기물수집ㆍ운반자는 제11조제5항에 따른 인계번호를 폐기물배출자로부터 전달받은 이후에 해당 폐기물을 수집ㆍ운반해야 한다.",
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 제14조(전자인계서의 수정) ① 사용자가 제11조부터 제13조까지에 따라 입력한 전자인계서를 수정하고자 하는 경우에는 해당 전자인계서를 처분 또는 재활용하는 자의 처리실적 입력일까지 수정할 수 있다. 다만, 「폐기물관리법 시행규칙」 별표 6, 「건설폐기물법 시행규칙」 별표 2의2 및 「",
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 제13조(처분 또는 재활용하는 자의 전자인계서 작성 및 처리실적 입력) ① 폐기물 처분 또는 재활용하는 자가 폐기물수집ㆍ운반자로부터 폐기물을 인수한 때에는 인계번호, 배출자명, 폐기물종류ㆍ성상, 차량번호, 인수량, 처리방법, 인수일자, 인수자명을 올바로시스템을 통해 확인해야 한다.",
+            "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시 제11조(배출자의 전자인계서 작성 및 인계번호 전달) ① 폐기물배출자(「폐기물국가간이동법」제6조제1항에 따라 수출허가를 받은 자, 같은 법 제10조제1항에 따라 수입허가를 받은 자 및 같은 법 제18조의2제1항에 따라 수출신고 또는 수입신고를 한 자를 포함하며, 이하 \"폐기물배출자\"라 ",
+            "폐기물의 국가 간 이동 및 그 처리에 관한 법률 제18조의3 ③항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.192
+    },
+    {
+      "id": "processor-2",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제19조 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 Ⅵ. 사업장폐기물 배출자의 확인의무",
+            "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 Ⅵ. 사업장폐기물 배출자의 확인의무",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제8조의2 ②항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.18
+    },
+    {
+      "id": "chip-pretreat-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 3,
+          "candidate_hit": true,
+          "locators": [
+            "재해개요; 재해예방대책",
+            "4.1.4.1 Secondary aluminium; printed p.388",
+            "4.1.4.1.1; 4.3.4.3; printed pp.389, 466–470",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.06
+    },
+    {
+      "id": "chip-pretreat-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.1.4.1.1; 4.3.4.3; printed pp.389, 466–470",
+            "재해개요; 재해예방대책",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.043
+    },
+    {
+      "id": "chip-grade-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Nonferrous guidelines / Tease and Telic; printed p.11, PDF p.13",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "3.3 Delivery modes; printed pp.5–6",
+            "재해개요; 재해예방대책"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.049
+    },
+    {
+      "id": "chip-grade-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Nonferrous guidelines / Tease and Telic; printed p.11, PDF p.13",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "재해개요; 재해예방대책",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.054
+    },
+    {
+      "id": "paper-sample-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "4.1.4.1 Secondary aluminium; printed p.388",
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.065
+    },
+    {
+      "id": "paper-sample-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 3,
+          "candidate_hit": true,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "6.4.2.2 moisture; PDF pp.7–8",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.048
+    },
+    {
+      "id": "carbon-boundary-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.047
+    },
+    {
+      "id": "carbon-boundary-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "Data & Modeling; regional recycled-aluminium dataset limitations",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.069
+    },
+    {
+      "id": "supplier-lot-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "8.0 general requirements p.12; 8.2 bales p.16; 8.3 densified p.17",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470"
+          ]
+        }
+      },
+      "model_seconds_for_union": {},
+      "seconds": 0.066
+    }
+  ]
+}

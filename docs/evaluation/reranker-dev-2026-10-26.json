@@ -1,0 +1,1987 @@
+{
+  "generated_at": "2026-10-25T15:11:54.676053+00:00",
+  "split": "dev",
+  "dataset_sha256": "5c307932dbb081624200601e1e12f4c76d017fab99898a26fe0d79ec74445a64",
+  "label_status": "developer_source_checked_expert_review_pending",
+  "completed": 27,
+  "total": 27,
+  "models": {
+    "minilm": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1@1427fd652930e4ba29e8149678df786c240d8825"
+  },
+  "max_length": 512,
+  "summary": {
+    "rules20": {
+      "LEGAL": {
+        "total": 16,
+        "passed": 10,
+        "pass_rate": 0.625,
+        "recall_at_k": 0.625,
+        "mrr": 0.4708333333333333
+      },
+      "TECHNICAL": {
+        "total": 11,
+        "passed": 11,
+        "pass_rate": 1.0,
+        "recall_at_k": 1.0,
+        "mrr": 0.9090909090909091
+      }
+    },
+    "rules50": {
+      "LEGAL": {
+        "total": 16,
+        "passed": 10,
+        "pass_rate": 0.625,
+        "recall_at_k": 0.625,
+        "mrr": 0.4708333333333333
+      },
+      "TECHNICAL": {
+        "total": 11,
+        "passed": 11,
+        "pass_rate": 1.0,
+        "recall_at_k": 1.0,
+        "mrr": 0.9090909090909091
+      }
+    },
+    "rules100": {
+      "LEGAL": {
+        "total": 16,
+        "passed": 10,
+        "pass_rate": 0.625,
+        "recall_at_k": 0.625,
+        "mrr": 0.4708333333333333
+      },
+      "TECHNICAL": {
+        "total": 11,
+        "passed": 11,
+        "pass_rate": 1.0,
+        "recall_at_k": 1.0,
+        "mrr": 0.9090909090909091
+      }
+    },
+    "minilm50": {
+      "LEGAL": {
+        "total": 16,
+        "passed": 10,
+        "pass_rate": 0.625,
+        "recall_at_k": 0.625,
+        "mrr": 0.5520833333333334
+      },
+      "TECHNICAL": {
+        "total": 11,
+        "passed": 11,
+        "pass_rate": 1.0,
+        "recall_at_k": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "minilm100": {
+      "LEGAL": {
+        "total": 16,
+        "passed": 12,
+        "pass_rate": 0.75,
+        "recall_at_k": 0.75,
+        "mrr": 0.6354166666666666
+      },
+      "TECHNICAL": {
+        "total": 11,
+        "passed": 11,
+        "pass_rate": 1.0,
+        "recall_at_k": 1.0,
+        "mrr": 1.0
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "producer-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제19조 ②항",
+            "폐기물관리법 시행규칙 제17조의4"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제19조 ②항",
+            "폐기물관리법 시행규칙 제17조의4"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제19조 ②항",
+            "폐기물관리법 시행규칙 제17조의4"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제17조 ⑥항",
+            "폐기물관리법 제19조 ②항",
+            "폐기물관리법 시행규칙 제17조의2 ②항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제17조 ⑥항",
+            "폐기물관리법 제19조 ②항",
+            "폐기물관리법 시행규칙 제17조의2 ②항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 13.83
+      },
+      "seconds": 14.096
+    },
+    {
+      "id": "producer-2",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 5,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 5의8",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제15조의2 ③항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행령 별표 5",
+            "폐기물관리법 제17조 ①항"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 5,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 5의8",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제15조의2 ③항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행령 별표 5",
+            "폐기물관리법 제17조 ①항"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 5,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 5의8",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제15조의2 ③항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행령 별표 5",
+            "폐기물관리법 제17조 ①항"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "폐기물관리법 제19조 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "폐기물관리법 제19조 ②항",
+            "대법원 2023두62830 판결요지"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 16.579
+      },
+      "seconds": 16.982
+    },
+    {
+      "id": "producer-3",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제17조의4",
+            "폐기물관리법 제66조",
+            "폐기물관리법 시행규칙 별표 5의8",
+            "대법원 2017도9582 판례 전문"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제17조의4",
+            "폐기물관리법 제66조",
+            "폐기물관리법 시행규칙 별표 5의8",
+            "대법원 2017도9582 판례 전문"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제17조의4",
+            "폐기물관리법 제66조",
+            "폐기물관리법 시행규칙 별표 5의8",
+            "대법원 2017도9582 판례 전문"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2019다226548 판례 전문",
+            "대법원 2017도9582 판례 전문",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "폐기물관리법 시행규칙 제18조의2 ⑤항",
+            "폐기물관리법 제25조의3 ①항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 3,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2019다226548 판례 전문",
+            "대법원 2017도9582 판례 전문",
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "폐기물관리법 시행규칙 제18조의2 ⑤항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 16.071
+      },
+      "seconds": 16.521
+    },
+    {
+      "id": "permit-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의4",
+            "폐기물관리법 시행규칙 별표 5의8",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제12조 ⑥항",
+            "폐기물관리법 시행규칙 제16조의12"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의4",
+            "폐기물관리법 시행규칙 별표 5의8",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제12조 ⑥항",
+            "폐기물관리법 시행규칙 제16조의12"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의4",
+            "폐기물관리법 시행규칙 별표 5의8",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제12조 ⑥항",
+            "폐기물관리법 시행규칙 제16조의12"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행령 별표 5의3",
+            "폐기물관리법 시행규칙 제28조 ③항",
+            "폐기물관리법 제27조 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제12조 ⑥항",
+            "폐기물관리법 제27조 ①항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 제28조 ①항",
+            "폐기물관리법 시행규칙 제28조 ④항",
+            "폐기물관리법 시행령 별표 5의3",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제8조의2 ①항",
+            "폐기물관리법 시행규칙 제28조 ③항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 16.737
+      },
+      "seconds": 17.271
+    },
+    {
+      "id": "permit-2",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "자원의 절약과 재활용촉진에 관한 법률 시행령 제32조",
+            "순환경제사회 전환 촉진법 시행규칙 제3조",
+            "자원의 절약과 재활용촉진에 관한 법률 시행령 제8조 ②항",
+            "자원의 절약과 재활용촉진에 관한 법률 시행령 제4조",
+            "폐기물관리법 시행규칙 제21조 ①항"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "자원의 절약과 재활용촉진에 관한 법률 시행령 제32조",
+            "순환경제사회 전환 촉진법 시행규칙 제3조",
+            "자원의 절약과 재활용촉진에 관한 법률 시행령 제8조 ②항",
+            "자원의 절약과 재활용촉진에 관한 법률 시행령 제4조",
+            "폐기물관리법 시행규칙 제21조 ①항"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "자원의 절약과 재활용촉진에 관한 법률 시행령 제32조",
+            "순환경제사회 전환 촉진법 시행규칙 제3조",
+            "자원의 절약과 재활용촉진에 관한 법률 시행령 제8조 ②항",
+            "자원의 절약과 재활용촉진에 관한 법률 시행령 제4조",
+            "폐기물관리법 시행규칙 제21조 ①항"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 7",
+            "폐기물관리법 시행규칙 제28조 ③항",
+            "폐기물관리법 시행령 별표 5의3",
+            "폐기물관리법 시행규칙 제29조 ①항",
+            "대법원 2017도9582 판례 전문"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 7",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 별표 2",
+            "폐기물관리법 시행규칙 제28조 ③항",
+            "폐기물관리법 시행령 별표 5의3",
+            "폐기물관리법 시행규칙 제28조 ①항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 15.481
+      },
+      "seconds": 16.02
+    },
+    {
+      "id": "permit-3",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 3,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행령 별표 6",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 제25조 ⑭항",
+            "폐기물관리법 제27조 ②항",
+            "폐기물관리법 제27조 ①항"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 3,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행령 별표 6",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 제25조 ⑭항",
+            "폐기물관리법 제27조 ②항",
+            "폐기물관리법 제27조 ①항"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 3,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행령 별표 6",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 제25조 ⑭항",
+            "폐기물관리법 제27조 ②항",
+            "폐기물관리법 제27조 ①항"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제25조 ⑤항",
+            "폐기물관리법 시행규칙 제28조 ③항",
+            "폐기물관리법 시행규칙 별표 7",
+            "폐기물관리법 시행규칙 제28조 ①항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제6조"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제25조 ⑤항",
+            "폐기물관리법 시행규칙 제28조 ③항",
+            "폐기물관리법 시행규칙 별표 7",
+            "폐기물관리법 시행규칙 제28조 ①항",
+            "폐기물관리법 시행령 제2조"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 16.123
+      },
+      "seconds": 16.595
+    },
+    {
+      "id": "principles-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 5의4",
+            "폐기물관리법 제13조의2 ①항",
+            "폐기물관리법 시행규칙 별표 5의4",
+            "폐기물관리법 제13조의2 ③항",
+            "폐기물관리법 제25조 ⑨항"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 5의4",
+            "폐기물관리법 제13조의2 ①항",
+            "폐기물관리법 시행규칙 별표 5의4",
+            "폐기물관리법 제13조의2 ③항",
+            "폐기물관리법 제25조 ⑨항"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 5의4",
+            "폐기물관리법 제13조의2 ①항",
+            "폐기물관리법 시행규칙 별표 5의4",
+            "폐기물관리법 제13조의2 ③항",
+            "폐기물관리법 제25조 ⑨항"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제13조의2 ①항",
+            "폐기물관리법 시행규칙 별표 5의4",
+            "폐기물관리법 시행규칙 별표 5의4",
+            "폐기물관리법 제13조의2 ③항",
+            "폐기물관리법 제25조 ⑨항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제13조의2 ①항",
+            "폐기물관리법 시행규칙 별표 5의4",
+            "폐기물관리법 시행규칙 별표 5의4",
+            "폐기물관리법 시행령 별표 4의2",
+            "폐기물관리법 시행규칙 별표 5의3"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 19.068
+      },
+      "seconds": 19.432
+    },
+    {
+      "id": "principles-2",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": false,
+          "locators": [
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 시행령 별표 7의3",
+            "폐기물관리법 시행령 제37조 ①항",
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 시행령 별표 7의3",
+            "폐기물관리법 시행령 제37조 ③항",
+            "자원의 절약과 재활용촉진에 관한 법률 시행규칙 제26조"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": false,
+          "locators": [
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 시행령 별표 7의3",
+            "폐기물관리법 시행령 제37조 ①항",
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 시행령 별표 7의3",
+            "폐기물관리법 시행령 제37조 ③항",
+            "자원의 절약과 재활용촉진에 관한 법률 시행규칙 제26조"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 시행령 별표 7의3",
+            "폐기물관리법 시행령 제37조 ①항",
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 시행령 별표 7의3",
+            "폐기물관리법 시행령 제37조 ③항",
+            "자원의 절약과 재활용촉진에 관한 법률 시행규칙 제26조"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": false,
+          "locators": [
+            "폐기물관리법 시행령 별표 4의3",
+            "자원의 절약과 재활용촉진에 관한 법률 시행규칙 제26조",
+            "폐기물관리법 제54조 ①항",
+            "폐기물관리법 시행규칙 별표 9",
+            "폐기물관리법 제48조 ①항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제13조의2 ②항",
+            "폐기물관리법 시행령 제7조 ①항",
+            "폐기물관리법 시행령 별표 4의3",
+            "자원의 절약과 재활용촉진에 관한 법률 시행규칙 제26조",
+            "폐기물관리법 시행규칙 별표 21"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 18.623
+      },
+      "seconds": 19.15
+    },
+    {
+      "id": "circular-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 시행규칙 제18조 ①항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ①항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ①항",
+            "순환경제사회 전환 촉진법 시행령 제12조 ②항"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 시행규칙 제18조 ①항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ①항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ①항",
+            "순환경제사회 전환 촉진법 시행령 제12조 ②항"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 시행규칙 제18조 ①항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ①항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ①항",
+            "순환경제사회 전환 촉진법 시행령 제12조 ②항"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 시행령 제12조 ③항",
+            "순환경제사회 전환 촉진법 시행령 제12조 ②항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ①항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 시행규칙 제12조 ①항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 시행령 제12조 ③항",
+            "순환경제사회 전환 촉진법 시행령 제12조 ②항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ①항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 시행규칙 제12조 ①항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 17.123
+      },
+      "seconds": 17.696
+    },
+    {
+      "id": "circular-2",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 제21조 ②항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ⑤항",
+            "순환경제사회 전환 촉진법 시행령 제12조 ①항",
+            "순환경제사회 전환 촉진법 시행령 제12조 ②항"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 제21조 ②항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ⑤항",
+            "순환경제사회 전환 촉진법 시행령 제12조 ①항",
+            "순환경제사회 전환 촉진법 시행령 제12조 ②항"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 제21조 ②항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ⑤항",
+            "순환경제사회 전환 촉진법 시행령 제12조 ①항",
+            "순환경제사회 전환 촉진법 시행령 제12조 ②항"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ①항",
+            "순환경제사회 전환 촉진법 시행규칙 제12조 ①항",
+            "순환경제사회 전환 촉진법 시행령 제11조",
+            "순환경제사회 전환 촉진법 시행령 제12조 ②항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": false,
+          "rank": null,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ①항",
+            "순환경제사회 전환 촉진법 시행규칙 제12조 ①항",
+            "순환경제사회 전환 촉진법 시행령 제11조",
+            "순환경제사회 전환 촉진법 시행령 제12조 ②항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 17.364
+      },
+      "seconds": 17.87
+    },
+    {
+      "id": "sandbox-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "순환경제사회 전환 촉진법 제33조 ⑪항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 제33조 ⑭항",
+            "폐기물관리법 시행규칙 별표 7"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "순환경제사회 전환 촉진법 제33조 ⑪항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 제33조 ⑭항",
+            "폐기물관리법 시행규칙 별표 7"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "순환경제사회 전환 촉진법 제33조 ⑪항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 제33조 ⑭항",
+            "폐기물관리법 시행규칙 별표 7"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 제32조 ⑧항",
+            "순환경제사회 전환 촉진법 제33조 ⑭항",
+            "순환경제사회 전환 촉진법 제33조 ⑪항",
+            "폐기물관리법 시행규칙 별표 7",
+            "순환경제사회 전환 촉진법 제33조 ①항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 제32조 ⑧항",
+            "순환경제사회 전환 촉진법 제33조 ⑭항",
+            "순환경제사회 전환 촉진법 제33조 ⑪항",
+            "폐기물관리법 시행규칙 별표 7",
+            "순환경제사회 전환 촉진법 제33조 ①항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 15.136
+      },
+      "seconds": 15.673
+    },
+    {
+      "id": "sandbox-2",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "순환경제사회 전환 촉진법 시행령 별표 6",
+            "순환경제사회 전환 촉진법 시행령 제30조 ①항",
+            "순환경제사회 전환 촉진법 시행령 제30조 ⑪항",
+            "순환경제사회 전환 촉진법 제33조 ⑥항"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "순환경제사회 전환 촉진법 시행령 별표 6",
+            "순환경제사회 전환 촉진법 시행령 제30조 ①항",
+            "순환경제사회 전환 촉진법 시행령 제30조 ⑪항",
+            "순환경제사회 전환 촉진법 제33조 ⑥항"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "순환경제사회 전환 촉진법 시행령 별표 6",
+            "순환경제사회 전환 촉진법 시행령 제30조 ①항",
+            "순환경제사회 전환 촉진법 시행령 제30조 ⑪항",
+            "순환경제사회 전환 촉진법 제33조 ⑥항"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "폐기물관리법 시행규칙 제28조 ④항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제6조",
+            "폐기물관리법 시행규칙 제28조 ①항",
+            "순환경제사회 전환 촉진법 시행령 제30조 ⑪항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "폐기물관리법 시행규칙 제28조 ④항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제6조",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 별표 2",
+            "폐기물관리법 시행규칙 제28조 ①항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 18.14
+      },
+      "seconds": 18.63
+    },
+    {
+      "id": "order-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제48조 ②항",
+            "폐기물관리법 시행규칙 제68조의3 ①항",
+            "폐기물관리법 제48조 ⑥항",
+            "폐기물관리법 제48조 ①항",
+            "폐기물관리법 시행규칙 제68조의3 ②항"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제48조 ②항",
+            "폐기물관리법 시행규칙 제68조의3 ①항",
+            "폐기물관리법 제48조 ⑥항",
+            "폐기물관리법 제48조 ①항",
+            "폐기물관리법 시행규칙 제68조의3 ②항"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제48조 ②항",
+            "폐기물관리법 시행규칙 제68조의3 ①항",
+            "폐기물관리법 제48조 ⑥항",
+            "폐기물관리법 제48조 ①항",
+            "폐기물관리법 시행규칙 제68조의3 ②항"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제48조 ①항",
+            "폐기물관리법 제48조 ②항",
+            "대법원 2009두6681 판시사항",
+            "폐기물관리법 시행령 제23조의5",
+            "대법원 2023두62830 판례 전문"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제48조 ①항",
+            "폐기물관리법 제48조 ②항",
+            "대법원 2009두6681 판시사항",
+            "폐기물관리법 시행령 제23조의5",
+            "대법원 2023두62830 판례 전문"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 17.858
+      },
+      "seconds": 18.44
+    },
+    {
+      "id": "order-2",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제48조 ②항",
+            "폐기물관리법 시행규칙 제68조의3 ①항",
+            "폐기물관리법 시행규칙 제68조의3 ②항",
+            "폐기물관리법 제48조 ⑥항",
+            "폐기물관리법 제48조 ④항"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제48조 ②항",
+            "폐기물관리법 시행규칙 제68조의3 ①항",
+            "폐기물관리법 시행규칙 제68조의3 ②항",
+            "폐기물관리법 제48조 ⑥항",
+            "폐기물관리법 제48조 ④항"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "폐기물관리법 제48조 ②항",
+            "폐기물관리법 시행규칙 제68조의3 ①항",
+            "폐기물관리법 시행규칙 제68조의3 ②항",
+            "폐기물관리법 제48조 ⑥항",
+            "폐기물관리법 제48조 ④항"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 3,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2009두6681 판시사항",
+            "대법원 2009두6681 판례 전문",
+            "폐기물관리법 제48조 ①항",
+            "대법원 2009두6681 판례 전문",
+            "폐기물관리법 시행령 제37조 ②항"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 3,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2009두6681 판시사항",
+            "대법원 2009두6681 판례 전문",
+            "폐기물관리법 제48조 ①항",
+            "대법원 2009두6681 판례 전문",
+            "폐기물관리법 시행령 제37조 ②항"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 19.645
+      },
+      "seconds": 20.184
+    },
+    {
+      "id": "auction-1",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판결요지",
+            "대법원 2002다46331 판결요지",
+            "폐기물관리법 제17조 ⑨항"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판결요지",
+            "대법원 2002다46331 판결요지",
+            "폐기물관리법 제17조 ⑨항"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판결요지",
+            "대법원 2002다46331 판결요지",
+            "폐기물관리법 제17조 ⑨항"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판결요지"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판결요지"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 18.712
+      },
+      "seconds": 19.34
+    },
+    {
+      "id": "auction-2",
+      "group": "LEGAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2002다46331 판결요지",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2002다46331 판례 전문",
+            "대법원 2023두62830 판례 전문"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2002다46331 판결요지",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2002다46331 판례 전문",
+            "대법원 2023두62830 판례 전문"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2002다46331 판결요지",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2002다46331 판례 전문",
+            "대법원 2023두62830 판례 전문"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판결요지"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판결요지"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 18.527
+      },
+      "seconds": 19.042
+    },
+    {
+      "id": "pet-design-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "6.4.2.2 moisture; PDF pp.7–8",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "8.0 general requirements p.12; 8.2 bales p.16; 8.3 densified p.17"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "6.4.2.2 moisture; PDF pp.7–8",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "8.0 general requirements p.12; 8.2 bales p.16; 8.3 densified p.17"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 1.765
+      },
+      "seconds": 2.138
+    },
+    {
+      "id": "pet-design-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "재해개요; 재해예방대책",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "8.0 general requirements p.12; 8.2 bales p.16; 8.3 densified p.17",
+            "6.4.2.2 moisture; PDF pp.7–8"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "재해개요; 재해예방대책",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "8.0 general requirements p.12; 8.2 bales p.16; 8.3 densified p.17",
+            "6.4.2.2 moisture; PDF pp.7–8"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 2.203
+      },
+      "seconds": 2.624
+    },
+    {
+      "id": "pet-design-3",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "4.1.4.1 Secondary aluminium; printed p.388",
+            "6.4.2.2 moisture; PDF pp.7–8"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "4.1.4.1 Secondary aluminium; printed p.388",
+            "6.4.2.2 moisture; PDF pp.7–8"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 2.006
+      },
+      "seconds": 2.531
+    },
+    {
+      "id": "al-water-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "재해개요; 재해예방대책",
+            "Safety topics > Molten metal/water explosions",
+            "3.3 Delivery modes; printed pp.5–6",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "재해개요; 재해예방대책",
+            "Safety topics > Molten metal/water explosions",
+            "3.3 Delivery modes; printed pp.5–6",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "재해개요; 재해예방대책",
+            "Safety topics > Molten metal/water explosions",
+            "3.3 Delivery modes; printed pp.5–6",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Safety topics > Molten metal/water explosions",
+            "3.3 Delivery modes; printed pp.5–6",
+            "재해개요; 재해예방대책",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Safety topics > Molten metal/water explosions",
+            "3.3 Delivery modes; printed pp.5–6",
+            "재해개요; 재해예방대책",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 1.68
+      },
+      "seconds": 2.11
+    },
+    {
+      "id": "al-water-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "재해개요; 재해예방대책",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "재해개요; 재해예방대책",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "재해개요; 재해예방대책",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "재해개요; 재해예방대책",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "8.0 general requirements p.12; 8.2 bales p.16; 8.3 densified p.17",
+            "4.1.4.1 Secondary aluminium; printed p.388"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "재해개요; 재해예방대책",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "8.0 general requirements p.12; 8.2 bales p.16; 8.3 densified p.17",
+            "4.1.4.1 Secondary aluminium; printed p.388"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 1.651
+      },
+      "seconds": 2.056
+    },
+    {
+      "id": "al-alloy-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "8.0 general requirements p.12; 8.2 bales p.16; 8.3 densified p.17"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "8.0 general requirements p.12; 8.2 bales p.16; 8.3 densified p.17"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 1.841
+      },
+      "seconds": 2.248
+    },
+    {
+      "id": "al-alloy-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "재해개요; 재해예방대책",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "재해개요; 재해예방대책",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "재해개요; 재해예방대책",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "4.1.4.1 Secondary aluminium; printed p.388"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "4.1.4.1 Secondary aluminium; printed p.388"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 1.8
+      },
+      "seconds": 2.21
+    },
+    {
+      "id": "scrap-carbon-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Safety topics > Molten metal/water explosions",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Safety topics > Molten metal/water explosions",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Safety topics > Molten metal/water explosions",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 1.649
+      },
+      "seconds": 2.052
+    },
+    {
+      "id": "scrap-carbon-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "Data & Modeling; regional recycled-aluminium dataset limitations",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "Data & Modeling; regional recycled-aluminium dataset limitations",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 2,
+          "candidate_hit": true,
+          "locators": [
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "Data & Modeling; regional recycled-aluminium dataset limitations",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 1.852
+      },
+      "seconds": 2.293
+    },
+    {
+      "id": "coated-paper-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "6.4.2.2 moisture; PDF pp.7–8",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "Guidelines sections 1–4; PDF pp.3–4",
+            "재해개요; 재해예방대책"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "6.4.2.2 moisture; PDF pp.7–8",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "Guidelines sections 1–4; PDF pp.3–4",
+            "재해개요; 재해예방대책"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "6.4.2.2 moisture; PDF pp.7–8",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "Guidelines sections 1–4; PDF pp.3–4",
+            "재해개요; 재해예방대책"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 1.612
+      },
+      "seconds": 2.024
+    },
+    {
+      "id": "coated-paper-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "rules20": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470"
+          ]
+        },
+        "rules50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470"
+          ]
+        },
+        "rules100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470"
+          ]
+        },
+        "minilm50": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "8.0 general requirements p.12; 8.2 bales p.16; 8.3 densified p.17",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ]
+        },
+        "minilm100": {
+          "hit_at_5": true,
+          "rank": 1,
+          "candidate_hit": true,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "8.0 general requirements p.12; 8.2 bales p.16; 8.3 densified p.17",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ]
+        }
+      },
+      "model_seconds_for_union": {
+        "minilm": 1.679
+      },
+      "seconds": 2.071
+    }
+  ],
+  "hash_line_endings": "LF normalized"
+}

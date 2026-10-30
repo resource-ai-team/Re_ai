@@ -1,0 +1,1659 @@
+{
+  "started_kst": "2026-10-30T13:06:41.234078+09:00",
+  "duration_seconds": 164.65,
+  "production_app_over_real_tcp": true,
+  "real_postgresql_isolated_schema": true,
+  "real_neo4j_rag_requested": true,
+  "paid_external_calls_enabled": false,
+  "synthetic_business_data": true,
+  "industrial_recommendation_accuracy_claimed": false,
+  "numeric": {
+    "generated_cases": 10000,
+    "passed": 10000,
+    "failures": [],
+    "seed": 20261030,
+    "independent_invariants_per_case": 9,
+    "synthetic": true
+  },
+  "prices": {
+    "real_source_csv": true,
+    "pp_observation_slots": 24,
+    "checks": 72,
+    "sha256": "562bf85c2f9a2047649b52d9875da462fdb2ca14be36e21cfd1950ff976dfeb3"
+  },
+  "api": {
+    "cases": 98,
+    "passed": 98,
+    "requests": 415,
+    "max_request_ms": 28680.26,
+    "results": [
+      {
+        "id": "manual-standard",
+        "title": "사출 공장의 PP 스크랩 기본 입력",
+        "passed": true,
+        "elapsed_ms": 158.65,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "no-input",
+        "title": "아무 정보도 없는 문의",
+        "passed": true,
+        "elapsed_ms": 108.43,
+        "observed": {
+          "level": 0,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "no-contamination",
+        "title": "성적서 없이 PP·물량만 입력",
+        "passed": true,
+        "elapsed_ms": 182.05,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "no-mass",
+        "title": "로트 물량 미확인",
+        "passed": true,
+        "elapsed_ms": 137.65,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "unknown-material",
+        "title": "소재 미확인",
+        "passed": true,
+        "elapsed_ms": 184.53,
+        "observed": {
+          "level": 0,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "wrong-material",
+        "title": "PP 대신 PET 성적서",
+        "passed": true,
+        "elapsed_ms": 153.19,
+        "observed": {
+          "level": 0,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "not_confirmed_rigid_pp_scope"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "film-outside",
+        "title": "경질이 아닌 필름 입력",
+        "passed": true,
+        "elapsed_ms": 153.72,
+        "observed": {
+          "level": 0,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "not_confirmed_rigid_pp_scope"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "no-target",
+        "title": "자료는 있지만 목표 미선택",
+        "passed": true,
+        "elapsed_ms": 80.49,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "form-rigid_part",
+        "title": "PP 형태별 입력: rigid_part",
+        "passed": true,
+        "elapsed_ms": 104.27,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "form-flake",
+        "title": "PP 형태별 입력: flake",
+        "passed": true,
+        "elapsed_ms": 141.6,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "form-pellet",
+        "title": "PP 형태별 입력: pellet",
+        "passed": true,
+        "elapsed_ms": 147.23,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "form-bale",
+        "title": "PP 형태별 입력: bale",
+        "passed": true,
+        "elapsed_ms": 168.36,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "other-sample-contamination",
+        "title": "다른 시료의 contamination",
+        "passed": true,
+        "elapsed_ms": 136.85,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "other-sample-quantity_kg",
+        "title": "다른 시료의 quantity_kg",
+        "passed": true,
+        "elapsed_ms": 183.68,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "other-sample-material",
+        "title": "다른 시료의 material",
+        "passed": true,
+        "elapsed_ms": 199.02,
+        "observed": {
+          "level": 0,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "unbound-lot",
+        "title": "동일 로트 확인 안 됨",
+        "passed": true,
+        "elapsed_ms": 156.93,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "unit-mg-L",
+        "title": "질량 오염률로 쓸 수 없는 단위: mg/L",
+        "passed": true,
+        "elapsed_ms": 168.45,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "unit-%",
+        "title": "질량 오염률로 쓸 수 없는 단위: %",
+        "passed": true,
+        "elapsed_ms": 123.29,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "unit-ppm",
+        "title": "질량 오염률로 쓸 수 없는 단위: ppm",
+        "passed": true,
+        "elapsed_ms": 134.06,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "unit-g-kg",
+        "title": "질량 오염률로 쓸 수 없는 단위: g/kg",
+        "passed": true,
+        "elapsed_ms": 167.92,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "basis-dry_mass",
+        "title": "호환되지 않은 분모: dry_mass",
+        "passed": true,
+        "elapsed_ms": 151.71,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "basis-volume",
+        "title": "호환되지 않은 분모: volume",
+        "passed": true,
+        "elapsed_ms": 141.35,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "basis-unknown",
+        "title": "호환되지 않은 분모: unknown",
+        "passed": true,
+        "elapsed_ms": 139.08,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "qualifier-lt",
+        "title": "점값이 아닌 측정: lt",
+        "passed": true,
+        "elapsed_ms": 152.54,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "qualifier-gt",
+        "title": "점값이 아닌 측정: gt",
+        "passed": true,
+        "elapsed_ms": 153.68,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "qualifier-not_detected",
+        "title": "점값이 아닌 측정: not_detected",
+        "passed": true,
+        "elapsed_ms": 136.46,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "qualifier-unknown",
+        "title": "점값이 아닌 측정: unknown",
+        "passed": true,
+        "elapsed_ms": 167.37,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "future-measurement",
+        "title": "평가일보다 미래인 측정일",
+        "passed": true,
+        "elapsed_ms": 107.29,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "metadata-only",
+        "title": "전문 미확보 메타데이터를 수치 목표로 사용",
+        "passed": true,
+        "elapsed_ms": 152.41,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "target_metadata_only_not_a_numeric_operating_requirement"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "future-target",
+        "title": "아직 발효되지 않은 목표",
+        "passed": true,
+        "elapsed_ms": 127.74,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "target_not_effective_on_assessment_date"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "unconfirmed-target",
+        "title": "목표 적용 대상 미확인",
+        "passed": true,
+        "elapsed_ms": 137.07,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "target_applicability_not_confirmed_for_input_lot"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "output-spec-on-input",
+        "title": "성형재료 산출물 규격을 원료에 적용",
+        "passed": true,
+        "elapsed_ms": 109.23,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "target_applicability_not_confirmed_for_input_lot"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "form-mismatch",
+        "title": "스크랩에 펠렛 규격 적용",
+        "passed": true,
+        "elapsed_ms": 102.4,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "target_applicability_not_confirmed_for_input_lot"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "contamination-0",
+        "title": "총 비PP 경계값 0",
+        "passed": true,
+        "elapsed_ms": 170.7,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "0",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "contamination-0.01",
+        "title": "총 비PP 경계값 0.01",
+        "passed": true,
+        "elapsed_ms": 138.79,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "0.0000",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "contamination-5",
+        "title": "총 비PP 경계값 5",
+        "passed": true,
+        "elapsed_ms": 106.48,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "0.00",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "contamination-5.0001",
+        "title": "총 비PP 경계값 5.0001",
+        "passed": true,
+        "elapsed_ms": 120.67,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "0.00105263157894736842105263157894736842",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "contamination-99.99",
+        "title": "총 비PP 경계값 99.99",
+        "passed": true,
+        "elapsed_ms": 136.8,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "999.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "mass-0.001",
+        "title": "로트 물량 경계값 0.001",
+        "passed": true,
+        "elapsed_ms": 148.62,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "0.0001578947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "mass-1",
+        "title": "로트 물량 경계값 1",
+        "passed": true,
+        "elapsed_ms": 150.43,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "0.1578947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "mass-1000000",
+        "title": "로트 물량 경계값 1000000",
+        "passed": true,
+        "elapsed_ms": 145.96,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157894.7368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "mass-1000000000000",
+        "title": "로트 물량 경계값 1000000000000",
+        "passed": true,
+        "elapsed_ms": 152.38,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157894736842.1052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "pp-loss-0",
+        "title": "PP 자체 손실 민감도 0",
+        "passed": true,
+        "elapsed_ms": 146.84,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "pp-loss-5",
+        "title": "PP 자체 손실 민감도 5",
+        "passed": true,
+        "elapsed_ms": 158.3,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "160.0",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "pp-loss-99.99",
+        "title": "PP 자체 손실 민감도 99.99",
+        "passed": true,
+        "elapsed_ms": 142.83,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "199.9957894736842105263157894736842105263",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "full-pp-loss",
+        "title": "전체 PP 손실 100%",
+        "passed": true,
+        "elapsed_ms": 121.36,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "no_retained_pp_at_full_loss"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "cost-complete",
+        "title": "성능·운송·잔재·매각가 모두 가상 입력",
+        "passed": true,
+        "elapsed_ms": 167.67,
+        "observed": {
+          "level": 3,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": "-192000.0"
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "no-treatment",
+        "title": "공정 성능 경계: no-treatment",
+        "passed": true,
+        "elapsed_ms": 135.25,
+        "observed": {
+          "level": 3,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": "-290000.0"
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "all-contaminant-removal",
+        "title": "공정 성능 경계: all-contaminant-removal",
+        "passed": true,
+        "elapsed_ms": 134.5,
+        "observed": {
+          "level": 3,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": "-190000.0"
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "all-pp-lost",
+        "title": "공정 성능 경계: all-pp-lost",
+        "passed": true,
+        "elapsed_ms": 138.89,
+        "observed": {
+          "level": 2,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "no_recovered_pp_no_pp_product_revenue"
+          ],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "all-output-lost",
+        "title": "공정 성능 경계: all-output-lost",
+        "passed": true,
+        "elapsed_ms": 139.1,
+        "observed": {
+          "level": 2,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "no_output_material"
+          ],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "baseline-present",
+        "title": "기존 처리비가 제공된 경우에만 차이 계산",
+        "passed": true,
+        "elapsed_ms": 153.21,
+        "observed": {
+          "level": 3,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": "-192000.0"
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "two-stage",
+        "title": "선별→세척의 단계별 손실 계산",
+        "passed": true,
+        "elapsed_ms": 137.2,
+        "observed": {
+          "level": 3,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": "-183080.00"
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "zero-sale-price",
+        "title": "매각가 0도 명시적 가정으로 처리",
+        "passed": true,
+        "elapsed_ms": 108.16,
+        "observed": {
+          "level": 3,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": "129600.0"
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "drying-12-1",
+        "title": "수분 상한 대조 12 → 1",
+        "passed": true,
+        "elapsed_ms": 136.28,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "drying-1-1",
+        "title": "수분 상한 대조 1 → 1",
+        "passed": true,
+        "elapsed_ms": 155.56,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "drying-1-5",
+        "title": "수분 상한 대조 1 → 5",
+        "passed": true,
+        "elapsed_ms": 141.03,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "drying-0-5",
+        "title": "수분 상한 대조 0 → 5",
+        "passed": true,
+        "elapsed_ms": 121.11,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "water-exceeds-nonpp",
+        "title": "수분이 총 비PP보다 큰 모순",
+        "passed": true,
+        "elapsed_ms": 136.45,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "total_non_pp_below_water_fraction_clarify_denominator_and_scope"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "two-contradictory-readings",
+        "title": "담당자 20%와 10% 충돌",
+        "passed": true,
+        "elapsed_ms": 127.27,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "conflicting_claims"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "same-number-different-format",
+        "title": "20과 20.0을 충돌로 오인하지 않음",
+        "passed": true,
+        "elapsed_ms": 141.19,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "photo-quantitative",
+        "title": "현장 사진을 근거로 오염률 생성 금지",
+        "passed": true,
+        "elapsed_ms": 27.07,
+        "observed": {
+          "http": 422,
+          "invalid_input_rejected": true
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "forged-document-status",
+        "title": "직접 입력으로 OCR 확인값 사칭",
+        "passed": true,
+        "elapsed_ms": 16.23,
+        "observed": {
+          "http": 422,
+          "invalid_input_rejected": true
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "negative-contamination",
+        "title": "음수 오염률 거부",
+        "passed": true,
+        "elapsed_ms": 17.41,
+        "observed": {
+          "http": 422,
+          "invalid_input_rejected": true
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "over-100-contamination",
+        "title": "100 초과 오염률을 계산에 사용하지 않음",
+        "passed": true,
+        "elapsed_ms": 146.21,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "zero-mass",
+        "title": "물량 0은 계산 보류",
+        "passed": true,
+        "elapsed_ms": 135.62,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "double-loss-counting",
+        "title": "총 손실과 단계 손실 중복 입력 거부",
+        "passed": true,
+        "elapsed_ms": 101.59,
+        "observed": {
+          "http": 422,
+          "invalid_scenario_rejected": true
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "over-100-stage-rate",
+        "title": "공정 손실률 100 초과 거부",
+        "passed": true,
+        "elapsed_ms": 76.52,
+        "observed": {
+          "http": 422,
+          "invalid_scenario_rejected": true
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "negative-cost",
+        "title": "음수 운송비 거부",
+        "passed": true,
+        "elapsed_ms": 56.76,
+        "observed": {
+          "http": 422,
+          "invalid_scenario_rejected": true
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "future-reported-date",
+        "title": "미래 일자를 실제 진술 모드에서도 보류",
+        "passed": true,
+        "elapsed_ms": 135.19,
+        "observed": {
+          "level": 1,
+          "status": "REVIEW",
+          "mode": "simulation",
+          "issue_codes": [
+            "insufficient_compatible_mass_balance_inputs"
+          ],
+          "minimum_removal_kg": null,
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "hypothetical-target-mode",
+        "title": "가상 목표가 실제 자료로 승격되지 않음",
+        "passed": true,
+        "elapsed_ms": 136.94,
+        "observed": {
+          "level": 2,
+          "status": "CONDITIONAL",
+          "mode": "simulation",
+          "issue_codes": [],
+          "minimum_removal_kg": "157.8947368421052631578947368421052631579",
+          "recommended": false,
+          "net_cost_krw": null
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "document-confirmed",
+        "title": "시험성적서 입력 경계: confirmed",
+        "passed": true,
+        "elapsed_ms": 218.32,
+        "observed": {
+          "level": 2,
+          "document_type": "waste_quality_candidate",
+          "rows": 1,
+          "calculated": true
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "document-unconfirmed",
+        "title": "시험성적서 입력 경계: unconfirmed",
+        "passed": true,
+        "elapsed_ms": 211.45,
+        "observed": {
+          "level": 1,
+          "document_type": "waste_quality_candidate",
+          "rows": 1,
+          "calculated": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "document-other-sample",
+        "title": "시험성적서 입력 경계: other-sample",
+        "passed": true,
+        "elapsed_ms": 218.84,
+        "observed": {
+          "level": 1,
+          "document_type": "waste_quality_candidate",
+          "rows": 1,
+          "calculated": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "document-migration",
+        "title": "시험성적서 입력 경계: migration",
+        "passed": true,
+        "elapsed_ms": 238.45,
+        "observed": {
+          "level": 1,
+          "document_type": "waste_quality_candidate",
+          "rows": 1,
+          "calculated": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "document-nd",
+        "title": "시험성적서 입력 경계: nd",
+        "passed": true,
+        "elapsed_ms": 273.14,
+        "observed": {
+          "level": 1,
+          "document_type": "waste_quality_candidate",
+          "rows": 1,
+          "calculated": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "document-upper-bound",
+        "title": "시험성적서 입력 경계: upper-bound",
+        "passed": true,
+        "elapsed_ms": 310.16,
+        "observed": {
+          "level": 1,
+          "document_type": "waste_quality_candidate",
+          "rows": 1,
+          "calculated": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "document-food-contact",
+        "title": "시험성적서 입력 경계: food-contact",
+        "passed": true,
+        "elapsed_ms": 258.69,
+        "observed": {
+          "level": 1,
+          "document_type": "food_contact_migration",
+          "rows": 1,
+          "calculated": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "integrity",
+        "title": "멱등키·버전·출처 불변·tenant·인증",
+        "passed": true,
+        "elapsed_ms": 346.4,
+        "observed": {
+          "idempotent_replay": true,
+          "stale_revision_rejected": true,
+          "immutable_claims": true,
+          "tenant_isolation": true
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "concurrency-0",
+        "title": "같은 revision에 동시 입력",
+        "passed": true,
+        "elapsed_ms": 121.64,
+        "observed": {
+          "statuses": [
+            200,
+            409
+          ]
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "concurrency-1",
+        "title": "같은 revision에 동시 입력",
+        "passed": true,
+        "elapsed_ms": 162.76,
+        "observed": {
+          "statuses": [
+            200,
+            409
+          ]
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "concurrency-2",
+        "title": "같은 revision에 동시 입력",
+        "passed": true,
+        "elapsed_ms": 159.26,
+        "observed": {
+          "statuses": [
+            200,
+            409
+          ]
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "concurrency-3",
+        "title": "같은 revision에 동시 입력",
+        "passed": true,
+        "elapsed_ms": 184.24,
+        "observed": {
+          "statuses": [
+            200,
+            409
+          ]
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "concurrency-4",
+        "title": "같은 revision에 동시 입력",
+        "passed": true,
+        "elapsed_ms": 179.0,
+        "observed": {
+          "statuses": [
+            200,
+            409
+          ]
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "concurrency-5",
+        "title": "같은 revision에 동시 입력",
+        "passed": true,
+        "elapsed_ms": 153.75,
+        "observed": {
+          "statuses": [
+            200,
+            409
+          ]
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "concurrency-6",
+        "title": "같은 revision에 동시 입력",
+        "passed": true,
+        "elapsed_ms": 115.89,
+        "observed": {
+          "statuses": [
+            200,
+            409
+          ]
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "concurrency-7",
+        "title": "같은 revision에 동시 입력",
+        "passed": true,
+        "elapsed_ms": 163.36,
+        "observed": {
+          "statuses": [
+            200,
+            409
+          ]
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "read-only-comparison",
+        "title": "여러 시나리오 비교의 원본 불변",
+        "passed": true,
+        "elapsed_ms": 141.79,
+        "observed": {
+          "compared": 2,
+          "read_only": true,
+          "invented_carbon_or_pareto": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "provided-document-1",
+        "title": "사용자 제공 원본 로컬 OCR",
+        "passed": true,
+        "elapsed_ms": 1310.76,
+        "observed": {
+          "availability": "provided_document",
+          "ocr_status": "extracted",
+          "document_type": "food_contact_migration",
+          "table_rows": 0,
+          "level": 0,
+          "raw_round_trip": true,
+          "external_transmission": false
+        },
+        "synthetic_business_data": true,
+        "real_document": true
+      },
+      {
+        "id": "provided-document-2",
+        "title": "사용자 제공 원본 로컬 OCR",
+        "passed": true,
+        "elapsed_ms": 748.75,
+        "observed": {
+          "availability": "provided_document",
+          "ocr_status": "extracted",
+          "document_type": "uncertain_document",
+          "table_rows": 0,
+          "level": 0,
+          "raw_round_trip": true,
+          "external_transmission": false
+        },
+        "synthetic_business_data": true,
+        "real_document": true
+      },
+      {
+        "id": "provided-document-3",
+        "title": "사용자 제공 원본 로컬 OCR",
+        "passed": true,
+        "elapsed_ms": 765.07,
+        "observed": {
+          "availability": "provided_document",
+          "ocr_status": "extracted",
+          "document_type": "uncertain_document",
+          "table_rows": 0,
+          "level": 0,
+          "raw_round_trip": true,
+          "external_transmission": false
+        },
+        "synthetic_business_data": true,
+        "real_document": true
+      },
+      {
+        "id": "kg-rigid_scrap",
+        "title": "실제 Neo4j/RAG: rigid_scrap",
+        "passed": true,
+        "elapsed_ms": 28801.75,
+        "observed": {
+          "form": "rigid_scrap",
+          "candidate_count": 3,
+          "binding_invalidated_after": null,
+          "recommended": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "kg-rigid_part",
+        "title": "실제 Neo4j/RAG: rigid_part",
+        "passed": true,
+        "elapsed_ms": 16496.08,
+        "observed": {
+          "form": "rigid_part",
+          "candidate_count": 3,
+          "binding_invalidated_after": null,
+          "recommended": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "kg-flake",
+        "title": "실제 Neo4j/RAG: flake",
+        "passed": true,
+        "elapsed_ms": 12686.93,
+        "observed": {
+          "form": "flake",
+          "candidate_count": 2,
+          "binding_invalidated_after": null,
+          "recommended": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "kg-bale",
+        "title": "실제 Neo4j/RAG: bale",
+        "passed": true,
+        "elapsed_ms": 743.3,
+        "observed": {
+          "form": "bale",
+          "candidate_count": 0,
+          "binding_invalidated_after": null,
+          "recommended": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "kg-pellet",
+        "title": "실제 Neo4j/RAG: pellet",
+        "passed": true,
+        "elapsed_ms": 5401.53,
+        "observed": {
+          "form": "pellet",
+          "candidate_count": 1,
+          "binding_invalidated_after": null,
+          "recommended": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "kg-stale-quantity",
+        "title": "조사 후 quantity 변경",
+        "passed": true,
+        "elapsed_ms": 39375.47,
+        "observed": {
+          "form": "rigid_scrap",
+          "candidate_count": 3,
+          "binding_invalidated_after": "quantity",
+          "recommended": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      },
+      {
+        "id": "kg-stale-origin",
+        "title": "조사 후 origin 변경",
+        "passed": true,
+        "elapsed_ms": 42979.28,
+        "observed": {
+          "form": "rigid_scrap",
+          "candidate_count": 3,
+          "binding_invalidated_after": "origin",
+          "recommended": false
+        },
+        "synthetic_business_data": true,
+        "real_document": false
+      }
+    ]
+  }
+}

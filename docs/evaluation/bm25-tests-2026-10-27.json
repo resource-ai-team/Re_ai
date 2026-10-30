@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-10-26T18:10:28.602334+00:00",
+  "scope": "Real PostgreSQL and Neo4j, synthetic isolated SQL fixtures, no live paid model calls",
+  "pytest_passed": 892,
+  "subtests_passed": 24,
+  "junit_tests": 916,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 175.684,
+  "raw_junit_sha256": "19d500aa0f8de1b6294de0c115ff5438ee8a1ddb4c93217736a6e8b3f99a4a55",
+  "code_snapshot_sha256": "ad80a3706f6c4991e96652ac8aa27a06636fe68d01ebf7957967805e3b00b30f",
+  "snapshot_file_count": 224,
+  "snapshot_recipe": "Sorted .py/.sql files under src,scripts,tests,migrations; path UTF8 + NUL + LF-normalized content + NUL",
+  "live_paid_model_calls": 0
+}

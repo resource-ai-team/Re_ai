@@ -1,0 +1,22 @@
+{
+  "frozen_at": "2026-10-25T15:19:59.742181+00:00",
+  "selected_profile": "minilm100",
+  "provider": "onnx-minilm",
+  "candidate_minimum": 100,
+  "article_diversity": false,
+  "max_length": 512,
+  "model": {
+    "repository": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+    "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+    "directory": "models/mmarco-reranker-onnx-int8",
+    "weight": "onnx/model_quint8_avx2.onnx",
+    "bytes": 118620016,
+    "sha256": "6c2513767fb63d008a4377bef7a7a3555433d9436342bb53e35a3a72ffc52d4b"
+  },
+  "development_report_sha256": "dcb8d89f6bb902216c40cff7ec9ffdb1ad159c7f099f27685a822247d94e2330",
+  "selection_basis": "DEV LEGAL Hit@5 and MRR improved; TECHNICAL Hit@5 unchanged, MRR improved; no diversity gain",
+  "validation_gate": "do not enable by default unless both groups test Hit@5 and MRR do not regress versus rules20; existing regression failures must remain explicit",
+  "validation_used_for_selection": false,
+  "label_status": "developer_source_checked_expert_review_pending",
+  "hash_line_endings": "LF normalized"
+}

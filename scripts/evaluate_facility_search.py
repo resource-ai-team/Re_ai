@@ -9,14 +9,16 @@ from fastapi.testclient import TestClient
 
 from resource_ai.knowledge_graph import graph_store as store
 from resource_ai.knowledge_graph.facility_codes import code_interpretations, load_codebook
+from resource_ai.knowledge_graph.facility_identity import identity_evidence
 from resource_ai.knowledge_graph.facility_registry import read_registry
+from resource_ai.knowledge_graph.planning_reference import reference
 from resource_ai.main import app
 
 
 def evaluate():
     config = store.settings()
     snapshot = store._read(config, lambda tx: read_registry(tx, config))
-    codebook = load_codebook()
+    codebook, value = load_codebook(), reference()
     client, checks, scenarios = TestClient(app), [], []
     source = {r["listing_id"]: r for r in snapshot["records"]} if snapshot else {}
 
@@ -62,7 +64,8 @@ def evaluate():
             )
             check(
                 stage + " process suitability not fabricated",
-                packet["stage_capability"] == "not_established"
+                packet["evidence_links"] == identity_evidence(value, original, stage)
+                and packet["stage_capability"] == packet["evidence_links"]["stage_capability"]
                 and packet["process_capability_verified"] is False,
             )
             check(

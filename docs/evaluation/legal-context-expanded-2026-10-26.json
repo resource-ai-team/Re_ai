@@ -1,0 +1,207 @@
+{
+  "generated_at": "2026-10-26T05:46:23.957474+00:00",
+  "scope": "10 baseline articles, indexed parent and bounded explicit one-hop references only",
+  "applicability_audited": false,
+  "rows": [
+    {
+      "citation": "폐기물관리법 제2조",
+      "status": "review_required",
+      "primary_chunks": 1,
+      "linked": [
+        {
+          "title": "에너지법",
+          "locator": "제2조",
+          "status": "retrieved",
+          "chunks": 1
+        }
+      ],
+      "source_checks": [],
+      "unresolved": [
+        "delegated_instrument_locator_unknown:기후에너지환경부령",
+        "delegated_instrument_locator_unknown:대통령령",
+        "unresolved_article_owner:제2조"
+      ]
+    },
+    {
+      "citation": "폐기물관리법 제13조 ①항",
+      "status": "review_required",
+      "primary_chunks": 2,
+      "linked": [],
+      "source_checks": [],
+      "unresolved": [
+        "delegated_instrument_locator_unknown:대통령령",
+        "unresolved_article_owner:제13조",
+        "unresolved_article_owner:제13조의2",
+        "unresolved_article_owner:제25조의2"
+      ]
+    },
+    {
+      "citation": "폐기물관리법 제13조의2 ①항",
+      "status": "review_required",
+      "primary_chunks": 3,
+      "linked": [],
+      "source_checks": [],
+      "unresolved": [
+        "delegated_instrument_locator_unknown:기후에너지환경부령",
+        "delegated_instrument_locator_unknown:대통령령",
+        "unresolved_article_owner:제13조의2"
+      ]
+    },
+    {
+      "citation": "폐기물관리법 제13조의3 ①항",
+      "status": "review_required",
+      "primary_chunks": 7,
+      "linked": [
+        {
+          "title": "비료관리법",
+          "locator": "제4조",
+          "status": "retrieved",
+          "chunks": 6
+        }
+      ],
+      "source_checks": [],
+      "unresolved": [
+        "delegated_instrument_locator_unknown:기후에너지환경부령",
+        "delegated_instrument_locator_unknown:대통령령",
+        "unresolved_article_owner:제13조의2",
+        "unresolved_article_owner:제13조의3",
+        "unresolved_article_owner:제13조의4"
+      ]
+    },
+    {
+      "citation": "폐기물관리법 제25조 ①항",
+      "status": "review_required",
+      "primary_chunks": 17,
+      "linked": [
+        {
+          "title": "산업입지 및 개발에 관한 법률",
+          "locator": "제2조",
+          "status": "retrieved",
+          "chunks": 2
+        },
+        {
+          "title": "수도법",
+          "locator": "제7조",
+          "status": "retrieved",
+          "chunks": 6
+        },
+        {
+          "title": "자원의 절약과 재활용촉진에 관한 법률",
+          "locator": "제34조",
+          "status": "retrieved",
+          "chunks": 4
+        },
+        {
+          "title": "환경정책기본법",
+          "locator": "제12조",
+          "status": "retrieved",
+          "chunks": 4
+        }
+      ],
+      "source_checks": [],
+      "unresolved": [
+        "delegated_instrument_locator_unknown:기후에너지환경부령",
+        "unresolved_article_owner:제13조의2",
+        "unresolved_article_owner:제25조",
+        "unresolved_article_owner:제26조",
+        "unresolved_article_owner:제39조의2",
+        "unresolved_article_owner:제39조의3",
+        "unresolved_article_owner:제40조",
+        "unresolved_article_owner:제47조의2",
+        "unresolved_article_owner:제48조"
+      ]
+    },
+    {
+      "citation": "폐기물관리법 제29조 ①항",
+      "status": "review_required",
+      "primary_chunks": 6,
+      "linked": [],
+      "source_checks": [],
+      "unresolved": [
+        "delegated_instrument_locator_unknown:기후에너지환경부령",
+        "unresolved_article_owner:제25조",
+        "unresolved_article_owner:제29조"
+      ]
+    },
+    {
+      "citation": "폐기물관리법 제46조 ①항",
+      "status": "review_required",
+      "primary_chunks": 8,
+      "linked": [],
+      "source_checks": [],
+      "unresolved": [
+        "delegated_instrument_locator_unknown:기후에너지환경부령",
+        "unresolved_article_owner:제13조",
+        "unresolved_article_owner:제13조의2",
+        "unresolved_article_owner:제25조",
+        "unresolved_article_owner:제40조",
+        "unresolved_article_owner:제46조"
+      ]
+    },
+    {
+      "citation": "폐기물관리법 제17조 ①항",
+      "status": "review_required",
+      "primary_chunks": 10,
+      "linked": [
+        {
+          "title": "자동차관리법",
+          "locator": "제2조",
+          "status": "retrieved",
+          "chunks": 3
+        }
+      ],
+      "source_checks": [],
+      "unresolved": [
+        "delegated_instrument_locator_unknown:기후에너지환경부령",
+        "unresolved_article_owner:제13조",
+        "unresolved_article_owner:제13조의2",
+        "unresolved_article_owner:제17조",
+        "unresolved_article_owner:제17조의2",
+        "unresolved_article_owner:제18조",
+        "unresolved_article_owner:제4조",
+        "unresolved_article_owner:제5조"
+      ]
+    },
+    {
+      "citation": "폐기물관리법 제18조 ①항",
+      "status": "review_required",
+      "primary_chunks": 6,
+      "linked": [
+        {
+          "title": "건설폐기물의 재활용촉진에 관한 법률",
+          "locator": "제21조",
+          "status": "retrieved",
+          "chunks": 7
+        },
+        {
+          "title": "해양폐기물 및 해양오염퇴적물 관리법",
+          "locator": "제19조",
+          "status": "retrieved",
+          "chunks": 2
+        }
+      ],
+      "source_checks": [],
+      "unresolved": [
+        "delegated_instrument_locator_unknown:기후에너지환경부령",
+        "unresolved_article_owner:제18조",
+        "unresolved_article_owner:제25조",
+        "unresolved_article_owner:제45조",
+        "unresolved_article_owner:제4조",
+        "unresolved_article_owner:제5조"
+      ]
+    },
+    {
+      "citation": "폐기물관리법 제19조 ①항",
+      "status": "review_required",
+      "primary_chunks": 2,
+      "linked": [],
+      "source_checks": [],
+      "unresolved": [
+        "delegated_instrument_locator_unknown:기후에너지환경부령",
+        "unresolved_article_owner:제18조",
+        "unresolved_article_owner:제19조",
+        "unresolved_article_owner:제45조"
+      ]
+    }
+  ]
+}

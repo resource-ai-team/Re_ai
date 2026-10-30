@@ -1,0 +1,126 @@
+{
+  "scope": "신규 공식 원문 검색 경로 점검용 개발자 작성 질의; 법률 적용성 또는 독립 성능 평가가 아님. 명시한 제목·조문이 Top 5에 나오는지만 확인.",
+  "top_k": 5,
+  "cases": [
+    {
+      "id": "new-law-01",
+      "query": "에너지법 제2조 에너지의 정의",
+      "expected_any": [
+        "에너지법 제2조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-02",
+      "query": "비료관리법 제4조 공정규격",
+      "expected_any": [
+        "비료관리법 제4조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-03",
+      "query": "수도법 제7조 상수원보호구역 지정",
+      "expected_any": [
+        "수도법 제7조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-04",
+      "query": "산업입지 및 개발에 관한 법률 제2조 산업단지 정의",
+      "expected_any": [
+        "산업입지 및 개발에 관한 법률 제2조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-05",
+      "query": "자동차관리법 제2조 자동차의 정의",
+      "expected_any": [
+        "자동차관리법 제2조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-06",
+      "query": "해양폐기물 및 해양오염퇴적물 관리법 제19조",
+      "expected_any": [
+        "해양폐기물 및 해양오염퇴적물 관리법 제19조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-07",
+      "query": "환경정책기본법 제12조 환경기준",
+      "expected_any": [
+        "환경정책기본법 제12조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-08",
+      "query": "화학물질관리법 제13조 유해화학물질 취급기준",
+      "expected_any": [
+        "화학물질관리법 제13조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-09",
+      "query": "대기환경보전법 제23조 배출시설 설치 허가 및 신고",
+      "expected_any": [
+        "대기환경보전법 제23조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-10",
+      "query": "물환경보전법 제33조 배출시설 설치 허가 및 신고",
+      "expected_any": [
+        "물환경보전법 제33조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-11",
+      "query": "산업안전보건기준에 관한 규칙 제253조 금속부스러기에 물이 섞여 용해로에 투입될 때 폭발을 방지하기 위한 확인 사항",
+      "expected_any": [
+        "산업안전보건기준에 관한 규칙 제253조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-12",
+      "query": "순환자원 인정 절차 및 방법 등에 관한 고시의 신청 절차",
+      "expected_any": [
+        "순환자원 인정 절차 및 방법 등에 관한 고시"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-13",
+      "query": "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시의 인계 정보 입력",
+      "expected_any": [
+        "폐기물 전자정보처리 프로그램 운영 및 사용 등에 관한 고시"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-14",
+      "query": "폐기물공정시험기준 ES 06000.b 총칙 적용범위",
+      "expected_any": [
+        "폐기물공정시험기준 / 1. 총칙/ES 06000.b"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "new-law-15",
+      "query": "폐기물의 재활용 용도 및 방법에 관한 규정 제2조 하수처리오니 고화처리물의 기준",
+      "expected_any": [
+        "폐기물의 재활용 용도 및 방법에 관한 규정 제2조"
+      ],
+      "match_scope": "locator"
+    }
+  ]
+}

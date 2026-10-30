@@ -11,6 +11,7 @@ from resource_ai.rag.evaluation import (
     evaluate_case,
     load_retrieval_dataset,
     meets_thresholds,
+    required_cases_pass,
     summarize_by_group,
     summarize_evaluations,
 )
@@ -29,6 +30,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Local multi-corpus RAG utilities")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("init-db", help="Create pgvector tables")
+    commands.add_parser("init-workflow", help="Create workflow tables without loading models")
 
     audit = commands.add_parser(
         "audit-index", help="Audit RAG documents, chunks, embeddings, and indexes"
@@ -90,6 +92,14 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> None:
     args = build_parser().parse_args()
+    if args.command == "init-workflow":
+        settings = get_settings()
+        with Database(settings.database_url).connect(register_vector_types=False) as connection:
+            connection.execute(
+                Path("migrations/007_workflow_cases.sql").read_text(encoding="utf-8")
+            )
+        print("Workflow tables ready; existing KG/RAG data unchanged")
+        return
     if args.command == "audit-index":
         settings = get_settings()
         report = audit_index(
@@ -187,7 +197,9 @@ def main() -> None:
     repository = get_repository()
     if args.command == "evaluate":
         dataset = load_retrieval_dataset(args.cases)
-        top_k = args.top_k or dataset.top_k
+        top_k = args.top_k if args.top_k is not None else dataset.top_k
+        if not 1 <= top_k <= 100:
+            raise ValueError("top_k must be between 1 and 100")
         evaluations = [
             evaluate_case(
                 case,
@@ -214,9 +226,14 @@ def main() -> None:
             f"(minimum {dataset.minimum_recall_at_k:.1%}), "
             f"MRR={summary.mrr:.3f} (minimum {dataset.minimum_mrr:.3f})"
         )
-        if not meets_thresholds(summary, dataset) or any(
-            not meets_thresholds(group_summary, dataset)
-            for group_summary in group_summaries.values()
+        print(f"Required-case failures: {sum(e.required and not e.passed for e in evaluations)}")
+        if (
+            not required_cases_pass(evaluations)
+            or not meets_thresholds(summary, dataset)
+            or any(
+                not meets_thresholds(group_summary, dataset)
+                for group_summary in group_summaries.values()
+            )
         ):
             raise SystemExit(1)
         return

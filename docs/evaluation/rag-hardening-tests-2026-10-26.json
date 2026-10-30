@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-10-25T15:32:39.339601+00:00",
+  "scope": "real local Neo4j and PostgreSQL, synthetic test inputs",
+  "pytest_passed": 813,
+  "subtests_passed": 24,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_seconds": 158.939,
+  "platform": "Windows",
+  "versions": {
+    "onnxruntime": "1.31.0",
+    "transformers": "5.20.2",
+    "sentence-transformers": "5.7.0",
+    "torch": "2.14.1",
+    "psycopg": "3.3.6"
+  },
+  "external_inference_and_map_calls": 0,
+  "legal_retrieval_accuracy_claim": false
+}

@@ -1,0 +1,97 @@
+{
+  "dataset_version": "retrieval-bm25-validation-v1",
+  "label_status": "developer_source_checked_not_blinded_not_expert_reviewed",
+  "split_policy": "Written against current official source chunks before BM25 implementation. Run once after regression selection; do not tune against these results. Previous retrieval_study_v1 test cases are now diagnostic regressions, not a holdout.",
+  "source_snapshot_date": "2026-10-26",
+  "top_k": 5,
+  "cases": [
+    {
+      "id": "annual-report",
+      "family_id": "annual-report",
+      "split": "test",
+      "search_group": "LEGAL",
+      "query": "폐기물 발생과 처리 실적을 매년 다음 해 2월 말까지 보고해야 하는 근거가 뭐야?",
+      "expected_any": [
+        "폐기물관리법 제38조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "abandoned-waste-guarantee",
+      "family_id": "abandoned-waste-guarantee",
+      "split": "test",
+      "search_group": "LEGAL",
+      "query": "폐기물처리업자가 영업 시작 전에 방치폐기물 처리 보증보험에 가입하는 근거를 확인해줘.",
+      "expected_any": [
+        "폐기물관리법 제40조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "facility-inspection",
+      "family_id": "facility-inspection",
+      "split": "test",
+      "search_group": "LEGAL",
+      "query": "폐기물처리시설을 다 설치한 후 검사기관에서 검사를 받아야 하는 의무는?",
+      "expected_any": [
+        "폐기물관리법 제30조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "wastewater-facility-permit",
+      "family_id": "wastewater-facility-permit",
+      "split": "test",
+      "search_group": "LEGAL",
+      "query": "폐수무방류배출시설 설치 시 허가가 필요한 법적 근거를 찾아줘.",
+      "expected_any": [
+        "물환경보전법 제33조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "air-facility-permit",
+      "family_id": "air-facility-permit",
+      "split": "test",
+      "search_group": "LEGAL",
+      "query": "대기오염 배출시설을 설치할 때 시도지사에게 허가나 신고를 해야 한다는 법적 근거는?",
+      "expected_any": [
+        "대기환경보전법 제23조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "chemical-handling-safety",
+      "family_id": "chemical-handling-safety",
+      "split": "test",
+      "search_group": "LEGAL",
+      "query": "유해화학물질을 저장할 때 혼합 보관 금지와 방재장비 준비 같은 취급기준은 어디에 있어?",
+      "expected_any": [
+        "화학물질관리법 제13조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "safety-data-sheet",
+      "family_id": "safety-data-sheet",
+      "split": "test",
+      "search_group": "LEGAL",
+      "query": "혼합물을 제조하거나 수입할 때 물질안전보건자료를 작성해서 제출해야 하는 조문은?",
+      "expected_any": [
+        "산업안전보건법 제110조"
+      ],
+      "match_scope": "locator"
+    },
+    {
+      "id": "construction-transport-cover",
+      "family_id": "construction-transport-cover",
+      "split": "test",
+      "search_group": "LEGAL",
+      "query": "건설폐기물을 수집 운반할 때 흩날림과 누출을 막도록 차량 상부를 덮어야 하는 법적 근거는?",
+      "expected_any": [
+        "건설폐기물의 재활용촉진에 관한 법률 제13조"
+      ],
+      "match_scope": "locator"
+    }
+  ]
+}

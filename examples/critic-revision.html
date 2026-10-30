@@ -1,0 +1,179 @@
+<div id="critic-revision-replay">
+  <h3 data-role="title">Critic → 수정 → 재검사</h3>
+  <div class="viz-row text-small">
+    <span>PP 스크랩 3톤</span><span>KG·RAG 실제 조회</span><span>가상 수치·오류 주입</span><span data-role="model-status">GPT 호출 0회</span>
+  </div>
+  <hr>
+  <div class="viz-controls">
+    <button type="button" class="btn" data-action="prev">이전</button>
+    <span data-role="position" class="tabular-nums"></span>
+    <button type="button" class="btn btn-primary" data-action="next">다음 과정</button>
+    <button type="button" class="btn btn-ghost" data-action="play">순서대로 재생</button>
+  </div>
+  <div class="viz-row" style="margin-top:16px">
+    <span data-role="round-title"></span><span class="viz-badge" data-role="route"></span>
+    <span data-role="error-count" class="tabular-nums"></span>
+  </div>
+  <svg class="replay-graph" role="img" aria-label="검토 중인 실제 KG 공정 후보의 연결 상태"></svg>
+  <div data-role="unit" class="viz-row tabular-nums"></div>
+  <table class="table table-sm">
+    <tbody>
+      <tr data-role="gpt-row" hidden><th scope="row">GPT 지적</th><td data-role="gpt-findings"></td></tr>
+      <tr><th scope="row">코드 지적</th><td data-role="criticism"></td></tr>
+      <tr><th scope="row">수정</th><td data-role="action"></td></tr>
+      <tr><th scope="row">남은 확인</th><td data-role="remaining"></td></tr>
+    </tbody>
+  </table>
+  <div class="text-small" aria-live="polite" data-role="announcement"></div>
+  <details style="margin-top:12px">
+    <summary>실제 검사 기록</summary>
+    <table class="table table-sm"><thead><tr><th>검사</th><th>결과</th></tr></thead><tbody data-role="records"></tbody></table>
+    <div class="text-small" data-role="source-label"></div>
+  </details>
+</div>
+<style>
+  #critic-revision-replay { width:100%; }
+  #critic-revision-replay .replay-graph { display:block; width:100%; margin:8px 0; overflow:visible; }
+  #critic-revision-replay .replay-graph text { fill:var(--foreground); font-size:12px; }
+  #critic-revision-replay .graph-edge { transition:stroke .4s; fill:none; stroke-width:2; }
+  #critic-revision-replay .node-label { display:flex; align-items:center; justify-content:center; text-align:center; height:100%; padding:0 8px; box-sizing:border-box; overflow-wrap:anywhere; }
+  @media (prefers-reduced-motion:reduce) { #critic-revision-replay .graph-edge { transition:none; } }
+</style>
+<script type="application/json" id="critic-revision-trace">__CRITIC_TRACE__</script>
+<script>
+(() => {
+  const root = document.getElementById('critic-revision-replay');
+  const trace = JSON.parse(document.getElementById('critic-revision-trace').textContent);
+  const el = role => root.querySelector(`[data-role="${role}"]`);
+  const graph = root.querySelector('.replay-graph');
+  const prev = root.querySelector('[data-action="prev"]');
+  const next = root.querySelector('[data-action="next"]');
+  const play = root.querySelector('[data-action="play"]');
+  const names = ['초안에서 오류 발견', 'KG를 다시 조회하고 재검사', '단위를 환산하고 다시 계산'];
+  if (trace.azure_reviews) {
+    el('title').textContent = 'Azure GPT 비판 → 수정 → 재검사';
+    el('model-status').textContent = 'GPT-6 Astra / high 실제 2회 · 1개 경로 집중 검사';
+  }
+  let index = 0, timer = null;
+  const saved = window.openai?.widgetState?.privateContent;
+  if (saved?.schema === trace.schema && Number.isInteger(saved.round)) index = Math.max(0, Math.min(saved.round, trace.rounds.length - 1));
+  function svgNode(tag, attrs = {}, text) {
+    const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    Object.entries(attrs).forEach(([key,value]) => node.setAttribute(key, value));
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+  function drawGraph(row) {
+    const width = Math.max(240, root.getBoundingClientRect().width);
+    const stages = row.focus.stages;
+    const horizontal = width >= Math.max(580, stages.length * 165);
+    const nodeW = horizontal ? Math.min(170, (width - 60) / stages.length - 26) : Math.min(340, width - 32);
+    const nodeH = 64;
+    const height = horizontal ? 144 : stages.length * 102 + 12;
+    graph.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    graph.style.height = `${height}px`;
+    graph.replaceChildren(svgNode('title', {}, `회차 ${index + 1}, ${row.focus.handoffs.length}/${stages.length - 1} 인계 구간`));
+    const points = stages.map((stage, i) => ({
+      x: horizontal ? 14 + i * (width - nodeW - 28) / Math.max(1, stages.length - 1) : (width - nodeW) / 2,
+      y: horizontal ? 52 : 6 + i * 102,
+      ...stage
+    }));
+    points.slice(0,-1).forEach((before, i) => {
+      const after = points[i+1];
+      const exists = row.focus.handoffs.some(leg => leg.from === before.id && leg.to === after.id);
+      const x1 = horizontal ? before.x + nodeW : before.x + nodeW/2;
+      const y1 = horizontal ? before.y + nodeH/2 : before.y + nodeH;
+      const x2 = horizontal ? after.x : after.x + nodeW/2;
+      const y2 = horizontal ? after.y + nodeH/2 : after.y;
+      graph.append(svgNode('path', {d:`M${x1},${y1} L${x2},${y2}`, class:'graph-edge',
+        stroke: exists ? 'var(--border)' : 'var(--destructive)', 'stroke-dasharray':exists ? 'none':'5 5'}));
+      if (!exists) {
+        graph.append(svgNode('text', {x:(x1+x2)/2, y: horizontal ? y1-15 : (y1+y2)/2+4,
+          'text-anchor': horizontal ? 'middle':'start', dx:horizontal ? '0':'12'}, '인계 누락'));
+      }
+    });
+    points.forEach((point,i) => {
+      graph.append(svgNode('rect', {x:point.x,y:point.y,width:nodeW,height:nodeH,rx:6,
+        fill:'color-mix(in srgb, var(--viz-series-1) 10%, transparent)',stroke:'var(--border)'}));
+      graph.append(svgNode('text',{x:point.x+10,y:point.y+17},String(i+1).padStart(2,'0')));
+      const foreign = svgNode('foreignObject', {x:point.x+4,y:point.y+22,width:nodeW-8,height:38});
+      const label = document.createElementNS('http://www.w3.org/1999/xhtml','div');
+      label.className = 'node-label'; label.textContent = point.label; foreign.append(label); graph.append(foreign);
+    });
+  }
+  function render(announce = false) {
+    const row = trace.rounds[index];
+    el('position').textContent = `${index+1} / ${trace.rounds.length}`;
+    el('round-title').textContent = names[index] || `검사 ${index+1}`;
+    el('route').textContent = row.route === 'REVISE' ? '수정 필요 · REVISE' : '사람 확인 필요 · REVIEW';
+    el('error-count').textContent = `확인된 오류 ${row.errors.length}개`;
+    el('gpt-row').hidden = !trace.azure_reviews;
+    if (trace.azure_reviews) {
+      const review = trace.azure_reviews[index === trace.rounds.length - 1 ? 'after' : 'before'];
+      const prefix = index === 1 ? '이전 GPT 지적 · 이 단계에서는 추가 호출 없음: ' : '';
+      el('gpt-findings').textContent = prefix + (review.concerns.length ?
+        review.concerns.map(c => c.message).join(' ') :
+        '같은 KG·견적 기준으로 재검사한 결과, 연결·단위 범위의 추가 지적 없음. 허가·인수 검증은 남음.');
+    }
+    const unit = row.focus.transport_line;
+    const price = Number(unit.factor).toLocaleString('ko-KR');
+    el('unit').textContent = `운송 단가 ${price} ${unit.factor_unit} · 투입 ${Number(unit.activity).toLocaleString('ko-KR')} ${unit.activity_unit}`;
+    const keyCodes = new Set(['kg_handoff_count_mismatch','calculation_factor_unit_mismatch']);
+    const prominent = row.errors.filter(e => keyCodes.has(e.code));
+    el('criticism').textContent = prominent.length ? prominent.map(e => e.message).join(' ') :
+      (row.errors.length ? row.errors[0].message : '주입한 연결·단위 오류가 재검사에서 사라졌습니다.');
+    if (index === 0) el('action').textContent = 'KG 단계부터 다시 조회하도록 Router가 지정했습니다.';
+    else {
+      const action = trace.actions[index-1];
+      el('action').textContent = action?.kind === 'refresh_kg_and_dependent_research' ?
+        'KG·법령·기술 근거를 새로 조회 → 인계 복구. 운송 단위 오류는 남음.' :
+        '20,000 KRW/t → 20 KRW/kg 환산 → 비용·탄소와 비교 결과 재계산.';
+    }
+    el('remaining').textContent = index === trace.rounds.length-1 ?
+      '현행 허가·이번 로트 인수·실제 견적·LCI 원문 확인. 자동 승인하지 않고 정지.' :
+      `후보 ${trace.candidate_count}개의 미확인 검사 항목 ${row.missing_count}건 · 위반 확정 아님`;
+    const tbody = el('records'); tbody.replaceChildren();
+    const records = row.errors.length ? row.errors.map(e => [e.code,e.message]) : [['주입 오류','재검사 오류 0개']];
+    records.push(['다시 시작할 단계', row.router.restart_from || '없음'],['실제 API 자동 재실행',String(row.router.automatic_reexecution)],['이번 GPT 호출',String(trace.azure_reviews ? (index === 1 ? 0 : 1) : row.model_calls)],['실제 발주 승인',String(row.dispatch_approved)]);
+    if (trace.azure_reviews) {
+      const review = trace.azure_reviews[index === trace.rounds.length - 1 ? 'after' : 'before'];
+      records.push(['GPT 응답 확인', `${review.call.verified_model} / ${review.call.reasoning_effort} / HTTP ${review.call.http_status}`]);
+      review.concerns.forEach(c => c.citations.forEach(citation => records.push([citation.ref_id,citation.quote])));
+    }
+    records.forEach(values => {
+      const tr = document.createElement('tr');
+      values.forEach(value => { const td=document.createElement('td');td.textContent=value;tr.append(td); });
+      tbody.append(tr);
+    });
+    el('source-label').textContent = `조회 근거: ${trace.legal_sources.map(s => s.citation || s.title).join(' · ')}`;
+    prev.disabled = index === 0; next.disabled = index === trace.rounds.length - 1;
+    drawGraph(row);
+    if (announce) el('announcement').textContent = `${names[index]}. 확인된 오류 ${row.errors.length}개. ${row.route}.`;
+  }
+  function save() {
+    if (window.openai?.setWidgetState) window.openai.setWidgetState({
+      modelContent:{critic_replay_round:index,critic_replay_route:trace.rounds[index].route},
+      privateContent:{schema:trace.schema,round:index}
+    }).catch(() => {});
+  }
+  function stop() { clearTimeout(timer);timer=null;play.textContent='순서대로 재생'; }
+  function move(value) { index=Math.max(0,Math.min(value,trace.rounds.length-1));render(true);save(); }
+  prev.addEventListener('click', () => {stop();move(index-1);});
+  next.addEventListener('click', () => {stop();move(index+1);});
+  play.addEventListener('click', () => {
+    if (timer) {stop();return;}
+    if (index === trace.rounds.length-1) move(0);
+    play.textContent='재생 정지';
+    const advance=()=>{if(index===trace.rounds.length-1){stop();return;}move(index+1);timer=setTimeout(advance,3200);};
+    timer=setTimeout(advance,3200);
+  });
+  window.addEventListener('openai:set_globals',event => {
+    const state=event.detail?.globals?.widgetState?.privateContent;
+    if(state?.schema===trace.schema && Number.isInteger(state.round)) {
+      stop();index=Math.max(0,Math.min(state.round,trace.rounds.length-1));render();
+    }
+  });
+  new ResizeObserver(()=>drawGraph(trace.rounds[index])).observe(root);
+  render();
+})();
+</script>

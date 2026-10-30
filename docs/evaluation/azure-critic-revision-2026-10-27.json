@@ -1,0 +1,702 @@
+{
+  "generated_at": "2026-10-26T18:51:43.608575+00:00",
+  "schema": "azure-critic-revision-replay-v1",
+  "scope": "Live Azure focused Critic -> bounded code repair -> live recheck; not a production auto loop",
+  "input": "가상 공장에서 발생한 PP 스크랩 3톤: 공정 후보·연결·계산 검토",
+  "provenance": {
+    "kg_and_rag": "actual configured service",
+    "lot_and_numeric": "synthetic",
+    "faults": "explicitly injected into copies",
+    "critic": "real deterministic code",
+    "gpt_calls": 2,
+    "production_automatic_reexecution": false,
+    "gpt_scope": "One of three paths; KG continuity and dimensional cost, no legal/LCI raw documents"
+  },
+  "candidate_count": 3,
+  "graph_trace": {
+    "generation": "9cdaac21e7bd413abcbd257e336f32db",
+    "graph_sha256": "beaa7449ab6012b10a63192389c66f13e94c9a3563595fab5e7e1d4c166d64e6",
+    "ontology_id": "re-ai-waste-resource-ontology-v1.2",
+    "reference_sha256": "13efe7eb3cfcdc295925093cd18f7cbfa3451c5a20175d8626bb2ecd72a025c5",
+    "reference_version": "planning-reference-v2",
+    "algorithm": "typed-state-facility-dfs-v2"
+  },
+  "injected_faults": {
+    "removed_handoff": "plan:73cc941999294c2c4c6dd611b74b1fb8:leg:1",
+    "unit": "kg activity with a declared 20000 KRW/t factor"
+  },
+  "legal_sources": [
+    {
+      "evidence_id": "legal-chunk:27689",
+      "title": "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침",
+      "citation": "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 Ⅷ. 사업장 지정폐기물 처리계획의 확인",
+      "version": "20251222",
+      "source_url": "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000270272"
+    },
+    {
+      "evidence_id": "legal-chunk:27695",
+      "title": "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침",
+      "citation": "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 Ⅷ. 사업장 지정폐기물 처리계획의 확인",
+      "version": "20251222",
+      "source_url": "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000270272"
+    },
+    {
+      "evidence_id": "legal-chunk:27690",
+      "title": "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침",
+      "citation": "사업장폐기물 배출자신고 및 처리계획 확인 업무처리지침 Ⅷ. 사업장 지정폐기물 처리계획의 확인",
+      "version": "20251222",
+      "source_url": "https://www.law.go.kr/LSW/admRulInfoP.do?admRulSeq=2100000270272"
+    }
+  ],
+  "rounds": [
+    {
+      "round": 0,
+      "run_id": "b5cc61c3-b143-4d2d-8532-48d62695bb55",
+      "route": "REVISE",
+      "router": {
+        "route": "REVISE",
+        "rules_version": "decision-router-v1",
+        "reason": "확인된 연결·계산 오류를 수정하세요.",
+        "restart_from": "kg",
+        "invalidate_on_revision": [
+          "kg",
+          "validation",
+          "calculation",
+          "comparison",
+          "critic",
+          "router",
+          "output"
+        ],
+        "automatic_reexecution": false,
+        "requires_human_data": true,
+        "pass_gate_enabled": false
+      },
+      "errors": [
+        {
+          "code": "kg_handoff_count_mismatch",
+          "stage": "kg",
+          "severity": "error",
+          "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "target_type": "candidate",
+          "evidence_ids": [],
+          "message": "공정 순서에 필요한 인계 구간 수가 다릅니다.",
+          "next_action": "연속한 모든 공정 사이의 인계 구간을 확인하세요.",
+          "origin": "code",
+          "semantic_finding_id": null
+        },
+        {
+          "code": "kg_handoff_sequence_mismatch",
+          "stage": "kg",
+          "severity": "error",
+          "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:leg:2",
+          "target_type": "handoff",
+          "evidence_ids": [],
+          "message": "인계 구간이 공정 순서와 다르게 연결되어 있습니다.",
+          "next_action": "이전 공정의 산출과 다음 공정의 투입 연결을 수정하세요.",
+          "origin": "code",
+          "semantic_finding_id": null
+        },
+        {
+          "code": "numeric_handoff_binding_mismatch",
+          "stage": "calculation",
+          "severity": "error",
+          "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "target_type": "candidate",
+          "evidence_ids": [],
+          "message": "제출한 공정·인계 ID 또는 순서가 KG 경로와 다릅니다.",
+          "next_action": "임의 단계를 만들거나 빼지 말고 현재 후보의 원래 순서·ID에 수치를 연결하세요.",
+          "origin": "code",
+          "semantic_finding_id": null
+        },
+        {
+          "code": "comparison_candidate_unbound",
+          "stage": "comparison",
+          "severity": "error",
+          "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "target_type": "candidate",
+          "evidence_ids": [],
+          "message": "계산 결과가 실제 KG 경로에 올바르게 연결되지 않았습니다.",
+          "next_action": "잘못된 후보·단계·인계 연결을 수정하고 비교를 다시 실행하세요.",
+          "origin": "code",
+          "semantic_finding_id": null
+        },
+        {
+          "code": "calculation_factor_unit_mismatch",
+          "stage": "calculation",
+          "severity": "error",
+          "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "target_type": "candidate",
+          "evidence_ids": [],
+          "message": "계산의 단위·범위·대상·근거 조건이 일치하지 않습니다.",
+          "next_action": "해당 계산 항목과 근거의 단위·기간·대상을 수정하세요.",
+          "origin": "code",
+          "semantic_finding_id": null
+        }
+      ],
+      "missing_count": 127,
+      "remaining_checks": [
+        "검색 조문의 전체 항목·명시 참조 자료가 아직 완전하지 않습니다.",
+        "현행 허가·이번 로트 인수·여유 용량은 검증되지 않았습니다.",
+        "공개된 지정폐기물 제외 정책: 추가 확인이 필요합니다.",
+        "수분 기준: 추가 확인이 필요합니다.",
+        "오염·순도 기준: 추가 확인이 필요합니다.",
+        "색상·등급 조건: 추가 확인이 필요합니다.",
+        "이번 물량·여유 용량: 추가 확인이 필요합니다.",
+        "현행 허가 범위: 추가 확인이 필요합니다.",
+        "이번 로트 인수: 추가 확인이 필요합니다.",
+        "공정 간 인계 규격: 추가 확인이 필요합니다.",
+        "기본 확인 조문 확보 미완료: 폐기물관리법 제2조",
+        "이 공정의 기술 근거 조사가 미완료입니다.",
+        "원문·요건·예외의 적용성 검증 범위가 부족합니다.",
+        "법규 조사 요약은 시설의 현행 허가·실제 인수 확인을 대신하지 않습니다.",
+        "선택한 공정의 소재: 추가 확인이 필요합니다.",
+        "사업장 공정 근거: 추가 확인이 필요합니다.",
+        "공개 소재 예시: 추가 확인이 필요합니다.",
+        "공개 투입 형태 예시: 추가 확인이 필요합니다.",
+        "기본 확인 조문 확보 미완료: 폐기물관리법 제17조, 폐기물관리법 제18조, 폐기물관리법 제19조",
+        "가상 수치 시연은 실제 견적·LCI 검증이 아닙니다.",
+        "가격·활동량·계수 원문의 진위와 해당 공정 적용성은 검수하지 않았습니다.",
+        "계산에 필요한 수치·근거가 부족합니다."
+      ],
+      "focus": {
+        "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+        "stages": [
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:1",
+            "label": "PP 반입 선별·파쇄"
+          },
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:2",
+            "label": "PP 세정 조사"
+          },
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:3",
+            "label": "PP 압출 재생"
+          }
+        ],
+        "handoffs": [
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:leg:2",
+            "from": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:2",
+            "to": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:3"
+          }
+        ],
+        "transport_line": {
+          "metric": "cost",
+          "category": "transport",
+          "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:origin-transport",
+          "line_id": "numeric-line:ae19cdd2128ee6c9c2210bcc809b78a0",
+          "activity": "3000",
+          "activity_unit": "kg",
+          "factor": "20000",
+          "factor_unit": "KRW/t",
+          "activity_evidence_id": "activity_record",
+          "factor_evidence_id": "cost_factor"
+        }
+      },
+      "numeric_results": [
+        {
+          "candidate_id": "plan:4782d31ee04a0b357a1b1a37ce026683",
+          "status": "comparable_under_declared_inputs",
+          "cost_total_krw": "-75000",
+          "carbon_total_kg_co2e": "1275.00",
+          "included_in_numeric_comparison": true
+        },
+        {
+          "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "status": "needs_data",
+          "cost_total_krw": null,
+          "carbon_total_kg_co2e": "3795.00",
+          "included_in_numeric_comparison": false
+        },
+        {
+          "candidate_id": "plan:cf4e094463ddc0c54793564ca995caf1",
+          "status": "comparable_under_declared_inputs",
+          "cost_total_krw": "1005000",
+          "carbon_total_kg_co2e": "5055.00",
+          "included_in_numeric_comparison": true
+        }
+      ],
+      "final_recommendations": [],
+      "dispatch_approved": false,
+      "model_calls": 0
+    },
+    {
+      "round": 1,
+      "run_id": "08908fb8-8406-470a-b5fa-35321342a258",
+      "route": "REVISE",
+      "router": {
+        "route": "REVISE",
+        "rules_version": "decision-router-v1",
+        "reason": "확인된 연결·계산 오류를 수정하세요.",
+        "restart_from": "calculation",
+        "invalidate_on_revision": [
+          "calculation",
+          "comparison",
+          "critic",
+          "router",
+          "output"
+        ],
+        "automatic_reexecution": false,
+        "requires_human_data": true,
+        "pass_gate_enabled": false
+      },
+      "errors": [
+        {
+          "code": "calculation_factor_unit_mismatch",
+          "stage": "calculation",
+          "severity": "error",
+          "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "target_type": "candidate",
+          "evidence_ids": [],
+          "message": "계산의 단위·범위·대상·근거 조건이 일치하지 않습니다.",
+          "next_action": "해당 계산 항목과 근거의 단위·기간·대상을 수정하세요.",
+          "origin": "code",
+          "semantic_finding_id": null
+        }
+      ],
+      "missing_count": 127,
+      "remaining_checks": [
+        "검색 조문의 전체 항목·명시 참조 자료가 아직 완전하지 않습니다.",
+        "현행 허가·이번 로트 인수·여유 용량은 검증되지 않았습니다.",
+        "공개된 지정폐기물 제외 정책: 추가 확인이 필요합니다.",
+        "수분 기준: 추가 확인이 필요합니다.",
+        "오염·순도 기준: 추가 확인이 필요합니다.",
+        "색상·등급 조건: 추가 확인이 필요합니다.",
+        "이번 물량·여유 용량: 추가 확인이 필요합니다.",
+        "현행 허가 범위: 추가 확인이 필요합니다.",
+        "이번 로트 인수: 추가 확인이 필요합니다.",
+        "공정 간 인계 규격: 추가 확인이 필요합니다.",
+        "기본 확인 조문 확보 미완료: 폐기물관리법 제2조",
+        "이 공정의 기술 근거 조사가 미완료입니다.",
+        "원문·요건·예외의 적용성 검증 범위가 부족합니다.",
+        "법규 조사 요약은 시설의 현행 허가·실제 인수 확인을 대신하지 않습니다.",
+        "선택한 공정의 소재: 추가 확인이 필요합니다.",
+        "사업장 공정 근거: 추가 확인이 필요합니다.",
+        "공개 소재 예시: 추가 확인이 필요합니다.",
+        "공개 투입 형태 예시: 추가 확인이 필요합니다.",
+        "기본 확인 조문 확보 미완료: 폐기물관리법 제17조, 폐기물관리법 제18조, 폐기물관리법 제19조",
+        "가상 수치 시연은 실제 견적·LCI 검증이 아닙니다.",
+        "가격·활동량·계수 원문의 진위와 해당 공정 적용성은 검수하지 않았습니다.",
+        "계산에 필요한 수치·근거가 부족합니다."
+      ],
+      "focus": {
+        "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+        "stages": [
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:1",
+            "label": "PP 반입 선별·파쇄"
+          },
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:2",
+            "label": "PP 세정 조사"
+          },
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:3",
+            "label": "PP 압출 재생"
+          }
+        ],
+        "handoffs": [
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:leg:1",
+            "from": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:1",
+            "to": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:2"
+          },
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:leg:2",
+            "from": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:2",
+            "to": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:3"
+          }
+        ],
+        "transport_line": {
+          "metric": "cost",
+          "category": "transport",
+          "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:origin-transport",
+          "line_id": "numeric-line:ae19cdd2128ee6c9c2210bcc809b78a0",
+          "activity": "3000",
+          "activity_unit": "kg",
+          "factor": "20000",
+          "factor_unit": "KRW/t",
+          "activity_evidence_id": "activity_record",
+          "factor_evidence_id": "cost_factor"
+        }
+      },
+      "numeric_results": [
+        {
+          "candidate_id": "plan:4782d31ee04a0b357a1b1a37ce026683",
+          "status": "comparable_under_declared_inputs",
+          "cost_total_krw": "-75000",
+          "carbon_total_kg_co2e": "1275.00",
+          "included_in_numeric_comparison": true
+        },
+        {
+          "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "status": "needs_data",
+          "cost_total_krw": null,
+          "carbon_total_kg_co2e": "3795.00",
+          "included_in_numeric_comparison": false
+        },
+        {
+          "candidate_id": "plan:cf4e094463ddc0c54793564ca995caf1",
+          "status": "comparable_under_declared_inputs",
+          "cost_total_krw": "1005000",
+          "carbon_total_kg_co2e": "5055.00",
+          "included_in_numeric_comparison": true
+        }
+      ],
+      "final_recommendations": [],
+      "dispatch_approved": false,
+      "model_calls": 0,
+      "resolved_error_codes": [
+        "comparison_candidate_unbound",
+        "kg_handoff_count_mismatch",
+        "kg_handoff_sequence_mismatch",
+        "numeric_handoff_binding_mismatch"
+      ]
+    },
+    {
+      "round": 2,
+      "run_id": "df2b4ce9-4486-4b0b-8c55-714d5e92616a",
+      "route": "REVIEW",
+      "router": {
+        "route": "REVIEW",
+        "rules_version": "decision-router-v1",
+        "reason": "핵심 근거의 확인·검수가 남아 있습니다.",
+        "restart_from": null,
+        "invalidate_on_revision": [],
+        "automatic_reexecution": false,
+        "requires_human_data": true,
+        "pass_gate_enabled": false
+      },
+      "errors": [],
+      "missing_count": 126,
+      "remaining_checks": [
+        "검색 조문의 전체 항목·명시 참조 자료가 아직 완전하지 않습니다.",
+        "현행 허가·이번 로트 인수·여유 용량은 검증되지 않았습니다.",
+        "공개된 지정폐기물 제외 정책: 추가 확인이 필요합니다.",
+        "수분 기준: 추가 확인이 필요합니다.",
+        "오염·순도 기준: 추가 확인이 필요합니다.",
+        "색상·등급 조건: 추가 확인이 필요합니다.",
+        "이번 물량·여유 용량: 추가 확인이 필요합니다.",
+        "현행 허가 범위: 추가 확인이 필요합니다.",
+        "이번 로트 인수: 추가 확인이 필요합니다.",
+        "공정 간 인계 규격: 추가 확인이 필요합니다.",
+        "기본 확인 조문 확보 미완료: 폐기물관리법 제2조",
+        "이 공정의 기술 근거 조사가 미완료입니다.",
+        "원문·요건·예외의 적용성 검증 범위가 부족합니다.",
+        "법규 조사 요약은 시설의 현행 허가·실제 인수 확인을 대신하지 않습니다.",
+        "선택한 공정의 소재: 추가 확인이 필요합니다.",
+        "사업장 공정 근거: 추가 확인이 필요합니다.",
+        "공개 소재 예시: 추가 확인이 필요합니다.",
+        "공개 투입 형태 예시: 추가 확인이 필요합니다.",
+        "기본 확인 조문 확보 미완료: 폐기물관리법 제17조, 폐기물관리법 제18조, 폐기물관리법 제19조",
+        "가상 수치 시연은 실제 견적·LCI 검증이 아닙니다.",
+        "가격·활동량·계수 원문의 진위와 해당 공정 적용성은 검수하지 않았습니다."
+      ],
+      "focus": {
+        "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+        "stages": [
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:1",
+            "label": "PP 반입 선별·파쇄"
+          },
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:2",
+            "label": "PP 세정 조사"
+          },
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:3",
+            "label": "PP 압출 재생"
+          }
+        ],
+        "handoffs": [
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:leg:1",
+            "from": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:1",
+            "to": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:2"
+          },
+          {
+            "id": "plan:73cc941999294c2c4c6dd611b74b1fb8:leg:2",
+            "from": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:2",
+            "to": "plan:73cc941999294c2c4c6dd611b74b1fb8:stage:3"
+          }
+        ],
+        "transport_line": {
+          "metric": "cost",
+          "category": "transport",
+          "target_id": "plan:73cc941999294c2c4c6dd611b74b1fb8:origin-transport",
+          "line_id": "numeric-line:ae19cdd2128ee6c9c2210bcc809b78a0",
+          "activity": "3000",
+          "activity_unit": "kg",
+          "factor": "20",
+          "factor_unit": "KRW/kg",
+          "activity_evidence_id": "activity_record",
+          "factor_evidence_id": "cost_factor"
+        }
+      },
+      "numeric_results": [
+        {
+          "candidate_id": "plan:4782d31ee04a0b357a1b1a37ce026683",
+          "status": "comparable_under_declared_inputs",
+          "cost_total_krw": "-75000",
+          "carbon_total_kg_co2e": "1275.00",
+          "included_in_numeric_comparison": true
+        },
+        {
+          "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "status": "comparable_under_declared_inputs",
+          "cost_total_krw": "645000",
+          "carbon_total_kg_co2e": "3795.00",
+          "included_in_numeric_comparison": true
+        },
+        {
+          "candidate_id": "plan:cf4e094463ddc0c54793564ca995caf1",
+          "status": "comparable_under_declared_inputs",
+          "cost_total_krw": "1005000",
+          "carbon_total_kg_co2e": "5055.00",
+          "included_in_numeric_comparison": true
+        }
+      ],
+      "final_recommendations": [],
+      "dispatch_approved": false,
+      "model_calls": 0,
+      "resolved_error_codes": [
+        "calculation_factor_unit_mismatch"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "after_round": 0,
+      "kind": "refresh_kg_and_dependent_research",
+      "source": "fresh KG and RAG query through CandidateResearchService.run",
+      "graph_trace_unchanged": true,
+      "old_numeric_binding_rewritten": false,
+      "refreshed_research_sha256": "9c70f56700fcbdb596d015253c3d6eecb688535ef5fc30e3e2296f93db5ec305"
+    },
+    {
+      "after_round": 1,
+      "kind": "normalize_units_and_recalculate",
+      "patches": [
+        {
+          "candidate_id": "plan:73cc941999294c2c4c6dd611b74b1fb8",
+          "line_id": "numeric-line:ae19cdd2128ee6c9c2210bcc809b78a0",
+          "evidence_id": "cost_factor",
+          "before": {
+            "factor": "20000",
+            "factor_unit": "KRW/t",
+            "activity": "3000",
+            "activity_unit": "kg"
+          },
+          "after": {
+            "factor": "20",
+            "factor_unit": "KRW/kg",
+            "activity": "3000",
+            "activity_unit": "kg"
+          },
+          "rule": "1 t = 1000 kg",
+          "source_content_verified": false
+        }
+      ],
+      "new_prices_or_emission_factors_invented": false
+    }
+  ],
+  "stop_reason": "human_verification_required",
+  "checks": {
+    "initial_kg_fault_detected": true,
+    "initial_unit_fault_detected": true,
+    "bounded": true,
+    "no_approval": true,
+    "production_auto_loop_not_claimed": true,
+    "final_errors_resolved": true,
+    "final_is_review": true,
+    "two_real_azure_calls_verified": true,
+    "gpt_reported_both_injected_categories": true,
+    "gpt_recheck_has_no_focused_concerns": true,
+    "no_legal_clearance_inferred": true
+  },
+  "all_passed": true,
+  "azure_reviews": {
+    "before": {
+      "generated_at": "2026-10-26T18:48:15.264406+00:00",
+      "phase": "before",
+      "model": "gpt-6-astra",
+      "reasoning_effort": "high",
+      "live_model_calls": 1,
+      "scope": "One public-derived route and synthetic numbers; not a full legal or product evaluation",
+      "source_sha256": "183a58162b2bfbe724a4d13fb949ebeccc5f6d6c6eeeadf8499dd670da48b621",
+      "input_sha256": "efe3b55b43cbe86f7bdead7be52fee5671e66f5069facc0c28b72f1d7f5823d3",
+      "evidence": [
+        {
+          "ref_id": "E0001",
+          "candidate_id": "A",
+          "target_id": "A",
+          "kind": "engine_record",
+          "metadata": {},
+          "text": "{\"source\":\"public KG snapshot\",\"stages\":[{\"id\":\"S1\",\"process\":\"PP 반입 선별·파쇄\"},{\"id\":\"S2\",\"process\":\"PP 세정 조사\"},{\"id\":\"S3\",\"process\":\"PP 압출 재생\"}],\"handoffs\":[{\"from\":\"S1\",\"to\":\"S2\"},{\"from\":\"S2\",\"to\":\"S3\"}]}"
+        },
+        {
+          "ref_id": "E0002",
+          "candidate_id": "A",
+          "target_id": "A",
+          "kind": "engine_record",
+          "metadata": {},
+          "text": "{\"source\":\"synthetic quote and lot\",\"mass_kg\":3000,\"quote\":\"20000 KRW/t\",\"permit_and_intake\":\"unknown\"}"
+        },
+        {
+          "ref_id": "E0003",
+          "candidate_id": "A",
+          "target_id": "A",
+          "kind": "engine_record",
+          "metadata": {},
+          "text": "{\"source\":\"unverified draft with injected faults\",\"handoffs\":[{\"from\":\"S2\",\"to\":\"S3\"}],\"activity\":\"3000\",\"activity_unit\":\"kg\",\"factor\":\"20000\",\"factor_unit\":\"KRW/t\",\"claimed_transport_KRW\":\"60000000\"}"
+        }
+      ],
+      "concerns": [
+        {
+          "stage": "kg",
+          "kind": "potential_error",
+          "candidate_id": "A",
+          "target_type": "candidate",
+          "target_id": "A",
+          "message": "KG 경로는 S1→S2→S3이나 초안에는 S2→S3만 있어 S1→S2 연결이 누락되었습니다.",
+          "next_action": "누락된 S1→S2 연결을 확인하고 초안의 전체 경로를 KG와 다시 대조하세요.",
+          "citations": [
+            {
+              "ref_id": "E0001",
+              "quote": "\"handoffs\":[{\"from\":\"S1\",\"to\":\"S2\"},{\"from\":\"S2\",\"to\":\"S3\"}]"
+            },
+            {
+              "ref_id": "E0003",
+              "quote": "\"handoffs\":[{\"from\":\"S2\",\"to\":\"S3\"}]"
+            }
+          ]
+        },
+        {
+          "stage": "calculation",
+          "kind": "potential_error",
+          "candidate_id": "A",
+          "target_type": "candidate",
+          "target_id": "A",
+          "message": "초안의 60,000,000 KRW는 3,000 kg과 20,000 KRW/t 사이의 kg→t 환산을 누락한 값으로, 비용이 1,000배 크게 산정되었습니다.",
+          "next_action": "활동량을 t로 환산하거나 단가를 KRW/kg로 통일한 뒤 비용을 재계산하세요.",
+          "citations": [
+            {
+              "ref_id": "E0002",
+              "quote": "\"mass_kg\":3000,\"quote\":\"20000 KRW/t\""
+            },
+            {
+              "ref_id": "E0003",
+              "quote": "\"activity\":\"3000\",\"activity_unit\":\"kg\",\"factor\":\"20000\",\"factor_unit\":\"KRW/t\",\"claimed_transport_KRW\":\"60000000\""
+            }
+          ]
+        }
+      ],
+      "rejected_findings": [],
+      "dispatch_approved": false,
+      "planning_cost_ceiling_krw_including_prior_reserve": "636.6000",
+      "status": "completed",
+      "call": {
+        "task": "focused_critic",
+        "status": "completed",
+        "reasoning_effort": "high",
+        "http_status": 200,
+        "rate_limits": {
+          "x-ratelimit-limit-tokens": 1000,
+          "x-ratelimit-limit-requests": 1,
+          "x-ratelimit-remaining-tokens": 450,
+          "x-ratelimit-remaining-requests": 0
+        },
+        "usage": {
+          "input_tokens": 838,
+          "output_tokens": 875,
+          "reasoning_tokens": 516
+        },
+        "provider_status": "completed",
+        "reported_model": "resource-gpt-6-astra",
+        "verified_model": "gpt-6-astra",
+        "model_identity_basis": "operator_checked_azure_deployment"
+      }
+    },
+    "after": {
+      "generated_at": "2026-10-26T18:52:30.553215+00:00",
+      "phase": "after",
+      "model": "gpt-6-astra",
+      "reasoning_effort": "high",
+      "live_model_calls": 1,
+      "scope": "One public-derived route and synthetic numbers; not a full legal or product evaluation",
+      "source_sha256": "6e175f64c143c67fbf791d5edafc10b8526a71e5000148be36c04e715cb1d6a7",
+      "reference_basis_sha256": "85d18b4813f90247db79ee9c48c2f3999e4cd625805c8e7a84fac969878ed510",
+      "input_sha256": "78d7a2ecb0d8d0992b4769069dc9446852b71287f1d2f10743684ff4f88d4e21",
+      "evidence": [
+        {
+          "ref_id": "E0001",
+          "candidate_id": "A",
+          "target_id": "A",
+          "kind": "engine_record",
+          "metadata": {},
+          "text": "{\"source\":\"public KG snapshot\",\"stages\":[{\"id\":\"S1\",\"process\":\"PP 반입 선별·파쇄\"},{\"id\":\"S2\",\"process\":\"PP 세정 조사\"},{\"id\":\"S3\",\"process\":\"PP 압출 재생\"}],\"handoffs\":[{\"from\":\"S1\",\"to\":\"S2\"},{\"from\":\"S2\",\"to\":\"S3\"}]}"
+        },
+        {
+          "ref_id": "E0002",
+          "candidate_id": "A",
+          "target_id": "A",
+          "kind": "engine_record",
+          "metadata": {},
+          "text": "{\"source\":\"synthetic quote and lot\",\"mass_kg\":3000,\"quote\":\"20000 KRW/t\",\"permit_and_intake\":\"unknown\"}"
+        },
+        {
+          "ref_id": "E0003",
+          "candidate_id": "A",
+          "target_id": "A",
+          "kind": "engine_record",
+          "metadata": {},
+          "text": "{\"source\":\"revised draft\",\"handoffs\":[{\"from\":\"S1\",\"to\":\"S2\"},{\"from\":\"S2\",\"to\":\"S3\"}],\"activity\":\"3000\",\"activity_unit\":\"kg\",\"factor\":\"20\",\"factor_unit\":\"KRW/kg\",\"claimed_transport_KRW\":\"60000\"}"
+        }
+      ],
+      "concerns": [],
+      "rejected_findings": [],
+      "dispatch_approved": false,
+      "planning_cost_ceiling_krw_including_prior_reserve": "813.26000",
+      "status": "completed",
+      "call": {
+        "task": "focused_critic",
+        "status": "completed",
+        "reasoning_effort": "high",
+        "http_status": 200,
+        "rate_limits": {
+          "x-ratelimit-limit-tokens": 1000,
+          "x-ratelimit-limit-requests": 1,
+          "x-ratelimit-remaining-tokens": 449,
+          "x-ratelimit-remaining-requests": 0
+        },
+        "usage": {
+          "input_tokens": 845,
+          "output_tokens": 80,
+          "reasoning_tokens": 63
+        },
+        "provider_status": "completed",
+        "reported_model": "resource-gpt-6-astra",
+        "verified_model": "gpt-6-astra",
+        "model_identity_basis": "operator_checked_azure_deployment"
+      }
+    }
+  },
+  "live_usage": {
+    "input_tokens": 1683,
+    "output_tokens": 955,
+    "reasoning_tokens": 579
+  },
+  "live_price_estimate": {
+    "usd": "0.06458",
+    "krw_at_2000_buffer": "129.16000",
+    "note": "Public short-context standard token prices; reasoning included in output. Not an invoice.",
+    "pricing_source": "https://developers.openai.com/api/docs/models/gpt-6-astra"
+  }
+}

@@ -1,0 +1,2658 @@
+{
+  "generated_at": "2026-10-25T13:48:56.957220+00:00",
+  "scope": "finite scenario categories, not exhaustive industrial/legality accuracy",
+  "input_lots_and_numeric_evidence": "entirely synthetic",
+  "real_dependencies": [
+    "Neo4j",
+    "pgvector",
+    "local multilingual E5",
+    "licensed local ILCD"
+  ],
+  "live_external_model_and_map_calls": 0,
+  "cases": [
+    {
+      "category": "KG",
+      "name": "PP/confirmed",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.359,
+      "planning_status": "plans",
+      "candidate_count": 3
+    },
+    {
+      "category": "KG",
+      "name": "PP/missing",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.307,
+      "planning_status": "plans",
+      "candidate_count": 6
+    },
+    {
+      "category": "KG",
+      "name": "PP/other",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.309,
+      "planning_status": "plans",
+      "candidate_count": 1
+    },
+    {
+      "category": "KG",
+      "name": "PP/unknown",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.324,
+      "planning_status": "no_plans",
+      "candidate_count": 0
+    },
+    {
+      "category": "KG",
+      "name": "PE/confirmed",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.312,
+      "planning_status": "plans",
+      "candidate_count": 3
+    },
+    {
+      "category": "KG",
+      "name": "PE/missing",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.311,
+      "planning_status": "plans",
+      "candidate_count": 6
+    },
+    {
+      "category": "KG",
+      "name": "PE/other",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.315,
+      "planning_status": "plans",
+      "candidate_count": 1
+    },
+    {
+      "category": "KG",
+      "name": "PE/unknown",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.309,
+      "planning_status": "no_plans",
+      "candidate_count": 0
+    },
+    {
+      "category": "KG",
+      "name": "PET/confirmed",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.309,
+      "planning_status": "plans",
+      "candidate_count": 2
+    },
+    {
+      "category": "KG",
+      "name": "PET/missing",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.312,
+      "planning_status": "plans",
+      "candidate_count": 3
+    },
+    {
+      "category": "KG",
+      "name": "PET/other",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.317,
+      "planning_status": "no_plans",
+      "candidate_count": 0
+    },
+    {
+      "category": "KG",
+      "name": "PET/unknown",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.321,
+      "planning_status": "no_plans",
+      "candidate_count": 0
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/confirmed",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.318,
+      "planning_status": "plans",
+      "candidate_count": 1
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/missing",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.311,
+      "planning_status": "plans",
+      "candidate_count": 1
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/other",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.335,
+      "planning_status": "no_plans",
+      "candidate_count": 0
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/unknown",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.318,
+      "planning_status": "no_plans",
+      "candidate_count": 0
+    },
+    {
+      "category": "KG",
+      "name": "종이/confirmed",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.312,
+      "planning_status": "plans",
+      "candidate_count": 1
+    },
+    {
+      "category": "KG",
+      "name": "종이/missing",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.319,
+      "planning_status": "plans",
+      "candidate_count": 1
+    },
+    {
+      "category": "KG",
+      "name": "종이/other",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.318,
+      "planning_status": "no_plans",
+      "candidate_count": 0
+    },
+    {
+      "category": "KG",
+      "name": "종이/unknown",
+      "path": "/kg/process-plans",
+      "http_status": 200,
+      "duration_seconds": 0.324,
+      "planning_status": "no_plans",
+      "candidate_count": 0
+    },
+    {
+      "category": "KG",
+      "name": "no material",
+      "path": "/analysis/research",
+      "http_status": 200,
+      "duration_seconds": 0.017
+    },
+    {
+      "category": "KG",
+      "name": "unsupported material",
+      "path": "/analysis/research",
+      "http_status": 200,
+      "duration_seconds": 0.005
+    },
+    {
+      "category": "INPUT",
+      "name": "boolean /kg/process-plans",
+      "path": "/kg/process-plans",
+      "http_status": 422,
+      "duration_seconds": 0.003
+    },
+    {
+      "category": "INPUT",
+      "name": "boolean /analysis/review-template",
+      "path": "/analysis/review-template",
+      "http_status": 422,
+      "duration_seconds": 0.004
+    },
+    {
+      "category": "INPUT",
+      "name": "boolean /analysis/kg-lci",
+      "path": "/analysis/kg-lci",
+      "http_status": 422,
+      "duration_seconds": 0.472
+    },
+    {
+      "category": "INPUT",
+      "name": "false /kg/process-plans",
+      "path": "/kg/process-plans",
+      "http_status": 422,
+      "duration_seconds": 0.004
+    },
+    {
+      "category": "INPUT",
+      "name": "false /analysis/review-template",
+      "path": "/analysis/review-template",
+      "http_status": 422,
+      "duration_seconds": 0.004
+    },
+    {
+      "category": "INPUT",
+      "name": "false /analysis/kg-lci",
+      "path": "/analysis/kg-lci",
+      "http_status": 422,
+      "duration_seconds": 0.004
+    },
+    {
+      "category": "INPUT",
+      "name": "zero /kg/process-plans",
+      "path": "/kg/process-plans",
+      "http_status": 422,
+      "duration_seconds": 0.003
+    },
+    {
+      "category": "INPUT",
+      "name": "zero /analysis/review-template",
+      "path": "/analysis/review-template",
+      "http_status": 422,
+      "duration_seconds": 0.003
+    },
+    {
+      "category": "INPUT",
+      "name": "zero /analysis/kg-lci",
+      "path": "/analysis/kg-lci",
+      "http_status": 422,
+      "duration_seconds": 0.003
+    },
+    {
+      "category": "INPUT",
+      "name": "negative /kg/process-plans",
+      "path": "/kg/process-plans",
+      "http_status": 422,
+      "duration_seconds": 0.003
+    },
+    {
+      "category": "INPUT",
+      "name": "negative /analysis/review-template",
+      "path": "/analysis/review-template",
+      "http_status": 422,
+      "duration_seconds": 0.003
+    },
+    {
+      "category": "INPUT",
+      "name": "negative /analysis/kg-lci",
+      "path": "/analysis/kg-lci",
+      "http_status": 422,
+      "duration_seconds": 0.003
+    },
+    {
+      "category": "INPUT",
+      "name": "excessive /kg/process-plans",
+      "path": "/kg/process-plans",
+      "http_status": 422,
+      "duration_seconds": 0.003
+    },
+    {
+      "category": "INPUT",
+      "name": "excessive /analysis/review-template",
+      "path": "/analysis/review-template",
+      "http_status": 422,
+      "duration_seconds": 0.003
+    },
+    {
+      "category": "INPUT",
+      "name": "excessive /analysis/kg-lci",
+      "path": "/analysis/kg-lci",
+      "http_status": 422,
+      "duration_seconds": 0.005
+    },
+    {
+      "category": "INPUT",
+      "name": "NaN",
+      "path": "/kg/process-plans",
+      "http_status": 422,
+      "duration_seconds": 0.003
+    },
+    {
+      "category": "INPUT",
+      "name": "Infinity",
+      "path": "/kg/process-plans",
+      "http_status": 422,
+      "duration_seconds": 0.003
+    },
+    {
+      "category": "INPUT",
+      "name": "-Infinity",
+      "path": "/kg/process-plans",
+      "http_status": 422,
+      "duration_seconds": 0.003
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PP",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 13.138,
+      "candidate_count": 3,
+      "map_markers": 141,
+      "legal_hits": 9,
+      "technical_hits": 9
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PE",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 2.653,
+      "candidate_count": 3,
+      "map_markers": 152,
+      "legal_hits": 9,
+      "technical_hits": 9
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PET",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 1.973,
+      "candidate_count": 2,
+      "map_markers": 120,
+      "legal_hits": 9,
+      "technical_hits": 9
+    },
+    {
+      "category": "RESEARCH",
+      "name": "알루미늄",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 1.113,
+      "candidate_count": 1,
+      "map_markers": 17,
+      "legal_hits": 9,
+      "technical_hits": 3
+    },
+    {
+      "category": "RESEARCH",
+      "name": "종이",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 1.254,
+      "candidate_count": 1,
+      "map_markers": 86,
+      "legal_hits": 9,
+      "technical_hits": 9
+    },
+    {
+      "category": "NUMERIC",
+      "name": "worksheet",
+      "path": "/analysis/review-template",
+      "http_status": 200,
+      "duration_seconds": 2.184
+    },
+    {
+      "category": "NUMERIC",
+      "name": "valid synthetic arithmetic",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 2.34
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different lot",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 2.284
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different graph",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 2.328
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different site",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 2.248
+    },
+    {
+      "category": "NUMERIC",
+      "name": "site stripped",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 2.252
+    },
+    {
+      "category": "NUMERIC",
+      "name": "synthetic called real",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 2.376
+    },
+    {
+      "category": "NUMERIC",
+      "name": "expired evidence",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 2.243
+    },
+    {
+      "category": "NUMERIC",
+      "name": "wrong carbon method",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 2.235
+    },
+    {
+      "category": "NUMERIC",
+      "name": "missing evidence",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 2.181
+    },
+    {
+      "category": "NUMERIC",
+      "name": "wrong unit",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 2.267
+    },
+    {
+      "category": "NUMERIC",
+      "name": "missing transport",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 2.356
+    },
+    {
+      "category": "NUMERIC",
+      "name": "forged stage",
+      "path": "/analysis/review",
+      "http_status": 200,
+      "duration_seconds": 2.256
+    },
+    {
+      "category": "SITE",
+      "name": "same company/site a",
+      "path": "/analysis/site-discovery",
+      "http_status": 200,
+      "duration_seconds": 9.379,
+      "context_sha256": "2fa045c3abc307c9ace55847c19927bf0a2337174e3929b3e04189a0860be3e4",
+      "process_count": 4,
+      "registry_imported": true,
+      "registry_records_returned": 8
+    },
+    {
+      "category": "SITE",
+      "name": "same company/site b",
+      "path": "/analysis/site-discovery",
+      "http_status": 200,
+      "duration_seconds": 9.189,
+      "context_sha256": "9b04970bb3a4add953c0d637c857743eadfb6f71f02b939ca2bbc17f5a16e8d7",
+      "process_count": 4,
+      "registry_imported": true,
+      "registry_records_returned": 8
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PP",
+      "path": "/analysis/site-review",
+      "http_status": 200,
+      "duration_seconds": 13.913,
+      "candidate_count": 3,
+      "map_markers": 141
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PET",
+      "path": "/analysis/site-review",
+      "http_status": 200,
+      "duration_seconds": 11.919,
+      "candidate_count": 2,
+      "map_markers": 120
+    },
+    {
+      "category": "LCI",
+      "name": "PP",
+      "path": "/analysis/kg-lci",
+      "http_status": 200,
+      "duration_seconds": 2.072,
+      "estimated_paths": 0,
+      "installed_datasets": 7
+    },
+    {
+      "category": "LCI",
+      "name": "PE",
+      "path": "/analysis/kg-lci",
+      "http_status": 200,
+      "duration_seconds": 2.053,
+      "estimated_paths": 0,
+      "installed_datasets": 7
+    },
+    {
+      "category": "LCI",
+      "name": "PET",
+      "path": "/analysis/kg-lci",
+      "http_status": 200,
+      "duration_seconds": 1.39,
+      "estimated_paths": 1,
+      "installed_datasets": 7
+    },
+    {
+      "category": "LCI",
+      "name": "알루미늄",
+      "path": "/analysis/kg-lci",
+      "http_status": 200,
+      "duration_seconds": 0.682,
+      "estimated_paths": 0,
+      "installed_datasets": 7
+    },
+    {
+      "category": "LCI",
+      "name": "종이",
+      "path": "/analysis/kg-lci",
+      "http_status": 200,
+      "duration_seconds": 0.699,
+      "estimated_paths": 0,
+      "installed_datasets": 7
+    },
+    {
+      "category": "LCI",
+      "name": "missing mass",
+      "path": "/analysis/kg-lci",
+      "http_status": 200,
+      "duration_seconds": 0.672
+    },
+    {
+      "category": "MODEL",
+      "name": "external transfer gate",
+      "path": "/analysis/research",
+      "http_status": 200,
+      "duration_seconds": 2.392
+    }
+  ],
+  "checks": [
+    {
+      "category": "KG",
+      "name": "PP/confirmed: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/confirmed: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/confirmed: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/confirmed: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP: sourced candidate exists",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/missing: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/missing: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/missing: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/missing: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/other: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/other: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/other: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/other: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/unknown: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/unknown: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/unknown: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PP/unknown: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/confirmed: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/confirmed: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/confirmed: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/confirmed: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE: sourced candidate exists",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/missing: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/missing: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/missing: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/missing: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/other: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/other: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/other: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/other: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/unknown: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/unknown: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/unknown: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PE/unknown: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/confirmed: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/confirmed: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/confirmed: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/confirmed: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET: sourced candidate exists",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/missing: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/missing: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/missing: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/missing: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/other: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/other: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/other: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/other: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/unknown: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/unknown: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/unknown: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "PET/unknown: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/confirmed: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/confirmed: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/confirmed: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/confirmed: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄: sourced candidate exists",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/missing: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/missing: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/missing: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/missing: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/other: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/other: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/other: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/other: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/unknown: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/unknown: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/unknown: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "알루미늄/unknown: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/confirmed: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/confirmed: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/confirmed: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/confirmed: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이: sourced candidate exists",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/missing: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/missing: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/missing: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/missing: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/other: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/other: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/other: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/other: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/unknown: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/unknown: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/unknown: page cardinality",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "종이/unknown: no assumed old treatment",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "no material: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "no material: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "no material: no PASS",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "no material: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "no material: no fabricated paths",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "unsupported material: HTTP",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "unsupported material: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "unsupported material: no PASS",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "unsupported material: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "KG",
+      "name": "unsupported material: no fabricated paths",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "boolean /kg/process-plans: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "boolean /kg/process-plans: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "boolean /analysis/review-template: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "boolean /analysis/review-template: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "boolean /analysis/kg-lci: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "boolean /analysis/kg-lci: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "false /kg/process-plans: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "false /kg/process-plans: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "false /analysis/review-template: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "false /analysis/review-template: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "false /analysis/kg-lci: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "false /analysis/kg-lci: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "zero /kg/process-plans: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "zero /kg/process-plans: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "zero /analysis/review-template: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "zero /analysis/review-template: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "zero /analysis/kg-lci: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "zero /analysis/kg-lci: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "negative /kg/process-plans: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "negative /kg/process-plans: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "negative /analysis/review-template: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "negative /analysis/review-template: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "negative /analysis/kg-lci: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "negative /analysis/kg-lci: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "excessive /kg/process-plans: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "excessive /kg/process-plans: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "excessive /analysis/review-template: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "excessive /analysis/review-template: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "excessive /analysis/kg-lci: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "excessive /analysis/kg-lci: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "NaN: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "NaN: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "Infinity: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "Infinity: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "-Infinity: HTTP",
+      "passed": true
+    },
+    {
+      "category": "INPUT",
+      "name": "-Infinity: no raw validation input",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PP: HTTP",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PP: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PP: no PASS",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PP: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "BASELINES",
+      "name": "PP: ten starting articles retrieved",
+      "passed": true
+    },
+    {
+      "category": "BASELINES",
+      "name": "PP: no applicability inference",
+      "passed": true
+    },
+    {
+      "category": "MAP",
+      "name": "PP: grouped issues preserve every map marker",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PP: all bounded paths",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PP: legal evidence present",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PP: technical evidence present",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PP: unknown totals stay unknown",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PP: risks have map targets",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PP: technical results correctly grouped",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PE: HTTP",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PE: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PE: no PASS",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PE: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "BASELINES",
+      "name": "PE: ten starting articles retrieved",
+      "passed": true
+    },
+    {
+      "category": "BASELINES",
+      "name": "PE: no applicability inference",
+      "passed": true
+    },
+    {
+      "category": "MAP",
+      "name": "PE: grouped issues preserve every map marker",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PE: all bounded paths",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PE: legal evidence present",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PE: technical evidence present",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PE: unknown totals stay unknown",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PE: risks have map targets",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PE: technical results correctly grouped",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PET: HTTP",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PET: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PET: no PASS",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PET: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "BASELINES",
+      "name": "PET: ten starting articles retrieved",
+      "passed": true
+    },
+    {
+      "category": "BASELINES",
+      "name": "PET: no applicability inference",
+      "passed": true
+    },
+    {
+      "category": "MAP",
+      "name": "PET: grouped issues preserve every map marker",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PET: all bounded paths",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PET: legal evidence present",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PET: technical evidence present",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PET: unknown totals stay unknown",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PET: risks have map targets",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "PET: technical results correctly grouped",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "알루미늄: HTTP",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "알루미늄: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "알루미늄: no PASS",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "알루미늄: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "BASELINES",
+      "name": "알루미늄: ten starting articles retrieved",
+      "passed": true
+    },
+    {
+      "category": "BASELINES",
+      "name": "알루미늄: no applicability inference",
+      "passed": true
+    },
+    {
+      "category": "MAP",
+      "name": "알루미늄: grouped issues preserve every map marker",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "알루미늄: all bounded paths",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "알루미늄: legal evidence present",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "알루미늄: technical evidence present",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "알루미늄: unknown totals stay unknown",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "알루미늄: risks have map targets",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "알루미늄: technical results correctly grouped",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "종이: HTTP",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "종이: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "종이: no PASS",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "종이: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "BASELINES",
+      "name": "종이: ten starting articles retrieved",
+      "passed": true
+    },
+    {
+      "category": "BASELINES",
+      "name": "종이: no applicability inference",
+      "passed": true
+    },
+    {
+      "category": "MAP",
+      "name": "종이: grouped issues preserve every map marker",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "종이: all bounded paths",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "종이: legal evidence present",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "종이: technical evidence present",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "종이: unknown totals stay unknown",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "종이: risks have map targets",
+      "passed": true
+    },
+    {
+      "category": "RESEARCH",
+      "name": "종이: technical results correctly grouped",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "worksheet: HTTP",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "worksheet: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "valid synthetic arithmetic: HTTP",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "valid synthetic arithmetic: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "valid synthetic arithmetic: no PASS",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "valid synthetic arithmetic: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "all real path IDs bind",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "simulation label retained",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different lot: HTTP",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different lot: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different lot: no PASS",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different lot: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different lot: invalid values excluded",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different graph: HTTP",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different graph: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different graph: no PASS",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different graph: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different graph: invalid values excluded",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different site: HTTP",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different site: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different site: no PASS",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different site: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "different site: invalid values excluded",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "site stripped: HTTP",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "site stripped: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "site stripped: no PASS",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "site stripped: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "site stripped: invalid values excluded",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "synthetic called real: HTTP",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "synthetic called real: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "synthetic called real: no PASS",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "synthetic called real: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "synthetic called real: invalid values excluded",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "expired evidence: HTTP",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "expired evidence: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "expired evidence: no PASS",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "expired evidence: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "expired evidence: invalid values excluded",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "wrong carbon method: HTTP",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "wrong carbon method: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "wrong carbon method: no PASS",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "wrong carbon method: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "wrong carbon method: invalid values excluded",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "missing evidence: HTTP",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "missing evidence: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "missing evidence: no PASS",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "missing evidence: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "missing evidence: invalid values excluded",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "wrong unit: HTTP",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "wrong unit: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "wrong unit: no PASS",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "wrong unit: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "wrong unit: bad candidate excluded",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "missing transport: HTTP",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "missing transport: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "missing transport: no PASS",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "missing transport: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "missing transport: bad candidate excluded",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "forged stage: HTTP",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "forged stage: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "forged stage: no PASS",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "forged stage: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "NUMERIC",
+      "name": "forged stage: bad candidate excluded",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "same company/site a: HTTP",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "same company/site a: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "same company/site a: no PASS",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "same company/site a: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "a: map calls disabled",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "a: no road fallback",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "a: no automatic registry insertion",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "a: real registry active",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "same company/site b: HTTP",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "same company/site b: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "same company/site b: no PASS",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "same company/site b: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "b: map calls disabled",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "b: no road fallback",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "b: no automatic registry insertion",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "b: real registry active",
+      "passed": true
+    },
+    {
+      "category": "SITE",
+      "name": "different sites invalidate context",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PP: HTTP",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PP: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PP: no PASS",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PP: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PP: same graph snapshot",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PP: origin bound",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PP: screening not promoted to numeric totals",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PP: map risks present",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PP: no external road calls",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PET: HTTP",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PET: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PET: no PASS",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PET: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PET: same graph snapshot",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PET: origin bound",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PET: screening not promoted to numeric totals",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PET: map risks present",
+      "passed": true
+    },
+    {
+      "category": "COMPOSED",
+      "name": "PET: no external road calls",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PP: HTTP",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PP: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PP: no PASS",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PP: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PP: every path retained",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PP: no mismatched resin factor",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PP: no premature comparability",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PE: HTTP",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PE: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PE: no PASS",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PE: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PE: every path retained",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PE: no mismatched resin factor",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PE: no premature comparability",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PET: HTTP",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PET: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PET: no PASS",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PET: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PET: every path retained",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PET: no mismatched resin factor",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "PET: no premature comparability",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "알루미늄: HTTP",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "알루미늄: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "알루미늄: no PASS",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "알루미늄: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "알루미늄: every path retained",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "알루미늄: no mismatched resin factor",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "알루미늄: no premature comparability",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "종이: HTTP",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "종이: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "종이: no PASS",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "종이: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "종이: every path retained",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "종이: no mismatched resin factor",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "종이: no premature comparability",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "missing mass: HTTP",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "missing mass: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "missing mass: no PASS",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "missing mass: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "LCI",
+      "name": "missing mass never becomes zero",
+      "passed": true
+    },
+    {
+      "category": "RAG",
+      "name": "사업장폐기물을 업체에 위탁할 때 배출자가 확인해야 할 의무는?",
+      "passed": true
+    },
+    {
+      "category": "RAG_LOCATOR",
+      "name": "사업장폐기물을 업체에 위탁할 때 배출자가 확인해야 할 의무는?",
+      "passed": true
+    },
+    {
+      "category": "RAG",
+      "name": "폐폴리프로필렌을 재활용할 수 있는 R 유형과 재활용 기준",
+      "passed": true
+    },
+    {
+      "category": "RAG_LOCATOR",
+      "name": "폐폴리프로필렌을 재활용할 수 있는 R 유형과 재활용 기준",
+      "passed": true
+    },
+    {
+      "category": "RAG",
+      "name": "경매로 사업장을 인수하면 다른 장소에 방치된 폐기물 의무도 승계하는가?",
+      "passed": true
+    },
+    {
+      "category": "RAG_LOCATOR",
+      "name": "경매로 사업장을 인수하면 다른 장소에 방치된 폐기물 의무도 승계하는가?",
+      "passed": true
+    },
+    {
+      "category": "RAG",
+      "name": "폐기물 처리업체의 허가 업종과 처리 범위를 확인하려면 어떤 조문을 봐야 하나?",
+      "passed": false
+    },
+    {
+      "category": "RAG_LOCATOR",
+      "name": "폐기물 처리업체의 허가 업종과 처리 범위를 확인하려면 어떤 조문을 봐야 하나?",
+      "passed": false
+    },
+    {
+      "category": "RAG",
+      "name": "폐기물이 아닌 순환자원으로 인정받기 위한 제도적 근거는?",
+      "passed": true
+    },
+    {
+      "category": "RAG_LOCATOR",
+      "name": "폐기물이 아닌 순환자원으로 인정받기 위한 제도적 근거는?",
+      "passed": true
+    },
+    {
+      "category": "RAG",
+      "name": "새로운 재활용 기술에 규제특례나 임시허가를 신청할 수 있는가?",
+      "passed": true
+    },
+    {
+      "category": "RAG_LOCATOR",
+      "name": "새로운 재활용 기술에 규제특례나 임시허가를 신청할 수 있는가?",
+      "passed": true
+    },
+    {
+      "category": "RAG",
+      "name": "폐기물을 부적정 처리하면 누구에게 조치명령을 내릴 수 있는가?",
+      "passed": true
+    },
+    {
+      "category": "RAG_LOCATOR",
+      "name": "폐기물을 부적정 처리하면 누구에게 조치명령을 내릴 수 있는가?",
+      "passed": true
+    },
+    {
+      "category": "RAG",
+      "name": "코팅·라미네이트 종이를 재활용할 때 공정 선정에서 무엇을 고려해야 하나?",
+      "passed": true
+    },
+    {
+      "category": "RAG",
+      "name": "PET 병 재활용성을 평가할 때 라벨과 접착제를 어떻게 봐야 하나?",
+      "passed": true
+    },
+    {
+      "category": "RAG",
+      "name": "알루미늄 용융금속에 물이 들어가면 어떤 위험이 있나?",
+      "passed": true
+    },
+    {
+      "category": "RAG",
+      "name": "폐알루미늄 재용해 전에 합금을 분리해야 하는가?",
+      "passed": true
+    },
+    {
+      "category": "RAG",
+      "name": "알루미늄 절삭칩을 재용해하기 전에 전처리가 필요한가?",
+      "passed": true
+    },
+    {
+      "category": "RAG",
+      "name": "공정 스크랩의 탄소를 자동으로 0으로 계산해도 되나?",
+      "passed": true
+    },
+    {
+      "category": "RAG",
+      "name": "단일 합금 알루미늄 칩과 혼합 칩은 같은 거래 등급인가?",
+      "passed": true
+    },
+    {
+      "category": "MODEL",
+      "name": "external transfer gate: HTTP",
+      "passed": true
+    },
+    {
+      "category": "MODEL",
+      "name": "external transfer gate: no dispatch approval",
+      "passed": true
+    },
+    {
+      "category": "MODEL",
+      "name": "external transfer gate: no PASS",
+      "passed": true
+    },
+    {
+      "category": "MODEL",
+      "name": "external transfer gate: no invented final ranking",
+      "passed": true
+    },
+    {
+      "category": "MODEL",
+      "name": "disabled model makes no calls",
+      "passed": true
+    }
+  ],
+  "retrieval_regression": [
+    {
+      "query": "사업장폐기물을 업체에 위탁할 때 배출자가 확인해야 할 의무는?",
+      "passed": true,
+      "matched": "폐기물관리법 제17조",
+      "result_headings": [
+        "건설폐기물의 재활용촉진에 관한 법률 / 제16조(건설폐기물 처리용역의 위탁ㆍ수탁 계약 등) ①항",
+        "폐기물관리법 시행규칙 / 제17조의2(사업장폐기물배출자의 확인 등) ②항",
+        "폐기물관리법 / 제17조(사업장폐기물배출자의 의무 등) ①항",
+        "폐기물관리법 / 제19조(사업장폐기물처리자의 의무) ②항",
+        "폐기물관리법 / 제18조(사업장폐기물의 처리) ①항"
+      ],
+      "first_relevant_rank": 3,
+      "reciprocal_rank": 0.3333333333333333,
+      "search_group": "LEGAL",
+      "required": true,
+      "group_violations": [],
+      "locator_matched": true
+    },
+    {
+      "query": "폐폴리프로필렌을 재활용할 수 있는 R 유형과 재활용 기준",
+      "passed": true,
+      "matched": "별표 5의3",
+      "result_headings": [
+        "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+        "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+        "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+        "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)",
+        "폐기물관리법 시행규칙 / 별표 5의3 폐기물의 재활용 기준(제14조의3제1항 관련)"
+      ],
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "search_group": "LEGAL",
+      "required": false,
+      "group_violations": [],
+      "locator_matched": true
+    },
+    {
+      "query": "경매로 사업장을 인수하면 다른 장소에 방치된 폐기물 의무도 승계하는가?",
+      "passed": true,
+      "matched": "2023두62830",
+      "result_headings": [
+        "대법원 2023두62830 조치명령 / 판시사항",
+        "대법원 2023두62830 조치명령 / 판례 전문",
+        "대법원 2023두62830 조치명령 / 판결요지",
+        "대법원 2002다46331 토지인도 / 판결요지",
+        "폐기물관리법 / 제17조(사업장폐기물배출자의 의무 등) ⑨항"
+      ],
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "search_group": "LEGAL",
+      "required": false,
+      "group_violations": [],
+      "locator_matched": true
+    },
+    {
+      "query": "폐기물 처리업체의 허가 업종과 처리 범위를 확인하려면 어떤 조문을 봐야 하나?",
+      "passed": false,
+      "matched": null,
+      "result_headings": [
+        "폐기물관리법 시행규칙 / 제17조의4(음식물류 폐기물 배출자 및 사업장폐기물배출자의 확인)",
+        "폐기물관리법 시행규칙 / 별표 5의8 음식물류 폐기물 배출자 및 사업장폐기물배출자의 폐기물 적정처리 여부 확인 방법(제17조의4 관련)",
+        "폐기물관리법 시행규칙 / 제17조의2(사업장폐기물배출자의 확인 등) ②항",
+        "건설폐기물의 재활용촉진에 관한 법률 시행규칙 / 제12조(건설폐기물 처리업의 허가 등) ⑥항",
+        "폐기물관리법 시행규칙 / 제16조의12(위탁ㆍ수탁의 기준 및 절차)"
+      ],
+      "first_relevant_rank": null,
+      "reciprocal_rank": 0.0,
+      "search_group": "LEGAL",
+      "required": true,
+      "group_violations": [],
+      "locator_matched": false
+    },
+    {
+      "query": "폐기물이 아닌 순환자원으로 인정받기 위한 제도적 근거는?",
+      "passed": true,
+      "matched": "제21조",
+      "result_headings": [
+        "순환경제사회 전환 촉진법 / 제2조(정의)",
+        "순환경제사회 전환 촉진법 시행규칙 / 제12조(순환자원의 인정 시 고려 사항) ②항",
+        "순환경제사회 전환 촉진법 / 제21조(순환자원의 인정) ①항",
+        "순환경제사회 전환 촉진법 시행령 / 제16조(순환자원사용지정사업자 등) ②항",
+        "순환경제사회 전환 촉진법 시행규칙 / 제12조(순환자원의 인정 시 고려 사항) ①항"
+      ],
+      "first_relevant_rank": 3,
+      "reciprocal_rank": 0.3333333333333333,
+      "search_group": "LEGAL",
+      "required": false,
+      "group_violations": [],
+      "locator_matched": true
+    },
+    {
+      "query": "새로운 재활용 기술에 규제특례나 임시허가를 신청할 수 있는가?",
+      "passed": true,
+      "matched": "제33조",
+      "result_headings": [
+        "순환경제사회 전환 촉진법 / 제33조(임시허가) ①항",
+        "순환경제사회 전환 촉진법 시행령 / 별표 6 과태료의 부과기준(제51조 관련)",
+        "순환경제사회 전환 촉진법 시행령 / 제29조(규제특례의 연장 등) ⑨항",
+        "순환경제사회 전환 촉진법 시행령 / 제30조(임시허가의 신청 등) ①항",
+        "순환경제사회 전환 촉진법 / 제30조(실증을 위한 규제특례) ①항"
+      ],
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "search_group": "LEGAL",
+      "required": false,
+      "group_violations": [],
+      "locator_matched": true
+    },
+    {
+      "query": "폐기물을 부적정 처리하면 누구에게 조치명령을 내릴 수 있는가?",
+      "passed": true,
+      "matched": "폐기물관리법 제48조",
+      "result_headings": [
+        "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ②항",
+        "폐기물관리법 / 제48조(폐기물 처리에 대한 조치명령 등) ③항",
+        "폐기물관리법 시행령 / 제23조의5(조치명령대상자 순위의 예외 기준)",
+        "폐기물관리법 시행규칙 / 제68조의3(폐기물 처리에 대한 조치명령 등) ①항",
+        "폐기물관리법 시행규칙 / 제68조의3(폐기물 처리에 대한 조치명령 등) ②항"
+      ],
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "search_group": "LEGAL",
+      "required": false,
+      "group_violations": [],
+      "locator_matched": true
+    },
+    {
+      "query": "코팅·라미네이트 종이를 재활용할 때 공정 선정에서 무엇을 고려해야 하나?",
+      "passed": true,
+      "matched": "코팅 종이는 맞는 제지 공정을 찾아야 함",
+      "result_headings": [
+        "Paper-based packaging recyclability guidelines / 코팅 종이는 맞는 제지 공정을 찾아야 함",
+        "How to Treat Scrap Flows in Carbon Footprint Calculations for Aluminium Products / 지역 기본값은 이번 재활용 공정 실측값이 아님",
+        "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 재용해 설비 적합성이 수율을 바꿈",
+        "Harmonised European laboratory test method, Part I, Version 3 / 시험법의 대상 공정과 시료 대표성 검토",
+        "용해 공정 원재료 투입 시 수증기 폭발 / 입고 후 보관 중 생기는 수분도 재확인"
+      ],
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "search_group": "TECHNICAL",
+      "required": false,
+      "group_violations": [],
+      "locator_matched": false
+    },
+    {
+      "query": "PET 병 재활용성을 평가할 때 라벨과 접착제를 어떻게 봐야 하나?",
+      "passed": true,
+      "matched": "PET는 병·색·라벨·접착·이전 내용물을 분리",
+      "result_headings": [
+        "Design Guidelines for PET bottles in contact with food and non-food products / PET는 병·색·라벨·접착·이전 내용물을 분리",
+        "Paper-based packaging recyclability guidelines / 코팅 종이는 맞는 제지 공정을 찾아야 함",
+        "Harmonised European laboratory test method, Part I, Version 3 / 시험법의 대상 공정과 시료 대표성 검토",
+        "How to Treat Scrap Flows in Carbon Footprint Calculations for Aluminium Products / 지역 기본값은 이번 재활용 공정 실측값이 아님",
+        "Specifiers' Guide to IAI's Carbon Footprint Methodology / 제품 탄소와 회사 Scope 1은 다른 범위"
+      ],
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "search_group": "TECHNICAL",
+      "required": false,
+      "group_violations": [],
+      "locator_matched": false
+    },
+    {
+      "query": "알루미늄 용융금속에 물이 들어가면 어떤 위험이 있나?",
+      "passed": true,
+      "matched": "입고 후 보관 중 생기는 수분도 재확인",
+      "result_headings": [
+        "용해 공정 원재료 투입 시 수증기 폭발 / 입고 후 보관 중 생기는 수분도 재확인",
+        "Safety hazards in the molten metal industries / 용융금속과 물의 접촉 위험",
+        "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 재용해 설비 적합성이 수율을 바꿈",
+        "Aluminum Dynamics LLC Scrap Supplier Manual Revision 3 / 일반 허용치와 품목별 금지조항 충돌 검토",
+        "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 같은 알루미늄도 합금 분리가 먼저"
+      ],
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "search_group": "TECHNICAL",
+      "required": false,
+      "group_violations": [],
+      "locator_matched": false
+    },
+    {
+      "query": "폐알루미늄 재용해 전에 합금을 분리해야 하는가?",
+      "passed": true,
+      "matched": "같은 알루미늄도 합금 분리가 먼저",
+      "result_headings": [
+        "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 재용해 설비 적합성이 수율을 바꿈",
+        "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 같은 알루미늄도 합금 분리가 먼저",
+        "How to Treat Scrap Flows in Carbon Footprint Calculations for Aluminium Products / 지역 기본값은 이번 재활용 공정 실측값이 아님",
+        "용해 공정 원재료 투입 시 수증기 폭발 / 입고 후 보관 중 생기는 수분도 재확인",
+        "Scrap Specifications Circular, effective 15 February 2024 / 단일 합금 칩과 혼합 칩은 다른 거래 등급"
+      ],
+      "first_relevant_rank": 2,
+      "reciprocal_rank": 0.5,
+      "search_group": "TECHNICAL",
+      "required": false,
+      "group_violations": [],
+      "locator_matched": false
+    },
+    {
+      "query": "알루미늄 절삭칩을 재용해하기 전에 전처리가 필요한가?",
+      "passed": true,
+      "matched": "절삭칩 전처리는 조건부 대안",
+      "result_headings": [
+        "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 절삭칩 전처리는 조건부 대안",
+        "용해 공정 원재료 투입 시 수증기 폭발 / 입고 후 보관 중 생기는 수분도 재확인",
+        "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 같은 알루미늄도 합금 분리가 먼저",
+        "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 재용해 설비 적합성이 수율을 바꿈",
+        "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 전처리 비용·에너지도 비교에 포함"
+      ],
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "search_group": "TECHNICAL",
+      "required": false,
+      "group_violations": [],
+      "locator_matched": false
+    },
+    {
+      "query": "공정 스크랩의 탄소를 자동으로 0으로 계산해도 되나?",
+      "passed": true,
+      "matched": "공정스크랩을 자동 탄소 0으로 두지 않음",
+      "result_headings": [
+        "How to Treat Scrap Flows in Carbon Footprint Calculations for Aluminium Products / 공정스크랩을 자동 탄소 0으로 두지 않음",
+        "How to Treat Scrap Flows in Carbon Footprint Calculations for Aluminium Products / 지역 기본값은 이번 재활용 공정 실측값이 아님",
+        "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 전처리 비용·에너지도 비교에 포함",
+        "Specifiers' Guide to IAI's Carbon Footprint Methodology / 제품 탄소와 회사 Scope 1은 다른 범위",
+        "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 같은 알루미늄도 합금 분리가 먼저"
+      ],
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "search_group": "TECHNICAL",
+      "required": false,
+      "group_violations": [],
+      "locator_matched": false
+    },
+    {
+      "query": "단일 합금 알루미늄 칩과 혼합 칩은 같은 거래 등급인가?",
+      "passed": true,
+      "matched": "단일 합금 칩과 혼합 칩은 다른 거래 등급",
+      "result_headings": [
+        "Scrap Specifications Circular, effective 15 February 2024 / 단일 합금 칩과 혼합 칩은 다른 거래 등급",
+        "Best Available Techniques Reference Document for the Non-Ferrous Metals Industries / 같은 알루미늄도 합금 분리가 먼저",
+        "How to Treat Scrap Flows in Carbon Footprint Calculations for Aluminium Products / 같은 회사보다 같은 제품시스템인지가 핵심",
+        "Aluminum Dynamics LLC Scrap Supplier Manual Revision 3 / 운송 중 수분과 계근 차이도 거래 위험",
+        "용해 공정 원재료 투입 시 수증기 폭발 / 입고 후 보관 중 생기는 수분도 재확인"
+      ],
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "search_group": "TECHNICAL",
+      "required": false,
+      "group_violations": [],
+      "locator_matched": false
+    }
+  ],
+  "quality_gaps": [
+    {
+      "area": "KG",
+      "material": "알루미늄",
+      "gap": "Only one curated candidate; alternative comparison not demonstrated",
+      "next_action": "Add independently sourced process/facility capabilities, not fabricated paths"
+    },
+    {
+      "area": "KG",
+      "material": "종이",
+      "gap": "Only one curated candidate; alternative comparison not demonstrated",
+      "next_action": "Add independently sourced process/facility capabilities, not fabricated paths"
+    },
+    {
+      "area": "LEGAL_RETRIEVAL",
+      "query": "폐기물 처리업체의 허가 업종과 처리 범위를 확인하려면 어떤 조문을 봐야 하나?",
+      "gap": "Expected primary source locator absent from top five",
+      "next_action": "Evaluate article-level retrieval and reranking on independent labelled queries before legal automation"
+    }
+  ],
+  "passed": 358,
+  "total": 360,
+  "all_passed": false
+}

@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-10-26T05:51:01.974308+00:00",
+  "scope": "Full suite after final cache-byte hashing and unchanged-vector metadata update; actual local PostgreSQL and Neo4j enabled",
+  "pytest_passed": 857,
+  "subtests_passed": 24,
+  "junit_tests": 881,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 117.885,
+  "command": "RUN_POSTGRES_INTEGRATION=true RUN_NEO4J_INTEGRATION=true python -m pytest -q --junitxml=data/official/legal-expansion-2026-10-26/tests-final.xml",
+  "raw_junit_sha256": "9fe41fc05d168811dd5176c062d9bf96abb0a73467bd14ddfe050a6f105778fc",
+  "live_paid_model_calls": 0
+}

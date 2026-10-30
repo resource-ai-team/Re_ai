@@ -31,11 +31,23 @@ class EvidenceRepository:
         *,
         candidate_multiplier: int = 4,
         rrf_k: int = 60,
+        candidate_minimum: int = 0,
+        reranker=None,
+        article_diversity: bool = False,
+        korean_tokenizer=None,
+        legal_basis_enabled: bool = False,
     ) -> None:
         self.database = database
         self.embeddings = embeddings
         self.candidate_multiplier = candidate_multiplier
         self.rrf_k = rrf_k
+        if not 0 <= candidate_minimum <= 100:
+            raise ValueError("candidate_minimum must be between 0 and 100")
+        self.candidate_minimum = candidate_minimum
+        self.reranker = reranker
+        self.article_diversity = article_diversity
+        self.korean_tokenizer = korean_tokenizer
+        self.legal_basis_enabled = legal_basis_enabled
 
     def initialize(self, migration_path: Path) -> None:
         migration_files = (
@@ -68,11 +80,34 @@ class EvidenceRepository:
         EvidenceDocument, list[tuple[str, str, str | None, int | None, dict]], list[list[float]]
     ]:
         """DB 트랜잭션 전에 청킹과 임베딩을 끝내 적재 중간 실패를 줄인다."""
+        if document.document_type == CorpusType.TECHNICAL_LITERATURE and any(
+            lane in ("factory", "recipient")
+            for lane in (
+                document.metadata.get("collection_lane"),
+                *(section.metadata.get("collection_lane") for section in document.sections),
+            )
+        ):
+            raise ValueError(
+                "Facility/recipient records belong to KG or business DB, not Technical RAG"
+            )
         canonical_source_id = self._canonical_source_id(document)
         document = replace(
             document,
             metadata={**document.metadata, "canonical_source_id": canonical_source_id},
         )
+        if document.document_type == "LAW" and document.tenant_id is None:
+            from resource_ai.rag.legal_aliases import RECIPE, extract_aliases
+
+            aliases, conflicts = extract_aliases(document.sections)
+            document = replace(
+                document,
+                metadata={
+                    **document.metadata,
+                    "declared_legal_aliases": aliases,
+                    "conflicting_legal_aliases": conflicts,
+                    "legal_alias_recipe": RECIPE,
+                },
+            )
         chunk_records: list[tuple[str, str, str | None, int | None, dict]] = []
         for section in document.sections:
             for chunk in chunk_for_corpus(section.content, document.document_type):
@@ -85,13 +120,34 @@ class EvidenceRepository:
                     "version": document.version,
                     "tenant_id": document.tenant_id,
                     "source_position": section.citation or section.page_no,
+                    "embedding_recipe": "document-heading-content-v1",
                 }
+                # A section's stale/claimed recipe is not proof that this new chunk
+                # was indexed. Only this preparation step may set these fields.
+                metadata.pop("korean_lexical_recipe", None)
+                metadata.pop("_korean_lexical_inputs", None)
+                if (
+                    self.korean_tokenizer is not None
+                    and document.tenant_id is None
+                    and document.document_type in {"LAW", "PRECEDENT"}
+                ):
+                    metadata["korean_lexical_recipe"] = self.korean_tokenizer.recipe
+                    metadata["_korean_lexical_inputs"] = (
+                        self.korean_tokenizer.text(document.title),
+                        self.korean_tokenizer.text(
+                            section.heading + " " + (section.citation or "")
+                        ),
+                        self.korean_tokenizer.text(chunk.content),
+                    )
                 chunk_records.append(
                     (section.heading, chunk.content, section.citation, section.page_no, metadata)
                 )
         if not chunk_records:
             raise ValueError(f"Document {document.source_id!r} produced no searchable chunks")
-        vectors = self.embeddings.embed_documents([record[1] for record in chunk_records])
+        # Source context belongs in local embeddings, not in the quoted raw text.
+        vectors = self.embeddings.embed_documents(
+            [f"{document.title}\n{record[0]}\n{record[1]}" for record in chunk_records]
+        )
         if len(vectors) != len(chunk_records):
             raise ValueError(
                 f"Embedding count mismatch for {document.source_id}: "
@@ -153,11 +209,17 @@ class EvidenceRepository:
         connection.execute("DELETE FROM legal_chunks WHERE document_id = %s", (document_id,))
         for record, vector in zip(chunk_records, vectors, strict=True):
             heading, content, citation, page_no, metadata = record
+            metadata = dict(metadata)
+            lexical = metadata.pop("_korean_lexical_inputs", (None, None, None))
             connection.execute(
                 """
                     INSERT INTO legal_chunks (
-                        document_id, heading, content, citation, page_no, metadata, embedding
-                    ) VALUES (%s, %s, %s, %s, %s, %s::jsonb, %s)
+                        document_id, heading, content, citation, page_no, metadata, embedding,
+                        korean_search_vector
+                    ) VALUES (%s, %s, %s, %s, %s, %s::jsonb, %s,
+                        setweight(to_tsvector('simple',%s),'A') ||
+                        setweight(to_tsvector('simple',%s),'B') ||
+                        setweight(to_tsvector('simple',%s),'D'))
                     """,
                 (
                     document_id,
@@ -167,6 +229,7 @@ class EvidenceRepository:
                     page_no,
                     json.dumps(metadata, ensure_ascii=False),
                     Vector(vector),
+                    *lexical,
                 ),
             )
         return len(chunk_records)
@@ -184,6 +247,11 @@ class EvidenceRepository:
 
     def ingest(self, document: EvidenceDocument) -> int:
         return self.ingest_many([document])
+
+    def expand_legal_context(self, hits):
+        from resource_ai.rag.legal_context import expand_context
+
+        return expand_context(self.database, hits)
 
     @staticmethod
     def _results(rows: list[tuple], method: str) -> list[SearchResult]:
@@ -207,7 +275,7 @@ class EvidenceRepository:
             for row in rows
         ]
 
-    def search(
+    def retrieve_candidates(
         self,
         query: str,
         top_k: int = 5,
@@ -217,8 +285,8 @@ class EvidenceRepository:
         search_group: SearchGroup | str | None = None,
     ) -> list[SearchResult]:
         """검색 그룹 범위 안에서 벡터·키워드 후보를 결합해 Top K 근거를 반환한다."""
-        if top_k <= 0:
-            raise ValueError("top_k must be positive")
+        if isinstance(top_k, bool) or not isinstance(top_k, int) or not 1 <= top_k <= 100:
+            raise ValueError("top_k must be an integer between 1 and 100")
         if search_group is not None and corpus_types:
             raise ValueError("search_group and corpus_types cannot be used together")
         if search_group is not None:
@@ -235,7 +303,23 @@ class EvidenceRepository:
         if CorpusType.COMPANY_DOCUMENT in (normalized_types or []) and not tenant_id:
             raise ValueError("tenant_id is required when searching company documents")
         query_vector = Vector(self.embeddings.embed_query(query))
-        candidate_count = max(top_k * self.candidate_multiplier, top_k)
+        candidate_count = min(
+            100, max(top_k * self.candidate_multiplier, top_k, self.candidate_minimum)
+        )
+        enhanced_legal = (
+            self.korean_tokenizer is not None
+            and bool(normalized_types)
+            and set(normalized_types) <= {"LAW", "PRECEDENT"}
+        )
+        if enhanced_legal or (
+            self.legal_basis_enabled
+            and normalized_types
+            and set(normalized_types) <= {"LAW", "PRECEDENT"}
+        ):
+            candidate_count = max(candidate_count, 60)
+        from resource_ai.rag.retrieval.diversity import article_identity
+
+        fusion_identity = article_identity if enhanced_legal else None
         with self.database.connect() as connection:
             # 의미 유사도 검색과 정확한 용어 검색을 따로 수행한 뒤 순위 기반으로 결합한다.
             vector_rows = connection.execute(
@@ -259,6 +343,7 @@ class EvidenceRepository:
                     JOIN legal_documents d ON d.id = c.document_id
                     WHERE
                         d.is_current = true
+                        AND (d.tenant_id IS NULL OR d.document_type = 'COMPANY_DOCUMENT')
                         AND (%s::text[] IS NULL OR d.document_type = ANY(%s::text[]))
                         AND (d.document_type <> 'COMPANY_DOCUMENT' OR d.tenant_id = %s)
                         AND (
@@ -306,7 +391,7 @@ class EvidenceRepository:
                     d.source_url,
                     d.effective_from,
                     ts_rank_cd(
-                        c.search_vector,
+                        c.context_search_vector,
                         websearch_to_tsquery('simple', %s)
                     ) AS score,
                     d.version,
@@ -317,6 +402,7 @@ class EvidenceRepository:
                 JOIN legal_documents d ON d.id = c.document_id
                 WHERE
                     d.is_current = true
+                    AND (d.tenant_id IS NULL OR d.document_type = 'COMPANY_DOCUMENT')
                     AND (%s::text[] IS NULL OR d.document_type = ANY(%s::text[]))
                     AND (d.document_type <> 'COMPANY_DOCUMENT' OR d.tenant_id = %s)
                     AND (
@@ -324,24 +410,94 @@ class EvidenceRepository:
                         OR d.effective_from IS NULL
                         OR d.effective_from <= CURRENT_DATE
                     )
-                    AND c.search_vector @@ websearch_to_tsquery('simple', %s)
+                    AND c.context_search_vector @@ websearch_to_tsquery('simple', %s)
                 ORDER BY score DESC, c.id
                 LIMIT %s
                 """,
                 (query, normalized_types, normalized_types, tenant_id, query, candidate_count),
             ).fetchall()
+            keyword_results = self._results(keyword_rows, "keyword")
+            korean_keys = set()
+            if enhanced_legal:
+                from resource_ai.rag.retrieval.korean_lexical import lexical_search
+
+                korean_rows = lexical_search(
+                    connection, query, self.korean_tokenizer, candidate_count, normalized_types
+                )
+                korean_keys = {article_identity(h) for h in self._results(korean_rows, "bm25")}
+                keyword_results = reciprocal_rank_fusion(
+                    self._results(korean_rows, "korean-bm25"),
+                    keyword_results,
+                    limit=candidate_count,
+                    rrf_k=self.rrf_k,
+                    identity=fusion_identity,
+                )
         fused = reciprocal_rank_fusion(
             self._results(vector_rows, "vector"),
-            self._results(keyword_rows, "keyword"),
+            keyword_results,
             limit=candidate_count,
             rrf_k=self.rrf_k,
+            identity=fusion_identity,
         )
-        return rerank_results(
-            query,
-            fused,
-            limit=top_k,
-            search_group=search_group,
+        return [
+            replace(hit, retrieval_method=hit.retrieval_method + "+korean-bm25")
+            if article_identity(hit) in korean_keys
+            else hit
+            for hit in fused
+        ]
+
+    def search(
+        self, query: str, top_k: int = 5, *, corpus_types=None, tenant_id=None, search_group=None
+    ) -> list[SearchResult]:
+        """Retrieve a bounded candidate pool, then rank; model failures remain visible."""
+        fused = self.retrieve_candidates(
+            query, top_k, corpus_types=corpus_types, tenant_id=tenant_id, search_group=search_group
         )
+        legal_scope = (
+            search_group == SearchGroup.LEGAL
+            or bool(corpus_types)
+            and set(corpus_types) <= {"LAW", "PRECEDENT"}
+        )
+        diversity = self.article_diversity or (self.legal_basis_enabled and legal_scope)
+        law_allowed = search_group == SearchGroup.LEGAL or "LAW" in (corpus_types or [])
+        limit = (len(fused) or top_k) if diversity else top_k
+        ranked = (
+            self.reranker.rerank(query, fused, limit=limit, search_group=search_group)
+            if self.reranker is not None
+            else rerank_results(query, fused, limit=limit, search_group=search_group)
+        )
+        if diversity:
+            from resource_ai.rag.retrieval.diversity import distinct_articles
+
+            ranked = distinct_articles(ranked, top_k)
+        if self.legal_basis_enabled and law_allowed:
+            from resource_ai.rag.retrieval.diversity import distinct_articles
+            from resource_ai.rag.retrieval.legal_basis import (
+                balance_basis,
+                cited_basis,
+                explicit_locator,
+            )
+
+            exact = explicit_locator(self.database, query, self._results)
+            ranked = distinct_articles([*exact, *ranked], top_k)
+            if not ranked:
+                return []
+
+            bm25_roots = any("+korean-bm25" in h.retrieval_method for h in ranked)
+            basis = cited_basis(
+                self.database,
+                ranked,
+                Vector(self.embeddings.embed_query(query)),
+                self._results,
+                include_seed_sections=bm25_roots,
+                prefer_statutes=bm25_roots,
+            )
+            # A companion is supporting context, not a reason to consume most
+            # of a small result window and displace direct operative provisions.
+            if bm25_roots:
+                basis = basis[:1]
+            return balance_basis(ranked, basis, top_k, self.rrf_k, query)
+        return ranked
 
 
 # 기존 애플리케이션의 import 경로를 깨지 않도록 이전 이름을 호환 별칭으로 유지한다.

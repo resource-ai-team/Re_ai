@@ -15,7 +15,7 @@ router = APIRouter(prefix="/rag", tags=["rag"])
 
 @router.get("/search", response_model=list[SearchItem])
 def search(
-    q: Annotated[str, Query(min_length=2)],
+    q: Annotated[str, Query(min_length=2, max_length=8000)],
     repository: Annotated[LegalRepository, Depends(get_repository)],
     top_k: Annotated[int | None, Query(ge=1, le=20)] = None,
     search_group: Annotated[SearchGroup | None, Query()] = None,
@@ -52,6 +52,10 @@ def search(
             version=item.version,
             page_no=item.page_no,
             source_position=item.source_position,
+            reranker_score=item.reranker_score,
+            reranker_model=item.reranker_model,
+            evidence_role=item.evidence_role,
+            reference_sources=item.reference_sources,
         )
         for item in results
     ]

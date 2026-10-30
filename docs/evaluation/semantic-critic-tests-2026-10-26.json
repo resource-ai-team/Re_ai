@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-10-25T18:16:52.583275+00:00",
+  "scope": "real local Neo4j/PostgreSQL; synthetic fixtures; simulated Azure, no live GPT critic quality claim",
+  "pytest_passed": 840,
+  "subtests_passed": 24,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_seconds": 200.959,
+  "live_gpt_critic_calls": 0,
+  "followup_targeted_tests_after_excluded_numeric_redaction": 52,
+  "followup_targeted_tests_failed": 0
+}

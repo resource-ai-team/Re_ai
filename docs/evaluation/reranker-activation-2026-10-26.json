@@ -1,0 +1,20 @@
+{
+  "recorded_at": "2026-10-25T15:26:57.592963+00:00",
+  "selection_sha256": "f1dda864e38717024523621607f6a1f8c1935428ac28af9e224fcebc82406de7",
+  "validation_sha256": "094b2900854129755f15360bcabdb6c4d6437a441f894d0293cad390dcf96648",
+  "validation_complete": true,
+  "gates": {
+    "LEGAL": {
+      "hit_at_5_non_regressing": false,
+      "mrr_non_regressing": false
+    },
+    "TECHNICAL": {
+      "hit_at_5_non_regressing": true,
+      "mrr_non_regressing": true
+    }
+  },
+  "default_provider": "rules",
+  "activation": "rejected_for_default_due_to_legal_holdout_regression",
+  "followup": "Expert-labelled additional questions and a new untouched validation set are needed before selecting another configuration. Do not tune this test set.",
+  "hash_line_endings": "LF normalized"
+}

@@ -1,0 +1,110 @@
+{
+  "generated_at": "2026-10-26T18:09:10.191776+00:00",
+  "selection_data": "retrieval_study_v1.json; all 50 cases used diagnostically, including its old test split",
+  "independent_performance_claim": false,
+  "variants": [
+    {
+      "variant": "chunk_bm25",
+      "law": {
+        "total": 30,
+        "passed": 27,
+        "pass_rate": 0.9,
+        "recall_at_k": 0.9,
+        "mrr": 0.6761111111111112
+      },
+      "failed_case_ids": [
+        "producer-3",
+        "principles-2",
+        "environment-3"
+      ],
+      "regressed_from_grounded": [
+        "producer-3",
+        "environment-3"
+      ],
+      "raw_report_sha256_lf": "41e12417e2a5bc8d57bb87115900c7b95f6376fdef3c94332becde35ca57106d"
+    },
+    {
+      "variant": "article_fusion_two_companions",
+      "law": {
+        "total": 30,
+        "passed": 28,
+        "pass_rate": 0.9333333333333333,
+        "recall_at_k": 0.9333333333333333,
+        "mrr": 0.7272222222222222
+      },
+      "failed_case_ids": [
+        "producer-3",
+        "definitions-1"
+      ],
+      "regressed_from_grounded": [
+        "producer-3"
+      ],
+      "raw_report_sha256_lf": "3c3ce453afb408e4386b1117263fdbba2bd9587bf905b0130429950a42791f7e"
+    },
+    {
+      "variant": "semantic_anchor_one_companion_rejected",
+      "law": {
+        "total": 30,
+        "passed": 25,
+        "pass_rate": 0.8333333333333334,
+        "recall_at_k": 0.8333333333333334,
+        "mrr": 0.6311111111111111
+      },
+      "failed_case_ids": [
+        "permit-1",
+        "principles-2",
+        "circular-1",
+        "circular-2",
+        "definitions-3"
+      ],
+      "regressed_from_grounded": [
+        "permit-1",
+        "circular-1",
+        "circular-2",
+        "definitions-3"
+      ],
+      "raw_report_sha256_lf": "eed9ddabd8389d61cd806ab98358c64f77141363afb37e519ef341cab2a765ef"
+    },
+    {
+      "variant": "one_companion_no_statutory_priority",
+      "law": {
+        "total": 30,
+        "passed": 27,
+        "pass_rate": 0.9,
+        "recall_at_k": 0.9,
+        "mrr": 0.7077777777777778
+      },
+      "failed_case_ids": [
+        "producer-3",
+        "circular-1",
+        "circular-2"
+      ],
+      "regressed_from_grounded": [
+        "producer-3",
+        "circular-1",
+        "circular-2"
+      ],
+      "raw_report_sha256_lf": "2a662922bca4bf96025848b8925f62777b05dcd0ca0a115bb0f3ba5fe07ee720"
+    },
+    {
+      "variant": "selected_article_fusion_one_statutory_companion",
+      "law": {
+        "total": 30,
+        "passed": 29,
+        "pass_rate": 0.9666666666666667,
+        "recall_at_k": 0.9666666666666667,
+        "mrr": 0.7744444444444445
+      },
+      "failed_case_ids": [
+        "producer-3"
+      ],
+      "report": "docs/evaluation/bm25-regression-2026-10-27.json"
+    }
+  ],
+  "validation_dataset": "data/config/retrieval_bm25_validation_v1.json",
+  "validation_policy": "Written against sources before BM25 implementation; evaluated once after selecting the final algorithm; no tuning after the result. Not blinded or expert-reviewed.",
+  "default_enabled": false,
+  "default_retained_reason": "Producer-duty and auction-liability precedent queries regress in separate regression suites; optional tokenizer/index preparation also required.",
+  "additional_source_regression_report": "docs/evaluation/bm25-source-regressions-2026-10-27.json",
+  "further_algorithm_tuning_after_new_validation": false
+}

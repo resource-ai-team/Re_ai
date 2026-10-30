@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-10-25T12:14:03.948979+00:00",
+  "code_sha256": "2b564c9876718b81958417e8c1e59871cbb0d1acfe7843cb8d177bca6dfa9c21",
+  "files_hashed": 171,
+  "newline_normalisation": "LF",
+  "scope": "772 pytest tests plus 24 subtests, actual local Neo4j and PostgreSQL enabled; no skip",
+  "pytest": {
+    "passed": 772,
+    "subtests_passed": 24,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 90.242
+  },
+  "ruff_check": "passed",
+  "ruff_format": "213 files already formatted",
+  "scenario_matrix": {
+    "api_cases": 69,
+    "assertions_passed": 336,
+    "assertions_total": 338,
+    "all_passed": false,
+    "remaining_failure": "One permit-scope question misses primary article 25 in top five; checked by body and by locator"
+  },
+  "input_and_price_fixtures": "synthetic; not customer transactions",
+  "commercial_recommendation_accuracy_validated": false,
+  "raw_licensed_sources_or_company_registry_uploaded": false,
+  "code_hash_recipe": "LF-normalised paths and content: src/**/*.py, tests/**/*.py, migrations/*.sql, scripts/evaluate_pipeline_matrix.py, pyproject.toml; each separated by null byte",
+  "additional_retrieval_probe": {
+    "passed": 5,
+    "total": 8,
+    "labels": "developer-derived, expert validation pending"
+  },
+  "integrated_develop_commit": "6fddb2c9e3667d016793aa295ed8caca3b8ee064"
+}

@@ -50,6 +50,23 @@ def test_prepare_document_adds_stable_canonical_source_id() -> None:
     assert len(chunks) == len(vectors) == 1
 
 
+def test_embedding_receives_document_and_section_context_without_changing_quotes():
+    class Capture(HashEmbeddingProvider):
+        def embed_documents(self, texts):
+            self.received = list(texts)
+            return super().embed_documents(texts)
+
+    embedding = Capture()
+    doc = _law()
+    _, chunks, _ = LegalRepository(UnusedDatabase(), embedding)._prepare_document(doc)
+    assert (
+        embedding.received[0]
+        == f"{doc.title}\n{doc.sections[0].heading}\n{doc.sections[0].content}"
+    )
+    assert chunks[0][1] == doc.sections[0].content
+    assert chunks[0][4]["embedding_recipe"] == "document-heading-content-v1"
+
+
 def test_explicit_canonical_source_id_is_preserved() -> None:
     repository = LegalRepository(UnusedDatabase(), HashEmbeddingProvider())
     document = replace(_law(), metadata={"canonical_source_id": "custom:law"})
@@ -85,6 +102,21 @@ def test_prepare_company_document_records_tenant_and_source_metadata() -> None:
     assert chunks[0][4]["corpus_type"] == "COMPANY_DOCUMENT"
     assert chunks[0][4]["tenant_id"] == "tenant-a"
     assert chunks[0][4]["source_position"] == 2
+
+
+@pytest.mark.parametrize("lane", ["factory", "recipient"])
+def test_old_public_facility_dataset_cannot_reactivate_technical_records(lane):
+    doc = EvidenceDocument(
+        source_id="public-evidence:old-facility:v1",
+        document_type="TECHNICAL_LITERATURE",
+        title="시설 소개",
+        source_url="https://example.org/facility",
+        version="v1",
+        sections=[EvidenceSection("소개", "공개 시설 후보", metadata={"collection_lane": lane})],
+        metadata={"rights": {"indexing_allowed": True}},
+    )
+    with pytest.raises(ValueError, match="not Technical RAG"):
+        LegalRepository(UnusedDatabase(), HashEmbeddingProvider()).ingest(doc)
 
 
 def test_search_row_keeps_version_and_source_position() -> None:

@@ -1,0 +1,235 @@
+{
+  "observed_at": "2026-10-25T13:47:14.045759+00:00",
+  "catalog_version": "kr-waste-review-starting-points-v1",
+  "catalog_sha256": "310561fd6f93d1dbccc3e920d081c1557db45193ce4961d8c43bb64e81cc36a5",
+  "complete_references": 10,
+  "total_references": 10,
+  "source_fragments": 62,
+  "scope": "all indexed fragments for selected KR starting articles, not applicability or official completeness validation",
+  "applicability_audited": false,
+  "live_external_calls": 0,
+  "references": [
+    {
+      "id": "waste-definition",
+      "article": "제2조",
+      "status": "retrieved",
+      "complete": true,
+      "chunks": 1,
+      "source_checks": [],
+      "versions": [
+        "20260317"
+      ],
+      "effective_dates": [
+        "2026-09-18"
+      ],
+      "source_fragment_sha256s": [
+        "cd39e65977a649407ac31b04cfeeae89f571043283d769802941855415607d2b"
+      ]
+    },
+    {
+      "id": "waste-treatment-standards",
+      "article": "제13조",
+      "status": "retrieved",
+      "complete": true,
+      "chunks": 2,
+      "source_checks": [],
+      "versions": [
+        "20260317"
+      ],
+      "effective_dates": [
+        "2026-09-18"
+      ],
+      "source_fragment_sha256s": [
+        "325f32b488ce8924ad126c1ad7917aac89d7de076c8fce24343d4c60aa8bf263",
+        "6ed65dc1252c4721c86ef82b7851edca92b5a997fb650e15cf0b399c4da47e7a"
+      ]
+    },
+    {
+      "id": "waste-recycling-principles",
+      "article": "제13조의2",
+      "status": "retrieved",
+      "complete": true,
+      "chunks": 3,
+      "source_checks": [],
+      "versions": [
+        "20260317"
+      ],
+      "effective_dates": [
+        "2026-09-18"
+      ],
+      "source_fragment_sha256s": [
+        "8b8d06111dfb9c445b0a06ac12ab6403f98363b5543e1b242312bc93d678f209",
+        "f24a014694b182ca3256909ecb7cded7a43e5367aa10b0565e57688bbda8c3de",
+        "ad43f2e94b458131f7bc1a58767386de9c3f8536a231834ccab1a8ecf6cfee03"
+      ]
+    },
+    {
+      "id": "waste-recycling-environment-assessment",
+      "article": "제13조의3",
+      "status": "retrieved",
+      "complete": true,
+      "chunks": 7,
+      "source_checks": [],
+      "versions": [
+        "20260317"
+      ],
+      "effective_dates": [
+        "2026-09-18"
+      ],
+      "source_fragment_sha256s": [
+        "9e97766f933cfbe9016c4739dc3c28fd142b876ceb210c5a9783ec9a96ffef83",
+        "a351a0236ecb60eaa7e52a5f06a3397078cc41d86dd52509e4ea925a2279c124",
+        "083dbe82a31039dace9632c7122a4a5a24ceeb5bcf6b7351b55dd6be46487136",
+        "4555d9363e00ec2560b1a1718ac0e81976f7a3da2446f6f3eea4cf0bc3a859a1",
+        "d291fda6d85706986c908f169e21e007b5d8ff281a2f23d4c42c5de61384638d",
+        "4e13e20667e0db8a8507b81444c29e94aae87f57d80d566a43f79a7de2ff3f67",
+        "305980341df76af451761fa6640646467ede916508d505f868e8cd98edd70b50"
+      ]
+    },
+    {
+      "id": "waste-business-permit",
+      "article": "제25조",
+      "status": "retrieved",
+      "complete": true,
+      "chunks": 17,
+      "source_checks": [],
+      "versions": [
+        "20260317"
+      ],
+      "effective_dates": [
+        "2026-09-18"
+      ],
+      "source_fragment_sha256s": [
+        "c515f50b7a2c07882a5f86b66d1c44151e15cc551de42e7c72230bf3840dcd3f",
+        "0e088049ff2ad8021f5f404ec77f65072b8df252beaa119732d9fdabe812d616",
+        "11b865a7405223effb54a2310710ddcac046c080759f79e56d89a731c702cd08",
+        "1a41d3ede2cf088543390ba4bacfa22e8f79381419c2f6ac29ab02bd8299d4cc",
+        "dda40a0452e81573c73fd0356f122171daa108723cb401c687f06d8fd8d74810",
+        "764f7fe21d74ee62709cba0956c4c3c2c6a5b1228ecfae6435c3017b4aac49ec",
+        "323ec7158f30029e1ca2e8ab4bbcd447adc3e31cb78322bf640ee05fc7dbc7a0",
+        "3002cd752ba03c3a95ba3e64b63e2d0f1e2656038a54f9eea124451d311d73f2",
+        "faada5198a97f78f361267e0d3a1ff49a5622a2ddd78443ff1063dac8e0d470c",
+        "91feca057b50b8a7e8ab28b8a521b71bdfe8484d2c80332a094bfa88dc442822",
+        "703d05f54c58267f13568dfa571e5c6605878988c17e71d865e4dd92f5115eb0",
+        "480975f859da11f2a3ee6230010db26a39fc793d03b54eee0c7b039542d28d24",
+        "0045b1fad0980df4810d5a21fc7ec109d22c8f58de3b9337ec800d7fc524a144",
+        "c4d59486c2fe9dc8d755ca10f45bd9b7fe4223e2475793af682783d35c32cc6d",
+        "d6b2a7ea5b3515b8b64d655f211d29e47c1ac5b42611fa1c4fe12b426fb5f468",
+        "d62ec94ad96f1fc8750e532dda539597ff6fcd98b13490f93c15718015f9ff72",
+        "fa3675a13aee220ceb851de55fd8e15f63b4ce5ed7f08b6ad5000cd76a2b5e43"
+      ]
+    },
+    {
+      "id": "waste-facility-installation",
+      "article": "제29조",
+      "status": "retrieved",
+      "complete": true,
+      "chunks": 6,
+      "source_checks": [],
+      "versions": [
+        "20260317"
+      ],
+      "effective_dates": [
+        "2026-09-18"
+      ],
+      "source_fragment_sha256s": [
+        "66f38d270be4f2b15852185fee8426c779c04b7d20a9dad0c7989d8857d67452",
+        "0033906ea5146093a2bfbb7a4c121b55943e9de874ebd3bd5c1f541420d58ca8",
+        "ac2d35a1613eb7507de3f8f5bccde44be701245b6407efed621f341acaa710c1",
+        "2a8357d24d61fa07b097198011e86911ecb7de7a582e22fc9c9e9031b194865f",
+        "c0b3eb56061a2db5007d1b3709d92094bb6dd29debcfc86efa578bc5c100e818",
+        "7d2a12e961134afa4a34f2ba4f73a83759d704c1c215d9893acec9ecd4d2ac05"
+      ]
+    },
+    {
+      "id": "waste-treatment-notification",
+      "article": "제46조",
+      "status": "retrieved",
+      "complete": true,
+      "chunks": 8,
+      "source_checks": [],
+      "versions": [
+        "20260317"
+      ],
+      "effective_dates": [
+        "2026-09-18"
+      ],
+      "source_fragment_sha256s": [
+        "7ee1ddc7adb7cf1cdbb01824e06227d0af6bcee1d823ec37bfd812c1c7cbd794",
+        "5eacbe7f3bbd6a2a653566379550d5771d5ef62f32195620fcd9ab25c00296d4",
+        "6a834aeff18bf9c55e0969227c88a99846c6e540941b36074db5412c15604cd1",
+        "f27a61d43d406fca145101676b7ac089fc2358567444df501d78f6f9d0e7af20",
+        "c9c25b2afb3c7a0ee7a56c0963998486cce148e3872a18a1a8702dd9624884b9",
+        "cb0fc9bb5ff44131e54e03f9aaf5aa781006468f49dcaa475892e2cd67fe8492",
+        "e6d57ac28d11c1830d7c2d7a698e47592f9c17aa7917a1b4fe923aee1ffd3441",
+        "b1c5e365cf779b69d69e58c1b8b0e69381b86b323394cddc0a2784d133368d5a"
+      ]
+    },
+    {
+      "id": "waste-producer-obligations",
+      "article": "제17조",
+      "status": "retrieved",
+      "complete": true,
+      "chunks": 10,
+      "source_checks": [],
+      "versions": [
+        "20260317"
+      ],
+      "effective_dates": [
+        "2026-09-18"
+      ],
+      "source_fragment_sha256s": [
+        "4dc7680eb33fff07e303dc7825e84865e1b73bd791596bc550a2b69938637354",
+        "a7d7cfe8032202d163a46100ac73ef4a3f1bb6d5cab0506494791302c851caba",
+        "9863234aae6ae36f189cc998493386f4c34989bf1474f3b6f3fb2f8d9ecf446a",
+        "306b4ccfd78f4b97ba07d4fc724e9c7cb48dcd55b8c606ba2e6a80e1a6441f45",
+        "df85f5876d8eb463e96df201544eb9111f64d0e63ce9609a390e47a4e6649837",
+        "c11d3a002e4f9d6891049687890acc5864b652cc7f3758073bf7893d7a95dbc8",
+        "b6d85dd3ef690871fb58c14579eb6c663e31a5690a937bca62341ded56924e1e",
+        "f0fd59f337a7cde3845de03e2a6323e3b2512b7901b66c5cf89c1348accbea8a",
+        "a81e73e4dd2072d70b3591cc7d9e6eb8e4d8d2fa64ebc10e112bcbc22d2892ea",
+        "8fe4c5a818172c806a349e6bd6a6981b875cc30873ed9e981034b2a074471e2e"
+      ]
+    },
+    {
+      "id": "waste-consignment-treatment",
+      "article": "제18조",
+      "status": "retrieved",
+      "complete": true,
+      "chunks": 6,
+      "source_checks": [],
+      "versions": [
+        "20260317"
+      ],
+      "effective_dates": [
+        "2026-09-18"
+      ],
+      "source_fragment_sha256s": [
+        "eb13fdbbe14f96edbd9d3a494e32607d372ca4b051f9bf198a647de32796e22f",
+        "79d2df9b9116d10bcb41cd84872984a0c4f1746fd6bc9094f4a4ab7d78ea4d52",
+        "86ca7f0746f20e48e71d50aabc624826f740577f79ee329b88af96e03af69418",
+        "22473dc00fb953b9fa16d0c00788749e914554f81d1a22b6eaf78638ac9ecef6",
+        "f057df644ee7a4b8301346d858cdf5a7f07183015a22a5bc80f14ef2a4ebf715",
+        "26f1cd98af6a0e908c5d5778ce71ce31cddacbf3af1e8acd2d1f1f21f48f881a"
+      ]
+    },
+    {
+      "id": "waste-processor-obligations",
+      "article": "제19조",
+      "status": "retrieved",
+      "complete": true,
+      "chunks": 2,
+      "source_checks": [],
+      "versions": [
+        "20260317"
+      ],
+      "effective_dates": [
+        "2026-09-18"
+      ],
+      "source_fragment_sha256s": [
+        "f659b5dc01be23e1bbd98f092caad148415a028cdf5df7494fcb9462720ed372",
+        "48dad8451e50864a8bd8ca2b08ca5e53fc0620ea541b8464a8aac201b7d35869"
+      ]
+    }
+  ]
+}

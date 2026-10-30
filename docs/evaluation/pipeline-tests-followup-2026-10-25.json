@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-10-25T13:53:50.413113+00:00",
+  "integrated_develop": "9120006",
+  "code_and_config_sha256": "9cf3a768b814e85ccba41c02c75af897fe87415406565ee6d235f10ff4d61612",
+  "files_hashed": 191,
+  "hash_recipe": "LF-normalised relative paths/content with null separators: src/**/*.py, src/**/*.json, tests/**/*.py, migrations/*.sql, data/config/*.json, two evaluation scripts, pyproject.toml",
+  "pytest": {
+    "passed": 796,
+    "subtests_passed": 24,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 85.197
+  },
+  "ruff_check": "passed",
+  "ruff_format": "217 files formatted",
+  "actual_databases": [
+    "Neo4j",
+    "PostgreSQL/pgvector"
+  ],
+  "scenario_matrix": {
+    "cases": 69,
+    "passed": 358,
+    "total": 360,
+    "all_passed": false
+  },
+  "retrieval_by_group": {
+    "LEGAL": {
+      "total": 7,
+      "passed": 6,
+      "recall_at_5": 0.8571428571428571,
+      "mrr": 0.6666666666666666
+    },
+    "TECHNICAL": {
+      "total": 7,
+      "passed": 7,
+      "recall_at_5": 1.0,
+      "mrr": 0.9285714285714286
+    }
+  },
+  "required_case_failures": [
+    "폐기물 처리업체의 허가 업종과 처리 범위를 확인하려면 어떤 조문을 봐야 하나?"
+  ],
+  "additional_paraphrases": {
+    "passed": 5,
+    "total": 8,
+    "expert_labels_verified": false
+  },
+  "baseline_starting_references": {
+    "fetched": 10,
+    "expected": 10,
+    "fragments": 62,
+    "applicability_verified": false
+  },
+  "wheel_catalog_inclusion_checked": true,
+  "live_hosted_model_and_map_calls": 0,
+  "lots_prices_and_sites": "synthetic",
+  "dispatch_approved": false
+}

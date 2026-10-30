@@ -1,0 +1,47 @@
+{
+  "checked_on": "2026-10-27",
+  "purpose": "source preparation verification; not independent carbon/critic quality benchmark",
+  "sources_verified": 7,
+  "counts": {
+    "defra_reviewed_category_rows": 2152,
+    "defra_categories": {
+      "Material use": 168,
+      "Waste disposal": 294,
+      "Freighting goods": 1352,
+      "WTT- delivery vehs & freight": 338
+    },
+    "epa_table9_materials": 61,
+    "epa_table9_method_cells": 366,
+    "published_numeric_cells": 1838,
+    "missing_cells": 680,
+    "korean_grid_records": 2
+  },
+  "real_snapshot_checks": {
+    "source_hashes_and_lengths": true,
+    "defra_recycling_and_combustion_not_misread_as_process_lca": true,
+    "epa_pet_raw_short_ton_unit_preserved": true,
+    "unavailable_values_not_zero": true,
+    "all_foreign_records_excluded_from_automatic_kr_ranking": true,
+    "two_transport_reference_cells_match_catalog": true
+  },
+  "parser_unit_tests_passed": 24,
+  "new_parser_tests": 11,
+  "existing_public_data_parser_tests": 13,
+  "ruff_passed": true,
+  "service_db_updated": false,
+  "paid_model_calls": 0,
+  "raw_files_committed": false,
+  "live_azure_observations": {
+    "foundry_model_provisioning": "Succeeded",
+    "foundry_linked_resources": "none shown",
+    "foundry_datasets": "none shown",
+    "foundry_files": "none shown",
+    "foundry_indexes": "none shown",
+    "visible_arm_resource_count": 163,
+    "visible_arm_type_count": 19,
+    "own_ml_registered_data_assets": "none shown",
+    "own_ml_default_datastores": 4,
+    "sustainability_license_and_environment_access": "unconfirmed; app/environment management absent in account UI; licensing page not found",
+    "own_ml_default_blob_container_items": 0
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-10-26T18:52:30.553215+00:00",
+  "phase": "after",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "live_model_calls": 1,
+  "scope": "One public-derived route and synthetic numbers; not a full legal or product evaluation",
+  "source_sha256": "6e175f64c143c67fbf791d5edafc10b8526a71e5000148be36c04e715cb1d6a7",
+  "reference_basis_sha256": "85d18b4813f90247db79ee9c48c2f3999e4cd625805c8e7a84fac969878ed510",
+  "input_sha256": "78d7a2ecb0d8d0992b4769069dc9446852b71287f1d2f10743684ff4f88d4e21",
+  "evidence": [
+    {
+      "ref_id": "E0001",
+      "candidate_id": "A",
+      "target_id": "A",
+      "kind": "engine_record",
+      "metadata": {},
+      "text": "{\"source\":\"public KG snapshot\",\"stages\":[{\"id\":\"S1\",\"process\":\"PP 반입 선별·파쇄\"},{\"id\":\"S2\",\"process\":\"PP 세정 조사\"},{\"id\":\"S3\",\"process\":\"PP 압출 재생\"}],\"handoffs\":[{\"from\":\"S1\",\"to\":\"S2\"},{\"from\":\"S2\",\"to\":\"S3\"}]}"
+    },
+    {
+      "ref_id": "E0002",
+      "candidate_id": "A",
+      "target_id": "A",
+      "kind": "engine_record",
+      "metadata": {},
+      "text": "{\"source\":\"synthetic quote and lot\",\"mass_kg\":3000,\"quote\":\"20000 KRW/t\",\"permit_and_intake\":\"unknown\"}"
+    },
+    {
+      "ref_id": "E0003",
+      "candidate_id": "A",
+      "target_id": "A",
+      "kind": "engine_record",
+      "metadata": {},
+      "text": "{\"source\":\"revised draft\",\"handoffs\":[{\"from\":\"S1\",\"to\":\"S2\"},{\"from\":\"S2\",\"to\":\"S3\"}],\"activity\":\"3000\",\"activity_unit\":\"kg\",\"factor\":\"20\",\"factor_unit\":\"KRW/kg\",\"claimed_transport_KRW\":\"60000\"}"
+    }
+  ],
+  "concerns": [],
+  "rejected_findings": [],
+  "dispatch_approved": false,
+  "planning_cost_ceiling_krw_including_prior_reserve": "813.26000",
+  "status": "completed",
+  "call": {
+    "task": "focused_critic",
+    "status": "completed",
+    "reasoning_effort": "high",
+    "http_status": 200,
+    "rate_limits": {
+      "x-ratelimit-limit-tokens": 1000,
+      "x-ratelimit-limit-requests": 1,
+      "x-ratelimit-remaining-tokens": 449,
+      "x-ratelimit-remaining-requests": 0
+    },
+    "usage": {
+      "input_tokens": 845,
+      "output_tokens": 80,
+      "reasoning_tokens": 63
+    },
+    "provider_status": "completed",
+    "reported_model": "resource-gpt-6-astra",
+    "verified_model": "gpt-6-astra",
+    "model_identity_basis": "operator_checked_azure_deployment"
+  }
+}

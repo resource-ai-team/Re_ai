@@ -8,6 +8,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, model_validator
 
 from resource_ai.api.schemas.facility_assessment import AssessedPlansRequest
 from resource_ai.api.schemas.kg_planning import ProcessPlan
+from resource_ai.api.schemas.legal_graph import LegalGraphRequest
 
 
 class StrictModel(BaseModel):
@@ -19,6 +20,9 @@ class ResearchRequest(StrictModel):
     max_pages: int = Field(default=20, ge=1, le=20)
     max_legal_queries: int = Field(default=24, ge=1, le=100)
     legal_top_k: int = Field(default=3, ge=1, le=5)
+    max_technical_queries: int = Field(default=0, ge=0, le=50)
+    technical_top_k: int = Field(default=3, ge=1, le=5)
+    legal_graph: LegalGraphRequest | None = None
 
     @model_validator(mode="after")
     def start_at_first_page(self):
@@ -42,6 +46,9 @@ class CandidateResearch(StrictModel):
     legal_tasks: list[dict[str, str]]
     blockers: list[str]
     status: Literal["unmet", "needs_verification"]
+    legal_graph_review: dict[str, Any] | None = None
+    technical_tasks: list[dict[str, str]] = Field(default_factory=list)
+    legal_baseline_tasks: list[dict[str, Any]] = Field(default_factory=list)
     recommended: Literal[False] = False
 
 
@@ -55,6 +62,8 @@ class ResearchResponse(StrictModel):
     coverage: dict[str, Any]
     candidates: list[CandidateResearch]
     legal_searches: list[LegalSearch]
+    technical_searches: list[LegalSearch] = Field(default_factory=list)
+    legal_baselines: list[dict[str, Any]] = Field(default_factory=list)
     next_actions: list[str]
     route: Literal["REVIEW"] = "REVIEW"
     final_recommendations: list[str] = Field(default_factory=list, max_length=0)

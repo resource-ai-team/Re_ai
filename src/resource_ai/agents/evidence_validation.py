@@ -84,7 +84,8 @@ def _reference(evidence: dict) -> EvidenceAssessment:
 
 def _query(packet: dict, assessment: EvidenceAssessment, *, retry: bool) -> str:
     source_record = packet.get("source_record") or {}
-    metadata = source_record.get("metadata") if isinstance(source_record, dict) else {}
+    metadata = source_record.get("metadata") if isinstance(source_record, dict) else None
+    metadata = metadata if isinstance(metadata, dict) else {}
     parts = [
         metadata.get("waste"),
         metadata.get("transforming_process"),

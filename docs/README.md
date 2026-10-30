@@ -5,11 +5,21 @@
 
 ## 기준과 현재 상태
 
+최신 추가 보강: [기본 조문 직접 조회·지도 배지 집계·검색 품질 게이트](pipeline-followup-2026-10-25.md).
+
+최신 실제 DB 실행·PR 확인·수정 사항·데이터/기술별 남은 일은 [2026-10-25 전체 검증](pipeline-validation-2026-10-25.md)을 먼저 읽으세요.
+
 | 문서 | 볼 내용 |
 | --- | --- |
 | [확정 파이프라인 v2](pipeline-baseline.md) | 전체 서비스의 목표 단계·책임·Critic·부분 재실행 원칙. 모든 단계의 구현 완료를 뜻하지 않음 |
 | [코드와 데이터 구조](architecture.md) | 지금 실행되는 기능·모듈·DB·서비스 호출 경계 |
 | [후보별 조사·수치 비교](candidate-analysis.md) | 연결된 분석 API 두 개의 입력·출력·현재 한계 |
+| [실제 경로에 연결한 수치 검토](grounded-decision-review.md) | 빈 양식·입력/그래프/단계 연결·계산·결정론적 Critic·검토 보고서 |
+| [검정 PP 3톤 실행 사례](scenarios/pp-scrap-live-2026-10-22.md) | 가상 로트·실제 KG/검색. 세 처리 깊이·사업장 가설·10개 검색·미확인과 지정폐기물 변형 결과 |
+| [배출 사업장 중심 탐색 방향](site-centered-discovery.md) | 내 사업장 선택→공정별 시설 조사→검증→전체 도로거리·총비용 비교. 설계와 현재 미연결 기능 구분 |
+| [사업장별 시설 조사 API](site-discovery-api.md) | 구현된 출발 좌표→KG 공정별 명부→직선거리순 목록. 실제 DB 결과와 시설 수행 근거 부족 구분 |
+| [10월 24일 PR 점검·다음 작업](pr-audit-2026-10-24.md) | Re_ai PR 19개 현황·개발 브랜치 갱신·현재 연결 범위와 다음 우선순위 |
+| [법률 그래프·Auditor](legal-hierargraph.md) | 논문 구조·국내 적용 차이·세 검색·Check/Decide·실제 구조 적재와 가상 모델 테스트 구분 |
 | [진행보드 반영 결과](progress-board-update.md) | Notion 기존 11개 수정·신규 3개·완료 3개 보존 및 카드별 남은 일 |
 
 ## KG를 개발하거나 연결할 때
@@ -21,6 +31,7 @@
 | [공정·시설 경로 탐색](kg-process-plans.md) | 별도 상태 전이, 여러 공정 순서·시설 조합, 역할 가설·검색 한도 |
 | [공정 근거와 빈 연결 보강](kg-evidence-upgrade.md) | 제지 10개 작업·PE 등급 구분·PP 확인 질문·출처 연결 범위·연결 진단 API |
 | [국내 시설 추가 조사](kg-facility-matching.md) | 등록 명부 수집·적재·공정별 검색·직선거리와 확인할 조건 |
+| [사업장 식별과 공정 근거 연결](facility-identity-evidence.md) | 검수한 명부 행→사업장→요청 공정 연결, 원본 버전 변경·동명 회사·공정 확대 해석 방지 |
 | [시설 공개 조건 대조](kg-facility-conditions.md) | 소재·명시적 제외·미확인 대조, 공정·운송 구간별 표시와 PP 사례 |
 | [KG 고도화 계획과 기록](kg-upgrade-plan.md) | 추가할 데이터·기술과 각 조회 버전의 실행 기록 |
 
@@ -44,10 +55,14 @@
 | 기록 | 검증 범위 |
 | --- | --- |
 | [KG 조회](evaluation/knowledge-graph-2026-10-21.json) | 고정 문헌·참조 자료 조회와 연결 |
+| [시설 식별 실제 API 검사](evaluation/facility-identity-2026-10-24.json) | 공공 주소 근거·명부 행을 연결하되 PET/PP 세척 능력은 미확인으로 유지 |
 | [전체 후보 조사 묶음](evaluation/kg-pool-2026-10-21.json) | 후보·페이지·출처·자료 범위 |
 | [공정·시설 경로](evaluation/kg-plans-2026-10-21.json) | 등록 상태 전이·경로 열거·시설 연결 |
 | [KG 보강 후 재검증](kg-evidence-upgrade.md#이번-검증-결과) | 새 제지 순서·출처 범위·등급·연결 진단, 실제 활성 세대와 전체 테스트 |
 | [후보 조사와 가상 산술](evaluation/analysis-2026-10-21.json) | 실제 KG/API와 로컬 검색 상태, 별도로 만든 가상 수치 계산 |
+| [법령·판례 보강 구조 검사](evaluation/legal-expansion-2026-10-22.json) | 실제 공식 6문서·119구간과 Neo4j 구조의 대조. 법규 정확도 평가는 아님 |
+| [KG-수치 검토 연결 검사](evaluation/grounded-review-2026-10-22.json) | 실제 Neo4j 경로와 가상 수치. 17/19 통과, PostgreSQL 불가로 검색 2개 확인 실패 |
+| [Docker 복구 후 연결 검사](evaluation/grounded-review-recovered-2026-10-22.json) | 실제 검색 정상·18/19 통과. 검색 품질 회귀 6/7, 허가 범위 질문의 기대 조문 누락 1건 보강 필요 |
 | [이전 파이프라인 v1](pipeline-baseline-v1.md) | 이전 의사결정 기록. 현재 구현의 기준은 v2 문서 |
 
 단위·통합 테스트의 성공은 후보 누락·연결·계산·실패 처리 등을 확인한 결과입니다.

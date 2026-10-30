@@ -300,6 +300,69 @@
           "pp-prepare"
         ]
       }
+    },
+    {
+      "key": "cosmo-rm-cups",
+      "url": "https://www.cosmo.or.kr/boardDownload.es?bid=0001&list_no=50188&mid=a10401000000&seq=1",
+      "publisher": "자원순환보증금관리센터",
+      "locator": "1쪽 적격 사업자 세부내역: 업체·대상품목·사업장 주소",
+      "summary": "알엠 화성공장을 PET 표준·비표준 1회용컵 재활용 적격 사업자로 기재하고 사업장 주소를 명시한다. 문서 본문의 발행일은 확인되지 않았다. 개별 세척·압출 공정, 현재 허가·인수 조건을 입증하지 않는다.",
+      "checked_date": "2026-10-24",
+      "source_date": null,
+      "sha256": "227aac95614fcd568c7517e85c2f268899a8069e72a6f03e8e0959d1f097ed29",
+      "acquisition": "official-source-acquired-and-reviewed",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "supported_records": {
+        "organisations": [
+          "rm-hwaseong-operator"
+        ],
+        "facilities": [
+          "rm-hwaseong"
+        ]
+      }
+    },
+    {
+      "key": "keco-rm-recycled-input",
+      "url": "https://portal.budamgum.or.kr/cmb/portal/board.do?boardId=9384&menuId=11&search_sys=EPR&tp=N",
+      "publisher": "한국환경공단",
+      "locator": "2025-07-09 공지: 사업자명·소재지·생산 유효기간·변경 가능 안내",
+      "summary": "알엠 화성공장의 소재지와 식품용 재생원료 생산확인서 발급 내역을 공고한다. 게시된 기간은 2025-05-22~2028-05-21이며 실태점검 등에 따른 변경 가능성을 명시한다. 현재 효력, 전체 폐기물처리 허가 또는 이번 로트 인수 승인으로 사용하지 않는다.",
+      "checked_date": "2026-10-24",
+      "source_date": "2025-07-09",
+      "sha256": "8ddb9d9dd78ccfb4f1337f33b56dd1c15040378689e3b03fd800a674bb816782",
+      "acquisition": "official-source-acquired-and-reviewed",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "supported_records": {
+        "organisations": [
+          "rm-hwaseong-operator"
+        ],
+        "facilities": [
+          "rm-hwaseong"
+        ]
+      }
+    },
+    {
+      "key": "samyang-site-address",
+      "url": "https://www.samyangpackaging.com/kr/company/about",
+      "publisher": "삼양패키징",
+      "locator": "사업장 안내 > 시화공장",
+      "summary": "공식 회사개요의 시화공장 안내에서 경기도 시흥시 공단2대로 81과 삼양에코테크를 함께 기재한다. 사업장 주소 근거이며 현재 가동·허가·인수 조건을 보증하지 않는다.",
+      "checked_date": "2026-10-24",
+      "source_date": null,
+      "sha256": "0605e1abcd68d153250023cae8787175b995e0969a670cd8fa6899309692623c",
+      "acquisition": "official-html-acquired-and-reviewed",
+      "digest_basis": "downloaded-original-bytes",
+      "model_transfer_allowed": true,
+      "export_scope": "team-authored-factual-summary-only; raw-page-and-assets-excluded",
+      "supported_records": {
+        "facilities": [
+          "samyang-sihwa"
+        ]
+      }
     }
   ],
   "states": [
@@ -1017,6 +1080,14 @@
       "source_ids": [
         "hansol-paper"
       ]
+    },
+    {
+      "key": "rm-hwaseong-operator",
+      "label": "주식회사 알엠 화성공장(공고 명의)",
+      "source_ids": [
+        "cosmo-rm-cups",
+        "keco-rm-recycled-input"
+      ]
     }
   ],
   "facilities": [
@@ -1026,9 +1097,10 @@
       "label": "삼양에코테크 시화공장",
       "country": "KR",
       "region": "경기도 시흥시 시화공단",
-      "address": null,
+      "address": "경기도 시흥시 공단2대로 81 (정왕동, 삼양에코테크)",
       "source_ids": [
-        "samyang-pet"
+        "samyang-pet",
+        "samyang-site-address"
       ],
       "reported_metrics": [
         {
@@ -1156,6 +1228,38 @@
       "current_price_krw_per_kg": null,
       "latitude": null,
       "longitude": null
+    },
+    {
+      "key": "rm-hwaseong",
+      "label": "알엠 화성공장",
+      "source_ids": [
+        "cosmo-rm-cups",
+        "keco-rm-recycled-input"
+      ],
+      "organisation": "rm-hwaseong-operator",
+      "country": "KR",
+      "region": "경기도 화성시 양감면",
+      "address": "경기도 화성시 양감면 사격장길 88-51",
+      "reported_metrics": [],
+      "current_permit_scope": null,
+      "current_available_capacity_kg": null,
+      "current_acceptance": null,
+      "current_price_krw_per_kg": null,
+      "latitude": null,
+      "longitude": null,
+      "registry_identity_links": [
+        {
+          "listing_id": "facility-listing:34c65596f6357599b607a3590093585c",
+          "registry_source_sha256": "b083ea497c37bb11bd9374fc0a5b0850b989d290dbdba9d4a713fef353e79c08",
+          "record_sha256": "97fd27b4f8a5c0c08dfbb69fa119772d3dc35a8b3e06737c9e9a87506e249291",
+          "source_ids": [
+            "cosmo-rm-cups",
+            "keco-rm-recycled-input"
+          ],
+          "checked_date": "2026-10-24",
+          "basis": "official_site_address_and_registry_record_review"
+        }
+      ]
     }
   ],
   "capabilities": [

@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-10-26T17:02:04.791863+00:00",
+  "scope": "Release followup after develop PR51 integration; actual PostgreSQL/Neo4j, null source metadata and conflict-safe legal aliases",
+  "pytest_passed": 877,
+  "subtests_passed": 24,
+  "junit_tests": 901,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 155.806,
+  "raw_junit_sha256": "da1a576a373ea89f5374c31b85e6673be91a7f0ad55e8f827f66499b672263da",
+  "live_paid_model_calls": 0,
+  "merged_develop_commit": "4d35b23",
+  "code_snapshot_sha256": "25363709fd9cf2a2da2cdb8af507dadcbc8a0db00c0ca94207a72b96d4925256",
+  "snapshot_file_count": 205,
+  "snapshot_line_endings": "LF normalized"
+}

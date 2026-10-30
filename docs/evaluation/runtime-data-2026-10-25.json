@@ -1,0 +1,24 @@
+{
+  "observed_at": "2026-10-25T12:13:35.889398+00:00",
+  "active_document_counts": {
+    "LAW": 15,
+    "PRECEDENT": 14,
+    "TECHNICAL_LITERATURE": 12
+  },
+  "active_documents": 41,
+  "active_chunks": 3385,
+  "inactive_public_non_technical_documents": 21,
+  "registry": {
+    "rows": 9604,
+    "generation": "7cbb2f6c9ee949828ff6213ada559ca0",
+    "model_transfer_allowed": false,
+    "all_records_are_verified_process_capabilities": false
+  },
+  "lci": {
+    "local_archives": 7,
+    "uploaded_to_git": false,
+    "facility_total_carbon_comparability_verified": false
+  },
+  "synthetic_inputs": true,
+  "live_external_model_and_map_calls_in_scenario_matrix": 0
+}

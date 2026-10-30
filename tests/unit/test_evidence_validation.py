@@ -133,3 +133,16 @@ def test_candidate_without_reference_never_passes():
     assert result.route == "REVIEW"
     assert result.candidates[0].status == "UNKNOWN"
     assert result.searches == []
+
+
+def test_curated_kg_source_with_null_metadata_does_not_crash_reference_query():
+    from resource_ai.agents.evidence_validation import _query
+    from resource_ai.api.schemas.evidence_validation import EvidenceAssessment
+
+    assessment = EvidenceAssessment(
+        kg_evidence_id="kg-evidence:synthetic", reference="synthetic reference"
+    )
+    assert (
+        _query({"source_record": {"metadata": None}}, assessment, retry=False)
+        == "synthetic reference"
+    )

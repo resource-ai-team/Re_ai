@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-29",
+  "scope": "condition evidence, immutable what-if, decision actions and facility UI; not independent legal/recommendation accuracy validation",
+  "engine_unit_and_workflow_postgres": {
+    "passed": 941,
+    "subtests_passed": 24,
+    "skipped": 0
+  },
+  "prototype": {
+    "vitest_passed": 328,
+    "proxy_tests_passed": 2,
+    "build": "TypeScript/Vite passed; existing Three.js chunk-size warning"
+  },
+  "real_local_kg_rag_postgres": {
+    "date": "2026-10-29",
+    "scope": "actual local graph/retrieval/database; synthetic lot, limits, measurements; not a customer or accuracy benchmark",
+    "case_id": "42bd7fe1-83f3-4200-9455-3f813555f528",
+    "candidate_count": 2,
+    "trace": [
+      "missing_evidence",
+      "unmet_at_3_percent_vs_2_percent_limit",
+      "hypothetical_met_at_1_percent_no_save",
+      "changed_source_invalidates_old_reading",
+      "confirmed_new_reading_met_but_legal_acceptance_hold"
+    ],
+    "final_revision": 6,
+    "preview_cost_and_carbon": null,
+    "preview_saved": false,
+    "dispatch_approved": false,
+    "paid_model_calls": 0,
+    "map_calls": 0,
+    "paid_ocr_calls": 0,
+    "last_change": {
+      "from_revision": 5,
+      "to_revision": 6,
+      "condition_changes": [
+        {
+          "condition_id": "intake-condition:ff278be641d50aa9ae37dbf2d22ba613",
+          "candidate_id": "plan:59e132451cadac4dd9536bff6de4ddcd",
+          "target_id": "plan:59e132451cadac4dd9536bff6de4ddcd:stage:1",
+          "label": "함수율",
+          "before_status": "unknown",
+          "after_status": "met",
+          "explanation": "함수율 1 % / 제출 기준 ≤ 2 %",
+          "evidence_ids": [
+            "demo-limit",
+            "demo-reading"
+          ]
+        }
+      ],
+      "removed_condition_ids": [],
+      "metric_changes": [],
+      "pareto_before": [],
+      "pareto_after": [],
+      "scope": "condition_and_comparison_change_not_dispatch_approval"
+    }
+  },
+  "browser": {
+    "case": "local synthetic QA account and lot",
+    "saved_revision": 13,
+    "actual_moisture_pct": "0.3",
+    "synthetic_limit": "<= 0.2 %",
+    "hypothetical_moisture_pct": "0.1",
+    "actual_condition": "unmet",
+    "hypothetical_condition": "met",
+    "hypothetical_candidate_gate": "hold; legal/permit/acceptance/capacity unresolved",
+    "actual_revision_unchanged_by_preview": true,
+    "facility_buildings_excluding_origin": 2,
+    "process_references_preserved": 7,
+    "screenshot_files_ignored_local": [
+      "Re-Prototype/data/local/condition-actual-unmet-2026-10-29.png",
+      "Re-Prototype/data/local/condition-hypothesis-met-2026-10-29.png"
+    ]
+  },
+  "boundaries": [
+    "exact facility and graph condition binding",
+    "literal operator/value/unit verification",
+    "multiple limits/observations require disambiguation",
+    "source expiry/change and material/form invalidate claims",
+    "origin observation only at first process",
+    "permitted condition fields only to mocked Critic; actor/prompt withheld",
+    "inside-site activity is unmeasured, not zero public-road travel",
+    "different tenant and stale revision cannot preview",
+    "hypothetical percentage cannot create a cost/carbon prediction"
+  ],
+  "external_calls": {
+    "paid_model": 0,
+    "paid_ocr": 0,
+    "maps": 0
+  },
+  "not_completed": [
+    "real facility specification/measurement validation",
+    "expert legal applicability and lot acceptance review",
+    "causal yield/cost/carbon simulation",
+    "general KG/RAG partial re-query router",
+    "same-model same-evidence RAG accuracy baseline",
+    "live Azure/OCR/maps verification of this workflow"
+  ]
+}

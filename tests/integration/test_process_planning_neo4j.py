@@ -127,14 +127,14 @@ def test_live_coverage_api_reads_imported_reference_and_keeps_site_gaps(planning
     assert data["backend"] == "neo4j"
     assert data["graph_trace"]["generation"] == imported["generation"]
     assert data["counts"] == {
-        "sources": 9,
+        "sources": 12,
         "states": 23,
         "transitions": 18,
-        "organisations": 5,
-        "facilities": 7,
+        "organisations": 6,
+        "facilities": 8,
         "capabilities": 18,
     }
-    assert data["facilities_without_transition_keys"] == ["bgf-incheon"]
+    assert data["facilities_without_transition_keys"] == ["bgf-incheon", "rm-hwaseong"]
     assert data["dispatch_approved"] is False
 
 

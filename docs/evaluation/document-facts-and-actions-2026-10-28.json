@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-28",
+  "scope": "Document input review, stage-specific transport mass, target-bound action tasks; not recommendation accuracy or customer validation",
+  "engine_unit_and_workflow_postgres": {
+    "passed": 911,
+    "subtests_passed": 24,
+    "skipped": 0,
+    "command": "RUN_POSTGRES_INTEGRATION=true python -m pytest tests/unit tests/integration/test_workflow_postgres.py -q"
+  },
+  "prototype": {
+    "vitest_passed": 322,
+    "proxy_tests_passed": 2,
+    "typescript_vite_build": "passed; existing Three.js chunk-size warning"
+  },
+  "real_local_kg_rag_postgres": {
+    "scope": "actual local KG/RAG/PG; synthetic lot/quote; not an accuracy benchmark",
+    "runs": [
+      {
+        "material": "PET",
+        "case_id": "60540d3e-035d-4e31-8f2b-ff85732705c3",
+        "candidates": 2,
+        "questions": 154,
+        "revision": 8,
+        "document_status": "extracted",
+        "document_fact_applied": "quantity_kg",
+        "model_calls": 0,
+        "map_calls": 0,
+        "paid_ocr_calls": 0,
+        "dispatch_approved": false,
+        "numeric_mechanics": {
+          "before_errors": 1,
+          "after_errors": 0,
+          "scope": "synthetic numbers on actual KG; no model recheck or site verification"
+        }
+      },
+      {
+        "material": "aluminium",
+        "case_id": "83967942-2589-4b2f-be27-158a0d8eeb17",
+        "candidates": 1,
+        "questions": 33,
+        "revision": 5,
+        "document_status": "extracted",
+        "document_fact_applied": "quantity_kg",
+        "model_calls": 0,
+        "map_calls": 0,
+        "paid_ocr_calls": 0,
+        "dispatch_approved": false,
+        "numeric_mechanics": null
+      },
+      {
+        "material": "paper",
+        "case_id": "05757884-ed04-46d2-b983-0fb3975a171b",
+        "candidates": 1,
+        "questions": 126,
+        "revision": 5,
+        "document_status": "extracted",
+        "document_fact_applied": "quantity_kg",
+        "model_calls": 0,
+        "map_calls": 0,
+        "paid_ocr_calls": 0,
+        "dispatch_approved": false,
+        "numeric_mechanics": null
+      }
+    ]
+  },
+  "browser": {
+    "lot_and_document": "synthetic only; public KG and local law/technical RAG are real",
+    "selected": {
+      "original_quantity": "2 tonnes",
+      "quantity_kg": 2000,
+      "moisture_pct": 0.3
+    },
+    "unselected_contamination_pct": null,
+    "ambiguous_quantity_candidates": [
+      "current lot 2 tonnes",
+      "previous reference 1 tonne"
+    ],
+    "provenance": "literal + surrounding line, page, conversion, document hash, actor, timestamp; current-lot confirmation required",
+    "saved_revision": 10,
+    "selected_stage": "candidate A PET bottle pretreatment/sorting",
+    "selected_stage_tasks": 5,
+    "selected_stage_questions": 18,
+    "whole_case_questions": 179,
+    "task_navigation": "map marker -> selected-stage actions -> mass input; all questions retained in report",
+    "console_errors": [],
+    "viewport": "default and desktop prototype layout checked; temporary override reset",
+    "screenshots_ignored_local": [
+      "Re-Prototype/data/local/workflow-document-facts-verified.png",
+      "Re-Prototype/data/local/workflow-target-actions-verified.png"
+    ]
+  },
+  "fault_tests": [
+    "ambiguous or unconfirmed document values",
+    "client value override and cross-tenant request",
+    "range/inequality/estimate and numeric precision",
+    "changed input invalidation and old revision preservation",
+    "wrong handoff lot mass and residue/output binding",
+    "800 kg handoff misrepresented as 1000 kg in tonne-km",
+    "trip boolean and inconsistent trip count",
+    "distinct legal and cost/carbon questions not collapsed",
+    "same-value confirmation and prompt-only edit avoid repeat KG/RAG"
+  ],
+  "external_calls": {
+    "paid_model": 0,
+    "maps": 0,
+    "paid_ocr": 0
+  },
+  "limitations": [
+    "No real facility acceptance, current permit, transaction price or process yield verification",
+    "Synthetic quantitative fixtures are not actual cost or LCA data",
+    "Current connected workflow Azure Critic/OCR/map calls remain unvalidated live",
+    "Document literals require human review; scanned forms need separately configured OCR",
+    "Operational retention/deletion policy and automated job recovery remain unfinished"
+  ]
+}

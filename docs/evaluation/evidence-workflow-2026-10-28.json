@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-28",
+  "purpose": "Development regression checks, not an independent recommendation-accuracy benchmark",
+  "full_engine_suite_before_final_followups": {
+    "command": "RUN_NEO4J_INTEGRATION=true RUN_POSTGRES_INTEGRATION=true pytest -q",
+    "passed": 975,
+    "subtests_passed": 24,
+    "skipped": 0,
+    "seconds": 246.37
+  },
+  "subsequent_unit_and_workflow_postgres_suite": {
+    "passed": 879,
+    "subtests_passed": 24,
+    "seconds": 49.53,
+    "note": "New unit, boundary and Critic tests; original full integration set was not repeated in this command. Later focused followups recorded separately."
+  },
+  "real_local_workflow_scenarios": {
+    "command": "python scripts/run_workflow_scenarios.py",
+    "database": "Actual local Neo4j + PostgreSQL/pgvector + existing E5/RAG + LCI configuration",
+    "lot_and_quote": "Synthetic, not customer or transaction records",
+    "runs": [
+      {
+        "material": "PET",
+        "form": "bottle",
+        "candidates": 2,
+        "questions": 137,
+        "persisted_revision": 4
+      },
+      {
+        "material": "aluminium",
+        "form": "can",
+        "candidates": 1,
+        "questions": 21,
+        "persisted_revision": 4
+      },
+      {
+        "material": "paper",
+        "form": "cardboard",
+        "candidates": 1,
+        "questions": 98,
+        "persisted_revision": 4
+      }
+    ],
+    "document_checks": "Upload TXT, retain unconfirmed extraction, confirm excerpt, persist/reload state, default external permission false",
+    "paid_model_calls": 0,
+    "paid_map_calls": 0,
+    "paid_ocr_calls": 0,
+    "dispatch_approved": false,
+    "observed_gap": "Generic aluminium scrap did not produce a supported process candidate; the positive case uses the source-supported beverage-can form instead of inventing a scrap route."
+  },
+  "prototype": {
+    "vitest_passed": 314,
+    "server_tests_ran": 223,
+    "server_tests_skipped": 21,
+    "server_test_mode": "CI configuration: RESOURCE_KG_BACKEND=sqlite, cloud research disabled. Optional old prototype Neo4j integration tests are excluded.",
+    "server_note": "Initial run with local Neo4j settings hit stale-source checks in three existing reference tests. Re-run in CI's fixture backend passed; shared graph was not reset.",
+    "build": "TypeScript + Vite passed; existing Three.js chunk-size warning remains",
+    "portable_demo": "Existing standalone HTML bundle rebuilt; connected workbench still requires local servers"
+  },
+  "limitations": [
+    "Actual road provider calls require configured map keys; no straight-line fallback is used.",
+    "Azure Layout OCR transport is mocked in tests; actual new OCR resource/upload was not tested.",
+    "New persisted workflow Critic transport is mocked; prior separate Astra live checks do not establish this flow's accuracy.",
+    "No expert gold labels, current intake acceptance, real private quotes or complete facility activity data.",
+    "Workflow state/document retention has no automatic expiry; production retention and deletion policy remains undecided."
+  ],
+  "final_focused_workflow_suite": {
+    "passed": 47,
+    "skipped": 0,
+    "seconds": 24.25,
+    "scope": "workflow, boundaries, permission/cross-candidate citation checks and actual PostgreSQL"
+  },
+  "final_real_local_loop": [
+    {
+      "material": "PET",
+      "candidates": 2,
+      "questions": 123,
+      "revision": 7,
+      "document_status": "extracted",
+      "model_calls": 0,
+      "map_calls": 0,
+      "paid_ocr_calls": 0,
+      "dispatch_approved": false,
+      "numeric_mechanics": {
+        "before_errors": 1,
+        "after_errors": 0,
+        "scope": "synthetic numbers on actual KG; no model recheck or site verification"
+      }
+    },
+    {
+      "material": "aluminium",
+      "candidates": 1,
+      "questions": 21,
+      "revision": 4,
+      "document_status": "extracted",
+      "model_calls": 0,
+      "map_calls": 0,
+      "paid_ocr_calls": 0,
+      "dispatch_approved": false,
+      "numeric_mechanics": null
+    },
+    {
+      "material": "paper",
+      "candidates": 1,
+      "questions": 98,
+      "revision": 4,
+      "document_status": "extracted",
+      "model_calls": 0,
+      "map_calls": 0,
+      "paid_ocr_calls": 0,
+      "dispatch_approved": false,
+      "numeric_mechanics": null
+    }
+  ],
+  "remote_ci_at_ce4d193": {
+    "general": "success",
+    "neo4j": "success",
+    "note": "Before final candidate-evidence binding and documentation followup"
+  }
+}

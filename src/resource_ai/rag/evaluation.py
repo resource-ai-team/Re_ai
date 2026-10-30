@@ -3,10 +3,11 @@ from __future__ import annotations
 """검색 그룹별 기대 근거 순위를 이용한 RAG 회귀 평가."""
 
 import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
-from resource_ai.evidence.models import SearchGroup, SearchResult
+from resource_ai.evidence.models import SearchGroup, SearchResult, corpus_types_for_search_group
 
 
 @dataclass(frozen=True)
@@ -15,6 +16,8 @@ class RetrievalCase:
     expected_any: tuple[str, ...]
     search_group: SearchGroup = SearchGroup.LEGAL
     case_id: str | None = None
+    match_scope: str = "any"
+    required: bool = False
 
 
 @dataclass(frozen=True)
@@ -26,6 +29,8 @@ class RetrievalEvaluation:
     first_relevant_rank: int | None = None
     reciprocal_rank: float = 0.0
     search_group: SearchGroup = SearchGroup.LEGAL
+    required: bool = False
+    group_violations: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -46,6 +51,8 @@ class RetrievalDataset:
 
 
 def _metric(value: object, name: str) -> float:
+    if isinstance(value, bool):
+        raise ValueError(f"{name} must be a number, not a boolean")  # noqa: TRY004 - invalid JSON dataset value.
     metric = float(value)
     if not 0 <= metric <= 1:
         raise ValueError(f"{name} must be between 0 and 1")
@@ -84,12 +91,28 @@ def meets_thresholds(summary: RetrievalSummary, dataset: RetrievalDataset) -> bo
 def load_retrieval_dataset(path: Path) -> RetrievalDataset:
     """버전 관리되는 JSON 평가셋과 품질 기준을 읽고 검증한다."""
     payload = json.loads(path.read_text(encoding="utf-8"))
+    for item in payload.get("cases", []):
+        expected = item.get("expected_any")
+        if not isinstance(item.get("query"), str) or not item["query"].strip():
+            raise ValueError("Each evaluation case needs a nonempty query")
+        if (
+            not isinstance(expected, list)
+            or not expected
+            or any(not isinstance(v, str) or not v.strip() for v in expected)
+        ):
+            raise ValueError("expected_any must be a nonempty list of nonempty strings")
+        if item.get("match_scope", "any") not in {"any", "locator"}:
+            raise ValueError("match_scope must be any or locator")
+        if not isinstance(item.get("required", False), bool):
+            raise ValueError("required must be a boolean")  # noqa: TRY004 - invalid JSON dataset value.
     cases = [
         RetrievalCase(
             query=item["query"],
             expected_any=tuple(item["expected_any"]),
             search_group=SearchGroup(item.get("search_group", SearchGroup.LEGAL)),
             case_id=item.get("id"),
+            match_scope=item.get("match_scope", "any"),
+            required=item.get("required", False),
         )
         for item in payload.get("cases", [])
     ]
@@ -97,9 +120,9 @@ def load_retrieval_dataset(path: Path) -> RetrievalDataset:
         raise ValueError("Evaluation file must contain at least one case")
     if any(not case.expected_any for case in cases):
         raise ValueError("Each evaluation case needs expected_any values")
-    top_k = int(payload.get("top_k", 5))
-    if top_k <= 0:
-        raise ValueError("top_k must be positive")
+    top_k = payload.get("top_k", 5)
+    if isinstance(top_k, bool) or not isinstance(top_k, int) or not 1 <= top_k <= 100:
+        raise ValueError("top_k must be an integer between 1 and 100")
     thresholds = payload.get("thresholds", {})
     return RetrievalDataset(
         cases=tuple(cases),
@@ -118,11 +141,40 @@ def evaluate_case(case: RetrievalCase, results: list[SearchResult]) -> Retrieval
     """Top K 결과에 기대 근거 문자열이 하나 이상 포함됐는지 확인한다."""
     matched = None
     first_relevant_rank = None
-    for rank, result in enumerate(results, start=1):
-        result_text = f"{result.title}\n{result.heading}\n{result.content}\n{result.citation or ''}"
-        matched = next(
-            (expected for expected in case.expected_any if expected in result_text), None
+    violations = tuple(
+        sorted(
+            {r.document_type for r in results}
+            - set(corpus_types_for_search_group(case.search_group))
         )
+    )
+    if case.match_scope not in {"any", "locator"}:
+        raise ValueError("Unsupported match_scope")
+    for rank, result in enumerate(results, start=1):
+        result_text = (
+            (result.citation or "")
+            if case.match_scope == "locator"
+            else f"{result.title}\n{result.heading}\n{result.content}\n{result.citation or ''}"
+        )
+        matched = next(
+            (
+                expected
+                for expected in case.expected_any
+                if re.search(
+                    re.escape(expected)
+                    + (
+                        r"(?!의\d)"
+                        if case.match_scope == "locator" and expected.endswith("조")
+                        else r"(?!\d)"
+                        if case.match_scope == "locator" and expected[-1:].isdigit()
+                        else ""
+                    ),
+                    result_text,
+                )
+            ),
+            None,
+        )
+        if violations:
+            matched = None
         if matched is not None:
             first_relevant_rank = rank
             break
@@ -130,8 +182,19 @@ def evaluate_case(case: RetrievalCase, results: list[SearchResult]) -> Retrieval
         query=case.query,
         passed=matched is not None,
         matched=matched,
-        result_headings=tuple(f"{result.title} / {result.heading}" for result in results),
+        result_headings=tuple(
+            f"{result.title} / {result.heading}"
+            if result.document_type in corpus_types_for_search_group(case.search_group)
+            else "[withheld: unexpected corpus]"
+            for result in results
+        ),
         first_relevant_rank=first_relevant_rank,
         reciprocal_rank=0.0 if first_relevant_rank is None else 1 / first_relevant_rank,
         search_group=case.search_group,
+        required=case.required,
+        group_violations=violations,
     )
+
+
+def required_cases_pass(evaluations: list[RetrievalEvaluation]) -> bool:
+    return all(e.passed for e in evaluations if e.required)

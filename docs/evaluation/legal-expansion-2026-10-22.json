@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-10-21T20:45:48.889448+00:00",
+  "scope": "real_official_source_structure_in_actual_neo4j",
+  "graph_trace": {
+    "namespace": "re-ai-legal",
+    "generation": "58e3b4bf638849df948e2540874a0e93",
+    "fingerprint": "0b143daf4eef4af7823604b8e40b29bdd67385979ef7bb56685b9bf1fb1d9ce7",
+    "dataset_sha256": "1a83efe805889dc5aa3dd7ad3e88e33e2e9483cf88f701c7a050e50187a10488"
+  },
+  "counts": {
+    "documents": 6,
+    "source_spans": 119,
+    "nodes": {
+      "Article": 15,
+      "Case": 3,
+      "Reference": 24
+    },
+    "relationships": {
+      "CITES_REFERENCE": 22,
+      "CURRENT_CORRESPONDENCE": 2,
+      "POSSIBLE_CURRENT_ARTICLE": 3,
+      "CITES": 2,
+      "RESOLVES_CASE": 2
+    }
+  },
+  "checks": [
+    {
+      "name": "official source dataset validation",
+      "passed": true
+    },
+    {
+      "name": "actual Neo4j structure equals current official source build",
+      "passed": true
+    },
+    {
+      "name": "all original source spans persisted",
+      "passed": true
+    },
+    {
+      "name": "structural graph does not claim model enrichment",
+      "passed": true
+    },
+    {
+      "name": "no reference promoted to APPLIES",
+      "passed": true
+    },
+    {
+      "name": "case-to-article versions remain unresolved",
+      "passed": true
+    },
+    {
+      "name": "Korean low article numbers retained",
+      "passed": true
+    },
+    {
+      "name": "case summary not converted to interpretation",
+      "passed": true
+    },
+    {
+      "name": "status API reports active generation",
+      "passed": true
+    },
+    {
+      "name": "model-disabled request explicitly rejected",
+      "passed": true
+    },
+    {
+      "name": "separate process KG still present",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "model_validation": {
+    "generation_api_calls": 0,
+    "status": "deferred_at_user_request",
+    "real_model_features_checklists_communities": false,
+    "synthetic_model_tests_are_separate": true
+  },
+  "remaining": [
+    "additional Korean cases and historical law versions",
+    "structured annex tables and official interpretations",
+    "model enrichment and real-model accuracy evaluation",
+    "expert-reviewed legal applicability ground truth"
+  ],
+  "not_proven": [
+    "legal applicability accuracy",
+    "semantic retrieval quality",
+    "original paper benchmark scores",
+    "facility permit or intake approval"
+  ]
+}

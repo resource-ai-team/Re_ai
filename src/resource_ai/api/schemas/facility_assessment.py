@@ -5,17 +5,20 @@ from typing import Any, Literal
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 
 from resource_ai.api.schemas.kg_planning import PathPlanningRequest, PathPlanningResponse
+from resource_ai.api.schemas.numbers import NonBooleanFloat
 
 
 class LotFacts(BaseModel):
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
     material: str | None = Field(default=None, min_length=1, max_length=160)
     input_form: str | None = Field(default=None, min_length=1, max_length=80)
-    quantity_kg: float | None = Field(default=None, gt=0, allow_inf_nan=False)
+    quantity_kg: NonBooleanFloat | None = Field(default=None, gt=0, le=1e12, allow_inf_nan=False)
     color: str | None = Field(default=None, min_length=1, max_length=80)
     contamination: str | None = Field(default=None, min_length=1, max_length=500)
-    moisture_pct: float | None = Field(default=None, ge=0, le=100, allow_inf_nan=False)
-    contamination_pct: float | None = Field(default=None, ge=0, le=100, allow_inf_nan=False)
+    moisture_pct: NonBooleanFloat | None = Field(default=None, ge=0, le=100, allow_inf_nan=False)
+    contamination_pct: NonBooleanFloat | None = Field(
+        default=None, ge=0, le=100, allow_inf_nan=False
+    )
     designated_waste: StrictBool | None = None
 
 
@@ -63,8 +66,10 @@ class FacilityAssessmentResponse(BaseModel):
 
 class AssessedPlansRequest(PathPlanningRequest):
     audience: Literal["internal"] = "internal"
-    moisture_pct: float | None = Field(default=None, ge=0, le=100, allow_inf_nan=False)
-    contamination_pct: float | None = Field(default=None, ge=0, le=100, allow_inf_nan=False)
+    moisture_pct: NonBooleanFloat | None = Field(default=None, ge=0, le=100, allow_inf_nan=False)
+    contamination_pct: NonBooleanFloat | None = Field(
+        default=None, ge=0, le=100, allow_inf_nan=False
+    )
     designated_waste: StrictBool | None = None
 
 

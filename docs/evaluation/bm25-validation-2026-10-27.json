@@ -1,0 +1,403 @@
+{
+  "generated_at": "2026-10-26T18:06:15.342680+00:00",
+  "dataset": "data/config/retrieval_bm25_validation_v1.json",
+  "dataset_sha256": "805d2ffa4fa4b6fcbbd14269f3057c44ea79c44ce9195bacc5862fd462e5fc28",
+  "split": "test",
+  "label_status": "developer_source_checked_not_blinded_not_expert_reviewed",
+  "evaluation_use": "validation",
+  "prior_test_now_diagnostic": false,
+  "independent_or_expert_evaluation": false,
+  "split_policy": "Written against current official source chunks before BM25 implementation. Run once after regression selection; do not tune against these results. Previous retrieval_study_v1 test cases are now diagnostic regressions, not a holdout.",
+  "korean_index_recipe": "kiwi-0.24.0-cong-legal-nouns-compounds-v1",
+  "korean_scoring": "fielded-bm25-k1-1.2-b-0.75-v1",
+  "lexical_statistics": "current public requested corpus; per-statement; no query cache",
+  "latency_excludes_model_startup": true,
+  "latency_seconds": {
+    "grounded": {
+      "median": 0.591,
+      "maximum": 1.023
+    },
+    "grounded-korean": {
+      "median": 1.242,
+      "maximum": 3.846
+    }
+  },
+  "profiles": [
+    "grounded",
+    "grounded-korean"
+  ],
+  "summary": {
+    "grounded": {
+      "LEGAL": {
+        "total": 8,
+        "passed": 7,
+        "pass_rate": 0.875,
+        "recall_at_k": 0.875,
+        "mrr": 0.71875
+      }
+    },
+    "grounded-korean": {
+      "LEGAL": {
+        "total": 8,
+        "passed": 7,
+        "pass_rate": 0.875,
+        "recall_at_k": 0.875,
+        "mrr": 0.75
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "annual-report",
+      "group": "LEGAL",
+      "profiles": {
+        "grounded": {
+          "passed": false,
+          "rank": null,
+          "locators": [
+            "폐기물관리법 제13조 ①항",
+            "폐기물 재활용시설 외의 장소에서의 폐기물 재활용 용도 또는 방법에 관한 규정 제4조(재검토기한) 기후에너지환경부장관은 이 고시에 대하여 2017년 7월 1일 기준으로 매 3년이 되는 시점(매 3년째의 6월 30일까지를 말한다)마다 그 타당성을 검토하여 개선 등의 조치를 하여야 한다.",
+            "폐기물관리법 시행규칙 제60조 ②항",
+            "폐기물관리법 시행규칙 별표 11",
+            "폐기물관리법 시행규칙 제16조의4 ④항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ],
+          "seconds": 1.023
+        },
+        "grounded-korean": {
+          "passed": false,
+          "rank": null,
+          "locators": [
+            "폐기물관리법 시행규칙 제60조 ②항",
+            "폐기물관리법 제58조 ①항",
+            "폐기물의 국가 간 이동 및 그 처리에 관한 법률 제21조의3 ③항",
+            "폐기물관리법 시행규칙 제16조의4 ④항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제27조 ②항"
+          ],
+          "methods": [
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked"
+          ],
+          "seconds": 3.846
+        }
+      }
+    },
+    {
+      "id": "abandoned-waste-guarantee",
+      "group": "LEGAL",
+      "profiles": {
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "폐기물관리법 제40조 ①항",
+            "건설폐기물의 처리 등에 관한 업무처리지침 Ⅲ. 건설폐기물처리용역의 발주 및 위·수탁 계약 등",
+            "건설폐기물의 재활용촉진에 관한 법률 제42조 ①항",
+            "폐기물관리법 시행령 제18조 ②항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행령 제19조 ①항"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ],
+          "seconds": 0.719
+        },
+        "grounded-korean": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "폐기물관리법 제40조 ⑦항",
+            "건설폐기물의 재활용촉진에 관한 법률 제42조 ①항",
+            "폐기물관리법 시행령 제18조 ②항",
+            "건설폐기물의 처리 등에 관한 업무처리지침 Ⅲ. 건설폐기물처리용역의 발주 및 위·수탁 계약 등",
+            "건설폐기물의 재활용촉진에 관한 법률 시행령 제19조 ①항"
+          ],
+          "methods": [
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked"
+          ],
+          "seconds": 1.032
+        }
+      }
+    },
+    {
+      "id": "facility-inspection",
+      "group": "LEGAL",
+      "profiles": {
+        "grounded": {
+          "passed": true,
+          "rank": 4,
+          "locators": [
+            "자원의 절약과 재활용촉진에 관한 법률 제25조의8 ①항",
+            "고형연료제품 제조시설 및 사용시설의 정기검사 절차 및 방법 등에 관한 고시 제5조(검사일자 통보) ① 검사기관이 검사신청서를 접수한 때에는 검사일을 정하고 검사일 5일전까지 이를 신청인에게 문서로 알려야 한다. 이 경우 검사일은 검사신청서에 기재된 검사를 받고자 하는 날(이하 \"검사희망일\"이라 한다)로 정하는 것을 원칙으로 하되, 검사신청서의 보완이 필요하거나",
+            "폐기물관리법 제30조의2 ⑤항",
+            "폐기물관리법 제30조 ②항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅵ. 폐기물처리시설 사용개시신고"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ],
+          "seconds": 0.466
+        },
+        "grounded-korean": {
+          "passed": true,
+          "rank": 2,
+          "locators": [
+            "폐기물관리법 제30조의2 ⑤항",
+            "폐기물관리법 제30조 ②항",
+            "폐기물관리법 시행규칙 별표 10의3",
+            "폐기물관리법 시행규칙 제41조의4 ①항",
+            "폐기물관리법 시행규칙 별표 10의2"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked"
+          ],
+          "seconds": 1.206
+        }
+      }
+    },
+    {
+      "id": "wastewater-facility-permit",
+      "group": "LEGAL",
+      "profiles": {
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "물환경보전법 제33조 ①항",
+            "물환경보전법 시행령 제31조 ③항",
+            "물환경보전법 시행규칙 제37조 ①항",
+            "물환경보전법 제38조 ②항",
+            "물환경보전법 제42조 ①항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ],
+          "seconds": 0.596
+        },
+        "grounded-korean": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "물환경보전법 제33조 ①항",
+            "물환경보전법 시행규칙 제37조 ①항",
+            "물환경보전법 시행령 제31조 ③항",
+            "물환경보전법 제34조 ②항",
+            "물환경보전법 제38조 ②항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked"
+          ],
+          "seconds": 1.279
+        }
+      }
+    },
+    {
+      "id": "air-facility-permit",
+      "group": "LEGAL",
+      "profiles": {
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "대기환경보전법 제23조 ①항",
+            "대기환경보전법 제16조 ⑤항",
+            "대기환경보전법 시행령 제11조 ⑦항",
+            "대기환경보전법 제24조 ①항",
+            "대기환경보전법 제26조 ①항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ],
+          "seconds": 0.485
+        },
+        "grounded-korean": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "대기환경보전법 제23조 ①항",
+            "대기환경보전법 시행령 제11조 ⑦항",
+            "대기환경보전법 제26조 ①항",
+            "대기환경보전법 제38조의2 ①항",
+            "대기환경보전법 제24조 ①항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked"
+          ],
+          "seconds": 1.504
+        }
+      }
+    },
+    {
+      "id": "chemical-handling-safety",
+      "group": "LEGAL",
+      "profiles": {
+        "grounded": {
+          "passed": true,
+          "rank": 2,
+          "locators": [
+            "화학물질관리법 제29조의3 ①항",
+            "화학물질관리법 제13조",
+            "산업안전보건기준에 관한 규칙 제504조 ②항",
+            "화학물질관리법 시행규칙 별표 1",
+            "화학물질의 등록 및 평가 등에 관한 법률 제29조 ①항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ],
+          "seconds": 0.75
+        },
+        "grounded-korean": {
+          "passed": true,
+          "rank": 2,
+          "locators": [
+            "화학물질관리법 제29조의3 ①항",
+            "화학물질관리법 제13조",
+            "화학물질관리법 시행규칙 별표 1",
+            "화학물질관리법 제15조 ②항",
+            "화학물질관리법 제16조 ②항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked"
+          ],
+          "seconds": 1.542
+        }
+      }
+    },
+    {
+      "id": "safety-data-sheet",
+      "group": "LEGAL",
+      "profiles": {
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "산업안전보건법 제110조 ①항",
+            "화학물질의 등록 및 평가 등에 관한 법률 제29조 ①항",
+            "산업안전보건법 시행규칙 제156조 ①항",
+            "산업안전보건법 시행규칙 제167조 ②항",
+            "산업안전보건법 제112조 ⑩항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ],
+          "seconds": 0.586
+        },
+        "grounded-korean": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "산업안전보건법 제110조 ①항",
+            "산업안전보건법 시행규칙 제156조 ①항",
+            "산업안전보건법 시행규칙 제157조 ①항",
+            "산업안전보건법 제112조 ⑩항",
+            "산업안전보건법 제111조 ②항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked"
+          ],
+          "seconds": 1.182
+        }
+      }
+    },
+    {
+      "id": "construction-transport-cover",
+      "group": "LEGAL",
+      "profiles": {
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "건설폐기물의 재활용촉진에 관한 법률 제13조 ①항",
+            "건설폐기물의 처리 등에 관한 업무처리지침 Ⅳ. 건설폐기물의 처리기준",
+            "폐기물관리법 시행규칙 제16조의3 ②항",
+            "폐기물관리법 시행규칙 별표 5",
+            "건설폐기물의 재활용촉진에 관한 법률 시행령 제9조 ①항"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ],
+          "seconds": 0.472
+        },
+        "grounded-korean": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "건설폐기물의 재활용촉진에 관한 법률 제13조 ①항",
+            "건설폐기물의 재활용촉진에 관한 법률 제23조 ①항",
+            "건설폐기물의 재활용촉진에 관한 법률 제13조의2 ①항",
+            "건설폐기물의 처리 등에 관한 업무처리지침 Ⅲ. 건설폐기물처리용역의 발주 및 위·수탁 계약 등",
+            "건설폐기물의 재활용촉진에 관한 법률 시행령 제9조 ①항"
+          ],
+          "methods": [
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked",
+            "keyword+vector+korean-bm25+reranked"
+          ],
+          "seconds": 0.879
+        }
+      }
+    }
+  ]
+}

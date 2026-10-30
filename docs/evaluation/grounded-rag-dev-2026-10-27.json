@@ -1,0 +1,1181 @@
+{
+  "generated_at": "2026-10-26T16:57:22.796458+00:00",
+  "dataset": "data/config/retrieval_study_v1.json",
+  "dataset_sha256": "5c307932dbb081624200601e1e12f4c76d017fab99898a26fe0d79ec74445a64",
+  "split": "dev",
+  "label_status": "developer_source_checked_expert_review_pending",
+  "profiles": [
+    "legacy",
+    "grounded"
+  ],
+  "summary": {
+    "legacy": {
+      "LEGAL": {
+        "total": 16,
+        "passed": 8,
+        "pass_rate": 0.5,
+        "recall_at_k": 0.5,
+        "mrr": 0.421875
+      },
+      "TECHNICAL": {
+        "total": 11,
+        "passed": 11,
+        "pass_rate": 1.0,
+        "recall_at_k": 1.0,
+        "mrr": 0.9090909090909091
+      }
+    },
+    "grounded": {
+      "LEGAL": {
+        "total": 16,
+        "passed": 15,
+        "pass_rate": 0.9375,
+        "recall_at_k": 0.9375,
+        "mrr": 0.7520833333333333
+      },
+      "TECHNICAL": {
+        "total": 11,
+        "passed": 11,
+        "pass_rate": 1.0,
+        "recall_at_k": 1.0,
+        "mrr": 0.9090909090909091
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "producer-1",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": false,
+          "rank": null,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제19조 ②항",
+            "폐기물관리법 시행규칙 제17조의4"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "폐기물관리법 제17조 ①항",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "순환경제사회 전환 촉진법 제36조 ⑪항",
+            "폐기물관리법 시행규칙 제18조 ④항",
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "producer-2",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 4,
+          "locators": [
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "폐기물관리법 제15조의2 ③항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행령 별표 5",
+            "폐기물관리법 제17조 ①항",
+            "물환경보전법 시행규칙 제42조"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 5,
+          "locators": [
+            "건설폐기물의 재활용촉진에 관한 법률 제16조 ①항",
+            "건설폐기물의 재활용촉진에 관한 법률 제66조 ①항",
+            "폐기물관리법 제15조의2 ③항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행령 별표 5",
+            "폐기물관리법 제17조 ①항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "producer-3",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": false,
+          "rank": null,
+          "locators": [
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅶ. 폐기물처리업의 적합성확인",
+            "폐기물관리법 시행규칙 제17조의4",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅶ. 폐기물처리업의 적합성확인",
+            "폐기물관리법 시행규칙 별표 5의8"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "폐기물관리법 제17조 ⑤항",
+            "폐기물관리법 시행규칙 제17조의2 ②항",
+            "폐기물관리법 제25조의3 ①항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅶ. 폐기물처리업의 적합성확인",
+            "폐기물관리법 시행규칙 제17조의4"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "permit-1",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": false,
+          "rank": null,
+          "locators": [
+            "건설폐기물의 처리 등에 관한 업무처리지침 Ⅵ. 건설폐기물 처리업 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅲ. 허가신청서류 검토 및 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅹ. 수집ㆍ운반업의 영업구역 협의절차",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅹ. 수집ㆍ운반업의 영업구역 협의절차",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅹ. 수집ㆍ운반업의 영업구역 협의절차"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "폐기물관리법 제25조 ②항",
+            "건설폐기물의 처리 등에 관한 업무처리지침 Ⅵ. 건설폐기물 처리업 허가",
+            "폐기물관리법 제25조의3 ①항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅲ. 허가신청서류 검토 및 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅹ. 수집ㆍ운반업의 영업구역 협의절차"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "permit-2",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": false,
+          "rank": null,
+          "locators": [
+            "물환경보전법 제62조 ②항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅲ. 허가신청서류 검토 및 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅱ. 사업계획 검토 및 적정통보",
+            "자원의 절약과 재활용촉진에 관한 법률 시행령 제32조",
+            "순환경제사회 전환 촉진법 시행규칙 제3조"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "폐기물관리법 제25조 ⑤항",
+            "물환경보전법 제62조 ②항",
+            "폐기물관리법 제25조의3 ①항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅲ. 허가신청서류 검토 및 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅱ. 사업계획 검토 및 적정통보"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "permit-3",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": false,
+          "rank": null,
+          "locators": [
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅹ. 수집ㆍ운반업의 영업구역 협의절차",
+            "폐기물관리법 시행령 별표 6",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅲ. 허가신청서류 검토 및 허가",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅱ. 사업계획 검토 및 적정통보",
+            "물환경보전법 제62조 ②항"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "폐기물관리법 제25조 ⑭항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅹ. 수집ㆍ운반업의 영업구역 협의절차",
+            "폐기물관리법 제25조의3 ①항",
+            "폐기물관리법 시행령 별표 6",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅲ. 허가신청서류 검토 및 허가"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "principles-1",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 2,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 5의4",
+            "폐기물관리법 제13조의2 ①항",
+            "폐기물관리법 시행규칙 별표 5의4",
+            "폐기물관리법 제13조의2 ③항",
+            "폐기물관리법 제25조 ⑨항"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 2,
+          "locators": [
+            "폐기물관리법 시행규칙 별표 5의4",
+            "폐기물관리법 제13조의2 ①항",
+            "폐기물관리법 제25조 ⑨항",
+            "폐기물관리법 시행규칙 별표 5",
+            "폐기물관리법 시행규칙 별표 5의3"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "principles-2",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": false,
+          "rank": null,
+          "locators": [
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 시행령 별표 7의3",
+            "폐기물관리법 시행령 제37조 ①항",
+            "물환경보전법 시행령 제81조 ①항",
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 시행령 별표 7의3",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅲ. 허가신청서류 검토 및 허가"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": false,
+          "rank": null,
+          "locators": [
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 제25조 ②항",
+            "전기ㆍ전자제품 및 자동차의 자원순환에 관한 법률 시행령 별표 7의3",
+            "폐기물관리법 제54조 ①항",
+            "폐기물관리법 시행령 제37조 ①항",
+            "물환경보전법 시행령 제81조 ①항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "circular-1",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": false,
+          "rank": null,
+          "locators": [
+            "순환자원의 기준 및 용도에 관한 고시 제3조(순환이용의 기준) 폐기물이 순환자원으로 인정받기 위해서는 다음 각 호의 기준을 모두 충족해야 한다.",
+            "순환자원의 기준 및 용도에 관한 고시 제4조(순환이용의 용도) 폐기물이 순환자원으로 인정받기 위해서는 다음 각 호의 요건을 모두 충족하는 용도로 사용해야 한다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 별표 1",
+            "순환경제사회 전환 촉진법 시행규칙 제13조 ②항",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 별표 1"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 3,
+          "locators": [
+            "순환경제사회 전환 촉진법 시행령 제12조 ②항",
+            "순환자원의 기준 및 용도에 관한 고시 제3조(순환이용의 기준) 폐기물이 순환자원으로 인정받기 위해서는 다음 각 호의 기준을 모두 충족해야 한다.",
+            "순환경제사회 전환 촉진법 제21조 ①항",
+            "순환자원의 기준 및 용도에 관한 고시 제4조(순환이용의 용도) 폐기물이 순환자원으로 인정받기 위해서는 다음 각 호의 요건을 모두 충족하는 용도로 사용해야 한다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 별표 1"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "circular-2",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": false,
+          "rank": null,
+          "locators": [
+            "순환자원 인정 절차 및 방법 등에 관한 고시 제5조(순환자원 인정여부 검토) ① 지방환경관서의 장은 제4조제4항에 따라 신청서를 접수한 경우 다음 각 호의 절차에 따라 순환자원 인정여부를 검토하여야 한다. 다만, 제4조제3항에 따라 제출된 신청서를 접수한 경우에는 신청인 중 일부(신청대상 폐기물의 성상, 배출 특성, 처리 방법 등",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 제10조(순환자원 인정 등) ① 지방환경관서의 장은 제5조부터 제9조까지의 검토사항을 종합적으로 고려하여 순환자원 인정기준을 모두 충족하는지를 확인하여 순환자원 인정여부를 결정하여야 한다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 제4조(순환자원 인정 신청 및 접수 등) ① 순환자원 인정을 신청하고자 하는 자(이하 \"신청인\"이라 한다)는 「순환경제사회 전환 촉진법 시행규칙」(이하 \"규칙\"이라 한다) 제13조제1항에 따른 순환자원 인정신청서 및 첨부서류(이하 \"신청서\"라 한다)를 관할 지방환경관서의 장에게 제출하여",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 별표 1",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 제11조(순환자원의 재인정) ① 법 제21조제3항에 따라 순환자원의 인정을 다시 받으려는 개인 또는 법인ㆍ단체는 규칙 제13조제5항에 따른 신청서 및 첨부서류를 관할 지방환경관서의 장에게 제출하여야 한다. 다만, 종전의 순환자원 인정서를 발급받은 자가 대표인인 경우에는 해당 대표인이 자"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "순환경제사회 전환 촉진법 제21조 ②항",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 제5조(순환자원 인정여부 검토) ① 지방환경관서의 장은 제4조제4항에 따라 신청서를 접수한 경우 다음 각 호의 절차에 따라 순환자원 인정여부를 검토하여야 한다. 다만, 제4조제3항에 따라 제출된 신청서를 접수한 경우에는 신청인 중 일부(신청대상 폐기물의 성상, 배출 특성, 처리 방법 등",
+            "순환경제사회 전환 촉진법 시행령 제12조 ①항",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 제10조(순환자원 인정 등) ① 지방환경관서의 장은 제5조부터 제9조까지의 검토사항을 종합적으로 고려하여 순환자원 인정기준을 모두 충족하는지를 확인하여 순환자원 인정여부를 결정하여야 한다.",
+            "순환자원 인정 절차 및 방법 등에 관한 고시 제4조(순환자원 인정 신청 및 접수 등) ① 순환자원 인정을 신청하고자 하는 자(이하 \"신청인\"이라 한다)는 「순환경제사회 전환 촉진법 시행규칙」(이하 \"규칙\"이라 한다) 제13조제1항에 따른 순환자원 인정신청서 및 첨부서류(이하 \"신청서\"라 한다)를 관할 지방환경관서의 장에게 제출하여"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "sandbox-1",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "순환경제사회 전환 촉진법 제33조 ⑪항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제13조 ②항",
+            "순환경제사회 전환 촉진법 제33조 ⑭항",
+            "폐기물관리법 시행규칙 별표 7"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 2,
+          "locators": [
+            "건설폐기물의 재활용촉진에 관한 법률 제22조 ①항",
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "건설폐기물의 재활용촉진에 관한 법률 시행규칙 제13조 ②항",
+            "폐기물관리법 시행규칙 별표 7",
+            "폐기물관리법 제27조 ①항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "sandbox-2",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅱ. 사업계획 검토 및 적정통보",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅳ. 변경허가신청서 검토",
+            "순환경제사회 전환 촉진법 시행령 별표 6",
+            "순환경제사회 전환 촉진법 시행령 제30조 ①항"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 2,
+          "locators": [
+            "폐기물관리법 제25조 ②항",
+            "순환경제사회 전환 촉진법 제33조 ①항",
+            "폐기물관리법 제25조의3 ⑤항",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅱ. 사업계획 검토 및 적정통보",
+            "폐기물처리업 허가 등에 관한 업무처리지침 Ⅳ. 변경허가신청서 검토"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "order-1",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "폐기물관리법 제48조 ②항",
+            "폐기물관리법 시행규칙 제68조의3 ①항",
+            "폐기물관리법 제48조 ⑥항",
+            "폐기물관리법 제48조 ①항",
+            "폐기물관리법 시행규칙 제68조의3 ②항"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "폐기물관리법 제48조 ②항",
+            "폐기물관리법 제47조의2 ①항",
+            "폐기물관리법 시행규칙 제68조의3 ①항",
+            "폐기물관리법 시행규칙 제68조의2 ②항",
+            "대법원 2009두6681 판시사항"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "order-2",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "폐기물관리법 제48조 ②항",
+            "폐기물관리법 시행규칙 제68조의3 ①항",
+            "폐기물관리법 시행규칙 제68조의3 ②항",
+            "폐기물관리법 제48조 ⑥항",
+            "폐기물관리법 시행령 제37조 ②항"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "폐기물관리법 제48조 ②항",
+            "폐기물관리법 제39조의2 ①항",
+            "폐기물관리법 시행규칙 제68조의3 ①항",
+            "폐기물관리법 시행령 제37조 ②항",
+            "대법원 2009두6681 참조조문"
+          ],
+          "methods": [
+            "legal-reference+basis-balanced",
+            "legal-reference+basis-balanced",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "auction-1",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판결요지",
+            "대법원 2002다46331 판결요지",
+            "폐기물관리법 제17조 ⑨항"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2023두62830 판결요지",
+            "대법원 2002다46331 판결요지",
+            "폐기물관리법 제17조 ⑨항"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "auction-2",
+      "group": "LEGAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2002다46331 판결요지",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2002다46331 판례 전문",
+            "대법원 2023두62830 판례 전문"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "대법원 2023두62830 판시사항",
+            "대법원 2002다46331 판결요지",
+            "대법원 2023두62830 판례 전문",
+            "대법원 2002다46331 판례 전문",
+            "대법원 2023두62830 판례 전문"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "pet-design-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "pet-design-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "pet-design-3",
+      "group": "TECHNICAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "Design Guidelines products: bottle body / labels / adhesives; General guidance notice",
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "al-water-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "재해개요; 재해예방대책",
+            "Safety topics > Molten metal/water explosions",
+            "3.3 Delivery modes; printed pp.5–6",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "재해개요; 재해예방대책",
+            "Safety topics > Molten metal/water explosions",
+            "3.3 Delivery modes; printed pp.5–6",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "al-water-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "재해개요; 재해예방대책",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "재해개요; 재해예방대책",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "al-alloy-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "al-alloy-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "재해개요; 재해예방대책",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "재해개요; 재해예방대책",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "scrap-carbon-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 2,
+          "locators": [
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Safety topics > Molten metal/water explosions",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 2,
+          "locators": [
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Safety topics > Molten metal/water explosions",
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "scrap-carbon-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 2,
+          "locators": [
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "Data & Modeling; regional recycled-aluminium dataset limitations",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 2,
+          "locators": [
+            "9 Regional default values; PDF pp.28–29, Table 14 footnotes",
+            "Preface pp.3–4; 7–8 pp.14–16; 8.5 pp.26–27; Conclusions p.30",
+            "Data & Modeling; regional recycled-aluminium dataset limitations",
+            "4.2.4.4 energy consumption; printed p.417; 4.3.4.3 cross-media effects printed p.469",
+            "Cradle-to-gate scope p.2; Scrap and Inconsistent declarations p.4"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "coated-paper-1",
+      "group": "TECHNICAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "6.4.2.2 moisture; PDF pp.7–8",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "Guidelines sections 1–4; PDF pp.3–4",
+            "재해개요; 재해예방대책"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "6.4.2.2 moisture; PDF pp.7–8",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "Guidelines sections 1–4; PDF pp.3–4",
+            "재해개요; 재해예방대책"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    },
+    {
+      "id": "coated-paper-2",
+      "group": "TECHNICAL",
+      "profiles": {
+        "legacy": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        },
+        "grounded": {
+          "passed": true,
+          "rank": 1,
+          "locators": [
+            "Regarding coatings and adhesives; Standard and specialised recycling mills; PDF pp.3–4,9–11",
+            "4.1.4.1.1 Pretreatment; printed pp.388–389",
+            "2 Scope p.3; 7 Sample preparation p.7; reporting p.13",
+            "4.1 Definitions PDF p.5; system-boundary discussion p.14",
+            "4.3.4.4 Selection of appropriate secondary melting furnaces; printed p.470"
+          ],
+          "methods": [
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked",
+            "vector+reranked"
+          ]
+        }
+      }
+    }
+  ]
+}

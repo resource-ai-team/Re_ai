@@ -1,0 +1,842 @@
+{
+  "synthetic": true,
+  "cloud_calls": 0,
+  "industrial_accuracy_evaluation": false,
+  "scenarios": {
+    "A_document": {
+      "version": "pp-quality-v1",
+      "level": 2,
+      "mode": "simulation",
+      "profile": {
+        "tenant_id": "synthetic-tenant",
+        "lot_id": "synthetic-lot",
+        "sample_id": "synthetic-sample",
+        "material": "PP",
+        "material_form": "rigid_scrap",
+        "quantity_kg": "1000",
+        "generation_process": null,
+        "composition": {},
+        "contamination": "20",
+        "moisture": null,
+        "observed_impurities": [],
+        "measurements": [
+          {
+            "evidence_id": "synthetic-material",
+            "field": "material",
+            "source_type": "operator_reported",
+            "raw_value": null,
+            "normalized_value": null,
+            "text_value": "PP",
+            "unit": null,
+            "basis": "unknown",
+            "meaning": "lot_property",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": null,
+            "page": null,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "reported",
+            "same_lot_confirmed": true,
+            "assumptions": [],
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-form",
+            "field": "material_form",
+            "source_type": "operator_reported",
+            "raw_value": null,
+            "normalized_value": null,
+            "text_value": "rigid_scrap",
+            "unit": null,
+            "basis": "unknown",
+            "meaning": "lot_property",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": null,
+            "page": null,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "reported",
+            "same_lot_confirmed": true,
+            "assumptions": [],
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-mass",
+            "field": "quantity_kg",
+            "source_type": "operator_reported",
+            "raw_value": null,
+            "normalized_value": "1000",
+            "text_value": null,
+            "unit": "kg",
+            "basis": "unknown",
+            "meaning": "lot_property",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": null,
+            "page": null,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "reported",
+            "same_lot_confirmed": true,
+            "assumptions": [],
+            "synthetic": true
+          },
+          {
+            "evidence_id": "ocr:be0ba124e5e45e120f8cb640ce826411",
+            "field": "contamination",
+            "source_type": "document_user_confirmed",
+            "raw_value": "20",
+            "normalized_value": "20",
+            "text_value": null,
+            "unit": "wt%",
+            "basis": "wet_mass",
+            "meaning": "lot_property",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": "synthetic-doc",
+            "page": 1,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "user_confirmed",
+            "same_lot_confirmed": true,
+            "assumptions": [],
+            "synthetic": true
+          },
+          {
+            "evidence_id": "ocr:c35ce0aab4c1153f65d13a7653762d16",
+            "field": "material",
+            "source_type": "document_extracted_unconfirmed",
+            "raw_value": "PP",
+            "normalized_value": null,
+            "text_value": "PP",
+            "unit": null,
+            "basis": "unknown",
+            "meaning": "unknown",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": "synthetic-doc",
+            "page": 1,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "unconfirmed",
+            "same_lot_confirmed": false,
+            "assumptions": [],
+            "synthetic": true
+          }
+        ],
+        "input_sources": [
+          {
+            "evidence_id": "synthetic-material",
+            "source_type": "operator_reported",
+            "document_id": null,
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-form",
+            "source_type": "operator_reported",
+            "document_id": null,
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-mass",
+            "source_type": "operator_reported",
+            "document_id": null,
+            "synthetic": true
+          },
+          {
+            "evidence_id": "ocr:be0ba124e5e45e120f8cb640ce826411",
+            "source_type": "document_user_confirmed",
+            "document_id": "synthetic-doc",
+            "synthetic": true
+          },
+          {
+            "evidence_id": "ocr:c35ce0aab4c1153f65d13a7653762d16",
+            "source_type": "document_extracted_unconfirmed",
+            "document_id": "synthetic-doc",
+            "synthetic": true
+          }
+        ],
+        "unknown_fields": [
+          "generation_process",
+          "moisture"
+        ],
+        "conflicts": [],
+        "user_confirmations": [
+          {
+            "evidence_ids": [
+              "ocr:be0ba124e5e45e120f8cb640ce826411"
+            ],
+            "sample_id": "synthetic-sample",
+            "by": "synthetic-reviewer",
+            "at": "2026-10-29",
+            "scope": "selected_transcription_and_lot_binding_not_scientific_or_legal_validity"
+          }
+        ]
+      },
+      "claim_validation": [
+        {
+          "evidence_id": "synthetic-material",
+          "issues": [],
+          "calculation_eligible": true
+        },
+        {
+          "evidence_id": "synthetic-form",
+          "issues": [],
+          "calculation_eligible": true
+        },
+        {
+          "evidence_id": "synthetic-mass",
+          "issues": [],
+          "calculation_eligible": true
+        },
+        {
+          "evidence_id": "ocr:be0ba124e5e45e120f8cb640ce826411",
+          "issues": [],
+          "calculation_eligible": true
+        },
+        {
+          "evidence_id": "ocr:c35ce0aab4c1153f65d13a7653762d16",
+          "issues": [
+            "sample_or_lot_binding_unconfirmed",
+            "not_confirmed_measurement"
+          ],
+          "calculation_eligible": false
+        }
+      ],
+      "evidence_summary": {
+        "document_extracted_unconfirmed": 1,
+        "document_user_confirmed": 1,
+        "operator_reported": 3,
+        "photo_observed": 0,
+        "literature_assumption": 0,
+        "unknown": 0
+      },
+      "status": "CONDITIONAL",
+      "issues": [],
+      "mass_balance": {
+        "input_mass_kg": "1000",
+        "input_pp_kg": "800.0",
+        "input_contaminant_kg": "200.0",
+        "pp_loss_kg": "0.0",
+        "minimum_contaminant_removal_kg": "157.8947368421052631578947368421052631579",
+        "output_mass_upper_bound_kg": "842.1052631578947368421052631578947368421",
+        "residue_kg": "157.8947368421052631578947368421052631579",
+        "required_removal_efficiency_pct": "78.94736842105263157894736842105263157895"
+      },
+      "drying_balance": null,
+      "forward_scenario": null,
+      "economics": null,
+      "pareto_eligible": false,
+      "carbon_kgco2e": null,
+      "carbon_status": "pp_compatible_lci_not_acquired",
+      "recommended": false,
+      "dispatch_approved": false,
+      "legal_approved": false,
+      "facility_acceptance_verified": false,
+      "target": {
+        "specification_id": "synthetic-target",
+        "name": "가상 목표",
+        "version": "1",
+        "jurisdiction": "KR",
+        "material": "PP",
+        "forms": [
+          "rigid_scrap"
+        ],
+        "applies_to": "input_waste",
+        "requirement_type": "scenario_target",
+        "source": "synthetic; not a domestic threshold",
+        "effective_on": null,
+        "limits": [
+          {
+            "field": "contamination",
+            "max_value": "5",
+            "unit": "wt%",
+            "basis": "wet_mass"
+          }
+        ],
+        "explicitly_selected": true,
+        "applicability_confirmed": true,
+        "status": "user_declared"
+      },
+      "process_candidates": [
+        "sorting",
+        "shredding",
+        "washing",
+        "drying"
+      ],
+      "process_candidates_scope": "PP preprocessing concepts; actual KG/facility lookup is a separate existing run",
+      "kg_candidates_loaded": false,
+      "kg_integration_status": "requires_location_and_explicit_lot_mapping_to_existing_research_api",
+      "questions": [
+        {
+          "field": "generation_process",
+          "question": "어떤 제조 공정에서 발생했나요?"
+        }
+      ],
+      "used_evidence_ids": [
+        "synthetic-mass",
+        "ocr:be0ba124e5e45e120f8cb640ce826411"
+      ],
+      "limitations": [
+        "이론적·사용자 선언 조건의 검토이며 실측 성능·시설 인수·법적 승인이 아닙니다.",
+        "총 비PP 질량의 두 성분 모델이며 개별 오염물·유해성·식품접촉 안전성을 판정하지 않습니다."
+      ],
+      "reliability": "user_confirmed_or_reported_not_independently_validated"
+    },
+    "B_manual": {
+      "version": "pp-quality-v1",
+      "level": 1,
+      "mode": "simulation",
+      "profile": {
+        "tenant_id": "synthetic-tenant",
+        "lot_id": "synthetic-lot",
+        "sample_id": "synthetic-sample",
+        "material": "PP",
+        "material_form": "rigid_scrap",
+        "quantity_kg": "1000",
+        "generation_process": null,
+        "composition": {},
+        "contamination": null,
+        "moisture": null,
+        "observed_impurities": [],
+        "measurements": [
+          {
+            "evidence_id": "synthetic-material",
+            "field": "material",
+            "source_type": "operator_reported",
+            "raw_value": null,
+            "normalized_value": null,
+            "text_value": "PP",
+            "unit": null,
+            "basis": "unknown",
+            "meaning": "lot_property",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": null,
+            "page": null,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "reported",
+            "same_lot_confirmed": true,
+            "assumptions": [],
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-form",
+            "field": "material_form",
+            "source_type": "operator_reported",
+            "raw_value": null,
+            "normalized_value": null,
+            "text_value": "rigid_scrap",
+            "unit": null,
+            "basis": "unknown",
+            "meaning": "lot_property",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": null,
+            "page": null,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "reported",
+            "same_lot_confirmed": true,
+            "assumptions": [],
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-mass",
+            "field": "quantity_kg",
+            "source_type": "operator_reported",
+            "raw_value": null,
+            "normalized_value": "1000",
+            "text_value": null,
+            "unit": "kg",
+            "basis": "unknown",
+            "meaning": "lot_property",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": null,
+            "page": null,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "reported",
+            "same_lot_confirmed": true,
+            "assumptions": [],
+            "synthetic": true
+          }
+        ],
+        "input_sources": [
+          {
+            "evidence_id": "synthetic-material",
+            "source_type": "operator_reported",
+            "document_id": null,
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-form",
+            "source_type": "operator_reported",
+            "document_id": null,
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-mass",
+            "source_type": "operator_reported",
+            "document_id": null,
+            "synthetic": true
+          }
+        ],
+        "unknown_fields": [
+          "generation_process",
+          "contamination",
+          "moisture"
+        ],
+        "conflicts": [],
+        "user_confirmations": []
+      },
+      "claim_validation": [
+        {
+          "evidence_id": "synthetic-material",
+          "issues": [],
+          "calculation_eligible": true
+        },
+        {
+          "evidence_id": "synthetic-form",
+          "issues": [],
+          "calculation_eligible": true
+        },
+        {
+          "evidence_id": "synthetic-mass",
+          "issues": [],
+          "calculation_eligible": true
+        }
+      ],
+      "evidence_summary": {
+        "document_extracted_unconfirmed": 0,
+        "document_user_confirmed": 0,
+        "operator_reported": 3,
+        "photo_observed": 0,
+        "literature_assumption": 0,
+        "unknown": 0
+      },
+      "status": "REVIEW",
+      "issues": [
+        {
+          "code": "insufficient_compatible_mass_balance_inputs"
+        }
+      ],
+      "mass_balance": null,
+      "drying_balance": null,
+      "forward_scenario": null,
+      "economics": null,
+      "pareto_eligible": false,
+      "carbon_kgco2e": null,
+      "carbon_status": "pp_compatible_lci_not_acquired",
+      "recommended": false,
+      "dispatch_approved": false,
+      "legal_approved": false,
+      "facility_acceptance_verified": false,
+      "target": {
+        "specification_id": "synthetic-target",
+        "name": "가상 목표",
+        "version": "1",
+        "jurisdiction": "KR",
+        "material": "PP",
+        "forms": [
+          "rigid_scrap"
+        ],
+        "applies_to": "input_waste",
+        "requirement_type": "scenario_target",
+        "source": "synthetic; not a domestic threshold",
+        "effective_on": null,
+        "limits": [
+          {
+            "field": "contamination",
+            "max_value": "5",
+            "unit": "wt%",
+            "basis": "wet_mass"
+          }
+        ],
+        "explicitly_selected": true,
+        "applicability_confirmed": true,
+        "status": "user_declared"
+      },
+      "process_candidates": [
+        "sorting",
+        "shredding",
+        "washing",
+        "drying"
+      ],
+      "process_candidates_scope": "PP preprocessing concepts; actual KG/facility lookup is a separate existing run",
+      "kg_candidates_loaded": false,
+      "kg_integration_status": "requires_location_and_explicit_lot_mapping_to_existing_research_api",
+      "questions": [
+        {
+          "field": "generation_process",
+          "question": "어떤 제조 공정에서 발생했나요?"
+        },
+        {
+          "field": "contamination",
+          "question": "동일 시료의 습윤 질량 기준 총 비PP 함량(wt%)을 측정했나요? 없으면 명시적 가상 시나리오만 가능합니다."
+        }
+      ],
+      "used_evidence_ids": [],
+      "limitations": [
+        "이론적·사용자 선언 조건의 검토이며 실측 성능·시설 인수·법적 승인이 아닙니다.",
+        "총 비PP 질량의 두 성분 모델이며 개별 오염물·유해성·식품접촉 안전성을 판정하지 않습니다."
+      ]
+    },
+    "C_conflict": {
+      "version": "pp-quality-v1",
+      "level": 1,
+      "mode": "simulation",
+      "profile": {
+        "tenant_id": "synthetic-tenant",
+        "lot_id": "synthetic-lot",
+        "sample_id": "synthetic-sample",
+        "material": "PP",
+        "material_form": "rigid_scrap",
+        "quantity_kg": "1000",
+        "generation_process": null,
+        "composition": {},
+        "contamination": null,
+        "moisture": null,
+        "observed_impurities": [],
+        "measurements": [
+          {
+            "evidence_id": "synthetic-material",
+            "field": "material",
+            "source_type": "operator_reported",
+            "raw_value": null,
+            "normalized_value": null,
+            "text_value": "PP",
+            "unit": null,
+            "basis": "unknown",
+            "meaning": "lot_property",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": null,
+            "page": null,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "reported",
+            "same_lot_confirmed": true,
+            "assumptions": [],
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-form",
+            "field": "material_form",
+            "source_type": "operator_reported",
+            "raw_value": null,
+            "normalized_value": null,
+            "text_value": "rigid_scrap",
+            "unit": null,
+            "basis": "unknown",
+            "meaning": "lot_property",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": null,
+            "page": null,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "reported",
+            "same_lot_confirmed": true,
+            "assumptions": [],
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-mass",
+            "field": "quantity_kg",
+            "source_type": "operator_reported",
+            "raw_value": null,
+            "normalized_value": "1000",
+            "text_value": null,
+            "unit": "kg",
+            "basis": "unknown",
+            "meaning": "lot_property",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": null,
+            "page": null,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "reported",
+            "same_lot_confirmed": true,
+            "assumptions": [],
+            "synthetic": true
+          },
+          {
+            "evidence_id": "ocr:be0ba124e5e45e120f8cb640ce826411",
+            "field": "contamination",
+            "source_type": "document_extracted_unconfirmed",
+            "raw_value": "20",
+            "normalized_value": "20",
+            "text_value": null,
+            "unit": "wt%",
+            "basis": "wet_mass",
+            "meaning": "lot_property",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": "synthetic-doc",
+            "page": 1,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "unconfirmed",
+            "same_lot_confirmed": false,
+            "assumptions": [],
+            "synthetic": true
+          },
+          {
+            "evidence_id": "ocr:c35ce0aab4c1153f65d13a7653762d16",
+            "field": "material",
+            "source_type": "document_extracted_unconfirmed",
+            "raw_value": "PP",
+            "normalized_value": null,
+            "text_value": "PP",
+            "unit": null,
+            "basis": "unknown",
+            "meaning": "unknown",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": "synthetic-doc",
+            "page": 1,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "unconfirmed",
+            "same_lot_confirmed": false,
+            "assumptions": [],
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-operator-contamination",
+            "field": "contamination",
+            "source_type": "operator_reported",
+            "raw_value": null,
+            "normalized_value": "10",
+            "text_value": null,
+            "unit": "wt%",
+            "basis": "wet_mass",
+            "meaning": "lot_property",
+            "qualifier": "exact",
+            "test_method": null,
+            "sample_id": "synthetic-sample",
+            "measurement_date": null,
+            "document_id": null,
+            "page": null,
+            "bounding_region": [],
+            "extraction_confidence": null,
+            "verification_status": "reported",
+            "same_lot_confirmed": true,
+            "assumptions": [],
+            "synthetic": true
+          }
+        ],
+        "input_sources": [
+          {
+            "evidence_id": "synthetic-material",
+            "source_type": "operator_reported",
+            "document_id": null,
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-form",
+            "source_type": "operator_reported",
+            "document_id": null,
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-mass",
+            "source_type": "operator_reported",
+            "document_id": null,
+            "synthetic": true
+          },
+          {
+            "evidence_id": "ocr:be0ba124e5e45e120f8cb640ce826411",
+            "source_type": "document_extracted_unconfirmed",
+            "document_id": "synthetic-doc",
+            "synthetic": true
+          },
+          {
+            "evidence_id": "ocr:c35ce0aab4c1153f65d13a7653762d16",
+            "source_type": "document_extracted_unconfirmed",
+            "document_id": "synthetic-doc",
+            "synthetic": true
+          },
+          {
+            "evidence_id": "synthetic-operator-contamination",
+            "source_type": "operator_reported",
+            "document_id": null,
+            "synthetic": true
+          }
+        ],
+        "unknown_fields": [
+          "generation_process",
+          "contamination",
+          "moisture"
+        ],
+        "conflicts": [
+          {
+            "field": "contamination",
+            "evidence_ids": [
+              "ocr:be0ba124e5e45e120f8cb640ce826411",
+              "synthetic-operator-contamination"
+            ],
+            "values": [
+              "10",
+              "20"
+            ]
+          }
+        ],
+        "user_confirmations": []
+      },
+      "claim_validation": [
+        {
+          "evidence_id": "synthetic-material",
+          "issues": [],
+          "calculation_eligible": true
+        },
+        {
+          "evidence_id": "synthetic-form",
+          "issues": [],
+          "calculation_eligible": true
+        },
+        {
+          "evidence_id": "synthetic-mass",
+          "issues": [],
+          "calculation_eligible": true
+        },
+        {
+          "evidence_id": "ocr:be0ba124e5e45e120f8cb640ce826411",
+          "issues": [
+            "sample_or_lot_binding_unconfirmed",
+            "not_confirmed_measurement"
+          ],
+          "calculation_eligible": false
+        },
+        {
+          "evidence_id": "ocr:c35ce0aab4c1153f65d13a7653762d16",
+          "issues": [
+            "sample_or_lot_binding_unconfirmed",
+            "not_confirmed_measurement"
+          ],
+          "calculation_eligible": false
+        },
+        {
+          "evidence_id": "synthetic-operator-contamination",
+          "issues": [],
+          "calculation_eligible": true
+        }
+      ],
+      "evidence_summary": {
+        "document_extracted_unconfirmed": 2,
+        "document_user_confirmed": 0,
+        "operator_reported": 4,
+        "photo_observed": 0,
+        "literature_assumption": 0,
+        "unknown": 0
+      },
+      "status": "REVIEW",
+      "issues": [
+        {
+          "code": "conflicting_claims",
+          "field": "contamination",
+          "evidence_ids": [
+            "ocr:be0ba124e5e45e120f8cb640ce826411",
+            "synthetic-operator-contamination"
+          ],
+          "values": [
+            "10",
+            "20"
+          ]
+        }
+      ],
+      "mass_balance": null,
+      "drying_balance": null,
+      "forward_scenario": null,
+      "economics": null,
+      "pareto_eligible": false,
+      "carbon_kgco2e": null,
+      "carbon_status": "pp_compatible_lci_not_acquired",
+      "recommended": false,
+      "dispatch_approved": false,
+      "legal_approved": false,
+      "facility_acceptance_verified": false,
+      "target": {
+        "specification_id": "synthetic-target",
+        "name": "가상 목표",
+        "version": "1",
+        "jurisdiction": "KR",
+        "material": "PP",
+        "forms": [
+          "rigid_scrap"
+        ],
+        "applies_to": "input_waste",
+        "requirement_type": "scenario_target",
+        "source": "synthetic; not a domestic threshold",
+        "effective_on": null,
+        "limits": [
+          {
+            "field": "contamination",
+            "max_value": "5",
+            "unit": "wt%",
+            "basis": "wet_mass"
+          }
+        ],
+        "explicitly_selected": true,
+        "applicability_confirmed": true,
+        "status": "user_declared"
+      },
+      "process_candidates": [
+        "sorting",
+        "shredding",
+        "washing",
+        "drying"
+      ],
+      "process_candidates_scope": "PP preprocessing concepts; actual KG/facility lookup is a separate existing run",
+      "kg_candidates_loaded": false,
+      "kg_integration_status": "requires_location_and_explicit_lot_mapping_to_existing_research_api",
+      "questions": [
+        {
+          "field": "generation_process",
+          "question": "어떤 제조 공정에서 발생했나요?"
+        },
+        {
+          "field": "contamination",
+          "question": "동일 시료의 습윤 질량 기준 총 비PP 함량(wt%)을 측정했나요? 없으면 명시적 가상 시나리오만 가능합니다."
+        }
+      ],
+      "used_evidence_ids": [],
+      "limitations": [
+        "이론적·사용자 선언 조건의 검토이며 실측 성능·시설 인수·법적 승인이 아닙니다.",
+        "총 비PP 질량의 두 성분 모델이며 개별 오염물·유해성·식품접촉 안전성을 판정하지 않습니다."
+      ]
+    }
+  }
+}
