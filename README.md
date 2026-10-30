@@ -155,6 +155,7 @@ DEFRA·EPA의 폐기물 계수는 보고용 범위여서 공정 전체 탄소 �
 
 - [쉬운 설명·입력 수준·실제 구현 범위](docs/pp-quality-mvp.md)
 - [Re_server용 내부 API와 요청 예시](docs/pp-quality-api.md)
+- [실제 API 시나리오 98개·수치 조합 1만 개 검사 결과](docs/pp-scenario-test-report-2026-10-30.md)
 - [데이터 감사·실제 다운로드와 해시](docs/evaluation/pp-quality-audit-2026-10-29.json)
 
 ## 조직 레포 구성

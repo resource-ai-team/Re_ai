@@ -100,8 +100,14 @@ def set_scenario(state, payload, actor):
     quality["scenario_by"] = actor
 
 
-def issues_for_claim(claim, sample):
+def issues_for_claim(claim, sample, assessment_on=None):
     issues = []
+    if (
+        claim.measurement_date
+        and assessment_on
+        and claim.measurement_date > date.fromisoformat(assessment_on)
+    ):
+        issues.append("measurement_after_assessment_date")
     if claim.sample_id != sample or sample is None or not claim.same_lot_confirmed:
         issues.append("sample_or_lot_binding_unconfirmed")
     if claim.source_type in {"unknown", "document_extracted_unconfirmed"} or (
@@ -148,7 +154,7 @@ def build_profile(state):
     ]
     validation, grouped = [], {}
     for claim in claims:
-        issues = issues_for_claim(claim, sample)
+        issues = issues_for_claim(claim, sample, state["inputs"]["assessment_on"])
         validation.append(
             {"evidence_id": claim.evidence_id, "issues": issues, "calculation_eligible": not issues}
         )
@@ -230,6 +236,7 @@ def assess(state):
     mode = (
         "simulation"
         if state["inputs"]["mode"] == "simulation"
+        or (scenario and scenario.target.requirement_type == "scenario_target")
         or any(
             c.synthetic or c.source_type == "literature_assumption" for c in profile.measurements
         )
@@ -248,7 +255,7 @@ def assess(state):
     elif profile.material:
         issues.append({"code": "not_confirmed_rigid_pp_scope"})
     result = {
-        "version": "pp-quality-v1",
+        "version": "pp-quality-v2",
         "level": level,
         "mode": mode,
         "profile": profile.model_dump(mode="json"),
@@ -290,9 +297,11 @@ def assess(state):
         ],
     }
     binding = quality.get("research_binding", {})
-    result["kg_candidates_loaded"] = bool(state.get("engine")) and binding.get(
-        "profile_sha256"
-    ) == digest(profile.model_dump(mode="json"))
+    result["kg_candidates_loaded"] = (
+        bool(state.get("engine"))
+        and binding.get("profile_sha256") == digest(profile.model_dump(mode="json"))
+        and binding.get("engine_request_sha256") == digest(state["inputs"].get("engine_request"))
+    )
     if result["kg_candidates_loaded"]:
         result["kg_integration_status"] = "existing_research_executed_on_explicit_profile_mapping"
     for field in profile.unknown_fields:
@@ -325,6 +334,9 @@ def assess(state):
     if not level or profile.conflicts or not scenario:
         return result
     target = scenario.target
+    if target.status == "metadata_only" or target.requirement_type == "standard_metadata":
+        issues.append({"code": "target_metadata_only_not_a_numeric_operating_requirement"})
+        return result
     if target.effective_on and target.effective_on > date.fromisoformat(
         state["inputs"]["assessment_on"]
     ):
@@ -348,13 +360,19 @@ def assess(state):
         return result
     moisture_limit = next((r for r in target.limits if r.field == "moisture"), None)
     if moisture_limit and profile.quantity_kg is not None and profile.moisture is not None:
-        if moisture_limit.max_value > profile.moisture:
-            issues.append({"code": "moisture_target_above_initial_not_a_drying_removal"})
-        else:
-            result["drying_balance"] = drying_balance(
-                profile.quantity_kg, profile.moisture, moisture_limit.max_value
-            )
-            result["level"], result["status"] = 2, "CONDITIONAL"
+        result["drying_balance"] = drying_balance(
+            profile.quantity_kg, profile.moisture, min(profile.moisture, moisture_limit.max_value)
+        )
+        result["drying_balance"]["initial_moisture_limit_met"] = (
+            profile.moisture <= moisture_limit.max_value
+        )
+        result["level"], result["status"] = 2, "CONDITIONAL"
+        result["used_evidence_ids"] = [
+            c.evidence_id
+            for c in profile.measurements
+            if c.field in {"quantity_kg", "moisture"}
+            and not issues_for_claim(c, profile.sample_id, state["inputs"]["assessment_on"])
+        ]
     if scenario.overall_pp_loss_pct == 100:
         issues.append({"code": "no_retained_pp_at_full_loss"})
         return result
@@ -363,12 +381,15 @@ def assess(state):
             issues.append({"code": "insufficient_compatible_mass_balance_inputs"})
         return result
     result["level"] = 2
-    result["used_evidence_ids"] = [
-        c.evidence_id
-        for c in profile.measurements
-        if c.field in {"quantity_kg", "contamination"}
-        and not issues_for_claim(c, profile.sample_id)
-    ]
+    result["used_evidence_ids"] = sorted(
+        set(result["used_evidence_ids"])
+        | {
+            c.evidence_id
+            for c in profile.measurements
+            if c.field in {"quantity_kg", "contamination"}
+            and not issues_for_claim(c, profile.sample_id, state["inputs"]["assessment_on"])
+        }
+    )
     result["mass_balance"] = minimum_removal(
         profile.quantity_kg,
         profile.contamination,
@@ -379,14 +400,19 @@ def assess(state):
     result["reliability"] = "user_confirmed_or_reported_not_independently_validated"
     if scenario.stages:
         forward = forward_balance(profile.quantity_kg, profile.contamination, scenario.stages)
+        result["forward_scenario"] = forward
         if forward["output_contamination_pct"] is None:
             issues.append({"code": "no_output_material"})
+            result["status"] = "REVIEW"
+            return result
+        if Decimal(forward["pp_kg"]) == 0:
+            issues.append({"code": "no_recovered_pp_no_pp_product_revenue"})
+            result["status"] = "REVIEW"
             return result
         forward["declared_contamination_target_met"] = (
             Decimal(forward["output_contamination_pct"]) <= contamination_limit.max_value
         )
         forward["other_specification_items_verified"] = False
-        result["forward_scenario"] = forward
         if scenario.economics:
             econ = scenario.economics
             output, residue = Decimal(forward["output_kg"]), Decimal(forward["residue_kg"])

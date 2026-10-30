@@ -678,6 +678,7 @@ class CaseService:
                 self._refresh(state, force=True)
                 state["material_quality"]["research_binding"] = {
                     "profile_sha256": profile_hash,
+                    "engine_request_sha256": digest(state["inputs"]["engine_request"]),
                     "origin": payload["origin"],
                 }
             elif action == "confirm_document":

@@ -193,3 +193,7 @@ $env:RUN_POSTGRES_INTEGRATION='true'
 - [KS M3843 메타데이터](https://www.kssn.net/search/stddetail.do?itemNo=K001010157018)
 - [ReMA 거래 참고 규격](https://www.isrispecs.org/orpheus_resource/pp-small-rigid-plastic/), [TNO 논문](https://doi.org/10.1016/j.wasman.2024.11.029)
 - [RECLAIM](https://zenodo.org/records/11504659), [AI-Hub 공공행정문서 OCR](https://aihub.or.kr/aihubdata/data/view.do?dataSetSn=88)
+
+## 2026-10-30 실제 시나리오 검사
+
+실제 HTTP·PostgreSQL·Neo4j/RAG 검사에서 발견한 미래 일자·메타데이터 규격·수분 상한·PP 완전 손실·가상 목표 표시·조사 바인딩 문제를 고쳤습니다. 수정 후 98개 시나리오/415회 HTTP 요청과 수치 조합 1만 개를 통과했습니다. 현재 평가 버전은 pp-quality-v2이며 기존 조사 요청 해시가 없으면 다시 조사해야 합니다. [검사 범위·실패·데이터 부족](pp-scenario-test-report-2026-10-30.md)을 확인하세요.
